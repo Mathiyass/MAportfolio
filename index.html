@@ -55,6 +55,102 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
         
+        /* Loading Animation Styles */
+        #ma-loader {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .ma-monogram {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .ma-monogram .path-m {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: draw-m 2s ease-in-out forwards;
+        }
+        
+        .ma-monogram .path-a {
+            stroke-dasharray: 150;
+            stroke-dashoffset: 150;
+            animation: draw-a 2s ease-in-out 0.5s forwards;
+        }
+        
+        .loading-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            color: #00ffff;
+            opacity: 0;
+            animation: fade-in-text 1s ease-in-out 1s forwards;
+        }
+        
+        .loading-dots {
+            display: inline-block;
+            animation: loading-dots 1.5s infinite;
+        }
+        
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fade-in-bar 1s ease-in-out 1.5s forwards;
+        }
+        
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00ffff, #8b5cf6, #ec4899);
+            border-radius: 2px;
+            animation: loading-progress 3s ease-in-out forwards;
+            transform: translateX(-100%);
+        }
+        
+        @keyframes draw-m {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        @keyframes draw-a {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+                transform: scale(1);
+            }
+            50% { 
+                filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.8));
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes fade-in-text {
+            to { opacity: 1; }
+        }
+        
+        @keyframes fade-in-bar {
+            to { opacity: 1; }
+        }
+        
+        @keyframes loading-dots {
+            0%, 20% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75%, 100% { content: '...'; }
+        }
+        
+        @keyframes loading-progress {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0%); }
+        }
+        
         body {
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
             font-family: 'JetBrains Mono', monospace;
@@ -124,13 +220,25 @@
 </head>
 <body class="text-white overflow-x-hidden">
     <!-- MA Loader -->
-    <div id="ma-loader" class="fixed inset-0 bg-dark-bg z-[9999] flex items-center justify-center transition-opacity duration-500">
-        <svg class="ma-monogram w-48 h-48" viewBox="0 0 100 100">
-            <path class="path-m" fill="none" stroke="#00ffff" stroke-width="2" 
-                  d="M20,20 L20,80 L40,80 L40,40 L60,40 L60,80 L80,80 L80,20"/>
-            <path class="path-a" fill="none" stroke="#00ffff" stroke-width="2" 
-                  d="M30,50 L50,20 L70,50 M40,35 L60,35"/>
+    <div id="ma-loader" class="fixed inset-0 z-[9999] transition-opacity duration-1000">
+        <svg class="ma-monogram w-32 h-32 md:w-48 md:h-48" viewBox="0 0 100 100">
+            <path class="path-m" fill="none" stroke="#00ffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                  d="M15,15 L15,85 M15,15 L35,45 M35,45 L55,15 M55,15 L55,85"/>
+            <path class="path-a" fill="none" stroke="#00ffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                  d="M70,85 L75,15 L80,85 M72,55 L78,55"/>
         </svg>
+        
+        <div class="loading-text">
+            Loading<span class="loading-dots"></span>
+        </div>
+        
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+        
+        <div class="loading-text text-sm mt-4 opacity-60">
+            Initializing Portfolio
+        </div>
     </div>
 
     <!-- Navigation -->

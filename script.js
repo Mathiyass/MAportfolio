@@ -51,7 +51,8 @@ function typeEffect() {
 
 // Start typing effect when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(typeEffect, 1000);
+    // Typing effect will start after loader finishes
+    // Removed automatic start here since it's now triggered after loader
 });
 
 // Navbar scroll effect
@@ -203,12 +204,19 @@ document.addEventListener('mousemove', function(e) {
 });
 
 // Preloader (if needed)
-// Loader fade-out
+// Enhanced loader with timing
 window.addEventListener('load', () => {
     const loader = document.getElementById('ma-loader');
     if (loader) {
-        loader.style.opacity = '0';
-        setTimeout(() => loader.remove(), 500);
+        // Wait for animations to complete before hiding
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.remove();
+                // Start typing effect after loader is gone
+                setTimeout(typeEffect, 500);
+            }, 1000);
+        }, 3500); // Total loading time: 3.5 seconds
     }
 });
 
