@@ -65,14 +65,17 @@ cd portfolio
 
 2. Open `index.html` in your browser or use a local server:
 ```bash
-# Using Python
-python -m http.server 8000
-
 # Using Node.js
 npx serve .
 
+# Using Live Server (VS Code extension)
+# Install "Live Server" extension and right-click index.html
+
 # Using PHP
 php -S localhost:8000
+
+# Or simply open index.html directly in your browser
+# (some features may be limited without a server)
 ```
 
 ## 🎨 Customization
