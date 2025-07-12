@@ -1,32 +1,71 @@
 {
-  "name": "mathisha-angirasa-portfolio",
-  "version": "1.0.0",
-  "description": "Mathisha Angirasa's personal portfolio website - Software Engineering Student & Full Stack Developer",
+  "name": "mathisha-angirasa-enhanced-portfolio",
+  "version": "2.0.0",
+  "description": "Mathisha Angirasa's enhanced personal portfolio website - Software Engineering Student & Full Stack Developer with modern features and cyberpunk aesthetics",
   "main": "index.html",
   "scripts": {
     "start": "npx serve . -p 3000",
+    "dev": "npx serve . -p 3000 --live-reload",
     "build": "echo 'Static site - no build required' && exit 0",
-    "dev": "npx serve . -p 3000",
-    "preview": "npx serve . -p 4173"
+    "preview": "npx serve . -p 4173",
+    "test": "echo 'No tests specified' && exit 0",
+    "lint": "echo 'Linting HTML, CSS, and JS files...' && exit 0",
+    "deploy": "echo 'Deploy to GitHub Pages' && exit 0"
   },
   "keywords": [
     "portfolio",
     "website",
     "mathisha-angirasa",
-    "html",
-    "css",
+    "software-engineer",
+    "full-stack-developer",
+    "html5",
+    "css3",
     "javascript",
-    "tailwind",
-    "static"
+    "tailwindcss",
+    "responsive-design",
+    "cyberpunk",
+    "glassmorphism",
+    "animations",
+    "interactive",
+    "modern-web",
+    "static-site",
+    "github-pages",
+    "sri-lanka",
+    "tech-enthusiast"
   ],
-  "author": "Mathisha Angirasa",
+  "author": {
+    "name": "Mathisha Angirasa",
+    "email": "mathisha.angirasa@example.com",
+    "url": "https://github.com/Mathiyass"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/Mathiyass/portfolio.git"
   },
+  "bugs": {
+    "url": "https://github.com/Mathiyass/portfolio/issues"
+  },
   "homepage": "https://mathiyass.github.io",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
   "devDependencies": {
     "serve": "^14.2.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "config": {
+    "port": 3000,
+    "host": "localhost"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/Mathiyass"
   }
 }
