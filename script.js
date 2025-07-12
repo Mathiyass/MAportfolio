@@ -17,9 +17,14 @@ const typingTexts = [
 let textIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
-const typingElement = document.getElementById('typing-text');
+let typingElement;
 
 function typeEffect() {
+    if (!typingElement) {
+        typingElement = document.getElementById('typing-text');
+        if (!typingElement) return; // Exit if element still doesn't exist
+    }
+    
     const currentText = typingTexts[textIndex];
     
     if (isDeleting) {
@@ -118,7 +123,9 @@ const observer = new IntersectionObserver(function(entries) {
 
 // Observe all sections
 document.querySelectorAll('section').forEach(section => {
-    observer.observe(section);
+    if (section instanceof Element) {
+        observer.observe(section);
+    }
 });
 
 // Skill bars animation
@@ -145,7 +152,9 @@ const skillsObserver = new IntersectionObserver(function(entries) {
     });
 }, { threshold: 0.5 });
 
-skillsObserver.observe(skillsSection);
+if (skillsSection instanceof Element) {
+    skillsObserver.observe(skillsSection);
+}
 
 // Project cards hover effect
 document.querySelectorAll('.project-card').forEach(card => {
@@ -179,7 +188,10 @@ if (contactForm) {
 }
 
 // Update current year in footer
-document.getElementById('current-year').textContent = new Date().getFullYear();
+const currentYearElement = document.getElementById('current-year');
+if (currentYearElement) {
+    currentYearElement.textContent = new Date().getFullYear();
+}
 
 // Add custom cursor effect
 document.addEventListener('mousemove', function(e) {
@@ -191,13 +203,33 @@ document.addEventListener('mousemove', function(e) {
 });
 
 // Preloader (if needed)
-window.addEventListener('load', function() {
-    const preloader = document.querySelector('.preloader');
-    if (preloader) {
-        preloader.style.opacity = '0';
-        setTimeout(() => {
-            preloader.style.display = 'none';
-        }, 500);
+// Loader fade-out
+window.addEventListener('load', () => {
+    const loader = document.getElementById('ma-loader');
+    if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.remove(), 500);
+    }
+});
+
+// Dark mode toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    if (themeToggle) {
+        // Set initial theme from localStorage
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.classList.add(savedTheme);
+        themeToggle.querySelector('i').classList.toggle('fa-sun', savedTheme === 'light');
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.querySelector('i').classList.toggle('fa-moon');
+            themeToggle.querySelector('i').classList.toggle('fa-sun');
+        });
     }
 });
 
