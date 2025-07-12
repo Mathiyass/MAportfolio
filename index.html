@@ -50,11 +50,11 @@
             theme: {
                 extend: {
                     colors: {
-                        'cyber-cyan': '#00ffff',
-                        'cyber-purple': '#8b5cf6',
-                        'cyber-pink': '#ec4899',
-                        'cyber-green': '#10b981',
-                        'cyber-orange': '#f59e0b',
+                        'cyber-cyan': '#26c6da', // Softer cyan
+                        'cyber-purple': '#8b5cf6', // Kept as is
+                        'cyber-pink': '#ff69b4', // Deeper pink
+                        'cyber-green': '#4caf50', // Muted green
+                        'cyber-orange': '#ff9800', // Warmer orange
                         'dark-bg': '#0f0f23',
                         'dark-card': '#1a1a2e',
                         'dark-accent': '#16213e',
@@ -272,10 +272,18 @@
         .dark .project-card:hover {
             box-shadow: 0 25px 50px rgba(0, 255, 255, 0.2);
         }
-        
-        .light .project-card:hover {
-            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.2);
-        }
+.light .project-card:hover {
+    box-shadow: 0 25px 50px rgba(139, 92, 246, 0.2);
+}
+
+/* Micro-interactions for Nav Links and Buttons */
+.nav-link:hover {
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); /* Cyber-cyan glow */
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); /* Cyber-cyan glow */
+}
         
         /* Skill Bars */
         .skill-bar {
@@ -286,9 +294,20 @@
             background: linear-gradient(90deg, #00ffff, #8b5cf6);
         }
         
-        .light .skill-bar {
-            background: linear-gradient(90deg, #8b5cf6, #ec4899);
-        }
+.light .skill-bar {
+    background: linear-gradient(90deg, #8b5cf6, #ec4899);
+}
+
+/* Skill Bar Glow */
+.skill-bar-glow {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); /* Cyber-cyan glow */
+    animation: skill-glow 1.5s infinite alternate;
+}
+
+@keyframes skill-glow {
+    from { box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); }
+    to { box-shadow: 0 0 25px rgba(0, 255, 255, 0.9); }
+}
         
         /* Navigation */
         .nav-blur {
@@ -463,9 +482,60 @@
                 color: black !important;
             }
         }
+
+        /* Custom Cursor Styles */
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            border: 2px solid #00ffff; /* Cyber-cyan */
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease-out, border-color 0.3s ease;
+            mix-blend-mode: difference; /* For a cool glowing effect */
+        }
+
+        .dark .custom-cursor {
+            border-color: #00ffff; /* Cyber-cyan */
+        }
+
+        .light .custom-cursor {
+            border-color: #8b5cf6; /* Cyber-purple */
+        }
+
+        /* Cursor trail effect */
+        .cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            background-color: #00ffff; /* Cyber-cyan */
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease-out, background-color 0.3s ease;
+            mix-blend-mode: difference;
+        }
+
+        .dark .cursor-dot {
+            background-color: #00ffff; /* Cyber-cyan */
+        }
+
+        .light .cursor-dot {
+            background-color: #8b5cf6; /* Cyber-purple */
+        }
+
+        /* Hide default cursor */
+        body.cursor-hidden {
+            cursor: none;
+        }
     </style>
 </head>
-<body class="dark text-white overflow-x-hidden">
+<body class="dark text-white overflow-x-hidden cursor-hidden"> <!-- Added cursor-hidden class -->
     <!-- Progress Bar -->
     <div class="progress-bar" id="progress-bar"></div>
     
@@ -494,20 +564,24 @@
         </div>
     </div>
 
+    <!-- Custom Cursor Elements -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 transition-all duration-300 no-print" id="navbar">
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 no-print shadow-md backdrop-blur-sm" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <div class="text-2xl font-bold text-cyber-cyan text-glow font-mono">
-                    &lt;MA/&gt;
+                    <MA/>
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#home" class="nav-link hover:text-cyber-cyan transition-colors relative">Home</a>
-                    <a href="#about" class="nav-link hover:text-cyber-cyan transition-colors relative">About</a>
-                    <a href="#skills" class="nav-link hover:text-cyber-cyan transition-colors relative">Skills</a>
-                    <a href="#projects" class="nav-link hover:text-cyber-cyan transition-colors relative">Projects</a>
-                    <a href="#achievements" class="nav-link hover:text-cyber-cyan transition-colors relative">Achievements</a>
-                    <a href="#contact" class="nav-link hover:text-cyber-cyan transition-colors relative">Contact</a>
+                    <a href="#home" class="nav-link font-medium hover:text-cyber-cyan transition-colors relative">Home</a>
+                    <a href="#about" class="nav-link font-medium hover:text-cyber-cyan transition-colors relative">About</a>
+                    <a href="#skills" class="nav-link font-medium hover:text-cyber-cyan transition-colors relative">Skills</a>
+                    <a href="#projects" class="nav-link font-medium hover:text-cyber-cyan transition-colors relative">Projects</a>
+                    <a href="#achievements" class="nav-link font-medium hover:text-cyber-cyan transition-colors relative">Achievements</a>
+                    <a href="#contact" class="nav-link font-medium hover:text-cyber-cyan transition-colors relative">Contact</a>
                     <button id="theme-toggle" class="p-2 rounded-lg hover:bg-dark-card dark:hover:bg-dark-card light:hover:bg-light-accent transition-colors">
                         <i class="fas fa-moon text-cyber-cyan"></i>
                     </button>
@@ -525,13 +599,15 @@
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
         <div class="container mx-auto px-6 text-center">
-            <div class="mb-8" data-aos="fade-down">
-                <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-r from-cyber-cyan to-cyber-purple p-1 animate-spin-slow">
-                    <div class="w-full h-full rounded-full bg-dark-bg dark:bg-dark-bg light:bg-light-bg flex items-center justify-center">
-                        <span class="text-4xl">👨‍💻</span>
+            <div class="mb-8 flex items-center justify-center" data-aos="fade-down">
+                <div class="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-lg border-4 border-transparent 
+                            bg-gradient-to-br from-cyber-cyan to-cyber-purple p-1
+                            dark:bg-gradient-to-br dark:from-cyber-cyan dark:to-cyber-purple
+                            light:bg-gradient-to-br light:from-cyber-purple light:to-cyber-pink
+                            hover:shadow-xl transition-shadow duration-300">
+                        <img src="assets/Profile Picture.jpg" alt="Mathisha Angirasa" class="w-full h-full object-cover rounded-full p-1">
                     </div>
                 </div>
-            </div>
             
             <h1 class="text-5xl md:text-7xl font-bold mb-6 text-glow font-mono" data-aos="fade-up">
                 Hi, I'm <span class="text-cyber-cyan bg-gradient-to-r from-cyber-cyan to-cyber-purple bg-clip-text text-transparent animate-gradient bg-300%">Mathisha Angirasa</span>
@@ -541,30 +617,30 @@
                 <span id="typing-text" class="typing-effect"></span>
             </div>
             
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12" data-aos="fade-up" data-aos-delay="400">
-                <a href="#projects" class="btn-primary bg-cyber-cyan text-dark-bg px-8 py-3 rounded-lg font-semibold hover:bg-cyber-purple transition-colors transform hover:scale-105">
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:sm:space-x-6 mb-12" data-aos="fade-up" data-aos-delay="400">
+                <a href="#projects" class="btn-primary bg-cyber-cyan text-dark-bg px-8 py-3 rounded-lg font-semibold hover:bg-cyber-purple transition-colors transform hover:scale-105 hover:shadow-lg">
                     <i class="fas fa-code mr-2"></i>View My Work
                 </a>
-                <a href="#contact" class="btn-primary border border-cyber-cyan text-cyber-cyan px-8 py-3 rounded-lg font-semibold hover:bg-cyber-cyan hover:text-dark-bg transition-colors transform hover:scale-105">
+                <a href="#contact" class="btn-primary border border-cyber-cyan text-cyber-cyan px-8 py-3 rounded-lg font-semibold hover:bg-cyber-cyan hover:text-dark-bg transition-colors transform hover:scale-105 hover:shadow-lg">
                     <i class="fas fa-envelope mr-2"></i>Get In Touch
                 </a>
             </div>
             
             <!-- Quick Stats -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="600">
-                <div class="glass rounded-lg p-4 text-center">
+                <div class="glass rounded-lg p-4 text-center hover:shadow-lg transition-shadow duration-300">
                     <div class="text-2xl font-bold text-cyber-cyan">3+</div>
                     <div class="text-sm text-gray-400">Years Coding</div>
                 </div>
-                <div class="glass rounded-lg p-4 text-center">
+                <div class="glass rounded-lg p-4 text-center hover:shadow-lg transition-shadow duration-300">
                     <div class="text-2xl font-bold text-cyber-purple">15+</div>
                     <div class="text-sm text-gray-400">Projects</div>
                 </div>
-                <div class="glass rounded-lg p-4 text-center">
+                <div class="glass rounded-lg p-4 text-center hover:shadow-lg transition-shadow duration-300">
                     <div class="text-2xl font-bold text-cyber-pink">8+</div>
                     <div class="text-sm text-gray-400">Technologies</div>
                 </div>
-                <div class="glass rounded-lg p-4 text-center">
+                <div class="glass rounded-lg p-4 text-center hover:shadow-lg transition-shadow duration-300">
                     <div class="text-2xl font-bold text-cyber-green">100%</div>
                     <div class="text-sm text-gray-400">Passion</div>
                 </div>
@@ -572,9 +648,9 @@
         </div>
         
         <!-- Floating Elements -->
-        <div class="absolute top-20 left-10 text-cyber-cyan opacity-20 animate-float">
-            <i class="fab fa-react text-6xl"></i>
-        </div>
+<div class="absolute top-20 left-10 text-cyber-cyan opacity-20 animate-float" data-parallax-speed="-0.3">
+    <i class="fab fa-react text-6xl"></i>
+</div>
         <div class="absolute bottom-20 right-10 text-cyber-purple opacity-20 animate-float" style="animation-delay: 1s;">
             <i class="fab fa-java text-6xl"></i>
         </div>
@@ -587,7 +663,7 @@
     <section id="about" class="py-20 bg-dark-card dark:bg-dark-card light:bg-light-card">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12 text-cyber-cyan font-mono" data-aos="fade-up">
-                &lt;about_me/&gt;
+                <about_me/>
             </h2>
             
             <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
@@ -630,7 +706,7 @@
                 <div data-aos="fade-left" class="space-y-6">
                     <!-- Enhanced Quick Facts -->
                     <div class="glass rounded-lg p-8">
-                        <h3 class="text-2xl font-semibold mb-6 text-cyber-cyan font-mono">&lt;quick_facts/&gt;</h3>
+                        <h3 class="text-2xl font-semibold mb-6 text-cyber-cyan font-mono"><quick_facts/></h3>
                         <div class="space-y-4">
                             <div class="flex items-center">
                                 <i class="fas fa-graduation-cap text-cyber-cyan mr-4 text-xl"></i>
@@ -682,7 +758,7 @@
     <section id="skills" class="py-20">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12 text-cyber-cyan font-mono" data-aos="fade-up">
-                &lt;skills_&amp;_technologies/&gt;
+                <skills_&_technologies/>
             </h2>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -886,7 +962,7 @@
     <section id="projects" class="py-20 bg-dark-card dark:bg-dark-card light:bg-light-card">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12 text-cyber-cyan font-mono" data-aos="fade-up">
-                &lt;featured_projects/&gt;
+                <featured_projects/>
             </h2>
             
             <!-- Project Filter -->
@@ -1161,7 +1237,7 @@
     <section id="achievements" class="py-20">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12 text-cyber-cyan font-mono" data-aos="fade-up">
-                &lt;achievements_&amp;_certifications/&gt;
+                <achievements_&_certifications/>
             </h2>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -1263,7 +1339,7 @@
     <section id="contact" class="py-20 bg-dark-card dark:bg-dark-card light:bg-light-card">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12 text-cyber-cyan font-mono" data-aos="fade-up">
-                &lt;get_in_touch/&gt;
+                <get_in_touch/>
             </h2>
             
             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
@@ -1331,6 +1407,10 @@
                                 <i class="fab fa-instagram text-2xl text-pink-400 group-hover:text-pink-300 transition-colors"></i>
                                 <div class="text-xs mt-2 text-gray-500">Instagram</div>
                             </a>
+                            <a href="https://www.facebook.com/mathisha.angirasa/" target="_blank" class="social-icon glass p-4 rounded-lg text-center hover:scale-110 transition-transform group">
+                                <i class="fab fa-facebook text-2xl text-blue-600 group-hover:text-blue-500 transition-colors"></i>
+                                <div class="text-xs mt-2 text-gray-500">Facebook</div>
+                            </a>
                         </div>
                     </div>
                     
@@ -1350,6 +1430,14 @@
                                 <i class="fab fa-spotify text-2xl text-green-400 group-hover:text-green-300 transition-colors"></i>
                                 <div class="text-xs mt-2 text-gray-500">Spotify</div>
                             </a>
+                            <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" target="_blank" class="social-icon glass p-4 rounded-lg text-center hover:scale-110 transition-transform group">
+                                <i class="fas fa-gamepad text-2xl text-gray-400 group-hover:text-white transition-colors"></i>
+                                <div class="text-xs mt-2 text-gray-500">Epic Games</div>
+                            </a>
+                            <div class="social-icon glass p-4 rounded-lg text-center">
+                                <i class="fas fa-id-card text-2xl text-gray-400"></i>
+                                <div class="text-xs mt-2 text-gray-500">EA ID: M_MATHIYA_M</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1368,23 +1456,23 @@
                                 <div>
                                     <label for="email" class="block text-sm font-medium mb-2">Email *</label>
                                     <input type="email" id="email" name="email" required 
-                                           class="w-full px-4 py-3 bg-dark-bg dark:bg-dark-bg light:bg-white border border-gray-600 dark:border-gray-600 light:border-gray-300 rounded-lg focus:border-cyber-cyan focus:outline-none transition-colors">
+                                    class="w-full px-4 py-3 bg-dark-bg dark:bg-dark-bg light:bg-white border border-gray-600 dark:border-gray-600 light:border-gray-300 rounded-lg focus:border-cyber-cyan focus:outline-none transition-colors hover:shadow-md">
                                 </div>
                             </div>
                             
                             <div>
                                 <label for="subject" class="block text-sm font-medium mb-2">Subject</label>
                                 <input type="text" id="subject" name="subject" 
-                                       class="w-full px-4 py-3 bg-dark-bg dark:bg-dark-bg light:bg-white border border-gray-600 dark:border-gray-600 light:border-gray-300 rounded-lg focus:border-cyber-cyan focus:outline-none transition-colors">
+                                       class="w-full px-4 py-3 bg-dark-bg dark:bg-dark-bg light:bg-white border border-gray-600 dark:border-gray-600 light:border-gray-300 rounded-lg focus:border-cyber-cyan focus:outline-none transition-colors hover:shadow-md">
                             </div>
                             
                             <div>
                                 <label for="message" class="block text-sm font-medium mb-2">Message *</label>
                                 <textarea id="message" name="message" rows="6" required 
-                                          class="w-full px-4 py-3 bg-dark-bg dark:bg-dark-bg light:bg-white border border-gray-600 dark:border-gray-600 light:border-gray-300 rounded-lg focus:border-cyber-cyan focus:outline-none transition-colors resize-none"></textarea>
+                                          class="w-full px-4 py-3 bg-dark-bg dark:bg-dark-bg light:bg-white border border-gray-600 dark:border-gray-600 light:border-gray-300 rounded-lg focus:border-cyber-cyan focus:outline-none transition-colors resize-none hover:shadow-md"></textarea>
                             </div>
                             
-                            <button type="submit" class="btn-primary w-full bg-cyber-cyan text-dark-bg py-3 rounded-lg font-semibold hover:bg-cyber-purple transition-colors flex items-center justify-center">
+                            <button type="submit" class="btn-primary w-full bg-cyber-cyan text-dark-bg py-3 rounded-lg font-semibold hover:bg-cyber-purple transition-colors flex items-center justify-center hover:shadow-lg">
                                 <i class="fas fa-paper-plane mr-2"></i>
                                 <span>Send Message</span>
                             </button>
@@ -1414,19 +1502,19 @@
                 <!-- Brand -->
                 <div>
                     <div class="text-2xl font-bold text-cyber-cyan text-glow font-mono mb-4">
-                        &lt;MA/&gt;
+                        <MA/>
                     </div>
                     <p class="text-gray-400 mb-4">
                         Software Engineering Student passionate about creating innovative digital solutions and building the future with code.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="https://github.com/Mathiyass" target="_blank" class="text-gray-400 hover:text-cyber-cyan transition-colors">
+                        <a href="https://github.com/Mathiyass" target="_blank" class="text-gray-400 hover:text-cyber-cyan transition-colors hover:shadow-md p-2 rounded-lg">
                             <i class="fab fa-github text-xl"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="text-gray-400 hover:text-cyber-cyan transition-colors">
+                        <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="text-gray-400 hover:text-cyber-cyan transition-colors hover:shadow-md p-2 rounded-lg">
                             <i class="fab fa-linkedin text-xl"></i>
                         </a>
-                        <a href="https://x.com/Mathiya" target="_blank" class="text-gray-400 hover:text-cyber-cyan transition-colors">
+                        <a href="https://x.com/Mathiya" target="_blank" class="text-gray-400 hover:text-cyber-cyan transition-colors hover:shadow-md p-2 rounded-lg">
                             <i class="fab fa-twitter text-xl"></i>
                         </a>
                     </div>

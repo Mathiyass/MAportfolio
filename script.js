@@ -161,6 +161,8 @@ function animateSkillBars() {
         const width = bar.getAttribute('data-width');
         setTimeout(() => {
             bar.style.width = width;
+            // Add glow class after animation completes
+            bar.classList.add('skill-bar-glow'); 
         }, index * 200);
     });
 }
@@ -208,12 +210,13 @@ filterButtons.forEach(button => {
 // Enhanced Project Cards
 projectCards.forEach(card => {
     card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-15px) scale(1.02)';
+        // Apply a subtle 3D tilt effect on hover
+        this.style.transform = 'translateY(-15px) scale(1.02) perspective(1000px) rotateX(5deg) rotateY(-5deg)';
         this.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
     });
     
     card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
+        this.style.transform = 'translateY(0) scale(1) perspective(1000px) rotateX(0deg) rotateY(0deg)';
     });
 });
 
@@ -276,6 +279,9 @@ if (themeToggle) {
         localStorage.setItem('theme', newTheme);
         updateThemeIcon(newTheme);
         
+        // Update cursor colors based on theme
+        updateCursorColors(newTheme);
+
         // Add transition effect
         document.body.style.transition = 'all 0.3s ease';
         setTimeout(() => {
@@ -465,10 +471,13 @@ document.querySelectorAll('section').forEach(section => {
 // Enhanced Parallax Effect
 window.addEventListener('scroll', function() {
     const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.animate-float');
+    const parallaxElements = document.querySelectorAll('[data-parallax-speed]'); // Select elements with the attribute
     
-    parallaxElements.forEach((element, index) => {
-        const speed = 0.5 + (index * 0.1);
+    parallaxElements.forEach(element => {
+        const speed = parseFloat(element.dataset.parallaxSpeed);
+        // Apply parallax effect based on scroll position and speed
+        // For translateY, a negative speed means it moves up as you scroll down (further back)
+        // A positive speed means it moves down as you scroll down (closer)
         element.style.transform = `translateY(${scrolled * speed}px)`;
     });
 });
@@ -538,6 +547,7 @@ class PortfolioEnhancements {
         this.setupAdvancedAnimations();
         this.setupPerformanceMonitoring();
         this.setupAccessibility();
+        this.setupCustomCursor(); // Initialize custom cursor
     }
     
     setupAdvancedAnimations() {
@@ -582,11 +592,102 @@ class PortfolioEnhancements {
             });
         });
     }
+
+    // Custom Cursor Logic
+    setupCustomCursor() {
+        const cursor = document.getElementById('custom-cursor');
+        const cursorDot = document.getElementById('cursor-dot');
+        const body = document.body;
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let dotX = 0;
+        let dotY = 0;
+        let isPointer = false; // Flag to check if the cursor is over an interactive element
+
+        // Update cursor position
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Update the main cursor's position
+            cursor.style.transform = `translate3d(${mouseX - cursor.offsetWidth / 2}px, ${mouseY - cursor.offsetHeight / 2}px, 0)`;
+            
+            // Update the dot's position (for trailing effect)
+            dotX = mouseX;
+            dotY = mouseY;
+            cursorDot.style.transform = `translate3d(${dotX - cursorDot.offsetWidth / 2}px, ${dotY - cursorDot.offsetHeight / 2}px, 0)`;
+        });
+
+        // Add hover effects for interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, input, textarea, .project-card, .nav-link, .filter-btn, .social-icon');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = `translate3d(${mouseX - cursor.offsetWidth / 2}px, ${mouseY - cursor.offsetHeight / 2}px, 0) scale(1.5)`;
+                cursorDot.style.transform = `translate3d(${dotX - cursorDot.offsetWidth / 2}px, ${dotY - cursorDot.offsetHeight / 2}px, 0) scale(1.5)`;
+                isPointer = true;
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = `translate3d(${mouseX - cursor.offsetWidth / 2}px, ${mouseY - cursor.offsetHeight / 2}px, 0) scale(1)`;
+                cursorDot.style.transform = `translate3d(${dotX - cursorDot.offsetWidth / 2}px, ${dotY - cursorDot.offsetHeight / 2}px, 0) scale(1)`;
+                isPointer = false;
+            });
+        });
+
+        // Update cursor colors based on theme
+        const currentTheme = body.classList.contains('dark') ? 'dark' : 'light';
+        updateCursorColors(currentTheme);
+    }
+}
+
+// Function to update cursor colors based on theme
+function updateCursorColors(theme) {
+    const cursor = document.getElementById('custom-cursor');
+    const cursorDot = document.getElementById('cursor-dot');
+
+    if (theme === 'dark') {
+        cursor.style.borderColor = '#00ffff'; // Cyber-cyan
+        cursorDot.style.backgroundColor = '#00ffff'; // Cyber-cyan
+    } else {
+        cursor.style.borderColor = '#8b5cf6'; // Cyber-purple
+        cursorDot.style.backgroundColor = '#8b5cf6'; // Cyber-purple
+    }
 }
 
 // Initialize enhanced features
 document.addEventListener('DOMContentLoaded', () => {
     new PortfolioEnhancements();
+
+    // Initialize Typing Effect Enhancements
+    const typingElement = document.getElementById('typing-text');
+    if (typingElement) {
+        let mouseX = 0;
+        let mouseY = 0;
+        let elementX = 0;
+        let elementY = 0;
+
+        typingElement.addEventListener('mousemove', (e) => {
+            const rect = typingElement.getBoundingClientRect();
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            elementX = rect.left + rect.width / 2;
+            elementY = rect.top + rect.height / 2;
+
+            const dx = mouseX - elementX;
+            const dy = mouseY - elementY;
+
+            // Apply a subtle tilt or movement
+            const tiltX = (dy / rect.height) * 15; // Max tilt 15 degrees
+            const tiltY = (dx / rect.width) * -15; // Max tilt -15 degrees
+
+            typingElement.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+            typingElement.style.transition = 'transform 0.3s ease-out';
+        });
+
+        typingElement.addEventListener('mouseleave', () => {
+            typingElement.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+        });
+    }
 });
 
 // Service Worker Registration (for PWA capabilities)
