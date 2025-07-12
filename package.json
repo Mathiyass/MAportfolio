@@ -1,7 +1,7 @@
 {
-  "name": "mathiya-portfolio",
+  "name": "mathisha-angirasa-portfolio",
   "version": "1.0.0",
-  "description": "Mathiya's personal portfolio website - Gen Z software engineering student",
+  "description": "Mathisha Angirasa's personal portfolio website - Software Engineering Student & Full Stack Developer",
   "main": "index.html",
   "scripts": {
     "start": "npx serve . -p 3000",
@@ -12,19 +12,20 @@
   "keywords": [
     "portfolio",
     "website",
+    "mathisha-angirasa",
     "html",
     "css",
     "javascript",
     "tailwind",
     "static"
   ],
-  "author": "Mathiya",
+  "author": "Mathisha Angirasa",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mathiya/portfolio.git"
+    "url": "https://github.com/Mathiyass/portfolio.git"
   },
-  "homepage": "https://mathiya.github.io",
+  "homepage": "https://mathiyass.github.io",
   "devDependencies": {
     "serve": "^14.2.1"
   }

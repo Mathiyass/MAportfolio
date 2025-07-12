@@ -7,10 +7,10 @@ AOS.init({
 
 // Typing effect for hero section
 const typingTexts = [
+    "Software Engineering Student 🎓",
+    "Full Stack Developer 💻", 
+    "Tech Enthusiast 🌟",
     "I build responsive websites.",
-    "I optimize systems.",
-    "I design experiences.",
-    "I solve complex problems.",
     "I create digital solutions."
 ];
 
@@ -291,13 +291,13 @@ if (logo) {
 console.log(`
     ╔══════════════════════════════════════╗
     ║                                      ║
-    ║        Welcome to Mathiya's          ║
+    ║     Welcome to Mathisha's            ║
     ║           Portfolio!                 ║
     ║                                      ║
     ║    Built with ❤️ and lots of ☕      ║
     ║                                      ║
     ║    Check out the source code:        ║
-    ║    github.com/mathiya/portfolio      ║
+    ║    github.com/Mathiyass/portfolio    ║
     ║                                      ║
     ╚══════════════════════════════════════╝
 `);

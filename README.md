@@ -1,4 +1,4 @@
-# Mathiya's Portfolio Website
+# Mathisha Angirasa's Portfolio Website
 
 A modern, responsive portfolio website built with HTML, JavaScript, and Tailwind CSS, featuring a cyberpunk-glassmorphic design aesthetic.
 
@@ -59,7 +59,7 @@ portfolio/
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/mathiya/portfolio.git
+git clone https://github.com/Mathiyass/portfolio.git
 cd portfolio
 ```
 
@@ -134,12 +134,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-**Mathiya** - Software Engineering Student
+**Mathisha Angirasa** - Software Engineering Student
 
-- GitHub: [@mathiya](https://github.com/mathiya)
-- LinkedIn: [mathiya](https://linkedin.com/in/mathiya)
-- Email: mathiya@example.com
+- GitHub: [@Mathiyass](https://github.com/Mathiyass)
+- LinkedIn: [Mathisha Angirasa](https://www.linkedin.com/in/mathisha-angirasa-a955941a2/)
+- Email: mathisha.angirasa@example.com
 
 ---
-
-Built with 💙 by Mathiya • 2024
