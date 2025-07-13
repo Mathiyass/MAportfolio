@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Mathiya Angirasa</title>
+    <meta name="description" content="Learn more about Mathiya Angirasa - Full Stack Developer, UX Explorer & Aesthetic Fanatic.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Google Fonts CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'cyber-cyan': '#00F0FF',
+                        'cyber-purple': '#8A2BE2',
+                        'dark-bg': '#0F0F0F',
+                        'dark-card': '#1A1A1A',
+                        'light-bg': '#F9F9F9',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'counter': 'counter 2s ease-out',
+                    },
+                    keyframes: {
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'counter': {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .timeline-line {
+            background: linear-gradient(to bottom, #00F0FF, #8A2BE2);
+        }
+    </style>
+</head>
+
+<body class="dark bg-dark-bg text-white transition-all duration-300">
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 w-full z-40 bg-dark-bg/80 backdrop-blur-md border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="text-2xl font-bold gradient-text">MA</div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Home</a>
+                    <a href="about.html" class="nav-link text-cyber-cyan border-b-2 border-cyber-cyan">About</a>
+                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Projects</a>
+                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Skills</a>
+                    <a href="resume.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Resume</a>
+                    <a href="blog.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Blog</a>
+                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Contact</a>
+                </div>
+                
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-lg bg-dark-card hover:bg-gray-700 transition-colors duration-300">
+                    <i class="fas fa-moon text-cyber-cyan"></i>
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-dark-card">
+                    <i class="fas fa-bars text-cyber-cyan"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 p-6 bg-dark-card rounded-lg">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="hover:text-cyber-cyan transition-colors duration-300">Home</a>
+                    <a href="about.html" class="text-cyber-cyan">About</a>
+                    <a href="projects.html" class="hover:text-cyber-cyan transition-colors duration-300">Projects</a>
+                    <a href="skills.html" class="hover:text-cyber-cyan transition-colors duration-300">Skills</a>
+                    <a href="resume.html" class="hover:text-cyber-cyan transition-colors duration-300">Resume</a>
+                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors duration-300">Blog</a>
+                    <a href="contact.html" class="hover:text-cyber-cyan transition-colors duration-300">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <!-- Background Blobs -->
+        <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan/10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text" data-aos="fade-up">
+                About Me
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Passionate about creating digital experiences that make a difference
+            </p>
+        </div>
+    </section>
+
+    <!-- Main About Content -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                <!-- About Text -->
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl font-bold mb-6 gradient-text">My Story</h2>
+                    <div class="space-y-6 text-gray-300">
+                        <p class="text-lg leading-relaxed">
+                            I'm a passionate full-stack developer with a keen eye for design and user experience. 
+                            My journey in tech started with curiosity about how websites work, and it has evolved 
+                            into a deep love for creating digital solutions that make a real impact.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            I specialize in modern web technologies including React, Node.js, and cloud platforms. 
+                            What sets me apart is my ability to bridge the gap between technical implementation 
+                            and user-centered design, ensuring that every project I work on is both functional and beautiful.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            When I'm not coding, you'll find me exploring new technologies, contributing to open-source 
+                            projects, or sharing my knowledge with the developer community. I believe in continuous 
+                            learning and staying at the forefront of technological innovation.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Profile Image -->
+                <div data-aos="fade-left" class="text-center">
+                    <div class="relative inline-block">
+                        <div class="w-80 h-80 rounded-2xl overflow-hidden border-4 border-gradient-to-r from-cyber-cyan to-cyber-purple">
+                            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                                 alt="Mathiya Angirasa" 
+                                 class="w-full h-full object-cover"
+                                 loading="lazy">
+                        </div>
+                        <!-- Floating Elements -->
+                        <div class="absolute -top-4 -right-4 w-8 h-8 bg-cyber-cyan rounded-full animate-float"></div>
+                        <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-cyber-purple rounded-full animate-float" style="animation-delay: -2s;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-20 bg-dark-card/30">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 gradient-text" data-aos="fade-up">
+                My Journey
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Timeline Container -->
+                <div class="relative">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full timeline-line"></div>
+                    
+                    <!-- Timeline Items -->
+                    <div class="space-y-12">
+                        <!-- Timeline Item 1 -->
+                        <div class="relative flex items-center" data-aos="fade-right">
+                            <div class="flex-1 pr-8 text-right">
+                                <div class="bg-dark-card p-6 rounded-lg border border-gray-700 hover:border-cyber-cyan transition-colors duration-300">
+                                    <h3 class="text-xl font-bold text-cyber-cyan mb-2">Started Programming</h3>
+                                    <p class="text-gray-400 mb-2">2020</p>
+                                    <p class="text-gray-300">Began my journey with HTML, CSS, and JavaScript. Built my first website and fell in love with web development.</p>
+                                </div>
+                            </div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-cyber-cyan rounded-full border-4 border-dark-bg"></div>
+                            <div class="flex-1 pl-8"></div>
+                        </div>
+                        
+                        <!-- Timeline Item 2 -->
+                        <div class="relative flex items-center" data-aos="fade-left">
+                            <div class="flex-1 pr-8"></div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-cyber-purple rounded-full border-4 border-dark-bg"></div>
+                            <div class="flex-1 pl-8">
+                                <div class="bg-dark-card p-6 rounded-lg border border-gray-700 hover:border-cyber-purple transition-colors duration-300">
+                                    <h3 class="text-xl font-bold text-cyber-purple mb-2">First Full-Stack Project</h3>
+                                    <p class="text-gray-400 mb-2">2021</p>
+                                    <p class="text-gray-300">Developed my first full-stack application using React and Node.js. Learned about databases and API development.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Timeline Item 3 -->
+                        <div class="relative flex items-center" data-aos="fade-right">
+                            <div class="flex-1 pr-8 text-right">
+                                <div class="bg-dark-card p-6 rounded-lg border border-gray-700 hover:border-cyber-cyan transition-colors duration-300">
+                                    <h3 class="text-xl font-bold text-cyber-cyan mb-2">Freelance Developer</h3>
+                                    <p class="text-gray-400 mb-2">2022</p>
+                                    <p class="text-gray-300">Started freelancing and working with clients. Gained experience in project management and client communication.</p>
+                                </div>
+                            </div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-cyber-cyan rounded-full border-4 border-dark-bg"></div>
+                            <div class="flex-1 pl-8"></div>
+                        </div>
+                        
+                        <!-- Timeline Item 4 -->
+                        <div class="relative flex items-center" data-aos="fade-left">
+                            <div class="flex-1 pr-8"></div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-cyber-purple rounded-full border-4 border-dark-bg"></div>
+                            <div class="flex-1 pl-8">
+                                <div class="bg-dark-card p-6 rounded-lg border border-gray-700 hover:border-cyber-purple transition-colors duration-300">
+                                    <h3 class="text-xl font-bold text-cyber-purple mb-2">Advanced Specialization</h3>
+                                    <p class="text-gray-400 mb-2">2023</p>
+                                    <p class="text-gray-300">Specialized in modern frameworks and cloud technologies. Started contributing to open-source projects.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Timeline Item 5 -->
+                        <div class="relative flex items-center" data-aos="fade-right">
+                            <div class="flex-1 pr-8 text-right">
+                                <div class="bg-dark-card p-6 rounded-lg border border-gray-700 hover:border-cyber-cyan transition-colors duration-300">
+                                    <h3 class="text-xl font-bold text-cyber-cyan mb-2">Current Focus</h3>
+                                    <p class="text-gray-400 mb-2">2024</p>
+                                    <p class="text-gray-300">Building scalable applications and mentoring other developers. Exploring AI/ML integration in web development.</p>
+                                </div>
+                            </div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-cyber-cyan rounded-full border-4 border-dark-bg"></div>
+                            <div class="flex-1 pl-8"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fun Facts Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 gradient-text" data-aos="fade-up">
+                Fun Facts About Me
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Fact Card 1 -->
+                <div class="bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 text-center hover:border-cyber-cyan transition-all duration-300 hover:scale-105" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-code text-cyber-cyan"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">50+</h3>
+                    <p class="text-gray-400">Projects Completed</p>
+                </div>
+                
+                <!-- Fact Card 2 -->
+                <div class="bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 text-center hover:border-cyber-purple transition-all duration-300 hover:scale-105" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-coffee text-cyber-purple"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">1000+</h3>
+                    <p class="text-gray-400">Cups of Coffee</p>
+                </div>
+                
+                <!-- Fact Card 3 -->
+                <div class="bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 text-center hover:border-cyber-cyan transition-all duration-300 hover:scale-105" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-clock text-cyber-cyan"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">4+</h3>
+                    <p class="text-gray-400">Years Experience</p>
+                </div>
+                
+                <!-- Fact Card 4 -->
+                <div class="bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 text-center hover:border-cyber-purple transition-all duration-300 hover:scale-105" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-users text-cyber-purple"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">25+</h3>
+                    <p class="text-gray-400">Happy Clients</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Resume Section -->
+    <section class="py-20 bg-dark-card/30">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text" data-aos="fade-up">
+                Want to Know More?
+            </h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Download my resume to get a detailed overview of my experience, skills, and achievements.
+            </p>
+            
+            <div data-aos="fade-up" data-aos-delay="400">
+                <a href="assets/resume.pdf" download class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-dark-bg font-semibold rounded-full hover:scale-105 transition-all duration-300 shadow-xl">
+                    <i class="fas fa-download mr-3"></i>
+                    Download Resume
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-bold gradient-text mb-2">MA</div>
+                    <p class="text-gray-400">© 2024 Mathiya Angirasa. All rights reserved.</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/94715921984" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-all duration-300 shadow-lg">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100,
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const body = document.body;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            body.classList.remove('dark');
+            body.classList.add('light');
+            body.style.background = 'linear-gradient(135deg, #F9F9F9, #E5E7EB)';
+            body.style.color = '#1F2937';
+            themeToggle.querySelector('i').classList.remove('fa-moon');
+            themeToggle.querySelector('i').classList.add('fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = body.classList.contains('dark');
+            
+            if (isDark) {
+                body.classList.remove('dark');
+                body.classList.add('light');
+                body.style.background = 'linear-gradient(135deg, #F9F9F9, #E5E7EB)';
+                body.style.color = '#1F2937';
+                themeToggle.querySelector('i').classList.remove('fa-moon');
+                themeToggle.querySelector('i').classList.add('fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light');
+                body.classList.add('dark');
+                body.style.background = '';
+                body.style.color = '';
+                themeToggle.querySelector('i').classList.remove('fa-sun');
+                themeToggle.querySelector('i').classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Mathiya Angirasa</title>
+    <meta name="description" content="Get in touch with Mathiya Angirasa - Full Stack Developer. Let's discuss your next project or collaboration opportunity.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Google Fonts CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'cyber-cyan': '#00F0FF',
+                        'cyber-purple': '#8A2BE2',
+                        'dark-bg': '#0F0F0F',
+                        'dark-card': '#1A1A1A',
+                        'light-bg': '#F9F9F9',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'pulse-ring': 'pulseRing 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite',
+                    },
+                    keyframes: {
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'glow': {
+                            '0%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.5)' },
+                            '100%': { boxShadow: '0 0 40px rgba(0, 240, 255, 0.8)' },
+                        },
+                        'pulseRing': {
+                            '0%': { transform: 'scale(0.33)' },
+                            '80%, 100%': { opacity: '0' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .contact-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .contact-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="dark bg-dark-bg text-white transition-all duration-300">
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 w-full z-40 bg-dark-bg/80 backdrop-blur-md border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="text-2xl font-bold gradient-text">MA</div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Home</a>
+                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">About</a>
+                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Projects</a>
+                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Skills</a>
+                    <a href="resume.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Resume</a>
+                    <a href="blog.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Blog</a>
+                    <a href="contact.html" class="nav-link text-cyber-cyan border-b-2 border-cyber-cyan">Contact</a>
+                </div>
+                
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-lg bg-dark-card hover:bg-gray-700 transition-colors duration-300">
+                    <i class="fas fa-moon text-cyber-cyan"></i>
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-dark-card">
+                    <i class="fas fa-bars text-cyber-cyan"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 p-6 bg-dark-card rounded-lg">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="hover:text-cyber-cyan transition-colors duration-300">Home</a>
+                    <a href="about.html" class="hover:text-cyber-cyan transition-colors duration-300">About</a>
+                    <a href="projects.html" class="hover:text-cyber-cyan transition-colors duration-300">Projects</a>
+                    <a href="skills.html" class="hover:text-cyber-cyan transition-colors duration-300">Skills</a>
+                    <a href="resume.html" class="hover:text-cyber-cyan transition-colors duration-300">Resume</a>
+                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors duration-300">Blog</a>
+                    <a href="contact.html" class="text-cyber-cyan">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <!-- Background Blobs -->
+        <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan/10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text" data-aos="fade-up">
+                Get In Touch
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Let's discuss your next project or collaboration opportunity. I'm always excited to work on new challenges.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Methods -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-20">
+                
+                <!-- Email -->
+                <div class="contact-card bg-dark-card/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700 hover:border-cyber-cyan transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative inline-block mb-6">
+                        <div class="w-16 h-16 bg-cyber-cyan/20 rounded-full flex items-center justify-center mx-auto">
+                            <i class="fas fa-envelope text-2xl text-cyber-cyan"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-cyber-cyan/20 rounded-full animate-pulse-ring"></div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Email Me</h3>
+                    <p class="text-gray-400 mb-4">Send me an email and I'll get back to you within 24 hours.</p>
+                    <a href="mailto:mathiya.angirasa@example.com" class="text-cyber-cyan hover:text-white transition-colors duration-300 font-semibold">
+                        mathiya.angirasa@example.com
+                    </a>
+                </div>
+                
+                <!-- Phone -->
+                <div class="contact-card bg-dark-card/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700 hover:border-cyber-purple transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative inline-block mb-6">
+                        <div class="w-16 h-16 bg-cyber-purple/20 rounded-full flex items-center justify-center mx-auto">
+                            <i class="fas fa-phone text-2xl text-cyber-purple"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-cyber-purple/20 rounded-full animate-pulse-ring"></div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Call Me</h3>
+                    <p class="text-gray-400 mb-4">Available for calls during business hours (9 AM - 6 PM GMT+5:30).</p>
+                    <a href="tel:+94715921984" class="text-cyber-purple hover:text-white transition-colors duration-300 font-semibold">
+                        +94 71 592 1984
+                    </a>
+                </div>
+                
+                <!-- Location -->
+                <div class="contact-card bg-dark-card/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700 hover:border-cyber-cyan transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative inline-block mb-6">
+                        <div class="w-16 h-16 bg-cyber-cyan/20 rounded-full flex items-center justify-center mx-auto">
+                            <i class="fas fa-map-marker-alt text-2xl text-cyber-cyan"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-cyber-cyan/20 rounded-full animate-pulse-ring"></div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Location</h3>
+                    <p class="text-gray-400 mb-4">Based in Colombo, Sri Lanka. Open to remote work worldwide.</p>
+                    <span class="text-cyber-cyan font-semibold">Colombo, Sri Lanka</span>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="py-20 bg-dark-card/30">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 items-start">
+                    
+                    <!-- Contact Info -->
+                    <div data-aos="fade-right">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text">Let's Work Together</h2>
+                        <p class="text-gray-400 mb-8 text-lg leading-relaxed">
+                            I'm always interested in new opportunities and exciting projects. 
+                            Whether you have a question, want to discuss a project, or just want to say hi, 
+                            feel free to reach out!
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-cyber-cyan/20 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope text-cyber-cyan"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">Email</h4>
+                                    <p class="text-gray-400">mathiya.angirasa@example.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-cyber-purple/20 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fab fa-discord text-cyber-purple"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">Discord</h4>
+                                    <p class="text-gray-400">mathiya#1234</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-cyber-cyan/20 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-map-marker-alt text-cyber-cyan"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">Location</h4>
+                                    <p class="text-gray-400">Colombo, Sri Lanka</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Links -->
+                        <div class="mt-8">
+                            <h4 class="font-semibold text-white mb-4">Connect with me</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/Mathiyass" class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:bg-cyber-cyan/20 transition-all duration-300">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:bg-cyber-cyan/20 transition-all duration-300">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="https://x.com/Mathiya" class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:bg-cyber-cyan/20 transition-all duration-300">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://www.facebook.com/mathisha.angirasa/" class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:bg-cyber-cyan/20 transition-all duration-300">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                                <a href="https://www.instagram.com/mathi_ya_/" class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:bg-cyber-cyan/20 transition-all duration-300">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://discord.gg/QERP5JJM8k" class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:bg-cyber-cyan/20 transition-all duration-300">
+                                    <i class="fab fa-discord"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div data-aos="fade-left">
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="firstName" class="block text-sm font-medium text-gray-300 mb-2">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" required
+                                           class="form-input w-full px-4 py-3 bg-dark-card border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white placeholder-gray-400 transition-all duration-300"
+                                           placeholder="John">
+                                </div>
+                                <div>
+                                    <label for="lastName" class="block text-sm font-medium text-gray-300 mb-2">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" required
+                                           class="form-input w-full px-4 py-3 bg-dark-card border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white placeholder-gray-400 transition-all duration-300"
+                                           placeholder="Doe">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                                <input type="email" id="email" name="email" required
+                                       class="form-input w-full px-4 py-3 bg-dark-card border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white placeholder-gray-400 transition-all duration-300"
+                                       placeholder="john.doe@example.com">
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
+                                <select id="subject" name="subject" required
+                                        class="form-input w-full px-4 py-3 bg-dark-card border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white transition-all duration-300">
+                                    <option value="">Select a subject</option>
+                                    <option value="project">Project Collaboration</option>
+                                    <option value="freelance">Freelance Work</option>
+                                    <option value="job">Job Opportunity</option>
+                                    <option value="consultation">Consultation</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="budget" class="block text-sm font-medium text-gray-300 mb-2">Project Budget (Optional)</label>
+                                <select id="budget" name="budget"
+                                        class="form-input w-full px-4 py-3 bg-dark-card border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white transition-all duration-300">
+                                    <option value="">Select budget range</option>
+                                    <option value="under-5k">Under $5,000</option>
+                                    <option value="5k-10k">$5,000 - $10,000</option>
+                                    <option value="10k-25k">$10,000 - $25,000</option>
+                                    <option value="25k-50k">$25,000 - $50,000</option>
+                                    <option value="over-50k">Over $50,000</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                                <textarea id="message" name="message" rows="6" required
+                                          class="form-input w-full px-4 py-3 bg-dark-card border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white placeholder-gray-400 transition-all duration-300 resize-none"
+                                          placeholder="Tell me about your project, timeline, and any specific requirements..."></textarea>
+                            </div>
+                            
+                            <button type="submit" 
+                                    class="w-full px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-dark-bg font-semibold rounded-lg hover:scale-105 transition-all duration-300 shadow-xl animate-glow">
+                                <i class="fas fa-paper-plane mr-2"></i>
+                                Send Message
+                            </button>
+                        </form>
+                        
+                        <!-- Form Status -->
+                        <div id="form-status" class="hidden mt-6 p-4 rounded-lg">
+                            <div id="form-success" class="hidden text-green-400">
+                                <i class="fas fa-check-circle mr-2"></i>
+                                Message sent successfully! I'll get back to you within 24 hours.
+                            </div>
+                            <div id="form-error" class="hidden text-red-400">
+                                <i class="fas fa-exclamation-circle mr-2"></i>
+                                Something went wrong. Please try again or contact me directly via email.
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gaming & Entertainment Links -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 gradient-text" data-aos="fade-up">
+                Gaming & Entertainment
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                
+                <!-- Steam -->
+                <div class="contact-card bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-blue-500 transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fab fa-steam text-3xl text-blue-500 mb-4"></i>
+                    <h3 class="font-semibold mb-2">Steam</h3>
+                    <a href="https://steamcommunity.com/profiles/76561199076879396/" class="text-blue-400 hover:text-white transition-colors duration-300 text-sm">
+                        View Profile
+                    </a>
+                </div>
+                
+                <!-- Epic Games -->
+                <div class="contact-card bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-gray-400 transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-gamepad text-3xl text-gray-400 mb-4"></i>
+                    <h3 class="font-semibold mb-2">Epic Games</h3>
+                    <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                        View Profile
+                    </a>
+                </div>
+                
+                <!-- Spotify -->
+                <div class="contact-card bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-green-500 transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fab fa-spotify text-3xl text-green-500 mb-4"></i>
+                    <h3 class="font-semibold mb-2">Spotify</h3>
+                    <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="text-green-400 hover:text-white transition-colors duration-300 text-sm">
+                        View Profile
+                    </a>
+                </div>
+                
+                <!-- EA ID -->
+                <div class="contact-card bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-orange-500 transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-trophy text-3xl text-orange-500 mb-4"></i>
+                    <h3 class="font-semibold mb-2">EA ID</h3>
+                    <span class="text-orange-400 text-sm">M_MATHIYA_M</span>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-bold gradient-text mb-2">MA</div>
+                    <p class="text-gray-400">© 2024 Mathiya Angirasa. All rights reserved.</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/94715921984" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-all duration-300 shadow-lg">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100,
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const body = document.body;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            body.classList.remove('dark');
+            body.classList.add('light');
+            body.style.background = 'linear-gradient(135deg, #F9F9F9, #E5E7EB)';
+            body.style.color = '#1F2937';
+            themeToggle.querySelector('i').classList.remove('fa-moon');
+            themeToggle.querySelector('i').classList.add('fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = body.classList.contains('dark');
+            
+            if (isDark) {
+                body.classList.remove('dark');
+                body.classList.add('light');
+                body.style.background = 'linear-gradient(135deg, #F9F9F9, #E5E7EB)';
+                body.style.color = '#1F2937';
+                themeToggle.querySelector('i').classList.remove('fa-moon');
+                themeToggle.querySelector('i').classList.add('fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light');
+                body.classList.add('dark');
+                body.style.background = '';
+                body.style.color = '';
+                themeToggle.querySelector('i').classList.remove('fa-sun');
+                themeToggle.querySelector('i').classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Contact Form
+        const contactForm = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+        const formSuccess = document.getElementById('form-success');
+        const formError = document.getElementById('form-error');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (replace with actual form handling)
+            setTimeout(() => {
+                // Show success message
+                formStatus.classList.remove('hidden');
+                formSuccess.classList.remove('hidden');
+                formError.classList.add('hidden');
+                
+                // Reset form
+                this.reset();
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    formStatus.classList.add('hidden');
+                    formSuccess.classList.add('hidden');
+                }, 5000);
+            }, 2000);
+        });
+
+        // Form field animations
+        const formInputs = document.querySelectorAll('.form-input');
+        formInputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

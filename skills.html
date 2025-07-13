@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills - Mathiya Angirasa</title>
+    <meta name="description" content="Explore Mathiya Angirasa's technical skills in frontend, backend, tools, and design.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Google Fonts CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'cyber-cyan': '#00F0FF',
+                        'cyber-purple': '#8A2BE2',
+                        'dark-bg': '#0F0F0F',
+                        'dark-card': '#1A1A1A',
+                        'light-bg': '#F9F9F9',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'progress': 'progress 2s ease-out',
+                        'counter': 'counter 2s ease-out',
+                        'radial': 'radial 2s ease-out',
+                    },
+                    keyframes: {
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'progress': {
+                            '0%': { width: '0%' },
+                            '100%': { width: 'var(--progress-width)' },
+                        },
+                        'counter': {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        'radial': {
+                            '0%': { strokeDasharray: '0 251.2' },
+                            '100%': { strokeDasharray: 'var(--dash-array) 251.2' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .skill-badge:hover {
+            transform: translateY(-5px) scale(1.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
+            animation: progress 2s ease-out forwards;
+        }
+        .radial-progress {
+            transform: rotate(-90deg);
+        }
+        .radial-progress circle {
+            stroke-dasharray: 0 251.2;
+            stroke-dashoffset: 0;
+            transition: stroke-dasharray 2s ease-out;
+        }
+    </style>
+</head>
+
+<body class="dark bg-dark-bg text-white transition-all duration-300">
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 w-full z-40 bg-dark-bg/80 backdrop-blur-md border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="text-2xl font-bold gradient-text">MA</div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Home</a>
+                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">About</a>
+                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Projects</a>
+                    <a href="skills.html" class="nav-link text-cyber-cyan border-b-2 border-cyber-cyan">Skills</a>
+                    <a href="resume.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Resume</a>
+                    <a href="blog.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Blog</a>
+                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Contact</a>
+                </div>
+                
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-lg bg-dark-card hover:bg-gray-700 transition-colors duration-300">
+                    <i class="fas fa-moon text-cyber-cyan"></i>
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-dark-card">
+                    <i class="fas fa-bars text-cyber-cyan"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 p-6 bg-dark-card rounded-lg">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="hover:text-cyber-cyan transition-colors duration-300">Home</a>
+                    <a href="about.html" class="hover:text-cyber-cyan transition-colors duration-300">About</a>
+                    <a href="projects.html" class="hover:text-cyber-cyan transition-colors duration-300">Projects</a>
+                    <a href="skills.html" class="text-cyber-cyan">Skills</a>
+                    <a href="resume.html" class="hover:text-cyber-cyan transition-colors duration-300">Resume</a>
+                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors duration-300">Blog</a>
+                    <a href="contact.html" class="hover:text-cyber-cyan transition-colors duration-300">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <!-- Background Blobs -->
+        <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan/10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text" data-aos="fade-up">
+                My Skills
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                A comprehensive overview of my technical expertise and proficiency levels
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Stats -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+                <!-- Stat Card 1 -->
+                <div class="bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 text-center hover:border-cyber-cyan transition-all duration-300 hover:scale-105" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-calendar-alt text-cyber-cyan"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-2 counter" data-target="4">0</h3>
+                    <p class="text-gray-400">Years Experience</p>
+                </div>
+                
+                <!-- Stat Card 2 -->
+                <div class="bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 text-center hover:border-cyber-purple transition-all duration-300 hover:scale-105" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-code text-cyber-purple"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-2 counter" data-target="50">0</h3>
+                    <p class="text-gray-400">Projects Completed</p>
+                </div>
+                
+                <!-- Stat Card 3 -->
+                <div class="bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 text-center hover:border-cyber-cyan transition-all duration-300 hover:scale-105" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-tools text-cyber-cyan"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-2 counter" data-target="25">0</h3>
+                    <p class="text-gray-400">Technologies</p>
+                </div>
+                
+                <!-- Stat Card 4 -->
+                <div class="bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 text-center hover:border-cyber-purple transition-all duration-300 hover:scale-105" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-users text-cyber-purple"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-2 counter" data-target="25">0</h3>
+                    <p class="text-gray-400">Happy Clients</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frontend Skills -->
+    <section class="py-20 bg-dark-card/30">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 gradient-text" data-aos="fade-up">
+                Frontend Development
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- HTML5 -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-orange-500 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fab fa-html5 text-5xl text-orange-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">HTML5</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 95%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">95%</span>
+                </div>
+                
+                <!-- CSS3 -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-blue-500 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fab fa-css3-alt text-5xl text-blue-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">CSS3</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 90%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">90%</span>
+                </div>
+                
+                <!-- JavaScript -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-yellow-500 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fab fa-js-square text-5xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">JavaScript</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 88%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">88%</span>
+                </div>
+                
+                <!-- React -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-cyan-500 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fab fa-react text-5xl text-cyan-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">React</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 85%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">85%</span>
+                </div>
+                
+                <!-- Vue.js -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-green-500 transition-all duration-300" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fab fa-vuejs text-5xl text-green-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Vue.js</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 80%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">80%</span>
+                </div>
+                
+                <!-- Tailwind CSS -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-teal-500 transition-all duration-300" data-aos="fade-up" data-aos-delay="600">
+                    <i class="fas fa-wind text-5xl text-teal-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Tailwind CSS</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 92%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">92%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Backend Skills -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 gradient-text" data-aos="fade-up">
+                Backend Development
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Node.js -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-green-600 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fab fa-node-js text-5xl text-green-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Node.js</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 85%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">85%</span>
+                </div>
+                
+                <!-- Python -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-blue-400 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fab fa-python text-5xl text-blue-400 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Python</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 82%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">82%</span>
+                </div>
+                
+                <!-- MongoDB -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-green-500 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-database text-5xl text-green-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">MongoDB</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 78%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">78%</span>
+                </div>
+                
+                <!-- Express.js -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-gray-500 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-server text-5xl text-gray-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Express.js</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 80%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">80%</span>
+                </div>
+                
+                <!-- PostgreSQL -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-blue-600 transition-all duration-300" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fas fa-database text-5xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">PostgreSQL</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 75%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">75%</span>
+                </div>
+                
+                <!-- GraphQL -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-pink-500 transition-all duration-300" data-aos="fade-up" data-aos-delay="600">
+                    <i class="fas fa-project-diagram text-5xl text-pink-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">GraphQL</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 70%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">70%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools & Technologies -->
+    <section class="py-20 bg-dark-card/30">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 gradient-text" data-aos="fade-up">
+                Tools & Technologies
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Git -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-red-500 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fab fa-git-alt text-5xl text-red-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Git</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 90%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">90%</span>
+                </div>
+                
+                <!-- Docker -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-blue-600 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fab fa-docker text-5xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Docker</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 75%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">75%</span>
+                </div>
+                
+                <!-- AWS -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-orange-400 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fab fa-aws text-5xl text-orange-400 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">AWS</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 70%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">70%</span>
+                </div>
+                
+                <!-- Figma -->
+                <div class="skill-badge bg-dark-card/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-purple-500 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fab fa-figma text-5xl text-purple-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Figma</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 85%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400">85%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Radial Skills Chart -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 gradient-text" data-aos="fade-up">
+                Core Competencies
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Frontend Development -->
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="relative w-32 h-32 mx-auto mb-4">
+                        <svg class="radial-progress w-32 h-32" viewBox="0 0 80 80">
+                            <circle cx="40" cy="40" r="36" stroke="#374151" stroke-width="8" fill="none"></circle>
+                            <circle cx="40" cy="40" r="36" stroke="url(#gradient1)" stroke-width="8" fill="none" 
+                                    stroke-linecap="round" class="progress-circle" data-progress="90"></circle>
+                            <defs>
+                                <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#00F0FF"/>
+                                    <stop offset="100%" style="stop-color:#8A2BE2"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-xl font-bold">90%</span>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold">Frontend</h3>
+                </div>
+                
+                <!-- Backend Development -->
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="relative w-32 h-32 mx-auto mb-4">
+                        <svg class="radial-progress w-32 h-32" viewBox="0 0 80 80">
+                            <circle cx="40" cy="40" r="36" stroke="#374151" stroke-width="8" fill="none"></circle>
+                            <circle cx="40" cy="40" r="36" stroke="url(#gradient2)" stroke-width="8" fill="none" 
+                                    stroke-linecap="round" class="progress-circle" data-progress="80"></circle>
+                            <defs>
+                                <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#8A2BE2"/>
+                                    <stop offset="100%" style="stop-color:#00F0FF"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-xl font-bold">80%</span>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold">Backend</h3>
+                </div>
+                
+                <!-- UI/UX Design -->
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="relative w-32 h-32 mx-auto mb-4">
+                        <svg class="radial-progress w-32 h-32" viewBox="0 0 80 80">
+                            <circle cx="40" cy="40" r="36" stroke="#374151" stroke-width="8" fill="none"></circle>
+                            <circle cx="40" cy="40" r="36" stroke="url(#gradient3)" stroke-width="8" fill="none" 
+                                    stroke-linecap="round" class="progress-circle" data-progress="85"></circle>
+                            <defs>
+                                <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#00F0FF"/>
+                                    <stop offset="100%" style="stop-color:#8A2BE2"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-xl font-bold">85%</span>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold">UI/UX Design</h3>
+                </div>
+                
+                <!-- DevOps -->
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="relative w-32 h-32 mx-auto mb-4">
+                        <svg class="radial-progress w-32 h-32" viewBox="0 0 80 80">
+                            <circle cx="40" cy="40" r="36" stroke="#374151" stroke-width="8" fill="none"></circle>
+                            <circle cx="40" cy="40" r="36" stroke="url(#gradient4)" stroke-width="8" fill="none" 
+                                    stroke-linecap="round" class="progress-circle" data-progress="70"></circle>
+                            <defs>
+                                <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#8A2BE2"/>
+                                    <stop offset="100%" style="stop-color:#00F0FF"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-xl font-bold">70%</span>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold">DevOps</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-dark-card/30">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text" data-aos="fade-up">
+                Ready to Work Together?
+            </h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Let's combine my skills with your vision to create something amazing.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
+                <a href="contact.html" class="inline-block px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-dark-bg font-semibold rounded-lg hover:scale-105 transition-all duration-300 shadow-xl">
+                    Get In Touch
+                </a>
+                <a href="projects.html" class="inline-block px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-lg hover:bg-cyber-cyan hover:text-dark-bg transition-all duration-300">
+                    View My Work
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-bold gradient-text mb-2">MA</div>
+                    <p class="text-gray-400">© 2024 Mathiya Angirasa. All rights reserved.</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/94715921984" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-all duration-300 shadow-lg">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100,
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const body = document.body;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            body.classList.remove('dark');
+            body.classList.add('light');
+            body.style.background = 'linear-gradient(135deg, #F9F9F9, #E5E7EB)';
+            body.style.color = '#1F2937';
+            themeToggle.querySelector('i').classList.remove('fa-moon');
+            themeToggle.querySelector('i').classList.add('fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = body.classList.contains('dark');
+            
+            if (isDark) {
+                body.classList.remove('dark');
+                body.classList.add('light');
+                body.style.background = 'linear-gradient(135deg, #F9F9F9, #E5E7EB)';
+                body.style.color = '#1F2937';
+                themeToggle.querySelector('i').classList.remove('fa-moon');
+                themeToggle.querySelector('i').classList.add('fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light');
+                body.classList.add('dark');
+                body.style.background = '';
+                body.style.color = '';
+                themeToggle.querySelector('i').classList.remove('fa-sun');
+                themeToggle.querySelector('i').classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current);
+                        setTimeout(updateCounter, 20);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Radial Progress Animation
+        function animateRadialProgress() {
+            const circles = document.querySelectorAll('.progress-circle');
+            circles.forEach(circle => {
+                const progress = parseInt(circle.getAttribute('data-progress'));
+                const circumference = 2 * Math.PI * 36; // radius = 36
+                const dashArray = (progress / 100) * circumference;
+                
+                setTimeout(() => {
+                    circle.style.strokeDasharray = `${dashArray} ${circumference}`;
+                }, 500);
+            });
+        }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.querySelector('.counter')) {
+                        animateCounters();
+                    }
+                    if (entry.target.querySelector('.progress-circle')) {
+                        animateRadialProgress();
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observe sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
