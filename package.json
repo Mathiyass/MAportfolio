@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "npx serve . -p 3000",
-    "dev": "npx serve . -p 3000 --live-reload",
+    "dev": "npx serve . -p 3000",
     "build": "echo 'Static site - no build required' && exit 0",
     "preview": "npx serve . -p 4173",
     "test": "echo 'No tests specified' && exit 0",
