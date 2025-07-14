@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathiya Angirasa - Full Stack Developer</title>
-    <meta name="description" content="Mathiya Angirasa - Full Stack Developer, UX Explorer & Aesthetic Fanatic. Building amazing digital experiences.">
+    <title>Mathiya Angirasa - Creative Full-Stack Developer</title>
+    <meta name="description" content="Mathiya Angirasa - Creative Full-Stack Developer & Software Engineering Student at Birmingham University. Building amazing digital experiences.">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,7 +17,10 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <!-- Google Fonts CDN -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Anime.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     
     <script>
         tailwind.config = {
@@ -25,28 +28,32 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'sans': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
                     },
                     colors: {
                         'cyber-cyan': '#00F0FF',
                         'cyber-purple': '#8A2BE2',
-                        'dark-bg': '#0F0F0F',
-                        'dark-card': '#1A1A1A',
-                        'light-bg': '#F9F9F9',
+                        'deep-black': '#0F0F0F',
+                        'soft-white': '#F9F9F9',
                     },
                     animation: {
-                        'spin-slow': 'spin 3s linear infinite',
-                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
                         'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'ripple': 'ripple 0.6s linear',
                     },
                     keyframes: {
-                        'pulse-glow': {
-                            '0%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.5)' },
-                            '100%': { boxShadow: '0 0 40px rgba(0, 240, 255, 0.8)' },
-                        },
                         'float': {
                             '0%, 100%': { transform: 'translateY(0px)' },
                             '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'glow': {
+                            '0%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.5)' },
+                            '100%': { boxShadow: '0 0 40px rgba(0, 240, 255, 0.8)' },
+                        },
+                        'ripple': {
+                            '0%': { transform: 'scale(0)', opacity: '1' },
+                            '100%': { transform: 'scale(4)', opacity: '0' },
                         },
                     },
                 }
@@ -55,112 +62,300 @@
     </script>
     
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { 
+            font-family: 'Inter', sans-serif;
+            cursor: none;
+        }
+        h1, h2, h3, h4, h5, h6 { 
+            font-family: 'Poppins', sans-serif; 
+        }
+        
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00F0FF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #00F0FF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.15s ease;
+        }
+        
+        .cursor-hover {
+            transform: scale(2);
+            background: rgba(0, 240, 255, 0.1);
+        }
+        
+        /* Signature Loader */
+        .signature-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0F0F0F, #1a1a2e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+        
+        .signature-svg {
+            width: 300px;
+            height: 120px;
+        }
+        
+        .signature-path {
+            stroke: #00F0FF;
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+        
+        /* Gradient Text */
         .gradient-text {
             background: linear-gradient(135deg, #00F0FF, #8A2BE2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .gradient-border {
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
-            padding: 4px;
-            border-radius: 50%;
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .glow-button:hover {
+        
+        /* Hover Effects */
+        .hover-tilt:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateY(-10px);
+        }
+        
+        .hover-glow:hover {
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
-            transform: scale(1.05);
+        }
+        
+        /* Ripple Effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ripple::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(0, 240, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .ripple:active::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Animated Underline */
+        .animated-underline {
+            position: relative;
+        }
+        
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
+            transition: width 0.3s ease;
+        }
+        
+        .animated-underline:hover::after {
+            width: 100%;
+        }
+        
+        /* Particles Background */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00F0FF;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
         }
     </style>
 </head>
 
-<body class="dark bg-dark-bg text-white transition-all duration-300">
-    <!-- MA-Branded Preloader -->
-    <div id="preloader" class="fixed inset-0 z-50 flex items-center justify-center bg-dark-bg">
+<body class="dark bg-deep-black text-soft-white overflow-x-hidden">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
+    
+    <!-- Signature Loader -->
+    <div class="signature-loader" id="loader">
         <div class="text-center">
-            <div class="relative">
-                <div class="w-20 h-20 border-4 border-transparent border-t-cyber-cyan rounded-full animate-spin-slow mx-auto mb-4"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="text-2xl font-bold gradient-text">MA</span>
-                </div>
+            <svg class="signature-svg" viewBox="0 0 300 120">
+                <!-- M -->
+                <path class="signature-path" d="M20 80 L20 40 L35 60 L50 40 L50 80" id="letter-m"/>
+                <!-- A -->
+                <path class="signature-path" d="M70 80 L80 40 L90 80 M75 65 L85 65" id="letter-a"/>
+                <!-- T -->
+                <path class="signature-path" d="M100 40 L120 40 M110 40 L110 80" id="letter-t"/>
+                <!-- H -->
+                <path class="signature-path" d="M130 40 L130 80 M130 60 L150 60 M150 40 L150 80" id="letter-h"/>
+                <!-- I -->
+                <path class="signature-path" d="M160 40 L170 40 M165 40 L165 80 M160 80 L170 80" id="letter-i"/>
+                <!-- Y -->
+                <path class="signature-path" d="M180 40 L190 60 L200 40 M190 60 L190 80" id="letter-y"/>
+                <!-- A -->
+                <path class="signature-path" d="M220 80 L230 40 L240 80 M225 65 L235 65" id="letter-a2"/>
+            </svg>
+            <div class="mt-4 text-cyber-cyan font-poppins text-lg opacity-0" id="loader-text">
+                Creative Full-Stack Developer
             </div>
-            <div class="text-cyber-cyan animate-pulse">Loading Portfolio...</div>
         </div>
     </div>
-
-    <!-- Navigation Header -->
-    <nav class="fixed top-0 w-full z-40 bg-dark-bg/80 backdrop-blur-md border-b border-gray-800">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <div class="text-2xl font-bold gradient-text">MA</div>
+                <div class="text-2xl font-bold font-poppins gradient-text">
+                    MATHIYA
+                </div>
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="nav-link text-cyber-cyan border-b-2 border-cyber-cyan">Home</a>
-                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">About</a>
-                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Projects</a>
-                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Skills</a>
-                    <a href="resume.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Resume</a>
-                    <a href="blog.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Blog</a>
-                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Contact</a>
+                    <a href="index.html" class="animated-underline text-cyber-cyan font-medium">Home</a>
+                    <a href="about.html" class="animated-underline hover:text-cyber-cyan transition-colors">About</a>
+                    <a href="projects.html" class="animated-underline hover:text-cyber-cyan transition-colors">Projects</a>
+                    <a href="skills.html" class="animated-underline hover:text-cyber-cyan transition-colors">Skills</a>
+                    <a href="resume.html" class="animated-underline hover:text-cyber-cyan transition-colors">Resume</a>
+                    <a href="blog.html" class="animated-underline hover:text-cyber-cyan transition-colors">Blog</a>
+                    <a href="contact.html" class="animated-underline hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
                 
                 <!-- Theme Toggle -->
-                <button id="theme-toggle" class="p-2 rounded-lg bg-dark-card hover:bg-gray-700 transition-colors duration-300">
+                <button id="theme-toggle" class="p-2 rounded-lg glass hover-glow transition-all">
                     <i class="fas fa-moon text-cyber-cyan"></i>
                 </button>
                 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-dark-card">
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
                     <i class="fas fa-bars text-cyber-cyan"></i>
                 </button>
             </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 p-6 bg-dark-card rounded-lg">
-                <div class="flex flex-col space-y-4">
-                    <a href="index.html" class="text-cyber-cyan">Home</a>
-                    <a href="about.html" class="hover:text-cyber-cyan transition-colors duration-300">About</a>
-                    <a href="projects.html" class="hover:text-cyber-cyan transition-colors duration-300">Projects</a>
-                    <a href="skills.html" class="hover:text-cyber-cyan transition-colors duration-300">Skills</a>
-                    <a href="resume.html" class="hover:text-cyber-cyan transition-colors duration-300">Resume</a>
-                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors duration-300">Blog</a>
-                    <a href="contact.html" class="hover:text-cyber-cyan transition-colors duration-300">Contact</a>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
+            <div class="p-6">
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="clear-both mt-8 space-y-6">
+                    <a href="index.html" class="block text-xl font-poppins text-cyber-cyan">Home</a>
+                    <a href="about.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">About</a>
+                    <a href="projects.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Projects</a>
+                    <a href="skills.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Skills</a>
+                    <a href="resume.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Resume</a>
+                    <a href="blog.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Blog</a>
+                    <a href="contact.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
-
+    
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-        <!-- Background Blobs -->
-        <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan/10 rounded-full blur-3xl animate-float"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden" id="hero">
+        <!-- Particles Background -->
+        <div class="particles" id="particles"></div>
+        
+        <!-- Floating Blobs -->
+        <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
         
         <div class="container mx-auto px-6 text-center relative z-10">
-            <!-- Profile Picture with Animated Gradient Ring -->
+            <!-- Profile Image -->
             <div class="mb-8" data-aos="fade-down" data-aos-duration="1000">
-                <div class="gradient-border inline-block animate-pulse-glow">
-                    <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400" 
-                         alt="Mathiya Angirasa" 
-                         class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover"
-                         loading="lazy">
+                <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-cyber-cyan to-cyber-purple p-1 animate-glow">
+                    <div class="w-full h-full rounded-full bg-deep-black flex items-center justify-center">
+                        <i class="fas fa-user text-4xl text-cyber-cyan"></i>
+                    </div>
                 </div>
             </div>
             
-            <!-- Headline -->
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6" data-aos="fade-up" data-aos-delay="200">
+            <!-- Main Heading -->
+            <h1 class="text-5xl md:text-7xl font-bold font-poppins mb-6" data-aos="fade-up" data-aos-delay="200">
                 Hi, I'm <span class="gradient-text">Mathiya</span>
             </h1>
             
-            <!-- Tagline -->
-            <p class="text-xl md:text-2xl text-gray-300 mb-8" data-aos="fade-up" data-aos-delay="400">
-                Full-stack Dev • UX Explorer • Aesthetic Fanatic
+            <!-- Subtitle -->
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 font-inter" data-aos="fade-up" data-aos-delay="400">
+                Creative Full-Stack Developer & Software Engineering Student
             </p>
             
-            <!-- Social Icons Row -->
-            <div class="flex justify-center space-x-6 mb-12" data-aos="fade-up" data-aos-delay="600">
+            <!-- Description -->
+            <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-12 font-inter leading-relaxed" data-aos="fade-up" data-aos-delay="600">
+                Building amazing digital experiences at Birmingham University. 
+                Passionate about UI/UX, gaming, and creating smooth, optimized solutions.
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16" data-aos="fade-up" data-aos-delay="800">
+                <a href="projects.html" class="ripple px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold rounded-lg hover-glow transition-all duration-300 font-poppins">
+                    View My Work
+                </a>
+                <a href="contact.html" class="ripple px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-lg hover:bg-cyber-cyan hover:text-deep-black transition-all duration-300 font-poppins">
+                    Get In Touch
+                </a>
+            </div>
+            
+            <!-- Social Links -->
+            <div class="flex justify-center space-x-6" data-aos="fade-up" data-aos-delay="1000">
                 <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
                     <i class="fab fa-github"></i>
                 </a>
@@ -180,13 +375,6 @@
                     <i class="fab fa-discord"></i>
                 </a>
             </div>
-            
-            <!-- Quick Intro CTA -->
-            <div data-aos="fade-up" data-aos-delay="800">
-                <a href="projects.html" class="inline-block px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-dark-bg font-semibold rounded-lg glow-button transition-all duration-300 shadow-xl">
-                    View My Work
-                </a>
-            </div>
         </div>
         
         <!-- Scroll Indicator -->
@@ -194,40 +382,57 @@
             <i class="fas fa-chevron-down text-cyber-cyan text-xl"></i>
         </div>
     </section>
-
-    <!-- Quick About Preview -->
+    
+    <!-- Quick Preview Section -->
     <section class="py-20 relative">
         <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text" data-aos="fade-up">
-                    About Me
-                </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- About Preview -->
+                <div class="glass rounded-2xl p-8 hover-tilt transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl text-cyber-cyan mb-4">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-poppins mb-4">About Me</h3>
+                    <p class="text-gray-400 mb-6 font-inter">
+                        Software Engineering student at Birmingham University, passionate about creating beautiful and functional digital experiences.
+                    </p>
+                    <a href="about.html" class="text-cyber-cyan animated-underline font-medium">Learn More →</a>
+                </div>
                 
-                <div class="bg-dark-card/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-gray-800" data-aos="fade-up" data-aos-delay="200">
-                    <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
-                        I'm a passionate full-stack developer with a keen eye for design and user experience. 
-                        I love turning complex problems into simple, beautiful, and intuitive solutions.
+                <!-- Projects Preview -->
+                <div class="glass rounded-2xl p-8 hover-tilt transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl text-cyber-purple mb-4">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-poppins mb-4">My Projects</h3>
+                    <p class="text-gray-400 mb-6 font-inter">
+                        Explore my portfolio of web applications, mobile apps, and creative coding projects built with modern technologies.
                     </p>
-                    
-                    <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">
-                        Currently focused on building scalable web applications using React, Node.js, and modern cloud technologies.
+                    <a href="projects.html" class="text-cyber-purple animated-underline font-medium">View Projects →</a>
+                </div>
+                
+                <!-- Skills Preview -->
+                <div class="glass rounded-2xl p-8 hover-tilt transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl text-cyber-cyan mb-4">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-poppins mb-4">Technical Skills</h3>
+                    <p class="text-gray-400 mb-6 font-inter">
+                        Proficient in React, Node.js, Tailwind CSS, and modern development tools. Always learning and growing.
                     </p>
-                    
-                    <a href="about.html" class="inline-block px-6 py-3 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-lg hover:bg-cyber-cyan hover:text-dark-bg transition-all duration-300">
-                        Learn More About Me
-                    </a>
+                    <a href="skills.html" class="text-cyber-cyan animated-underline font-medium">See Skills →</a>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <!-- Footer -->
     <footer class="py-12 border-t border-gray-800">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold gradient-text mb-2">MA</div>
-                    <p class="text-gray-400">© 2024 Mathiya Angirasa. All rights reserved.</p>
+                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHIYA</div>
+                    <p class="text-gray-400 font-inter">© 2024 Mathiya Angirasa. All rights reserved.</p>
                 </div>
                 
                 <div class="flex space-x-6">
@@ -247,12 +452,12 @@
             </div>
         </div>
     </footer>
-
+    
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/94715921984" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-all duration-300 shadow-lg">
+    <a href="https://wa.me/94715921984" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-all duration-300 shadow-lg hover-glow">
         <i class="fab fa-whatsapp"></i>
     </a>
-
+    
     <script>
         // Initialize AOS
         AOS.init({
@@ -260,70 +465,145 @@
             once: true,
             offset: 100,
         });
-
-        // Preloader
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
+        
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
             setTimeout(() => {
-                preloader.style.opacity = '0';
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 500);
-            }, 2000);
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+            }, 50);
         });
-
-        // Mobile Menu Toggle
+        
+        // Cursor hover effects
+        const hoverElements = document.querySelectorAll('a, button, .ripple');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('cursor-hover');
+            });
+        });
+        
+        // Signature Loader Animation
+        function startSignatureAnimation() {
+            const paths = document.querySelectorAll('.signature-path');
+            const loaderText = document.getElementById('loader-text');
+            
+            // Animate each letter
+            paths.forEach((path, index) => {
+                anime({
+                    targets: path,
+                    strokeDashoffset: [1000, 0],
+                    duration: 800,
+                    delay: index * 200,
+                    easing: 'easeInOutQuart'
+                });
+            });
+            
+            // Show loader text
+            anime({
+                targets: loaderText,
+                opacity: [0, 1],
+                duration: 1000,
+                delay: 2000,
+                easing: 'easeOutQuart'
+            });
+            
+            // Hide loader after 6 seconds
+            setTimeout(() => {
+                anime({
+                    targets: '#loader',
+                    opacity: [1, 0],
+                    duration: 1000,
+                    easing: 'easeOutQuart',
+                    complete: () => {
+                        document.getElementById('loader').style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }, 6000);
+        }
+        
+        // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-
+        const closeMenu = document.getElementById('close-menu');
+        
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            const icon = mobileMenuBtn.querySelector('i');
-            if (mobileMenu.classList.contains('hidden')) {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            } else {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            }
+            mobileMenu.classList.add('active');
         });
-
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+        
         // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
         const html = document.documentElement;
-        const body = document.body;
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        if (savedTheme === 'light') {
-            body.classList.remove('dark');
-            body.classList.add('light');
-            body.style.background = 'linear-gradient(135deg, #F9F9F9, #E5E7EB)';
-            body.style.color = '#1F2937';
-            themeToggle.querySelector('i').classList.remove('fa-moon');
-            themeToggle.querySelector('i').classList.add('fa-sun');
-        }
-
+        
         themeToggle.addEventListener('click', () => {
-            const isDark = body.classList.contains('dark');
-            
-            if (isDark) {
-                body.classList.remove('dark');
-                body.classList.add('light');
-                body.style.background = 'linear-gradient(135deg, #F9F9F9, #E5E7EB)';
-                body.style.color = '#1F2937';
-                themeToggle.querySelector('i').classList.remove('fa-moon');
-                themeToggle.querySelector('i').classList.add('fa-sun');
-                localStorage.setItem('theme', 'light');
+            html.classList.toggle('dark');
+            const icon = themeToggle.querySelector('i');
+            if (html.classList.contains('dark')) {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
             } else {
-                body.classList.remove('light');
-                body.classList.add('dark');
-                body.style.background = '';
-                body.style.color = '';
-                themeToggle.querySelector('i').classList.remove('fa-sun');
-                themeToggle.querySelector('i').classList.add('fa-moon');
-                localStorage.setItem('theme', 'dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
             }
+        });
+        
+        // Create Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(15, 15, 15, 0.9)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+        
+        // Initialize everything when page loads
+        window.addEventListener('load', () => {
+            startSignatureAnimation();
+            createParticles();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
     </script>
 </body>
