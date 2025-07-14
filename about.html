@@ -260,9 +260,9 @@
                 <div data-aos="fade-left" class="text-center">
                     <div class="relative inline-block">
                         <div class="w-80 h-80 rounded-2xl glass p-8 hover-tilt transition-all duration-300">
-                            <div class="w-full h-full rounded-xl bg-gradient-to-br from-cyber-cyan to-cyber-purple flex items-center justify-center">
-                                <i class="fas fa-user text-8xl text-deep-black"></i>
-                            </div>
+<div class="w-full h-full rounded-xl bg-gradient-to-br from-cyber-cyan to-cyber-purple flex items-center justify-center">
+    <img id="profile-image-about" src="assets/Profile Picture.jpg" alt="Mathiya Angirasa Profile Picture" class="w-full h-full object-cover rounded-xl">
+</div>
                         </div>
                         <!-- Floating Elements -->
                         <div class="absolute -top-4 -right-4 w-8 h-8 bg-cyber-cyan rounded-full animate-float"></div>
@@ -588,6 +588,18 @@
                 navbar.style.background = 'rgba(255, 255, 255, 0.05)';
             }
         });
+
+        // Image cycling for about.html
+        const imagesAbout = ['assets/Profile Picture.jpg', 'assets/Profile Picture 2.jpg'];
+        let currentIndexAbout = 0;
+        const profileImageAbout = document.getElementById('profile-image-about');
+
+        if (profileImageAbout) {
+            setInterval(() => {
+                currentIndexAbout = (currentIndexAbout + 1) % imagesAbout.length;
+                profileImageAbout.src = imagesAbout[currentIndexAbout];
+            }, 3000); // Change image every 3 seconds
+        }
     </script>
 </body>
 </html>

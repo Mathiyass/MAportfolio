@@ -377,9 +377,9 @@
             <!-- Profile Image -->
             <div class="mb-8" data-aos="fade-down" data-aos-duration="1000">
                 <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-cyber-cyan to-cyber-purple p-1 animate-glow">
-                    <div class="w-full h-full rounded-full bg-deep-black flex items-center justify-center">
-                        <i class="fas fa-user text-4xl text-cyber-cyan"></i>
-                    </div>
+<div class="w-full h-full rounded-full bg-deep-black flex items-center justify-center">
+<img id="profile-image-index" src="assets/Profile Picture.jpg" alt="Mathiya Angirasa Profile Picture" class="w-full h-full object-cover rounded-full">
+</div>
                 </div>
             </div>
             
@@ -675,6 +675,18 @@
         window.addEventListener('load', () => {
             startSignatureAnimation();
             createParticles();
+            
+            // Image cycling for index.html
+            const imagesIndex = ['assets/Profile Picture.jpg', 'assets/Profile Picture 2.jpg'];
+            let currentIndexIndex = 0;
+            const profileImageIndex = document.getElementById('profile-image-index');
+
+            if (profileImageIndex) {
+                setInterval(() => {
+                    currentIndexIndex = (currentIndexIndex + 1) % imagesIndex.length;
+                    profileImageIndex.src = imagesIndex[currentIndexIndex];
+                }, 3000); // Change image every 3 seconds
+            }
         });
     </script>
 </body>
