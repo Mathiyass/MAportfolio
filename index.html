@@ -41,6 +41,7 @@
                         'float': 'float 6s ease-in-out infinite',
                         'glow': 'glow 2s ease-in-out infinite alternate',
                         'ripple': 'ripple 0.6s linear',
+                        'particle': 'particle 20s linear infinite',
                     },
                     keyframes: {
                         'float': {
@@ -55,6 +56,12 @@
                             '0%': { transform: 'scale(0)', opacity: '1' },
                             '100%': { transform: 'scale(4)', opacity: '0' },
                         },
+                        'particle': {
+                            '0%': { transform: 'translateY(100vh) translateX(0px)', opacity: '0' },
+                            '10%': { opacity: '1' },
+                            '90%': { opacity: '1' },
+                            '100%': { transform: 'translateY(-100vh) translateX(100px)', opacity: '0' },
+                        },
                     },
                 }
             }
@@ -65,6 +72,7 @@
         body { 
             font-family: 'Inter', sans-serif;
             cursor: none;
+            background: linear-gradient(135deg, #0F0F0F 0%, #1a1a2e 50%, #16213e 100%);
         }
         h1, h2, h3, h4, h5, h6 { 
             font-family: 'Poppins', sans-serif; 
@@ -97,6 +105,7 @@
         .cursor-hover {
             transform: scale(2);
             background: rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
         }
         
         /* Signature Loader */
@@ -114,8 +123,15 @@
         }
         
         .signature-svg {
-            width: 300px;
-            height: 120px;
+            width: 500px;
+            height: 200px;
+        }
+        
+        @media (max-width: 768px) {
+            .signature-svg {
+                width: 350px;
+                height: 140px;
+            }
         }
         
         .signature-path {
@@ -126,6 +142,16 @@
             stroke-linejoin: round;
             stroke-dasharray: 1000;
             stroke-dashoffset: 1000;
+            filter: drop-shadow(0 0 10px #00F0FF);
+        }
+        
+        .signature-glow {
+            position: absolute;
+            width: 600px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.3) 0%, rgba(138, 43, 226, 0.2) 50%, transparent 70%);
+            filter: blur(40px);
+            animation: glow 3s ease-in-out infinite alternate;
         }
         
         /* Gradient Text */
@@ -138,9 +164,9 @@
         
         /* Glassmorphism */
         .glass {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         /* Hover Effects */
@@ -213,7 +239,7 @@
             height: 2px;
             background: #00F0FF;
             border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
+            animation: particle 20s linear infinite;
         }
         
         /* Mobile Navigation */
@@ -225,42 +251,71 @@
         .mobile-menu.active {
             transform: translateX(0);
         }
+        
+        /* Scroll to Top */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.4);
+        }
     </style>
 </head>
 
 <body class="dark bg-deep-black text-soft-white overflow-x-hidden">
     <!-- Custom Cursor -->
-    <div class="custom-cursor"></div>
-    <div class="cursor-dot"></div>
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
     
     <!-- Signature Loader -->
     <div class="signature-loader" id="loader">
-        <div class="text-center">
-            <svg class="signature-svg" viewBox="0 0 300 120">
+        <div class="relative">
+            <div class="signature-glow"></div>
+            <svg class="signature-svg relative z-10" viewBox="0 0 500 200">
                 <!-- M -->
-                <path class="signature-path" d="M20 80 L20 40 L35 60 L50 40 L50 80" id="letter-m"/>
+                <path class="signature-path" d="M20 150 L20 50 L50 100 L80 50 L80 150" id="letter-m"/>
                 <!-- A -->
-                <path class="signature-path" d="M70 80 L80 40 L90 80 M75 65 L85 65" id="letter-a"/>
+                <path class="signature-path" d="M100 150 L120 50 L140 150 M110 110 L130 110" id="letter-a"/>
                 <!-- T -->
-                <path class="signature-path" d="M100 40 L120 40 M110 40 L110 80" id="letter-t"/>
+                <path class="signature-path" d="M160 50 L200 50 M180 50 L180 150" id="letter-t"/>
                 <!-- H -->
-                <path class="signature-path" d="M130 40 L130 80 M130 60 L150 60 M150 40 L150 80" id="letter-h"/>
+                <path class="signature-path" d="M220 50 L220 150 M220 100 L260 100 M260 50 L260 150" id="letter-h"/>
                 <!-- I -->
-                <path class="signature-path" d="M160 40 L170 40 M165 40 L165 80 M160 80 L170 80" id="letter-i"/>
+                <path class="signature-path" d="M280 50 L300 50 M290 50 L290 150 M280 150 L300 150" id="letter-i"/>
                 <!-- Y -->
-                <path class="signature-path" d="M180 40 L190 60 L200 40 M190 60 L190 80" id="letter-y"/>
+                <path class="signature-path" d="M320 50 L340 100 L360 50 M340 100 L340 150" id="letter-y"/>
                 <!-- A -->
-                <path class="signature-path" d="M220 80 L230 40 L240 80 M225 65 L235 65" id="letter-a2"/>
+                <path class="signature-path" d="M380 150 L400 50 L420 150 M390 110 L410 110" id="letter-a2"/>
             </svg>
-            <div class="mt-4 text-cyber-cyan font-poppins text-lg opacity-0" id="loader-text">
+            <div class="text-center mt-8 text-cyber-cyan font-poppins text-xl opacity-0" id="loader-text">
                 Creative Full-Stack Developer
             </div>
         </div>
     </div>
     
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass" id="navbar">
-        <div class="container mx-auto px-6 py-4">
+    <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 sm:px-10 md:px-20 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="text-2xl font-bold font-poppins gradient-text">
@@ -318,7 +373,7 @@
         <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
         
-        <div class="container mx-auto px-6 text-center relative z-10">
+        <div class="container mx-auto px-4 sm:px-10 md:px-20 text-center relative z-10">
             <!-- Profile Image -->
             <div class="mb-8" data-aos="fade-down" data-aos-duration="1000">
                 <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-cyber-cyan to-cyber-purple p-1 animate-glow">
@@ -385,7 +440,7 @@
     
     <!-- Quick Preview Section -->
     <section class="py-20 relative">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-4 sm:px-10 md:px-20">
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- About Preview -->
                 <div class="glass rounded-2xl p-8 hover-tilt transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
@@ -428,7 +483,7 @@
     
     <!-- Footer -->
     <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-4 sm:px-10 md:px-20">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
                     <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHIYA</div>
@@ -454,9 +509,14 @@
     </footer>
     
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/94715921984" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-all duration-300 shadow-lg hover-glow">
+    <a href="https://wa.me/94715921984" class="fixed bottom-6 left-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-all duration-300 shadow-lg hover-glow">
         <i class="fab fa-whatsapp"></i>
     </a>
+    
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scroll-to-top">
+        <i class="fas fa-chevron-up text-deep-black"></i>
+    </button>
     
     <script>
         // Initialize AOS
@@ -467,8 +527,8 @@
         });
         
         // Custom Cursor
-        const cursor = document.querySelector('.custom-cursor');
-        const cursorDot = document.querySelector('.cursor-dot');
+        const cursor = document.getElementById('custom-cursor');
+        const cursorDot = document.getElementById('cursor-dot');
         
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
@@ -501,8 +561,8 @@
                 anime({
                     targets: path,
                     strokeDashoffset: [1000, 0],
-                    duration: 800,
-                    delay: index * 200,
+                    duration: 600,
+                    delay: index * 150,
                     easing: 'easeInOutQuart'
                 });
             });
@@ -516,7 +576,7 @@
                 easing: 'easeOutQuart'
             });
             
-            // Hide loader after 6 seconds
+            // Hide loader after 5 seconds
             setTimeout(() => {
                 anime({
                     targets: '#loader',
@@ -528,7 +588,7 @@
                         document.body.style.overflow = 'auto';
                     }
                 });
-            }, 6000);
+            }, 5000);
         }
         
         // Mobile Menu
@@ -569,9 +629,8 @@
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
                 particlesContainer.appendChild(particle);
             }
         }
@@ -579,17 +638,23 @@
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
+            const scrollToTop = document.getElementById('scroll-to-top');
+            
             if (window.scrollY > 100) {
                 navbar.style.background = 'rgba(15, 15, 15, 0.9)';
+                scrollToTop.classList.add('visible');
             } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+                navbar.style.background = 'rgba(255, 255, 255, 0.05)';
+                scrollToTop.classList.remove('visible');
             }
         });
         
-        // Initialize everything when page loads
-        window.addEventListener('load', () => {
-            startSignatureAnimation();
-            createParticles();
+        // Scroll to top functionality
+        document.getElementById('scroll-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
         
         // Smooth scrolling for anchor links
@@ -604,6 +669,12 @@
                     });
                 }
             });
+        });
+        
+        // Initialize everything when page loads
+        window.addEventListener('load', () => {
+            startSignatureAnimation();
+            createParticles();
         });
     </script>
 </body>
