@@ -62,6 +62,7 @@
         body { 
             font-family: 'Inter', sans-serif;
             cursor: none;
+            background: linear-gradient(135deg, #0F0F0F 0%, #1a1a2e 50%, #16213e 100%);
         }
         h1, h2, h3, h4, h5, h6 { 
             font-family: 'Poppins', sans-serif; 
@@ -106,9 +107,9 @@
         
         /* Glassmorphism */
         .glass {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         /* Hover Effects */
@@ -202,7 +203,7 @@
     
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass" id="navbar">
-        <div class="container mx-auto px-6 py-4">
+        <div class="container mx-auto px-4 sm:px-10 md:px-20 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="text-2xl font-bold font-poppins gradient-text">
@@ -257,7 +258,7 @@
         <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
         
-        <div class="container mx-auto px-6 text-center">
+        <div class="container mx-auto px-4 sm:px-10 md:px-20 text-center">
             <h1 class="text-4xl md:text-6xl font-bold font-poppins mb-6 gradient-text" data-aos="fade-up">
                 My Projects
             </h1>
@@ -269,7 +270,7 @@
 
     <!-- Filter Tabs -->
     <section class="py-10">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-4 sm:px-10 md:px-20">
             <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
                 <button class="filter-btn active px-6 py-3 rounded-full border-2 border-cyber-cyan text-cyber-cyan font-semibold font-poppins transition-all duration-300 hover:scale-105" data-filter="all">
                     All Projects
@@ -289,7 +290,7 @@
 
     <!-- Projects Grid -->
     <section class="py-20">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-4 sm:px-10 md:px-20">
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
                 
                 <!-- Project Card 1 - Web -->
@@ -528,7 +529,7 @@
 
     <!-- Call to Action -->
     <section class="py-20 glass">
-        <div class="container mx-auto px-6 text-center">
+        <div class="container mx-auto px-4 sm:px-10 md:px-20 text-center">
             <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-8 gradient-text" data-aos="fade-up">
                 Interested in Working Together?
             </h2>
@@ -592,7 +593,7 @@
 
     <!-- Footer -->
     <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-4 sm:px-10 md:px-20">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
                     <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHIYA</div>
@@ -618,7 +619,7 @@
     </footer>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/94715921984" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-all duration-300 shadow-lg hover-glow">
+    <a href="https://wa.me/94715921984" class="fixed bottom-6 left-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-all duration-300 shadow-lg hover-glow">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -739,7 +740,7 @@
             if (window.scrollY > 100) {
                 navbar.style.background = 'rgba(15, 15, 15, 0.9)';
             } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+                navbar.style.background = 'rgba(255, 255, 255, 0.05)';
             }
         });
 
