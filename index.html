@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathisha Angirasa - Creative Full-Stack Developer</title>
-    <meta name="description" content="Mathisha Angirasa - Creative Full-Stack Developer & Software Engineering Student at Birmingham University. Building amazing digital experiences.">
+    <title>Mathiya Angirasa - Creative Full-Stack Developer</title>
+    <meta name="description" content="Mathiya Angirasa - Creative Full-Stack Developer & Software Engineering Student at Birmingham University. Building amazing digital experiences.">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,11 +16,11 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <!-- Google Fonts CDN -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <!-- Anime.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- Google Fonts CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -36,12 +36,18 @@
                         'cyber-purple': '#8A2BE2',
                         'deep-black': '#0F0F0F',
                         'soft-white': '#F9F9F9',
+                        'neon-pink': '#FF10F0',
+                        'electric-blue': '#0080FF',
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'glow': 'glow 2s ease-in-out infinite alternate',
-                        'particle': 'particle 20s linear infinite',
-                        'typing': 'typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                        'typewriter': 'typewriter 3s steps(40) 1s forwards',
+                        'blink': 'blink 1s infinite',
+                        'particle-float': 'particleFloat 20s linear infinite',
+                        'signature-draw': 'signatureDraw 3s ease-out forwards',
+                        'loading-bar': 'loadingBar 4s ease-out forwards',
                     },
                     keyframes: {
                         'float': {
@@ -52,19 +58,31 @@
                             '0%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.5)' },
                             '100%': { boxShadow: '0 0 40px rgba(0, 240, 255, 0.8)' },
                         },
-                        'particle': {
+                        'pulseGlow': {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.4)' },
+                            '50%': { boxShadow: '0 0 60px rgba(0, 240, 255, 0.8)' },
+                        },
+                        'typewriter': {
+                            '0%': { width: '0' },
+                            '100%': { width: '100%' },
+                        },
+                        'blink': {
+                            '0%, 50%': { borderColor: 'transparent' },
+                            '51%, 100%': { borderColor: '#00F0FF' },
+                        },
+                        'particleFloat': {
                             '0%': { transform: 'translateY(100vh) translateX(0px)', opacity: '0' },
                             '10%': { opacity: '1' },
                             '90%': { opacity: '1' },
                             '100%': { transform: 'translateY(-100vh) translateX(100px)', opacity: '0' },
                         },
-                        'typing': {
-                            'from': { width: '0' },
-                            'to': { width: '100%' },
+                        'signatureDraw': {
+                            '0%': { strokeDashoffset: '2000' },
+                            '100%': { strokeDashoffset: '0' },
                         },
-                        'blink-caret': {
-                            'from, to': { borderColor: 'transparent' },
-                            '50%': { borderColor: '#00F0FF' },
+                        'loadingBar': {
+                            '0%': { width: '0%' },
+                            '100%': { width: '100%' },
                         },
                     },
                 }
@@ -77,7 +95,13 @@
             font-family: 'Inter', sans-serif;
             cursor: none;
             background: linear-gradient(135deg, #0F0F0F 0%, #1a1a2e 50%, #16213e 100%);
+            overflow: hidden;
         }
+        
+        body.loaded {
+            overflow: auto;
+        }
+        
         h1, h2, h3, h4, h5, h6 { 
             font-family: 'Poppins', sans-serif; 
         }
@@ -112,8 +136,8 @@
             box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
         }
         
-        /* Signature Loader */
-        .signature-loader {
+        /* Loading Screen */
+        .loading-screen {
             position: fixed;
             top: 0;
             left: 0;
@@ -121,16 +145,23 @@
             height: 100%;
             background: #0F0F0F;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 10000;
-            flex-direction: column;
+            transition: opacity 1s ease-out;
         }
         
+        .loading-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* Signature SVG */
         .signature-svg {
             width: 600px;
             height: 200px;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
         
         @media (max-width: 768px) {
@@ -142,7 +173,7 @@
         
         .signature-path {
             stroke: url(#signatureGradient);
-            stroke-width: 3;
+            stroke-width: 4;
             fill: none;
             stroke-linecap: round;
             stroke-linejoin: round;
@@ -159,7 +190,7 @@
             background: #00F0FF;
             border-radius: 50%;
             opacity: 0.7;
-            animation: particle 20s linear infinite;
+            animation: particleFloat 20s linear infinite;
             box-shadow: 0 0 10px #00F0FF;
         }
         
@@ -169,27 +200,23 @@
             animation-delay: -10s;
         }
         
+        .particle:nth-child(3n) {
+            background: #FF10F0;
+            box-shadow: 0 0 10px #FF10F0;
+            animation-delay: -5s;
+        }
+        
         /* Loading Bar */
         .loading-bar {
             width: 0%;
             transition: width 0.1s ease-out;
-            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
+            background: linear-gradient(90deg, #00F0FF, #8A2BE2, #FF10F0);
             box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
-        }
-        
-        /* Typing Effect */
-        .typing-text {
-            overflow: hidden;
-            border-right: 2px solid #00F0FF;
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: 0.15em;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
         }
         
         /* Gradient Text */
         .gradient-text {
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2, #FF10F0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -209,6 +236,20 @@
         
         .hover-glow:hover {
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #00F0FF;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.1em;
+            animation: typewriter 3s steps(40) 1s forwards, blink 1s infinite;
         }
         
         /* Mobile Navigation */
@@ -237,6 +278,7 @@
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 1000;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
         }
         
         .scroll-to-top.visible {
@@ -246,28 +288,55 @@
         
         .scroll-to-top:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.6);
+        }
+        
+        /* Neon Button */
+        .neon-button {
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .neon-button:hover {
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.8);
+            transform: translateY(-2px);
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
+            height: 4px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            transition: width 0.3s ease;
         }
     </style>
 </head>
 
-<body class="dark bg-deep-black text-soft-white overflow-x-hidden">
+<body class="dark bg-deep-black text-soft-white">
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+    
     <!-- Custom Cursor -->
     <div class="custom-cursor" id="custom-cursor"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
     
-    <!-- Signature Loader -->
-    <div class="signature-loader" id="loader">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
         <!-- Particles Background -->
         <div class="absolute inset-0 overflow-hidden" id="particles-container"></div>
         
-        <div class="relative z-10">
+        <div class="relative z-10 text-center">
             <!-- SVG Signature -->
             <svg class="signature-svg" viewBox="0 0 800 200">
                 <defs>
                     <linearGradient id="signatureGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" style="stop-color:#00F0FF"/>
-                        <stop offset="100%" style="stop-color:#8A2BE2"/>
+                        <stop offset="50%" style="stop-color:#8A2BE2"/>
+                        <stop offset="100%" style="stop-color:#FF10F0"/>
                     </linearGradient>
                 </defs>
                 <!-- M -->
@@ -280,17 +349,15 @@
                 <path class="signature-path" d="M370 50 L370 150 M370 100 L440 100 M440 50 L440 150" id="letter-h"/>
                 <!-- I -->
                 <path class="signature-path" d="M470 50 L510 50 M490 50 L490 150 M470 150 L510 150" id="letter-i"/>
-                <!-- S -->
-                <path class="signature-path" d="M570 80 Q540 50 540 80 Q540 100 570 100 Q600 100 600 120 Q600 150 570 120" id="letter-s"/>
-                <!-- H -->
-                <path class="signature-path" d="M630 50 L630 150 M630 100 L700 100 M700 50 L700 150" id="letter-h2"/>
+                <!-- Y -->
+                <path class="signature-path" d="M540 50 L570 100 L600 50 M570 100 L570 150" id="letter-y"/>
                 <!-- A -->
-                <path class="signature-path" d="M730 150 L760 50 L790 150 M745 110 L775 110" id="letter-a2"/>
+                <path class="signature-path" d="M630 150 L660 50 L690 150 M645 110 L675 110" id="letter-a2"/>
             </svg>
             
             <!-- Loading Text -->
-            <div class="text-center mb-8">
-                <p class="typing-text text-cyber-cyan text-xl font-poppins" id="loading-text">
+            <div class="mb-8">
+                <p class="text-cyber-cyan text-xl font-poppins animate-pulse-glow">
                     Loading your experience...
                 </p>
             </div>
@@ -301,7 +368,7 @@
             </div>
             
             <!-- Percentage -->
-            <div class="text-center mt-4">
+            <div class="mt-4">
                 <span class="text-cyber-cyan font-poppins text-lg" id="loading-percentage">0%</span>
             </div>
         </div>
@@ -313,7 +380,7 @@
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="text-2xl font-bold font-poppins gradient-text">
-                    MATHISHA
+                    MATHIYA
                 </div>
                 
                 <!-- Desktop Navigation -->
@@ -328,7 +395,7 @@
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass hover-glow">
                     <i class="fas fa-bars text-cyber-cyan"></i>
                 </button>
             </div>
@@ -337,7 +404,7 @@
         <!-- Mobile Menu -->
         <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
             <div class="p-6">
-                <button id="close-menu" class="float-right text-2xl text-cyber-cyan">
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan hover:text-white transition-colors">
                     <i class="fas fa-times"></i>
                 </button>
                 <div class="clear-both mt-8 space-y-6">
@@ -358,70 +425,67 @@
         <!-- Floating Blobs -->
         <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float" style="animation-delay: -1.5s;"></div>
         
         <div class="container mx-auto px-6 text-center relative z-10">
-            <!-- Profile Image -->
+            <!-- Greeting -->
             <div class="mb-8" data-aos="fade-down" data-aos-duration="1000">
-                <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-cyber-cyan to-cyber-purple p-1 animate-glow">
-                    <div class="w-full h-full rounded-full bg-deep-black flex items-center justify-center">
-                        <i class="fas fa-user text-4xl text-cyber-cyan"></i>
-                    </div>
-                </div>
+                <h1 class="text-5xl md:text-7xl font-bold font-poppins mb-6">
+                    <span class="typewriter gradient-text">Hi, my name is Mathiya 👋</span>
+                </h1>
             </div>
             
-            <!-- Main Heading -->
-            <h1 class="text-5xl md:text-7xl font-bold font-poppins mb-6" data-aos="fade-up" data-aos-delay="200">
-                Hi, I'm <span class="gradient-text">Mathisha</span>
-            </h1>
-            
             <!-- Subtitle -->
-            <p class="text-xl md:text-2xl text-gray-300 mb-8 font-inter" data-aos="fade-up" data-aos-delay="400">
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 font-inter" data-aos="fade-up" data-aos-delay="2000">
                 Creative Full-Stack Developer & Software Engineering Student
             </p>
             
             <!-- Description -->
-            <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-12 font-inter leading-relaxed" data-aos="fade-up" data-aos-delay="600">
+            <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-12 font-inter leading-relaxed" data-aos="fade-up" data-aos-delay="2500">
                 Building amazing digital experiences at Birmingham University. 
                 Passionate about UI/UX, gaming, and creating smooth, optimized solutions.
             </p>
             
             <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16" data-aos="fade-up" data-aos-delay="800">
-                <a href="projects.html" class="px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold rounded-lg hover-glow transition-all duration-300 font-poppins hover:scale-105">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16" data-aos="fade-up" data-aos-delay="3000">
+                <a href="projects.html" class="neon-button px-8 py-4 text-deep-black font-semibold rounded-lg hover-scale transition-all duration-300 font-poppins">
                     View My Work
                 </a>
-                <a href="contact.html" class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-lg hover:bg-cyber-cyan hover:text-deep-black transition-all duration-300 font-poppins hover:scale-105">
+                <a href="contact.html" class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-lg hover:bg-cyber-cyan hover:text-deep-black hover-scale transition-all duration-300 font-poppins">
                     Get In Touch
                 </a>
             </div>
             
             <!-- Social Links -->
-            <div class="flex justify-center flex-wrap gap-4" data-aos="fade-up" data-aos-delay="1000">
-                <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+            <div class="flex justify-center flex-wrap gap-4" data-aos="fade-up" data-aos-delay="3500">
+                <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <a href="https://www.facebook.com/mathisha.angirasa/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                <a href="https://www.facebook.com/mathisha.angirasa/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                     <i class="fab fa-facebook"></i>
                 </a>
-                <a href="https://www.instagram.com/mathi_ya_/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                <a href="https://www.instagram.com/mathi_ya_/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://steamcommunity.com/profiles/76561199076879396/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                <a href="https://steamcommunity.com/profiles/76561199076879396/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                     <i class="fab fa-steam"></i>
                 </a>
-                <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
+                    <i class="fas fa-gamepad"></i>
+                </a>
+                <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                     <i class="fab fa-spotify"></i>
                 </a>
-                <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                     <i class="fab fa-discord"></i>
                 </a>
-                <a href="https://wa.me/94715921984" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                <a href="https://wa.me/94715921984" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                     <i class="fab fa-whatsapp"></i>
                 </a>
             </div>
@@ -436,9 +500,13 @@
     <!-- Quick Preview Section -->
     <section class="py-20 relative">
         <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold font-poppins text-center mb-16 gradient-text" data-aos="fade-up">
+                What I Do
+            </h2>
+            
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- About Preview -->
-                <div class="glass rounded-2xl p-8 hover-tilt transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="glass rounded-2xl p-8 hover-tilt hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
                     <div class="text-4xl text-cyber-cyan mb-4">
                         <i class="fas fa-user-graduate"></i>
                     </div>
@@ -450,7 +518,7 @@
                 </div>
                 
                 <!-- Projects Preview -->
-                <div class="glass rounded-2xl p-8 hover-tilt transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                <div class="glass rounded-2xl p-8 hover-tilt hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
                     <div class="text-4xl text-cyber-purple mb-4">
                         <i class="fas fa-code"></i>
                     </div>
@@ -462,15 +530,15 @@
                 </div>
                 
                 <!-- Skills Preview -->
-                <div class="glass rounded-2xl p-8 hover-tilt transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-4xl text-cyber-cyan mb-4">
+                <div class="glass rounded-2xl p-8 hover-tilt hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl text-neon-pink mb-4">
                         <i class="fas fa-tools"></i>
                     </div>
                     <h3 class="text-xl font-bold font-poppins mb-4">Technical Skills</h3>
                     <p class="text-gray-400 mb-6 font-inter">
                         Proficient in React, Node.js, Tailwind CSS, and modern development tools. Always learning and growing.
                     </p>
-                    <a href="skills.html" class="text-cyber-cyan font-medium hover:text-white transition-colors">See Skills →</a>
+                    <a href="skills.html" class="text-neon-pink font-medium hover:text-white transition-colors">See Skills →</a>
                 </div>
             </div>
         </div>
@@ -481,21 +549,21 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHISHA</div>
-                    <p class="text-gray-400 font-inter">© 2024 Mathisha Angirasa. All rights reserved.</p>
+                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHIYA</div>
+                    <p class="text-gray-400 font-inter">© 2024 Mathiya Angirasa. All rights reserved.</p>
                 </div>
                 
                 <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-discord"></i>
                     </a>
                 </div>
@@ -531,7 +599,7 @@
         });
         
         // Cursor hover effects
-        const hoverElements = document.querySelectorAll('a, button');
+        const hoverElements = document.querySelectorAll('a, button, .hover-tilt, .neon-button');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.classList.add('cursor-hover');
@@ -541,14 +609,22 @@
             });
         });
         
-        // Signature Loader Animation
-        function startSignatureAnimation() {
-            const paths = document.querySelectorAll('.signature-path');
+        // Loading Screen Animation
+        function startLoadingAnimation() {
+            const loadingScreen = document.getElementById('loading-screen');
             const loadingBar = document.getElementById('loading-bar');
             const loadingPercentage = document.getElementById('loading-percentage');
+            const paths = document.querySelectorAll('.signature-path');
             
             // Create particles
-            createLoaderParticles();
+            createParticles();
+            
+            // Animate signature paths
+            paths.forEach((path, index) => {
+                setTimeout(() => {
+                    path.style.animation = 'signatureDraw 1s ease-out forwards';
+                }, index * 200);
+            });
             
             // Animate loading bar
             let progress = 0;
@@ -564,34 +640,18 @@
                 }
             }, 50);
             
-            // Animate each letter using Anime.js
-            paths.forEach((path, index) => {
-                anime({
-                    targets: path,
-                    strokeDashoffset: [2000, 0],
-                    duration: 800,
-                    delay: index * 200,
-                    easing: 'easeInOutQuart'
-                });
-            });
-            
-            // Hide loader after 5 seconds
+            // Hide loading screen after 5 seconds
             setTimeout(() => {
-                anime({
-                    targets: '#loader',
-                    opacity: [1, 0],
-                    duration: 1000,
-                    easing: 'easeOutQuart',
-                    complete: () => {
-                        document.getElementById('loader').style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                    }
-                });
+                loadingScreen.classList.add('fade-out');
+                document.body.classList.add('loaded');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 1000);
             }, 5000);
         }
         
-        // Create Loader Particles
-        function createLoaderParticles() {
+        // Create Particles
+        function createParticles() {
             const particlesContainer = document.getElementById('particles-container');
             const particleCount = 50;
             
@@ -619,12 +679,19 @@
             mobileMenu.classList.remove('active');
         });
         
-        // Navbar scroll effect
+        // Navbar scroll effect and progress bar
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             const scrollToTop = document.getElementById('scroll-to-top');
+            const progressBar = document.getElementById('progress-bar');
             
-            if (window.scrollY > 100) {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            progressBar.style.width = scrollPercent + '%';
+            
+            if (scrollTop > 100) {
                 navbar.style.background = 'rgba(15, 15, 15, 0.9)';
                 scrollToTop.classList.add('visible');
             } else {
@@ -643,8 +710,32 @@
         
         // Initialize everything when page loads
         window.addEventListener('load', () => {
-            startSignatureAnimation();
+            startLoadingAnimation();
         });
+        
+        // Console Easter Egg
+        console.log(`
+        ╔══════════════════════════════════════════════════════════════╗
+        ║                                                              ║
+        ║                    Welcome to Mathiya's                      ║
+        ║                   Ultra-Modern Portfolio! 🚀                ║
+        ║                                                              ║
+        ║    Built with ❤️, lots of ☕, and cutting-edge tech         ║
+        ║                                                              ║
+        ║    🌟 Features:                                              ║
+        ║    • Cinematic SVG Loading Animation                         ║
+        ║    • Custom Glowing Cursor                                   ║
+        ║    • Neon Gradient Effects                                   ║
+        ║    • Smooth Scroll Animations                                ║
+        ║    • Responsive Glassmorphism Design                         ║
+        ║                                                              ║
+        ║    Check out the source code:                                ║
+        ║    🔗 github.com/Mathiyass/portfolio                         ║
+        ║                                                              ║
+        ║    Let's connect and build something amazing together! 🤝    ║
+        ║                                                              ║
+        ╚══════════════════════════════════════════════════════════════╝
+        `);
     </script>
 </body>
 </html>
