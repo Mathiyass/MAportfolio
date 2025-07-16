@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Mathiya Angirasa</title>
-    <meta name="description" content="Explore Mathiya Angirasa's portfolio of web applications, mobile apps, and creative coding projects.">
+    <title>Projects - Mathisha Angirasa</title>
+    <meta name="description" content="Explore Mathisha Angirasa's portfolio of web applications, mobile apps, and creative coding projects.">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -37,7 +37,6 @@
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'glow': 'glow 2s ease-in-out infinite alternate',
-                        'tilt': 'tilt 0.3s ease-out',
                     },
                     keyframes: {
                         'float': {
@@ -47,10 +46,6 @@
                         'glow': {
                             '0%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.5)' },
                             '100%': { boxShadow: '0 0 40px rgba(0, 240, 255, 0.8)' },
-                        },
-                        'tilt': {
-                            '0%': { transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)' },
-                            '100%': { transform: 'perspective(1000px) rotateX(5deg) rotateY(-5deg)' },
                         },
                     },
                 }
@@ -136,26 +131,6 @@
             color: #0F0F0F;
         }
         
-        /* Animated Underline */
-        .animated-underline {
-            position: relative;
-        }
-        
-        .animated-underline::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
-            transition: width 0.3s ease;
-        }
-        
-        .animated-underline:hover::after {
-            width: 100%;
-        }
-        
         /* Mobile Navigation */
         .mobile-menu {
             transform: translateX(100%);
@@ -203,28 +178,23 @@
     
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass" id="navbar">
-        <div class="container mx-auto px-4 sm:px-10 md:px-20 py-4">
+        <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="text-2xl font-bold font-poppins gradient-text">
-                    MATHIYA
+                    MATHISHA
                 </div>
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="animated-underline hover:text-cyber-cyan transition-colors">Home</a>
-                    <a href="about.html" class="animated-underline hover:text-cyber-cyan transition-colors">About</a>
-                    <a href="projects.html" class="animated-underline text-cyber-cyan font-medium">Projects</a>
-                    <a href="skills.html" class="animated-underline hover:text-cyber-cyan transition-colors">Skills</a>
-                    <a href="resume.html" class="animated-underline hover:text-cyber-cyan transition-colors">Resume</a>
-                    <a href="blog.html" class="animated-underline hover:text-cyber-cyan transition-colors">Blog</a>
-                    <a href="contact.html" class="animated-underline hover:text-cyber-cyan transition-colors">Contact</a>
+                    <a href="index.html" class="hover:text-cyber-cyan transition-colors">Home</a>
+                    <a href="about.html" class="hover:text-cyber-cyan transition-colors">About</a>
+                    <a href="projects.html" class="text-cyber-cyan font-medium">Projects</a>
+                    <a href="skills.html" class="hover:text-cyber-cyan transition-colors">Skills</a>
+                    <a href="resume.html" class="hover:text-cyber-cyan transition-colors">Resume</a>
+                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors">Blog</a>
+                    <a href="contact.html" class="hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
-                
-                <!-- Theme Toggle -->
-                <button id="theme-toggle" class="p-2 rounded-lg glass hover-glow transition-all">
-                    <i class="fas fa-moon text-cyber-cyan"></i>
-                </button>
                 
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
@@ -258,7 +228,7 @@
         <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
         
-        <div class="container mx-auto px-4 sm:px-10 md:px-20 text-center">
+        <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-6xl font-bold font-poppins mb-6 gradient-text" data-aos="fade-up">
                 My Projects
             </h1>
@@ -270,7 +240,7 @@
 
     <!-- Filter Tabs -->
     <section class="py-10">
-        <div class="container mx-auto px-4 sm:px-10 md:px-20">
+        <div class="container mx-auto px-6">
             <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
                 <button class="filter-btn active px-6 py-3 rounded-full border-2 border-cyber-cyan text-cyber-cyan font-semibold font-poppins transition-all duration-300 hover:scale-105" data-filter="all">
                     All Projects
@@ -290,7 +260,7 @@
 
     <!-- Projects Grid -->
     <section class="py-20">
-        <div class="container mx-auto px-4 sm:px-10 md:px-20">
+        <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
                 
                 <!-- Project Card 1 - Web -->
@@ -370,48 +340,10 @@
                     </div>
                 </div>
 
-                <!-- Project Card 3 - Web -->
-                <div class="project-card glass rounded-2xl overflow-hidden hover-glow transition-all duration-300" data-category="web" data-aos="fade-up" data-aos-delay="300">
+                <!-- Project Card 3 - Game -->
+                <div class="project-card glass rounded-2xl overflow-hidden hover-glow transition-all duration-300" data-category="game" data-aos="fade-up" data-aos-delay="300">
                     <div class="relative overflow-hidden group">
                         <div class="w-full h-48 bg-gradient-to-br from-cyber-cyan to-cyber-purple flex items-center justify-center">
-                            <i class="fas fa-cloud-sun text-4xl text-deep-black"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-deep-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="absolute top-4 right-4 bg-cyber-cyan text-deep-black px-3 py-1 rounded-full text-sm font-semibold font-poppins">
-                            Web
-                        </div>
-                    </div>
-                    
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold font-poppins mb-3 text-white">Weather Dashboard</h3>
-                        <p class="text-gray-400 mb-4 font-inter">
-                            A beautiful weather dashboard with location-based forecasts, 
-                            interactive maps, and detailed weather analytics.
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm font-inter">Vue.js</span>
-                            <span class="px-3 py-1 bg-cyber-purple/20 text-cyber-purple rounded-full text-sm font-inter">Chart.js</span>
-                            <span class="px-3 py-1 bg-orange-500/20 text-orange-400 rounded-full text-sm font-inter">API</span>
-                        </div>
-                        
-                        <div class="flex space-x-4">
-                            <button class="flex items-center text-cyber-cyan hover:text-white transition-colors duration-300 font-inter" onclick="openModal('project3')">
-                                <i class="fas fa-eye mr-2"></i>
-                                View Details
-                            </button>
-                            <a href="#" class="flex items-center text-gray-400 hover:text-white transition-colors duration-300 font-inter">
-                                <i class="fab fa-github mr-2"></i>
-                                Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 4 - Game -->
-                <div class="project-card glass rounded-2xl overflow-hidden hover-glow transition-all duration-300" data-category="game" data-aos="fade-up" data-aos-delay="400">
-                    <div class="relative overflow-hidden group">
-                        <div class="w-full h-48 bg-gradient-to-br from-cyber-purple to-cyber-cyan flex items-center justify-center">
                             <i class="fas fa-gamepad text-4xl text-deep-black"></i>
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-deep-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -434,7 +366,7 @@
                         </div>
                         
                         <div class="flex space-x-4">
-                            <button class="flex items-center text-cyber-cyan hover:text-white transition-colors duration-300 font-inter" onclick="openModal('project4')">
+                            <button class="flex items-center text-cyber-cyan hover:text-white transition-colors duration-300 font-inter" onclick="openModal('project3')">
                                 <i class="fas fa-eye mr-2"></i>
                                 View Details
                             </button>
@@ -446,82 +378,7 @@
                     </div>
                 </div>
 
-                <!-- Project Card 5 - Mobile -->
-                <div class="project-card glass rounded-2xl overflow-hidden hover-glow transition-all duration-300" data-category="mobile" data-aos="fade-up" data-aos-delay="500">
-                    <div class="relative overflow-hidden group">
-                        <div class="w-full h-48 bg-gradient-to-br from-cyber-cyan to-cyber-purple flex items-center justify-center">
-                            <i class="fas fa-dumbbell text-4xl text-deep-black"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-deep-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="absolute top-4 right-4 bg-cyber-purple text-white px-3 py-1 rounded-full text-sm font-semibold font-poppins">
-                            Mobile
-                        </div>
-                    </div>
-                    
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold font-poppins mb-3 text-white">Fitness Tracker App</h3>
-                        <p class="text-gray-400 mb-4 font-inter">
-                            A comprehensive fitness tracking app with workout plans, 
-                            progress tracking, and social features for motivation.
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm font-inter">Flutter</span>
-                            <span class="px-3 py-1 bg-cyber-purple/20 text-cyber-purple rounded-full text-sm font-inter">Dart</span>
-                            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm font-inter">SQLite</span>
-                        </div>
-                        
-                        <div class="flex space-x-4">
-                            <button class="flex items-center text-cyber-purple hover:text-white transition-colors duration-300 font-inter" onclick="openModal('project5')">
-                                <i class="fas fa-eye mr-2"></i>
-                                View Details
-                            </button>
-                            <a href="#" class="flex items-center text-gray-400 hover:text-white transition-colors duration-300 font-inter">
-                                <i class="fab fa-github mr-2"></i>
-                                Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 6 - Web -->
-                <div class="project-card glass rounded-2xl overflow-hidden hover-glow transition-all duration-300" data-category="web" data-aos="fade-up" data-aos-delay="600">
-                    <div class="relative overflow-hidden group">
-                        <div class="w-full h-48 bg-gradient-to-br from-cyber-purple to-cyber-cyan flex items-center justify-center">
-                            <i class="fas fa-robot text-4xl text-deep-black"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-deep-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="absolute top-4 right-4 bg-cyber-cyan text-deep-black px-3 py-1 rounded-full text-sm font-semibold font-poppins">
-                            Web
-                        </div>
-                    </div>
-                    
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold font-poppins mb-3 text-white">AI Chat Bot</h3>
-                        <p class="text-gray-400 mb-4 font-inter">
-                            An intelligent chatbot powered by machine learning with natural language processing 
-                            and context-aware responses.
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm font-inter">Python</span>
-                            <span class="px-3 py-1 bg-cyber-purple/20 text-cyber-purple rounded-full text-sm font-inter">TensorFlow</span>
-                            <span class="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm font-inter">Flask</span>
-                            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm font-inter">NLP</span>
-                        </div>
-                        
-                        <div class="flex space-x-4">
-                            <button class="flex items-center text-cyber-cyan hover:text-white transition-colors duration-300 font-inter" onclick="openModal('project6')">
-                                <i class="fas fa-eye mr-2"></i>
-                                View Details
-                            </button>
-                            <a href="#" class="flex items-center text-gray-400 hover:text-white transition-colors duration-300 font-inter">
-                                <i class="fab fa-github mr-2"></i>
-                                Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <!-- More project cards would go here... -->
 
             </div>
         </div>
@@ -529,7 +386,7 @@
 
     <!-- Call to Action -->
     <section class="py-20 glass">
-        <div class="container mx-auto px-4 sm:px-10 md:px-20 text-center">
+        <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-8 gradient-text" data-aos="fade-up">
                 Interested in Working Together?
             </h2>
@@ -538,10 +395,10 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-                <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold font-poppins rounded-lg hover-glow transition-all duration-300">
+                <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold font-poppins rounded-lg hover-glow transition-all duration-300 hover:scale-105">
                     Get In Touch
                 </a>
-                <a href="resume.html" class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold font-poppins rounded-lg hover:bg-cyber-cyan hover:text-deep-black transition-all duration-300">
+                <a href="resume.html" class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold font-poppins rounded-lg hover:bg-cyber-cyan hover:text-deep-black transition-all duration-300 hover:scale-105">
                     View Resume
                 </a>
             </div>
@@ -579,10 +436,10 @@
                         <li>• Admin dashboard for management</li>
                     </ul>
                     <div class="flex space-x-4">
-                        <a href="#" class="px-6 py-3 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold font-poppins rounded-lg">
+                        <a href="#" class="px-6 py-3 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold font-poppins rounded-lg hover:scale-105 transition-all duration-300">
                             Live Demo
                         </a>
-                        <a href="#" class="px-6 py-3 border-2 border-cyber-cyan text-cyber-cyan font-semibold font-poppins rounded-lg">
+                        <a href="#" class="px-6 py-3 border-2 border-cyber-cyan text-cyber-cyan font-semibold font-poppins rounded-lg hover:bg-cyber-cyan hover:text-deep-black transition-all duration-300">
                             View Code
                         </a>
                     </div>
@@ -593,11 +450,11 @@
 
     <!-- Footer -->
     <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-4 sm:px-10 md:px-20">
+        <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHIYA</div>
-                    <p class="text-gray-400 font-inter">© 2024 Mathiya Angirasa. All rights reserved.</p>
+                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHISHA</div>
+                    <p class="text-gray-400 font-inter">© 2024 Mathisha Angirasa. All rights reserved.</p>
                 </div>
                 
                 <div class="flex space-x-6">
@@ -617,11 +474,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/94715921984" class="fixed bottom-6 left-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-all duration-300 shadow-lg hover-glow">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
     <script>
         // Initialize AOS
@@ -667,22 +519,6 @@
         
         closeMenu.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
-        });
-
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            const icon = themeToggle.querySelector('i');
-            if (html.classList.contains('dark')) {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            } else {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            }
         });
 
         // Project Filter System

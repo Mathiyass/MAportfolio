@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Mathiya Angirasa</title>
-    <meta name="description" content="Learn more about Mathiya Angirasa - Creative Full-Stack Developer & Software Engineering Student at Birmingham University.">
+    <title>About - Mathisha Angirasa</title>
+    <meta name="description" content="Learn more about Mathisha Angirasa - Creative Full-Stack Developer & Software Engineering Student at Birmingham University.">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -122,26 +122,6 @@
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
         }
         
-        /* Animated Underline */
-        .animated-underline {
-            position: relative;
-        }
-        
-        .animated-underline::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
-            transition: width 0.3s ease;
-        }
-        
-        .animated-underline:hover::after {
-            width: 100%;
-        }
-        
         /* Timeline */
         .timeline-line {
             background: linear-gradient(to bottom, #00F0FF, #8A2BE2);
@@ -166,28 +146,23 @@
     
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
-        <div class="container mx-auto px-4 sm:px-10 md:px-20 py-4">
+        <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="text-2xl font-bold font-poppins gradient-text">
-                    MATHIYA
+                    MATHISHA
                 </div>
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="animated-underline hover:text-cyber-cyan transition-colors">Home</a>
-                    <a href="about.html" class="animated-underline text-cyber-cyan font-medium">About</a>
-                    <a href="projects.html" class="animated-underline hover:text-cyber-cyan transition-colors">Projects</a>
-                    <a href="skills.html" class="animated-underline hover:text-cyber-cyan transition-colors">Skills</a>
-                    <a href="resume.html" class="animated-underline hover:text-cyber-cyan transition-colors">Resume</a>
-                    <a href="blog.html" class="animated-underline hover:text-cyber-cyan transition-colors">Blog</a>
-                    <a href="contact.html" class="animated-underline hover:text-cyber-cyan transition-colors">Contact</a>
+                    <a href="index.html" class="hover:text-cyber-cyan transition-colors">Home</a>
+                    <a href="about.html" class="text-cyber-cyan font-medium">About</a>
+                    <a href="projects.html" class="hover:text-cyber-cyan transition-colors">Projects</a>
+                    <a href="skills.html" class="hover:text-cyber-cyan transition-colors">Skills</a>
+                    <a href="resume.html" class="hover:text-cyber-cyan transition-colors">Resume</a>
+                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors">Blog</a>
+                    <a href="contact.html" class="hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
-                
-                <!-- Theme Toggle -->
-                <button id="theme-toggle" class="p-2 rounded-lg glass hover-glow transition-all">
-                    <i class="fas fa-moon text-cyber-cyan"></i>
-                </button>
                 
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
@@ -221,7 +196,7 @@
         <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
         
-        <div class="container mx-auto px-4 sm:px-10 md:px-20 text-center">
+        <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-6xl font-bold font-poppins mb-6 gradient-text" data-aos="fade-up">
                 About Me
             </h1>
@@ -233,7 +208,7 @@
 
     <!-- Main About Content -->
     <section class="py-20">
-        <div class="container mx-auto px-4 sm:px-10 md:px-20">
+        <div class="container mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
                 <!-- About Text -->
                 <div data-aos="fade-right">
@@ -260,9 +235,9 @@
                 <div data-aos="fade-left" class="text-center">
                     <div class="relative inline-block">
                         <div class="w-80 h-80 rounded-2xl glass p-8 hover-tilt transition-all duration-300">
-<div class="w-full h-full rounded-xl bg-gradient-to-br from-cyber-cyan to-cyber-purple flex items-center justify-center">
-    <img id="profile-image-about" src="assets/Profile Picture.jpg" alt="Mathiya Angirasa Profile Picture" class="w-full h-full object-cover rounded-xl">
-</div>
+                            <div class="w-full h-full rounded-xl bg-gradient-to-br from-cyber-cyan to-cyber-purple flex items-center justify-center">
+                                <i class="fas fa-user text-8xl text-deep-black"></i>
+                            </div>
                         </div>
                         <!-- Floating Elements -->
                         <div class="absolute -top-4 -right-4 w-8 h-8 bg-cyber-cyan rounded-full animate-float"></div>
@@ -275,7 +250,7 @@
 
     <!-- Stats Section -->
     <section class="py-20 glass">
-        <div class="container mx-auto px-4 sm:px-10 md:px-20">
+        <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Stat Card 1 -->
                 <div class="text-center" data-aos="zoom-in" data-aos-delay="100">
@@ -318,7 +293,7 @@
 
     <!-- Timeline Section -->
     <section class="py-20">
-        <div class="container mx-auto px-4 sm:px-10 md:px-20">
+        <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold font-poppins text-center mb-16 gradient-text" data-aos="fade-up">
                 My Journey
             </h2>
@@ -390,7 +365,7 @@
 
     <!-- Hobbies & Interests -->
     <section class="py-20 glass">
-        <div class="container mx-auto px-4 sm:px-10 md:px-20">
+        <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold font-poppins text-center mb-16 gradient-text" data-aos="fade-up">
                 Beyond Coding
             </h2>
@@ -428,7 +403,7 @@
 
     <!-- Call to Action -->
     <section class="py-20">
-        <div class="container mx-auto px-4 sm:px-10 md:px-20 text-center">
+        <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-8 gradient-text" data-aos="fade-up">
                 Let's Work Together
             </h2>
@@ -437,10 +412,10 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-                <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold font-poppins rounded-lg hover-glow transition-all duration-300">
+                <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold font-poppins rounded-lg hover-glow transition-all duration-300 hover:scale-105">
                     Get In Touch
                 </a>
-                <a href="projects.html" class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold font-poppins rounded-lg hover:bg-cyber-cyan hover:text-deep-black transition-all duration-300">
+                <a href="projects.html" class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold font-poppins rounded-lg hover:bg-cyber-cyan hover:text-deep-black transition-all duration-300 hover:scale-105">
                     View My Work
                 </a>
             </div>
@@ -449,11 +424,11 @@
 
     <!-- Footer -->
     <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-4 sm:px-10 md:px-20">
+        <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHIYA</div>
-                    <p class="text-gray-400 font-inter">© 2024 Mathiya Angirasa. All rights reserved.</p>
+                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHISHA</div>
+                    <p class="text-gray-400 font-inter">© 2024 Mathisha Angirasa. All rights reserved.</p>
                 </div>
                 
                 <div class="flex space-x-6">
@@ -473,11 +448,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/94715921984" class="fixed bottom-6 left-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-all duration-300 shadow-lg hover-glow">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
     <script>
         // Initialize AOS
@@ -523,22 +493,6 @@
         
         closeMenu.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
-        });
-
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            const icon = themeToggle.querySelector('i');
-            if (html.classList.contains('dark')) {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            } else {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            }
         });
 
         // Counter Animation
@@ -588,18 +542,6 @@
                 navbar.style.background = 'rgba(255, 255, 255, 0.05)';
             }
         });
-
-        // Image cycling for about.html
-        const imagesAbout = ['assets/Profile Picture.jpg', 'assets/Profile Picture 2.jpg'];
-        let currentIndexAbout = 0;
-        const profileImageAbout = document.getElementById('profile-image-about');
-
-        if (profileImageAbout) {
-            setInterval(() => {
-                currentIndexAbout = (currentIndexAbout + 1) % imagesAbout.length;
-                profileImageAbout.src = imagesAbout[currentIndexAbout];
-            }, 3000); // Change image every 3 seconds
-        }
     </script>
 </body>
 </html>

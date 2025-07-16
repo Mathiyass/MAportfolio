@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume - Mathiya Angirasa</title>
-    <meta name="description" content="Download and view Mathiya Angirasa's professional resume - Full Stack Developer with 4+ years experience.">
+    <title>Resume - Mathisha Angirasa</title>
+    <meta name="description" content="Download and view Mathisha Angirasa's professional resume - Full Stack Developer with 4+ years experience.">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,7 +17,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <!-- Google Fonts CDN -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -25,14 +25,14 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'sans': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
                     },
                     colors: {
                         'cyber-cyan': '#00F0FF',
                         'cyber-purple': '#8A2BE2',
-                        'dark-bg': '#0F0F0F',
-                        'dark-card': '#1A1A1A',
-                        'light-bg': '#F9F9F9',
+                        'deep-black': '#0F0F0F',
+                        'soft-white': '#F9F9F9',
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
@@ -54,97 +54,122 @@
     </script>
     
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { 
+            font-family: 'Inter', sans-serif;
+            cursor: none;
+            background: linear-gradient(135deg, #0F0F0F 0%, #1a1a2e 50%, #16213e 100%);
+        }
+        h1, h2, h3, h4, h5, h6 { 
+            font-family: 'Poppins', sans-serif; 
+        }
+        
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00F0FF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #00F0FF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.15s ease;
+        }
+        
+        .cursor-hover {
+            transform: scale(2);
+            background: rgba(0, 240, 255, 0.1);
+        }
+        
+        /* Gradient Text */
         .gradient-text {
             background: linear-gradient(135deg, #00F0FF, #8A2BE2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .pdf-viewer {
-            border: 2px solid #374151;
-            border-radius: 12px;
-            overflow: hidden;
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .pdf-viewer::-webkit-scrollbar {
-            width: 8px;
+        
+        /* Hover Effects */
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
         }
-        .pdf-viewer::-webkit-scrollbar-track {
-            background: #1F2937;
+        
+        /* Mobile Navigation */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
         }
-        .pdf-viewer::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
-            border-radius: 4px;
-        }
-        .timeline-item {
-            position: relative;
-            padding-left: 2rem;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
-            border-radius: 50%;
-        }
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 1.25rem;
-            width: 2px;
-            height: calc(100% - 1rem);
-            background: linear-gradient(to bottom, #00F0FF, #8A2BE2);
-        }
-        .timeline-item:last-child::after {
-            display: none;
+        
+        .mobile-menu.active {
+            transform: translateX(0);
         }
     </style>
 </head>
 
-<body class="dark bg-dark-bg text-white transition-all duration-300">
-    <!-- Navigation Header -->
-    <nav class="fixed top-0 w-full z-40 bg-dark-bg/80 backdrop-blur-md border-b border-gray-800">
+<body class="dark bg-deep-black text-soft-white overflow-x-hidden">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <div class="text-2xl font-bold gradient-text">MA</div>
+                <div class="text-2xl font-bold font-poppins gradient-text">
+                    MATHISHA
+                </div>
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Home</a>
-                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">About</a>
-                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Projects</a>
-                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Skills</a>
-                    <a href="resume.html" class="nav-link text-cyber-cyan border-b-2 border-cyber-cyan">Resume</a>
-                    <a href="blog.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Blog</a>
-                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Contact</a>
+                    <a href="index.html" class="hover:text-cyber-cyan transition-colors">Home</a>
+                    <a href="about.html" class="hover:text-cyber-cyan transition-colors">About</a>
+                    <a href="projects.html" class="hover:text-cyber-cyan transition-colors">Projects</a>
+                    <a href="skills.html" class="hover:text-cyber-cyan transition-colors">Skills</a>
+                    <a href="resume.html" class="text-cyber-cyan font-medium">Resume</a>
+                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors">Blog</a>
+                    <a href="contact.html" class="hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
                 
-                <!-- Theme Toggle -->
-                <button id="theme-toggle" class="p-2 rounded-lg bg-dark-card hover:bg-gray-700 transition-colors duration-300">
-                    <i class="fas fa-moon text-cyber-cyan"></i>
-                </button>
-                
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-dark-card">
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
                     <i class="fas fa-bars text-cyber-cyan"></i>
                 </button>
             </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 p-6 bg-dark-card rounded-lg">
-                <div class="flex flex-col space-y-4">
-                    <a href="index.html" class="hover:text-cyber-cyan transition-colors duration-300">Home</a>
-                    <a href="about.html" class="hover:text-cyber-cyan transition-colors duration-300">About</a>
-                    <a href="projects.html" class="hover:text-cyber-cyan transition-colors duration-300">Projects</a>
-                    <a href="skills.html" class="hover:text-cyber-cyan transition-colors duration-300">Skills</a>
-                    <a href="resume.html" class="text-cyber-cyan">Resume</a>
-                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors duration-300">Blog</a>
-                    <a href="contact.html" class="hover:text-cyber-cyan transition-colors duration-300">Contact</a>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
+            <div class="p-6">
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="clear-both mt-8 space-y-6">
+                    <a href="index.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Home</a>
+                    <a href="about.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">About</a>
+                    <a href="projects.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Projects</a>
+                    <a href="skills.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Skills</a>
+                    <a href="resume.html" class="block text-xl font-poppins text-cyber-cyan">Resume</a>
+                    <a href="blog.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Blog</a>
+                    <a href="contact.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
             </div>
         </div>
@@ -152,21 +177,21 @@
 
     <!-- Hero Section -->
     <section class="pt-32 pb-20 relative overflow-hidden">
-        <!-- Background Blobs -->
-        <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan/10 rounded-full blur-3xl animate-float"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        <!-- Floating Blobs -->
+        <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
         
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold font-poppins mb-6 gradient-text" data-aos="fade-up">
                 My Resume
             </h1>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-8 font-inter" data-aos="fade-up" data-aos-delay="200">
                 A comprehensive overview of my professional experience, education, and achievements
             </p>
             
             <!-- Download Button -->
             <div data-aos="fade-up" data-aos-delay="400">
-                <a href="assets/resume.pdf" download class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-dark-bg font-semibold rounded-full hover:scale-105 transition-all duration-300 shadow-xl animate-glow">
+                <a href="assets/resume.pdf" download class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold rounded-full hover:scale-105 transition-all duration-300 shadow-xl animate-glow font-poppins">
                     <i class="fas fa-download mr-3"></i>
                     Download PDF Resume
                 </a>
@@ -178,229 +203,103 @@
     <section class="py-20">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold font-poppins text-center mb-12 gradient-text" data-aos="fade-up">
                     Resume Preview
                 </h2>
                 
-                <!-- PDF Embed -->
-                <div class="pdf-viewer bg-dark-card/50 backdrop-blur-sm p-6 rounded-2xl border border-gray-700" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-white rounded-lg p-8 text-gray-800 min-h-[800px]">
+                <!-- Resume Content -->
+                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white text-gray-800 p-8 rounded-lg min-h-[800px]">
                         <!-- Resume Header -->
                         <div class="text-center mb-8">
-                            <h1 class="text-4xl font-bold text-gray-900 mb-2">Mathiya Angirasa</h1>
-                            <p class="text-xl text-gray-600 mb-4">Full Stack Developer & UI/UX Enthusiast</p>
-                            <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
-                                <span><i class="fas fa-envelope mr-1"></i> mathiya.angirasa@example.com</span>
+                            <h1 class="text-4xl font-bold text-gray-900 mb-2 font-poppins">Mathisha Angirasa</h1>
+                            <p class="text-xl text-gray-600 mb-4 font-inter">Full Stack Developer & UI/UX Enthusiast</p>
+                            <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-600 font-inter">
+                                <span><i class="fas fa-envelope mr-1"></i> mathisha.angirasa@example.com</span>
                                 <span><i class="fas fa-phone mr-1"></i> +94 71 592 1984</span>
-                                <span><i class="fas fa-map-marker-alt mr-1"></i> Colombo, Sri Lanka</span>
+                                <span><i class="fas fa-map-marker-alt mr-1"></i> Birmingham, UK</span>
                                 <span><i class="fab fa-linkedin mr-1"></i> linkedin.com/in/mathisha-angirasa</span>
                             </div>
                         </div>
                         
                         <!-- Professional Summary -->
                         <div class="mb-8">
-                            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-gray-300 pb-2">Professional Summary</h2>
-                            <p class="text-gray-700 leading-relaxed">
-                                Passionate Full Stack Developer with 4+ years of experience in designing and developing 
-                                scalable web applications. Expertise in modern JavaScript frameworks, backend technologies, 
-                                and cloud platforms. Strong focus on user experience and clean, maintainable code. 
-                                Proven track record of delivering high-quality projects on time and collaborating 
-                                effectively with cross-functional teams.
+                            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-gray-300 pb-2 font-poppins">Professional Summary</h2>
+                            <p class="text-gray-700 leading-relaxed font-inter">
+                                Passionate Full Stack Developer and Software Engineering student at Birmingham University with expertise in modern web technologies. 
+                                Strong focus on user experience, clean code, and innovative solutions. Proven ability to work with cross-functional teams 
+                                and deliver high-quality projects on time.
                             </p>
                         </div>
                         
                         <!-- Technical Skills -->
                         <div class="mb-8">
-                            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-gray-300 pb-2">Technical Skills</h2>
+                            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-gray-300 pb-2 font-poppins">Technical Skills</h2>
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <h3 class="font-semibold text-gray-800 mb-2">Frontend</h3>
-                                    <p class="text-gray-700 text-sm">HTML5, CSS3, JavaScript (ES6+), React, Vue.js, Tailwind CSS, Bootstrap, Sass</p>
+                                    <h3 class="font-semibold text-gray-800 mb-2 font-poppins">Frontend</h3>
+                                    <p class="text-gray-700 text-sm font-inter">HTML5, CSS3, JavaScript (ES6+), React, Vue.js, Tailwind CSS, Bootstrap</p>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-gray-800 mb-2">Backend</h3>
-                                    <p class="text-gray-700 text-sm">Node.js, Express.js, Python, Django, Flask, PHP, Laravel</p>
+                                    <h3 class="font-semibold text-gray-800 mb-2 font-poppins">Backend</h3>
+                                    <p class="text-gray-700 text-sm font-inter">Node.js, Express.js, Python, Django, MongoDB, PostgreSQL</p>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-gray-800 mb-2">Databases</h3>
-                                    <p class="text-gray-700 text-sm">MongoDB, PostgreSQL, MySQL, Redis, Firebase</p>
+                                    <h3 class="font-semibold text-gray-800 mb-2 font-poppins">Tools & Technologies</h3>
+                                    <p class="text-gray-700 text-sm font-inter">Git, VS Code, Figma, Unreal Engine, Docker, AWS</p>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-gray-800 mb-2">Tools & Technologies</h3>
-                                    <p class="text-gray-700 text-sm">Git, Docker, AWS, Heroku, Netlify, Figma, Adobe XD</p>
+                                    <h3 class="font-semibold text-gray-800 mb-2 font-poppins">Design</h3>
+                                    <p class="text-gray-700 text-sm font-inter">UI/UX Design, Responsive Design, Prototyping, User Research</p>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Professional Experience -->
-                        <div class="mb-8">
-                            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-gray-300 pb-2">Professional Experience</h2>
-                            
-                            <div class="mb-6">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h3 class="text-lg font-semibold text-gray-800">Senior Full Stack Developer</h3>
-                                    <span class="text-sm text-gray-600">2022 - Present</span>
-                                </div>
-                                <p class="text-gray-600 mb-2">TechCorp Solutions | Remote</p>
-                                <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
-                                    <li>Led development of 5+ enterprise web applications serving 10,000+ users</li>
-                                    <li>Implemented microservices architecture reducing system downtime by 40%</li>
-                                    <li>Mentored junior developers and conducted code reviews</li>
-                                    <li>Collaborated with UX/UI designers to improve user experience metrics by 35%</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h3 class="text-lg font-semibold text-gray-800">Full Stack Developer</h3>
-                                    <span class="text-sm text-gray-600">2021 - 2022</span>
-                                </div>
-                                <p class="text-gray-600 mb-2">Digital Innovations Ltd | Colombo, Sri Lanka</p>
-                                <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
-                                    <li>Developed and maintained 10+ client websites using React and Node.js</li>
-                                    <li>Optimized application performance resulting in 50% faster load times</li>
-                                    <li>Integrated third-party APIs and payment gateways</li>
-                                    <li>Participated in agile development processes and sprint planning</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h3 class="text-lg font-semibold text-gray-800">Junior Web Developer</h3>
-                                    <span class="text-sm text-gray-600">2020 - 2021</span>
-                                </div>
-                                <p class="text-gray-600 mb-2">StartupHub | Colombo, Sri Lanka</p>
-                                <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
-                                    <li>Built responsive websites using HTML, CSS, and JavaScript</li>
-                                    <li>Assisted in database design and implementation</li>
-                                    <li>Learned modern development practices and version control</li>
-                                    <li>Contributed to team projects and gained valuable industry experience</li>
-                                </ul>
                             </div>
                         </div>
                         
                         <!-- Education -->
                         <div class="mb-8">
-                            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-gray-300 pb-2">Education</h2>
+                            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-gray-300 pb-2 font-poppins">Education</h2>
                             
                             <div class="mb-4">
                                 <div class="flex justify-between items-start mb-2">
-                                    <h3 class="text-lg font-semibold text-gray-800">Bachelor of Science in Computer Science</h3>
-                                    <span class="text-sm text-gray-600">2018 - 2022</span>
+                                    <h3 class="text-lg font-semibold text-gray-800 font-poppins">Bachelor of Science in Software Engineering</h3>
+                                    <span class="text-sm text-gray-600 font-inter">2022 - Present</span>
                                 </div>
-                                <p class="text-gray-600 mb-2">University of Colombo | Colombo, Sri Lanka</p>
-                                <p class="text-gray-700 text-sm">GPA: 3.8/4.0 | Relevant Coursework: Data Structures, Algorithms, Database Systems, Software Engineering</p>
+                                <p class="text-gray-600 mb-2 font-inter">Birmingham University | Birmingham, UK</p>
+                                <p class="text-gray-700 text-sm font-inter">Relevant Coursework: Data Structures, Algorithms, Database Systems, Software Engineering, Web Development</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Projects -->
+                        <div class="mb-8">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-gray-300 pb-2 font-poppins">Key Projects</h2>
+                            
+                            <div class="mb-4">
+                                <h3 class="text-lg font-semibold text-gray-800 mb-1 font-poppins">E-Commerce Platform</h3>
+                                <p class="text-gray-700 text-sm mb-2 font-inter">
+                                    Full-stack e-commerce solution with React, Node.js, and MongoDB. Features include 
+                                    user authentication, payment processing, inventory management, and admin dashboard.
+                                </p>
+                                <p class="text-gray-600 text-xs font-inter">Technologies: React, Node.js, MongoDB, Stripe API, Tailwind CSS</p>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h3 class="text-lg font-semibold text-gray-800 mb-1 font-poppins">Task Management Application</h3>
+                                <p class="text-gray-700 text-sm mb-2 font-inter">
+                                    Collaborative task management app with real-time updates, file sharing, and team 
+                                    communication features. Supports multiple project workflows.
+                                </p>
+                                <p class="text-gray-600 text-xs font-inter">Technologies: Vue.js, Express.js, PostgreSQL, Socket.io</p>
                             </div>
                         </div>
                         
                         <!-- Certifications -->
                         <div class="mb-8">
-                            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-gray-300 pb-2">Certifications</h2>
-                            <ul class="space-y-2 text-gray-700 text-sm">
-                                <li>• AWS Certified Developer - Associate (2023)</li>
-                                <li>• Google Cloud Professional Cloud Developer (2023)</li>
-                                <li>• MongoDB Certified Developer (2022)</li>
-                                <li>• React Developer Certification - Meta (2022)</li>
+                            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-gray-300 pb-2 font-poppins">Certifications</h2>
+                            <ul class="space-y-2 text-gray-700 text-sm font-inter">
+                                <li>• React Developer Certification - Meta (2024)</li>
+                                <li>• JavaScript Algorithms and Data Structures - freeCodeCamp (2023)</li>
+                                <li>• Responsive Web Design - freeCodeCamp (2023)</li>
                             </ul>
-                        </div>
-                        
-                        <!-- Projects -->
-                        <div class="mb-8">
-                            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-gray-300 pb-2">Key Projects</h2>
-                            
-                            <div class="mb-4">
-                                <h3 class="text-lg font-semibold text-gray-800 mb-1">E-Commerce Platform</h3>
-                                <p class="text-gray-700 text-sm mb-2">
-                                    Full-stack e-commerce solution with React, Node.js, and MongoDB. Features include 
-                                    user authentication, payment processing, inventory management, and admin dashboard.
-                                </p>
-                                <p class="text-gray-600 text-xs">Technologies: React, Node.js, MongoDB, Stripe API, AWS</p>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h3 class="text-lg font-semibold text-gray-800 mb-1">Task Management Application</h3>
-                                <p class="text-gray-700 text-sm mb-2">
-                                    Collaborative task management app with real-time updates, file sharing, and team 
-                                    communication features. Supports multiple project workflows and integrations.
-                                </p>
-                                <p class="text-gray-600 text-xs">Technologies: Vue.js, Express.js, PostgreSQL, Socket.io</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Key Sections Overview -->
-    <section class="py-20 bg-dark-card/30">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 gradient-text" data-aos="fade-up">
-                Resume Highlights
-            </h2>
-            
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Education -->
-                <div class="bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-cyber-cyan transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-center mb-6">
-                        <i class="fas fa-graduation-cap text-4xl text-cyber-cyan mb-4"></i>
-                        <h3 class="text-xl font-bold">Education</h3>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="timeline-item">
-                            <h4 class="font-semibold text-white">Bachelor of Computer Science</h4>
-                            <p class="text-gray-400 text-sm">University of Colombo</p>
-                            <p class="text-gray-500 text-xs">2018 - 2022 | GPA: 3.8/4.0</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Experience -->
-                <div class="bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-cyber-purple transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-center mb-6">
-                        <i class="fas fa-briefcase text-4xl text-cyber-purple mb-4"></i>
-                        <h3 class="text-xl font-bold">Experience</h3>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="timeline-item">
-                            <h4 class="font-semibold text-white">Senior Full Stack Developer</h4>
-                            <p class="text-gray-400 text-sm">TechCorp Solutions</p>
-                            <p class="text-gray-500 text-xs">2022 - Present</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4 class="font-semibold text-white">Full Stack Developer</h4>
-                            <p class="text-gray-400 text-sm">Digital Innovations Ltd</p>
-                            <p class="text-gray-500 text-xs">2021 - 2022</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4 class="font-semibold text-white">Junior Web Developer</h4>
-                            <p class="text-gray-400 text-sm">StartupHub</p>
-                            <p class="text-gray-500 text-xs">2020 - 2021</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Certifications -->
-                <div class="bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-cyber-cyan transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-center mb-6">
-                        <i class="fas fa-certificate text-4xl text-cyber-cyan mb-4"></i>
-                        <h3 class="text-xl font-bold">Certifications</h3>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="timeline-item">
-                            <h4 class="font-semibold text-white">AWS Certified Developer</h4>
-                            <p class="text-gray-400 text-sm">Amazon Web Services</p>
-                            <p class="text-gray-500 text-xs">2023</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4 class="font-semibold text-white">Google Cloud Developer</h4>
-                            <p class="text-gray-400 text-sm">Google Cloud</p>
-                            <p class="text-gray-500 text-xs">2023</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4 class="font-semibold text-white">MongoDB Certified</h4>
-                            <p class="text-gray-400 text-sm">MongoDB Inc.</p>
-                            <p class="text-gray-500 text-xs">2022</p>
                         </div>
                     </div>
                 </div>
@@ -411,18 +310,18 @@
     <!-- Call to Action -->
     <section class="py-20">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-8 gradient-text" data-aos="fade-up">
                 Let's Work Together
             </h2>
-            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto font-inter" data-aos="fade-up" data-aos-delay="200">
                 Interested in my background and experience? Let's discuss how I can contribute to your team.
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-                <a href="contact.html" class="inline-block px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-dark-bg font-semibold rounded-lg hover:scale-105 transition-all duration-300 shadow-xl">
+                <a href="contact.html" class="inline-block px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold rounded-lg hover:scale-105 transition-all duration-300 shadow-xl font-poppins">
                     Contact Me
                 </a>
-                <a href="projects.html" class="inline-block px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-lg hover:bg-cyber-cyan hover:text-dark-bg transition-all duration-300">
+                <a href="projects.html" class="inline-block px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-lg hover:bg-cyber-cyan hover:text-deep-black transition-all duration-300 font-poppins">
                     View My Work
                 </a>
             </div>
@@ -434,8 +333,8 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold gradient-text mb-2">MA</div>
-                    <p class="text-gray-400">© 2024 Mathiya Angirasa. All rights reserved.</p>
+                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHISHA</div>
+                    <p class="text-gray-400 font-inter">© 2024 Mathisha Angirasa. All rights reserved.</p>
                 </div>
                 
                 <div class="flex space-x-6">
@@ -456,11 +355,6 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/94715921984" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-all duration-300 shadow-lg">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
     <script>
         // Initialize AOS
         AOS.init({
@@ -469,57 +363,51 @@
             offset: 100,
         });
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            const icon = mobileMenuBtn.querySelector('i');
-            if (mobileMenu.classList.contains('hidden')) {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            } else {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            }
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+            }, 50);
+        });
+        
+        // Cursor hover effects
+        const hoverElements = document.querySelectorAll('a, button');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('cursor-hover');
+            });
         });
 
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        const body = document.body;
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
 
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        if (savedTheme === 'light') {
-            body.classList.remove('dark');
-            body.classList.add('light');
-            body.style.background = 'linear-gradient(135deg, #F9F9F9, #E5E7EB)';
-            body.style.color = '#1F2937';
-            themeToggle.querySelector('i').classList.remove('fa-moon');
-            themeToggle.querySelector('i').classList.add('fa-sun');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const isDark = body.classList.contains('dark');
-            
-            if (isDark) {
-                body.classList.remove('dark');
-                body.classList.add('light');
-                body.style.background = 'linear-gradient(135deg, #F9F9F9, #E5E7EB)';
-                body.style.color = '#1F2937';
-                themeToggle.querySelector('i').classList.remove('fa-moon');
-                themeToggle.querySelector('i').classList.add('fa-sun');
-                localStorage.setItem('theme', 'light');
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(15, 15, 15, 0.9)';
             } else {
-                body.classList.remove('light');
-                body.classList.add('dark');
-                body.style.background = '';
-                body.style.color = '';
-                themeToggle.querySelector('i').classList.remove('fa-sun');
-                themeToggle.querySelector('i').classList.add('fa-moon');
-                localStorage.setItem('theme', 'dark');
+                navbar.style.background = 'rgba(255, 255, 255, 0.05)';
             }
         });
     </script>

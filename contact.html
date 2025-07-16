@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Mathiya Angirasa</title>
-    <meta name="description" content="Get in touch with Mathiya Angirasa - Full Stack Developer. Let's discuss your next project or collaboration opportunity.">
+    <title>Contact - Mathisha Angirasa</title>
+    <meta name="description" content="Get in touch with Mathisha Angirasa - Full Stack Developer. Let's discuss your next project or collaboration opportunity.">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,7 +17,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <!-- Google Fonts CDN -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -25,14 +25,14 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'sans': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
                     },
                     colors: {
                         'cyber-cyan': '#00F0FF',
                         'cyber-purple': '#8A2BE2',
-                        'dark-bg': '#0F0F0F',
-                        'dark-card': '#1A1A1A',
-                        'light-bg': '#F9F9F9',
+                        'deep-black': '#0F0F0F',
+                        'soft-white': '#F9F9F9',
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
@@ -59,65 +59,131 @@
     </script>
     
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { 
+            font-family: 'Inter', sans-serif;
+            cursor: none;
+            background: linear-gradient(135deg, #0F0F0F 0%, #1a1a2e 50%, #16213e 100%);
+        }
+        h1, h2, h3, h4, h5, h6 { 
+            font-family: 'Poppins', sans-serif; 
+        }
+        
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00F0FF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #00F0FF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.15s ease;
+        }
+        
+        .cursor-hover {
+            transform: scale(2);
+            background: rgba(0, 240, 255, 0.1);
+        }
+        
+        /* Gradient Text */
         .gradient-text {
             background: linear-gradient(135deg, #00F0FF, #8A2BE2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Contact Card Effects */
         .contact-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        
         .contact-card:hover {
             transform: translateY(-5px) scale(1.02);
         }
+        
+        /* Form Input Effects */
         .form-input:focus {
             box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
+        }
+        
+        /* Mobile Navigation */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
         }
     </style>
 </head>
 
-<body class="dark bg-dark-bg text-white transition-all duration-300">
-    <!-- Navigation Header -->
-    <nav class="fixed top-0 w-full z-40 bg-dark-bg/80 backdrop-blur-md border-b border-gray-800">
+<body class="dark bg-deep-black text-soft-white overflow-x-hidden">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <div class="text-2xl font-bold gradient-text">MA</div>
+                <div class="text-2xl font-bold font-poppins gradient-text">
+                    MATHISHA
+                </div>
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Home</a>
-                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">About</a>
-                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Projects</a>
-                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Skills</a>
-                    <a href="resume.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Resume</a>
-                    <a href="blog.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Blog</a>
-                    <a href="contact.html" class="nav-link text-cyber-cyan border-b-2 border-cyber-cyan">Contact</a>
+                    <a href="index.html" class="hover:text-cyber-cyan transition-colors">Home</a>
+                    <a href="about.html" class="hover:text-cyber-cyan transition-colors">About</a>
+                    <a href="projects.html" class="hover:text-cyber-cyan transition-colors">Projects</a>
+                    <a href="skills.html" class="hover:text-cyber-cyan transition-colors">Skills</a>
+                    <a href="resume.html" class="hover:text-cyber-cyan transition-colors">Resume</a>
+                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors">Blog</a>
+                    <a href="contact.html" class="text-cyber-cyan font-medium">Contact</a>
                 </div>
                 
-                <!-- Theme Toggle -->
-                <button id="theme-toggle" class="p-2 rounded-lg bg-dark-card hover:bg-gray-700 transition-colors duration-300">
-                    <i class="fas fa-moon text-cyber-cyan"></i>
-                </button>
-                
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-dark-card">
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
                     <i class="fas fa-bars text-cyber-cyan"></i>
                 </button>
             </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 p-6 bg-dark-card rounded-lg">
-                <div class="flex flex-col space-y-4">
-                    <a href="index.html" class="hover:text-cyber-cyan transition-colors duration-300">Home</a>
-                    <a href="about.html" class="hover:text-cyber-cyan transition-colors duration-300">About</a>
-                    <a href="projects.html" class="hover:text-cyber-cyan transition-colors duration-300">Projects</a>
-                    <a href="skills.html" class="hover:text-cyber-cyan transition-colors duration-300">Skills</a>
-                    <a href="resume.html" class="hover:text-cyber-cyan transition-colors duration-300">Resume</a>
-                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors duration-300">Blog</a>
-                    <a href="contact.html" class="text-cyber-cyan">Contact</a>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
+            <div class="p-6">
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="clear-both mt-8 space-y-6">
+                    <a href="index.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Home</a>
+                    <a href="about.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">About</a>
+                    <a href="projects.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Projects</a>
+                    <a href="skills.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Skills</a>
+                    <a href="resume.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Resume</a>
+                    <a href="blog.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Blog</a>
+                    <a href="contact.html" class="block text-xl font-poppins text-cyber-cyan">Contact</a>
                 </div>
             </div>
         </div>
@@ -125,15 +191,15 @@
 
     <!-- Hero Section -->
     <section class="pt-32 pb-20 relative overflow-hidden">
-        <!-- Background Blobs -->
-        <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan/10 rounded-full blur-3xl animate-float"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        <!-- Floating Blobs -->
+        <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
         
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold font-poppins mb-6 gradient-text" data-aos="fade-up">
                 Get In Touch
             </h1>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto font-inter" data-aos="fade-up" data-aos-delay="200">
                 Let's discuss your next project or collaboration opportunity. I'm always excited to work on new challenges.
             </p>
         </div>
@@ -145,46 +211,48 @@
             <div class="grid md:grid-cols-3 gap-8 mb-20">
                 
                 <!-- Email -->
-                <div class="contact-card bg-dark-card/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700 hover:border-cyber-cyan transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-card glass p-8 rounded-2xl hover:border-cyber-cyan transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="100">
                     <div class="relative inline-block mb-6">
                         <div class="w-16 h-16 bg-cyber-cyan/20 rounded-full flex items-center justify-center mx-auto">
                             <i class="fas fa-envelope text-2xl text-cyber-cyan"></i>
                         </div>
                         <div class="absolute inset-0 bg-cyber-cyan/20 rounded-full animate-pulse-ring"></div>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Email Me</h3>
-                    <p class="text-gray-400 mb-4">Send me an email and I'll get back to you within 24 hours.</p>
-                    <a href="mailto:mathiya.angirasa@example.com" class="text-cyber-cyan hover:text-white transition-colors duration-300 font-semibold">
-                        mathiya.angirasa@example.com
+                    <h3 class="text-xl font-bold font-poppins mb-4">Email Me</h3>
+                    <p class="text-gray-400 mb-4 font-inter">Send me an email and I'll get back to you within 24 hours.</p>
+                    <a href="mailto:mathisha.angirasa@example.com" class="text-cyber-cyan hover:text-white transition-colors duration-300 font-semibold font-inter">
+                        mathisha.angirasa@example.com
                     </a>
                 </div>
                 
-                <!-- Phone -->
-                <div class="contact-card bg-dark-card/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700 hover:border-cyber-purple transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="200">
+                <!-- Discord -->
+                <div class="contact-card glass p-8 rounded-2xl hover:border-cyber-purple transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="relative inline-block mb-6">
                         <div class="w-16 h-16 bg-cyber-purple/20 rounded-full flex items-center justify-center mx-auto">
-                            <i class="fas fa-phone text-2xl text-cyber-purple"></i>
+                            <i class="fab fa-discord text-2xl text-cyber-purple"></i>
                         </div>
                         <div class="absolute inset-0 bg-cyber-purple/20 rounded-full animate-pulse-ring"></div>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Call Me</h3>
-                    <p class="text-gray-400 mb-4">Available for calls during business hours (9 AM - 6 PM GMT+5:30).</p>
-                    <a href="tel:+94715921984" class="text-cyber-purple hover:text-white transition-colors duration-300 font-semibold">
-                        +94 71 592 1984
+                    <h3 class="text-xl font-bold font-poppins mb-4">Discord</h3>
+                    <p class="text-gray-400 mb-4 font-inter">Join my Discord server or send me a direct message.</p>
+                    <a href="https://discord.gg/QERP5JJM8k" class="text-cyber-purple hover:text-white transition-colors duration-300 font-semibold font-inter">
+                        mathiya
                     </a>
                 </div>
                 
-                <!-- Location -->
-                <div class="contact-card bg-dark-card/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700 hover:border-cyber-cyan transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="300">
+                <!-- WhatsApp -->
+                <div class="contact-card glass p-8 rounded-2xl hover:border-green-500 transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="300">
                     <div class="relative inline-block mb-6">
-                        <div class="w-16 h-16 bg-cyber-cyan/20 rounded-full flex items-center justify-center mx-auto">
-                            <i class="fas fa-map-marker-alt text-2xl text-cyber-cyan"></i>
+                        <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto">
+                            <i class="fab fa-whatsapp text-2xl text-green-500"></i>
                         </div>
-                        <div class="absolute inset-0 bg-cyber-cyan/20 rounded-full animate-pulse-ring"></div>
+                        <div class="absolute inset-0 bg-green-500/20 rounded-full animate-pulse-ring"></div>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Location</h3>
-                    <p class="text-gray-400 mb-4">Based in Colombo, Sri Lanka. Open to remote work worldwide.</p>
-                    <span class="text-cyber-cyan font-semibold">Colombo, Sri Lanka</span>
+                    <h3 class="text-xl font-bold font-poppins mb-4">WhatsApp</h3>
+                    <p class="text-gray-400 mb-4 font-inter">Quick messages and instant communication.</p>
+                    <a href="https://wa.me/94715921984" class="text-green-500 hover:text-white transition-colors duration-300 font-semibold font-inter">
+                        +94 71 592 1984
+                    </a>
                 </div>
                 
             </div>
@@ -192,15 +260,15 @@
     </section>
 
     <!-- Contact Form -->
-    <section class="py-20 bg-dark-card/30">
+    <section class="py-20 glass">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto">
                 <div class="grid lg:grid-cols-2 gap-12 items-start">
                     
                     <!-- Contact Info -->
                     <div data-aos="fade-right">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text">Let's Work Together</h2>
-                        <p class="text-gray-400 mb-8 text-lg leading-relaxed">
+                        <h2 class="text-3xl md:text-4xl font-bold font-poppins mb-8 gradient-text">Let's Work Together</h2>
+                        <p class="text-gray-400 mb-8 text-lg leading-relaxed font-inter">
                             I'm always interested in new opportunities and exciting projects. 
                             Whether you have a question, want to discuss a project, or just want to say hi, 
                             feel free to reach out!
@@ -212,8 +280,8 @@
                                     <i class="fas fa-envelope text-cyber-cyan"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-white">Email</h4>
-                                    <p class="text-gray-400">mathishaangirasass@gmail.com</p>
+                                    <h4 class="font-semibold text-white font-poppins">Email</h4>
+                                    <p class="text-gray-400 font-inter">mathisha.angirasa@example.com</p>
                                 </div>
                             </div>
                             
@@ -222,8 +290,8 @@
                                     <i class="fab fa-discord text-cyber-purple"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-white">Discord</h4>
-                                    <p class="text-gray-400">mathiya</p>
+                                    <h4 class="font-semibold text-white font-poppins">Discord</h4>
+                                    <p class="text-gray-400 font-inter">mathiya</p>
                                 </div>
                             </div>
                             
@@ -232,15 +300,15 @@
                                     <i class="fas fa-map-marker-alt text-cyber-cyan"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-white">Location</h4>
-                                    <p class="text-gray-400">Colombo, Sri Lanka</p>
+                                    <h4 class="font-semibold text-white font-poppins">Location</h4>
+                                    <p class="text-gray-400 font-inter">Birmingham, UK</p>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Social Links -->
                         <div class="mt-8">
-                            <h4 class="font-semibold text-white mb-4">Connect with me</h4>
+                            <h4 class="font-semibold text-white mb-4 font-poppins">Connect with me</h4>
                             <div class="flex space-x-4">
                                 <a href="https://github.com/Mathiyass" class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:bg-cyber-cyan/20 transition-all duration-300">
                                     <i class="fab fa-github"></i>
@@ -257,8 +325,11 @@
                                 <a href="https://www.instagram.com/mathi_ya_/" class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:bg-cyber-cyan/20 transition-all duration-300">
                                     <i class="fab fa-instagram"></i>
                                 </a>
-                                <a href="https://discord.gg/QERP5JJM8k" class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:bg-cyber-cyan/20 transition-all duration-300">
-                                    <i class="fab fa-discord"></i>
+                                <a href="https://steamcommunity.com/profiles/76561199076879396/" class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:bg-cyber-cyan/20 transition-all duration-300">
+                                    <i class="fab fa-steam"></i>
+                                </a>
+                                <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-cyber-cyan hover:bg-cyber-cyan/20 transition-all duration-300">
+                                    <i class="fab fa-spotify"></i>
                                 </a>
                             </div>
                         </div>
@@ -269,30 +340,30 @@
                         <form id="contact-form" class="space-y-6">
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div>
-                                    <label for="firstName" class="block text-sm font-medium text-gray-300 mb-2">First Name</label>
+                                    <label for="firstName" class="block text-sm font-medium text-gray-300 mb-2 font-poppins">First Name</label>
                                     <input type="text" id="firstName" name="firstName" required
-                                           class="form-input w-full px-4 py-3 bg-dark-card border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white placeholder-gray-400 transition-all duration-300"
+                                           class="form-input w-full px-4 py-3 bg-deep-black border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white placeholder-gray-400 transition-all duration-300 font-inter"
                                            placeholder="John">
                                 </div>
                                 <div>
-                                    <label for="lastName" class="block text-sm font-medium text-gray-300 mb-2">Last Name</label>
+                                    <label for="lastName" class="block text-sm font-medium text-gray-300 mb-2 font-poppins">Last Name</label>
                                     <input type="text" id="lastName" name="lastName" required
-                                           class="form-input w-full px-4 py-3 bg-dark-card border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white placeholder-gray-400 transition-all duration-300"
+                                           class="form-input w-full px-4 py-3 bg-deep-black border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white placeholder-gray-400 transition-all duration-300 font-inter"
                                            placeholder="Doe">
                                 </div>
                             </div>
                             
                             <div>
-                                <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                                <label for="email" class="block text-sm font-medium text-gray-300 mb-2 font-poppins">Email Address</label>
                                 <input type="email" id="email" name="email" required
-                                       class="form-input w-full px-4 py-3 bg-dark-card border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white placeholder-gray-400 transition-all duration-300"
+                                       class="form-input w-full px-4 py-3 bg-deep-black border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white placeholder-gray-400 transition-all duration-300 font-inter"
                                        placeholder="john.doe@example.com">
                             </div>
                             
                             <div>
-                                <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
+                                <label for="subject" class="block text-sm font-medium text-gray-300 mb-2 font-poppins">Subject</label>
                                 <select id="subject" name="subject" required
-                                        class="form-input w-full px-4 py-3 bg-dark-card border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white transition-all duration-300">
+                                        class="form-input w-full px-4 py-3 bg-deep-black border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white transition-all duration-300 font-inter">
                                     <option value="">Select a subject</option>
                                     <option value="project">Project Collaboration</option>
                                     <option value="freelance">Freelance Work</option>
@@ -303,27 +374,14 @@
                             </div>
                             
                             <div>
-                                <label for="budget" class="block text-sm font-medium text-gray-300 mb-2">Project Budget (Optional)</label>
-                                <select id="budget" name="budget"
-                                        class="form-input w-full px-4 py-3 bg-dark-card border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white transition-all duration-300">
-                                    <option value="">Select budget range</option>
-                                    <option value="under-5k">Under $5,000</option>
-                                    <option value="5k-10k">$5,000 - $10,000</option>
-                                    <option value="10k-25k">$10,000 - $25,000</option>
-                                    <option value="25k-50k">$25,000 - $50,000</option>
-                                    <option value="over-50k">Over $50,000</option>
-                                </select>
-                            </div>
-                            
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                                <label for="message" class="block text-sm font-medium text-gray-300 mb-2 font-poppins">Message</label>
                                 <textarea id="message" name="message" rows="6" required
-                                          class="form-input w-full px-4 py-3 bg-dark-card border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white placeholder-gray-400 transition-all duration-300 resize-none"
+                                          class="form-input w-full px-4 py-3 bg-deep-black border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white placeholder-gray-400 transition-all duration-300 resize-none font-inter"
                                           placeholder="Tell me about your project, timeline, and any specific requirements..."></textarea>
                             </div>
                             
                             <button type="submit" 
-                                    class="w-full px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-dark-bg font-semibold rounded-lg hover:scale-105 transition-all duration-300 shadow-xl animate-glow">
+                                    class="w-full px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold rounded-lg hover:scale-105 transition-all duration-300 shadow-xl animate-glow font-poppins">
                                 <i class="fas fa-paper-plane mr-2"></i>
                                 Send Message
                             </button>
@@ -331,11 +389,11 @@
                         
                         <!-- Form Status -->
                         <div id="form-status" class="hidden mt-6 p-4 rounded-lg">
-                            <div id="form-success" class="hidden text-green-400">
+                            <div id="form-success" class="hidden text-green-400 font-inter">
                                 <i class="fas fa-check-circle mr-2"></i>
                                 Message sent successfully! I'll get back to you within 24 hours.
                             </div>
-                            <div id="form-error" class="hidden text-red-400">
+                            <div id="form-error" class="hidden text-red-400 font-inter">
                                 <i class="fas fa-exclamation-circle mr-2"></i>
                                 Something went wrong. Please try again or contact me directly via email.
                             </div>
@@ -350,44 +408,44 @@
     <!-- Gaming & Entertainment Links -->
     <section class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 gradient-text" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold font-poppins text-center mb-16 gradient-text" data-aos="fade-up">
                 Gaming & Entertainment
             </h2>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
                 
                 <!-- Steam -->
-                <div class="contact-card bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-blue-500 transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-card glass p-6 rounded-lg hover:border-blue-500 transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="100">
                     <i class="fab fa-steam text-3xl text-blue-500 mb-4"></i>
-                    <h3 class="font-semibold mb-2">Steam</h3>
-                    <a href="https://steamcommunity.com/profiles/76561199076879396/" class="text-blue-400 hover:text-white transition-colors duration-300 text-sm">
+                    <h3 class="font-semibold mb-2 font-poppins">Steam</h3>
+                    <a href="https://steamcommunity.com/profiles/76561199076879396/" class="text-blue-400 hover:text-white transition-colors duration-300 text-sm font-inter">
                         View Profile
                     </a>
                 </div>
                 
                 <!-- Epic Games -->
-                <div class="contact-card bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-gray-400 transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-card glass p-6 rounded-lg hover:border-gray-400 transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-gamepad text-3xl text-gray-400 mb-4"></i>
-                    <h3 class="font-semibold mb-2">Epic Games</h3>
-                    <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+                    <h3 class="font-semibold mb-2 font-poppins">Epic Games</h3>
+                    <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm font-inter">
                         View Profile
                     </a>
                 </div>
                 
                 <!-- Spotify -->
-                <div class="contact-card bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-green-500 transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="contact-card glass p-6 rounded-lg hover:border-green-500 transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="300">
                     <i class="fab fa-spotify text-3xl text-green-500 mb-4"></i>
-                    <h3 class="font-semibold mb-2">Spotify</h3>
-                    <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="text-green-400 hover:text-white transition-colors duration-300 text-sm">
+                    <h3 class="font-semibold mb-2 font-poppins">Spotify</h3>
+                    <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="text-green-400 hover:text-white transition-colors duration-300 text-sm font-inter">
                         View Profile
                     </a>
                 </div>
                 
                 <!-- EA ID -->
-                <div class="contact-card bg-dark-card/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-orange-500 transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="400">
+                <div class="contact-card glass p-6 rounded-lg hover:border-orange-500 transition-all duration-300 text-center" data-aos="fade-up" data-aos-delay="400">
                     <i class="fas fa-trophy text-3xl text-orange-500 mb-4"></i>
-                    <h3 class="font-semibold mb-2">EA ID</h3>
-                    <span class="text-orange-400 text-sm">M_MATHIYA_M</span>
+                    <h3 class="font-semibold mb-2 font-poppins">EA ID</h3>
+                    <span class="text-orange-400 text-sm font-inter">M_MATHIYA_M</span>
                 </div>
                 
             </div>
@@ -399,8 +457,8 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold gradient-text mb-2">MA</div>
-                    <p class="text-gray-400">© 2024 Mathiya Angirasa. All rights reserved.</p>
+                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHISHA</div>
+                    <p class="text-gray-400 font-inter">© 2024 Mathisha Angirasa. All rights reserved.</p>
                 </div>
                 
                 <div class="flex space-x-6">
@@ -421,11 +479,6 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/94715921984" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-all duration-300 shadow-lg">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
     <script>
         // Initialize AOS
         AOS.init({
@@ -434,58 +487,42 @@
             offset: 100,
         });
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            const icon = mobileMenuBtn.querySelector('i');
-            if (mobileMenu.classList.contains('hidden')) {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            } else {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            }
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+            }, 50);
+        });
+        
+        // Cursor hover effects
+        const hoverElements = document.querySelectorAll('a, button, input, textarea, select');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('cursor-hover');
+            });
         });
 
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        const body = document.body;
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        if (savedTheme === 'light') {
-            body.classList.remove('dark');
-            body.classList.add('light');
-            body.style.background = 'linear-gradient(135deg, #F9F9F9, #E5E7EB)';
-            body.style.color = '#1F2937';
-            themeToggle.querySelector('i').classList.remove('fa-moon');
-            themeToggle.querySelector('i').classList.add('fa-sun');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const isDark = body.classList.contains('dark');
-            
-            if (isDark) {
-                body.classList.remove('dark');
-                body.classList.add('light');
-                body.style.background = 'linear-gradient(135deg, #F9F9F9, #E5E7EB)';
-                body.style.color = '#1F2937';
-                themeToggle.querySelector('i').classList.remove('fa-moon');
-                themeToggle.querySelector('i').classList.add('fa-sun');
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.classList.remove('light');
-                body.classList.add('dark');
-                body.style.background = '';
-                body.style.color = '';
-                themeToggle.querySelector('i').classList.remove('fa-sun');
-                themeToggle.querySelector('i').classList.add('fa-moon');
-                localStorage.setItem('theme', 'dark');
-            }
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
         });
 
         // Contact Form
@@ -526,18 +563,14 @@
             }, 2000);
         });
 
-        // Form field animations
-        const formInputs = document.querySelectorAll('.form-input');
-        formInputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.classList.add('focused');
-            });
-            
-            input.addEventListener('blur', function() {
-                if (!this.value) {
-                    this.parentElement.classList.remove('focused');
-                }
-            });
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(15, 15, 15, 0.9)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.05)';
+            }
         });
     </script>
 </body>
