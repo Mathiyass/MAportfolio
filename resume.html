@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume - Mathisha Angirasa</title>
-    <meta name="description" content="Download and view Mathisha Angirasa's professional resume - Full Stack Developer with 4+ years experience.">
+    <title>Resume - Mathiya Angirasa</title>
+    <meta name="description" content="Download and view Mathiya Angirasa's professional resume - Full Stack Developer with 4+ years experience.">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,10 +33,13 @@
                         'cyber-purple': '#8A2BE2',
                         'deep-black': '#0F0F0F',
                         'soft-white': '#F9F9F9',
+                        'neon-pink': '#FF10F0',
+                        'electric-blue': '#0080FF',
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'glow': 'glow 2s ease-in-out infinite alternate',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
                     },
                     keyframes: {
                         'float': {
@@ -46,6 +49,10 @@
                         'glow': {
                             '0%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.5)' },
                             '100%': { boxShadow: '0 0 40px rgba(0, 240, 255, 0.8)' },
+                        },
+                        'pulseGlow': {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.4)' },
+                            '50%': { boxShadow: '0 0 60px rgba(0, 240, 255, 0.8)' },
                         },
                     },
                 }
@@ -88,13 +95,14 @@
         }
         
         .cursor-hover {
-            transform: scale(2);
+            transform: scale(2.5);
             background: rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
         }
         
         /* Gradient Text */
         .gradient-text {
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2, #FF10F0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -112,6 +120,10 @@
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
         }
         
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
         /* Mobile Navigation */
         .mobile-menu {
             transform: translateX(100%);
@@ -121,21 +133,76 @@
         .mobile-menu.active {
             transform: translateX(0);
         }
+        
+        /* Progress Bar */
+        .progress-bar {
+            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
+            height: 4px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+        
+        /* Neon Button */
+        .neon-button {
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .neon-button:hover {
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.8);
+            transform: translateY(-2px);
+        }
+        
+        /* Scroll to Top */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.6);
+        }
     </style>
 </head>
 
 <body class="dark bg-deep-black text-soft-white overflow-x-hidden">
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+    
     <!-- Custom Cursor -->
-    <div class="custom-cursor"></div>
-    <div class="cursor-dot"></div>
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
     
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass" id="navbar">
+    <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="text-2xl font-bold font-poppins gradient-text">
-                    MATHISHA
+                    MATHIYA
                 </div>
                 
                 <!-- Desktop Navigation -->
@@ -145,12 +212,11 @@
                     <a href="projects.html" class="hover:text-cyber-cyan transition-colors">Projects</a>
                     <a href="skills.html" class="hover:text-cyber-cyan transition-colors">Skills</a>
                     <a href="resume.html" class="text-cyber-cyan font-medium">Resume</a>
-                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors">Blog</a>
                     <a href="contact.html" class="hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass hover-glow">
                     <i class="fas fa-bars text-cyber-cyan"></i>
                 </button>
             </div>
@@ -159,7 +225,7 @@
         <!-- Mobile Menu -->
         <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
             <div class="p-6">
-                <button id="close-menu" class="float-right text-2xl text-cyber-cyan">
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan hover:text-white transition-colors">
                     <i class="fas fa-times"></i>
                 </button>
                 <div class="clear-both mt-8 space-y-6">
@@ -168,7 +234,6 @@
                     <a href="projects.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Projects</a>
                     <a href="skills.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Skills</a>
                     <a href="resume.html" class="block text-xl font-poppins text-cyber-cyan">Resume</a>
-                    <a href="blog.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Blog</a>
                     <a href="contact.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
             </div>
@@ -180,6 +245,7 @@
         <!-- Floating Blobs -->
         <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float" style="animation-delay: -1.5s;"></div>
         
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-6xl font-bold font-poppins mb-6 gradient-text" data-aos="fade-up">
@@ -191,7 +257,7 @@
             
             <!-- Download Button -->
             <div data-aos="fade-up" data-aos-delay="400">
-                <a href="assets/resume.pdf" download class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold rounded-full hover:scale-105 transition-all duration-300 shadow-xl animate-glow font-poppins">
+                <a href="assets/resume.pdf" download class="neon-button inline-flex items-center px-8 py-4 text-deep-black font-semibold rounded-full hover-scale transition-all duration-300 shadow-xl font-poppins">
                     <i class="fas fa-download mr-3"></i>
                     Download PDF Resume
                 </a>
@@ -212,10 +278,10 @@
                     <div class="bg-white text-gray-800 p-8 rounded-lg min-h-[800px]">
                         <!-- Resume Header -->
                         <div class="text-center mb-8">
-                            <h1 class="text-4xl font-bold text-gray-900 mb-2 font-poppins">Mathisha Angirasa</h1>
-                            <p class="text-xl text-gray-600 mb-4 font-inter">Full Stack Developer & UI/UX Enthusiast</p>
+                            <h1 class="text-4xl font-bold text-gray-900 mb-2 font-poppins">Mathiya Angirasa</h1>
+                            <p class="text-xl text-gray-600 mb-4 font-inter">Creative Full-Stack Developer | UI/UX Explorer | Audiophile Coder</p>
                             <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-600 font-inter">
-                                <span><i class="fas fa-envelope mr-1"></i> mathisha.angirasa@example.com</span>
+                                <span><i class="fas fa-envelope mr-1"></i> mathiya.angirasa@example.com</span>
                                 <span><i class="fas fa-phone mr-1"></i> +94 71 592 1984</span>
                                 <span><i class="fas fa-map-marker-alt mr-1"></i> Birmingham, UK</span>
                                 <span><i class="fab fa-linkedin mr-1"></i> linkedin.com/in/mathisha-angirasa</span>
@@ -226,9 +292,9 @@
                         <div class="mb-8">
                             <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-gray-300 pb-2 font-poppins">Professional Summary</h2>
                             <p class="text-gray-700 leading-relaxed font-inter">
-                                Passionate Full Stack Developer and Software Engineering student at Birmingham University with expertise in modern web technologies. 
+                                Passionate Creative Full-Stack Developer and Software Engineering student at Birmingham University with expertise in modern web technologies. 
                                 Strong focus on user experience, clean code, and innovative solutions. Proven ability to work with cross-functional teams 
-                                and deliver high-quality projects on time.
+                                and deliver high-quality projects on time. Enthusiastic about UI/UX design, gaming, and audio technology.
                             </p>
                         </div>
                         
@@ -242,15 +308,15 @@
                                 </div>
                                 <div>
                                     <h3 class="font-semibold text-gray-800 mb-2 font-poppins">Backend</h3>
-                                    <p class="text-gray-700 text-sm font-inter">Node.js, Express.js, Python, Django, MongoDB, PostgreSQL</p>
+                                    <p class="text-gray-700 text-sm font-inter">Node.js, Express.js, Python, Django, MongoDB, PostgreSQL, Firebase</p>
                                 </div>
                                 <div>
                                     <h3 class="font-semibold text-gray-800 mb-2 font-poppins">Tools & Technologies</h3>
-                                    <p class="text-gray-700 text-sm font-inter">Git, VS Code, Figma, Unreal Engine, Docker, AWS</p>
+                                    <p class="text-gray-700 text-sm font-inter">Git, VS Code, Figma, Unreal Engine, Docker, AWS, Linux</p>
                                 </div>
                                 <div>
                                     <h3 class="font-semibold text-gray-800 mb-2 font-poppins">Design</h3>
-                                    <p class="text-gray-700 text-sm font-inter">UI/UX Design, Responsive Design, Prototyping, User Research</p>
+                                    <p class="text-gray-700 text-sm font-inter">UI/UX Design, Responsive Design, Prototyping, User Research, Photoshop</p>
                                 </div>
                             </div>
                         </div>
@@ -265,7 +331,7 @@
                                     <span class="text-sm text-gray-600 font-inter">2022 - Present</span>
                                 </div>
                                 <p class="text-gray-600 mb-2 font-inter">Birmingham University | Birmingham, UK</p>
-                                <p class="text-gray-700 text-sm font-inter">Relevant Coursework: Data Structures, Algorithms, Database Systems, Software Engineering, Web Development</p>
+                                <p class="text-gray-700 text-sm font-inter">Relevant Coursework: Data Structures, Algorithms, Database Systems, Software Engineering, Web Development, UI/UX Design</p>
                             </div>
                         </div>
                         
@@ -290,6 +356,33 @@
                                 </p>
                                 <p class="text-gray-600 text-xs font-inter">Technologies: Vue.js, Express.js, PostgreSQL, Socket.io</p>
                             </div>
+                            
+                            <div class="mb-4">
+                                <h3 class="text-lg font-semibold text-gray-800 mb-1 font-poppins">Space Shooter Game</h3>
+                                <p class="text-gray-700 text-sm mb-2 font-inter">
+                                    Retro-style space shooter game with multiple levels, power-ups, and smooth animations.
+                                    Built using JavaScript and HTML5 Canvas with WebGL optimization.
+                                </p>
+                                <p class="text-gray-600 text-xs font-inter">Technologies: JavaScript, HTML5 Canvas, WebGL</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Experience -->
+                        <div class="mb-8">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-gray-300 pb-2 font-poppins">Experience</h2>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-lg font-semibold text-gray-800 font-poppins">Freelance Web Developer</h3>
+                                    <span class="text-sm text-gray-600 font-inter">2023 - Present</span>
+                                </div>
+                                <p class="text-gray-600 mb-2 font-inter">Self-Employed | Remote</p>
+                                <ul class="text-gray-700 text-sm font-inter space-y-1">
+                                    <li>• Developed responsive websites for small businesses and startups</li>
+                                    <li>• Collaborated with clients to understand requirements and deliver solutions</li>
+                                    <li>• Implemented modern web technologies and best practices</li>
+                                </ul>
+                            </div>
                         </div>
                         
                         <!-- Certifications -->
@@ -299,7 +392,17 @@
                                 <li>• React Developer Certification - Meta (2024)</li>
                                 <li>• JavaScript Algorithms and Data Structures - freeCodeCamp (2023)</li>
                                 <li>• Responsive Web Design - freeCodeCamp (2023)</li>
+                                <li>• UI/UX Design Fundamentals - Google (2024)</li>
                             </ul>
+                        </div>
+                        
+                        <!-- Interests -->
+                        <div class="mb-8">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-gray-300 pb-2 font-poppins">Interests</h2>
+                            <p class="text-gray-700 text-sm font-inter">
+                                Gaming (Strategy & RPG), Beach Biking, Audiophile Equipment, Music Production, 
+                                Open Source Contributions, Tech Blogging, UI/UX Design Trends
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -318,10 +421,10 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-                <a href="contact.html" class="inline-block px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold rounded-lg hover:scale-105 transition-all duration-300 shadow-xl font-poppins">
+                <a href="contact.html" class="neon-button px-8 py-4 text-deep-black font-semibold rounded-lg hover-scale transition-all duration-300 shadow-xl font-poppins">
                     Contact Me
                 </a>
-                <a href="projects.html" class="inline-block px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-lg hover:bg-cyber-cyan hover:text-deep-black transition-all duration-300 font-poppins">
+                <a href="projects.html" class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-lg hover:bg-cyber-cyan hover:text-deep-black hover-scale transition-all duration-300 font-poppins">
                     View My Work
                 </a>
             </div>
@@ -333,27 +436,32 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHISHA</div>
-                    <p class="text-gray-400 font-inter">© 2024 Mathisha Angirasa. All rights reserved.</p>
+                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHIYA</div>
+                    <p class="text-gray-400 font-inter">© 2024 Mathiya Angirasa. All rights reserved.</p>
                 </div>
                 
                 <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-discord"></i>
                     </a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scroll-to-top">
+        <i class="fas fa-chevron-up text-deep-black"></i>
+    </button>
 
     <script>
         // Initialize AOS
@@ -364,8 +472,8 @@
         });
 
         // Custom Cursor
-        const cursor = document.querySelector('.custom-cursor');
-        const cursorDot = document.querySelector('.cursor-dot');
+        const cursor = document.getElementById('custom-cursor');
+        const cursorDot = document.getElementById('cursor-dot');
         
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
@@ -378,7 +486,7 @@
         });
         
         // Cursor hover effects
-        const hoverElements = document.querySelectorAll('a, button');
+        const hoverElements = document.querySelectorAll('a, button, .neon-button');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.classList.add('cursor-hover');
@@ -401,14 +509,33 @@
             mobileMenu.classList.remove('active');
         });
 
-        // Navbar scroll effect
+        // Navbar scroll effect and progress bar
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
+            const scrollToTop = document.getElementById('scroll-to-top');
+            const progressBar = document.getElementById('progress-bar');
+            
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            progressBar.style.width = scrollPercent + '%';
+            
+            if (scrollTop > 100) {
                 navbar.style.background = 'rgba(15, 15, 15, 0.9)';
+                scrollToTop.classList.add('visible');
             } else {
                 navbar.style.background = 'rgba(255, 255, 255, 0.05)';
+                scrollToTop.classList.remove('visible');
             }
+        });
+        
+        // Scroll to top functionality
+        document.getElementById('scroll-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>

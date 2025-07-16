@@ -47,7 +47,8 @@
                         'blink': 'blink 1s infinite',
                         'particle-float': 'particleFloat 20s linear infinite',
                         'signature-draw': 'signatureDraw 3s ease-out forwards',
-                        'loading-bar': 'loadingBar 4s ease-out forwards',
+                        'loading-bar': 'loadingBar 5s ease-out forwards',
+                        'bounce-slow': 'bounce 3s infinite',
                     },
                     keyframes: {
                         'float': {
@@ -131,9 +132,9 @@
         }
         
         .cursor-hover {
-            transform: scale(2);
+            transform: scale(2.5);
             background: rgba(0, 240, 255, 0.1);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
         }
         
         /* Loading Screen */
@@ -390,7 +391,6 @@
                     <a href="projects.html" class="hover:text-cyber-cyan transition-colors">Projects</a>
                     <a href="skills.html" class="hover:text-cyber-cyan transition-colors">Skills</a>
                     <a href="resume.html" class="hover:text-cyber-cyan transition-colors">Resume</a>
-                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors">Blog</a>
                     <a href="contact.html" class="hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
                 
@@ -413,7 +413,6 @@
                     <a href="projects.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Projects</a>
                     <a href="skills.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Skills</a>
                     <a href="resume.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Resume</a>
-                    <a href="blog.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Blog</a>
                     <a href="contact.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
             </div>
@@ -437,62 +436,70 @@
             
             <!-- Subtitle -->
             <p class="text-xl md:text-2xl text-gray-300 mb-8 font-inter" data-aos="fade-up" data-aos-delay="2000">
-                Creative Full-Stack Developer & Software Engineering Student
+                Creative Full-Stack Developer | UI/UX Explorer | Audiophile Coder
             </p>
             
             <!-- Description -->
             <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-12 font-inter leading-relaxed" data-aos="fade-up" data-aos-delay="2500">
-                Building amazing digital experiences at Birmingham University. 
-                Passionate about UI/UX, gaming, and creating smooth, optimized solutions.
+                Software Engineering student at Birmingham University, passionate about creating beautiful and functional digital experiences. 
+                When I'm not coding, you'll find me gaming, biking by the beach, or fine-tuning my audiophile setup.
             </p>
             
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16" data-aos="fade-up" data-aos-delay="3000">
                 <a href="projects.html" class="neon-button px-8 py-4 text-deep-black font-semibold rounded-lg hover-scale transition-all duration-300 font-poppins">
-                    View My Work
+                    View My Projects
                 </a>
                 <a href="contact.html" class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-lg hover:bg-cyber-cyan hover:text-deep-black hover-scale transition-all duration-300 font-poppins">
-                    Get In Touch
+                    Contact Me
                 </a>
             </div>
             
             <!-- Social Links -->
             <div class="flex justify-center flex-wrap gap-4" data-aos="fade-up" data-aos-delay="3500">
-                <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
+                <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300" title="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
+                <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300" title="LinkedIn">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
+                <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300" title="Twitter/X">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <a href="https://www.facebook.com/mathisha.angirasa/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
+                <a href="https://www.facebook.com/mathisha.angirasa/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300" title="Facebook">
                     <i class="fab fa-facebook"></i>
                 </a>
-                <a href="https://www.instagram.com/mathi_ya_/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
+                <a href="https://www.instagram.com/mathi_ya_/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300" title="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://steamcommunity.com/profiles/76561199076879396/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
+                <a href="https://steamcommunity.com/profiles/76561199076879396/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300" title="Steam">
                     <i class="fab fa-steam"></i>
                 </a>
-                <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
+                <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300" title="Epic Games">
                     <i class="fas fa-gamepad"></i>
                 </a>
-                <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
+                <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300" title="Spotify">
                     <i class="fab fa-spotify"></i>
                 </a>
-                <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
+                <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300" title="Discord">
                     <i class="fab fa-discord"></i>
                 </a>
-                <a href="https://wa.me/94715921984" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
+                <a href="https://wa.me/94715921984" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300" title="WhatsApp">
                     <i class="fab fa-whatsapp"></i>
                 </a>
+            </div>
+            
+            <!-- EA ID Display -->
+            <div class="mt-8" data-aos="fade-up" data-aos-delay="4000">
+                <p class="text-sm text-gray-500 font-inter">
+                    <i class="fas fa-trophy text-cyber-purple mr-2"></i>
+                    EA ID: <span class="text-cyber-cyan font-semibold">M_MATHIYA_M</span>
+                </p>
             </div>
         </div>
         
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
             <i class="fas fa-chevron-down text-cyber-cyan text-xl"></i>
         </div>
     </section>
@@ -619,17 +626,17 @@
             // Create particles
             createParticles();
             
-            // Animate signature paths
+            // Animate signature paths with staggered timing
             paths.forEach((path, index) => {
                 setTimeout(() => {
                     path.style.animation = 'signatureDraw 1s ease-out forwards';
-                }, index * 200);
+                }, index * 300);
             });
             
             // Animate loading bar
             let progress = 0;
             const loadingInterval = setInterval(() => {
-                progress += Math.random() * 3 + 1;
+                progress += Math.random() * 2 + 1;
                 if (progress > 100) progress = 100;
                 
                 loadingBar.style.width = progress + '%';

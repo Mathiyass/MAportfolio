@@ -17,7 +17,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <!-- Google Fonts CDN -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -25,20 +25,22 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'sans': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
                     },
                     colors: {
                         'cyber-cyan': '#00F0FF',
                         'cyber-purple': '#8A2BE2',
-                        'dark-bg': '#0F0F0F',
-                        'dark-card': '#1A1A1A',
-                        'light-bg': '#F9F9F9',
+                        'deep-black': '#0F0F0F',
+                        'soft-white': '#F9F9F9',
+                        'neon-pink': '#FF10F0',
+                        'electric-blue': '#0080FF',
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'glitch': 'glitch 2s infinite',
-                        'code-rain': 'codeRain 20s linear infinite',
                         'bounce-slow': 'bounce 3s infinite',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
                     },
                     keyframes: {
                         'float': {
@@ -52,13 +54,9 @@
                             '60%': { transform: 'translate(2px, 2px)' },
                             '80%': { transform: 'translate(2px, -2px)' },
                         },
-                        'codeRain': {
-                            '0%': { transform: 'translateY(-100vh)' },
-                            '100%': { transform: 'translateY(100vh)' },
-                        },
-                        'bounce': {
-                            '0%, 100%': { transform: 'translateY(-25%)', animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)' },
-                            '50%': { transform: 'translateY(0)', animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)' },
+                        'pulseGlow': {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.4)' },
+                            '50%': { boxShadow: '0 0 60px rgba(0, 240, 255, 0.8)' },
                         },
                     },
                 }
@@ -67,13 +65,61 @@
     </script>
     
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { 
+            font-family: 'Inter', sans-serif;
+            cursor: none;
+            background: linear-gradient(135deg, #0F0F0F 0%, #1a1a2e 50%, #16213e 100%);
+        }
+        h1, h2, h3, h4, h5, h6 { 
+            font-family: 'Poppins', sans-serif; 
+        }
+        
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00F0FF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #00F0FF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.15s ease;
+        }
+        
+        .cursor-hover {
+            transform: scale(2.5);
+            background: rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
+        }
+        
+        /* Gradient Text */
         .gradient-text {
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2, #FF10F0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Glitch Text */
         .glitch-text {
             position: relative;
         }
@@ -96,81 +142,90 @@
             color: #8A2BE2;
             z-index: -2;
         }
-        .code-rain {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
+        
+        /* Mobile Navigation */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
         }
-        .code-char {
-            position: absolute;
-            color: #00F0FF;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            opacity: 0.3;
-            animation: codeRain 20s linear infinite;
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        /* Neon Button */
+        .neon-button {
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .neon-button:hover {
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.8);
+            transform: translateY(-2px);
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
 
-<body class="dark bg-dark-bg text-white min-h-screen flex flex-col transition-all duration-300">
-    <!-- Code Rain Background -->
-    <div class="code-rain">
-        <!-- Code characters will be generated by JavaScript -->
-    </div>
-
-    <!-- Navigation Header -->
-    <nav class="fixed top-0 w-full z-40 bg-dark-bg/80 backdrop-blur-md border-b border-gray-800">
+<body class="dark bg-deep-black text-soft-white overflow-x-hidden">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <div class="text-2xl font-bold gradient-text">MA</div>
+                <div class="text-2xl font-bold font-poppins gradient-text">
+                    MATHIYA
+                </div>
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Home</a>
-                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">About</a>
-                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Projects</a>
-                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Skills</a>
-                    <a href="resume.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Resume</a>
-                    <a href="blog.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Blog</a>
-                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors duration-300">Contact</a>
+                    <a href="index.html" class="hover:text-cyber-cyan transition-colors">Home</a>
+                    <a href="about.html" class="hover:text-cyber-cyan transition-colors">About</a>
+                    <a href="projects.html" class="hover:text-cyber-cyan transition-colors">Projects</a>
+                    <a href="skills.html" class="hover:text-cyber-cyan transition-colors">Skills</a>
+                    <a href="resume.html" class="hover:text-cyber-cyan transition-colors">Resume</a>
+                    <a href="contact.html" class="hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
                 
-                <!-- Theme Toggle -->
-                <button id="theme-toggle" class="p-2 rounded-lg bg-dark-card hover:bg-gray-700 transition-colors duration-300">
-                    <i class="fas fa-moon text-cyber-cyan"></i>
-                </button>
-                
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-dark-card">
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
                     <i class="fas fa-bars text-cyber-cyan"></i>
                 </button>
             </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 p-6 bg-dark-card rounded-lg">
-                <div class="flex flex-col space-y-4">
-                    <a href="index.html" class="hover:text-cyber-cyan transition-colors duration-300">Home</a>
-                    <a href="about.html" class="hover:text-cyber-cyan transition-colors duration-300">About</a>
-                    <a href="projects.html" class="hover:text-cyber-cyan transition-colors duration-300">Projects</a>
-                    <a href="skills.html" class="hover:text-cyber-cyan transition-colors duration-300">Skills</a>
-                    <a href="resume.html" class="hover:text-cyber-cyan transition-colors duration-300">Resume</a>
-                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors duration-300">Blog</a>
-                    <a href="contact.html" class="hover:text-cyber-cyan transition-colors duration-300">Contact</a>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
+            <div class="p-6">
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="clear-both mt-8 space-y-6">
+                    <a href="index.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Home</a>
+                    <a href="about.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">About</a>
+                    <a href="projects.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Projects</a>
+                    <a href="skills.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Skills</a>
+                    <a href="resume.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Resume</a>
+                    <a href="contact.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Main 404 Content -->
-    <main class="flex-1 flex items-center justify-center relative overflow-hidden pt-20">
+    <main class="min-h-screen flex items-center justify-center relative overflow-hidden">
         <!-- Background Blobs -->
-        <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan/10 rounded-full blur-3xl animate-float"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float" style="animation-delay: -1.5s;"></div>
         
         <div class="container mx-auto px-6 text-center relative z-10">
             
@@ -179,15 +234,15 @@
                 <div class="relative inline-block">
                     <!-- Computer/Code Icon -->
                     <div class="w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 relative">
-                        <div class="absolute inset-0 bg-gradient-to-r from-cyber-cyan to-cyber-purple rounded-2xl opacity-20 animate-pulse"></div>
-                        <div class="relative w-full h-full bg-dark-card rounded-2xl border-2 border-gray-700 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-r from-cyber-cyan to-cyber-purple rounded-2xl opacity-20 animate-pulse-glow"></div>
+                        <div class="relative w-full h-full glass rounded-2xl border-2 border-gray-700 flex items-center justify-center">
                             <i class="fas fa-code text-4xl md:text-5xl text-cyber-cyan animate-bounce-slow"></i>
                         </div>
                         <!-- Floating Error Symbols -->
                         <div class="absolute -top-4 -right-4 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white text-sm font-bold animate-bounce">
                             !
                         </div>
-                        <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-dark-bg text-xs font-bold animate-bounce" style="animation-delay: -1s;">
+                        <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-deep-black text-xs font-bold animate-bounce" style="animation-delay: -1s;">
                             ?
                         </div>
                     </div>
@@ -196,27 +251,27 @@
             
             <!-- 404 Title with Glitch Effect -->
             <div class="mb-8" data-aos="fade-up" data-aos-delay="200">
-                <h1 class="glitch-text text-6xl md:text-8xl lg:text-9xl font-bold mb-4" data-text="404">
+                <h1 class="glitch-text text-6xl md:text-8xl lg:text-9xl font-bold mb-4 gradient-text" data-text="404">
                     404
                 </h1>
-                <h2 class="text-2xl md:text-3xl font-bold gradient-text mb-4">
+                <h2 class="text-2xl md:text-3xl font-bold gradient-text mb-4 font-poppins">
                     Lost in Code
                 </h2>
             </div>
             
             <!-- Error Message -->
             <div class="mb-12" data-aos="fade-up" data-aos-delay="400">
-                <p class="text-xl md:text-2xl text-gray-300 mb-6 max-w-2xl mx-auto">
+                <p class="text-xl md:text-2xl text-gray-300 mb-6 max-w-2xl mx-auto font-inter">
                     Oops! It seems like you've wandered into uncharted digital territory.
                 </p>
-                <p class="text-lg text-gray-400 max-w-xl mx-auto">
+                <p class="text-lg text-gray-400 max-w-xl mx-auto font-inter">
                     The page you're looking for might have been moved, deleted, or perhaps it never existed in this dimension of the web.
                 </p>
             </div>
             
             <!-- Fun Code Snippet -->
             <div class="mb-12" data-aos="fade-up" data-aos-delay="600">
-                <div class="bg-dark-card/50 backdrop-blur-sm border border-gray-700 rounded-lg p-6 max-w-md mx-auto">
+                <div class="glass p-6 rounded-lg max-w-md mx-auto">
                     <div class="text-left font-mono text-sm">
                         <div class="text-gray-500">// Error Handler</div>
                         <div class="text-cyber-cyan">if</div>
@@ -233,15 +288,15 @@
             
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12" data-aos="fade-up" data-aos-delay="800">
-                <a href="index.html" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-dark-bg font-semibold rounded-lg hover:scale-105 transition-all duration-300 shadow-xl">
+                <a href="index.html" class="neon-button inline-flex items-center px-8 py-4 text-deep-black font-semibold rounded-lg hover-scale transition-all duration-300 shadow-xl font-poppins">
                     <i class="fas fa-home mr-3"></i>
                     Back Home
                 </a>
-                <a href="projects.html" class="inline-flex items-center px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-lg hover:bg-cyber-cyan hover:text-dark-bg transition-all duration-300">
+                <a href="projects.html" class="inline-flex items-center px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-lg hover:bg-cyber-cyan hover:text-deep-black hover-scale transition-all duration-300 font-poppins">
                     <i class="fas fa-folder-open mr-3"></i>
                     View Projects
                 </a>
-                <a href="contact.html" class="inline-flex items-center px-8 py-4 border-2 border-cyber-purple text-cyber-purple font-semibold rounded-lg hover:bg-cyber-purple hover:text-white transition-all duration-300">
+                <a href="contact.html" class="inline-flex items-center px-8 py-4 border-2 border-cyber-purple text-cyber-purple font-semibold rounded-lg hover:bg-cyber-purple hover:text-white hover-scale transition-all duration-300 font-poppins">
                     <i class="fas fa-envelope mr-3"></i>
                     Contact Me
                 </a>
@@ -249,30 +304,30 @@
             
             <!-- Helpful Links -->
             <div class="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="1000">
-                <div class="bg-dark-card/30 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-cyber-cyan transition-all duration-300">
+                <div class="glass p-6 rounded-lg border border-gray-700 hover:border-cyber-cyan transition-all duration-300">
                     <i class="fas fa-user text-2xl text-cyber-cyan mb-4"></i>
-                    <h3 class="font-semibold mb-2">About Me</h3>
-                    <p class="text-gray-400 text-sm mb-4">Learn more about my background and experience</p>
-                    <a href="about.html" class="text-cyber-cyan hover:text-white transition-colors duration-300 text-sm">
+                    <h3 class="font-semibold mb-2 font-poppins">About Me</h3>
+                    <p class="text-gray-400 text-sm mb-4 font-inter">Learn more about my background and experience</p>
+                    <a href="about.html" class="text-cyber-cyan hover:text-white transition-colors duration-300 text-sm font-inter">
                         Learn More →
                     </a>
                 </div>
                 
-                <div class="bg-dark-card/30 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-cyber-purple transition-all duration-300">
+                <div class="glass p-6 rounded-lg border border-gray-700 hover:border-cyber-purple transition-all duration-300">
                     <i class="fas fa-tools text-2xl text-cyber-purple mb-4"></i>
-                    <h3 class="font-semibold mb-2">My Skills</h3>
-                    <p class="text-gray-400 text-sm mb-4">Explore my technical expertise and capabilities</p>
-                    <a href="skills.html" class="text-cyber-purple hover:text-white transition-colors duration-300 text-sm">
+                    <h3 class="font-semibold mb-2 font-poppins">My Skills</h3>
+                    <p class="text-gray-400 text-sm mb-4 font-inter">Explore my technical expertise and capabilities</p>
+                    <a href="skills.html" class="text-cyber-purple hover:text-white transition-colors duration-300 text-sm font-inter">
                         View Skills →
                     </a>
                 </div>
                 
-                <div class="bg-dark-card/30 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-cyber-cyan transition-all duration-300">
-                    <i class="fas fa-blog text-2xl text-cyber-cyan mb-4"></i>
-                    <h3 class="font-semibold mb-2">Blog Posts</h3>
-                    <p class="text-gray-400 text-sm mb-4">Read my latest thoughts and tutorials</p>
-                    <a href="blog.html" class="text-cyber-cyan hover:text-white transition-colors duration-300 text-sm">
-                        Read Blog →
+                <div class="glass p-6 rounded-lg border border-gray-700 hover:border-neon-pink transition-all duration-300">
+                    <i class="fas fa-file-alt text-2xl text-neon-pink mb-4"></i>
+                    <h3 class="font-semibold mb-2 font-poppins">Resume</h3>
+                    <p class="text-gray-400 text-sm mb-4 font-inter">View my professional experience and qualifications</p>
+                    <a href="resume.html" class="text-neon-pink hover:text-white transition-colors duration-300 text-sm font-inter">
+                        View Resume →
                     </a>
                 </div>
             </div>
@@ -285,32 +340,27 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold gradient-text mb-2">MA</div>
-                    <p class="text-gray-400">© 2024 Mathiya Angirasa. All rights reserved.</p>
+                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHIYA</div>
+                    <p class="text-gray-400 font-inter">© 2024 Mathiya Angirasa. All rights reserved.</p>
                 </div>
                 
                 <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-discord"></i>
                     </a>
                 </div>
             </div>
         </div>
     </footer>
-
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/94715921984" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition-all duration-300 shadow-lg">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
     <script>
         // Initialize AOS
@@ -320,93 +370,52 @@
             offset: 100,
         });
 
-        // Mobile Menu Toggle
+        // Custom Cursor
+        const cursor = document.getElementById('custom-cursor');
+        const cursorDot = document.getElementById('cursor-dot');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+            }, 50);
+        });
+        
+        // Cursor hover effects
+        const hoverElements = document.querySelectorAll('a, button, .neon-button');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('cursor-hover');
+            });
+        });
+
+        // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-
+        const closeMenu = document.getElementById('close-menu');
+        
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('active');
             const icon = mobileMenuBtn.querySelector('i');
-            if (mobileMenu.classList.contains('hidden')) {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            } else {
+            if (mobileMenu.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
-            }
-        });
-
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        const body = document.body;
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        if (savedTheme === 'light') {
-            body.classList.remove('dark');
-            body.classList.add('light');
-            body.style.background = 'linear-gradient(135deg, #F9F9F9, #E5E7EB)';
-            body.style.color = '#1F2937';
-            themeToggle.querySelector('i').classList.remove('fa-moon');
-            themeToggle.querySelector('i').classList.add('fa-sun');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const isDark = body.classList.contains('dark');
-            
-            if (isDark) {
-                body.classList.remove('dark');
-                body.classList.add('light');
-                body.style.background = 'linear-gradient(135deg, #F9F9F9, #E5E7EB)';
-                body.style.color = '#1F2937';
-                themeToggle.querySelector('i').classList.remove('fa-moon');
-                themeToggle.querySelector('i').classList.add('fa-sun');
-                localStorage.setItem('theme', 'light');
             } else {
-                body.classList.remove('light');
-                body.classList.add('dark');
-                body.style.background = '';
-                body.style.color = '';
-                themeToggle.querySelector('i').classList.remove('fa-sun');
-                themeToggle.querySelector('i').classList.add('fa-moon');
-                localStorage.setItem('theme', 'dark');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             }
         });
-
-        // Code Rain Effect
-        function createCodeRain() {
-            const codeRain = document.querySelector('.code-rain');
-            const characters = '01{}[]()<>/\\|;:.,?!@#$%^&*+-=_`~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-            
-            for (let i = 0; i < 50; i++) {
-                const char = document.createElement('div');
-                char.className = 'code-char';
-                char.textContent = characters[Math.floor(Math.random() * characters.length)];
-                char.style.left = Math.random() * 100 + '%';
-                char.style.animationDelay = Math.random() * 20 + 's';
-                char.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                codeRain.appendChild(char);
-            }
-        }
-
-        // Initialize code rain effect
-        createCodeRain();
-
-        // Add some interactive elements
-        document.addEventListener('mousemove', (e) => {
-            const cursor = { x: e.clientX, y: e.clientY };
-            const glitchText = document.querySelector('.glitch-text');
-            
-            // Add subtle mouse interaction to glitch effect
-            const rect = glitchText.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            
-            const deltaX = (cursor.x - centerX) / 50;
-            const deltaY = (cursor.y - centerY) / 50;
-            
-            glitchText.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+            mobileMenuBtn.querySelector('i').classList.add('fa-bars');
         });
 
         // Console Easter Egg

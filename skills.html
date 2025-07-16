@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills - Mathisha Angirasa</title>
-    <meta name="description" content="Explore Mathisha Angirasa's technical skills in frontend, backend, tools, and design.">
+    <title>Skills - Mathiya Angirasa</title>
+    <meta name="description" content="Explore Mathiya Angirasa's technical skills in frontend, backend, tools, and design.">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,10 +33,13 @@
                         'cyber-purple': '#8A2BE2',
                         'deep-black': '#0F0F0F',
                         'soft-white': '#F9F9F9',
+                        'neon-pink': '#FF10F0',
+                        'electric-blue': '#0080FF',
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'glow': 'glow 2s ease-in-out infinite alternate',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
                         'progress': 'progress 2s ease-out',
                     },
                     keyframes: {
@@ -47,6 +50,10 @@
                         'glow': {
                             '0%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.5)' },
                             '100%': { boxShadow: '0 0 40px rgba(0, 240, 255, 0.8)' },
+                        },
+                        'pulseGlow': {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.4)' },
+                            '50%': { boxShadow: '0 0 60px rgba(0, 240, 255, 0.8)' },
                         },
                         'progress': {
                             '0%': { width: '0%' },
@@ -93,13 +100,14 @@
         }
         
         .cursor-hover {
-            transform: scale(2);
+            transform: scale(2.5);
             background: rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
         }
         
         /* Gradient Text */
         .gradient-text {
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2, #FF10F0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -121,6 +129,10 @@
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
         }
         
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
         /* Skill Badge Effects */
         .skill-badge:hover {
             transform: translateY(-5px) scale(1.05);
@@ -129,7 +141,7 @@
         
         /* Progress Bar */
         .progress-bar {
-            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
+            background: linear-gradient(90deg, #00F0FF, #8A2BE2, #FF10F0);
             animation: progress 2s ease-out forwards;
         }
         
@@ -142,21 +154,76 @@
         .mobile-menu.active {
             transform: translateX(0);
         }
+        
+        /* Progress Bar */
+        .progress-bar-bg {
+            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
+            height: 4px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+        
+        /* Neon Button */
+        .neon-button {
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .neon-button:hover {
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.8);
+            transform: translateY(-2px);
+        }
+        
+        /* Scroll to Top */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.6);
+        }
     </style>
 </head>
 
 <body class="dark bg-deep-black text-soft-white overflow-x-hidden">
+    <!-- Progress Bar -->
+    <div class="progress-bar-bg" id="progress-bar" style="width: 0%"></div>
+    
     <!-- Custom Cursor -->
-    <div class="custom-cursor"></div>
-    <div class="cursor-dot"></div>
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
     
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass" id="navbar">
+    <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="text-2xl font-bold font-poppins gradient-text">
-                    MATHISHA
+                    MATHIYA
                 </div>
                 
                 <!-- Desktop Navigation -->
@@ -166,12 +233,11 @@
                     <a href="projects.html" class="hover:text-cyber-cyan transition-colors">Projects</a>
                     <a href="skills.html" class="text-cyber-cyan font-medium">Skills</a>
                     <a href="resume.html" class="hover:text-cyber-cyan transition-colors">Resume</a>
-                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors">Blog</a>
                     <a href="contact.html" class="hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass hover-glow">
                     <i class="fas fa-bars text-cyber-cyan"></i>
                 </button>
             </div>
@@ -180,7 +246,7 @@
         <!-- Mobile Menu -->
         <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
             <div class="p-6">
-                <button id="close-menu" class="float-right text-2xl text-cyber-cyan">
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan hover:text-white transition-colors">
                     <i class="fas fa-times"></i>
                 </button>
                 <div class="clear-both mt-8 space-y-6">
@@ -189,7 +255,6 @@
                     <a href="projects.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Projects</a>
                     <a href="skills.html" class="block text-xl font-poppins text-cyber-cyan">Skills</a>
                     <a href="resume.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Resume</a>
-                    <a href="blog.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Blog</a>
                     <a href="contact.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
             </div>
@@ -201,6 +266,7 @@
         <!-- Floating Blobs -->
         <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float" style="animation-delay: -1.5s;"></div>
         
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-6xl font-bold font-poppins mb-6 gradient-text" data-aos="fade-up">
@@ -320,6 +386,36 @@
                     </div>
                     <span class="text-sm text-gray-400 font-inter">78%</span>
                 </div>
+                
+                <!-- Express.js -->
+                <div class="skill-badge glass rounded-xl p-6 text-center hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-server text-5xl text-gray-400 mb-4"></i>
+                    <h3 class="text-xl font-bold font-poppins mb-4">Express.js</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 83%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400 font-inter">83%</span>
+                </div>
+                
+                <!-- PostgreSQL -->
+                <div class="skill-badge glass rounded-xl p-6 text-center hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fas fa-database text-5xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-bold font-poppins mb-4">PostgreSQL</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 75%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400 font-inter">75%</span>
+                </div>
+                
+                <!-- Firebase -->
+                <div class="skill-badge glass rounded-xl p-6 text-center hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="600">
+                    <i class="fas fa-fire text-5xl text-orange-500 mb-4"></i>
+                    <h3 class="text-xl font-bold font-poppins mb-4">Firebase</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 80%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400 font-inter">80%</span>
+                </div>
             </div>
         </div>
     </section>
@@ -371,6 +467,46 @@
                     </div>
                     <span class="text-sm text-gray-400 font-inter">70%</span>
                 </div>
+                
+                <!-- Docker -->
+                <div class="skill-badge glass rounded-xl p-6 text-center hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fab fa-docker text-5xl text-blue-500 mb-4"></i>
+                    <h3 class="text-xl font-bold font-poppins mb-4">Docker</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 72%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400 font-inter">72%</span>
+                </div>
+                
+                <!-- AWS -->
+                <div class="skill-badge glass rounded-xl p-6 text-center hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="600">
+                    <i class="fab fa-aws text-5xl text-orange-600 mb-4"></i>
+                    <h3 class="text-xl font-bold font-poppins mb-4">AWS</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 68%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400 font-inter">68%</span>
+                </div>
+                
+                <!-- Linux -->
+                <div class="skill-badge glass rounded-xl p-6 text-center hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="700">
+                    <i class="fab fa-linux text-5xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-bold font-poppins mb-4">Linux</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 88%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400 font-inter">88%</span>
+                </div>
+                
+                <!-- Photoshop -->
+                <div class="skill-badge glass rounded-xl p-6 text-center hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="800">
+                    <i class="fas fa-paint-brush text-5xl text-blue-400 mb-4"></i>
+                    <h3 class="text-xl font-bold font-poppins mb-4">Photoshop</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2 mb-2">
+                        <div class="progress-bar h-2 rounded-full" style="--progress-width: 76%"></div>
+                    </div>
+                    <span class="text-sm text-gray-400 font-inter">76%</span>
+                </div>
             </div>
         </div>
     </section>
@@ -386,10 +522,10 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-                <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold font-poppins rounded-lg hover-glow transition-all duration-300 hover:scale-105">
+                <a href="contact.html" class="neon-button px-8 py-4 text-deep-black font-semibold rounded-lg hover-scale transition-all duration-300 font-poppins">
                     Get In Touch
                 </a>
-                <a href="projects.html" class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold font-poppins rounded-lg hover:bg-cyber-cyan hover:text-deep-black transition-all duration-300 hover:scale-105">
+                <a href="projects.html" class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-lg hover:bg-cyber-cyan hover:text-deep-black hover-scale transition-all duration-300 font-poppins">
                     View My Work
                 </a>
             </div>
@@ -401,27 +537,32 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHISHA</div>
-                    <p class="text-gray-400 font-inter">© 2024 Mathisha Angirasa. All rights reserved.</p>
+                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHIYA</div>
+                    <p class="text-gray-400 font-inter">© 2024 Mathiya Angirasa. All rights reserved.</p>
                 </div>
                 
                 <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-discord"></i>
                     </a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scroll-to-top">
+        <i class="fas fa-chevron-up text-deep-black"></i>
+    </button>
 
     <script>
         // Initialize AOS
@@ -432,8 +573,8 @@
         });
 
         // Custom Cursor
-        const cursor = document.querySelector('.custom-cursor');
-        const cursorDot = document.querySelector('.cursor-dot');
+        const cursor = document.getElementById('custom-cursor');
+        const cursorDot = document.getElementById('cursor-dot');
         
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
@@ -446,7 +587,7 @@
         });
         
         // Cursor hover effects
-        const hoverElements = document.querySelectorAll('a, button, .skill-badge');
+        const hoverElements = document.querySelectorAll('a, button, .skill-badge, .neon-button');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.classList.add('cursor-hover');
@@ -469,14 +610,33 @@
             mobileMenu.classList.remove('active');
         });
 
-        // Navbar scroll effect
+        // Navbar scroll effect and progress bar
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
+            const scrollToTop = document.getElementById('scroll-to-top');
+            const progressBar = document.getElementById('progress-bar');
+            
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            progressBar.style.width = scrollPercent + '%';
+            
+            if (scrollTop > 100) {
                 navbar.style.background = 'rgba(15, 15, 15, 0.9)';
+                scrollToTop.classList.add('visible');
             } else {
                 navbar.style.background = 'rgba(255, 255, 255, 0.05)';
+                scrollToTop.classList.remove('visible');
             }
+        });
+        
+        // Scroll to top functionality
+        document.getElementById('scroll-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>

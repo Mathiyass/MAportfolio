@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Mathisha Angirasa</title>
-    <meta name="description" content="Learn more about Mathisha Angirasa - Creative Full-Stack Developer & Software Engineering Student at Birmingham University.">
+    <title>About - Mathiya Angirasa</title>
+    <meta name="description" content="Learn more about Mathiya Angirasa - Creative Full-Stack Developer & Software Engineering Student at Birmingham University.">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,10 +33,13 @@
                         'cyber-purple': '#8A2BE2',
                         'deep-black': '#0F0F0F',
                         'soft-white': '#F9F9F9',
+                        'neon-pink': '#FF10F0',
+                        'electric-blue': '#0080FF',
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'glow': 'glow 2s ease-in-out infinite alternate',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
                         'counter': 'counter 2s ease-out',
                     },
                     keyframes: {
@@ -47,6 +50,10 @@
                         'glow': {
                             '0%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.5)' },
                             '100%': { boxShadow: '0 0 40px rgba(0, 240, 255, 0.8)' },
+                        },
+                        'pulseGlow': {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.4)' },
+                            '50%': { boxShadow: '0 0 60px rgba(0, 240, 255, 0.8)' },
                         },
                         'counter': {
                             '0%': { transform: 'scale(0.8)', opacity: '0' },
@@ -93,14 +100,14 @@
         }
         
         .cursor-hover {
-            transform: scale(2);
+            transform: scale(2.5);
             background: rgba(0, 240, 255, 0.1);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
         }
         
         /* Gradient Text */
         .gradient-text {
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2, #FF10F0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -122,9 +129,13 @@
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
         }
         
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
         /* Timeline */
         .timeline-line {
-            background: linear-gradient(to bottom, #00F0FF, #8A2BE2);
+            background: linear-gradient(to bottom, #00F0FF, #8A2BE2, #FF10F0);
         }
         
         /* Mobile Navigation */
@@ -136,10 +147,65 @@
         .mobile-menu.active {
             transform: translateX(0);
         }
+        
+        /* Progress Bar */
+        .progress-bar {
+            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
+            height: 4px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+        
+        /* Neon Button */
+        .neon-button {
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .neon-button:hover {
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.8);
+            transform: translateY(-2px);
+        }
+        
+        /* Scroll to Top */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.6);
+        }
     </style>
 </head>
 
 <body class="dark bg-deep-black text-soft-white overflow-x-hidden">
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+    
     <!-- Custom Cursor -->
     <div class="custom-cursor" id="custom-cursor"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
@@ -150,7 +216,7 @@
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="text-2xl font-bold font-poppins gradient-text">
-                    MATHISHA
+                    MATHIYA
                 </div>
                 
                 <!-- Desktop Navigation -->
@@ -160,12 +226,11 @@
                     <a href="projects.html" class="hover:text-cyber-cyan transition-colors">Projects</a>
                     <a href="skills.html" class="hover:text-cyber-cyan transition-colors">Skills</a>
                     <a href="resume.html" class="hover:text-cyber-cyan transition-colors">Resume</a>
-                    <a href="blog.html" class="hover:text-cyber-cyan transition-colors">Blog</a>
                     <a href="contact.html" class="hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass hover-glow">
                     <i class="fas fa-bars text-cyber-cyan"></i>
                 </button>
             </div>
@@ -174,7 +239,7 @@
         <!-- Mobile Menu -->
         <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
             <div class="p-6">
-                <button id="close-menu" class="float-right text-2xl text-cyber-cyan">
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan hover:text-white transition-colors">
                     <i class="fas fa-times"></i>
                 </button>
                 <div class="clear-both mt-8 space-y-6">
@@ -183,7 +248,6 @@
                     <a href="projects.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Projects</a>
                     <a href="skills.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Skills</a>
                     <a href="resume.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Resume</a>
-                    <a href="blog.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Blog</a>
                     <a href="contact.html" class="block text-xl font-poppins hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
             </div>
@@ -195,6 +259,7 @@
         <!-- Floating Blobs -->
         <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float" style="animation-delay: -1.5s;"></div>
         
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-6xl font-bold font-poppins mb-6 gradient-text" data-aos="fade-up">
@@ -234,7 +299,7 @@
                 <!-- Profile Image -->
                 <div data-aos="fade-left" class="text-center">
                     <div class="relative inline-block">
-                        <div class="w-80 h-80 rounded-2xl glass p-8 hover-tilt transition-all duration-300">
+                        <div class="w-80 h-80 rounded-2xl glass p-8 hover-tilt hover-glow transition-all duration-300">
                             <div class="w-full h-full rounded-xl bg-gradient-to-br from-cyber-cyan to-cyber-purple flex items-center justify-center">
                                 <i class="fas fa-user text-8xl text-deep-black"></i>
                             </div>
@@ -242,6 +307,7 @@
                         <!-- Floating Elements -->
                         <div class="absolute -top-4 -right-4 w-8 h-8 bg-cyber-cyan rounded-full animate-float"></div>
                         <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-cyber-purple rounded-full animate-float" style="animation-delay: -2s;"></div>
+                        <div class="absolute top-1/2 -left-8 w-4 h-4 bg-neon-pink rounded-full animate-float" style="animation-delay: -1s;"></div>
                     </div>
                 </div>
             </div>
@@ -253,38 +319,38 @@
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Stat Card 1 -->
-                <div class="text-center" data-aos="zoom-in" data-aos-delay="100">
+                <div class="text-center hover-scale transition-all duration-300" data-aos="zoom-in" data-aos-delay="100">
                     <div class="text-4xl mb-4">
                         <i class="fas fa-calendar-alt text-cyber-cyan"></i>
                     </div>
-                    <h3 class="text-3xl font-bold font-poppins mb-2 counter" data-target="3">0</h3>
+                    <h3 class="text-3xl font-bold font-poppins mb-2 counter gradient-text" data-target="3">0</h3>
                     <p class="text-gray-400 font-inter">Years Experience</p>
                 </div>
                 
                 <!-- Stat Card 2 -->
-                <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
+                <div class="text-center hover-scale transition-all duration-300" data-aos="zoom-in" data-aos-delay="200">
                     <div class="text-4xl mb-4">
                         <i class="fas fa-code text-cyber-purple"></i>
                     </div>
-                    <h3 class="text-3xl font-bold font-poppins mb-2 counter" data-target="50">0</h3>
+                    <h3 class="text-3xl font-bold font-poppins mb-2 counter gradient-text" data-target="50">0</h3>
                     <p class="text-gray-400 font-inter">Projects Completed</p>
                 </div>
                 
                 <!-- Stat Card 3 -->
-                <div class="text-center" data-aos="zoom-in" data-aos-delay="300">
+                <div class="text-center hover-scale transition-all duration-300" data-aos="zoom-in" data-aos-delay="300">
                     <div class="text-4xl mb-4">
-                        <i class="fas fa-tools text-cyber-cyan"></i>
+                        <i class="fas fa-tools text-neon-pink"></i>
                     </div>
-                    <h3 class="text-3xl font-bold font-poppins mb-2 counter" data-target="15">0</h3>
+                    <h3 class="text-3xl font-bold font-poppins mb-2 counter gradient-text" data-target="15">0</h3>
                     <p class="text-gray-400 font-inter">Technologies</p>
                 </div>
                 
                 <!-- Stat Card 4 -->
-                <div class="text-center" data-aos="zoom-in" data-aos-delay="400">
+                <div class="text-center hover-scale transition-all duration-300" data-aos="zoom-in" data-aos-delay="400">
                     <div class="text-4xl mb-4">
-                        <i class="fas fa-coffee text-cyber-purple"></i>
+                        <i class="fas fa-coffee text-electric-blue"></i>
                     </div>
-                    <h3 class="text-3xl font-bold font-poppins mb-2 counter" data-target="1000">0</h3>
+                    <h3 class="text-3xl font-bold font-poppins mb-2 counter gradient-text" data-target="1000">0</h3>
                     <p class="text-gray-400 font-inter">Cups of Coffee</p>
                 </div>
             </div>
@@ -309,7 +375,7 @@
                         <!-- Timeline Item 1 -->
                         <div class="relative flex items-center" data-aos="fade-right">
                             <div class="flex-1 pr-8 text-right">
-                                <div class="glass p-6 rounded-lg hover-tilt transition-all duration-300">
+                                <div class="glass p-6 rounded-lg hover-tilt hover-glow transition-all duration-300">
                                     <h3 class="text-xl font-bold font-poppins text-cyber-cyan mb-2">Started at Birmingham University</h3>
                                     <p class="text-gray-400 mb-2 font-inter">2022</p>
                                     <p class="text-gray-300 font-inter">Began my Software Engineering journey, diving deep into computer science fundamentals and modern development practices.</p>
@@ -324,7 +390,7 @@
                             <div class="flex-1 pr-8"></div>
                             <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-cyber-purple rounded-full border-4 border-deep-black"></div>
                             <div class="flex-1 pl-8">
-                                <div class="glass p-6 rounded-lg hover-tilt transition-all duration-300">
+                                <div class="glass p-6 rounded-lg hover-tilt hover-glow transition-all duration-300">
                                     <h3 class="text-xl font-bold font-poppins text-cyber-purple mb-2">First Full-Stack Project</h3>
                                     <p class="text-gray-400 mb-2 font-inter">2023</p>
                                     <p class="text-gray-300 font-inter">Developed my first complete web application using React and Node.js. Learned about databases, APIs, and deployment.</p>
@@ -335,23 +401,23 @@
                         <!-- Timeline Item 3 -->
                         <div class="relative flex items-center" data-aos="fade-right">
                             <div class="flex-1 pr-8 text-right">
-                                <div class="glass p-6 rounded-lg hover-tilt transition-all duration-300">
-                                    <h3 class="text-xl font-bold font-poppins text-cyber-cyan mb-2">Advanced Specialization</h3>
+                                <div class="glass p-6 rounded-lg hover-tilt hover-glow transition-all duration-300">
+                                    <h3 class="text-xl font-bold font-poppins text-neon-pink mb-2">Advanced Specialization</h3>
                                     <p class="text-gray-400 mb-2 font-inter">2024</p>
                                     <p class="text-gray-300 font-inter">Specialized in modern frameworks and UI/UX design. Started contributing to open-source projects and building my portfolio.</p>
                                 </div>
                             </div>
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-cyber-cyan rounded-full border-4 border-deep-black"></div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-neon-pink rounded-full border-4 border-deep-black"></div>
                             <div class="flex-1 pl-8"></div>
                         </div>
                         
                         <!-- Timeline Item 4 -->
                         <div class="relative flex items-center" data-aos="fade-left">
                             <div class="flex-1 pr-8"></div>
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-cyber-purple rounded-full border-4 border-deep-black"></div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-electric-blue rounded-full border-4 border-deep-black"></div>
                             <div class="flex-1 pl-8">
-                                <div class="glass p-6 rounded-lg hover-tilt transition-all duration-300">
-                                    <h3 class="text-xl font-bold font-poppins text-cyber-purple mb-2">Current Focus</h3>
+                                <div class="glass p-6 rounded-lg hover-tilt hover-glow transition-all duration-300">
+                                    <h3 class="text-xl font-bold font-poppins text-electric-blue mb-2">Current Focus</h3>
                                     <p class="text-gray-400 mb-2 font-inter">Present</p>
                                     <p class="text-gray-300 font-inter">Building scalable applications and exploring new technologies. Preparing for a career in full-stack development.</p>
                                 </div>
@@ -372,7 +438,7 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Gaming -->
-                <div class="text-center hover-tilt transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center hover-tilt hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
                     <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-cyber-cyan to-cyber-purple flex items-center justify-center">
                         <i class="fas fa-gamepad text-2xl text-deep-black"></i>
                     </div>
@@ -381,8 +447,8 @@
                 </div>
                 
                 <!-- Beach Biking -->
-                <div class="text-center hover-tilt transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-cyber-purple to-cyber-cyan flex items-center justify-center">
+                <div class="text-center hover-tilt hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-cyber-purple to-neon-pink flex items-center justify-center">
                         <i class="fas fa-bicycle text-2xl text-deep-black"></i>
                     </div>
                     <h3 class="text-xl font-bold font-poppins mb-4">Beach Biking</h3>
@@ -390,8 +456,8 @@
                 </div>
                 
                 <!-- Audiophile -->
-                <div class="text-center hover-tilt transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-cyber-cyan to-cyber-purple flex items-center justify-center">
+                <div class="text-center hover-tilt hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-neon-pink to-electric-blue flex items-center justify-center">
                         <i class="fas fa-headphones text-2xl text-deep-black"></i>
                     </div>
                     <h3 class="text-xl font-bold font-poppins mb-4">Audiophile</h3>
@@ -412,10 +478,10 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-                <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-deep-black font-semibold font-poppins rounded-lg hover-glow transition-all duration-300 hover:scale-105">
+                <a href="contact.html" class="neon-button px-8 py-4 text-deep-black font-semibold rounded-lg hover-scale transition-all duration-300 font-poppins">
                     Get In Touch
                 </a>
-                <a href="projects.html" class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold font-poppins rounded-lg hover:bg-cyber-cyan hover:text-deep-black transition-all duration-300 hover:scale-105">
+                <a href="projects.html" class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-lg hover:bg-cyber-cyan hover:text-deep-black hover-scale transition-all duration-300 font-poppins">
                     View My Work
                 </a>
             </div>
@@ -427,27 +493,32 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHISHA</div>
-                    <p class="text-gray-400 font-inter">© 2024 Mathisha Angirasa. All rights reserved.</p>
+                    <div class="text-2xl font-bold font-poppins gradient-text mb-2">MATHIYA</div>
+                    <p class="text-gray-400 font-inter">© 2024 Mathiya Angirasa. All rights reserved.</p>
                 </div>
                 
                 <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300">
+                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover-scale transition-all duration-300">
                         <i class="fab fa-discord"></i>
                     </a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scroll-to-top">
+        <i class="fas fa-chevron-up text-deep-black"></i>
+    </button>
 
     <script>
         // Initialize AOS
@@ -472,7 +543,7 @@
         });
         
         // Cursor hover effects
-        const hoverElements = document.querySelectorAll('a, button');
+        const hoverElements = document.querySelectorAll('a, button, .hover-tilt, .neon-button');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.classList.add('cursor-hover');
@@ -533,14 +604,33 @@
             observer.observe(statsSection);
         }
 
-        // Navbar scroll effect
+        // Navbar scroll effect and progress bar
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
+            const scrollToTop = document.getElementById('scroll-to-top');
+            const progressBar = document.getElementById('progress-bar');
+            
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            progressBar.style.width = scrollPercent + '%';
+            
+            if (scrollTop > 100) {
                 navbar.style.background = 'rgba(15, 15, 15, 0.9)';
+                scrollToTop.classList.add('visible');
             } else {
                 navbar.style.background = 'rgba(255, 255, 255, 0.05)';
+                scrollToTop.classList.remove('visible');
             }
+        });
+        
+        // Scroll to top functionality
+        document.getElementById('scroll-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
