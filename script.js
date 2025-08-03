@@ -74,9 +74,6 @@ window.addEventListener('scroll', function() {
     
     // Update progress bar
     updateProgressBar();
-    
-    // Update active nav link
-    updateActiveNavLink();
 });
 
 // Progress Bar
@@ -86,28 +83,6 @@ function updateProgressBar() {
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = (scrollTop / docHeight) * 100;
     progressBar.style.width = scrollPercent + '%';
-}
-
-// Active Navigation Link
-function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('text-dracula-purple');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('text-dracula-purple');
-        }
-    });
 }
 
 // Mobile Menu Enhanced
@@ -139,19 +114,15 @@ mobileMenuLinks.forEach(link => {
     });
 });
 
-// Enhanced Smooth Scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const offsetTop = target.offsetTop - 80;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-        }
-    });
+// Active Navigation Link Highlighting
+const navLinks = document.querySelectorAll('.nav-link');
+const currentPath = window.location.pathname.split('/').pop();
+
+navLinks.forEach(link => {
+    const linkPath = link.getAttribute('href');
+    if (linkPath === currentPath || (currentPath === '' && linkPath === 'index.html')) {
+        link.classList.add('text-dracula-purple');
+    }
 });
 
 // Enhanced Skill Bars Animation
@@ -427,19 +398,19 @@ if (typeof particlesJS !== 'undefined') {
     });
 }
 
-// Enhanced Loader
-window.addEventListener('load', () => {
-    const loader = document.getElementById('loading-screen');
-    if (loader) {
-        setTimeout(() => {
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.remove();
-                setTimeout(typeEffect, 500);
-            }, 1000);
-        }, 3500);
-    }
-});
+// This function will be called by loader.js when the loading animation is complete
+window.startMainContentAnimation = function() {
+    // Re-initialize AOS after the loader is gone to ensure animations trigger correctly
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
+        easing: 'ease-out-cubic'
+    });
+    
+    // Start the typing effect
+    typeEffect();
+};
 
 // Update current year
 const currentYearElement = document.getElementById('current-year');

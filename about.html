@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Mathiya Angirasa | Premium Portfolio</title>
-    <meta name="description" content="Learn more about Mathiya Angirasa - Software Engineering Student at University of Birmingham, passionate about crafting immersive web experiences.">
+    <title>About | Mathiya Angirasa</title>
+    <meta name="description" content="Learn more about Mathiya Angirasa, a Software Engineering Student from Colombo, Sri Lanka.">
+    
+    <!-- SEO and Social Media Meta Tags -->
+    <meta property="og:title" content="About | Mathiya Angirasa">
+    <meta property="og:description" content="Learn more about Mathiya Angirasa, a Software Engineering Student from Colombo, Sri Lanka.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mathiyass.github.io/about.html">
+    <meta property="og:image" content="https://mathiyass.github.io/assets/og-image.jpg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About | Mathiya Angirasa">
+    <meta name="twitter:description" content="Learn more about Mathiya Angirasa, a Software Engineering Student from Colombo, Sri Lanka.">
+    <meta name="twitter:image" content="https://mathiyass.github.io/assets/og-image.jpg">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300F0FF'>M</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23bd93f9'>M</text></svg>">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,7 +32,13 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     
     <script>
         tailwind.config = {
@@ -28,40 +46,72 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'orbitron': ['Orbitron', 'monospace'],
-                        'inter': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
+                        'sans': ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        'cyber-cyan': '#00F0FF',
-                        'cyber-purple': '#8A2BE2',
-                        'neon-pink': '#FF10F0',
-                        'electric-blue': '#0080FF',
-                        'dark-bg': '#0a0a0a',
-                        'dark-card': '#1a1a2e',
-                        'dark-accent': '#16213e',
+                        'dracula': {
+                            'bg': '#282a36',
+                            'current': '#44475a',
+                            'foreground': '#f8f8f2',
+                            'comment': '#6272a4',
+                            'cyan': '#8be9fd',
+                            'green': '#50fa7b',
+                            'orange': '#ffb86c',
+                            'pink': '#ff79c6',
+                            'purple': '#bd93f9',
+                            'red': '#ff5555',
+                            'yellow': '#f1fa8c',
+                        },
+                        'neon': {
+                            'blue': '#00f5ff',
+                            'purple': '#bf00ff',
+                            'pink': '#ff0080',
+                            'green': '#00ff41',
+                        }
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
-                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
-                        'counter': 'counter 2s ease-out',
-                        'timeline-slide': 'timelineSlide 0.8s ease-out forwards',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'typing': 'typing 3.5s steps(40, end)',
+                        'blink': 'blink 1s infinite',
+                        'fadeInUp': 'fadeInUp 0.8s ease-out',
+                        'slideInLeft': 'slideInLeft 0.8s ease-out',
+                        'slideInRight': 'slideInRight 0.8s ease-out',
+                        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         'float': {
-                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
                         },
-                        'glowPulse': {
-                            '0%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.5)' },
-                            '100%': { boxShadow: '0 0 40px rgba(0, 240, 255, 1), 0 0 60px rgba(138, 43, 226, 0.5)' },
+                        'glow': {
+                            '0%': { boxShadow: '0 0 20px rgba(189, 147, 249, 0.5)' },
+                            '100%': { boxShadow: '0 0 40px rgba(189, 147, 249, 1), 0 0 60px rgba(255, 121, 198, 0.5)' },
                         },
-                        'counter': {
-                            '0%': { transform: 'scale(0.8)', opacity: '0' },
-                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        'typing': {
+                            'from': { width: '0' },
+                            'to': { width: '100%' },
                         },
-                        'timelineSlide': {
-                            '0%': { transform: 'translateX(-100%)', opacity: '0' },
-                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        'blink': {
+                            '0%, 50%': { opacity: '1' },
+                            '51%, 100%': { opacity: '0' },
+                        },
+                        'fadeInUp': {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        'slideInLeft': {
+                            '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        'slideInRight': {
+                            '0%': { opacity: '0', transform: 'translateX(30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(189, 147, 249, 0.4)' },
+                            '50%': { boxShadow: '0 0 40px rgba(189, 147, 249, 0.8), 0 0 60px rgba(255, 121, 198, 0.3)' },
                         },
                     },
                 }
@@ -72,7 +122,6 @@
     <style>
         body { 
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             cursor: none;
         }
         
@@ -81,7 +130,7 @@
             position: fixed;
             width: 20px;
             height: 20px;
-            border: 2px solid #00F0FF;
+            border: 2px solid #bd93f9;
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
@@ -93,7 +142,7 @@
             position: fixed;
             width: 4px;
             height: 4px;
-            background: #00F0FF;
+            background: #bd93f9;
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
@@ -102,76 +151,41 @@
         
         .cursor-hover {
             transform: scale(2);
-            background: rgba(0, 240, 255, 0.2);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+            background: rgba(189, 147, 249, 0.2);
         }
         
         /* Glassmorphism */
         .glass {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(40, 42, 54, 0.8);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(189, 147, 249, 0.2);
         }
         
         /* Gradient Text */
         .gradient-text {
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2, #FF10F0);
+            background: linear-gradient(135deg, #bd93f9, #ff79c6, #8be9fd);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        /* Neon Button */
-        .neon-btn {
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
         
-        .neon-btn:hover {
-            box-shadow: 0 0 40px rgba(0, 240, 255, 0.8);
-            transform: translateY(-2px);
+        ::-webkit-scrollbar-track {
+            background: #282a36;
         }
         
-        /* Timeline */
-        .timeline-line {
-            background: linear-gradient(to bottom, #00F0FF, #8A2BE2, #FF10F0);
+        ::-webkit-scrollbar-thumb {
+            background: #bd93f9;
+            border-radius: 4px;
         }
         
-        .timeline-item {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.6s ease;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff79c6;
         }
-        
-        .timeline-item.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        /* Skills Animation */
-        .skill-bar {
-            width: 0%;
-            transition: width 2s ease-out;
-            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-        }
-        
-        .skill-bar.animate {
-            width: var(--skill-width);
-        }
-        
-        /* Floating Shapes */
-        .floating-shape {
-            position: absolute;
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .floating-shape:nth-child(2) { animation-delay: -2s; }
-        .floating-shape:nth-child(3) { animation-delay: -4s; }
         
         /* Mobile Menu */
         .mobile-menu {
@@ -183,78 +197,166 @@
             transform: translateX(0);
         }
         
-        /* Scroll Progress */
-        .scroll-progress {
+        /* Social Sidebar */
+        .social-sidebar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(40, 42, 54, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(189, 147, 249, 0.3);
+            border-radius: 50%;
+            color: #bd93f9;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.1);
+            background: rgba(189, 147, 249, 0.2);
+            box-shadow: 0 0 20px rgba(189, 147, 249, 0.5);
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
             position: fixed;
             top: 0;
             left: 0;
             width: 0%;
             height: 3px;
-            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
+            background: linear-gradient(90deg, #bd93f9, #ff79c6);
             z-index: 9999;
             transition: width 0.3s ease;
         }
         
-        /* Scroll to Top */
-        .scroll-to-top {
+        /* Particles */
+        #particles-js {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            background: rgba(189, 147, 249, 0.9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: #282a36;
             opacity: 0;
-            visibility: hidden;
+            pointer-events: none;
             transition: all 0.3s ease;
             z-index: 1000;
-            cursor: pointer;
         }
         
-        .scroll-to-top.visible {
+        .back-to-top.visible {
             opacity: 1;
-            visibility: visible;
+            pointer-events: auto;
         }
         
-        .scroll-to-top:hover {
+        .back-to-top:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(189, 147, 249, 0.5);
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(40, 42, 54, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(189, 147, 249, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #bd93f9;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(189, 147, 249, 0.2);
+            box-shadow: 0 0 20px rgba(189, 147, 249, 0.5);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .social-sidebar {
+                display: none;
+            }
         }
     </style>
 </head>
 
-<body class="dark text-white">
+<body class="dark bg-dracula-bg text-dracula-foreground overflow-x-hidden">
     <!-- Custom Cursor -->
     <div class="custom-cursor" id="custom-cursor"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
     
-    <!-- Scroll Progress -->
-    <div class="scroll-progress" id="scroll-progress"></div>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-dracula-bg flex items-center justify-center z-50">
+        <canvas id="loading-canvas" class="absolute top-0 left-0 w-full h-full"></canvas>
+    </div>
+    
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
     
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
+    <nav class="fixed top-0 w-full z-40 glass transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <div class="text-2xl font-bold font-orbitron gradient-text">
+                <div class="text-2xl font-bold font-mono gradient-text">
                     <a href="index.html">MATHIYA</a>
                 </div>
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors">Home</a>
-                    <a href="about.html" class="nav-link text-cyber-cyan font-medium">About</a>
-                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors">Projects</a>
-                    <a href="resume.html" class="nav-link hover:text-cyber-cyan transition-colors">Resume</a>
-                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors">Contact</a>
+                    <a href="index.html" class="nav-link hover:text-dracula-purple transition-colors">Home</a>
+                    <a href="about.html" class="nav-link hover:text-dracula-purple transition-colors">About</a>
+                    <a href="projects.html" class="nav-link hover:text-dracula-purple transition-colors">Projects</a>
+                    <a href="skills.html" class="nav-link hover:text-dracula-purple transition-colors">Skills</a>
+                    <a href="contact.html" class="nav-link hover:text-dracula-purple transition-colors">Contact</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
-                    <i class="fas fa-bars text-cyber-cyan"></i>
+                    <i class="fas fa-bars text-dracula-purple"></i>
                 </button>
             </div>
         </div>
@@ -262,379 +364,158 @@
         <!-- Mobile Menu -->
         <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
             <div class="p-6">
-                <button id="close-menu" class="float-right text-2xl text-cyber-cyan">
+                <button id="close-menu" class="float-right text-2xl text-dracula-purple">
                     <i class="fas fa-times"></i>
                 </button>
                 <div class="clear-both mt-8 space-y-6">
-                    <a href="index.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Home</a>
-                    <a href="about.html" class="block text-xl font-orbitron text-cyber-cyan mobile-nav-link">About</a>
-                    <a href="projects.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Projects</a>
-                    <a href="resume.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Resume</a>
-                    <a href="contact.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Contact</a>
+                    <a href="index.html" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">Home</a>
+                    <a href="about.html" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">About</a>
+                    <a href="projects.html" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">Projects</a>
+                    <a href="skills.html" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">Skills</a>
+                    <a href="contact.html" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 relative overflow-hidden">
-        <!-- Floating Blobs -->
-        <div class="floating-shape absolute top-20 left-10 w-64 h-64 bg-cyber-cyan rounded-full blur-3xl"></div>
-        <div class="floating-shape absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple rounded-full blur-3xl"></div>
-        <div class="floating-shape absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink rounded-full blur-3xl"></div>
-        
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up">
-                About Me
-            </h1>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                Passionate about creating digital experiences that make a difference
-            </p>
+    <!-- Social Sidebar -->
+    <div class="social-sidebar">
+        <a href="https://github.com/Mathiyass" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://x.com/Mathiya" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.facebook.com/mathisha.angirasa/" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/mathi_ya_/" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://steamcommunity.com/profiles/76561199076879396/" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-steam"></i>
+        </a>
+        <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" class="social-icon" target="_blank" rel="noopener">
+            <i class="fas fa-gamepad"></i>
+        </a>
+        <a href="https://discord.gg/QERP5JJM8k" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-spotify"></i>
+        </a>
+        <a href="https://wa.me/94715921984" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <div class="social-icon" title="EA ID: M_MATHIYA_M">
+            <i class="fas fa-headset"></i>
         </div>
-    </section>
+    </div>
 
-    <!-- Main About Content -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
-                <!-- About Text -->
-                <div data-aos="fade-right">
-                    <h2 class="text-3xl font-bold font-orbitron mb-6 gradient-text">My Story</h2>
-                    <div class="space-y-6 text-gray-300">
-                        <p class="text-lg leading-relaxed">
-                            I'm a passionate Software Engineering student at the University of Birmingham with a deep love for creating 
-                            beautiful, functional digital experiences. My journey in tech started with curiosity about how 
-                            websites work, and it has evolved into a comprehensive skill set spanning full-stack development.
-                        </p>
-                        <p class="text-lg leading-relaxed">
-                            I specialize in modern web technologies including React, Node.js, and Tailwind CSS. 
-                            What sets me apart is my ability to bridge the gap between technical implementation 
-                            and user-centered design, ensuring that every project I work on is both functional and beautiful.
-                        </p>
-                        <p class="text-lg leading-relaxed">
-                            When I'm not coding, you'll find me gaming, exploring new audio technologies, or discovering 
-                            innovative ways to push the boundaries of what's possible in digital experiences.
-                        </p>
-                    </div>
-                </div>
+    <main class="pt-24">
+        <!-- About Section -->
+        <section id="about" class="py-20 glass">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold font-mono text-center mb-16 gradient-text" data-aos="fade-up">
+                    About Me
+                </h2>
                 
-                <!-- Profile Image -->
-                <div data-aos="fade-left" class="text-center">
-                    <div class="relative inline-block">
-                        <div class="w-80 h-80 rounded-2xl glass p-8 animate-glow-pulse">
-                            <div class="w-full h-full rounded-xl bg-gradient-to-br from-cyber-cyan to-cyber-purple flex items-center justify-center">
-                                <i class="fas fa-user text-8xl text-black"></i>
-                            </div>
-                        </div>
-                        <!-- Floating Elements -->
-                        <div class="absolute -top-4 -right-4 w-8 h-8 bg-cyber-cyan rounded-full animate-float"></div>
-                        <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-cyber-purple rounded-full animate-float" style="animation-delay: -2s;"></div>
-                        <div class="absolute top-1/2 -left-8 w-4 h-4 bg-neon-pink rounded-full animate-float" style="animation-delay: -1s;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="py-20 glass">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Stat Card 1 -->
-                <div class="text-center" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="text-4xl mb-4">
-                        <i class="fas fa-calendar-alt text-cyber-cyan"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold font-orbitron mb-2 counter gradient-text" data-target="3">0</h3>
-                    <p class="text-gray-400">Years Experience</p>
-                </div>
-                
-                <!-- Stat Card 2 -->
-                <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="text-4xl mb-4">
-                        <i class="fas fa-code text-cyber-purple"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold font-orbitron mb-2 counter gradient-text" data-target="50">0</h3>
-                    <p class="text-gray-400">Projects Completed</p>
-                </div>
-                
-                <!-- Stat Card 3 -->
-                <div class="text-center" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="text-4xl mb-4">
-                        <i class="fas fa-tools text-neon-pink"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold font-orbitron mb-2 counter gradient-text" data-target="15">0</h3>
-                    <p class="text-gray-400">Technologies</p>
-                </div>
-                
-                <!-- Stat Card 4 -->
-                <div class="text-center" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="text-4xl mb-4">
-                        <i class="fas fa-coffee text-electric-blue"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold font-orbitron mb-2 counter gradient-text" data-target="1000">0</h3>
-                    <p class="text-gray-400">Cups of Coffee</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
-                Technical Skills
-            </h2>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Frontend Skills -->
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <!-- Bio -->
                     <div data-aos="fade-right">
-                        <h3 class="text-2xl font-bold font-orbitron mb-8 text-cyber-cyan">Frontend</h3>
-                        <div class="space-y-6">
-                            <div class="skill-item">
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-orbitron text-white">JavaScript</span>
-                                    <span class="text-gray-400">90%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar h-3 rounded-full" style="--skill-width: 90%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="skill-item">
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-orbitron text-white">React</span>
-                                    <span class="text-gray-400">85%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar h-3 rounded-full" style="--skill-width: 85%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="skill-item">
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-orbitron text-white">Tailwind CSS</span>
-                                    <span class="text-gray-400">95%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar h-3 rounded-full" style="--skill-width: 95%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="skill-item">
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-orbitron text-white">HTML/CSS</span>
-                                    <span class="text-gray-400">98%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar h-3 rounded-full" style="--skill-width: 98%"></div>
-                                </div>
+                        <h3 class="text-2xl font-bold text-dracula-purple mb-6">Who Am I?</h3>
+                        <div class="space-y-4 text-dracula-comment">
+                            <p>
+                                I'm a passionate Software Engineering student based in Colombo, Sri Lanka, with a deep love for 
+                                creating beautiful, functional digital experiences. My journey in tech started with curiosity 
+                                about how games work, and it has evolved into a comprehensive skill set spanning full-stack development.
+                            </p>
+                            <p>
+                                When I'm not coding, you'll find me dominating in CS2, exploring the latest in tech, or 
+                                fine-tuning my setup for that perfect 200FPS gaming experience. I believe in the power of 
+                                clean code, immersive UIs, and the Dracula theme (obviously).
+                            </p>
+                        </div>
+                        
+                        <!-- Tech Stack -->
+                        <div class="mt-8">
+                            <h4 class="text-xl font-bold text-dracula-cyan mb-4">Current Tech Stack</h4>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-3 py-1 bg-dracula-current text-dracula-foreground rounded-full text-sm">HTML5</span>
+                                <span class="px-3 py-1 bg-dracula-current text-dracula-foreground rounded-full text-sm">CSS3</span>
+                                <span class="px-3 py-1 bg-dracula-current text-dracula-foreground rounded-full text-sm">JavaScript</span>
+                                <span class="px-3 py-1 bg-dracula-current text-dracula-foreground rounded-full text-sm">Java</span>
+                                <span class="px-3 py-1 bg-dracula-current text-dracula-foreground rounded-full text-sm">Unreal Engine</span>
+                                <span class="px-3 py-1 bg-dracula-current text-dracula-foreground rounded-full text-sm">Git</span>
+                                <span class="px-3 py-1 bg-dracula-current text-dracula-foreground rounded-full text-sm">Fedora</span>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Backend Skills -->
+                    <!-- Setup & Stats -->
                     <div data-aos="fade-left">
-                        <h3 class="text-2xl font-bold font-orbitron mb-8 text-cyber-purple">Backend</h3>
-                        <div class="space-y-6">
-                            <div class="skill-item">
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-orbitron text-white">Python</span>
-                                    <span class="text-gray-400">88%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar h-3 rounded-full" style="--skill-width: 88%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="skill-item">
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-orbitron text-white">Node.js</span>
-                                    <span class="text-gray-400">82%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar h-3 rounded-full" style="--skill-width: 82%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="skill-item">
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-orbitron text-white">MongoDB</span>
-                                    <span class="text-gray-400">75%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar h-3 rounded-full" style="--skill-width: 75%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="skill-item">
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-orbitron text-white">Git</span>
-                                    <span class="text-gray-400">92%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar h-3 rounded-full" style="--skill-width: 92%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="py-20 glass">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
-                My Journey
-            </h2>
-            
-            <div class="max-w-4xl mx-auto">
-                <!-- Timeline Container -->
-                <div class="relative">
-                    <!-- Timeline Line -->
-                    <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full timeline-line"></div>
-                    
-                    <!-- Timeline Items -->
-                    <div class="space-y-12">
-                        <!-- Timeline Item 1 -->
-                        <div class="timeline-item relative flex items-center" data-aos="fade-right">
-                            <div class="flex-1 pr-8 text-right">
-                                <div class="glass p-6 rounded-lg">
-                                    <h3 class="text-xl font-bold font-orbitron text-cyber-cyan mb-2">Started at University of Birmingham</h3>
-                                    <p class="text-gray-400 mb-2">2022</p>
-                                    <p class="text-gray-300">Began my Software Engineering journey, diving deep into computer science fundamentals and modern development practices.</p>
-                                </div>
-                            </div>
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-cyber-cyan rounded-full border-4 border-dark-bg"></div>
-                            <div class="flex-1 pl-8"></div>
-                        </div>
-                        
-                        <!-- Timeline Item 2 -->
-                        <div class="timeline-item relative flex items-center" data-aos="fade-left">
-                            <div class="flex-1 pr-8"></div>
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-cyber-purple rounded-full border-4 border-dark-bg"></div>
-                            <div class="flex-1 pl-8">
-                                <div class="glass p-6 rounded-lg">
-                                    <h3 class="text-xl font-bold font-orbitron text-cyber-purple mb-2">First Full-Stack Project</h3>
-                                    <p class="text-gray-400 mb-2">2023</p>
-                                    <p class="text-gray-300">Developed my first complete web application using React and Node.js. Learned about databases, APIs, and deployment.</p>
-                                </div>
+                        <div class="glass p-6 rounded-lg mb-6">
+                            <h4 class="text-xl font-bold text-dracula-green mb-4">🖥️ My Setup</h4>
+                            <div class="space-y-2 text-dracula-comment font-mono text-sm">
+                                <div>CPU: AMD Ryzen 7 5800X</div>
+                                <div>GPU: NVIDIA RTX 3090</div>
+                                <div>PSU: 850W Modular</div>
+                                <div>Cooling: 240mm AIO</div>
+                                <div>OS: Fedora Linux</div>
+                                <div>Monitor: 200FPS Gaming</div>
                             </div>
                         </div>
                         
-                        <!-- Timeline Item 3 -->
-                        <div class="timeline-item relative flex items-center" data-aos="fade-right">
-                            <div class="flex-1 pr-8 text-right">
-                                <div class="glass p-6 rounded-lg">
-                                    <h3 class="text-xl font-bold font-orbitron text-neon-pink mb-2">Advanced Specialization</h3>
-                                    <p class="text-gray-400 mb-2">2024</p>
-                                    <p class="text-gray-300">Specialized in modern frameworks and UI/UX design. Started contributing to open-source projects and building my portfolio.</p>
+                        <div class="glass p-6 rounded-lg">
+                            <h4 class="text-xl font-bold text-dracula-pink mb-4">📊 Quick Stats</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-dracula-comment">Coffee Consumed</span>
+                                    <span class="text-dracula-yellow">∞ cups</span>
                                 </div>
-                            </div>
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-neon-pink rounded-full border-4 border-dark-bg"></div>
-                            <div class="flex-1 pl-8"></div>
-                        </div>
-                        
-                        <!-- Timeline Item 4 -->
-                        <div class="timeline-item relative flex items-center" data-aos="fade-left">
-                            <div class="flex-1 pr-8"></div>
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-electric-blue rounded-full border-4 border-dark-bg"></div>
-                            <div class="flex-1 pl-8">
-                                <div class="glass p-6 rounded-lg">
-                                    <h3 class="text-xl font-bold font-orbitron text-electric-blue mb-2">Current Focus</h3>
-                                    <p class="text-gray-400 mb-2">Present</p>
-                                    <p class="text-gray-300">Building scalable applications and exploring new technologies. Preparing for a career in full-stack development.</p>
+                                <div class="flex justify-between">
+                                    <span class="text-dracula-comment">Lines of Code</span>
+                                    <span class="text-dracula-green">50,000+</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-dracula-comment">CS2 Rank</span>
+                                    <span class="text-dracula-purple">Clutch Master</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-dracula-comment">Favorite Theme</span>
+                                    <span class="text-dracula-cyan">Dracula 🧛‍♂️</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Interests Section -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
-                Beyond Coding
-            </h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Gaming -->
-                <div class="text-center glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-cyber-cyan to-cyber-purple flex items-center justify-center">
-                        <i class="fas fa-gamepad text-2xl text-black"></i>
-                    </div>
-                    <h3 class="text-xl font-bold font-orbitron mb-4 text-cyber-cyan">Gaming</h3>
-                    <p class="text-gray-400">Passionate gamer exploring virtual worlds and competitive gaming. Love strategy games and immersive RPGs.</p>
-                </div>
-                
-                <!-- Audio Technology -->
-                <div class="text-center glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-cyber-purple to-neon-pink flex items-center justify-center">
-                        <i class="fas fa-headphones text-2xl text-black"></i>
-                    </div>
-                    <h3 class="text-xl font-bold font-orbitron mb-4 text-cyber-purple">Audio Tech</h3>
-                    <p class="text-gray-400">Exploring high-quality audio setups and sound engineering. Music is my inspiration and motivation.</p>
-                </div>
-                
-                <!-- Innovation -->
-                <div class="text-center glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-neon-pink to-electric-blue flex items-center justify-center">
-                        <i class="fas fa-lightbulb text-2xl text-black"></i>
-                    </div>
-                    <h3 class="text-xl font-bold font-orbitron mb-4 text-neon-pink">Innovation</h3>
-                    <p class="text-gray-400">Always exploring new technologies and pushing the boundaries of what's possible in digital experiences.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="py-20 glass">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold font-orbitron mb-8 gradient-text" data-aos="fade-up">
-                Let's Work Together
-            </h2>
-            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                I'm always excited to take on new challenges and create amazing digital experiences.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-                <a href="contact.html" class="neon-btn px-8 py-4 text-black font-semibold rounded-full font-orbitron">
-                    Get In Touch
-                </a>
-                <a href="projects.html" class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-full hover:bg-cyber-cyan hover:text-black transition-all duration-300 font-orbitron">
-                    View My Work
-                </a>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-gray-800">
+    <footer class="py-12 border-t border-dracula-current">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
-                    <p class="text-gray-400">© 2024 Mathiya Angirasa. All rights reserved.</p>
+                    <div class="text-2xl font-bold font-mono gradient-text mb-2">MATHIYA</div>
+                    <p class="text-dracula-comment">© <span id="current-year">2024</span> Mathiya Angirasa. All rights reserved.</p>
                 </div>
                 
                 <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                    <a href="https://github.com/Mathiyass" class="text-2xl text-dracula-comment hover:text-dracula-purple transition-colors" target="_blank" rel="noopener">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-dracula-comment hover:text-dracula-purple transition-colors" target="_blank" rel="noopener">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                    <a href="https://x.com/Mathiya" class="text-2xl text-dracula-comment hover:text-dracula-purple transition-colors" target="_blank" rel="noopener">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-dracula-comment hover:text-dracula-purple transition-colors" target="_blank" rel="noopener">
                         <i class="fab fa-discord"></i>
                     </a>
                 </div>
@@ -642,155 +523,13 @@
         </div>
     </footer>
 
-    <!-- Scroll to Top -->
-    <button class="scroll-to-top" id="scroll-to-top">
-        <i class="fas fa-chevron-up text-black"></i>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i>
     </button>
 
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100,
-        });
-
-        // Custom Cursor
-        const cursor = document.getElementById('custom-cursor');
-        const cursorDot = document.getElementById('cursor-dot');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            setTimeout(() => {
-                cursorDot.style.left = e.clientX + 'px';
-                cursorDot.style.top = e.clientY + 'px';
-            }, 50);
-        });
-        
-        // Cursor hover effects
-        const hoverElements = document.querySelectorAll('a, button, .glass');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('cursor-hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('cursor-hover');
-            });
-        });
-
-        // Mobile Menu
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenu = document.getElementById('close-menu');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-        });
-        
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-        });
-        
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-        });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const increment = target / 100;
-                let current = 0;
-                
-                const updateCounter = () => {
-                    if (current < target) {
-                        current += increment;
-                        counter.textContent = Math.ceil(current);
-                        setTimeout(updateCounter, 20);
-                    } else {
-                        counter.textContent = target;
-                    }
-                };
-                
-                updateCounter();
-            });
-        }
-
-        // Skills Animation
-        function animateSkills() {
-            const skillBars = document.querySelectorAll('.skill-bar');
-            skillBars.forEach((bar, index) => {
-                setTimeout(() => {
-                    bar.classList.add('animate');
-                }, index * 200);
-            });
-        }
-
-        // Timeline Animation
-        function animateTimeline() {
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            timelineItems.forEach((item, index) => {
-                setTimeout(() => {
-                    item.classList.add('animate');
-                }, index * 300);
-            });
-        }
-
-        // Intersection Observer for animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (entry.target.querySelector('.counter')) {
-                        animateCounters();
-                    }
-                    if (entry.target.querySelector('.skill-bar')) {
-                        animateSkills();
-                    }
-                    if (entry.target.querySelector('.timeline-item')) {
-                        animateTimeline();
-                    }
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        // Observe sections
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Scroll Progress
-        window.addEventListener('scroll', () => {
-            const scrollProgress = document.getElementById('scroll-progress');
-            const scrollToTop = document.getElementById('scroll-to-top');
-            
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            
-            scrollProgress.style.width = scrollPercent + '%';
-            
-            // Show/hide scroll to top button
-            if (scrollTop > 300) {
-                scrollToTop.classList.add('visible');
-            } else {
-                scrollToTop.classList.remove('visible');
-            }
-        });
-        
-        // Scroll to Top
-        document.getElementById('scroll-to-top').addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="loader.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
