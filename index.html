@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathiya Angirasa - Software Engineering Student | Premium Portfolio</title>
-    <meta name="description" content="Mathiya Angirasa - Software Engineering Student at University of Birmingham. Crafting immersive and high-performance web experiences with passion and pixel-perfect precision.">
+    <title>Mathiya Angirasa | Software Engineering Student & Tech Enthusiast</title>
+    <meta name="description" content="Mathiya Angirasa - Software Engineering Student from Colombo, Sri Lanka. Passionate about modern web technologies, gaming, and creating immersive digital experiences.">
     
-    <!-- SEO Meta Tags -->
-    <meta property="og:title" content="Mathiya Angirasa - Premium Portfolio">
-    <meta property="og:description" content="Software Engineering Student crafting immersive web experiences">
+    <!-- SEO and Social Media Meta Tags -->
+    <meta property="og:title" content="Mathiya Angirasa | Software Engineering Student">
+    <meta property="og:description" content="Software Engineering Student by day, CS2 clutch master by night ⚡">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mathiyass.github.io/MAportfolio">
+    <meta property="og:url" content="https://mathiyass.github.io">
+    <meta property="og:image" content="https://mathiyass.github.io/assets/og-image.jpg">
+    
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@Mathiya">
+    <meta name="twitter:title" content="Mathiya Angirasa | Software Engineering Student">
+    <meta name="twitter:description" content="Software Engineering Student by day, CS2 clutch master by night ⚡">
+    <meta name="twitter:image" content="https://mathiyass.github.io/assets/og-image.jpg">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300F0FF'>M</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23bd93f9'>M</text></svg>">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -27,11 +31,11 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <!-- Typed.js for typing animations -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
     <script>
         tailwind.config = {
@@ -39,69 +43,72 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'orbitron': ['Orbitron', 'monospace'],
-                        'inter': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
+                        'sans': ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        'cyber-cyan': '#00F0FF',
-                        'cyber-purple': '#8A2BE2',
-                        'neon-pink': '#FF10F0',
-                        'electric-blue': '#0080FF',
-                        'dark-bg': '#0a0a0a',
-                        'dark-card': '#1a1a2e',
-                        'dark-accent': '#16213e',
+                        'dracula': {
+                            'bg': '#282a36',
+                            'current': '#44475a',
+                            'foreground': '#f8f8f2',
+                            'comment': '#6272a4',
+                            'cyan': '#8be9fd',
+                            'green': '#50fa7b',
+                            'orange': '#ffb86c',
+                            'pink': '#ff79c6',
+                            'purple': '#bd93f9',
+                            'red': '#ff5555',
+                            'yellow': '#f1fa8c',
+                        },
+                        'neon': {
+                            'blue': '#00f5ff',
+                            'purple': '#bf00ff',
+                            'pink': '#ff0080',
+                            'green': '#00ff41',
+                        }
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
-                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
-                        'signature-draw': 'signatureDraw 3s ease-out forwards',
-                        'loading-bar': 'loadingBar 5s ease-out forwards',
-                        'particle-float': 'particleFloat 20s linear infinite',
-                        'cursor-trail': 'cursorTrail 0.5s ease-out forwards',
-                        'text-glow': 'textGlow 2s ease-in-out infinite alternate',
-                        'card-hover': 'cardHover 0.3s ease-out forwards',
-                        'bounce-slow': 'bounce 3s infinite',
-                        'spin-slow': 'spin 8s linear infinite',
-                        'pulse-ring': 'pulseRing 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'typing': 'typing 3.5s steps(40, end)',
+                        'blink': 'blink 1s infinite',
+                        'fadeInUp': 'fadeInUp 0.8s ease-out',
+                        'slideInLeft': 'slideInLeft 0.8s ease-out',
+                        'slideInRight': 'slideInRight 0.8s ease-out',
+                        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         'float': {
-                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
                         },
-                        'glowPulse': {
-                            '0%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.5)' },
-                            '100%': { boxShadow: '0 0 40px rgba(0, 240, 255, 1), 0 0 60px rgba(138, 43, 226, 0.5)' },
+                        'glow': {
+                            '0%': { boxShadow: '0 0 20px rgba(189, 147, 249, 0.5)' },
+                            '100%': { boxShadow: '0 0 40px rgba(189, 147, 249, 1), 0 0 60px rgba(255, 121, 198, 0.5)' },
                         },
-                        'signatureDraw': {
-                            '0%': { strokeDashoffset: '2000' },
-                            '100%': { strokeDashoffset: '0' },
+                        'typing': {
+                            'from': { width: '0' },
+                            'to': { width: '100%' },
                         },
-                        'loadingBar': {
-                            '0%': { width: '0%' },
-                            '100%': { width: '100%' },
+                        'blink': {
+                            '0%, 50%': { opacity: '1' },
+                            '51%, 100%': { opacity: '0' },
                         },
-                        'particleFloat': {
-                            '0%': { transform: 'translateY(100vh) translateX(0px)', opacity: '0' },
-                            '10%': { opacity: '1' },
-                            '90%': { opacity: '1' },
-                            '100%': { transform: 'translateY(-100vh) translateX(100px)', opacity: '0' },
+                        'fadeInUp': {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
                         },
-                        'cursorTrail': {
-                            '0%': { transform: 'scale(1)', opacity: '1' },
-                            '100%': { transform: 'scale(2)', opacity: '0' },
+                        'slideInLeft': {
+                            '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
                         },
-                        'textGlow': {
-                            '0%': { textShadow: '0 0 10px rgba(0, 240, 255, 0.5)' },
-                            '100%': { textShadow: '0 0 20px rgba(0, 240, 255, 1), 0 0 30px rgba(138, 43, 226, 0.5)' },
+                        'slideInRight': {
+                            '0%': { opacity: '0', transform: 'translateX(30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
                         },
-                        'cardHover': {
-                            '0%': { transform: 'translateY(0) scale(1)' },
-                            '100%': { transform: 'translateY(-10px) scale(1.02)' },
-                        },
-                        'pulseRing': {
-                            '0%': { transform: 'scale(0.33)' },
-                            '80%, 100%': { opacity: '0' },
+                        'pulse-glow': {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(189, 147, 249, 0.4)' },
+                            '50%': { boxShadow: '0 0 40px rgba(189, 147, 249, 0.8), 0 0 60px rgba(255, 121, 198, 0.3)' },
                         },
                     },
                 }
@@ -112,13 +119,7 @@
     <style>
         body { 
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             cursor: none;
-            overflow: hidden;
-        }
-        
-        body.loaded {
-            overflow: auto;
         }
         
         /* Custom Cursor */
@@ -126,7 +127,7 @@
             position: fixed;
             width: 20px;
             height: 20px;
-            border: 2px solid #00F0FF;
+            border: 2px solid #bd93f9;
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
@@ -138,209 +139,99 @@
             position: fixed;
             width: 4px;
             height: 4px;
-            background: #00F0FF;
+            background: #bd93f9;
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transition: all 0.15s ease;
         }
         
-        .cursor-trail {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background: rgba(0, 240, 255, 0.6);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9997;
-            animation: cursor-trail 0.5s ease-out forwards;
-        }
-        
         .cursor-hover {
             transform: scale(2);
-            background: rgba(0, 240, 255, 0.2);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
-        }
-        
-        /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            transition: opacity 1s ease-out;
-        }
-        
-        .loading-screen.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        /* Signature Animation */
-        .signature-svg {
-            width: 600px;
-            height: 200px;
-            margin-bottom: 3rem;
-        }
-        
-        @media (max-width: 768px) {
-            .signature-svg {
-                width: 400px;
-                height: 150px;
-            }
-        }
-        
-        .signature-path {
-            stroke: url(#signatureGradient);
-            stroke-width: 4;
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            stroke-dasharray: 2000;
-            stroke-dashoffset: 2000;
-            filter: drop-shadow(0 0 10px #00F0FF) drop-shadow(0 0 20px #8A2BE2);
-        }
-        
-        /* Particles */
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: #00F0FF;
-            border-radius: 50%;
-            opacity: 0.7;
-            animation: particle-float 20s linear infinite;
-            box-shadow: 0 0 10px #00F0FF;
-        }
-        
-        .particle:nth-child(even) {
-            background: #8A2BE2;
-            box-shadow: 0 0 10px #8A2BE2;
-            animation-delay: -10s;
-        }
-        
-        .particle:nth-child(3n) {
-            background: #FF10F0;
-            box-shadow: 0 0 10px #FF10F0;
-            animation-delay: -5s;
-        }
-        
-        /* Loading Bar */
-        .loading-bar {
-            width: 0%;
-            transition: width 0.1s ease-out;
-            background: linear-gradient(90deg, #00F0FF, #8A2BE2, #FF10F0);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+            background: rgba(189, 147, 249, 0.2);
         }
         
         /* Glassmorphism */
         .glass {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(40, 42, 54, 0.8);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(189, 147, 249, 0.2);
+        }
+        
+        /* Typing Effect */
+        .typing-container {
+            overflow: hidden;
+            border-right: 3px solid #bd93f9;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink 1s infinite;
         }
         
         /* Gradient Text */
         .gradient-text {
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2, #FF10F0);
+            background: linear-gradient(135deg, #bd93f9, #ff79c6, #8be9fd);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        /* Neon Button */
-        .neon-btn {
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+        /* Neon Glow */
+        .neon-glow {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
         }
         
-        .neon-btn:hover {
-            box-shadow: 0 0 40px rgba(0, 240, 255, 0.8);
-            transform: translateY(-2px);
+        /* Hover Effects */
+        .hover-lift:hover {
+            transform: translateY(-5px);
         }
         
-        .neon-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(189, 147, 249, 0.6);
         }
         
-        .neon-btn:hover::before {
-            left: 100%;
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
         
-        /* Floating Shapes */
-        .floating-shape {
-            position: absolute;
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
+        ::-webkit-scrollbar-track {
+            background: #282a36;
         }
         
-        .floating-shape:nth-child(2) { animation-delay: -2s; }
-        .floating-shape:nth-child(3) { animation-delay: -4s; }
+        ::-webkit-scrollbar-thumb {
+            background: #bd93f9;
+            border-radius: 4px;
+        }
         
-        /* Social Icons */
-        .social-icon {
-            transition: all 0.3s ease;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff79c6;
+        }
+        
+        /* Loading Animation */
+        .loading-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #bd93f9;
+            text-align: center;
             position: relative;
         }
         
-        .social-icon:hover {
-            transform: translateY(-5px) scale(1.1);
-        }
-        
-        .social-icon::before {
+        .loading-text::after {
             content: '';
             position: absolute;
-            inset: -2px;
-            background: linear-gradient(45deg, #00F0FF, #8A2BE2, #FF10F0);
-            border-radius: 50%;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, #bd93f9, #ff79c6);
+            border-radius: 2px;
+            animation: loading-progress 3s ease-out;
         }
         
-        .social-icon:hover::before {
-            opacity: 1;
-        }
-        
-        /* Theme Toggle */
-        .theme-toggle {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 1000;
-            background: rgba(0, 240, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .theme-toggle:hover {
-            background: rgba(0, 240, 255, 0.2);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+        @keyframes loading-progress {
+            0% { width: 0; }
+            100% { width: 200px; }
         }
         
         /* Mobile Menu */
@@ -353,216 +244,173 @@
             transform: translateX(0);
         }
         
-        /* Scroll Progress */
-        .scroll-progress {
+        /* Social Sidebar */
+        .social-sidebar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(40, 42, 54, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(189, 147, 249, 0.3);
+            border-radius: 50%;
+            color: #bd93f9;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.1);
+            background: rgba(189, 147, 249, 0.2);
+            box-shadow: 0 0 20px rgba(189, 147, 249, 0.5);
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
             position: fixed;
             top: 0;
             left: 0;
             width: 0%;
             height: 3px;
-            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
+            background: linear-gradient(90deg, #bd93f9, #ff79c6);
             z-index: 9999;
             transition: width 0.3s ease;
         }
         
-        /* Page Transitions */
-        .page-transition {
+        /* Particles */
+        #particles-js {
             position: fixed;
+            width: 100%;
+            height: 100%;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
-            z-index: 9998;
-            transform: translateX(-100%);
-            transition: transform 0.5s ease;
+            z-index: -1;
         }
         
-        .page-transition.active {
-            transform: translateX(0);
-        }
-        
-        /* Typing Animation */
-        .typed-cursor {
-            color: #00F0FF;
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-        
-        /* Project Cards */
-        .project-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.2);
-        }
-        
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1), transparent);
-            transition: left 0.5s;
-        }
-        
-        .project-card:hover::before {
-            left: 100%;
-        }
-        
-        /* Skills Animation */
-        .skill-bar {
-            width: 0%;
-            transition: width 2s ease-out;
-            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-        }
-        
-        .skill-bar.animate {
-            width: var(--skill-width);
-        }
-        
-        /* Contact Form */
-        .form-input {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .form-input:focus {
-            border-color: #00F0FF;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Scroll to Top */
-        .scroll-to-top {
+        /* Back to Top */
+        .back-to-top {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
+            bottom: 30px;
+            right: 30px;
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            background: rgba(189, 147, 249, 0.9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: #282a36;
             opacity: 0;
-            visibility: hidden;
+            pointer-events: none;
             transition: all 0.3s ease;
             z-index: 1000;
-            cursor: pointer;
         }
         
-        .scroll-to-top.visible {
+        .back-to-top.visible {
             opacity: 1;
-            visibility: visible;
+            pointer-events: auto;
         }
         
-        .scroll-to-top:hover {
+        .back-to-top:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(189, 147, 249, 0.5);
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(40, 42, 54, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(189, 147, 249, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #bd93f9;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(189, 147, 249, 0.2);
+            box-shadow: 0 0 20px rgba(189, 147, 249, 0.5);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .social-sidebar {
+                display: none;
+            }
+            
+            .loading-text {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 
-<body class="dark text-white">
+<body class="dark bg-dracula-bg text-dracula-foreground overflow-x-hidden">
     <!-- Custom Cursor -->
     <div class="custom-cursor" id="custom-cursor"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
     
-    <!-- Scroll Progress -->
-    <div class="scroll-progress" id="scroll-progress"></div>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
     
-    <!-- Page Transition -->
-    <div class="page-transition" id="page-transition"></div>
-    
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="theme-toggle">
-        <i class="fas fa-moon text-cyber-cyan"></i>
-    </button>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
     
     <!-- Loading Screen -->
-    <div class="loading-screen" id="loading-screen">
-        <!-- Particles Background -->
-        <div class="absolute inset-0 overflow-hidden" id="particles-container"></div>
-        
-        <div class="relative z-10 text-center">
-            <!-- SVG Signature Animation -->
-            <svg class="signature-svg" viewBox="0 0 800 200">
-                <defs>
-                    <linearGradient id="signatureGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:#00F0FF"/>
-                        <stop offset="50%" style="stop-color:#8A2BE2"/>
-                        <stop offset="100%" style="stop-color:#FF10F0"/>
-                    </linearGradient>
-                </defs>
-                <!-- M -->
-                <path class="signature-path" d="M50 150 L50 50 L100 120 L150 50 L150 150" id="letter-m"/>
-                <!-- A -->
-                <path class="signature-path" d="M180 150 L210 50 L240 150 M195 110 L225 110" id="letter-a"/>
-                <!-- T -->
-                <path class="signature-path" d="M270 50 L340 50 M305 50 L305 150" id="letter-t"/>
-                <!-- H -->
-                <path class="signature-path" d="M370 50 L370 150 M370 100 L440 100 M440 50 L440 150" id="letter-h"/>
-                <!-- I -->
-                <path class="signature-path" d="M470 50 L510 50 M490 50 L490 150 M470 150 L510 150" id="letter-i"/>
-                <!-- Y -->
-                <path class="signature-path" d="M540 50 L570 100 L600 50 M570 100 L570 150" id="letter-y"/>
-                <!-- A -->
-                <path class="signature-path" d="M630 150 L660 50 L690 150 M645 110 L675 110" id="letter-a2"/>
-            </svg>
-            
-            <!-- Greeting Text -->
-            <div class="mb-8">
-                <p class="text-cyber-cyan text-2xl font-orbitron animate-text-glow">
-                    Hi, I'm Mathiya
-                </p>
-            </div>
-            
-            <!-- Loading Bar -->
-            <div class="w-80 h-2 bg-gray-800 rounded-full mx-auto overflow-hidden">
-                <div class="loading-bar h-full rounded-full" id="loading-bar"></div>
-            </div>
-            
-            <!-- Percentage -->
-            <div class="mt-4">
-                <span class="text-cyber-cyan font-orbitron text-lg" id="loading-percentage">0%</span>
-            </div>
+    <div id="loading-screen" class="fixed inset-0 bg-dracula-bg flex items-center justify-center z-50">
+        <div class="text-center">
+            <div class="loading-text" id="loading-text">MATHIYA</div>
+            <div class="mt-8 text-dracula-comment font-mono">Initializing portfolio...</div>
         </div>
     </div>
     
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
+    <nav class="fixed top-0 w-full z-40 glass transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <div class="text-2xl font-bold font-orbitron gradient-text">
+                <div class="text-2xl font-bold font-mono gradient-text">
                     MATHIYA
                 </div>
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-cyber-cyan font-medium hover:text-white transition-colors">Home</a>
-                    <a href="#about" class="nav-link hover:text-cyber-cyan transition-colors">About</a>
-                    <a href="#projects" class="nav-link hover:text-cyber-cyan transition-colors">Projects</a>
-                    <a href="#resume" class="nav-link hover:text-cyber-cyan transition-colors">Resume</a>
-                    <a href="#contact" class="nav-link hover:text-cyber-cyan transition-colors">Contact</a>
+                    <a href="#home" class="nav-link hover:text-dracula-purple transition-colors">Home</a>
+                    <a href="#about" class="nav-link hover:text-dracula-purple transition-colors">About</a>
+                    <a href="#projects" class="nav-link hover:text-dracula-purple transition-colors">Projects</a>
+                    <a href="#gallery" class="nav-link hover:text-dracula-purple transition-colors">Gallery</a>
+                    <a href="#contact" class="nav-link hover:text-dracula-purple transition-colors">Contact</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
-                    <i class="fas fa-bars text-cyber-cyan"></i>
+                    <i class="fas fa-bars text-dracula-purple"></i>
                 </button>
             </div>
         </div>
@@ -570,183 +418,161 @@
         <!-- Mobile Menu -->
         <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
             <div class="p-6">
-                <button id="close-menu" class="float-right text-2xl text-cyber-cyan">
+                <button id="close-menu" class="float-right text-2xl text-dracula-purple">
                     <i class="fas fa-times"></i>
                 </button>
                 <div class="clear-both mt-8 space-y-6">
-                    <a href="#home" class="block text-xl font-orbitron text-cyber-cyan mobile-nav-link">Home</a>
-                    <a href="#about" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">About</a>
-                    <a href="#projects" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Projects</a>
-                    <a href="#resume" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Resume</a>
-                    <a href="#contact" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Contact</a>
+                    <a href="#home" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">Home</a>
+                    <a href="#about" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">About</a>
+                    <a href="#projects" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">Projects</a>
+                    <a href="#gallery" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">Gallery</a>
+                    <a href="#contact" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
-    
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
-        <!-- Animated Background Shapes -->
-        <div class="floating-shape absolute top-20 left-10 w-64 h-64 bg-cyber-cyan rounded-full blur-3xl"></div>
-        <div class="floating-shape absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple rounded-full blur-3xl"></div>
-        <div class="floating-shape absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink rounded-full blur-3xl"></div>
-        
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <!-- Main Heading -->
-            <div class="mb-8" data-aos="fade-down" data-aos-duration="1000">
-                <h1 class="text-6xl md:text-8xl font-bold font-orbitron mb-6 gradient-text">
-                    MATHIYA ANGIRASA
+
+    <!-- Social Sidebar -->
+    <div class="social-sidebar">
+        <a href="https://github.com/Mathiyass" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://x.com/Mathiya" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.facebook.com/mathisha.angirasa/" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/mathi_ya_/" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://steamcommunity.com/profiles/76561199076879396/" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-steam"></i>
+        </a>
+        <a href="https://discord.gg/QERP5JJM8k" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-spotify"></i>
+        </a>
+        <a href="https://wa.me/94715921984" class="social-icon" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-8" data-aos="fade-up">
+                <h1 class="text-6xl md:text-8xl font-bold font-mono gradient-text mb-4 neon-glow">
+                    MATHIYA
                 </h1>
-                <div class="text-2xl md:text-3xl text-gray-300 mb-4">
-                    <span id="typed-text"></span>
+                <div class="text-xl md:text-2xl text-dracula-comment font-mono mb-8">
+                    <span id="typing-text" class="typing-container"></span>
                 </div>
             </div>
             
-            <!-- Subtitle -->
-            <p class="text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed" data-aos="fade-up" data-aos-delay="1000">
-                Crafting immersive and high-performance web experiences with passion and pixel-perfect precision.
-            </p>
-            
-            <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16" data-aos="fade-up" data-aos-delay="1500">
-                <button class="neon-btn px-8 py-4 text-black font-semibold rounded-full font-orbitron">
-                    <i class="fas fa-download mr-2"></i>
-                    Download CV
-                </button>
-                <button class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-full hover:bg-cyber-cyan hover:text-black transition-all duration-300 font-orbitron">
-                    <i class="fas fa-envelope mr-2"></i>
-                    Contact Me
-                </button>
-                <button class="px-8 py-4 border-2 border-cyber-purple text-cyber-purple font-semibold rounded-full hover:bg-cyber-purple hover:text-white transition-all duration-300 font-orbitron">
-                    <i class="fas fa-folder-open mr-2"></i>
-                    View Projects
-                </button>
-            </div>
-            
-            <!-- Social Media Icons -->
-            <div class="flex justify-center flex-wrap gap-4" data-aos="fade-up" data-aos-delay="2000">
-                <a href="https://github.com/Mathiyass" class="social-icon w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-cyber-cyan transition-all duration-300" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="social-icon w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-cyber-cyan transition-all duration-300" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://x.com/Mathiya" class="social-icon w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-cyber-cyan transition-all duration-300" title="X (Twitter)">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://www.facebook.com/mathisha.angirasa/" class="social-icon w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-cyber-cyan transition-all duration-300" title="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://www.instagram.com/mathi_ya_/" class="social-icon w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-cyber-cyan transition-all duration-300" title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://steamcommunity.com/profiles/76561199076879396/" class="social-icon w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-cyber-cyan transition-all duration-300" title="Steam">
-                    <i class="fab fa-steam"></i>
-                </a>
-                <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" class="social-icon w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-cyber-cyan transition-all duration-300" title="Epic Games">
-                    <i class="fas fa-gamepad"></i>
-                </a>
-                <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="social-icon w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-cyber-cyan transition-all duration-300" title="Spotify">
-                    <i class="fab fa-spotify"></i>
-                </a>
-                <a href="https://discord.gg/QERP5JJM8k" class="social-icon w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-cyber-cyan transition-all duration-300" title="Discord">
-                    <i class="fab fa-discord"></i>
-                </a>
-                <a href="https://wa.me/94715921984" class="social-icon w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-cyber-cyan transition-all duration-300" title="WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-            </div>
-            
-            <!-- EA ID Display -->
-            <div class="mt-8" data-aos="fade-up" data-aos-delay="2500">
-                <p class="text-sm text-gray-500">
-                    <i class="fas fa-trophy text-cyber-purple mr-2"></i>
-                    EA ID: <span class="text-cyber-cyan font-orbitron">M_MATHIYA_M</span>
+            <div class="mb-12" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-2xl md:text-3xl text-dracula-foreground mb-4">
+                    Hi, I'm <span class="text-dracula-purple font-bold">Mathiya</span> 👋
+                </p>
+                <p class="text-lg md:text-xl text-dracula-comment max-w-3xl mx-auto">
+                    Software Engineering Student by day, CS2 clutch master by night ⚡
+                    <br>
+                    Crafting immersive digital experiences from Colombo, Sri Lanka 🇱🇰
                 </p>
             </div>
-        </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
-            <i class="fas fa-chevron-down text-cyber-cyan text-2xl"></i>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
+                <a href="#projects" class="px-8 py-4 bg-dracula-purple text-dracula-bg font-semibold rounded-lg hover-lift hover-glow transition-all duration-300">
+                    View My Work
+                </a>
+                <a href="#contact" class="px-8 py-4 border-2 border-dracula-purple text-dracula-purple font-semibold rounded-lg hover:bg-dracula-purple hover:text-dracula-bg hover-lift transition-all duration-300">
+                    Get In Touch
+                </a>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <i class="fas fa-chevron-down text-2xl text-dracula-purple"></i>
+            </div>
         </div>
     </section>
-    
+
     <!-- About Section -->
-    <section id="about" class="py-20 relative">
+    <section id="about" class="py-20 glass">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-6xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold font-mono text-center mb-16 gradient-text" data-aos="fade-up">
                 About Me
             </h2>
             
             <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <!-- Profile Image -->
-                <div class="text-center" data-aos="fade-right">
-                    <div class="relative inline-block">
-                        <div class="w-80 h-80 rounded-full glass p-8 animate-glow-pulse">
-                            <div class="w-full h-full rounded-full bg-gradient-to-br from-cyber-cyan to-cyber-purple flex items-center justify-center">
-                                <i class="fas fa-user text-8xl text-black"></i>
-                            </div>
+                <!-- Bio -->
+                <div data-aos="fade-right">
+                    <h3 class="text-2xl font-bold text-dracula-purple mb-6">Who Am I?</h3>
+                    <div class="space-y-4 text-dracula-comment">
+                        <p>
+                            I'm a passionate Software Engineering student based in Colombo, Sri Lanka, with a deep love for 
+                            creating beautiful, functional digital experiences. My journey in tech started with curiosity 
+                            about how games work, and it has evolved into a comprehensive skill set spanning full-stack development.
+                        </p>
+                        <p>
+                            When I'm not coding, you'll find me dominating in CS2, exploring the latest in tech, or 
+                            fine-tuning my setup for that perfect 200FPS gaming experience. I believe in the power of 
+                            clean code, immersive UIs, and the Dracula theme (obviously).
+                        </p>
+                    </div>
+                    
+                    <!-- Tech Stack -->
+                    <div class="mt-8">
+                        <h4 class="text-xl font-bold text-dracula-cyan mb-4">Current Tech Stack</h4>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-3 py-1 bg-dracula-current text-dracula-foreground rounded-full text-sm">HTML5</span>
+                            <span class="px-3 py-1 bg-dracula-current text-dracula-foreground rounded-full text-sm">CSS3</span>
+                            <span class="px-3 py-1 bg-dracula-current text-dracula-foreground rounded-full text-sm">JavaScript</span>
+                            <span class="px-3 py-1 bg-dracula-current text-dracula-foreground rounded-full text-sm">Java</span>
+                            <span class="px-3 py-1 bg-dracula-current text-dracula-foreground rounded-full text-sm">Unreal Engine</span>
+                            <span class="px-3 py-1 bg-dracula-current text-dracula-foreground rounded-full text-sm">Git</span>
+                            <span class="px-3 py-1 bg-dracula-current text-dracula-foreground rounded-full text-sm">Fedora</span>
                         </div>
-                        <!-- Floating Elements -->
-                        <div class="absolute -top-4 -right-4 w-8 h-8 bg-cyber-cyan rounded-full animate-float"></div>
-                        <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-cyber-purple rounded-full animate-float" style="animation-delay: -2s;"></div>
-                        <div class="absolute top-1/2 -left-8 w-4 h-4 bg-neon-pink rounded-full animate-float" style="animation-delay: -1s;"></div>
                     </div>
                 </div>
                 
-                <!-- About Content -->
+                <!-- Setup & Stats -->
                 <div data-aos="fade-left">
-                    <h3 class="text-2xl font-bold font-orbitron mb-6 text-cyber-cyan">Software Engineering Student</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        I'm a passionate Software Engineering student at the University of Birmingham, dedicated to crafting 
-                        immersive and high-performance web experiences. My journey in technology is driven by an insatiable 
-                        curiosity for innovation and a commitment to pixel-perfect precision.
-                    </p>
-                    <p class="text-gray-300 mb-8 leading-relaxed">
-                        When I'm not coding, you'll find me exploring the latest in gaming technology, fine-tuning audio 
-                        setups, or discovering new ways to push the boundaries of what's possible in digital experiences.
-                    </p>
+                    <div class="glass p-6 rounded-lg mb-6">
+                        <h4 class="text-xl font-bold text-dracula-green mb-4">🖥️ My Setup</h4>
+                        <div class="space-y-2 text-dracula-comment font-mono text-sm">
+                            <div>CPU: AMD Ryzen 7 5800X</div>
+                            <div>GPU: NVIDIA RTX 3090</div>
+                            <div>PSU: 850W Modular</div>
+                            <div>Cooling: 240mm AIO</div>
+                            <div>OS: Fedora Linux</div>
+                            <div>Monitor: 200FPS Gaming</div>
+                        </div>
+                    </div>
                     
-                    <!-- Skills -->
-                    <div class="space-y-4">
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="font-orbitron text-cyber-cyan">JavaScript</span>
-                                <span class="text-gray-400">90%</span>
+                    <div class="glass p-6 rounded-lg">
+                        <h4 class="text-xl font-bold text-dracula-pink mb-4">📊 Quick Stats</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-dracula-comment">Coffee Consumed</span>
+                                <span class="text-dracula-yellow">∞ cups</span>
                             </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar h-2 rounded-full" style="--skill-width: 90%"></div>
+                            <div class="flex justify-between">
+                                <span class="text-dracula-comment">Lines of Code</span>
+                                <span class="text-dracula-green">50,000+</span>
                             </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="font-orbitron text-cyber-purple">Python</span>
-                                <span class="text-gray-400">85%</span>
+                            <div class="flex justify-between">
+                                <span class="text-dracula-comment">CS2 Rank</span>
+                                <span class="text-dracula-purple">Clutch Master</span>
                             </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar h-2 rounded-full" style="--skill-width: 85%"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="font-orbitron text-neon-pink">Tailwind CSS</span>
-                                <span class="text-gray-400">95%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar h-2 rounded-full" style="--skill-width: 95%"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="font-orbitron text-electric-blue">React</span>
-                                <span class="text-gray-400">88%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar h-2 rounded-full" style="--skill-width: 88%"></div>
+                            <div class="flex justify-between">
+                                <span class="text-dracula-comment">Favorite Theme</span>
+                                <span class="text-dracula-cyan">Dracula 🧛‍♂️</span>
                             </div>
                         </div>
                     </div>
@@ -754,192 +580,409 @@
             </div>
         </div>
     </section>
-    
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 glass">
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-6xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
-                Featured Projects
+            <h2 class="text-4xl md:text-5xl font-bold font-mono text-center mb-16 gradient-text" data-aos="fade-up">
+                Skills & Expertise
             </h2>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
-                <div class="project-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <div class="h-48 bg-gradient-to-br from-cyber-cyan to-cyber-purple flex items-center justify-center">
-                        <i class="fas fa-shopping-cart text-4xl text-black"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold font-orbitron mb-3 text-cyber-cyan">E-Commerce Platform</h3>
-                        <p class="text-gray-400 mb-4">
-                            A full-stack e-commerce solution with React, Node.js, and modern payment integration.
-                        </p>
-                        <div class="flex space-x-4">
-                            <button class="text-cyber-cyan hover:text-white transition-colors">
-                                <i class="fas fa-external-link-alt mr-1"></i>
-                                Live Demo
-                            </button>
-                            <button class="text-gray-400 hover:text-white transition-colors">
-                                <i class="fab fa-github mr-1"></i>
-                                Code
-                            </button>
+                <!-- Frontend -->
+                <div class="glass p-6 rounded-lg hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-3xl mb-4">🎨</div>
+                    <h3 class="text-xl font-bold text-dracula-purple mb-4">Frontend</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span>HTML/CSS</span>
+                            <span class="text-dracula-green">95%</span>
+                        </div>
+                        <div class="w-full bg-dracula-current rounded-full h-2">
+                            <div class="bg-dracula-green h-2 rounded-full" style="width: 95%"></div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <span>JavaScript</span>
+                            <span class="text-dracula-yellow">88%</span>
+                        </div>
+                        <div class="w-full bg-dracula-current rounded-full h-2">
+                            <div class="bg-dracula-yellow h-2 rounded-full" style="width: 88%"></div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <span>Responsive Design</span>
+                            <span class="text-dracula-cyan">92%</span>
+                        </div>
+                        <div class="w-full bg-dracula-current rounded-full h-2">
+                            <div class="bg-dracula-cyan h-2 rounded-full" style="width: 92%"></div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Project Card 2 -->
-                <div class="project-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                    <div class="h-48 bg-gradient-to-br from-cyber-purple to-neon-pink flex items-center justify-center">
-                        <i class="fas fa-mobile-alt text-4xl text-black"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold font-orbitron mb-3 text-cyber-purple">Task Manager App</h3>
-                        <p class="text-gray-400 mb-4">
-                            A React Native mobile app with real-time sync and beautiful animations.
-                        </p>
-                        <div class="flex space-x-4">
-                            <button class="text-cyber-purple hover:text-white transition-colors">
-                                <i class="fas fa-external-link-alt mr-1"></i>
-                                Live Demo
-                            </button>
-                            <button class="text-gray-400 hover:text-white transition-colors">
-                                <i class="fab fa-github mr-1"></i>
-                                Code
-                            </button>
+                <!-- Backend -->
+                <div class="glass p-6 rounded-lg hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-3xl mb-4">⚙️</div>
+                    <h3 class="text-xl font-bold text-dracula-cyan mb-4">Backend</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span>Java</span>
+                            <span class="text-dracula-orange">85%</span>
+                        </div>
+                        <div class="w-full bg-dracula-current rounded-full h-2">
+                            <div class="bg-dracula-orange h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <span>Database Design</span>
+                            <span class="text-dracula-purple">78%</span>
+                        </div>
+                        <div class="w-full bg-dracula-current rounded-full h-2">
+                            <div class="bg-dracula-purple h-2 rounded-full" style="width: 78%"></div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <span>API Development</span>
+                            <span class="text-dracula-pink">82%</span>
+                        </div>
+                        <div class="w-full bg-dracula-current rounded-full h-2">
+                            <div class="bg-dracula-pink h-2 rounded-full" style="width: 82%"></div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Project Card 3 -->
-                <div class="project-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                    <div class="h-48 bg-gradient-to-br from-neon-pink to-electric-blue flex items-center justify-center">
-                        <i class="fas fa-gamepad text-4xl text-black"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold font-orbitron mb-3 text-neon-pink">Space Shooter Game</h3>
-                        <p class="text-gray-400 mb-4">
-                            A retro-style space shooter built with JavaScript and HTML5 Canvas.
-                        </p>
-                        <div class="flex space-x-4">
-                            <button class="text-neon-pink hover:text-white transition-colors">
-                                <i class="fas fa-external-link-alt mr-1"></i>
-                                Live Demo
-                            </button>
-                            <button class="text-gray-400 hover:text-white transition-colors">
-                                <i class="fab fa-github mr-1"></i>
-                                Code
-                            </button>
+                <!-- Game Dev -->
+                <div class="glass p-6 rounded-lg hover-glow transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-3xl mb-4">🎮</div>
+                    <h3 class="text-xl font-bold text-dracula-green mb-4">Game Development</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span>Unreal Engine</span>
+                            <span class="text-dracula-red">75%</span>
+                        </div>
+                        <div class="w-full bg-dracula-current rounded-full h-2">
+                            <div class="bg-dracula-red h-2 rounded-full" style="width: 75%"></div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <span>Game Logic</span>
+                            <span class="text-dracula-yellow">80%</span>
+                        </div>
+                        <div class="w-full bg-dracula-current rounded-full h-2">
+                            <div class="bg-dracula-yellow h-2 rounded-full" style="width: 80%"></div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <span>3D Modeling</span>
+                            <span class="text-dracula-cyan">65%</span>
+                        </div>
+                        <div class="w-full bg-dracula-current rounded-full h-2">
+                            <div class="bg-dracula-cyan h-2 rounded-full" style="width: 65%"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Resume Section -->
-    <section id="resume" class="py-20">
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 glass">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-6xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
-                Resume
+            <h2 class="text-4xl md:text-5xl font-bold font-mono text-center mb-16 gradient-text" data-aos="fade-up">
+                Featured Projects
             </h2>
             
-            <div class="max-w-4xl mx-auto">
-                <!-- Education -->
-                <div class="mb-12" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-2xl font-bold font-orbitron mb-8 text-cyber-cyan">Education</h3>
-                    <div class="glass p-6 rounded-2xl">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-cyber-cyan rounded-full flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-graduation-cap text-black"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold font-orbitron text-white">Software Engineering</h4>
-                                <p class="text-cyber-cyan mb-2">University of Birmingham</p>
-                                <p class="text-gray-400">2022 - Present</p>
-                                <p class="text-gray-300 mt-2">
-                                    Focused on modern software development practices, algorithms, and system design.
-                                </p>
-                            </div>
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
+                <button class="filter-btn active px-6 py-2 rounded-full border-2 border-dracula-purple text-dracula-purple font-semibold" data-filter="all">
+                    All
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full border-2 border-dracula-current text-dracula-comment font-semibold" data-filter="web">
+                    Web
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full border-2 border-dracula-current text-dracula-comment font-semibold" data-filter="game">
+                    Games
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full border-2 border-dracula-current text-dracula-comment font-semibold" data-filter="mobile">
+                    Mobile
+                </button>
+            </div>
+            
+            <!-- Projects Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card glass rounded-lg overflow-hidden hover-lift hover-glow transition-all duration-300" data-category="web" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-gradient-to-br from-dracula-purple to-dracula-pink flex items-center justify-center">
+                        <i class="fas fa-code text-4xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dracula-purple mb-2">Portfolio Website</h3>
+                        <p class="text-dracula-comment mb-4">
+                            A modern, responsive portfolio website built with HTML, Tailwind CSS, and JavaScript.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">HTML</span>
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">CSS</span>
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">JavaScript</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-dracula-cyan hover:text-dracula-purple transition-colors">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                            <a href="#" class="text-dracula-green hover:text-dracula-purple transition-colors">
+                                <i class="fas fa-external-link-alt mr-1"></i>Live
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Experience -->
-                <div class="mb-12" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-2xl font-bold font-orbitron mb-8 text-cyber-purple">Experience</h3>
-                    <div class="space-y-6">
-                        <div class="glass p-6 rounded-2xl">
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-cyber-purple rounded-full flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-code text-white"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold font-orbitron text-white">Freelance Developer</h4>
-                                    <p class="text-cyber-purple mb-2">Self-Employed</p>
-                                    <p class="text-gray-400">2023 - Present</p>
-                                    <p class="text-gray-300 mt-2">
-                                        Developing custom web applications and mobile solutions for various clients.
-                                    </p>
-                                </div>
-                            </div>
+                <!-- Project 2 -->
+                <div class="project-card glass rounded-lg overflow-hidden hover-lift hover-glow transition-all duration-300" data-category="game" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-gradient-to-br from-dracula-green to-dracula-cyan flex items-center justify-center">
+                        <i class="fas fa-gamepad text-4xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dracula-green mb-2">Space Shooter</h3>
+                        <p class="text-dracula-comment mb-4">
+                            A retro-style space shooter game built with Unreal Engine featuring smooth gameplay.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">Unreal Engine</span>
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">C++</span>
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">Blueprint</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-dracula-cyan hover:text-dracula-purple transition-colors">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                            <a href="#" class="text-dracula-green hover:text-dracula-purple transition-colors">
+                                <i class="fas fa-play mr-1"></i>Play
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Download Resume -->
-                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
-                    <button class="neon-btn px-8 py-4 text-black font-semibold rounded-full font-orbitron">
-                        <i class="fas fa-download mr-2"></i>
-                        Download Full Resume
-                    </button>
+                <!-- Project 3 -->
+                <div class="project-card glass rounded-lg overflow-hidden hover-lift hover-glow transition-all duration-300" data-category="web" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 bg-gradient-to-br from-dracula-orange to-dracula-red flex items-center justify-center">
+                        <i class="fas fa-shopping-cart text-4xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dracula-orange mb-2">E-Commerce Platform</h3>
+                        <p class="text-dracula-comment mb-4">
+                            Full-stack e-commerce solution with modern UI and secure payment integration.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">Java</span>
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">Spring</span>
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">MySQL</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-dracula-cyan hover:text-dracula-purple transition-colors">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                            <a href="#" class="text-dracula-green hover:text-dracula-purple transition-colors">
+                                <i class="fas fa-external-link-alt mr-1"></i>Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card glass rounded-lg overflow-hidden hover-lift hover-glow transition-all duration-300" data-category="mobile" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-48 bg-gradient-to-br from-dracula-pink to-dracula-purple flex items-center justify-center">
+                        <i class="fas fa-mobile-alt text-4xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dracula-pink mb-2">Task Manager App</h3>
+                        <p class="text-dracula-comment mb-4">
+                            A productivity app with clean UI and seamless task management features.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">Java</span>
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">Android</span>
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">SQLite</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-dracula-cyan hover:text-dracula-purple transition-colors">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                            <a href="#" class="text-dracula-green hover:text-dracula-purple transition-colors">
+                                <i class="fab fa-google-play mr-1"></i>Download
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-card glass rounded-lg overflow-hidden hover-lift hover-glow transition-all duration-300" data-category="web" data-aos="fade-up" data-aos-delay="500">
+                    <div class="h-48 bg-gradient-to-br from-dracula-cyan to-dracula-green flex items-center justify-center">
+                        <i class="fas fa-chart-line text-4xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dracula-cyan mb-2">Analytics Dashboard</h3>
+                        <p class="text-dracula-comment mb-4">
+                            Real-time analytics dashboard with interactive charts and data visualization.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">JavaScript</span>
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">Chart.js</span>
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">Node.js</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-dracula-cyan hover:text-dracula-purple transition-colors">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                            <a href="#" class="text-dracula-green hover:text-dracula-purple transition-colors">
+                                <i class="fas fa-external-link-alt mr-1"></i>Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="project-card glass rounded-lg overflow-hidden hover-lift hover-glow transition-all duration-300" data-category="game" data-aos="fade-up" data-aos-delay="600">
+                    <div class="h-48 bg-gradient-to-br from-dracula-red to-dracula-orange flex items-center justify-center">
+                        <i class="fas fa-dice text-4xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dracula-red mb-2">Puzzle Game</h3>
+                        <p class="text-dracula-comment mb-4">
+                            An engaging puzzle game with multiple levels and smooth animations.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">Unity</span>
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">C#</span>
+                            <span class="px-2 py-1 bg-dracula-current text-dracula-foreground rounded text-xs">2D</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-dracula-cyan hover:text-dracula-purple transition-colors">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                            <a href="#" class="text-dracula-green hover:text-dracula-purple transition-colors">
+                                <i class="fas fa-play mr-1"></i>Play
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 glass">
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-6xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold font-mono text-center mb-16 gradient-text" data-aos="fade-up">
+                Gallery
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery items would go here -->
+                <div class="glass rounded-lg p-6 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-image text-4xl text-dracula-purple mb-4"></i>
+                    <h3 class="text-xl font-bold text-dracula-purple mb-2">UI Designs</h3>
+                    <p class="text-dracula-comment">Collection of my UI/UX design work</p>
+                </div>
+                
+                <div class="glass rounded-lg p-6 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-camera text-4xl text-dracula-cyan mb-4"></i>
+                    <h3 class="text-xl font-bold text-dracula-cyan mb-2">Screenshots</h3>
+                    <p class="text-dracula-comment">Gaming and development screenshots</p>
+                </div>
+                
+                <div class="glass rounded-lg p-6 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-palette text-4xl text-dracula-pink mb-4"></i>
+                    <h3 class="text-xl font-bold text-dracula-pink mb-2">Artwork</h3>
+                    <p class="text-dracula-comment">Digital art and creative projects</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Now Playing Section -->
+    <section id="now-playing" class="py-20 glass">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold font-mono text-center mb-16 gradient-text" data-aos="fade-up">
+                Now Playing
+            </h2>
+            
+            <div class="max-w-md mx-auto glass rounded-lg p-6" data-aos="fade-up">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-dracula-green rounded-lg flex items-center justify-center">
+                        <i class="fab fa-spotify text-2xl text-white"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-dracula-foreground" id="track-name">Synthwave Vibes</h3>
+                        <p class="text-dracula-comment" id="artist-name">Lo-Fi Beats</p>
+                        <div class="w-full bg-dracula-current rounded-full h-1 mt-2">
+                            <div class="bg-dracula-green h-1 rounded-full animate-pulse" style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="text-dracula-green hover:text-dracula-purple transition-colors" target="_blank" rel="noopener">
+                        <i class="fab fa-spotify mr-2"></i>Follow on Spotify
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold font-mono text-center mb-16 gradient-text" data-aos="fade-up">
                 Get In Touch
             </h2>
             
-            <div class="max-w-4xl mx-auto grid lg:grid-cols-2 gap-12">
+            <div class="grid lg:grid-cols-2 gap-12">
                 <!-- Contact Info -->
                 <div data-aos="fade-right">
-                    <h3 class="text-2xl font-bold font-orbitron mb-8 text-cyber-cyan">Let's Connect</h3>
-                    <p class="text-gray-300 mb-8 leading-relaxed">
+                    <h3 class="text-2xl font-bold text-dracula-purple mb-6">Let's Connect!</h3>
+                    <p class="text-dracula-comment mb-8">
                         I'm always interested in new opportunities and exciting projects. 
-                        Whether you have a question or want to work together, feel free to reach out!
+                        Whether you want to discuss a project, grab a coffee, or just say hi, 
+                        feel free to reach out!
                     </p>
                     
-                    <div class="space-y-6">
+                    <div class="space-y-4">
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-cyber-cyan rounded-full flex items-center justify-center">
-                                <i class="fas fa-envelope text-black"></i>
+                            <div class="w-12 h-12 bg-dracula-purple rounded-lg flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-white"></i>
                             </div>
                             <div>
-                                <p class="font-orbitron text-white">Email</p>
-                                <p class="text-gray-400">mathiya@example.com</p>
+                                <h4 class="font-bold text-dracula-foreground">Location</h4>
+                                <p class="text-dracula-comment">Colombo, Sri Lanka 🇱🇰</p>
                             </div>
                         </div>
                         
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-cyber-purple rounded-full flex items-center justify-center">
-                                <i class="fab fa-discord text-white"></i>
-                            </div>
-                            <div>
-                                <p class="font-orbitron text-white">Discord</p>
-                                <p class="text-gray-400">mathiya#1234</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                            <div class="w-12 h-12 bg-dracula-green rounded-lg flex items-center justify-center">
                                 <i class="fab fa-whatsapp text-white"></i>
                             </div>
                             <div>
-                                <p class="font-orbitron text-white">WhatsApp</p>
-                                <p class="text-gray-400">+94 71 592 1984</p>
+                                <h4 class="font-bold text-dracula-foreground">WhatsApp</h4>
+                                <a href="https://wa.me/94715921984" class="text-dracula-green hover:text-dracula-purple transition-colors">+94 71 592 1984</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-dracula-cyan rounded-lg flex items-center justify-center">
+                                <i class="fab fa-discord text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-dracula-foreground">Discord</h4>
+                                <a href="https://discord.gg/QERP5JJM8k" class="text-dracula-cyan hover:text-dracula-purple transition-colors">Join my server</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-dracula-orange rounded-lg flex items-center justify-center">
+                                <i class="fas fa-gamepad text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-dracula-foreground">EA ID</h4>
+                                <p class="text-dracula-comment font-mono">M_MATHIYA_M</p>
                             </div>
                         </div>
                     </div>
@@ -947,323 +990,86 @@
                 
                 <!-- Contact Form -->
                 <div data-aos="fade-left">
-                    <form class="space-y-6">
+                    <form id="contact-form" class="space-y-6">
                         <div>
-                            <input type="text" placeholder="Your Name" 
-                                   class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400">
+                            <label for="name" class="block text-sm font-medium text-dracula-foreground mb-2">Name</label>
+                            <input type="text" id="name" name="name" required
+                                   class="w-full px-4 py-3 bg-dracula-current border border-dracula-comment rounded-lg focus:ring-2 focus:ring-dracula-purple focus:border-transparent text-dracula-foreground transition-all duration-300">
                         </div>
+                        
                         <div>
-                            <input type="email" placeholder="Your Email" 
-                                   class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400">
+                            <label for="email" class="block text-sm font-medium text-dracula-foreground mb-2">Email</label>
+                            <input type="email" id="email" name="email" required
+                                   class="w-full px-4 py-3 bg-dracula-current border border-dracula-comment rounded-lg focus:ring-2 focus:ring-dracula-purple focus:border-transparent text-dracula-foreground transition-all duration-300">
                         </div>
+                        
                         <div>
-                            <textarea placeholder="Your Message" rows="5"
-                                      class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 resize-none"></textarea>
+                            <label for="subject" class="block text-sm font-medium text-dracula-foreground mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" required
+                                   class="w-full px-4 py-3 bg-dracula-current border border-dracula-comment rounded-lg focus:ring-2 focus:ring-dracula-purple focus:border-transparent text-dracula-foreground transition-all duration-300">
                         </div>
-                        <button type="submit" class="neon-btn w-full px-8 py-4 text-black font-semibold rounded-full font-orbitron">
-                            <i class="fas fa-paper-plane mr-2"></i>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-dracula-foreground mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" required
+                                      class="w-full px-4 py-3 bg-dracula-current border border-dracula-comment rounded-lg focus:ring-2 focus:ring-dracula-purple focus:border-transparent text-dracula-foreground transition-all duration-300 resize-none"></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full px-6 py-3 bg-dracula-purple text-dracula-bg font-semibold rounded-lg hover-lift hover-glow transition-all duration-300">
                             Send Message
                         </button>
                     </form>
+                    
+                    <!-- Form Status -->
+                    <div id="form-status" class="mt-4 p-4 rounded-lg hidden">
+                        <div id="form-success" class="text-dracula-green hidden">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Message sent successfully! I'll get back to you soon.
+                        </div>
+                        <div id="form-error" class="text-dracula-red hidden">
+                            <i class="fas fa-exclamation-circle mr-2"></i>
+                            Something went wrong. Please try again.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Footer -->
-    <footer class="py-12 border-t border-gray-800">
+    <footer class="py-12 border-t border-dracula-current">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
-                    <p class="text-gray-400">© 2024 Mathiya Angirasa. All rights reserved.</p>
+                    <div class="text-2xl font-bold font-mono gradient-text mb-2">MATHIYA</div>
+                    <p class="text-dracula-comment">© <span id="current-year">2024</span> Mathiya Angirasa. All rights reserved.</p>
                 </div>
                 
                 <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass" class="social-icon text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                    <a href="https://github.com/Mathiyass" class="text-2xl text-dracula-comment hover:text-dracula-purple transition-colors" target="_blank" rel="noopener">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="social-icon text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-dracula-comment hover:text-dracula-purple transition-colors" target="_blank" rel="noopener">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://x.com/Mathiya" class="social-icon text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                    <a href="https://x.com/Mathiya" class="text-2xl text-dracula-comment hover:text-dracula-purple transition-colors" target="_blank" rel="noopener">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="social-icon text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-dracula-comment hover:text-dracula-purple transition-colors" target="_blank" rel="noopener">
                         <i class="fab fa-discord"></i>
                     </a>
                 </div>
             </div>
         </div>
     </footer>
-    
-    <!-- Scroll to Top -->
-    <button class="scroll-to-top" id="scroll-to-top">
-        <i class="fas fa-chevron-up text-black"></i>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i>
     </button>
-    
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100,
-            easing: 'ease-out-cubic'
-        });
-        
-        // Custom Cursor
-        const cursor = document.getElementById('custom-cursor');
-        const cursorDot = document.getElementById('cursor-dot');
-        let cursorTrails = [];
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            setTimeout(() => {
-                cursorDot.style.left = e.clientX + 'px';
-                cursorDot.style.top = e.clientY + 'px';
-            }, 50);
-            
-            // Create cursor trail
-            createCursorTrail(e.clientX, e.clientY);
-        });
-        
-        function createCursorTrail(x, y) {
-            const trail = document.createElement('div');
-            trail.className = 'cursor-trail';
-            trail.style.left = x + 'px';
-            trail.style.top = y + 'px';
-            document.body.appendChild(trail);
-            
-            setTimeout(() => {
-                trail.remove();
-            }, 500);
-        }
-        
-        // Cursor hover effects
-        const hoverElements = document.querySelectorAll('a, button, .project-card, .social-icon');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('cursor-hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('cursor-hover');
-            });
-        });
-        
-        // Loading Screen Animation
-        function startLoadingAnimation() {
-            const loadingScreen = document.getElementById('loading-screen');
-            const loadingBar = document.getElementById('loading-bar');
-            const loadingPercentage = document.getElementById('loading-percentage');
-            const paths = document.querySelectorAll('.signature-path');
-            
-            // Create particles
-            createParticles();
-            
-            // Animate signature paths with staggered timing
-            paths.forEach((path, index) => {
-                setTimeout(() => {
-                    path.style.animation = 'signature-draw 1s ease-out forwards';
-                }, index * 300);
-            });
-            
-            // Animate loading bar
-            let progress = 0;
-            const loadingInterval = setInterval(() => {
-                progress += Math.random() * 2 + 1;
-                if (progress > 100) progress = 100;
-                
-                loadingBar.style.width = progress + '%';
-                loadingPercentage.textContent = Math.floor(progress) + '%';
-                
-                if (progress >= 100) {
-                    clearInterval(loadingInterval);
-                }
-            }, 50);
-            
-            // Hide loading screen after 5 seconds
-            setTimeout(() => {
-                loadingScreen.classList.add('fade-out');
-                document.body.classList.add('loaded');
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                    initializeTypedText();
-                }, 1000);
-            }, 5000);
-        }
-        
-        // Create Particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles-container');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-        
-        // Initialize Typed Text
-        function initializeTypedText() {
-            new Typed('#typed-text', {
-                strings: [
-                    'Software Engineering Student',
-                    'University of Birmingham',
-                    'Full Stack Developer',
-                    'UI/UX Enthusiast',
-                    'Tech Innovator'
-                ],
-                typeSpeed: 50,
-                backSpeed: 30,
-                backDelay: 2000,
-                loop: true,
-                showCursor: true,
-                cursorChar: '|'
-            });
-        }
-        
-        // Mobile Menu
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenu = document.getElementById('close-menu');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-        });
-        
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-        });
-        
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-        });
-        
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-        
-        // Scroll Progress
-        window.addEventListener('scroll', () => {
-            const scrollProgress = document.getElementById('scroll-progress');
-            const scrollToTop = document.getElementById('scroll-to-top');
-            
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            
-            scrollProgress.style.width = scrollPercent + '%';
-            
-            // Show/hide scroll to top button
-            if (scrollTop > 300) {
-                scrollToTop.classList.add('visible');
-            } else {
-                scrollToTop.classList.remove('visible');
-            }
-        });
-        
-        // Scroll to Top
-        document.getElementById('scroll-to-top').addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Skills Animation
-        const skillsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const skillBars = entry.target.querySelectorAll('.skill-bar');
-                    skillBars.forEach((bar, index) => {
-                        setTimeout(() => {
-                            bar.classList.add('animate');
-                        }, index * 200);
-                    });
-                    skillsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        const aboutSection = document.getElementById('about');
-        if (aboutSection) {
-            skillsObserver.observe(aboutSection);
-        }
-        
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        let isDark = true;
-        
-        themeToggle.addEventListener('click', () => {
-            isDark = !isDark;
-            document.documentElement.classList.toggle('dark', isDark);
-            
-            const icon = themeToggle.querySelector('i');
-            if (isDark) {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            } else {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            }
-        });
-        
-        // Page Transitions
-        function transitionToPage(url) {
-            const transition = document.getElementById('page-transition');
-            transition.classList.add('active');
-            
-            setTimeout(() => {
-                window.location.href = url;
-            }, 500);
-        }
-        
-        // Initialize everything when page loads
-        window.addEventListener('load', () => {
-            startLoadingAnimation();
-        });
-        
-        // Console Easter Egg
-        console.log(`
-        ╔══════════════════════════════════════════════════════════════╗
-        ║                                                              ║
-        ║                    Welcome to Mathiya's                      ║
-        ║                   Premium Portfolio! 🚀                     ║
-        ║                                                              ║
-        ║    Built with ❤️, lots of ☕, and cutting-edge tech         ║
-        ║                                                              ║
-        ║    🌟 Features:                                              ║
-        ║    • Cinematic SVG Loading Animation                         ║
-        ║    • Custom Glowing Cursor with Trails                      ║
-        ║    • Neon Gradient Effects                                   ║
-        ║    • Smooth Scroll Animations                                ║
-        ║    • Responsive Glassmorphism Design                         ║
-        ║    • Interactive Particle System                             ║
-        ║                                                              ║
-        ║    Let's connect and build something amazing together! 🤝    ║
-        ║                                                              ║
-        ╚══════════════════════════════════════════════════════════════╝
-        `);
-    </script>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
 </body>
 </html>

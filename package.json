@@ -1,40 +1,34 @@
 {
-  "name": "mathisha-angirasa-enhanced-portfolio",
+  "name": "mathiya-portfolio",
   "version": "2.0.0",
-  "description": "Mathisha Angirasa's enhanced personal portfolio website - Software Engineering Student & Full Stack Developer with modern features and cyberpunk aesthetics",
+  "description": "Advanced portfolio website for Mathiya Angirasa - Software Engineering Student with futuristic cyber-minimalist design",
   "main": "index.html",
   "scripts": {
     "start": "npx serve . -p 3000",
     "dev": "npx serve . -p 3000",
     "build": "echo 'Static site - no build required' && exit 0",
-    "preview": "npx serve . -p 4173",
-    "test": "echo 'No tests specified' && exit 0",
-    "lint": "echo 'Linting HTML, CSS, and JS files...' && exit 0",
     "deploy": "echo 'Deploy to GitHub Pages' && exit 0"
   },
   "keywords": [
     "portfolio",
     "website",
-    "mathisha-angirasa",
+    "mathiya",
     "software-engineer",
-    "full-stack-developer",
-    "html5",
-    "css3",
-    "javascript",
-    "tailwindcss",
-    "responsive-design",
+    "dracula-theme",
     "cyberpunk",
-    "glassmorphism",
+    "html5",
+    "tailwindcss",
+    "javascript",
+    "responsive",
     "animations",
-    "interactive",
-    "modern-web",
-    "static-site",
-    "github-pages",
+    "particles",
+    "glassmorphism",
     "sri-lanka",
-    "tech-enthusiast"
+    "student",
+    "developer"
   ],
   "author": {
-    "name": "Mathisha Angirasa",
+    "name": "Mathiya Angirasa",
     "email": "mathisha.angirasa@example.com",
     "url": "https://github.com/Mathiyass"
   },
@@ -47,25 +41,12 @@
     "url": "https://github.com/Mathiyass/portfolio/issues"
   },
   "homepage": "https://mathiyass.github.io",
-  "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=6.0.0"
-  },
   "devDependencies": {
     "serve": "^14.2.1"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ],
-  "config": {
-    "port": 3000,
-    "host": "localhost"
-  },
-  "funding": {
-    "type": "individual",
-    "url": "https://github.com/sponsors/Mathiyass"
-  }
+    "not dead"
+  ]
 }

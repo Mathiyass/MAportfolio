@@ -103,9 +103,9 @@ function updateActiveNavLink() {
     });
     
     navLinks.forEach(link => {
-        link.classList.remove('text-cyber-cyan');
+        link.classList.remove('text-dracula-purple');
         if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('text-cyber-cyan');
+            link.classList.add('text-dracula-purple');
         }
     });
 }
@@ -116,23 +116,23 @@ const mobileMenu = document.getElementById('mobile-menu');
 const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
 
 mobileMenuBtn.addEventListener('click', function() {
-    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('active');
     document.body.classList.toggle('overflow-hidden');
     
     // Animate hamburger icon
     const icon = this.querySelector('i');
-    if (mobileMenu.classList.contains('hidden')) {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-    } else {
+    if (mobileMenu.classList.contains('active')) {
         icon.classList.remove('fa-bars');
         icon.classList.add('fa-times');
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
     }
 });
 
 mobileMenuLinks.forEach(link => {
     link.addEventListener('click', function() {
-        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('active');
         document.body.classList.remove('overflow-hidden');
         mobileMenuBtn.querySelector('i').classList.remove('fa-times');
         mobileMenuBtn.querySelector('i').classList.add('fa-bars');
@@ -191,8 +191,8 @@ filterButtons.forEach(button => {
         const filter = this.getAttribute('data-filter');
         
         // Update active button
-        filterButtons.forEach(btn => btn.classList.remove('active', 'bg-cyber-cyan', 'text-dark-bg'));
-        this.classList.add('active', 'bg-cyber-cyan', 'text-dark-bg');
+        filterButtons.forEach(btn => btn.classList.remove('active', 'bg-dracula-purple', 'text-dracula-bg'));
+        this.classList.add('active', 'bg-dracula-purple', 'text-dracula-bg');
         
         // Filter projects
         projectCards.forEach(card => {
@@ -333,7 +333,7 @@ if (typeof particlesJS !== 'undefined') {
                 }
             },
             color: {
-                value: '#00ffff'
+                value: '#bd93f9'
             },
             shape: {
                 type: 'circle',
@@ -365,7 +365,7 @@ if (typeof particlesJS !== 'undefined') {
             line_linked: {
                 enable: true,
                 distance: 150,
-                color: '#00ffff',
+                color: '#bd93f9',
                 opacity: 0.4,
                 width: 1
             },
@@ -429,7 +429,7 @@ if (typeof particlesJS !== 'undefined') {
 
 // Enhanced Loader
 window.addEventListener('load', () => {
-    const loader = document.getElementById('ma-loader');
+    const loader = document.getElementById('loading-screen');
     if (loader) {
         setTimeout(() => {
             loader.style.opacity = '0';
@@ -456,7 +456,7 @@ const observerOptions = {
 const observer = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
+            entry.target.classList.add('animate-fadeInUp');
         }
     });
 }, observerOptions);
@@ -485,8 +485,8 @@ window.addEventListener('scroll', function() {
 // Keyboard Navigation
 document.addEventListener('keydown', function(e) {
     // ESC key to close mobile menu
-    if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.add('hidden');
+    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
         document.body.classList.remove('overflow-hidden');
         mobileMenuBtn.querySelector('i').classList.remove('fa-times');
         mobileMenuBtn.querySelector('i').classList.add('fa-bars');
@@ -517,7 +517,7 @@ if ('IntersectionObserver' in window) {
 console.log(`
     ╔══════════════════════════════════════════════════════════════╗
     ║                                                              ║
-    ║                    Welcome to Mathisha's                     ║
+    ║                    Welcome to Mathiya's                      ║
     ║                   Enhanced Portfolio! 🚀                    ║
     ║                                                              ║
     ║    Built with ❤️, lots of ☕, and cutting-edge tech         ║
@@ -583,7 +583,7 @@ class PortfolioEnhancements {
         const focusableElements = document.querySelectorAll('a, button, input, textarea');
         focusableElements.forEach(element => {
             element.addEventListener('focus', function() {
-                this.style.outline = '2px solid #00ffff';
+                this.style.outline = '2px solid #bd93f9';
                 this.style.outlineOffset = '2px';
             });
             
@@ -646,11 +646,11 @@ function updateCursorColors(theme) {
     const cursorDot = document.getElementById('cursor-dot');
 
     if (theme === 'dark') {
-        cursor.style.borderColor = '#00ffff'; // Cyber-cyan
-        cursorDot.style.backgroundColor = '#00ffff'; // Cyber-cyan
+        cursor.style.borderColor = '#bd93f9'; // Dracula purple
+        cursorDot.style.backgroundColor = '#bd93f9'; // Dracula purple
     } else {
-        cursor.style.borderColor = '#8b5cf6'; // Cyber-purple
-        cursorDot.style.backgroundColor = '#8b5cf6'; // Cyber-purple
+        cursor.style.borderColor = '#8be9fd'; // Dracula cyan
+        cursorDot.style.backgroundColor = '#8be9fd'; // Dracula cyan
     }
 }
 
