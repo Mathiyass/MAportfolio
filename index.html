@@ -3,546 +3,648 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathiya Angirasa | Software Engineering Student & Tech Enthusiast</title>
-    <meta name="description" content="Mathiya Angirasa - Software Engineering Student from Colombo, Sri Lanka. Passionate about modern web technologies, gaming, and creating immersive digital experiences.">
+    <title>MATHIYA | Modern Developer Portfolio</title>
+    <meta name="description" content="Mathiya Angirasa - Full Stack Developer & Software Engineer. Creating innovative digital solutions with modern technologies.">
     
-    <!-- SEO and Social Media Meta Tags -->
-    <meta property="og:title" content="Mathiya Angirasa | Software Engineering Student">
-    <meta property="og:description" content="Software Engineering Student by day, CS2 clutch master by night ⚡">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mathiyass.github.io">
-    <meta property="og:image" content="https://mathiyass.github.io/assets/og-image.jpg">
+    <!-- Taiwan CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Mathiya Angirasa | Software Engineering Student">
-    <meta name="twitter:description" content="Software Engineering Student by day, CS2 clutch master by night ⚡">
-    <meta name="twitter:image" content="https://mathiyass.github.io/assets/og-image.jpg">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23bd93f9'>M</text></svg>">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome CDN -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'mono': ['JetBrains Mono', 'monospace'],
-                        'sans': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'dracula': {
-                            'bg': '#282a36',
-                            'current': '#44475a',
-                            'foreground': '#f8f8f2',
-                            'comment': '#6272a4',
-                            'cyan': '#8be9fd',
-                            'green': '#50fa7b',
-                            'orange': '#ffb86c',
-                            'pink': '#ff79c6',
-                            'purple': '#bd93f9',
-                            'red': '#ff5555',
-                            'yellow': '#f1fa8c',
-                        },
-                        'neon': {
-                            'blue': '#00f5ff',
-                            'purple': '#bf00ff',
-                            'pink': '#ff0080',
-                            'green': '#00ff41',
-                        }
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                        'typing': 'typing 3.5s steps(40, end)',
-                        'blink': 'blink 1s infinite',
-                        'fadeInUp': 'fadeInUp 0.8s ease-out',
-                        'slideInLeft': 'slideInLeft 0.8s ease-out',
-                        'slideInRight': 'slideInRight 0.8s ease-out',
-                        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        'float': {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        'glow': {
-                            '0%': { boxShadow: '0 0 20px rgba(189, 147, 249, 0.5)' },
-                            '100%': { boxShadow: '0 0 40px rgba(189, 147, 249, 1), 0 0 60px rgba(255, 121, 198, 0.5)' },
-                        },
-                        'typing': {
-                            'from': { width: '0' },
-                            'to': { width: '100%' },
-                        },
-                        'blink': {
-                            '0%, 50%': { opacity: '1' },
-                            '51%, 100%': { opacity: '0' },
-                        },
-                        'fadeInUp': {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        'slideInLeft': {
-                            '0%': { opacity: '0', transform: 'translateX(-30px)' },
-                            '100%': { opacity: '1', transform: 'translateX(0)' },
-                        },
-                        'slideInRight': {
-                            '0%': { opacity: '0', transform: 'translateX(30px)' },
-                            '100%': { opacity: '1', transform: 'translateX(0)' },
-                        },
-                        'pulse-glow': {
-                            '0%, 100%': { boxShadow: '0 0 20px rgba(189, 147, 249, 0.4)' },
-                            '50%': { boxShadow: '0 0 40px rgba(189, 147, 249, 0.8), 0 0 60px rgba(255, 121, 198, 0.3)' },
-                        },
-                    },
-                }
-            }
-        }
-    </script>
     
     <style>
-        body { 
+        :root {
+            --primary-cyan: #00FFDE;
+            --accent-red: #FF3366;
+            --dark-bg: #0A0A0A;
+            --darker-bg: #050505;
+            --card-bg: #1A1A1A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
             cursor: none;
         }
-        
+
         /* Custom Cursor */
-        .custom-cursor {
+        .cursor {
             position: fixed;
             width: 20px;
             height: 20px;
-            border: 2px solid #bd93f9;
+            border: 2px solid var(--primary-cyan);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
             transition: all 0.1s ease;
             mix-blend-mode: difference;
         }
-        
+
         .cursor-dot {
             position: fixed;
             width: 4px;
             height: 4px;
-            background: #bd93f9;
+            background: var(--primary-cyan);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transition: all 0.15s ease;
         }
-        
+
         .cursor-hover {
             transform: scale(2);
-            background: rgba(189, 147, 249, 0.2);
+            background: rgba(0, 255, 222, 0.2);
+            box-shadow: 0 0 20px var(--primary-cyan);
         }
-        
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .loading-canvas {
+            margin-bottom: 2rem;
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-cyan), var(--accent-red));
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--primary-cyan);
+        }
+
         /* Glassmorphism */
         .glass {
-            background: rgba(40, 42, 54, 0.8);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(189, 147, 249, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        /* Typing Effect */
-        .typing-container {
-            overflow: hidden;
-            border-right: 3px solid #bd93f9;
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink 1s infinite;
+
+        /* Neon Effects */
+        .neon-text {
+            text-shadow: 0 0 10px var(--primary-cyan), 0 0 20px var(--primary-cyan), 0 0 40px var(--primary-cyan);
         }
-        
-        /* Gradient Text */
+
+        .neon-border {
+            border: 2px solid var(--primary-cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 222, 0.3), inset 0 0 20px rgba(0, 255, 222, 0.1);
+        }
+
+        .glow-hover:hover {
+            box-shadow: 0 0 30px var(--primary-cyan);
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 222, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 222, 0.8); }
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
         .gradient-text {
-            background: linear-gradient(135deg, #bd93f9, #ff79c6, #8be9fd);
+            background: linear-gradient(-45deg, var(--primary-cyan), var(--accent-red), var(--primary-cyan));
+            background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: gradient-shift 3s ease infinite;
         }
-        
-        /* Neon Glow */
-        .neon-glow {
-            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
-        }
-        
-        /* Hover Effects */
-        .hover-lift:hover {
-            transform: translateY(-5px);
-        }
-        
-        .hover-glow:hover {
-            box-shadow: 0 0 30px rgba(189, 147, 249, 0.6);
-        }
-        
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #282a36;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #bd93f9;
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #ff79c6;
-        }
-        
-        /* Loading Animation */
-        .loading-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 3rem;
-            font-weight: 700;
-            color: #bd93f9;
-            text-align: center;
-            position: relative;
-        }
-        
-        .loading-text::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 4px;
-            background: linear-gradient(90deg, #bd93f9, #ff79c6);
-            border-radius: 2px;
-            animation: loading-progress 3s ease-out;
-        }
-        
-        @keyframes loading-progress {
-            0% { width: 0; }
-            100% { width: 200px; }
-        }
-        
-        /* Mobile Menu */
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
-        
-        /* Social Sidebar */
-        .social-sidebar {
+
+        /* Navigation */
+        .navbar {
             position: fixed;
-            right: 20px;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(0, 255, 222, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-cyan), var(--accent-red));
+            color: var(--dark-bg);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 222, 0.4);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--primary-cyan);
+            color: var(--primary-cyan);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-cyan);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px rgba(0, 255, 222, 0.5);
+        }
+
+        /* Social Links */
+        .social-links {
+            position: fixed;
+            right: 2rem;
             top: 50%;
             transform: translateY(-50%);
-            z-index: 1000;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-        }
-        
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(40, 42, 54, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(189, 147, 249, 0.3);
-            border-radius: 50%;
-            color: #bd93f9;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-        
-        .social-icon:hover {
-            transform: scale(1.1);
-            background: rgba(189, 147, 249, 0.2);
-            box-shadow: 0 0 20px rgba(189, 147, 249, 0.5);
-        }
-        
-        /* Progress Bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, #bd93f9, #ff79c6);
-            z-index: 9999;
-            transition: width 0.3s ease;
-        }
-        
-        /* Particles */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-        
-        /* Back to Top */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: rgba(189, 147, 249, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #282a36;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
+            gap: 1rem;
             z-index: 1000;
         }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(189, 147, 249, 0.5);
-        }
-        
-        /* Theme Toggle */
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
+
+        .social-link {
             width: 50px;
             height: 50px;
-            background: rgba(40, 42, 54, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(189, 147, 249, 0.3);
             border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #bd93f9;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: var(--primary-cyan);
+            color: var(--dark-bg);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--primary-cyan);
+        }
+
+        /* Page Transitions */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker-bg);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .social-links {
+                position: static;
+                transform: none;
+                flex-direction: row;
+                justify-content: center;
+                margin: 2rem 0;
+            }
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--primary-cyan);
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: all 0.3s ease;
             z-index: 1001;
         }
-        
+
         .theme-toggle:hover {
-            background: rgba(189, 147, 249, 0.2);
-            box-shadow: 0 0 20px rgba(189, 147, 249, 0.5);
+            background: var(--primary-cyan);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--primary-cyan);
         }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .social-sidebar {
-                display: none;
-            }
-            
-            .loading-text {
-                font-size: 2rem;
-            }
+
+        /* Light Mode */
+        body.light-mode {
+            --dark-bg: #FFFFFF;
+            --darker-bg: #F5F5F5;
+            --card-bg: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+        }
+
+        body.light-mode .glass {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .hero {
+            background: radial-gradient(ellipse at center, rgba(0, 255, 222, 0.05) 0%, transparent 70%);
         }
     </style>
 </head>
-
-<body class="dark bg-dracula-bg text-dracula-foreground overflow-x-hidden">
+<body>
     <!-- Custom Cursor -->
-    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor" id="cursor"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
-    
-    <!-- Progress Bar -->
-    <div class="progress-bar" id="progress-bar"></div>
-    
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
-    
+
     <!-- Loading Screen -->
-    <div id="loading-screen" class="fixed inset-0 bg-dracula-bg flex items-center justify-center z-50">
-        <canvas id="loading-canvas" class="absolute top-0 left-0 w-full h-full"></canvas>
+    <div class="loading-screen" id="loading-screen">
+        <canvas class="loading-canvas" id="loading-canvas" width="400" height="100"></canvas>
+        <div class="loading-bar">
+            <div class="loading-progress" id="loading-progress"></div>
+        </div>
     </div>
-    
+
+    <!-- Page Transition -->
+    <div class="page-transition" id="page-transition"></div>
+
     <!-- Theme Toggle -->
     <button class="theme-toggle" id="theme-toggle">
         <i class="fas fa-moon"></i>
     </button>
-    
+
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-40 glass transition-all duration-300" id="navbar">
+    <nav class="navbar glass" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <!-- Logo -->
-                <div class="text-2xl font-bold font-mono gradient-text">
+                <div class="text-2xl font-bold gradient-text" style="font-family: 'Orbitron', monospace;">
                     MATHIYA
                 </div>
-                
-                <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="nav-link hover:text-dracula-purple transition-colors">Home</a>
-                    <a href="about.html" class="nav-link hover:text-dracula-purple transition-colors">About</a>
-                    <a href="projects.html" class="nav-link hover:text-dracula-purple transition-colors">Projects</a>
-                    <a href="skills.html" class="nav-link hover:text-dracula-purple transition-colors">Skills</a>
-                    <a href="contact.html" class="nav-link hover:text-dracula-purple transition-colors">Contact</a>
+                    <a href="index.html" class="text-white hover:text-cyan-400 transition-colors">Home</a>
+                    <a href="about.html" class="text-white hover:text-cyan-400 transition-colors">About</a>
+                    <a href="skills.html" class="text-white hover:text-cyan-400 transition-colors">Skills</a>
+                    <a href="projects.html" class="text-white hover:text-cyan-400 transition-colors">Projects</a>
+                    <a href="contact.html" class="text-white hover:text-cyan-400 transition-colors">Contact</a>
                 </div>
-                
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
-                    <i class="fas fa-bars text-dracula-purple"></i>
+                <button class="md:hidden text-white" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
                 </button>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
-            <div class="p-6">
-                <button id="close-menu" class="float-right text-2xl text-dracula-purple">
-                    <i class="fas fa-times"></i>
-                </button>
-                <div class="clear-both mt-8 space-y-6">
-                    <a href="index.html" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">Home</a>
-                    <a href="about.html" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">About</a>
-                    <a href="projects.html" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">Projects</a>
-                    <a href="skills.html" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">Skills</a>
-                    <a href="contact.html" class="block text-xl font-mono hover:text-dracula-purple transition-colors mobile-menu-link">Contact</a>
-                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Social Sidebar -->
-    <div class="social-sidebar">
-        <a href="https://github.com/Mathiyass" class="social-icon" target="_blank" rel="noopener">
+    <!-- Mobile Menu -->
+    <div class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden" id="mobile-menu">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="index.html" class="text-2xl text-white hover:text-cyan-400 transition-colors">Home</a>
+            <a href="about.html" class="text-2xl text-white hover:text-cyan-400 transition-colors">About</a>
+            <a href="skills.html" class="text-2xl text-white hover:text-cyan-400 transition-colors">Skills</a>
+            <a href="projects.html" class="text-2xl text-white hover:text-cyan-400 transition-colors">Projects</a>
+            <a href="contact.html" class="text-2xl text-white hover:text-cyan-400 transition-colors">Contact</a>
+            <button class="absolute top-8 right-8 text-white text-2xl" id="close-mobile-menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="social-links">
+        <a href="https://github.com/Mathiyass" class="social-link" target="_blank" title="GitHub">
             <i class="fab fa-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="social-icon" target="_blank" rel="noopener">
+        <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="social-link" target="_blank" title="LinkedIn">
             <i class="fab fa-linkedin"></i>
         </a>
-        <a href="https://x.com/Mathiya" class="social-icon" target="_blank" rel="noopener">
+        <a href="https://x.com/Mathiya" class="social-link" target="_blank" title="X (Twitter)">
             <i class="fab fa-twitter"></i>
         </a>
-        <a href="https://www.facebook.com/mathisha.angirasa/" class="social-icon" target="_blank" rel="noopener">
+        <a href="https://www.facebook.com/mathisha.angirasa/" class="social-link" target="_blank" title="Facebook">
             <i class="fab fa-facebook"></i>
         </a>
-        <a href="https://www.instagram.com/mathi_ya_/" class="social-icon" target="_blank" rel="noopener">
+        <a href="https://www.instagram.com/mathi_ya_/" class="social-link" target="_blank" title="Instagram">
             <i class="fab fa-instagram"></i>
         </a>
-        <a href="https://steamcommunity.com/profiles/76561199076879396/" class="social-icon" target="_blank" rel="noopener">
+        <a href="https://steamcommunity.com/profiles/76561199076879396/" class="social-link" target="_blank" title="Steam">
             <i class="fab fa-steam"></i>
         </a>
-        <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" class="social-icon" target="_blank" rel="noopener">
+        <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" class="social-link" target="_blank" title="Epic Games">
             <i class="fas fa-gamepad"></i>
         </a>
-        <a href="https://discord.gg/QERP5JJM8k" class="social-icon" target="_blank" rel="noopener">
-            <i class="fab fa-discord"></i>
-        </a>
-        <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="social-icon" target="_blank" rel="noopener">
+        <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="social-link" target="_blank" title="Spotify">
             <i class="fab fa-spotify"></i>
         </a>
-        <a href="https://wa.me/94715921984" class="social-icon" target="_blank" rel="noopener">
+        <a href="https://discord.gg/QERP5JJM8k" class="social-link" target="_blank" title="Discord">
+            <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://wa.me/94715921984" class="social-link" target="_blank" title="WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <div class="social-icon" title="EA ID: M_MATHIYA_M">
+        <div class="social-link" title="EA ID: M_MATHIYA_M">
             <i class="fas fa-headset"></i>
         </div>
     </div>
 
-    <!-- Home Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container mx-auto px-6 text-center">
-            <div class="mb-8" data-aos="fade-up">
-                <h1 class="text-6xl md:text-8xl font-bold font-mono gradient-text mb-4 neon-glow">
+            <div class="floating">
+                <h1 class="hero-title gradient-text neon-text" data-aos="fade-up">
                     MATHIYA
                 </h1>
-                <div class="text-xl md:text-2xl text-dracula-comment font-mono mb-8">
-                    <span id="typing-text" class="typing-container"></span>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+                    Full Stack Developer & Software Engineer
+                </p>
+                <p class="text-lg mb-8 opacity-80" data-aos="fade-up" data-aos-delay="400">
+                    Creating innovative digital solutions with cutting-edge technologies
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="600">
+                    <a href="projects.html" class="btn-primary glow-hover">
+                        View My Work
+                    </a>
+                    <a href="contact.html" class="btn-secondary glow-hover">
+                        Get In Touch
+                    </a>
                 </div>
             </div>
-            
-            <div class="mb-12" data-aos="fade-up" data-aos-delay="200">
-                <p class="text-2xl md:text-3xl text-dracula-foreground mb-4">
-                    Hi, I'm <span class="text-dracula-purple font-bold">Mathiya</span> 👋
-                </p>
-                <p class="text-lg md:text-xl text-dracula-comment max-w-3xl mx-auto">
-                    Software Engineering Student by day, CS2 clutch master by night ⚡
-                    <br>
-                    Crafting immersive digital experiences from Colombo, Sri Lanka 🇱🇰
-                </p>
-            </div>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-                <a href="#projects" class="px-8 py-4 bg-dracula-purple text-dracula-bg font-semibold rounded-lg hover-lift hover-glow transition-all duration-300">
-                    View My Work
-                </a>
-                <a href="#contact" class="px-8 py-4 border-2 border-dracula-purple text-dracula-purple font-semibold rounded-lg hover:bg-dracula-purple hover:text-dracula-bg hover-lift transition-all duration-300">
-                    Get In Touch
-                </a>
-            </div>
-            
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <i class="fas fa-chevron-down text-2xl text-dracula-purple"></i>
-            </div>
         </div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 border border-cyan-400 rounded-full opacity-20 floating" style="animation-delay: -2s;"></div>
+        <div class="absolute bottom-20 right-10 w-16 h-16 border border-red-400 rounded-full opacity-20 floating" style="animation-delay: -4s;"></div>
+        <div class="absolute top-1/2 left-20 w-12 h-12 bg-cyan-400 rounded-full opacity-10 floating" style="animation-delay: -1s;"></div>
     </section>
 
-
-    <!-- Footer -->
-    <footer class="py-12 border-t border-dracula-current">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-mono gradient-text mb-2">MATHIYA</div>
-                    <p class="text-dracula-comment">© <span id="current-year">2024</span> Mathiya Angirasa. All rights reserved.</p>
-                </div>
-                
-                <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass" class="text-2xl text-dracula-comment hover:text-dracula-purple transition-colors" target="_blank" rel="noopener">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-dracula-comment hover:text-dracula-purple transition-colors" target="_blank" rel="noopener">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://x.com/Mathiya" class="text-2xl text-dracula-comment hover:text-dracula-purple transition-colors" target="_blank" rel="noopener">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-dracula-comment hover:text-dracula-purple transition-colors" target="_blank" rel="noopener">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="back-to-top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
     <!-- Scripts -->
-    <script src="loader.js"></script>
-    <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Loading Screen Animation
+        class LoadingAnimation {
+            constructor() {
+                this.canvas = document.getElementById('loading-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.progress = 0;
+                this.text = 'MATHIYA';
+                this.particles = [];
+                this.init();
+            }
+
+            init() {
+                this.canvas.width = 400;
+                this.canvas.height = 100;
+                this.animate();
+                this.startLoading();
+            }
+
+            drawText() {
+                this.ctx.font = 'bold 48px Orbitron';
+                this.ctx.textAlign = 'center';
+                this.ctx.textBaseline = 'middle';
+                
+                // Create gradient
+                const gradient = this.ctx.createLinearGradient(0, 0, this.canvas.width, 0);
+                gradient.addColorStop(0, '#00FFDE');
+                gradient.addColorStop(1, '#FF3366');
+                
+                this.ctx.fillStyle = gradient;
+                this.ctx.fillText(this.text, this.canvas.width / 2, this.canvas.height / 2);
+                
+                // Add glow effect
+                this.ctx.shadowColor = '#00FFDE';
+                this.ctx.shadowBlur = 20;
+                this.ctx.fillText(this.text, this.canvas.width / 2, this.canvas.height / 2);
+            }
+
+            animate() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                this.drawText();
+                requestAnimationFrame(() => this.animate());
+            }
+
+            startLoading() {
+                const progressBar = document.getElementById('loading-progress');
+                const loadingScreen = document.getElementById('loading-screen');
+                
+                const interval = setInterval(() => {
+                    this.progress += Math.random() * 15;
+                    if (this.progress >= 100) {
+                        this.progress = 100;
+                        clearInterval(interval);
+                        
+                        setTimeout(() => {
+                            loadingScreen.style.opacity = '0';
+                            setTimeout(() => {
+                                loadingScreen.style.display = 'none';
+                            }, 500);
+                        }, 500);
+                    }
+                    progressBar.style.width = this.progress + '%';
+                }, 100);
+            }
+        }
+
+        // Custom Cursor
+        class CustomCursor {
+            constructor() {
+                this.cursor = document.getElementById('cursor');
+                this.cursorDot = document.getElementById('cursor-dot');
+                this.init();
+            }
+
+            init() {
+                document.addEventListener('mousemove', (e) => {
+                    this.cursor.style.left = e.clientX + 'px';
+                    this.cursor.style.top = e.clientY + 'px';
+                    
+                    setTimeout(() => {
+                        this.cursorDot.style.left = e.clientX + 'px';
+                        this.cursorDot.style.top = e.clientY + 'px';
+                    }, 50);
+                });
+
+                // Hover effects
+                const hoverElements = document.querySelectorAll('a, button, .glow-hover');
+                hoverElements.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        this.cursor.classList.add('cursor-hover');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        this.cursor.classList.remove('cursor-hover');
+                    });
+                });
+            }
+        }
+
+        // Page Transitions
+        class PageTransitions {
+            constructor() {
+                this.transition = document.getElementById('page-transition');
+                this.init();
+            }
+
+            init() {
+                const links = document.querySelectorAll('a[href$=".html"]');
+                links.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.transitionTo(link.href);
+                    });
+                });
+            }
+
+            transitionTo(url) {
+                this.transition.classList.add('active');
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 500);
+            }
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const icon = themeToggle.querySelector('i');
+            
+            if (body.classList.contains('light-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            new LoadingAnimation();
+            new CustomCursor();
+            new PageTransitions();
+        });
+    </script>
 </body>
 </html>
