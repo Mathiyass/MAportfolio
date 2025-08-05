@@ -24,6 +24,9 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     
     <script>
         tailwind.config = {
@@ -338,10 +341,17 @@
         </div>
         
         <div class="container mx-auto px-6 text-center relative z-10">
-            <!-- Profile Image -->
+            <!-- Profile Image Slideshow -->
             <div class="mb-8" data-aos="fade-down" data-aos-duration="1000">
-                <div class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full overflow-hidden profile-glow">
-                    <img src="assets/images/profile.jpg" alt="Mathiya Profile" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjE2MCIgdmlld0JveD0iMCAwIDE2MCAxNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iMTYwIiBmaWxsPSIjMUExQTJFIi8+CjxjaXJjbGUgY3g9IjgwIiBjeT0iNjAiIHI9IjI1IiBmaWxsPSIjMDBGRkRFIi8+CjxwYXRoIGQ9Ik00MCA5MEM0MCA5MCA1MCA4MCA4MCA4MFMxMjAgOTAgMTIwIDkwVjEyMEg0MFY5MFoiIGZpbGw9IiMwMEZGREUiLz4KPHN2Zz4K'">
+                <div class="swiper-container w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full overflow-hidden profile-glow">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="assets/images/Profile Picture.jpg" alt="Mathiya Profile" class="w-full h-full object-cover">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="assets/images/Profile Picture 2.jpg" alt="Mathiya Profile" class="w-full h-full object-cover">
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -456,5 +466,9 @@
 
     <script src="assets/js/loader.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/slideshow.js"></script>
 </body>
 </html>
