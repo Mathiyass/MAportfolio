@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | MATHIYA</title>
+    <meta name="description" content="Explore Mathiya's visual gallery featuring personal photos, gaming screenshots, and creative design work.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'orbitron': ['Orbitron', 'monospace'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'cyber-cyan': '#00FFDE',
+                        'cyber-red': '#FF3366',
+                        'neon-pink': '#FF10F0',
+                        'electric-blue': '#0080FF',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#1a1a2e',
+                        'dark-accent': '#16213e',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
+                        'gallery-hover': 'galleryHover 0.3s ease-out',
+                    },
+                    keyframes: {
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                        },
+                        'glowPulse': {
+                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 222, 0.5)' },
+                            '100%': { boxShadow: '0 0 40px rgba(0, 255, 222, 1), 0 0 60px rgba(255, 51, 102, 0.5)' },
+                        },
+                        'galleryHover': {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.05)' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            cursor: none;
+        }
+        
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00FFDE;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #00FFDE;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.15s ease;
+        }
+        
+        .cursor-hover {
+            transform: scale(2);
+            background: rgba(0, 255, 222, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 222, 0.8);
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #00FFDE, #FF3366, #FF10F0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            aspect-ratio: 1;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 255, 222, 0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: end;
+            padding: 1.5rem;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 1rem;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10001;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-nav:hover {
+            background: rgba(0, 255, 222, 0.3);
+        }
+        
+        .lightbox-prev {
+            left: -80px;
+        }
+        
+        .lightbox-next {
+            right: -80px;
+        }
+        
+        /* Filter Buttons */
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #00FFDE, #FF3366);
+            color: #0a0a0a;
+            box-shadow: 0 0 20px rgba(0, 255, 222, 0.4);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #00FFDE, #FF3366);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="dark text-white">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="text-2xl font-bold font-orbitron gradient-text">
+                    <a href="index.html">MATHIYA</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors">Home</a>
+                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors">About</a>
+                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors">Projects</a>
+                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors">Skills</a>
+                    <a href="socials.html" class="nav-link hover:text-cyber-cyan transition-colors">Socials</a>
+                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors">Contact</a>
+                    <a href="gallery.html" class="nav-link text-cyber-cyan font-medium">Gallery</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
+                    <i class="fas fa-bars text-cyber-cyan"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
+            <div class="p-6">
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="clear-both mt-8 space-y-6">
+                    <a href="index.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Home</a>
+                    <a href="about.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">About</a>
+                    <a href="projects.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Projects</a>
+                    <a href="skills.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Skills</a>
+                    <a href="socials.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Socials</a>
+                    <a href="contact.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Contact</a>
+                    <a href="gallery.html" class="block text-xl font-orbitron text-cyber-cyan mobile-nav-link">Gallery</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float" style="animation-delay: -1.5s;"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up">
+                Visual Gallery
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                A collection of personal moments, gaming achievements, and creative work
+            </p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
+                <button class="filter-btn px-6 py-3 rounded-full border-2 border-cyber-cyan text-cyber-cyan font-orbitron active" data-filter="all">
+                    All Photos
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron" data-filter="personal">
+                    Personal
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron" data-filter="gaming">
+                    Gaming
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron" data-filter="design">
+                    Design Work
+                </button>
+                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron" data-filter="tech">
+                    Tech Setup
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="gallery-grid" id="gallery-grid">
+                
+                <!-- Personal Photos -->
+                <div class="gallery-item glass" data-category="personal" data-aos="fade-up" data-aos-delay="100">
+                    <img src="assets/images/personal-1.jpg" alt="Personal Photo 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjEyMCIgcj0iNDAiIGZpbGw9IiMwMEZGREUiLz4KPHBhdGggZD0iTTEwMCAxODBDMTAwIDE4MCAxMjAgMTYwIDE1MCAxNjBTMjAwIDE4MCAyMDAgMTgwVjI0MEgxMDBWMTgwWiIgZmlsbD0iIzAwRkZERSIvPgo8dGV4dCB4PSIxNTAiIHk9IjI3MCIgZmlsbD0iIzAwRkZERSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNCIgZm9udC1mYW1pbHk9IkFyaWFsIj5QZXJzb25hbDwvdGV4dD4KPHN2Zz4K'">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3 class="text-lg font-bold font-orbitron text-white">Personal Moment</h3>
+                            <p class="text-sm text-gray-300">Capturing life's beautiful moments</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item glass" data-category="personal" data-aos="fade-up" data-aos-delay="200">
+                    <img src="assets/images/personal-2.jpg" alt="Personal Photo 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjEyMCIgcj0iNDAiIGZpbGw9IiNGRjMzNjYiLz4KPHBhdGggZD0iTTEwMCAxODBDMTAwIDE4MCAxMjAgMTYwIDE1MCAxNjBTMjAwIDE4MCAyMDAgMTgwVjI0MEgxMDBWMTgwWiIgZmlsbD0iI0ZGMzM2NiIvPgo8dGV4dCB4PSIxNTAiIHk9IjI3MCIgZmlsbD0iI0ZGMzM2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNCIgZm9udC1mYW1pbHk9IkFyaWFsIj5BZHZlbnR1cmU8L3RleHQ+Cjwvc3ZnPgo='">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3 class="text-lg font-bold font-orbitron text-white">Adventure Time</h3>
+                            <p class="text-sm text-gray-300">Exploring new places and experiences</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gaming Screenshots -->
+                <div class="gallery-item glass" data-category="gaming" data-aos="fade-up" data-aos-delay="300">
+                    <img src="assets/images/gaming-1.jpg" alt="Gaming Screenshot 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiMwMEZGREUiIG9wYWNpdHk9IjAuMyIvPgo8Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMjUiIHI9IjMwIiBmaWxsPSIjMDBGRkRFIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjcwIiBmaWxsPSIjMDBGRkRFIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE0IiBmb250LWZhbWlseT0iQXJpYWwiPkdhbWluZzwvdGV4dD4KPHN2Zz4K'">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3 class="text-lg font-bold font-orbitron text-white">Epic Gaming Moment</h3>
+                            <p class="text-sm text-gray-300">Achievement unlocked!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item glass" data-category="gaming" data-aos="fade-up" data-aos-delay="400">
+                    <img src="assets/images/gaming-2.jpg" alt="Gaming Screenshot 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNGRjMzNjYiIG9wYWNpdHk9IjAuMyIvPgo8cG9seWdvbiBwb2ludHM9IjEyMCwxMDAgMTgwLDEwMCAxNTAsMTUwIiBmaWxsPSIjRkYzMzY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjcwIiBmaWxsPSIjRkYzMzY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE0IiBmb250LWZhbWlseT0iQXJpYWwiPkdhbWUgV2luPC90ZXh0Pgo8L3N2Zz4K'">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3 class="text-lg font-bold font-orbitron text-white">Victory Screen</h3>
+                            <p class="text-sm text-gray-300">Another successful match</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Design Work -->
+                <div class="gallery-item glass" data-category="design" data-aos="fade-up" data-aos-delay="500">
+                    <img src="assets/images/design-1.jpg" alt="Design Work 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGMTBGMCIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjE1MCIgcj0iNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGMTBGMCIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjgwIiBmaWxsPSIjRkYxMEYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE0IiBmb250LWZhbWlseT0iQXJpYWwiPkRlc2lnbjwvdGV4dD4KPHN2Zz4K'">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3 class="text-lg font-bold font-orbitron text-white">UI Design Concept</h3>
+                            <p class="text-sm text-gray-300">Modern interface design</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item glass" data-category="design" data-aos="fade-up" data-aos-delay="600">
+                    <img src="assets/images/design-2.jpg" alt="Design Work 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxwYXRoIGQ9Ik03NSA3NUwyMjUgNzVMMjI1IDIyNUw3NSAyMjVaIiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDgwRkYiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNMTAwIDEwMEwyMDAgMTAwTDIwMCAyMDBMMTAwIDIwMFoiIGZpbGw9IiMwMDgwRkYiIG9wYWNpdHk9IjAuMyIvPgo8dGV4dCB4PSIxNTAiIHk9IjI4MCIgZmlsbD0iIzAwODBGRiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNCIgZm9udC1mYW1pbHk9IkFyaWFsIj5Mb2dvPC90ZXh0Pgo8L3N2Zz4K'">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3 class="text-lg font-bold font-orbitron text-white">Logo Design</h3>
+                            <p class="text-sm text-gray-300">Brand identity creation</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tech Setup -->
+                <div class="gallery-item glass" data-category="tech" data-aos="fade-up" data-aos-delay="700">
+                    <img src="assets/images/setup-1.jpg" alt="Tech Setup 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwRkZERSIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxyZWN0IHg9IjYwIiB5PSI5MCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiMwMEZGREUiIG9wYWNpdHk9IjAuMiIvPgo8Y2lyY2xlIGN4PSIxNTAiIGN5PSIyMzAiIHI9IjIwIiBmaWxsPSIjMDBGRkRFIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjgwIiBmaWxsPSIjMDBGRkRFIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE0IiBmb250LWZhbWlseT0iQXJpYWwiPlNldHVwPC90ZXh0Pgo8L3N2Zz4K'">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3 class="text-lg font-bold font-orbitron text-white">Coding Setup</h3>
+                            <p class="text-sm text-gray-300">My development workspace</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item glass" data-category="tech" data-aos="fade-up" data-aos-delay="800">
+                    <img src="assets/images/setup-2.jpg" alt="Tech Setup 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjE1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkYzMzY2IiBzdHJva2Utd2lkdGg9IjMiLz4KPHJlY3QgeD0iMTcwIiB5PSI1MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjE1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkYzMzY2IiBzdHJva2Utd2lkdGg9IjMiLz4KPGNpcmNsZSBjeD0iMTUwIiBjeT0iMjMwIiByPSIyMCIgZmlsbD0iI0ZGMzM2NiIvPgo8dGV4dCB4PSIxNTAiIHk9IjI4MCIgZmlsbD0iI0ZGMzM2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNCIgZm9udC1mYW1pbHk9IkFyaWFsIj5HYW1pbmcgUmlnPC90ZXh0Pgo8L3N2Zz4K'">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3 class="text-lg font-bold font-orbitron text-white">Gaming Rig</h3>
+                            <p class="text-sm text-gray-300">High-performance gaming setup</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-nav lightbox-prev" id="lightbox-prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-nav lightbox-next" id="lightbox-next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
+                    <p class="text-gray-400">© 2024 Mathiya. All rights reserved.</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/gallery.js"></script>
+</body>
+</html>

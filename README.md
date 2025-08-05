@@ -1,31 +1,31 @@
-# Mathiya's Advanced Portfolio Website
+# Mathiya's Ultra-Modern Portfolio Website
 
-A cutting-edge, responsive portfolio website for Mathiya Angirasa - Software Engineering Student from Colombo, Sri Lanka. Built with modern web technologies and featuring a futuristic cyber-minimalist design with Dracula theme aesthetics.
+A cutting-edge, highly interactive, and professionally advanced multi-page personal portfolio website for Gen Z software engineer Mathiya, featuring a futuristic cyber-minimalist design with custom MATHIYA drawing animation.
 
 ## 🚀 Features
 
-### Design & User Experience
-- **Futuristic Cyber-Minimalist Theme**: Dracula color scheme with neon accents
-- **Advanced Loading Animation**: "MATHIYA" text drawn stroke-by-stroke with progress bar
-- **Custom Cursor**: Interactive cursor with hover effects
-- **Glassmorphism Effects**: Modern glass-like UI elements
-- **Smooth Animations**: AOS library integration with custom keyframes
-- **Responsive Design**: Mobile-first approach (360px, 768px, 1024px, 1440px breakpoints)
+### Visual Design
+- **Custom MATHIYA Drawing Animation**: Stroke-by-stroke text drawing with loading bar
+- **Futuristic Cyber-Minimalist Theme**: Dark background with neon cyan (#00FFDE) and red accents
+- **Glassmorphism Effects**: Modern glass-like UI elements with backdrop blur
+- **3D Hover Effects**: Interactive cards with perspective transforms
+- **Floating Particles**: Dynamic background particles with smooth animations
+- **Custom Cursor**: Interactive cursor with hover effects and smooth following dot
 
 ### Interactive Elements
-- **Typing Effect**: Auto-typed intro text with multiple phrases
-- **Particle Background**: Interactive particle system using particles.js
-- **Project Filtering**: Dynamic project categorization (All/Web/Games/Mobile)
-- **Smooth Scrolling**: Enhanced navigation with active link highlighting
-- **Social Sidebar**: Floating social media links
-- **Progress Bar**: Visual scroll progress indicator
+- **Smooth Scroll Navigation**: Floating sticky nav with active page highlighting
+- **Mobile-First Design**: Responsive hamburger menu with smooth transitions
+- **Typing Animation**: Dynamic role switching with typewriter effect
+- **Lightbox Gallery**: Full-screen image viewer with keyboard navigation
+- **Project Filtering**: Dynamic categorization with smooth transitions
+- **Dark Mode Ready**: Built with Tailwind's dark mode utilities
 
 ### Performance & Optimization
 - **Lazy Loading**: Images load only when needed
-- **Performance Monitoring**: Load time tracking and optimization
-- **SEO Optimized**: Meta tags, Open Graph, and Twitter Cards
-- **Accessibility**: WCAG compliant with keyboard navigation
-- **PWA Ready**: Service worker ready for offline functionality
+- **AOS Animations**: Scroll-triggered fade-in animations
+- **GSAP Integration**: Advanced animations and transitions
+- **SEO Optimized**: Meta tags, semantic HTML, and accessibility features
+- **GitHub Pages Ready**: Direct deployment without build process
 
 ## 🛠️ Tech Stack
 
@@ -33,20 +33,27 @@ A cutting-edge, responsive portfolio website for Mathiya Angirasa - Software Eng
 - **Tailwind CSS**: Utility-first CSS framework via CDN
 - **Vanilla JavaScript**: Pure JavaScript for optimal performance
 - **AOS.js**: Animate on scroll library
-- **Particles.js**: Interactive particle background
+- **GSAP**: Advanced animation library
 - **Font Awesome**: Comprehensive icon library
-- **Google Fonts**: JetBrains Mono and Inter font families
+- **Google Fonts**: Orbitron and Inter font families
 
 ## 📁 Project Structure
 
 ```
 portfolio/
-├── index.html              # Main HTML file
-├── script.js               # Enhanced JavaScript functionality
+├── index.html              # Homepage with hero section
+├── about.html              # About page with timeline
+├── projects.html           # Projects showcase (coming soon)
+├── skills.html             # Skills matrix (coming soon)
+├── socials.html            # Social media links
+├── contact.html            # Contact form (coming soon)
+├── gallery.html            # Photo gallery with lightbox
 ├── assets/
-│   ├── images/             # Project images and photos
-│   ├── icons/              # Custom icons and favicons
-│   ├── animations/         # Lottie files and animations
+│   ├── js/
+│   │   ├── main.js         # Main JavaScript functionality
+│   │   ├── loader.js       # Custom MATHIYA drawing animation
+│   │   └── gallery.js      # Gallery and lightbox functionality
+│   ├── images/             # Profile photos and gallery images
 │   └── documents/          # Resume PDF and documents
 ├── README.md               # Project documentation
 └── package.json            # Project metadata
@@ -58,8 +65,8 @@ portfolio/
 
 1. **Clone the repository**:
 ```bash
-git clone https://github.com/Mathiyass/portfolio.git
-cd portfolio
+git clone https://github.com/username/mathiya-portfolio.git
+cd mathiya-portfolio
 ```
 
 2. **Start local server**:
@@ -77,103 +84,92 @@ npx serve . -p 3000
 
 ### GitHub Pages Deployment
 
-1. **Fork or clone** this repository
-2. **Customize content**:
-   - Update personal information in `index.html`
-   - Replace placeholder projects with your own
-   - Add your photos to `assets/images/`
-   - Update social media links
-
-3. **Enable GitHub Pages**:
+1. **Upload to GitHub**: Push all files to your GitHub repository
+2. **Enable GitHub Pages**:
    - Go to repository Settings → Pages
    - Select "Deploy from a branch"
    - Choose "main" branch and "/ (root)" folder
    - Save and wait for deployment
 
-4. **Custom Domain** (optional):
+3. **Custom Domain** (optional):
    - Add `CNAME` file with your domain
    - Configure DNS settings with your domain provider
 
 ## 🎨 Customization
 
 ### Color Scheme
-The portfolio uses Dracula theme colors:
+The portfolio uses a cyber-minimalist color palette:
 
 ```css
-/* Dracula Color Palette */
---dracula-bg: #282a36        /* Background */
---dracula-current: #44475a   /* Current Line */
---dracula-foreground: #f8f8f2 /* Foreground */
---dracula-comment: #6272a4   /* Comment */
---dracula-cyan: #8be9fd      /* Cyan */
---dracula-green: #50fa7b     /* Green */
---dracula-orange: #ffb86c    /* Orange */
---dracula-pink: #ff79c6      /* Pink */
---dracula-purple: #bd93f9    /* Purple */
---dracula-red: #ff5555       /* Red */
---dracula-yellow: #f1fa8c    /* Yellow */
+/* Primary Colors */
+--cyber-cyan: #00FFDE        /* Primary brand color */
+--cyber-red: #FF3366         /* Accent color */
+--neon-pink: #FF10F0         /* Highlight color */
+--electric-blue: #0080FF     /* Secondary accent */
+
+/* Background Colors */
+--dark-bg: #0a0a0a          /* Main background */
+--dark-card: #1a1a2e        /* Card backgrounds */
+--dark-accent: #16213e      /* Accent backgrounds */
 ```
 
 ### Content Updates
 
 1. **Personal Information**:
-   - Update name, title, and bio in the hero section
-   - Modify about section with your story
-   - Update contact information and location
+   - Update name, title, and bio in `index.html`
+   - Modify about section content in `about.html`
+   - Update social media links in `socials.html`
 
-2. **Skills & Technologies**:
-   - Modify skill percentages and categories
-   - Update technology stack information
-   - Add or remove skill bars as needed
+2. **Profile Images**:
+   - Replace `assets/images/profile.jpg` with your photo
+   - Add gallery images to `assets/images/` folder
+   - Update image references in HTML files
 
-3. **Projects**:
-   - Replace project cards with your own work
-   - Update project images, descriptions, and links
-   - Modify project categories for filtering
+3. **Resume**:
+   - Add your PDF resume to `assets/documents/`
+   - Update download links in `about.html`
 
 4. **Social Media**:
-   - Update all social media URLs in the sidebar
-   - Add or remove social platforms
-   - Customize gaming and entertainment profiles
+   - Update all social media URLs in `socials.html`
+   - Modify gaming IDs and platform links
+   - Add or remove social platforms as needed
 
 ## 📱 Responsive Design
 
 The portfolio is built with a mobile-first approach:
 
-- **Mobile**: < 768px - Optimized for touch interactions
-- **Tablet**: 768px - 1024px - Balanced layout for medium screens
-- **Desktop**: 1024px - 1440px - Full-featured desktop experience
-- **Large**: 1440px+ - Enhanced spacing for large displays
+- **Mobile**: < 768px - Touch-optimized interactions
+- **Tablet**: 768px - 1024px - Balanced layout
+- **Desktop**: 1024px+ - Full-featured experience
 
 ## ⚡ Performance Features
 
-### Optimization Techniques
-- **Critical CSS**: Above-the-fold styles inlined
-- **Lazy Loading**: Images load only when visible
-- **Efficient Animations**: Hardware-accelerated CSS transforms
-- **Minimal JavaScript**: Pure vanilla JS, no heavy frameworks
-- **CDN Resources**: External libraries loaded from CDN
+### Loading Animation
+- Custom MATHIYA text drawing with stroke animation
+- Progress bar showing loading completion
+- Smooth transition to main content
+- Particle effects during loading
 
-### Performance Metrics
-- **First Contentful Paint**: < 1.5s
-- **Largest Contentful Paint**: < 2.5s
-- **Cumulative Layout Shift**: < 0.1
-- **First Input Delay**: < 100ms
+### Optimization Techniques
+- **Efficient Animations**: Hardware-accelerated CSS transforms
+- **Minimal Dependencies**: CDN-based libraries only
+- **Lazy Loading**: Images load on scroll
+- **Smooth Scrolling**: Enhanced navigation experience
 
 ## 🌟 Advanced Features
 
 ### Interactive Elements
-- **Custom Cursor**: Mouse-responsive cursor with hover effects
-- **Particle System**: Interactive background particles
-- **Typing Animation**: Dynamic text with multiple phrases
-- **3D Hover Effects**: Subtle 3D transforms on project cards
-- **Smooth Scrolling**: Enhanced navigation experience
+- **Custom Cursor**: Mouse-responsive with hover effects
+- **Floating Particles**: Dynamic background animation
+- **3D Card Effects**: Perspective transforms on hover
+- **Lightbox Gallery**: Full-screen image viewing
+- **Smooth Transitions**: Page-to-page navigation
 
 ### Developer Experience
 - **Console Easter Egg**: Hidden developer message
-- **Performance Monitoring**: Load time tracking
-- **Error Handling**: Graceful degradation
-- **Code Organization**: Modular and maintainable structure
+- **Semantic HTML**: Accessible and SEO-friendly
+- **Clean Code**: Well-organized and commented
+- **Modular Structure**: Reusable components
 
 ## 🔧 Browser Support
 
@@ -181,7 +177,7 @@ The portfolio is built with a mobile-first approach:
 - **Firefox**: 88+ (Full support)
 - **Safari**: 14+ (Full support)
 - **Edge**: 90+ (Full support)
-- **Mobile Browsers**: iOS Safari 14+, Chrome Mobile 90+
+- **Mobile**: iOS Safari 14+, Chrome Mobile 90+
 
 ## 📄 License
 
@@ -197,18 +193,17 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 - 🌐 **GitHub**: [@Mathiyass](https://github.com/Mathiyass)
 - 💼 **LinkedIn**: [Mathisha Angirasa](https://www.linkedin.com/in/mathisha-angirasa-a955941a2/)
-- 🐦 **Twitter**: [@Mathiya](https://x.com/Mathiya)
-- 📧 **Email**: mathisha.angirasa@example.com
+- 🐦 **X (Twitter)**: [@Mathiya](https://x.com/Mathiya)
+- 💬 **Discord**: [Join Server](https://discord.gg/QERP5JJM8k)
 - 📱 **WhatsApp**: [+94 71 592 1984](https://wa.me/94715921984)
 
 ## 🙏 Acknowledgments
 
-- **Design Inspiration**: masabqurban.com, coderhisham.com, Hannah's Portfolio
-- **Color Scheme**: Dracula Theme by Zeno Rocha
+- **Design Inspiration**: Modern portfolio websites and cyber-aesthetic designs
+- **Color Scheme**: Cyber-minimalist theme with neon accents
 - **Icons**: Font Awesome
-- **Fonts**: Google Fonts (JetBrains Mono, Inter)
-- **Animations**: AOS.js library
-- **Particles**: Particles.js library
+- **Fonts**: Google Fonts (Orbitron, Inter)
+- **Animations**: AOS.js and GSAP libraries
 
 ---
 

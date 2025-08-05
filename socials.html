@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socials | MATHIYA</title>
+    <meta name="description" content="Connect with Mathiya across all social media platforms - GitHub, LinkedIn, Discord, Steam, and more!">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'orbitron': ['Orbitron', 'monospace'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'cyber-cyan': '#00FFDE',
+                        'cyber-red': '#FF3366',
+                        'neon-pink': '#FF10F0',
+                        'electric-blue': '#0080FF',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#1a1a2e',
+                        'dark-accent': '#16213e',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
+                        'social-hover': 'socialHover 0.3s ease-out',
+                    },
+                    keyframes: {
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                        },
+                        'glowPulse': {
+                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 222, 0.5)' },
+                            '100%': { boxShadow: '0 0 40px rgba(0, 255, 222, 1), 0 0 60px rgba(255, 51, 102, 0.5)' },
+                        },
+                        'socialHover': {
+                            '0%': { transform: 'translateY(0) scale(1)' },
+                            '100%': { transform: 'translateY(-10px) scale(1.05)' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            cursor: none;
+        }
+        
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00FFDE;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #00FFDE;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.15s ease;
+        }
+        
+        .cursor-hover {
+            transform: scale(2);
+            background: rgba(0, 255, 222, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 222, 0.8);
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #00FFDE, #FF3366, #FF10F0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Social Card Effects */
+        .social-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 255, 222, 0.2);
+        }
+        
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .social-card:hover::before {
+            left: 100%;
+        }
+        
+        /* Platform-specific colors */
+        .github-card:hover { border-color: #333; }
+        .linkedin-card:hover { border-color: #0077B5; }
+        .twitter-card:hover { border-color: #1DA1F2; }
+        .facebook-card:hover { border-color: #1877F2; }
+        .instagram-card:hover { border-color: #E4405F; }
+        .steam-card:hover { border-color: #00adee; }
+        .epic-card:hover { border-color: #313131; }
+        .spotify-card:hover { border-color: #1DB954; }
+        .discord-card:hover { border-color: #5865F2; }
+        .whatsapp-card:hover { border-color: #25D366; }
+        .ea-card:hover { border-color: #FF6600; }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #00FFDE, #FF3366);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="dark text-white">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="text-2xl font-bold font-orbitron gradient-text">
+                    <a href="index.html">MATHIYA</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors">Home</a>
+                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors">About</a>
+                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors">Projects</a>
+                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors">Skills</a>
+                    <a href="socials.html" class="nav-link text-cyber-cyan font-medium">Socials</a>
+                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors">Contact</a>
+                    <a href="gallery.html" class="nav-link hover:text-cyber-cyan transition-colors">Gallery</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
+                    <i class="fas fa-bars text-cyber-cyan"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
+            <div class="p-6">
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="clear-both mt-8 space-y-6">
+                    <a href="index.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Home</a>
+                    <a href="about.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">About</a>
+                    <a href="projects.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Projects</a>
+                    <a href="skills.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Skills</a>
+                    <a href="socials.html" class="block text-xl font-orbitron text-cyber-cyan mobile-nav-link">Socials</a>
+                    <a href="contact.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Contact</a>
+                    <a href="gallery.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Gallery</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float" style="animation-delay: -1.5s;"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up">
+                Connect With Me
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Find me across all platforms - from professional networks to gaming communities
+            </p>
+        </div>
+    </section>
+
+    <!-- Social Media Grid -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                
+                <!-- Professional Networks -->
+                <div class="mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold font-orbitron text-center mb-12 gradient-text" data-aos="fade-up">
+                        Professional Networks
+                    </h2>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- GitHub -->
+                        <a href="https://github.com/Mathiyass" target="_blank" class="social-card github-card glass p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="100">
+                            <div class="text-6xl mb-4 text-gray-300">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2 font-orbitron">GitHub</h3>
+                            <p class="text-gray-400 mb-4">@Mathiyass</p>
+                            <p class="text-sm text-gray-500">Code repositories, open source projects, and contributions</p>
+                        </a>
+                        
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="social-card linkedin-card glass p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
+                            <div class="text-6xl mb-4 text-blue-500">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2 font-orbitron">LinkedIn</h3>
+                            <p class="text-gray-400 mb-4">Mathisha Angirasa</p>
+                            <p class="text-sm text-gray-500">Professional network, career updates, and industry insights</p>
+                        </a>
+                        
+                        <!-- X (Twitter) -->
+                        <a href="https://x.com/Mathiya" target="_blank" class="social-card twitter-card glass p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
+                            <div class="text-6xl mb-4 text-blue-400">
+                                <i class="fab fa-twitter"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2 font-orbitron">X (Twitter)</h3>
+                            <p class="text-gray-400 mb-4">@Mathiya</p>
+                            <p class="text-sm text-gray-500">Tech thoughts, project updates, and industry discussions</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Social Media -->
+                <div class="mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold font-orbitron text-center mb-12 gradient-text" data-aos="fade-up">
+                        Social Media
+                    </h2>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/mathisha.angirasa/" target="_blank" class="social-card facebook-card glass p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="100">
+                            <div class="text-6xl mb-4 text-blue-600">
+                                <i class="fab fa-facebook"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2 font-orbitron">Facebook</h3>
+                            <p class="text-gray-400 mb-4">Mathisha Angirasa</p>
+                            <p class="text-sm text-gray-500">Personal updates, life moments, and community connections</p>
+                        </a>
+                        
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="social-card instagram-card glass p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
+                            <div class="text-6xl mb-4 text-pink-500">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2 font-orbitron">Instagram</h3>
+                            <p class="text-gray-400 mb-4">@mathi_ya_</p>
+                            <p class="text-sm text-gray-500">Visual stories, behind-the-scenes, and creative content</p>
+                        </a>
+                        
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/94715921984" target="_blank" class="social-card whatsapp-card glass p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
+                            <div class="text-6xl mb-4 text-green-500">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2 font-orbitron">WhatsApp</h3>
+                            <p class="text-gray-400 mb-4">+94 71 592 1984</p>
+                            <p class="text-sm text-gray-500">Direct messaging for quick conversations and collaboration</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Gaming & Entertainment -->
+                <div class="mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold font-orbitron text-center mb-12 gradient-text" data-aos="fade-up">
+                        Gaming & Entertainment
+                    </h2>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Steam -->
+                        <a href="https://steamcommunity.com/profiles/76561199076879396/" target="_blank" class="social-card steam-card glass p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="100">
+                            <div class="text-5xl mb-4 text-blue-400">
+                                <i class="fab fa-steam"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 font-orbitron">Steam</h3>
+                            <p class="text-sm text-gray-500">Gaming profile and achievements</p>
+                        </a>
+                        
+                        <!-- Epic Games -->
+                        <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" target="_blank" class="social-card epic-card glass p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
+                            <div class="text-5xl mb-4 text-gray-300">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 font-orbitron">Epic Games</h3>
+                            <p class="text-sm text-gray-500">Epic Games Store profile</p>
+                        </a>
+                        
+                        <!-- Spotify -->
+                        <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" target="_blank" class="social-card spotify-card glass p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
+                            <div class="text-5xl mb-4 text-green-500">
+                                <i class="fab fa-spotify"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 font-orbitron">Spotify</h3>
+                            <p class="text-sm text-gray-500">Music playlists and listening activity</p>
+                        </a>
+                        
+                        <!-- Discord -->
+                        <a href="https://discord.gg/QERP5JJM8k" target="_blank" class="social-card discord-card glass p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="400">
+                            <div class="text-5xl mb-4 text-indigo-500">
+                                <i class="fab fa-discord"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 font-orbitron">Discord</h3>
+                            <p class="text-sm text-gray-500">Gaming community and voice chat</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Gaming IDs -->
+                <div class="mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold font-orbitron text-center mb-12 gradient-text" data-aos="fade-up">
+                        Gaming IDs
+                    </h2>
+                    
+                    <div class="max-w-2xl mx-auto">
+                        <!-- EA Games ID -->
+                        <div class="social-card ea-card glass p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="100">
+                            <div class="text-6xl mb-4 text-orange-500">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2 font-orbitron">EA Games</h3>
+                            <p class="text-gray-400 mb-4">M_MATHIYA_M</p>
+                            <p class="text-sm text-gray-500">EA Origin gaming ID for multiplayer games</p>
+                            <div class="mt-4 px-4 py-2 bg-orange-500 bg-opacity-20 rounded-lg inline-block">
+                                <span class="text-orange-400 font-mono">Display Only</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Call to Action -->
+                <div class="text-center" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold font-orbitron mb-8 gradient-text">
+                        Let's Connect!
+                    </h2>
+                    <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+                        Whether you want to collaborate on a project, discuss technology, or just chat about gaming, 
+                        I'm always excited to connect with fellow enthusiasts and professionals.
+                    </p>
+                    <a href="contact.html" class="inline-block px-8 py-4 bg-gradient-to-r from-cyber-cyan to-cyber-red text-black font-semibold rounded-full hover:shadow-2xl transition-all duration-300 font-orbitron">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
+                    <p class="text-gray-400">© 2024 Mathiya. All rights reserved.</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

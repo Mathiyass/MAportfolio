@@ -1,0 +1,9 @@
+# Resume Placeholder
+
+This is a placeholder for Mathiya's resume. 
+Replace this file with the actual PDF resume.
+
+To add the resume:
+1. Save your resume as 'mathiya-resume.pdf'
+2. Place it in the 'assets/documents' folder
+3. Update the download links in about.html to point to 'assets/documents/mathiya-resume.pdf'
