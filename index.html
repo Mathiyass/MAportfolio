@@ -3,76 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MATHIYA | Modern Developer Portfolio</title>
-    <meta name="description" content="Mathiya Angirasa - Full Stack Developer & Software Engineer. Creating innovative digital solutions with modern technologies.">
+    <title>MATHIYA | Software Engineer & Creative Coder</title>
+    <meta name="description" content="Mathiya - Gen Z Software Engineer, Creative Coder, and Tech Enthusiast. Explore my portfolio of innovative projects and digital experiences.">
     
-    <!-- Taiwan CSS CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
     
-    <!-- Font Awesome -->
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'orbitron': ['Orbitron', 'monospace'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'cyber-cyan': '#00FFDE',
+                        'cyber-red': '#FF3366',
+                        'neon-pink': '#FF10F0',
+                        'electric-blue': '#0080FF',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#1a1a2e',
+                        'dark-accent': '#16213e',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
+                        'typing': 'typing 3.5s steps(40, end), blink-caret .75s step-end infinite',
+                        'draw-line': 'drawLine 2s ease-in-out forwards',
+                        'particle-float': 'particleFloat 20s linear infinite',
+                    },
+                    keyframes: {
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                        },
+                        'glowPulse': {
+                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 222, 0.5)' },
+                            '100%': { boxShadow: '0 0 40px rgba(0, 255, 222, 1), 0 0 60px rgba(255, 51, 102, 0.5)' },
+                        },
+                        'typing': {
+                            'from': { width: '0' },
+                            'to': { width: '100%' }
+                        },
+                        'blink-caret': {
+                            'from, to': { borderColor: 'transparent' },
+                            '50%': { borderColor: '#00FFDE' }
+                        },
+                        'drawLine': {
+                            'to': { strokeDashoffset: '0' }
+                        },
+                        'particleFloat': {
+                            '0%': { transform: 'translateY(100vh) rotate(0deg)' },
+                            '100%': { transform: 'translateY(-100vh) rotate(360deg)' }
+                        }
+                    },
+                }
+            }
+        }
+    </script>
     
     <style>
-        :root {
-            --primary-cyan: #00FFDE;
-            --accent-red: #FF3366;
-            --dark-bg: #0A0A0A;
-            --darker-bg: #050505;
-            --card-bg: #1A1A1A;
-            --text-primary: #FFFFFF;
-            --text-secondary: #B0B0B0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
+        body { 
             font-family: 'Inter', sans-serif;
-            background: var(--dark-bg);
-            color: var(--text-primary);
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             cursor: none;
+            overflow-x: hidden;
         }
-
+        
         /* Custom Cursor */
-        .cursor {
+        .custom-cursor {
             position: fixed;
             width: 20px;
             height: 20px;
-            border: 2px solid var(--primary-cyan);
+            border: 2px solid #00FFDE;
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
             transition: all 0.1s ease;
             mix-blend-mode: difference;
         }
-
+        
         .cursor-dot {
             position: fixed;
             width: 4px;
             height: 4px;
-            background: var(--primary-cyan);
+            background: #00FFDE;
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transition: all 0.15s ease;
         }
-
+        
         .cursor-hover {
             transform: scale(2);
             background: rgba(0, 255, 222, 0.2);
-            box-shadow: 0 0 20px var(--primary-cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 222, 0.8);
         }
-
+        
         /* Loading Screen */
         .loading-screen {
             position: fixed;
@@ -80,18 +122,19 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--darker-bg);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 10000;
+            transition: opacity 1s ease-out;
         }
-
+        
         .loading-canvas {
             margin-bottom: 2rem;
         }
-
+        
         .loading-bar {
             width: 300px;
             height: 4px;
@@ -99,552 +142,317 @@
             border-radius: 2px;
             overflow: hidden;
         }
-
+        
         .loading-progress {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary-cyan), var(--accent-red));
+            background: linear-gradient(90deg, #00FFDE, #FF3366);
             width: 0%;
             transition: width 0.3s ease;
-            box-shadow: 0 0 10px var(--primary-cyan);
+            box-shadow: 0 0 10px #00FFDE;
         }
-
+        
         /* Glassmorphism */
         .glass {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        /* Neon Effects */
-        .neon-text {
-            text-shadow: 0 0 10px var(--primary-cyan), 0 0 20px var(--primary-cyan), 0 0 40px var(--primary-cyan);
-        }
-
-        .neon-border {
-            border: 2px solid var(--primary-cyan);
-            box-shadow: 0 0 20px rgba(0, 255, 222, 0.3), inset 0 0 20px rgba(0, 255, 222, 0.1);
-        }
-
-        .glow-hover:hover {
-            box-shadow: 0 0 30px var(--primary-cyan);
-            transform: translateY(-2px);
-        }
-
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 222, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(0, 255, 222, 0.8); }
-        }
-
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .pulse-glow {
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
-
+        
+        /* Gradient Text */
         .gradient-text {
-            background: linear-gradient(-45deg, var(--primary-cyan), var(--accent-red), var(--primary-cyan));
-            background-size: 400% 400%;
+            background: linear-gradient(135deg, #00FFDE, #FF3366, #FF10F0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradient-shift 3s ease infinite;
         }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .navbar.scrolled {
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(20px);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: radial-gradient(ellipse at center, rgba(0, 255, 222, 0.1) 0%, transparent 70%);
-        }
-
-        .hero-title {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(3rem, 8vw, 8rem);
-            font-weight: 900;
-            margin-bottom: 1rem;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            margin-bottom: 2rem;
-            opacity: 0.8;
-        }
-
-        /* Buttons */
-        .btn-primary {
-            background: linear-gradient(45deg, var(--primary-cyan), var(--accent-red));
-            color: var(--dark-bg);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
+        
+        /* Neon Button */
+        .neon-btn {
+            background: linear-gradient(135deg, #00FFDE, #FF3366);
+            box-shadow: 0 0 20px rgba(0, 255, 222, 0.4);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 255, 222, 0.4);
+        
+        .neon-btn:hover {
+            box-shadow: 0 0 40px rgba(0, 255, 222, 0.8);
+            transform: translateY(-2px);
         }
-
-        .btn-secondary {
-            border: 2px solid var(--primary-cyan);
-            color: var(--primary-cyan);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
+        
+        .neon-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
         }
-
-        .btn-secondary:hover {
-            background: var(--primary-cyan);
-            color: var(--dark-bg);
-            box-shadow: 0 0 30px rgba(0, 255, 222, 0.5);
+        
+        .neon-btn:hover::before {
+            left: 100%;
         }
-
-        /* Social Links */
-        .social-links {
-            position: fixed;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            z-index: 1000;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
+        
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            background: linear-gradient(45deg, #00FFDE, #FF3366);
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.6;
+            animation: particleFloat 20s linear infinite;
         }
-
-        .social-link:hover {
-            background: var(--primary-cyan);
-            color: var(--dark-bg);
-            transform: scale(1.1);
-            box-shadow: 0 0 20px var(--primary-cyan);
+        
+        .particle:nth-child(odd) {
+            animation-delay: -10s;
         }
-
-        /* Page Transitions */
-        .page-transition {
+        
+        /* 3D Card Effects */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+        
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(10deg) translateZ(20px);
+        }
+        
+        /* Typing Animation */
+        .typing-text {
+            border-right: 3px solid #00FFDE;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        /* Scroll Progress */
+        .scroll-progress {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--darker-bg);
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #00FFDE, #FF3366);
             z-index: 9999;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
+            transition: width 0.3s ease;
         }
-
-        .page-transition.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .social-links {
-                position: static;
-                transform: none;
-                flex-direction: row;
-                justify-content: center;
-                margin: 2rem 0;
-            }
-        }
-
-        /* Dark Mode Toggle */
-        .theme-toggle {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--primary-cyan);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 1001;
-        }
-
-        .theme-toggle:hover {
-            background: var(--primary-cyan);
-            color: var(--dark-bg);
-            box-shadow: 0 0 20px var(--primary-cyan);
-        }
-
-        /* Light Mode */
-        body.light-mode {
-            --dark-bg: #FFFFFF;
-            --darker-bg: #F5F5F5;
-            --card-bg: #FFFFFF;
-            --text-primary: #1A1A1A;
-            --text-secondary: #666666;
-        }
-
-        body.light-mode .glass {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        body.light-mode .hero {
-            background: radial-gradient(ellipse at center, rgba(0, 255, 222, 0.05) 0%, transparent 70%);
+        
+        /* Profile Image Glow */
+        .profile-glow {
+            box-shadow: 0 0 50px rgba(0, 255, 222, 0.3);
+            border: 3px solid rgba(0, 255, 222, 0.5);
         }
     </style>
 </head>
-<body>
-    <!-- Custom Cursor -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-dot" id="cursor-dot"></div>
 
+<body class="dark text-white">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+    
     <!-- Loading Screen -->
     <div class="loading-screen" id="loading-screen">
         <canvas class="loading-canvas" id="loading-canvas" width="400" height="100"></canvas>
         <div class="loading-bar">
             <div class="loading-progress" id="loading-progress"></div>
         </div>
+        <p class="text-cyber-cyan mt-4 font-orbitron">Loading Experience...</p>
     </div>
-
-    <!-- Page Transition -->
-    <div class="page-transition" id="page-transition"></div>
-
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="theme-toggle">
-        <i class="fas fa-moon"></i>
-    </button>
-
+    
+    <!-- Floating Particles -->
+    <div id="particles-container" class="fixed inset-0 pointer-events-none z-0"></div>
+    
     <!-- Navigation -->
-    <nav class="navbar glass" id="navbar">
+    <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold gradient-text" style="font-family: 'Orbitron', monospace;">
+                <!-- Logo -->
+                <div class="text-2xl font-bold font-orbitron gradient-text">
                     MATHIYA
                 </div>
+                
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-white hover:text-cyan-400 transition-colors">Home</a>
-                    <a href="about.html" class="text-white hover:text-cyan-400 transition-colors">About</a>
-                    <a href="skills.html" class="text-white hover:text-cyan-400 transition-colors">Skills</a>
-                    <a href="projects.html" class="text-white hover:text-cyan-400 transition-colors">Projects</a>
-                    <a href="contact.html" class="text-white hover:text-cyan-400 transition-colors">Contact</a>
+                    <a href="index.html" class="nav-link text-cyber-cyan font-medium">Home</a>
+                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors">About</a>
+                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors">Projects</a>
+                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors">Skills</a>
+                    <a href="socials.html" class="nav-link hover:text-cyber-cyan transition-colors">Socials</a>
+                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors">Contact</a>
                 </div>
-                <button class="md:hidden text-white" id="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
+                
+                <!-- Dark Mode Toggle -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-full glass hover:bg-cyber-cyan hover:text-black transition-all">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
+                    <i class="fas fa-bars text-cyber-cyan"></i>
                 </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
+            <div class="p-6">
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="clear-both mt-8 space-y-6">
+                    <a href="index.html" class="block text-xl font-orbitron text-cyber-cyan mobile-nav-link">Home</a>
+                    <a href="about.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">About</a>
+                    <a href="projects.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Projects</a>
+                    <a href="skills.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Skills</a>
+                    <a href="socials.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Socials</a>
+                    <a href="contact.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Contact</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden" id="mobile-menu">
-        <div class="flex flex-col items-center justify-center h-full space-y-8">
-            <a href="index.html" class="text-2xl text-white hover:text-cyan-400 transition-colors">Home</a>
-            <a href="about.html" class="text-2xl text-white hover:text-cyan-400 transition-colors">About</a>
-            <a href="skills.html" class="text-2xl text-white hover:text-cyan-400 transition-colors">Skills</a>
-            <a href="projects.html" class="text-2xl text-white hover:text-cyan-400 transition-colors">Projects</a>
-            <a href="contact.html" class="text-2xl text-white hover:text-cyan-400 transition-colors">Contact</a>
-            <button class="absolute top-8 right-8 text-white text-2xl" id="close-mobile-menu">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Social Links -->
-    <div class="social-links">
-        <a href="https://github.com/Mathiyass" class="social-link" target="_blank" title="GitHub">
-            <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="social-link" target="_blank" title="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="https://x.com/Mathiya" class="social-link" target="_blank" title="X (Twitter)">
-            <i class="fab fa-twitter"></i>
-        </a>
-        <a href="https://www.facebook.com/mathisha.angirasa/" class="social-link" target="_blank" title="Facebook">
-            <i class="fab fa-facebook"></i>
-        </a>
-        <a href="https://www.instagram.com/mathi_ya_/" class="social-link" target="_blank" title="Instagram">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://steamcommunity.com/profiles/76561199076879396/" class="social-link" target="_blank" title="Steam">
-            <i class="fab fa-steam"></i>
-        </a>
-        <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" class="social-link" target="_blank" title="Epic Games">
-            <i class="fas fa-gamepad"></i>
-        </a>
-        <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="social-link" target="_blank" title="Spotify">
-            <i class="fab fa-spotify"></i>
-        </a>
-        <a href="https://discord.gg/QERP5JJM8k" class="social-link" target="_blank" title="Discord">
-            <i class="fab fa-discord"></i>
-        </a>
-        <a href="https://wa.me/94715921984" class="social-link" target="_blank" title="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <div class="social-link" title="EA ID: M_MATHIYA_M">
-            <i class="fas fa-headset"></i>
-        </div>
-    </div>
-
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container mx-auto px-6 text-center">
-            <div class="floating">
-                <h1 class="hero-title gradient-text neon-text" data-aos="fade-up">
-                    MATHIYA
-                </h1>
-                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
-                    Full Stack Developer & Software Engineer
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float" style="animation-delay: -1.5s;"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <!-- Profile Image -->
+            <div class="mb-8" data-aos="fade-down" data-aos-duration="1000">
+                <div class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full overflow-hidden profile-glow">
+                    <img src="assets/images/profile.jpg" alt="Mathiya Profile" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjE2MCIgdmlld0JveD0iMCAwIDE2MCAxNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iMTYwIiBmaWxsPSIjMUExQTJFIi8+CjxjaXJjbGUgY3g9IjgwIiBjeT0iNjAiIHI9IjI1IiBmaWxsPSIjMDBGRkRFIi8+CjxwYXRoIGQ9Ik00MCA5MEM0MCA5MCA1MCA4MCA4MCA4MFMxMjAgOTAgMTIwIDkwVjEyMEg0MFY5MFoiIGZpbGw9IiMwMEZGREUiLz4KPHN2Zz4K'">
+                </div>
+            </div>
+            
+            <!-- Main Heading -->
+            <h1 class="text-4xl md:text-7xl font-bold font-orbitron mb-6 gradient-text animate-glow-pulse" data-aos="fade-up" data-aos-delay="200">
+                MATHIYA
+            </h1>
+            
+            <!-- Typing Animation -->
+            <div class="text-xl md:text-3xl mb-8 h-12" data-aos="fade-up" data-aos-delay="400">
+                <span class="typing-text font-inter" id="typing-text">Software Engineer</span>
+            </div>
+            
+            <!-- Brief Intro -->
+            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed" data-aos="fade-up" data-aos-delay="600">
+                Gen Z Software Engineer passionate about creating innovative digital experiences. 
+                Blending creativity with cutting-edge technology to build the future, one line of code at a time.
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16" data-aos="fade-up" data-aos-delay="800">
+                <a href="projects.html" class="neon-btn px-8 py-4 text-black font-semibold rounded-full font-orbitron">
+                    Explore My Work
+                </a>
+                <a href="contact.html" class="px-8 py-4 border-2 border-cyber-cyan text-cyber-cyan font-semibold rounded-full hover:bg-cyber-cyan hover:text-black transition-all duration-300 font-orbitron">
+                    Get In Touch
+                </a>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="animate-bounce" data-aos="fade-up" data-aos-delay="1000">
+                <i class="fas fa-chevron-down text-2xl text-cyber-cyan"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick About Section -->
+    <section class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-5xl font-bold font-orbitron mb-8 gradient-text" data-aos="fade-up">
+                    Crafting Digital Experiences
+                </h2>
+                <p class="text-lg text-gray-300 mb-12 leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                    I'm a passionate software engineer who loves turning complex problems into elegant solutions. 
+                    With expertise in modern web technologies, game development, and creative coding, 
+                    I bring ideas to life through innovative digital experiences.
                 </p>
-                <p class="text-lg mb-8 opacity-80" data-aos="fade-up" data-aos-delay="400">
-                    Creating innovative digital solutions with cutting-edge technologies
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="600">
-                    <a href="projects.html" class="btn-primary glow-hover">
-                        View My Work
-                    </a>
-                    <a href="contact.html" class="btn-secondary glow-hover">
-                        Get In Touch
+                
+                <!-- Feature Cards -->
+                <div class="grid md:grid-cols-3 gap-8 mt-16">
+                    <div class="glass p-8 rounded-2xl card-3d hover:shadow-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-4xl mb-4 text-cyber-cyan">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 font-orbitron">Full Stack Development</h3>
+                        <p class="text-gray-400">Building scalable web applications with modern frameworks and technologies.</p>
+                    </div>
+                    
+                    <div class="glass p-8 rounded-2xl card-3d hover:shadow-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-4xl mb-4 text-cyber-red">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 font-orbitron">Game Development</h3>
+                        <p class="text-gray-400">Creating immersive gaming experiences with cutting-edge engines and tools.</p>
+                    </div>
+                    
+                    <div class="glass p-8 rounded-2xl card-3d hover:shadow-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-4xl mb-4 text-neon-pink">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 font-orbitron">Creative Coding</h3>
+                        <p class="text-gray-400">Blending art and technology to create visually stunning interactive experiences.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-12" data-aos="fade-up" data-aos-delay="400">
+                    <a href="about.html" class="neon-btn px-8 py-4 text-black font-semibold rounded-full font-orbitron">
+                        Learn More About Me
                     </a>
                 </div>
             </div>
         </div>
-        
-        <!-- Floating Elements -->
-        <div class="absolute top-20 left-10 w-20 h-20 border border-cyan-400 rounded-full opacity-20 floating" style="animation-delay: -2s;"></div>
-        <div class="absolute bottom-20 right-10 w-16 h-16 border border-red-400 rounded-full opacity-20 floating" style="animation-delay: -4s;"></div>
-        <div class="absolute top-1/2 left-20 w-12 h-12 bg-cyan-400 rounded-full opacity-10 floating" style="animation-delay: -1s;"></div>
     </section>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
-
-        // Loading Screen Animation
-        class LoadingAnimation {
-            constructor() {
-                this.canvas = document.getElementById('loading-canvas');
-                this.ctx = this.canvas.getContext('2d');
-                this.progress = 0;
-                this.text = 'MATHIYA';
-                this.particles = [];
-                this.init();
-            }
-
-            init() {
-                this.canvas.width = 400;
-                this.canvas.height = 100;
-                this.animate();
-                this.startLoading();
-            }
-
-            drawText() {
-                this.ctx.font = 'bold 48px Orbitron';
-                this.ctx.textAlign = 'center';
-                this.ctx.textBaseline = 'middle';
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
+                    <p class="text-gray-400">© 2024 Mathiya. All rights reserved.</p>
+                </div>
                 
-                // Create gradient
-                const gradient = this.ctx.createLinearGradient(0, 0, this.canvas.width, 0);
-                gradient.addColorStop(0, '#00FFDE');
-                gradient.addColorStop(1, '#FF3366');
-                
-                this.ctx.fillStyle = gradient;
-                this.ctx.fillText(this.text, this.canvas.width / 2, this.canvas.height / 2);
-                
-                // Add glow effect
-                this.ctx.shadowColor = '#00FFDE';
-                this.ctx.shadowBlur = 20;
-                this.ctx.fillText(this.text, this.canvas.width / 2, this.canvas.height / 2);
-            }
+                <div class="flex space-x-6">
+                    <a href="https://github.com/mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://discord.gg/mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-            animate() {
-                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                this.drawText();
-                requestAnimationFrame(() => this.animate());
-            }
-
-            startLoading() {
-                const progressBar = document.getElementById('loading-progress');
-                const loadingScreen = document.getElementById('loading-screen');
-                
-                const interval = setInterval(() => {
-                    this.progress += Math.random() * 15;
-                    if (this.progress >= 100) {
-                        this.progress = 100;
-                        clearInterval(interval);
-                        
-                        setTimeout(() => {
-                            loadingScreen.style.opacity = '0';
-                            setTimeout(() => {
-                                loadingScreen.style.display = 'none';
-                            }, 500);
-                        }, 500);
-                    }
-                    progressBar.style.width = this.progress + '%';
-                }, 100);
-            }
-        }
-
-        // Custom Cursor
-        class CustomCursor {
-            constructor() {
-                this.cursor = document.getElementById('cursor');
-                this.cursorDot = document.getElementById('cursor-dot');
-                this.init();
-            }
-
-            init() {
-                document.addEventListener('mousemove', (e) => {
-                    this.cursor.style.left = e.clientX + 'px';
-                    this.cursor.style.top = e.clientY + 'px';
-                    
-                    setTimeout(() => {
-                        this.cursorDot.style.left = e.clientX + 'px';
-                        this.cursorDot.style.top = e.clientY + 'px';
-                    }, 50);
-                });
-
-                // Hover effects
-                const hoverElements = document.querySelectorAll('a, button, .glow-hover');
-                hoverElements.forEach(el => {
-                    el.addEventListener('mouseenter', () => {
-                        this.cursor.classList.add('cursor-hover');
-                    });
-                    el.addEventListener('mouseleave', () => {
-                        this.cursor.classList.remove('cursor-hover');
-                    });
-                });
-            }
-        }
-
-        // Page Transitions
-        class PageTransitions {
-            constructor() {
-                this.transition = document.getElementById('page-transition');
-                this.init();
-            }
-
-            init() {
-                const links = document.querySelectorAll('a[href$=".html"]');
-                links.forEach(link => {
-                    link.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        this.transitionTo(link.href);
-                    });
-                });
-            }
-
-            transitionTo(url) {
-                this.transition.classList.add('active');
-                setTimeout(() => {
-                    window.location.href = url;
-                }, 500);
-            }
-        }
-
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile Menu
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMobileMenu = document.getElementById('close-mobile-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
-        });
-
-        closeMobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-        });
-
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            const icon = themeToggle.querySelector('i');
-            
-            if (body.classList.contains('light-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        });
-
-        // Initialize everything
-        document.addEventListener('DOMContentLoaded', () => {
-            new LoadingAnimation();
-            new CustomCursor();
-            new PageTransitions();
-        });
-    </script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
