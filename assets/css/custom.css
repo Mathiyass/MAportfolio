@@ -1,0 +1,198 @@
+
+/* Custom CSS for portfolio */
+
+/* Navigation blur effect */
+.nav-blur {
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Glass effect */
+.glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Neon button */
+.neon-btn {
+    background: linear-gradient(45deg, #00FFDE, #8be9fd);
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 255, 222, 0.4);
+}
+
+.neon-btn:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 222, 0.6);
+    transform: translateY(-2px);
+}
+
+/* Gradient text */
+.gradient-text {
+    background: linear-gradient(45deg, #00FFDE, #FF3366);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Card 3D effects */
+.card-3d {
+    transition: transform 0.3s ease;
+}
+
+.card-3d:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.05);
+}
+
+/* Mobile menu */
+.mobile-menu-link {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-link:hover {
+    background: rgba(0, 255, 222, 0.1);
+    color: #00FFDE;
+}
+
+/* Scroll progress */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00FFDE, #FF3366);
+    z-index: 1000;
+    transition: width 0.3s ease;
+}
+
+/* Loading animation */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Particles animation */
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Skill bar animations */
+.skill-bar {
+    height: 8px;
+    background: linear-gradient(90deg, #00FFDE, #FF3366);
+    border-radius: 4px;
+    transition: width 1s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 255, 222, 0.3);
+}
+
+.skill-bar-glow {
+    box-shadow: 0 0 20px rgba(0, 255, 222, 0.6);
+}
+
+/* Back to top button */
+#back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, #00FFDE, #FF3366);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#back-to-top:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 255, 222, 0.5);
+}
+
+/* Custom cursor */
+#custom-cursor {
+    transition: transform 0.1s ease;
+}
+
+#cursor-dot {
+    transition: transform 0.05s ease;
+}
+
+.cursor-hover {
+    transform: scale(1.5) !important;
+}
+
+/* Project cards */
+.project-card {
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Filter buttons */
+.filter-btn {
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border: 1px solid #00FFDE;
+    background: transparent;
+    color: #00FFDE;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: #00FFDE;
+    color: #000;
+}
+
+.filter-btn:hover {
+    background: rgba(0, 255, 222, 0.1);
+}

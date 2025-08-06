@@ -20,7 +20,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const cursor = document.getElementById('custom-cursor');
         const cursorDot = document.getElementById('cursor-dot');
 
-        if (!cursor || !cursorDot) return;
+        if (!cursor || !cursorDot) {
+            // Create cursor elements if they don't exist
+            createCursorElements();
+            return;
+        }
 
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
@@ -58,9 +62,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function createCursorElements() {
+        // Create custom cursor elements
+        const cursor = document.createElement('div');
+        cursor.id = 'custom-cursor';
+        cursor.className = 'fixed w-8 h-8 border-2 border-cyber-cyan rounded-full pointer-events-none z-50 mix-blend-difference';
+        cursor.style.left = '-100px';
+        cursor.style.top = '-100px';
+        
+        const cursorDot = document.createElement('div');
+        cursorDot.id = 'cursor-dot';
+        cursorDot.className = 'fixed w-2 h-2 bg-cyber-cyan rounded-full pointer-events-none z-50 mix-blend-difference';
+        cursorDot.style.left = '-100px';
+        cursorDot.style.top = '-100px';
+        
+        document.body.appendChild(cursor);
+        document.body.appendChild(cursorDot);
+        
+        // Now initialize the cursor
+        initCustomCursor();
+    }
+
     function initParticleBackground() {
         const container = document.getElementById('particles-container');
-        if (!container) return;
+        if (!container) {
+            // Create particles container if it doesn't exist
+            const particlesContainer = document.createElement('div');
+            particlesContainer.id = 'particles-container';
+            particlesContainer.className = 'fixed inset-0 pointer-events-none z-0';
+            document.body.appendChild(particlesContainer);
+            return;
+        }
 
         for (let i = 0; i < 50; i++) {
             createParticle();

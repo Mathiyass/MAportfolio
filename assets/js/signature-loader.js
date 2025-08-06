@@ -1,9 +1,19 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('signature-canvas');
-    const ctx = canvas.getContext('2d');
     const loadingProgress = document.getElementById('loading-progress');
     const loadingScreen = document.getElementById('loading-screen');
+    
+    // Check if elements exist before proceeding
+    if (!canvas || !loadingProgress || !loadingScreen) {
+        // If loading elements don't exist, start main content immediately
+        if (typeof window.startMainContentAnimation === 'function') {
+            window.startMainContentAnimation();
+        }
+        return;
+    }
+    
+    const ctx = canvas.getContext('2d');
     
     // Set canvas size
     const width = canvas.width = 400;
