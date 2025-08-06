@@ -283,10 +283,31 @@
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(135deg, #FF3366, #00FFDE);
         }
+
+        /* Easter Egg Animation */
+        @keyframes logo-easter-egg {
+            0% { transform: scale(1) rotate(0deg); text-shadow: 0 0 10px #00FFDE; }
+            25% { transform: scale(1.2) rotate(-10deg); text-shadow: 0 0 20px #FF3366; }
+            50% { transform: scale(1) rotate(10deg); text-shadow: 0 0 30px #FF10F0; }
+            75% { transform: scale(1.2) rotate(0deg); text-shadow: 0 0 20px #0080FF; }
+            100% { transform: scale(1) rotate(0deg); text-shadow: none; }
+        }
+        .logo-easter-egg-animation {
+            animation: logo-easter-egg 1.5s ease-in-out;
+        }
     </style>
 </head>
 
 <body class="dark text-white">
+    <!-- Signature Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-dark-bg z-[100] flex flex-col items-center justify-center transition-opacity duration-1000">
+        <canvas id="signature-canvas" width="400" height="150"></canvas>
+        <div class="w-64 h-1 bg-gray-700 rounded-full overflow-hidden mt-4">
+            <div id="loading-progress" class="h-full bg-gradient-to-r from-cyber-cyan to-neon-pink rounded-full w-0 transition-all duration-300"></div>
+        </div>
+        <p class="text-cyber-cyan font-orbitron mt-4 text-sm tracking-widest animate-pulse">INITIALIZING SYSTEMS...</p>
+    </div>
+
     <!-- Enhanced Custom Cursor -->
     <div class="custom-cursor" id="custom-cursor"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
@@ -338,10 +359,16 @@
                     </a>
                 </div>
 
-                <!-- Theme Toggle -->
-                <button id="theme-toggle" class="hidden md:block p-2 rounded-lg glass hover:scale-110 transition-transform">
-                    <i class="fas fa-moon text-cyber-cyan"></i>
-                </button>
+                <div class="hidden md:flex items-center space-x-4">
+                    <!-- Music Toggle -->
+                    <button id="music-toggle" class="p-2 rounded-lg glass hover:scale-110 transition-transform">
+                        <i class="fas fa-volume-mute text-cyber-cyan"></i>
+                    </button>
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-lg glass hover:scale-110 transition-transform">
+                        <i class="fas fa-moon text-cyber-cyan"></i>
+                    </button>
+                </div>
 
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
@@ -407,19 +434,21 @@
                 </div>
 
                 <!-- Enhanced Social Links -->
-                <div class="flex justify-center lg:justify-start space-x-6">
-                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
-                        <i class="fab fa-discord"></i>
-                    </a>
+                <div class="flex justify-center lg:justify-start items-center flex-wrap gap-x-5 gap-y-3">
+                    <a href="https://github.com/Mathiyass" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/Mathiya" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.facebook.com/mathisha.angirasa/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://steamcommunity.com/profiles/76561199076879396/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Steam"><i class="fab fa-steam"></i></a>
+                    <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Epic Games"><i class="fas fa-gamepad"></i></a>
+                    <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Spotify"><i class="fab fa-spotify"></i></a>
+                    <a href="https://discord.gg/QERP5JJM8k" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://wa.me/94715921984" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <div class="relative group flex items-center text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300 cursor-pointer" title="EA ID: M_MATHIYA_M">
+                        <i class="fas fa-headset"></i>
+                        <span class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/70 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">M_MATHIYA_M</span>
+                    </div>
                 </div>
             </div>
 
@@ -675,30 +704,36 @@
                     <p class="text-gray-400">© <span id="current-year">2024</span> Mathiya Angirasa. All rights reserved.</p>
                 </div>
 
-                <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
-                        <i class="fab fa-discord"></i>
-                    </a>
+                <div class="flex items-center justify-center md:justify-end flex-wrap gap-x-5 gap-y-3">
+                    <a href="https://github.com/Mathiyass" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/Mathiya" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://discord.gg/QERP5JJM8k" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://wa.me/94715921984" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Floating Hire Me Button -->
+    <a href="contact.html" class="fixed bottom-6 left-6 w-auto h-12 px-6 bg-gradient-to-r from-cyber-cyan to-neon-pink text-black rounded-full flex items-center justify-center font-orbitron font-bold shadow-lg hover:scale-110 transition-all duration-300 z-50 animate-bounce-slow">
+        <i class="fas fa-briefcase mr-2"></i>
+        <span>Hire Me</span>
+    </a>
 
     <!-- Back to Top Button -->
     <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-cyber-cyan text-black rounded-full hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none z-50">
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Background Music -->
+    <audio id="background-music" loop>
+        <source src="assets/audio/ambient-loop.mp3" type="audio/mpeg">
+    </audio>
+
     <!-- Scripts -->
+    <script src="assets/js/signature-loader.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
         // Enhanced Particles Configuration
