@@ -881,3 +881,8 @@ console.log(`
 ║                                                              ║
 ╚══════════════════════════════════════════════════════════════╝
             `, 'color: #00FFDE; font-family: monospace; line-height: 1.2;');
+
+// Fix the variable declaration issue
+if (typeof body === 'undefined') {
+    const body = document.body;
+}
