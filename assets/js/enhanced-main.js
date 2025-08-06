@@ -17,13 +17,16 @@ document.addEventListener('DOMContentLoaded', function() {
     initPerformanceMonitoring();
 
     function initCustomCursor() {
-        const cursor = document.getElementById('custom-cursor');
-        const cursorDot = document.getElementById('cursor-dot');
+        let cursor = document.getElementById('custom-cursor');
+        let cursorDot = document.getElementById('cursor-dot');
 
         if (!cursor || !cursorDot) {
             // Create cursor elements if they don't exist
             createCursorElements();
-            return;
+            cursor = document.getElementById('custom-cursor');
+            cursorDot = document.getElementById('cursor-dot');
+            
+            if (!cursor || !cursorDot) return; // Exit if still not created
         }
 
         let mouseX = 0, mouseY = 0;
@@ -84,14 +87,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function initParticleBackground() {
-        const container = document.getElementById('particles-container');
+        let container = document.getElementById('particles-container');
         if (!container) {
             // Create particles container if it doesn't exist
             const particlesContainer = document.createElement('div');
             particlesContainer.id = 'particles-container';
             particlesContainer.className = 'fixed inset-0 pointer-events-none z-0';
             document.body.appendChild(particlesContainer);
-            return;
+            container = particlesContainer;
         }
 
         for (let i = 0; i < 50; i++) {

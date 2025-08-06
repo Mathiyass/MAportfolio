@@ -608,6 +608,7 @@ class PortfolioEnhancements {
         });
 
         // Update cursor colors based on theme
+        const body = document.body;
         const currentTheme = body.classList.contains('dark') ? 'dark' : 'light';
         updateCursorColors(currentTheme);
     }

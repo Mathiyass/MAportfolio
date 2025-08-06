@@ -48,16 +48,23 @@
 }
 
 /* Mobile menu */
-.mobile-menu-link {
-    display: block;
-    padding: 1rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
+.mobile-menu {
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(0, 255, 222, 0.2);
 }
 
-.mobile-menu-link:hover {
+.mobile-nav-link {
+    display: block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+.mobile-nav-link:hover {
     background: rgba(0, 255, 222, 0.1);
     color: #00FFDE;
+    transform: translateX(5px);
 }
 
 /* Scroll progress */
