@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | MATHIYA Portfolio</title>
+    <meta name="description" content="Admin panel for managing Mathiya's portfolio content">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'orbitron': ['Orbitron', 'monospace'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'cyber-cyan': '#00FFDE',
+                        'cyber-red': '#FF3366',
+                        'neon-pink': '#FF10F0',
+                        'electric-blue': '#0080FF',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#1a1a2e',
+                        'dark-accent': '#16213e',
+                    },
+                    animation: {
+                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
+                        'success-bounce': 'successBounce 0.6s ease-out',
+                        'error-shake': 'errorShake 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        'glowPulse': {
+                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 222, 0.5)' },
+                            '100%': { boxShadow: '0 0 40px rgba(0, 255, 222, 1)' },
+                        },
+                        'successBounce': {
+                            '0%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.1)' },
+                            '100%': { transform: 'scale(1)' },
+                        },
+                        'errorShake': {
+                            '0%, 100%': { transform: 'translateX(0)' },
+                            '25%': { transform: 'translateX(-5px)' },
+                            '75%': { transform: 'translateX(5px)' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #00FFDE, #FF3366, #FF10F0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Form Styles */
+        .form-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #00FFDE;
+            box-shadow: 0 0 20px rgba(0, 255, 222, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #00FFDE, #FF3366);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 222, 0.4);
+        }
+        
+        /* Tab Styles */
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button.active {
+            background: linear-gradient(135deg, #00FFDE, #FF3366);
+            color: #0a0a0a;
+        }
+        
+        /* Success/Error Messages */
+        .message {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .message.success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+        }
+        
+        .message.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+        }
+        
+        /* File Upload */
+        .file-upload {
+            border: 2px dashed rgba(0, 255, 222, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload:hover {
+            border-color: #00FFDE;
+            background: rgba(0, 255, 222, 0.05);
+        }
+        
+        .file-upload.dragover {
+            border-color: #00FFDE;
+            background: rgba(0, 255, 222, 0.1);
+        }
+    </style>
+</head>
+
+<body class="dark text-white min-h-screen">
+    <!-- Login Screen -->
+    <div id="login-screen" class="min-h-screen flex items-center justify-center p-6">
+        <div class="glass p-8 rounded-2xl w-full max-w-md">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold font-orbitron gradient-text mb-2">Admin Panel</h1>
+                <p class="text-gray-400">Enter credentials to access portfolio management</p>
+            </div>
+            
+            <div id="login-message" class="message"></div>
+            
+            <form id="login-form">
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-cyber-cyan mb-2">Password</label>
+                    <div class="relative">
+                        <input type="password" id="admin-password" class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400" placeholder="Enter admin password" required>
+                        <button type="button" id="toggle-password" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyber-cyan">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-primary w-full py-3 rounded-lg font-semibold text-black font-orbitron">
+                    <i class="fas fa-sign-in-alt mr-2"></i>
+                    Login
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center">
+                <a href="index.html" class="text-cyber-cyan hover:text-white transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Back to Portfolio
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="hidden min-h-screen">
+        <!-- Header -->
+        <header class="glass border-b border-gray-700 sticky top-0 z-50">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-2xl font-bold font-orbitron gradient-text">Portfolio Admin</h1>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm text-gray-400">Welcome, Admin</span>
+                        <button id="logout-btn" class="px-4 py-2 bg-cyber-red text-white rounded-lg hover:bg-opacity-80 transition-all">
+                            <i class="fas fa-sign-out-alt mr-2"></i>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <div class="container mx-auto px-6 py-8">
+            <!-- Tab Navigation -->
+            <div class="flex flex-wrap gap-2 mb-8">
+                <button class="tab-button active px-6 py-3 rounded-lg font-semibold" data-tab="gallery">
+                    <i class="fas fa-images mr-2"></i>Gallery
+                </button>
+                <button class="tab-button px-6 py-3 rounded-lg font-semibold" data-tab="about">
+                    <i class="fas fa-user mr-2"></i>About
+                </button>
+                <button class="tab-button px-6 py-3 rounded-lg font-semibold" data-tab="projects">
+                    <i class="fas fa-folder mr-2"></i>Projects
+                </button>
+                <button class="tab-button px-6 py-3 rounded-lg font-semibold" data-tab="socials">
+                    <i class="fas fa-share-alt mr-2"></i>Socials
+                </button>
+                <button class="tab-button px-6 py-3 rounded-lg font-semibold" data-tab="blog">
+                    <i class="fas fa-blog mr-2"></i>Blog
+                </button>
+            </div>
+            
+            <!-- Gallery Tab -->
+            <div id="gallery-tab" class="tab-content">
+                <div class="glass p-6 rounded-2xl mb-6">
+                    <h2 class="text-2xl font-bold font-orbitron mb-4 gradient-text">Gallery Management</h2>
+                    
+                    <!-- Upload Section -->
+                    <div class="file-upload p-8 rounded-lg text-center mb-6" id="file-upload">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-cyber-cyan mb-4"></i>
+                        <p class="text-lg mb-2">Drag & drop images here or click to browse</p>
+                        <p class="text-sm text-gray-400">Supports JPG, PNG, GIF up to 5MB</p>
+                        <input type="file" id="file-input" class="hidden" multiple accept="image/*">
+                    </div>
+                    
+                    <!-- Gallery Grid -->
+                    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <!-- Gallery items will be loaded here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- About Tab -->
+            <div id="about-tab" class="tab-content hidden">
+                <div class="glass p-6 rounded-2xl">
+                    <h2 class="text-2xl font-bold font-orbitron mb-4 gradient-text">About Me Content</h2>
+                    
+                    <form id="about-form">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-cyber-cyan mb-2">Name</label>
+                                <input type="text" id="about-name" class="form-input w-full px-4 py-3 rounded-lg text-white" value="Mathiya Angirasa">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-cyber-cyan mb-2">Title</label>
+                                <input type="text" id="about-title" class="form-input w-full px-4 py-3 rounded-lg text-white" value="Software Engineering Student">
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <label class="block text-sm font-medium text-cyber-cyan mb-2">Bio</label>
+                            <textarea id="about-bio" rows="6" class="form-input w-full px-4 py-3 rounded-lg text-white" placeholder="Write your bio here...">Passionate Gen Z Software Engineer who believes in the power of technology to transform ideas into reality. My journey began with curiosity about how digital worlds are created, and it has evolved into a deep commitment to crafting innovative solutions.</textarea>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <button type="submit" class="btn-primary px-6 py-3 rounded-lg font-semibold text-black">
+                                <i class="fas fa-save mr-2"></i>Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Projects Tab -->
+            <div id="projects-tab" class="tab-content hidden">
+                <div class="glass p-6 rounded-2xl">
+                    <h2 class="text-2xl font-bold font-orbitron mb-4 gradient-text">Projects Management</h2>
+                    
+                    <div class="mb-6">
+                        <button id="add-project-btn" class="btn-primary px-6 py-3 rounded-lg font-semibold text-black">
+                            <i class="fas fa-plus mr-2"></i>Add New Project
+                        </button>
+                    </div>
+                    
+                    <div id="projects-list" class="space-y-4">
+                        <!-- Projects will be loaded here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Socials Tab -->
+            <div id="socials-tab" class="tab-content hidden">
+                <div class="glass p-6 rounded-2xl">
+                    <h2 class="text-2xl font-bold font-orbitron mb-4 gradient-text">Social Media Links</h2>
+                    
+                    <form id="socials-form">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-cyber-cyan mb-2">GitHub</label>
+                                <input type="url" id="social-github" class="form-input w-full px-4 py-3 rounded-lg text-white" value="https://github.com/Mathiyass">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-cyber-cyan mb-2">LinkedIn</label>
+                                <input type="url" id="social-linkedin" class="form-input w-full px-4 py-3 rounded-lg text-white" value="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-cyber-cyan mb-2">Twitter/X</label>
+                                <input type="url" id="social-twitter" class="form-input w-full px-4 py-3 rounded-lg text-white" value="https://x.com/Mathiya">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-cyber-cyan mb-2">Discord</label>
+                                <input type="url" id="social-discord" class="form-input w-full px-4 py-3 rounded-lg text-white" value="https://discord.gg/QERP5JJM8k">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-cyber-cyan mb-2">WhatsApp</label>
+                                <input type="url" id="social-whatsapp" class="form-input w-full px-4 py-3 rounded-lg text-white" value="https://wa.me/94715921984">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-cyber-cyan mb-2">EA ID</label>
+                                <input type="text" id="social-ea" class="form-input w-full px-4 py-3 rounded-lg text-white" value="M_MATHIYA_M">
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <button type="submit" class="btn-primary px-6 py-3 rounded-lg font-semibold text-black">
+                                <i class="fas fa-save mr-2"></i>Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Blog Tab -->
+            <div id="blog-tab" class="tab-content hidden">
+                <div class="glass p-6 rounded-2xl">
+                    <h2 class="text-2xl font-bold font-orbitron mb-4 gradient-text">Blog Management</h2>
+                    
+                    <div class="mb-6">
+                        <button id="add-blog-btn" class="btn-primary px-6 py-3 rounded-lg font-semibold text-black">
+                            <i class="fas fa-plus mr-2"></i>Add New Post
+                        </button>
+                    </div>
+                    
+                    <div id="blog-posts-list" class="space-y-4">
+                        <!-- Blog posts will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success/Error Messages -->
+    <div id="global-message" class="fixed top-4 right-4 z-50 hidden">
+        <div class="glass p-4 rounded-lg border-l-4 border-cyber-cyan">
+            <div class="flex items-center">
+                <i class="fas fa-check-circle text-cyber-cyan mr-3"></i>
+                <span id="message-text">Changes saved successfully!</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/admin.js"></script>
+</body>
+</html>
