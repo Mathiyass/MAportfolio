@@ -1,13 +1,73 @@
 // Main JavaScript file for portfolio
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
+    initializeCustomCursor();
     initializeNavigation();
     initializeAnimations();
     initializeTheme();
     initializeScrollEffects();
     initializeTypingEffect();
     initializeForms();
+    initializeInteractiveElements();
 });
+
+// Custom Cursor - works on all pages
+function initializeCustomCursor() {
+    let cursor = document.getElementById('custom-cursor');
+    let cursorDot = document.getElementById('cursor-dot');
+
+    if (!cursor || !cursorDot) {
+        // Create cursor elements if they don't exist
+        cursor = document.createElement('div');
+        cursor.id = 'custom-cursor';
+        cursor.className = 'custom-cursor';
+        
+        cursorDot = document.createElement('div');
+        cursorDot.id = 'cursor-dot';
+        cursorDot.className = 'cursor-dot';
+        
+        document.body.appendChild(cursor);
+        document.body.appendChild(cursorDot);
+    }
+
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    // Smooth cursor movement
+    function updateCursor() {
+        cursorX += (mouseX - cursorX) * 0.1;
+        cursorY += (mouseY - cursorY) * 0.1;
+
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+
+        cursorDot.style.left = mouseX + 'px';
+        cursorDot.style.top = mouseY + 'px';
+
+        requestAnimationFrame(updateCursor);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    updateCursor();
+
+    // Add hover effects to interactive elements
+    const hoverElements = document.querySelectorAll('a, button, .project-card, .skill-card, .gallery-item, .filter-btn, input, textarea, .social-icon, .nav-link, .mobile-nav-link, .neon-btn');
+    
+    hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.classList.add('cursor-hover');
+            cursorDot.classList.add('cursor-hover');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('cursor-hover');
+            cursorDot.classList.remove('cursor-hover');
+        });
+    });
+}
 
 function initializeNavigation() {
     // Mobile menu functionality
@@ -312,6 +372,122 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Initialize interactive elements
+function initializeInteractiveElements() {
+    // Floating particles on hover
+    const cards = document.querySelectorAll('.glass, .project-card, .skill-card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function(e) {
+            createHoverParticles(e.target);
+        });
+    });
+
+    // Interactive navigation links with ripple effect
+    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            createRippleEffect(e);
+        });
+    });
+
+    // Magnetic effect for buttons
+    const buttons = document.querySelectorAll('.neon-btn, .filter-btn');
+    buttons.forEach(button => {
+        button.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            this.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.02)`;
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = 'translate(0px, 0px) scale(1)';
+        });
+    });
+
+    // Parallax scrolling for background elements
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('[data-parallax]');
+        
+        parallaxElements.forEach(element => {
+            const speed = element.getAttribute('data-parallax') || 0.5;
+            element.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+    });
+
+    // Interactive skill bars
+    const skillBars = document.querySelectorAll('.skill-progress');
+    const skillObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                const width = bar.getAttribute('data-width');
+                setTimeout(() => {
+                    bar.style.width = width + '%';
+                }, 200);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    skillBars.forEach(bar => skillObserver.observe(bar));
+}
+
+function createHoverParticles(element) {
+    for (let i = 0; i < 5; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'hover-particle';
+        particle.style.cssText = `
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, #00FFDE, #FF3366);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            animation: particleBurst 1s ease-out forwards;
+        `;
+        
+        const rect = element.getBoundingClientRect();
+        particle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+        particle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+        
+        document.body.appendChild(particle);
+        
+        setTimeout(() => particle.remove(), 1000);
+    }
+}
+
+function createRippleEffect(e) {
+    const ripple = document.createElement('div');
+    ripple.className = 'ripple';
+    
+    const rect = e.target.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+    
+    ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        left: ${x}px;
+        top: ${y}px;
+        background: radial-gradient(circle, rgba(0,255,222,0.3) 0%, transparent 70%);
+        border-radius: 50%;
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+        z-index: 1000;
+    `;
+    
+    e.target.style.position = 'relative';
+    e.target.appendChild(ripple);
+    
+    setTimeout(() => ripple.remove(), 600);
+}
+
 // Update current year in footer
 document.addEventListener('DOMContentLoaded', function() {
     const currentYearElement = document.getElementById('current-year');
@@ -319,6 +495,52 @@ document.addEventListener('DOMContentLoaded', function() {
         currentYearElement.textContent = new Date().getFullYear();
     }
 });
+
+// Add CSS animations dynamically
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes particleBurst {
+        0% {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(0) translateY(-50px);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes ripple {
+        0% {
+            transform: scale(0);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+    
+    .hover-particle {
+        animation: particleBurst 1s ease-out forwards;
+    }
+    
+    .cursor-hover {
+        transform: scale(2) !important;
+        background: rgba(0, 255, 222, 0.2) !important;
+        box-shadow: 0 0 30px rgba(0, 255, 222, 0.8) !important;
+    }
+    
+    .interactive-glow {
+        transition: all 0.3s ease;
+    }
+    
+    .interactive-glow:hover {
+        box-shadow: 0 0 20px rgba(0, 255, 222, 0.3);
+        transform: translateY(-2px);
+    }
+`;
+document.head.appendChild(style);
 
 // Console welcome message
 console.log(`

@@ -69,15 +69,34 @@ document.addEventListener('DOMContentLoaded', function() {
         skillObserver.observe(bar);
     });
 
+    // Skill bars animation
+    const skillProgressBars = document.querySelectorAll('.skill-progress');
+    const skillObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                const width = bar.getAttribute('data-width');
+                setTimeout(() => {
+                    bar.style.width = width + '%';
+                    bar.style.boxShadow = `0 0 10px rgba(0, 255, 222, 0.5)`;
+                }, 200);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    skillProgressBars.forEach(bar => skillObserver.observe(bar));
+
     // Skill icon hover effects
     const skillIcons = document.querySelectorAll('.skill-icon');
     skillIcons.forEach(icon => {
         icon.addEventListener('mouseenter', function() {
             this.style.transform = 'scale(1.2) rotate(10deg)';
+            this.style.textShadow = '0 0 20px currentColor';
         });
         
         icon.addEventListener('mouseleave', function() {
             this.style.transform = 'scale(1) rotate(0deg)';
+            this.style.textShadow = 'none';
         });
     });
 
@@ -96,12 +115,31 @@ document.addEventListener('DOMContentLoaded', function() {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-10px) scale(1.02)';
             this.style.boxShadow = '0 20px 40px rgba(0, 255, 222, 0.1)';
+            
+            // Add glow effect to skill icon
+            const icon = this.querySelector('.skill-icon');
+            if (icon) {
+                icon.style.textShadow = '0 0 20px currentColor';
+            }
         });
         
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0) scale(1)';
             this.style.boxShadow = 'none';
+            
+            // Remove glow effect
+            const icon = this.querySelector('.skill-icon');
+            if (icon) {
+                icon.style.textShadow = 'none';
+            }
         });
+    });
+
+    // Add floating animation to skill summary cards
+    const summaryCards = document.querySelectorAll('.glass');
+    summaryCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+        card.classList.add('animate-float');
     });
 
     // Create floating skill particles

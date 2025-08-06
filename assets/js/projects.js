@@ -193,3 +193,130 @@ document.addEventListener('DOMContentLoaded', function() {
         projectCardElements[1].setAttribute('data-project', 'space-shooter');
     }
 });
+// Projects page functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
+    });
+
+    // Project filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+
+            // Update active button
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.remove('bg-cyber-cyan', 'text-black');
+                btn.classList.add('border-gray-600', 'text-gray-300');
+            });
+
+            this.classList.add('active');
+            this.classList.remove('border-gray-600', 'text-gray-300');
+            this.classList.add('bg-cyber-cyan', 'text-black');
+
+            // Filter projects with animation
+            projectCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'all' || category === filter) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.5s ease-out';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Enhanced project card interactions
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-15px) scale(1.02) rotateY(5deg)';
+            this.style.boxShadow = '0 25px 50px rgba(0, 255, 222, 0.2)';
+            
+            // Add glow to tags
+            const tags = this.querySelectorAll('.tag');
+            tags.forEach(tag => {
+                tag.style.boxShadow = '0 0 10px currentColor';
+            });
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1) rotateY(0deg)';
+            this.style.boxShadow = 'none';
+            
+            // Remove glow from tags
+            const tags = this.querySelectorAll('.tag');
+            tags.forEach(tag => {
+                tag.style.boxShadow = 'none';
+            });
+        });
+
+        // 3D tilt effect on mouse move
+        card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            this.style.transform = `translateY(-15px) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+    });
+
+    // Interactive tags
+    const tags = document.querySelectorAll('.tag');
+    tags.forEach(tag => {
+        tag.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1)';
+            this.style.boxShadow = '0 0 15px currentColor';
+        });
+        
+        tag.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.boxShadow = 'none';
+        });
+    });
+
+    // Scroll Progress
+    window.addEventListener('scroll', () => {
+        const scrollProgress = document.getElementById('scroll-progress');
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        scrollProgress.style.width = scrollPercent + '%';
+    });
+
+    // Project modal functionality (if modal exists)
+    const modal = document.getElementById('project-modal');
+    const modalClose = document.getElementById('close-modal');
+    
+    if (modal && modalClose) {
+        modalClose.addEventListener('click', function() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+
+    // Add stagger animation to project cards
+    projectCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+    });
+});
