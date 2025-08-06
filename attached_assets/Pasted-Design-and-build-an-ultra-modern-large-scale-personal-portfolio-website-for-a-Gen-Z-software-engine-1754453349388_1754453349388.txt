@@ -1,0 +1,173 @@
+Design and build an ultra-modern, large-scale personal portfolio website for a Gen Z software engineer named Mathiya, using HTML, Tailwind CSS via CDN, and JavaScript (Vanilla) — no frameworks. The design must be professional, highly interactive, futuristic, and visually stunning. Avoid all minimalism. This site must feel like a digital experience, not just a portfolio.
+
+🌈 Theme & Visual Style
+Color palette:
+
+Primary: #00FFDE (Cyan-Blue)
+
+Accent: Red
+
+Typography: Use futuristic fonts (Orbitron, Poppins, JetBrains Mono)
+
+Design Style: Neon glow, glassmorphism, parallax, smooth scroll, cinematic transitions
+
+Dark Mode: Enabled by default, optional toggle
+
+✍️ Loading Animation (Custom)
+Full-screen canvas-based animation that writes the word "MATHIYA" using a signature-style glowing trail, similar to a handwritten animation
+
+A glowing loading bar beneath it
+
+Particle background or starscape behind the animation
+
+Fully animated and must disappear with a smooth transition once content loads
+
+🔐 Admin Panel (/admin.html)
+Password-protected access (localStorage-based auth)
+
+Password: Aspirinmss@Mathiya@20021225
+
+Admin Dashboard should allow:
+
+Uploading images to a gallery or projects section
+
+Editing all content: About, Projects, Skills, Resume, Contact, Blog, Social Links
+
+Live preview while editing
+
+Tailwind-styled inputs, modals, animations
+
+Persistent storage using localStorage (for demo)
+
+🗂️ Pages and Sections (Separate HTML Pages)
+1. Home
+Hero intro with animated text: “Hi, I’m Mathiya – Software Engineer”
+
+Background particles or dynamic glow effect
+
+CTA buttons with hover ripple animations
+
+2. About
+Timeline-based journey (education, experience)
+
+Skills summary
+
+Avatar or styled profile card
+
+Section reveals on scroll
+
+3. Projects
+Project cards (category-filtered: Web, Game, AI, Tools)
+
+Hover-animated card flip or scale
+
+Modal or separate pages with full project details
+
+4. Skills
+Skill grid with hover tooltips
+
+Animated radar chart or circular progress bars
+
+Grouped by: Languages, Frameworks, Tools, DevOps
+
+5. Resume
+Embedded PDF preview
+
+Download button with animated glow
+
+Add GitHub stats or badges
+
+6. Blog
+Card-style posts with categories
+
+Tags, filterable content
+
+Smooth page transitions
+
+7. Gallery
+Image grid or masonry layout
+
+Lightbox preview with zoom and keyboard navigation
+
+All content editable via admin panel
+
+8. Contact
+Animated form inputs (Name, Email, Message)
+
+Social links sidebar or bottom
+
+Map embed with zoom animation
+
+9. Socials
+Showcase icons for:
+
+GitHub: https://github.com/Mathiyass
+
+LinkedIn: https://www.linkedin.com/in/mathisha-angirasa-a955941a2/
+
+Twitter: https://x.com/Mathiya
+
+Facebook: https://www.facebook.com/mathisha.angirasa/
+
+Instagram: https://www.instagram.com/mathi_ya_/
+
+Steam: https://steamcommunity.com/profiles/76561199076879396/
+
+Epic Games: https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b
+
+Spotify: https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm
+
+Discord: https://discord.gg/QERP5JJM8k
+
+WhatsApp: https://wa.me/94715921984
+
+EA ID: M_MATHIYA_M (display only)
+
+10. 404 Page
+Glitch effect animation with neon glowing text
+
+“Return Home” button with pulsing animation
+
+✨ Eye-Catching Animations & Interactions
+Parallax background sections
+
+Scroll-based reveal animations (AOS or custom)
+
+Custom cursor with hover effects
+
+Typewriter text, rotating 3D objects (optional with Three.js)
+
+Section transitions (fade, slide, 3D flip)
+
+Interactive terminal Easter Egg (triggered by ~ key or hidden command)
+
+⚙️ Functionality & Codebase
+Use Tailwind CSS via CDN only
+
+All pages must be responsive and work on all devices
+
+Use only Vanilla JS for logic and interactivity
+
+Folder structure:
+
+/admin for admin panel
+
+/assets/css, /assets/js, /assets/img, /assets/fonts
+
+Ready to deploy via GitHub Pages
+
+Fully commented, modular, and documented code
+
+❌ Exclude:
+PC specs or hardware info
+
+Placeholder lorem ipsum
+
+Minimalist or template-looking design
+
+✅ Final Delivery
+A large-scale, cinematic, glowing, and unforgettable portfolio experience for Mathiya
+
+Usable both as a resume, creative portfolio, and brand identity
+
+Perfect for real-world job applications, freelance clients, and personal branding
