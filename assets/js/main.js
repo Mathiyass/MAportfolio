@@ -12,7 +12,51 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAdvancedInteractiveElements();
     initializePerformanceOptimization();
     initializeAccessibilityFeatures();
+    initializeEasterEgg();
+    initializeMusicToggle();
 });
+
+// Music Toggle
+function initializeMusicToggle() {
+    const musicToggle = document.getElementById('music-toggle');
+    const music = document.getElementById('background-music');
+
+    if (musicToggle && music) {
+        musicToggle.addEventListener('click', function() {
+            if (music.paused) {
+                music.play().catch(e => console.error("Audio play failed:", e));
+                this.innerHTML = '<i class="fas fa-volume-up text-cyber-cyan"></i>';
+            } else {
+                music.pause();
+                this.innerHTML = '<i class="fas fa-volume-mute text-cyber-cyan"></i>';
+            }
+        });
+    }
+}
+
+// "MATHIYA" Keyboard Easter Egg
+function initializeEasterEgg() {
+    const sequence = ['m', 'a', 't', 'h', 'i', 'y', 'a'];
+    let keySequence = [];
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key.length === 1) { // Ignore keys like Shift, Ctrl, etc.
+            keySequence.push(e.key.toLowerCase());
+            keySequence = keySequence.slice(-sequence.length); // Keep the array size of the target sequence
+
+            if (JSON.stringify(keySequence) === JSON.stringify(sequence)) {
+                const logo = document.querySelector('.gradient-text a');
+                if (logo) {
+                    logo.classList.add('logo-easter-egg-animation');
+                    setTimeout(() => {
+                        logo.classList.remove('logo-easter-egg-animation');
+                    }, 1500); // Remove class after animation ends
+                }
+                keySequence = []; // Reset sequence
+            }
+        }
+    });
+}
 
 // Enhanced Custom Cursor with advanced features
 function initializeEnhancedCursor() {

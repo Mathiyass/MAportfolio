@@ -58,6 +58,17 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('add-project-btn').addEventListener('click', function() {
         showProjectModal();
     });
+
+    // Save content handler
+    document.getElementById('save-content-btn').addEventListener('click', function() {
+        const content = {
+            heroTitle: document.getElementById('hero-title').value,
+            heroSubtitle: document.getElementById('hero-subtitle').value,
+            aboutDescription: document.getElementById('about-description').value
+        };
+        localStorage.setItem('adminContent', JSON.stringify(content));
+        showNotification('Content saved successfully!');
+    });
     
     // Initialize with overview section
     showSection('overview');
@@ -189,41 +200,46 @@ document.addEventListener('DOMContentLoaded', function() {
         showNotification('Image added to gallery successfully!');
     }
     
-    function showProjectModal() {
+    function showProjectModal(projectToEdit = null) {
+        const isEditing = projectToEdit !== null;
+        const modalTitle = isEditing ? 'Edit Project' : 'Add New Project';
+        const buttonText = isEditing ? 'Save Changes' : 'Add Project';
+
         const modal = document.createElement('div');
         modal.innerHTML = `
             <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
                 <div class="glass rounded-xl p-6 max-w-2xl w-full max-h-screen overflow-y-auto">
                     <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-2xl font-bold font-orbitron">Add New Project</h3>
+                        <h3 class="text-2xl font-bold font-orbitron">${modalTitle}</h3>
                         <button onclick="this.closest('.fixed').remove()" class="text-gray-400 hover:text-white">
                             <i class="fas fa-times text-xl"></i>
                         </button>
                     </div>
                     
                     <form id="project-form">
+                        <input type="hidden" name="id" value="${isEditing ? projectToEdit.id : ''}">
                         <div class="grid md:grid-cols-2 gap-4 mb-4">
-                            <input type="text" name="title" placeholder="Project Title" required class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan">
+                            <input type="text" name="title" placeholder="Project Title" required class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan" value="${isEditing ? projectToEdit.title : ''}">
                             <select name="category" required class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan">
                                 <option value="">Select Category</option>
-                                <option value="web">Web Development</option>
-                                <option value="game">Game Development</option>
-                                <option value="ai">AI/ML</option>
-                                <option value="ui">UI/UX</option>
+                                <option value="web" ${isEditing && projectToEdit.category === 'web' ? 'selected' : ''}>Web Development</option>
+                                <option value="game" ${isEditing && projectToEdit.category === 'game' ? 'selected' : ''}>Game Development</option>
+                                <option value="ai" ${isEditing && projectToEdit.category === 'ai' ? 'selected' : ''}>AI/ML</option>
+                                <option value="ui" ${isEditing && projectToEdit.category === 'ui' ? 'selected' : ''}>UI/UX</option>
                             </select>
                         </div>
                         
-                        <textarea name="description" placeholder="Project Description" rows="4" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan mb-4"></textarea>
+                        <textarea name="description" placeholder="Project Description" rows="4" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan mb-4">${isEditing ? projectToEdit.description : ''}</textarea>
                         
-                        <input type="text" name="tags" placeholder="Tags (comma-separated)" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan mb-4">
+                        <input type="text" name="tags" placeholder="Tags (comma-separated)" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan mb-4" value="${isEditing ? projectToEdit.tags.join(', ') : ''}">
                         
                         <div class="grid md:grid-cols-2 gap-4 mb-6">
-                            <input type="url" name="demo" placeholder="Demo URL (optional)" class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan">
-                            <input type="url" name="github" placeholder="GitHub URL (optional)" class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan">
+                            <input type="url" name="demo" placeholder="Demo URL (optional)" class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan" value="${isEditing ? projectToEdit.demo : ''}">
+                            <input type="url" name="github" placeholder="GitHub URL (optional)" class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan" value="${isEditing ? projectToEdit.github : ''}">
                         </div>
                         
                         <button type="submit" class="w-full bg-cyber-cyan text-black py-3 rounded-lg font-semibold hover:bg-opacity-80 transition-colors">
-                            <i class="fas fa-plus mr-2"></i>Add Project
+                            <i class="fas fa-save mr-2"></i>${buttonText}
                         </button>
                     </form>
                 </div>
@@ -235,32 +251,54 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('project-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);
-            
-            const project = {
-                id: Date.now().toString(),
-                title: formData.get('title'),
-                category: formData.get('category'),
-                description: formData.get('description'),
-                tags: formData.get('tags').split(',').map(tag => tag.trim()).filter(tag => tag),
-                demo: formData.get('demo'),
-                github: formData.get('github'),
-                created: new Date().toISOString()
-            };
-            
+            const projectId = formData.get('id');
             const projects = JSON.parse(localStorage.getItem('adminProjects') || '[]');
-            projects.push(project);
-            localStorage.setItem('adminProjects', JSON.stringify(projects));
+
+            if (projectId) {
+                // Editing existing project
+                const projectIndex = projects.findIndex(p => p.id === projectId);
+                if (projectIndex > -1) {
+                    projects[projectIndex] = {
+                        ...projects[projectIndex],
+                        title: formData.get('title'),
+                        category: formData.get('category'),
+                        description: formData.get('description'),
+                        tags: formData.get('tags').split(',').map(tag => tag.trim()).filter(tag => tag),
+                        demo: formData.get('demo'),
+                        github: formData.get('github'),
+                    };
+                    localStorage.setItem('adminProjects', JSON.stringify(projects));
+                    showNotification('Project updated successfully!');
+                }
+            } else {
+                // Adding new project
+                const newProject = {
+                    id: Date.now().toString(),
+                    title: formData.get('title'),
+                    category: formData.get('category'),
+                    description: formData.get('description'),
+                    tags: formData.get('tags').split(',').map(tag => tag.trim()).filter(tag => tag),
+                    demo: formData.get('demo'),
+                    github: formData.get('github'),
+                    created: new Date().toISOString()
+                };
+                projects.push(newProject);
+                localStorage.setItem('adminProjects', JSON.stringify(projects));
+                showNotification('Project added successfully!');
+            }
             
             modal.remove();
             loadProjects();
-            showNotification('Project added successfully!');
         });
     }
     
     // Global functions for project management
     window.editProject = function(id) {
-        console.log('Edit project:', id);
-        // Implement edit functionality
+        const projects = JSON.parse(localStorage.getItem('adminProjects') || '[]');
+        const project = projects.find(p => p.id === id);
+        if (project) {
+            showProjectModal(project);
+        }
     };
     
     window.deleteProject = function(id) {

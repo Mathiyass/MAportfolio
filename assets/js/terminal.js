@@ -101,6 +101,13 @@ class Terminal {
             matrix: () => this.startMatrix(),
             hack: () => this.hackSequence(),
             exit: () => this.hide(),
+            admin: () => {
+                this.addOutput('Redirecting to admin panel...');
+                setTimeout(() => {
+                    window.location.href = 'admin.html';
+                }, 1000);
+                return ' ';
+            },
             sudo: (args) => {
                 if (args.join(' ') === 'rm -rf /') {
                     return 'Nice try! 😄 But I\'m not falling for that one.';
@@ -201,6 +208,7 @@ class Terminal {
 <span class="text-green-400">contact</span>   - Display contact information
 <span class="text-green-400">socials</span>   - Show social media links
 <span class="text-green-400">neofetch</span>  - Display system information
+<span class="text-green-400">admin</span>     - Go to the admin login page
 <span class="text-green-400">clear</span>     - Clear terminal screen
 <span class="text-green-400">ls</span>        - List directory contents
 <span class="text-green-400">cat</span>       - Display file contents
