@@ -1,19 +1,7 @@
+
 // Admin Panel JavaScript
 document.addEventListener('DOMContentLoaded', function() {
     const ADMIN_PASSWORD = 'Aspirinmss@Mathiya@20021225';
-    
-    // Elements
-    const loginScreen = document.getElementById('login-screen');
-    const adminDashboard = document.getElementById('admin-dashboard');
-    const loginForm = document.getElementById('login-form');
-    const passwordInput = document.getElementById('admin-password');
-    const togglePasswordBtn = document.getElementById('toggle-password');
-    const loginMessage = document.getElementById('login-message');
-    const logoutBtn = document.getElementById('logout-btn');
-    
-    // Tab elements
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
     
     // Check if already logged in
     if (localStorage.getItem('adminLoggedIn') === 'true') {
@@ -21,407 +9,291 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Login form handler
-    loginForm.addEventListener('submit', function(e) {
+    document.getElementById('login-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        const password = passwordInput.value;
+        const password = document.getElementById('admin-password').value;
         
         if (password === ADMIN_PASSWORD) {
             localStorage.setItem('adminLoggedIn', 'true');
-            showMessage(loginMessage, 'Login successful!', 'success');
-            setTimeout(showDashboard, 1000);
+            showDashboard();
         } else {
-            showMessage(loginMessage, 'Invalid password. Please try again.', 'error');
-            passwordInput.classList.add('animate-error-shake');
-            setTimeout(() => passwordInput.classList.remove('animate-error-shake'), 500);
+            showError('Invalid password. Please try again.');
         }
     });
     
-    // Toggle password visibility
-    togglePasswordBtn.addEventListener('click', function() {
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
-        
-        const icon = this.querySelector('i');
-        icon.classList.toggle('fa-eye');
-        icon.classList.toggle('fa-eye-slash');
-    });
-    
     // Logout handler
-    logoutBtn.addEventListener('click', function() {
+    document.getElementById('logout-btn').addEventListener('click', function() {
         localStorage.removeItem('adminLoggedIn');
         showLogin();
     });
     
-    // Tab switching
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const tabName = this.getAttribute('data-tab');
-            switchTab(tabName);
+    // Navigation handlers
+    document.querySelectorAll('.admin-nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const section = this.dataset.section;
+            showSection(section);
+            
+            // Update active nav
+            document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('bg-cyber-cyan', 'text-black'));
+            this.classList.add('bg-cyber-cyan', 'text-black');
         });
     });
     
-    // Show dashboard
-    function showDashboard() {
-        loginScreen.classList.add('hidden');
-        adminDashboard.classList.remove('hidden');
-        initializeDashboard();
-    }
-    
-    // Show login
-    function showLogin() {
-        loginScreen.classList.remove('hidden');
-        adminDashboard.classList.add('hidden');
-        passwordInput.value = '';
-    }
-    
-    // Switch tabs
-    function switchTab(tabName) {
-        // Update tab buttons
-        tabButtons.forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.getAttribute('data-tab') === tabName) {
-                btn.classList.add('active');
-            }
-        });
-        
-        // Update tab content
-        tabContents.forEach(content => {
-            content.classList.add('hidden');
-        });
-        document.getElementById(tabName + '-tab').classList.remove('hidden');
-        
-        // Load tab-specific content
-        loadTabContent(tabName);
-    }
-    
-    // Initialize dashboard
-    function initializeDashboard() {
-        loadTabContent('gallery');
-        setupFileUpload();
-        setupForms();
-    }
-    
-    // Load tab content
-    function loadTabContent(tabName) {
-        switch(tabName) {
-            case 'gallery':
-                loadGallery();
-                break;
-            case 'about':
-                loadAboutContent();
-                break;
-            case 'projects':
-                loadProjects();
-                break;
-            case 'socials':
-                loadSocials();
-                break;
-            case 'blog':
-                loadBlogPosts();
-                break;
-        }
-    }
-    
-    // Gallery Management
-    function setupFileUpload() {
-        const fileUpload = document.getElementById('file-upload');
-        const fileInput = document.getElementById('file-input');
-        
-        fileUpload.addEventListener('click', () => fileInput.click());
-        
-        fileUpload.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            fileUpload.classList.add('dragover');
-        });
-        
-        fileUpload.addEventListener('dragleave', () => {
-            fileUpload.classList.remove('dragover');
-        });
-        
-        fileUpload.addEventListener('drop', (e) => {
-            e.preventDefault();
-            fileUpload.classList.remove('dragover');
-            handleFiles(e.dataTransfer.files);
-        });
-        
-        fileInput.addEventListener('change', (e) => {
-            handleFiles(e.target.files);
-        });
-    }
-    
-    function handleFiles(files) {
-        Array.from(files).forEach(file => {
+    // Gallery upload handler
+    document.getElementById('gallery-upload').addEventListener('change', function(e) {
+        const files = Array.from(e.target.files);
+        files.forEach(file => {
             if (file.type.startsWith('image/')) {
                 const reader = new FileReader();
-                reader.onload = (e) => {
+                reader.onload = function(e) {
                     addImageToGallery(e.target.result, file.name);
                 };
                 reader.readAsDataURL(file);
             }
         });
+    });
+    
+    // Add project handler
+    document.getElementById('add-project-btn').addEventListener('click', function() {
+        showProjectModal();
+    });
+    
+    // Initialize with overview section
+    showSection('overview');
+    
+    function showLogin() {
+        document.getElementById('login-screen').classList.remove('hidden');
+        document.getElementById('admin-dashboard').classList.add('hidden');
     }
     
-    function addImageToGallery(src, name) {
-        const gallery = getGalleryData();
-        const newImage = {
-            id: Date.now(),
-            src: src,
-            name: name,
-            category: 'personal',
-            description: ''
-        };
+    function showDashboard() {
+        document.getElementById('login-screen').classList.add('hidden');
+        document.getElementById('admin-dashboard').classList.remove('hidden');
+        loadDashboardData();
+    }
+    
+    function showError(message) {
+        const errorEl = document.getElementById('login-error');
+        errorEl.textContent = message;
+        errorEl.classList.remove('hidden');
         
-        gallery.push(newImage);
-        saveGalleryData(gallery);
-        loadGallery();
-        showGlobalMessage('Image uploaded successfully!', 'success');
+        setTimeout(() => {
+            errorEl.classList.add('hidden');
+        }, 3000);
+    }
+    
+    function showSection(sectionName) {
+        // Hide all sections
+        document.querySelectorAll('.admin-section').forEach(section => {
+            section.classList.add('hidden');
+        });
+        
+        // Show selected section
+        document.getElementById(sectionName + '-section').classList.remove('hidden');
+        
+        // Load section-specific data
+        switch(sectionName) {
+            case 'projects':
+                loadProjects();
+                break;
+            case 'gallery':
+                loadGallery();
+                break;
+            case 'content':
+                loadContent();
+                break;
+        }
+    }
+    
+    function loadDashboardData() {
+        // Load dashboard statistics
+        const projects = JSON.parse(localStorage.getItem('adminProjects') || '[]');
+        const gallery = JSON.parse(localStorage.getItem('adminGallery') || '[]');
+        
+        // Update dashboard stats (would be dynamic in real app)
+        console.log('Dashboard loaded with', projects.length, 'projects and', gallery.length, 'images');
+    }
+    
+    function loadProjects() {
+        const projects = JSON.parse(localStorage.getItem('adminProjects') || '[]');
+        const projectsList = document.getElementById('projects-list');
+        
+        if (projects.length === 0) {
+            projectsList.innerHTML = `
+                <div class="text-center py-8 text-gray-400">
+                    <i class="fas fa-project-diagram text-4xl mb-4"></i>
+                    <p>No projects yet. Add your first project!</p>
+                </div>
+            `;
+            return;
+        }
+        
+        projectsList.innerHTML = projects.map(project => `
+            <div class="glass rounded-lg p-4 flex justify-between items-center">
+                <div>
+                    <h4 class="font-semibold text-lg">${project.title}</h4>
+                    <p class="text-gray-400 text-sm">${project.description.substring(0, 100)}...</p>
+                    <div class="flex space-x-2 mt-2">
+                        ${project.tags.map(tag => `<span class="px-2 py-1 bg-cyber-cyan text-black text-xs rounded">${tag}</span>`).join('')}
+                    </div>
+                </div>
+                <div class="flex space-x-2">
+                    <button onclick="editProject('${project.id}')" class="px-3 py-2 bg-yellow-600 rounded hover:bg-yellow-700 transition-colors">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button onclick="deleteProject('${project.id}')" class="px-3 py-2 bg-red-600 rounded hover:bg-red-700 transition-colors">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('');
     }
     
     function loadGallery() {
-        const gallery = getGalleryData();
+        const gallery = JSON.parse(localStorage.getItem('adminGallery') || '[]');
         const galleryGrid = document.getElementById('gallery-grid');
         
         galleryGrid.innerHTML = gallery.map(image => `
-            <div class="glass p-4 rounded-lg">
-                <img src="${image.src}" alt="${image.name}" class="w-full h-32 object-cover rounded mb-3">
-                <input type="text" value="${image.name}" class="form-input w-full px-2 py-1 text-sm rounded mb-2" 
-                       onchange="updateImageName(${image.id}, this.value)">
-                <select class="form-input w-full px-2 py-1 text-sm rounded mb-2" 
-                        onchange="updateImageCategory(${image.id}, this.value)">
-                    <option value="personal" ${image.category === 'personal' ? 'selected' : ''}>Personal</option>
-                    <option value="gaming" ${image.category === 'gaming' ? 'selected' : ''}>Gaming</option>
-                    <option value="design" ${image.category === 'design' ? 'selected' : ''}>Design</option>
-                    <option value="tech" ${image.category === 'tech' ? 'selected' : ''}>Tech</option>
-                </select>
-                <button onclick="deleteImage(${image.id})" class="w-full px-2 py-1 bg-cyber-red text-white rounded text-sm hover:bg-opacity-80">
-                    <i class="fas fa-trash mr-1"></i>Delete
+            <div class="relative group">
+                <img src="${image.url}" alt="${image.name}" class="w-full h-24 object-cover rounded-lg">
+                <button onclick="removeFromGallery('${image.id}')" class="absolute top-2 right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i class="fas fa-times text-xs"></i>
                 </button>
             </div>
         `).join('');
     }
     
-    // Gallery data management
-    function getGalleryData() {
-        return JSON.parse(localStorage.getItem('portfolioGallery') || '[]');
-    }
-    
-    function saveGalleryData(data) {
-        localStorage.setItem('portfolioGallery', JSON.stringify(data));
-    }
-    
-    // Global functions for gallery management
-    window.updateImageName = function(id, name) {
-        const gallery = getGalleryData();
-        const image = gallery.find(img => img.id === id);
-        if (image) {
-            image.name = name;
-            saveGalleryData(gallery);
-        }
-    };
-    
-    window.updateImageCategory = function(id, category) {
-        const gallery = getGalleryData();
-        const image = gallery.find(img => img.id === id);
-        if (image) {
-            image.category = category;
-            saveGalleryData(gallery);
-        }
-    };
-    
-    window.deleteImage = function(id) {
-        if (confirm('Are you sure you want to delete this image?')) {
-            const gallery = getGalleryData().filter(img => img.id !== id);
-            saveGalleryData(gallery);
-            loadGallery();
-            showGlobalMessage('Image deleted successfully!', 'success');
-        }
-    };
-    
-    // About content management
-    function loadAboutContent() {
-        const aboutData = getAboutData();
-        document.getElementById('about-name').value = aboutData.name || 'Mathiya Angirasa';
-        document.getElementById('about-title').value = aboutData.title || 'Software Engineering Student';
-        document.getElementById('about-bio').value = aboutData.bio || '';
-    }
-    
-    function getAboutData() {
-        return JSON.parse(localStorage.getItem('portfolioAbout') || '{}');
-    }
-    
-    function saveAboutData(data) {
-        localStorage.setItem('portfolioAbout', JSON.stringify(data));
-    }
-    
-    // Projects management
-    function loadProjects() {
-        const projects = getProjectsData();
-        const projectsList = document.getElementById('projects-list');
+    function loadContent() {
+        // Load existing content for editing
+        const content = JSON.parse(localStorage.getItem('adminContent') || '{}');
         
-        projectsList.innerHTML = projects.map(project => `
-            <div class="glass p-4 rounded-lg">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-lg font-bold">${project.title}</h3>
-                    <button onclick="deleteProject(${project.id})" class="text-cyber-red hover:text-red-400">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-                <p class="text-gray-400 mb-3">${project.description}</p>
-                <div class="flex flex-wrap gap-2 mb-3">
-                    ${project.tags.map(tag => `<span class="px-2 py-1 bg-cyber-cyan bg-opacity-20 text-cyber-cyan rounded text-sm">${tag}</span>`).join('')}
-                </div>
-                <div class="flex gap-2">
-                    <button onclick="editProject(${project.id})" class="px-3 py-1 bg-cyber-cyan text-black rounded text-sm">
-                        <i class="fas fa-edit mr-1"></i>Edit
-                    </button>
+        if (content.heroTitle) document.getElementById('hero-title').value = content.heroTitle;
+        if (content.heroSubtitle) document.getElementById('hero-subtitle').value = content.heroSubtitle;
+        if (content.aboutDescription) document.getElementById('about-description').value = content.aboutDescription;
+    }
+    
+    function addImageToGallery(url, name) {
+        const gallery = JSON.parse(localStorage.getItem('adminGallery') || '[]');
+        const newImage = {
+            id: Date.now().toString(),
+            url: url,
+            name: name,
+            uploadDate: new Date().toISOString()
+        };
+        
+        gallery.push(newImage);
+        localStorage.setItem('adminGallery', JSON.stringify(gallery));
+        loadGallery();
+        
+        showNotification('Image added to gallery successfully!');
+    }
+    
+    function showProjectModal() {
+        const modal = document.createElement('div');
+        modal.innerHTML = `
+            <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                <div class="glass rounded-xl p-6 max-w-2xl w-full max-h-screen overflow-y-auto">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold font-orbitron">Add New Project</h3>
+                        <button onclick="this.closest('.fixed').remove()" class="text-gray-400 hover:text-white">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <form id="project-form">
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <input type="text" name="title" placeholder="Project Title" required class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan">
+                            <select name="category" required class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan">
+                                <option value="">Select Category</option>
+                                <option value="web">Web Development</option>
+                                <option value="game">Game Development</option>
+                                <option value="ai">AI/ML</option>
+                                <option value="ui">UI/UX</option>
+                            </select>
+                        </div>
+                        
+                        <textarea name="description" placeholder="Project Description" rows="4" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan mb-4"></textarea>
+                        
+                        <input type="text" name="tags" placeholder="Tags (comma-separated)" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan mb-4">
+                        
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <input type="url" name="demo" placeholder="Demo URL (optional)" class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan">
+                            <input type="url" name="github" placeholder="GitHub URL (optional)" class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan">
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-cyber-cyan text-black py-3 rounded-lg font-semibold hover:bg-opacity-80 transition-colors">
+                            <i class="fas fa-plus mr-2"></i>Add Project
+                        </button>
+                    </form>
                 </div>
             </div>
-        `).join('');
-    }
-    
-    function getProjectsData() {
-        return JSON.parse(localStorage.getItem('portfolioProjects') || '[]');
-    }
-    
-    function saveProjectsData(data) {
-        localStorage.setItem('portfolioProjects', JSON.stringify(data));
-    }
-    
-    // Socials management
-    function loadSocials() {
-        const socials = getSocialsData();
-        Object.keys(socials).forEach(key => {
-            const input = document.getElementById(`social-${key}`);
-            if (input) {
-                input.value = socials[key] || '';
-            }
-        });
-    }
-    
-    function getSocialsData() {
-        return JSON.parse(localStorage.getItem('portfolioSocials') || '{}');
-    }
-    
-    function saveSocialsData(data) {
-        localStorage.setItem('portfolioSocials', JSON.stringify(data));
-    }
-    
-    // Blog management
-    function loadBlogPosts() {
-        const posts = getBlogData();
-        const blogList = document.getElementById('blog-posts-list');
+        `;
         
-        blogList.innerHTML = posts.map(post => `
-            <div class="glass p-4 rounded-lg">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-lg font-bold">${post.title}</h3>
-                    <button onclick="deleteBlogPost(${post.id})" class="text-cyber-red hover:text-red-400">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-                <p class="text-gray-400 mb-3">${post.excerpt}</p>
-                <div class="flex justify-between items-center">
-                    <span class="text-sm text-gray-500">${new Date(post.date).toLocaleDateString()}</span>
-                    <button onclick="editBlogPost(${post.id})" class="px-3 py-1 bg-cyber-cyan text-black rounded text-sm">
-                        <i class="fas fa-edit mr-1"></i>Edit
-                    </button>
-                </div>
-            </div>
-        `).join('');
-    }
-    
-    function getBlogData() {
-        return JSON.parse(localStorage.getItem('portfolioBlog') || '[]');
-    }
-    
-    function saveBlogData(data) {
-        localStorage.setItem('portfolioBlog', JSON.stringify(data));
-    }
-    
-    // Form setup
-    function setupForms() {
-        // About form
-        document.getElementById('about-form').addEventListener('submit', function(e) {
+        document.body.appendChild(modal);
+        
+        document.getElementById('project-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const aboutData = {
-                name: document.getElementById('about-name').value,
-                title: document.getElementById('about-title').value,
-                bio: document.getElementById('about-bio').value
+            const formData = new FormData(this);
+            
+            const project = {
+                id: Date.now().toString(),
+                title: formData.get('title'),
+                category: formData.get('category'),
+                description: formData.get('description'),
+                tags: formData.get('tags').split(',').map(tag => tag.trim()).filter(tag => tag),
+                demo: formData.get('demo'),
+                github: formData.get('github'),
+                created: new Date().toISOString()
             };
-            saveAboutData(aboutData);
-            showGlobalMessage('About content saved successfully!', 'success');
-        });
-        
-        // Socials form
-        document.getElementById('socials-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const socialsData = {
-                github: document.getElementById('social-github').value,
-                linkedin: document.getElementById('social-linkedin').value,
-                twitter: document.getElementById('social-twitter').value,
-                discord: document.getElementById('social-discord').value,
-                whatsapp: document.getElementById('social-whatsapp').value,
-                ea: document.getElementById('social-ea').value
-            };
-            saveSocialsData(socialsData);
-            showGlobalMessage('Social links saved successfully!', 'success');
+            
+            const projects = JSON.parse(localStorage.getItem('adminProjects') || '[]');
+            projects.push(project);
+            localStorage.setItem('adminProjects', JSON.stringify(projects));
+            
+            modal.remove();
+            loadProjects();
+            showNotification('Project added successfully!');
         });
     }
     
-    // Utility functions
-    function showMessage(element, message, type) {
-        element.textContent = message;
-        element.className = `message ${type}`;
-        element.style.display = 'block';
-        
-        if (type === 'success') {
-            element.classList.add('animate-success-bounce');
-        }
-        
-        setTimeout(() => {
-            element.style.display = 'none';
-            element.classList.remove('animate-success-bounce');
-        }, 3000);
-    }
+    // Global functions for project management
+    window.editProject = function(id) {
+        console.log('Edit project:', id);
+        // Implement edit functionality
+    };
     
-    function showGlobalMessage(message, type) {
-        const globalMessage = document.getElementById('global-message');
-        const messageText = document.getElementById('message-text');
-        
-        messageText.textContent = message;
-        globalMessage.classList.remove('hidden');
-        
-        setTimeout(() => {
-            globalMessage.classList.add('hidden');
-        }, 3000);
-    }
-    
-    // Global functions for project and blog management
     window.deleteProject = function(id) {
         if (confirm('Are you sure you want to delete this project?')) {
-            const projects = getProjectsData().filter(p => p.id !== id);
-            saveProjectsData(projects);
+            const projects = JSON.parse(localStorage.getItem('adminProjects') || '[]');
+            const filtered = projects.filter(p => p.id !== id);
+            localStorage.setItem('adminProjects', JSON.stringify(filtered));
             loadProjects();
-            showGlobalMessage('Project deleted successfully!', 'success');
+            showNotification('Project deleted successfully!');
         }
     };
     
-    window.deleteBlogPost = function(id) {
-        if (confirm('Are you sure you want to delete this blog post?')) {
-            const posts = getBlogData().filter(p => p.id !== id);
-            saveBlogData(posts);
-            loadBlogPosts();
-            showGlobalMessage('Blog post deleted successfully!', 'success');
+    window.removeFromGallery = function(id) {
+        if (confirm('Are you sure you want to remove this image?')) {
+            const gallery = JSON.parse(localStorage.getItem('adminGallery') || '[]');
+            const filtered = gallery.filter(img => img.id !== id);
+            localStorage.setItem('adminGallery', JSON.stringify(filtered));
+            loadGallery();
+            showNotification('Image removed successfully!');
         }
     };
     
-    window.editProject = function(id) {
-        // Implement project editing modal
-        showGlobalMessage('Project editing feature coming soon!', 'info');
-    };
-    
-    window.editBlogPost = function(id) {
-        // Implement blog post editing modal
-        showGlobalMessage('Blog post editing feature coming soon!', 'info');
-    };
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'fixed top-4 right-4 z-50 bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transform translate-x-full transition-transform duration-300';
+        notification.textContent = message;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+        setTimeout(() => {
+            notification.style.transform = 'translateX(full)';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
 });

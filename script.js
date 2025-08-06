@@ -9,7 +9,7 @@ AOS.init({
 // Enhanced Typing Effect
 const typingTexts = [
     "Software Engineering Student 🎓",
-    "Full Stack Developer 💻", 
+    "Full Stack Developer 💻",
     "Tech Enthusiast 🌟",
     "Problem Solver 🧩",
     "Innovation Seeker 🚀",
@@ -27,9 +27,9 @@ function typeEffect() {
         typingElement = document.getElementById('typing-text');
         if (!typingElement) return;
     }
-    
+
     const currentText = typingTexts[textIndex];
-    
+
     if (isDeleting) {
         typingElement.textContent = currentText.substring(0, charIndex - 1);
         charIndex--;
@@ -37,9 +37,9 @@ function typeEffect() {
         typingElement.textContent = currentText.substring(0, charIndex + 1);
         charIndex++;
     }
-    
+
     let typeSpeed = isDeleting ? 50 : 100;
-    
+
     if (!isDeleting && charIndex === currentText.length) {
         typeSpeed = 2000;
         isDeleting = true;
@@ -48,22 +48,22 @@ function typeEffect() {
         textIndex = (textIndex + 1) % typingTexts.length;
         typeSpeed = 500;
     }
-    
+
     setTimeout(typeEffect, typeSpeed);
 }
 
-// Enhanced Navbar Scroll Effect
+// EnhancedNavbar Scroll Effect
 let lastScrollTop = 0;
 window.addEventListener('scroll', function() {
     const navbar = document.getElementById('navbar');
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
+
     if (scrollTop > 100) {
         navbar.classList.add('nav-blur');
     } else {
         navbar.classList.remove('nav-blur');
     }
-    
+
     // Hide/show navbar on scroll
     if (scrollTop > lastScrollTop && scrollTop > 200) {
         navbar.style.transform = 'translateY(-100%)';
@@ -71,18 +71,20 @@ window.addEventListener('scroll', function() {
         navbar.style.transform = 'translateY(0)';
     }
     lastScrollTop = scrollTop;
-    
+
     // Update progress bar
     updateProgressBar();
 });
 
 // Progress Bar
 function updateProgressBar() {
-    const progressBar = document.getElementById('progress-bar');
-    const scrollTop = window.pageYOffset;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrollTop / docHeight) * 100;
-    progressBar.style.width = scrollPercent + '%';
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progressBar.style.width = scrollPercent + '%';
+    }
 }
 
 // Mobile Menu Enhanced
@@ -93,7 +95,7 @@ const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
 mobileMenuBtn.addEventListener('click', function() {
     mobileMenu.classList.toggle('active');
     document.body.classList.toggle('overflow-hidden');
-    
+
     // Animate hamburger icon
     const icon = this.querySelector('i');
     if (mobileMenu.classList.contains('active')) {
@@ -133,7 +135,7 @@ function animateSkillBars() {
         setTimeout(() => {
             bar.style.width = width;
             // Add glow class after animation completes
-            bar.classList.add('skill-bar-glow'); 
+            bar.classList.add('skill-bar-glow');
         }, index * 200);
     });
 }
@@ -160,11 +162,11 @@ const projectCards = document.querySelectorAll('.project-card');
 filterButtons.forEach(button => {
     button.addEventListener('click', function() {
         const filter = this.getAttribute('data-filter');
-        
+
         // Update active button
         filterButtons.forEach(btn => btn.classList.remove('active', 'bg-dracula-purple', 'text-dracula-bg'));
         this.classList.add('active', 'bg-dracula-purple', 'text-dracula-bg');
-        
+
         // Filter projects
         projectCards.forEach(card => {
             const category = card.getAttribute('data-category');
@@ -185,7 +187,7 @@ projectCards.forEach(card => {
         this.style.transform = 'translateY(-15px) scale(1.02) perspective(1000px) rotateX(5deg) rotateY(-5deg)';
         this.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
     });
-    
+
     card.addEventListener('mouseleave', function() {
         this.style.transform = 'translateY(0) scale(1) perspective(1000px) rotateX(0deg) rotateY(0deg)';
     });
@@ -200,28 +202,28 @@ const formError = document.getElementById('form-error');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
-        
+
         // Show loading state
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
         submitBtn.disabled = true;
-        
+
         // Simulate form submission (replace with actual form handling)
         setTimeout(() => {
             // Show success message
             formStatus.classList.remove('hidden');
             formSuccess.classList.remove('hidden');
             formError.classList.add('hidden');
-            
+
             // Reset form
             this.reset();
-            
+
             // Reset button
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-            
+
             // Hide success message after 5 seconds
             setTimeout(() => {
                 formStatus.classList.add('hidden');
@@ -244,12 +246,12 @@ if (themeToggle) {
     themeToggle.addEventListener('click', () => {
         const currentTheme = html.classList.contains('dark') ? 'dark' : 'light';
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
+
         html.classList.remove(currentTheme);
         html.classList.add(newTheme);
         localStorage.setItem('theme', newTheme);
         updateThemeIcon(newTheme);
-        
+
         // Update cursor colors based on theme
         updateCursorColors(newTheme);
 
@@ -407,7 +409,7 @@ window.startMainContentAnimation = function() {
         offset: 100,
         easing: 'ease-out-cubic'
     });
-    
+
     // Start the typing effect
     typeEffect();
 };
@@ -443,7 +445,7 @@ document.querySelectorAll('section').forEach(section => {
 window.addEventListener('scroll', function() {
     const scrolled = window.pageYOffset;
     const parallaxElements = document.querySelectorAll('[data-parallax-speed]'); // Select elements with the attribute
-    
+
     parallaxElements.forEach(element => {
         const speed = parseFloat(element.dataset.parallaxSpeed);
         // Apply parallax effect based on scroll position and speed
@@ -513,34 +515,34 @@ class PortfolioEnhancements {
     constructor() {
         this.init();
     }
-    
+
     init() {
         this.setupAdvancedAnimations();
         this.setupPerformanceMonitoring();
         this.setupAccessibility();
         this.setupCustomCursor(); // Initialize custom cursor
     }
-    
+
     setupAdvancedAnimations() {
         // Add stagger animations to skill items
         const skillItems = document.querySelectorAll('.skill-item');
         skillItems.forEach((item, index) => {
             item.style.animationDelay = `${index * 0.1}s`;
         });
-        
+
         // Add hover effects to achievement badges
         const badges = document.querySelectorAll('.achievement-badge');
         badges.forEach(badge => {
             badge.addEventListener('mouseenter', function() {
                 this.style.transform = 'scale(1.05) rotateY(5deg)';
             });
-            
+
             badge.addEventListener('mouseleave', function() {
                 this.style.transform = 'scale(1) rotateY(0deg)';
             });
         });
     }
-    
+
     setupPerformanceMonitoring() {
         // Monitor page load performance
         window.addEventListener('load', () => {
@@ -548,7 +550,7 @@ class PortfolioEnhancements {
             console.log(`Portfolio loaded in ${loadTime.toFixed(2)}ms`);
         });
     }
-    
+
     setupAccessibility() {
         // Add focus indicators
         const focusableElements = document.querySelectorAll('a, button, input, textarea');
@@ -557,7 +559,7 @@ class PortfolioEnhancements {
                 this.style.outline = '2px solid #bd93f9';
                 this.style.outlineOffset = '2px';
             });
-            
+
             element.addEventListener('blur', function() {
                 this.style.outline = 'none';
             });
@@ -583,7 +585,7 @@ class PortfolioEnhancements {
 
             // Update the main cursor's position
             cursor.style.transform = `translate3d(${mouseX - cursor.offsetWidth / 2}px, ${mouseY - cursor.offsetHeight / 2}px, 0)`;
-            
+
             // Update the dot's position (for trailing effect)
             dotX = mouseX;
             dotY = mouseY;

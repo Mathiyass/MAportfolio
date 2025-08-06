@@ -1,103 +1,61 @@
-// Signature-style MATHIYA loading animation
-document.addEventListener('DOMContentLoaded', () => {
+
+document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('signature-canvas');
     const ctx = canvas.getContext('2d');
-    const loadingScreen = document.getElementById('loading-screen');
     const loadingProgress = document.getElementById('loading-progress');
-
-    if (!canvas || !loadingScreen) {
-        console.error('Signature loader elements not found!');
-        return;
-    }
-
+    const loadingScreen = document.getElementById('loading-screen');
+    
     // Set canvas size
-    canvas.width = 800;
-    canvas.height = 200;
-
-    let particles = [];
-    let stars = [];
-    let currentPath = 0;
-    let currentPoint = 0;
+    const width = canvas.width = 400;
+    const height = canvas.height = 150;
+    
+    // Animation variables
     let progress = 0;
-    let isComplete = false;
-
-    // Signature paths for MATHIYA (handwriting style)
-    const signaturePaths = [
-        // M
-        [
-            {x: 50, y: 150}, {x: 50, y: 50}, {x: 80, y: 100}, 
-            {x: 110, y: 50}, {x: 110, y: 150}
-        ],
-        // A
-        [
-            {x: 140, y: 150}, {x: 165, y: 50}, {x: 190, y: 150},
-            {x: 175, y: 100}, {x: 155, y: 100}
-        ],
-        // T
-        [
-            {x: 210, y: 60}, {x: 260, y: 60}, {x: 235, y: 60}, {x: 235, y: 150}
-        ],
-        // H
-        [
-            {x: 280, y: 50}, {x: 280, y: 150}, {x: 280, y: 100}, 
-            {x: 320, y: 100}, {x: 320, y: 50}, {x: 320, y: 150}
-        ],
-        // I
-        [
-            {x: 340, y: 60}, {x: 380, y: 60}, {x: 360, y: 60}, 
-            {x: 360, y: 140}, {x: 340, y: 150}, {x: 380, y: 150}
-        ],
-        // Y
-        [
-            {x: 400, y: 50}, {x: 425, y: 100}, {x: 450, y: 50}, 
-            {x: 425, y: 100}, {x: 425, y: 150}
-        ],
-        // A
-        [
-            {x: 470, y: 150}, {x: 495, y: 50}, {x: 520, y: 150},
-            {x: 505, y: 100}, {x: 485, y: 100}
-        ]
-    ];
-
-    // Create star field
-    function createStars() {
-        stars = [];
-        for (let i = 0; i < 150; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 1.5 + 0.5,
-                alpha: Math.random() * 0.8 + 0.2,
-                twinkle: Math.random() * 0.02 + 0.01
-            });
-        }
-    }
-
-    // Particle class for signature trail
-    class SignatureParticle {
+    let currentLetter = 0;
+    let currentPoint = 0;
+    let particles = [];
+    
+    // MATHIYA letter paths (simplified signature style)
+    const letterPaths = {
+        M: [[50, 120], [50, 40], [75, 80], [100, 40], [100, 120]],
+        A: [[120, 120], [135, 40], [150, 120], [127, 85], [143, 85]],
+        T: [[170, 40], [210, 40], [190, 40], [190, 120]],
+        H: [[230, 40], [230, 120], [230, 80], [260, 80], [260, 40], [260, 120]],
+        I: [[280, 40], [300, 40], [290, 40], [290, 120], [280, 120], [300, 120]],
+        Y: [[320, 40], [335, 80], [350, 40], [335, 80], [335, 120]],
+        A2: [[370, 120], [385, 40], [400, 120], [377, 85], [393, 85]]
+    };
+    
+    const letters = Object.keys(letterPaths);
+    let allPoints = [];
+    
+    // Flatten all points
+    letters.forEach(letter => {
+        allPoints = allPoints.concat(letterPaths[letter]);
+    });
+    
+    // Particle class
+    class Particle {
         constructor(x, y) {
             this.x = x;
             this.y = y;
+            this.size = Math.random() * 3 + 1;
+            this.life = 60;
+            this.maxLife = 60;
             this.vx = (Math.random() - 0.5) * 2;
             this.vy = (Math.random() - 0.5) * 2;
-            this.life = 1.0;
-            this.decay = Math.random() * 0.02 + 0.01;
-            this.size = Math.random() * 3 + 1;
         }
-
+        
         update() {
             this.x += this.vx;
             this.y += this.vy;
-            this.life -= this.decay;
-            this.vx *= 0.98;
-            this.vy *= 0.98;
+            this.life--;
         }
-
+        
         draw() {
-            if (this.life <= 0) return;
-            
+            const alpha = this.life / this.maxLife;
             ctx.save();
-            ctx.globalAlpha = this.life;
+            ctx.globalAlpha = alpha;
             ctx.fillStyle = '#00FFDE';
             ctx.shadowColor = '#00FFDE';
             ctx.shadowBlur = 10;
@@ -107,154 +65,86 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.restore();
         }
     }
-
-    // Draw stars
-    function drawStars() {
-        stars.forEach(star => {
-            star.alpha += star.twinkle * (Math.random() > 0.5 ? 1 : -1);
-            star.alpha = Math.max(0.2, Math.min(1, star.alpha));
-            
-            ctx.save();
-            ctx.globalAlpha = star.alpha;
-            ctx.fillStyle = '#ffffff';
-            ctx.beginPath();
-            ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.restore();
-        });
-    }
-
-    // Draw signature path
+    
     function drawSignature() {
-        if (currentPath >= signaturePaths.length) {
-            if (!isComplete) {
-                isComplete = true;
-                setTimeout(finishLoading, 1000);
-            }
-            return;
-        }
-
-        const path = signaturePaths[currentPath];
+        ctx.clearRect(0, 0, width, height);
         
         // Draw completed paths
-        ctx.strokeStyle = '#00FFDE';
-        ctx.lineWidth = 4;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-        ctx.shadowColor = '#00FFDE';
-        ctx.shadowBlur = 15;
-
-        for (let i = 0; i < currentPath; i++) {
-            const completedPath = signaturePaths[i];
-            ctx.beginPath();
-            ctx.moveTo(completedPath[0].x, completedPath[0].y);
-            for (let j = 1; j < completedPath.length; j++) {
-                ctx.lineTo(completedPath[j].x, completedPath[j].y);
-            }
-            ctx.stroke();
-        }
-
-        // Draw current path up to current point
-        if (currentPoint > 0) {
-            ctx.beginPath();
-            ctx.moveTo(path[0].x, path[0].y);
-            for (let i = 1; i <= Math.min(currentPoint, path.length - 1); i++) {
-                ctx.lineTo(path[i].x, path[i].y);
-            }
-            ctx.stroke();
-        }
-
-        // Animate to next point
-        if (currentPoint < path.length - 1) {
-            currentPoint++;
+        if (allPoints.length > 0) {
+            ctx.strokeStyle = '#00FFDE';
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.shadowColor = '#00FFDE';
+            ctx.shadowBlur = 15;
             
-            // Add particles at current position
-            const point = path[currentPoint];
-            for (let i = 0; i < 5; i++) {
-                particles.push(new SignatureParticle(point.x, point.y));
+            const pointsToDraw = Math.floor((progress / 100) * allPoints.length);
+            
+            if (pointsToDraw > 1) {
+                ctx.beginPath();
+                ctx.moveTo(allPoints[0][0], allPoints[0][1]);
+                
+                for (let i = 1; i < pointsToDraw; i++) {
+                    ctx.lineTo(allPoints[i][0], allPoints[i][1]);
+                }
+                ctx.stroke();
+                
+                // Add particles at current drawing point
+                if (pointsToDraw < allPoints.length) {
+                    const currentPoint = allPoints[pointsToDraw - 1];
+                    if (Math.random() < 0.3) {
+                        particles.push(new Particle(currentPoint[0], currentPoint[1]));
+                    }
+                }
             }
-            
-            // Update progress
-            const totalPoints = signaturePaths.reduce((sum, p) => sum + p.length, 0);
-            const completedPoints = signaturePaths.slice(0, currentPath).reduce((sum, p) => sum + p.length, 0) + currentPoint;
-            progress = (completedPoints / totalPoints) * 100;
-            
-        } else {
-            currentPath++;
-            currentPoint = 0;
         }
-    }
-
-    // Update and draw particles
-    function updateParticles() {
+        
+        // Update and draw particles
         particles = particles.filter(particle => {
             particle.update();
             particle.draw();
             return particle.life > 0;
         });
-    }
-
-    // Animation loop
-    function animate() {
-        // Clear canvas with fade effect
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        drawStars();
-        drawSignature();
-        updateParticles();
-
-        // Update progress bar
-        if (loadingProgress) {
-            loadingProgress.style.width = progress + '%';
-        }
-
-        if (!isComplete) {
-            requestAnimationFrame(animate);
-        }
-    }
-
-    // Finish loading animation
-    function finishLoading() {
-        // Final glow effect
-        ctx.shadowBlur = 30;
-        ctx.strokeStyle = '#00FFDE';
-        ctx.lineWidth = 6;
         
-        signaturePaths.forEach(path => {
-            ctx.beginPath();
-            ctx.moveTo(path[0].x, path[0].y);
-            for (let i = 1; i < path.length; i++) {
-                ctx.lineTo(path[i].x, path[i].y);
+        // Draw current point glow
+        if (allPoints.length > 0 && progress < 100) {
+            const currentIndex = Math.floor((progress / 100) * allPoints.length);
+            if (currentIndex < allPoints.length) {
+                const point = allPoints[currentIndex];
+                ctx.save();
+                ctx.fillStyle = '#FF3366';
+                ctx.shadowColor = '#FF3366';
+                ctx.shadowBlur = 20;
+                ctx.beginPath();
+                ctx.arc(point[0], point[1], 5, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
             }
-            ctx.stroke();
-        });
-
-        setTimeout(() => {
-            if (typeof gsap !== 'undefined') {
-                gsap.to(loadingScreen, {
-                    opacity: 0,
-                    duration: 1,
-                    onComplete: () => {
-                        loadingScreen.remove();
-                        if (typeof window.startMainContentAnimation === 'function') {
-                            window.startMainContentAnimation();
-                        }
-                    }
-                });
-            } else {
+        }
+    }
+    
+    function animate() {
+        drawSignature();
+        
+        if (progress < 100) {
+            progress += 1.5;
+            loadingProgress.style.width = progress + '%';
+            requestAnimationFrame(animate);
+        } else {
+            // Wait a moment then fade out
+            setTimeout(() => {
                 loadingScreen.style.opacity = '0';
                 setTimeout(() => {
                     loadingScreen.remove();
+                    // Start main content animations
                     if (typeof window.startMainContentAnimation === 'function') {
                         window.startMainContentAnimation();
                     }
                 }, 1000);
-            }
-        }, 500);
+            }, 500);
+        }
     }
-
-    // Initialize
-    createStars();
+    
+    // Start animation
     animate();
 });
