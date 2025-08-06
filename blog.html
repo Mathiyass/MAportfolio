@@ -1,14 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Mathiya Angirasa | Tech Insights & Tutorials</title>
-    <meta name="description" content="Tech insights, tutorials, and thoughts from Mathiya Angirasa - Software Engineering Student">
+    <title>Blog - Mathiya Angirasa | Premium Portfolio</title>
+    <meta name="description" content="Read Mathiya Angirasa's latest blog posts about web development, technology trends, and programming insights.">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300F0FF'>M</text></svg>">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,12 +22,6 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/custom.css">
-    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -39,93 +32,224 @@
                         'inter': ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        'cyber-cyan': '#00FFDE',
-                        'cyber-red': '#FF3366',
+                        'cyber-cyan': '#00F0FF',
+                        'cyber-purple': '#8A2BE2',
                         'neon-pink': '#FF10F0',
                         'electric-blue': '#0080FF',
                         'dark-bg': '#0a0a0a',
                         'dark-card': '#1a1a2e',
                         'dark-accent': '#16213e',
-                    }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
+                        'blog-hover': 'blogHover 0.3s ease-out',
+                    },
+                    keyframes: {
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                        },
+                        'glowPulse': {
+                            '0%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.5)' },
+                            '100%': { boxShadow: '0 0 40px rgba(0, 240, 255, 1), 0 0 60px rgba(138, 43, 226, 0.5)' },
+                        },
+                        'blogHover': {
+                            '0%': { transform: 'translateY(0) scale(1)' },
+                            '100%': { transform: 'translateY(-10px) scale(1.02)' },
+                        },
+                    },
                 }
             }
         }
     </script>
+    
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            cursor: none;
+        }
+        
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00F0FF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #00F0FF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.15s ease;
+        }
+        
+        .cursor-hover {
+            transform: scale(2);
+            background: rgba(0, 240, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2, #FF10F0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Blog Card Effects */
+        .blog-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.1);
+        }
+        
+        /* Tag Effects */
+        .tag {
+            transition: all 0.3s ease;
+        }
+        
+        .tag:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Floating Shapes */
+        .floating-shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-shape:nth-child(2) { animation-delay: -2s; }
+        .floating-shape:nth-child(3) { animation-delay: -4s; }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+        
+        /* Scroll to Top */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.5);
+        }
+        
+        /* Coming Soon Animation */
+        .coming-soon {
+            animation: glow-pulse 2s ease-in-out infinite alternate;
+        }
+    </style>
 </head>
 
 <body class="dark text-white">
-    <!-- Enhanced Custom Cursor -->
+    <!-- Custom Cursor -->
     <div class="custom-cursor" id="custom-cursor"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
-
-    <!-- Scroll Progress Bar -->
+    
+    <!-- Scroll Progress -->
     <div class="scroll-progress" id="scroll-progress"></div>
-
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
-
+    
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="text-2xl font-bold font-orbitron gradient-text">
-                    <a href="index.html" class="hover:scale-110 transition-transform duration-300">MATHIYA</a>
+                    <a href="index.html">MATHIYA</a>
                 </div>
-
+                
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Home
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        About
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Projects
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Skills
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="blog.html" class="nav-link text-cyber-cyan relative group">
-                        Blog
-                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-cyber-cyan"></span>
-                    </a>
-                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Contact
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
+                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors">Home</a>
+                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors">About</a>
+                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors">Projects</a>
+                    <a href="resume.html" class="nav-link hover:text-cyber-cyan transition-colors">Resume</a>
+                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors">Contact</a>
+                    <a href="blog.html" class="nav-link text-cyber-cyan font-medium">Blog</a>
                 </div>
-
-                <!-- Theme Toggle -->
-                <button id="theme-toggle" class="hidden md:block p-2 rounded-lg glass hover:scale-110 transition-transform">
-                    <i class="fas fa-moon text-cyber-cyan"></i>
-                </button>
-
+                
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
                     <i class="fas fa-bars text-cyber-cyan"></i>
                 </button>
             </div>
         </div>
-
+        
         <!-- Mobile Menu -->
         <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
             <div class="p-6">
-                <button id="close-menu" class="float-right text-2xl text-cyber-cyan hover:rotate-90 transition-transform">
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan">
                     <i class="fas fa-times"></i>
                 </button>
                 <div class="clear-both mt-8 space-y-6">
                     <a href="index.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Home</a>
                     <a href="about.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">About</a>
                     <a href="projects.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Projects</a>
-                    <a href="skills.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Skills</a>
-                    <a href="blog.html" class="block text-xl font-orbitron text-cyber-cyan mobile-nav-link">Blog</a>
+                    <a href="resume.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Resume</a>
                     <a href="contact.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Contact</a>
+                    <a href="blog.html" class="block text-xl font-orbitron text-cyber-cyan mobile-nav-link">Blog</a>
                 </div>
             </div>
         </div>
@@ -133,209 +257,226 @@
 
     <!-- Hero Section -->
     <section class="pt-32 pb-20 relative overflow-hidden">
-        <!-- Background Elements -->
-        <div class="absolute inset-0">
-            <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
-        </div>
-
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <h1 class="text-5xl md:text-7xl font-bold font-orbitron gradient-text mb-6" data-aos="fade-up">
-                Tech Blog
+        <!-- Floating Blobs -->
+        <div class="floating-shape absolute top-20 left-10 w-64 h-64 bg-cyber-cyan rounded-full blur-3xl"></div>
+        <div class="floating-shape absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple rounded-full blur-3xl"></div>
+        <div class="floating-shape absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink rounded-full blur-3xl"></div>
+        
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up">
+                My Blog
             </h1>
             <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                Insights, tutorials, and thoughts on software development, emerging technologies, 
-                and the future of digital innovation.
+                Thoughts, insights, and tutorials about web development, technology trends, and programming
             </p>
         </div>
     </section>
 
-    <!-- Blog Posts -->
+    <!-- Coming Soon Section -->
     <section class="py-20">
         <div class="container mx-auto px-6">
-            <!-- Featured Post -->
-            <div class="mb-16" data-aos="fade-up">
-                <h2 class="text-3xl font-bold font-orbitron gradient-text mb-8">Featured Post</h2>
-                <div class="enhanced-card glass rounded-2xl overflow-hidden">
-                    <div class="grid lg:grid-cols-2 gap-8">
-                        <div class="w-full h-64 lg:h-auto bg-gradient-to-br from-cyber-cyan to-cyber-red flex items-center justify-center">
-                            <i class="fas fa-code text-6xl text-black"></i>
+            <div class="max-w-4xl mx-auto text-center">
+                
+                <!-- Coming Soon Card -->
+                <div class="glass rounded-2xl p-12 coming-soon" data-aos="fade-up">
+                    <div class="mb-8">
+                        <i class="fas fa-rocket text-6xl text-cyber-cyan mb-6"></i>
+                        <h2 class="text-3xl md:text-4xl font-bold font-orbitron mb-6 gradient-text">
+                            Blog Coming Soon
+                        </h2>
+                        <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                            I'm currently working on creating amazing content about web development, 
+                            technology trends, and programming insights. Stay tuned for exciting articles!
+                        </p>
+                    </div>
+                    
+                    <!-- Planned Topics -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                        <div class="glass p-6 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                            <i class="fas fa-code text-2xl text-cyber-cyan mb-4"></i>
+                            <h3 class="font-bold font-orbitron mb-2 text-cyber-cyan">Web Development</h3>
+                            <p class="text-gray-400 text-sm">Modern frameworks, best practices, and tutorials</p>
                         </div>
-                        <div class="p-8">
-                            <div class="flex items-center space-x-4 mb-4">
-                                <span class="px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">Web Development</span>
-                                <span class="text-gray-400">December 15, 2024</span>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-4 font-orbitron">Building Modern Web Applications with React and Next.js</h3>
-                            <p class="text-gray-300 mb-6">
-                                Explore the latest techniques and best practices for creating high-performance, 
-                                scalable web applications using React and Next.js. From server-side rendering 
-                                to static site generation, discover how to leverage these powerful frameworks.
-                            </p>
-                            <a href="#" class="neon-btn inline-block text-black font-semibold py-3 px-6 rounded-lg transition-all duration-300">
-                                Read More <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
+                        
+                        <div class="glass p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                            <i class="fas fa-mobile-alt text-2xl text-cyber-purple mb-4"></i>
+                            <h3 class="font-bold font-orbitron mb-2 text-cyber-purple">Mobile Development</h3>
+                            <p class="text-gray-400 text-sm">React Native, Flutter, and mobile UI/UX</p>
                         </div>
+                        
+                        <div class="glass p-6 rounded-lg" data-aos="fade-up" data-aos-delay="300">
+                            <i class="fas fa-brain text-2xl text-neon-pink mb-4"></i>
+                            <h3 class="font-bold font-orbitron mb-2 text-neon-pink">Tech Insights</h3>
+                            <p class="text-gray-400 text-sm">Industry trends, AI, and future technologies</p>
+                        </div>
+                        
+                        <div class="glass p-6 rounded-lg" data-aos="fade-up" data-aos-delay="400">
+                            <i class="fas fa-palette text-2xl text-electric-blue mb-4"></i>
+                            <h3 class="font-bold font-orbitron mb-2 text-electric-blue">UI/UX Design</h3>
+                            <p class="text-gray-400 text-sm">Design principles, tools, and case studies</p>
+                        </div>
+                        
+                        <div class="glass p-6 rounded-lg" data-aos="fade-up" data-aos-delay="500">
+                            <i class="fas fa-gamepad text-2xl text-cyber-cyan mb-4"></i>
+                            <h3 class="font-bold font-orbitron mb-2 text-cyber-cyan">Game Development</h3>
+                            <p class="text-gray-400 text-sm">JavaScript games, WebGL, and interactive experiences</p>
+                        </div>
+                        
+                        <div class="glass p-6 rounded-lg" data-aos="fade-up" data-aos-delay="600">
+                            <i class="fas fa-graduation-cap text-2xl text-cyber-purple mb-4"></i>
+                            <h3 class="font-bold font-orbitron mb-2 text-cyber-purple">Learning Journey</h3>
+                            <p class="text-gray-400 text-sm">Student life, coding challenges, and growth</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter Signup -->
+                    <div class="glass p-8 rounded-lg max-w-md mx-auto" data-aos="fade-up" data-aos-delay="700">
+                        <h3 class="text-xl font-bold font-orbitron mb-4 gradient-text">Get Notified</h3>
+                        <p class="text-gray-400 mb-6 text-sm">
+                            Be the first to know when I publish new articles and tutorials.
+                        </p>
+                        <form class="space-y-4">
+                            <input type="email" 
+                                   placeholder="Your email address" 
+                                   class="w-full px-4 py-3 bg-dark-bg border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white placeholder-gray-400 transition-all duration-300">
+                            <button type="submit" 
+                                    class="w-full px-4 py-3 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-black font-semibold rounded-lg hover:scale-105 transition-all duration-300 font-orbitron">
+                                Notify Me
+                            </button>
+                        </form>
                     </div>
                 </div>
-            </div>
-
-            <!-- Blog Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Blog Post 1 -->
-                <article class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-full h-48 bg-gradient-to-br from-neon-pink to-electric-blue flex items-center justify-center">
-                        <i class="fas fa-mobile-alt text-4xl text-white"></i>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center space-x-2 mb-3">
-                            <span class="px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">Mobile Dev</span>
-                            <span class="text-gray-400 text-sm">Dec 10, 2024</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 font-orbitron">React Native vs Flutter: A Developer's Perspective</h3>
-                        <p class="text-gray-300 mb-4 text-sm">
-                            Compare the two leading cross-platform mobile development frameworks 
-                            and discover which one suits your project needs.
-                        </p>
-                        <a href="#" class="text-cyber-cyan hover:underline font-semibold">
-                            Read More →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Blog Post 2 -->
-                <article class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-full h-48 bg-gradient-to-br from-electric-blue to-cyber-cyan flex items-center justify-center">
-                        <i class="fas fa-database text-4xl text-black"></i>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center space-x-2 mb-3">
-                            <span class="px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-sm">Backend</span>
-                            <span class="text-gray-400 text-sm">Dec 5, 2024</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 font-orbitron">Database Design Patterns for Scalable Applications</h3>
-                        <p class="text-gray-300 mb-4 text-sm">
-                            Learn essential database design patterns that ensure your applications 
-                            can scale efficiently as they grow.
-                        </p>
-                        <a href="#" class="text-cyber-cyan hover:underline font-semibold">
-                            Read More →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Blog Post 3 -->
-                <article class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-full h-48 bg-gradient-to-br from-cyber-red to-neon-pink flex items-center justify-center">
-                        <i class="fas fa-shield-alt text-4xl text-white"></i>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center space-x-2 mb-3">
-                            <span class="px-3 py-1 bg-cyber-red/20 text-cyber-red rounded-full text-sm">Security</span>
-                            <span class="text-gray-400 text-sm">Nov 28, 2024</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 font-orbitron">Web Security Best Practices for 2024</h3>
-                        <p class="text-gray-300 mb-4 text-sm">
-                            Stay ahead of security threats with these essential practices 
-                            every web developer should implement.
-                        </p>
-                        <a href="#" class="text-cyber-cyan hover:underline font-semibold">
-                            Read More →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Blog Post 4 -->
-                <article class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="400">
-                    <div class="w-full h-48 bg-gradient-to-br from-cyber-cyan to-electric-blue flex items-center justify-center">
-                        <i class="fas fa-robot text-4xl text-black"></i>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center space-x-2 mb-3">
-                            <span class="px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">AI/ML</span>
-                            <span class="text-gray-400 text-sm">Nov 20, 2024</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 font-orbitron">Getting Started with Machine Learning in Web Apps</h3>
-                        <p class="text-gray-300 mb-4 text-sm">
-                            Integrate machine learning capabilities into your web applications 
-                            using TensorFlow.js and modern APIs.
-                        </p>
-                        <a href="#" class="text-cyber-cyan hover:underline font-semibold">
-                            Read More →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Blog Post 5 -->
-                <article class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="500">
-                    <div class="w-full h-48 bg-gradient-to-br from-neon-pink to-cyber-red flex items-center justify-center">
-                        <i class="fas fa-palette text-4xl text-white"></i>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center space-x-2 mb-3">
-                            <span class="px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">Design</span>
-                            <span class="text-gray-400 text-sm">Nov 15, 2024</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 font-orbitron">UI/UX Trends That Will Dominate 2025</h3>
-                        <p class="text-gray-300 mb-4 text-sm">
-                            Discover the upcoming design trends that will shape user experiences 
-                            in the coming year.
-                        </p>
-                        <a href="#" class="text-cyber-cyan hover:underline font-semibold">
-                            Read More →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Blog Post 6 -->
-                <article class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="600">
-                    <div class="w-full h-48 bg-gradient-to-br from-electric-blue to-neon-pink flex items-center justify-center">
-                        <i class="fas fa-cloud text-4xl text-white"></i>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center space-x-2 mb-3">
-                            <span class="px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-sm">DevOps</span>
-                            <span class="text-gray-400 text-sm">Nov 8, 2024</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 font-orbitron">Modern Deployment Strategies with Docker</h3>
-                        <p class="text-gray-300 mb-4 text-sm">
-                            Master containerization and deployment strategies to streamline 
-                            your development workflow.
-                        </p>
-                        <a href="#" class="text-cyber-cyan hover:underline font-semibold">
-                            Read More →
-                        </a>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Load More Button -->
-            <div class="text-center mt-12" data-aos="fade-up">
-                <button class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
-                    <i class="fas fa-plus mr-2"></i>Load More Posts
-                </button>
+                
             </div>
         </div>
     </section>
 
-    <!-- Newsletter Signup -->
-    <section class="py-20 bg-dark-card/20">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold font-orbitron gradient-text mb-8" data-aos="fade-up">
-                Stay Updated
+    <!-- Preview Posts Section -->
+    <section class="py-20 glass">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
+                What to Expect
             </h2>
-            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                Subscribe to my newsletter and get the latest tech insights, tutorials, 
-                and project updates delivered straight to your inbox.
-            </p>
-            <div class="max-w-md mx-auto" data-aos="fade-up" data-aos-delay="400">
-                <div class="flex gap-4">
-                    <input type="email" placeholder="Enter your email" 
-                        class="form-input flex-1 py-3 px-4 rounded-lg">
-                    <button class="neon-btn text-black font-semibold py-3 px-6 rounded-lg transition-all duration-300">
-                        Subscribe
-                    </button>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Preview Post 1 -->
+                <div class="blog-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative overflow-hidden">
+                        <div class="w-full h-48 bg-gradient-to-br from-cyber-cyan to-cyber-purple flex items-center justify-center">
+                            <i class="fas fa-code text-4xl text-black"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-cyber-cyan text-black px-3 py-1 rounded-full text-sm font-semibold font-orbitron">
+                            Coming Soon
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">Web Development</span>
+                            <span class="tag px-3 py-1 bg-cyber-purple/20 text-cyber-purple rounded-full text-sm">React</span>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold font-orbitron mb-3 text-white">
+                            Building Modern React Applications
+                        </h3>
+                        
+                        <p class="text-gray-400 mb-4">
+                            A comprehensive guide to building scalable React applications with modern tools and best practices.
+                        </p>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-r from-cyber-cyan to-cyber-purple flex items-center justify-center mr-3">
+                                    <i class="fas fa-user text-black text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white text-sm font-semibold font-orbitron">Mathiya Angirasa</p>
+                                    <p class="text-gray-500 text-xs">Coming Soon</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Preview Post 2 -->
+                <div class="blog-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative overflow-hidden">
+                        <div class="w-full h-48 bg-gradient-to-br from-cyber-purple to-neon-pink flex items-center justify-center">
+                            <i class="fas fa-mobile-alt text-4xl text-black"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-cyber-purple text-white px-3 py-1 rounded-full text-sm font-semibold font-orbitron">
+                            Coming Soon
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag px-3 py-1 bg-cyber-purple/20 text-cyber-purple rounded-full text-sm">Mobile</span>
+                            <span class="tag px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">UI/UX</span>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold font-orbitron mb-3 text-white">
+                            Mobile-First Design Principles
+                        </h3>
+                        
+                        <p class="text-gray-400 mb-4">
+                            Essential principles for creating mobile-first designs that provide excellent user experiences across all devices.
+                        </p>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-r from-cyber-purple to-neon-pink flex items-center justify-center mr-3">
+                                    <i class="fas fa-user text-black text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white text-sm font-semibold font-orbitron">Mathiya Angirasa</p>
+                                    <p class="text-gray-500 text-xs">Coming Soon</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Post 3 -->
+                <div class="blog-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative overflow-hidden">
+                        <div class="w-full h-48 bg-gradient-to-br from-neon-pink to-electric-blue flex items-center justify-center">
+                            <i class="fas fa-brain text-4xl text-black"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-neon-pink text-white px-3 py-1 rounded-full text-sm font-semibold font-orbitron">
+                            Coming Soon
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">AI</span>
+                            <span class="tag px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-sm">Future Tech</span>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold font-orbitron mb-3 text-white">
+                            The Future of Web Development with AI
+                        </h3>
+                        
+                        <p class="text-gray-400 mb-4">
+                            Exploring how artificial intelligence is transforming web development and what it means for developers.
+                        </p>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-r from-neon-pink to-electric-blue flex items-center justify-center mr-3">
+                                    <i class="fas fa-user text-black text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white text-sm font-semibold font-orbitron">Mathiya Angirasa</p>
+                                    <p class="text-gray-500 text-xs">Coming Soon</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -348,18 +489,18 @@
                     <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
                     <p class="text-gray-400">© 2024 Mathiya Angirasa. All rights reserved.</p>
                 </div>
-
+                
                 <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
+                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
+                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
+                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
                         <i class="fab fa-discord"></i>
                     </a>
                 </div>
@@ -367,55 +508,108 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-cyber-cyan text-black rounded-full hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none z-50">
-        <i class="fas fa-arrow-up"></i>
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top" id="scroll-to-top">
+        <i class="fas fa-chevron-up text-black"></i>
     </button>
 
-    <!-- Scripts -->
-    <script src="assets/js/main.js"></script>
     <script>
-        // Initialize particles
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80 },
-                color: { value: '#00FFDE' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#00FFDE',
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: { enable: true, mode: 'repulse' },
-                    onclick: { enable: true, mode: 'push' },
-                    resize: true
-                }
-            },
-            retina_detect: true
-        });
-
         // Initialize AOS
         AOS.init({
             duration: 1000,
             once: true,
-            offset: 100
+            offset: 100,
+        });
+
+        // Custom Cursor
+        const cursor = document.getElementById('custom-cursor');
+        const cursorDot = document.getElementById('cursor-dot');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+            }, 50);
+        });
+        
+        // Cursor hover effects
+        const hoverElements = document.querySelectorAll('a, button, .blog-card, .tag, input');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('cursor-hover');
+            });
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+        
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Newsletter Form
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            if (email) {
+                const button = this.querySelector('button');
+                const originalText = button.textContent;
+                
+                button.textContent = 'Subscribed!';
+                button.style.background = 'linear-gradient(135deg, #00F0FF, #8A2BE2)';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    this.reset();
+                }, 3000);
+            }
+        });
+
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scroll-progress');
+            const scrollToTop = document.getElementById('scroll-to-top');
+            
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            scrollProgress.style.width = scrollPercent + '%';
+            
+            // Show/hide scroll to top button
+            if (scrollTop > 300) {
+                scrollToTop.classList.add('visible');
+            } else {
+                scrollToTop.classList.remove('visible');
+            }
+        });
+        
+        // Scroll to Top
+        document.getElementById('scroll-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>

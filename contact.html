@@ -3,198 +3,601 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Mathiya Angirasa | Software Engineer</title>
-    <meta name="description" content="Get in touch with Mathiya Angirasa - Software Engineering Student and Full Stack Developer">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome CDN -->
+    <title>Contact | MATHIYA</title>
+    <meta name="description" content="Get in touch with Mathiya Angirasa for collaboration opportunities, project inquiries, or just to say hello.">
+    
+    <!-- Taiwan CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <style>
+        :root {
+            --primary-cyan: #00FFDE;
+            --accent-red: #FF3366;
+            --dark-bg: #0A0A0A;
+            --darker-bg: #050505;
+            --card-bg: #1A1A1A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+        }
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            cursor: none;
+        }
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/custom.css">
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-cyan);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        }
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'orbitron': ['Orbitron', 'monospace'],
-                        'inter': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'cyber-cyan': '#00FFDE',
-                        'cyber-red': '#FF3366',
-                        'neon-pink': '#FF10F0',
-                        'electric-blue': '#0080FF',
-                        'dark-bg': '#0a0a0a',
-                        'dark-card': '#1a1a2e',
-                        'dark-accent': '#16213e',
-                    }
-                }
+        .cursor-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-cyan);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.15s ease;
+        }
+
+        .cursor-hover {
+            transform: scale(2);
+            background: rgba(0, 255, 222, 0.2);
+            box-shadow: 0 0 20px var(--primary-cyan);
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Neon Effects */
+        .neon-text {
+            text-shadow: 0 0 10px var(--primary-cyan), 0 0 20px var(--primary-cyan), 0 0 40px var(--primary-cyan);
+        }
+
+        .glow-hover:hover {
+            box-shadow: 0 0 30px var(--primary-cyan);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .gradient-text {
+            background: linear-gradient(-45deg, var(--primary-cyan), var(--accent-red), var(--primary-cyan));
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+        }
+
+        /* Page Transitions */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker-bg);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Contact Specific Styles */
+        .contact-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse at center, rgba(0, 255, 222, 0.1) 0%, transparent 70%);
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-cyan), var(--accent-red));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 255, 222, 0.2);
+            border-color: var(--primary-cyan);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-cyan);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 222, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-cyan), var(--accent-red));
+            color: var(--dark-bg);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 222, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Contact Info */
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-item:hover {
+            background: rgba(0, 255, 222, 0.1);
+            transform: translateX(10px);
+        }
+
+        .contact-info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--primary-cyan), var(--accent-red));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--dark-bg);
+            font-size: 1.2rem;
+        }
+
+        /* Social Grid */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .social-item:hover {
+            background: var(--primary-cyan);
+            color: var(--dark-bg);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 222, 0.3);
+        }
+
+        .social-item i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Map Container */
+        .map-container {
+            height: 300px;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Success/Error Messages */
+        .message {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .message.success {
+            background: rgba(80, 250, 123, 0.1);
+            border: 1px solid rgba(80, 250, 123, 0.3);
+            color: #50fa7b;
+        }
+
+        .message.error {
+            background: rgba(255, 85, 85, 0.1);
+            border: 1px solid rgba(255, 85, 85, 0.3);
+            color: #ff5555;
+        }
+
+        /* Social Links */
+        .social-links {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: var(--primary-cyan);
+            color: var(--dark-bg);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--primary-cyan);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--primary-cyan);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-cyan);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--primary-cyan);
+        }
+
+        /* Light Mode */
+        body.light-mode {
+            --dark-bg: #FFFFFF;
+            --darker-bg: #F5F5F5;
+            --card-bg: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+        }
+
+        body.light-mode .glass {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .contact-hero {
+            background: radial-gradient(ellipse at center, rgba(0, 255, 222, 0.05) 0%, transparent 70%);
+        }
+
+        body.light-mode .contact-card {
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .form-input {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        body.light-mode .form-input:focus {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .social-links {
+                position: static;
+                transform: none;
+                flex-direction: row;
+                justify-content: center;
+                margin: 2rem 0;
+            }
+
+            .social-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
             }
         }
-    </script>
+    </style>
 </head>
-
-<body class="dark text-white">
-    <!-- Enhanced Custom Cursor -->
-    <div class="custom-cursor" id="custom-cursor"></div>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
 
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scroll-progress"></div>
+    <!-- Page Transition -->
+    <div class="page-transition" id="page-transition"></div>
 
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
+    <nav class="navbar glass" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <!-- Logo -->
-                <div class="text-2xl font-bold font-orbitron gradient-text">
-                    <a href="index.html" class="hover:scale-110 transition-transform duration-300">MATHIYA</a>
+                <div class="text-2xl font-bold gradient-text" style="font-family: 'Orbitron', monospace;">
+                    MATHIYA
                 </div>
-
-                <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Home
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        About
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Projects
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Skills
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="socials.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Socials
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="contact.html" class="nav-link text-cyber-cyan relative group">
-                        Contact
-                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-cyber-cyan"></span>
-                    </a>
+                    <a href="index.html" class="text-white hover:text-cyan-400 transition-colors">Home</a>
+                    <a href="about.html" class="text-white hover:text-cyan-400 transition-colors">About</a>
+                    <a href="skills.html" class="text-white hover:text-cyan-400 transition-colors">Skills</a>
+                    <a href="projects.html" class="text-white hover:text-cyan-400 transition-colors">Projects</a>
+                    <a href="contact.html" class="text-cyan-400">Contact</a>
                 </div>
-
-                <!-- Theme Toggle -->
-                <button id="theme-toggle" class="hidden md:block p-2 rounded-lg glass hover:scale-110 transition-transform">
-                    <i class="fas fa-moon text-cyber-cyan"></i>
+                <button class="md:hidden text-white" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
                 </button>
-
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
-                    <i class="fas fa-bars text-cyber-cyan"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
-            <div class="p-6">
-                <button id="close-menu" class="float-right text-2xl text-cyber-cyan hover:rotate-90 transition-transform">
-                    <i class="fas fa-times"></i>
-                </button>
-                <div class="clear-both mt-8 space-y-6">
-                    <a href="index.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Home</a>
-                    <a href="about.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">About</a>
-                    <a href="projects.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Projects</a>
-                    <a href="skills.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Skills</a>
-                    <a href="socials.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-colors mobile-nav-link">Socials</a>
-                    <a href="contact.html" class="block text-xl font-orbitron text-cyber-cyan mobile-nav-link">Contact</a>
-                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 relative overflow-hidden">
-        <!-- Background Elements -->
-        <div class="absolute inset-0">
-            <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
-            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float" style="animation-delay: -1.5s;"></div>
+    <!-- Mobile Menu -->
+    <div class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden" id="mobile-menu">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="index.html" class="text-2xl text-white hover:text-cyan-400 transition-colors">Home</a>
+            <a href="about.html" class="text-2xl text-white hover:text-cyan-400 transition-colors">About</a>
+            <a href="skills.html" class="text-2xl text-white hover:text-cyan-400 transition-colors">Skills</a>
+            <a href="projects.html" class="text-2xl text-white hover:text-cyan-400 transition-colors">Projects</a>
+            <a href="contact.html" class="text-2xl text-cyan-400">Contact</a>
+            <button class="absolute top-8 right-8 text-white text-2xl" id="close-mobile-menu">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
+    </div>
 
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <h1 class="text-5xl md:text-7xl font-bold font-orbitron gradient-text mb-6" data-aos="fade-up">
+    <!-- Social Links -->
+    <div class="social-links">
+        <a href="https://github.com/Mathiyass" class="social-link" target="_blank" title="GitHub">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="social-link" target="_blank" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://x.com/Mathiya" class="social-link" target="_blank" title="X (Twitter)">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.facebook.com/mathisha.angirasa/" class="social-link" target="_blank" title="Facebook">
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/mathi_ya_/" class="social-link" target="_blank" title="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://steamcommunity.com/profiles/76561199076879396/" class="social-link" target="_blank" title="Steam">
+            <i class="fab fa-steam"></i>
+        </a>
+        <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" class="social-link" target="_blank" title="Epic Games">
+            <i class="fas fa-gamepad"></i>
+        </a>
+        <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="social-link" target="_blank" title="Spotify">
+            <i class="fab fa-spotify"></i>
+        </a>
+        <a href="https://discord.gg/QERP5JJM8k" class="social-link" target="_blank" title="Discord">
+            <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://wa.me/94715921984" class="social-link" target="_blank" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <div class="social-link" title="EA ID: M_MATHIYA_M">
+            <i class="fas fa-headset"></i>
+        </div>
+    </div>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero pt-24">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-6xl font-bold gradient-text neon-text mb-6" style="font-family: 'Orbitron', monospace;" data-aos="fade-up">
                 Let's Connect
             </h1>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                Ready to bring your ideas to life? Let's collaborate and create something amazing together. 
-                I'm always excited to work on innovative projects and connect with fellow creators.
+            <p class="text-xl opacity-80 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Ready to collaborate on your next project or just want to say hello? I'd love to hear from you!
             </p>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="py-20 relative">
+    <!-- Contact Content -->
+    <section class="py-20">
         <div class="container mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-start">
+            <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
                 <!-- Contact Form -->
-                <div class="space-y-8" data-aos="fade-right">
-                    <div>
-                        <h2 class="text-3xl font-bold font-orbitron gradient-text mb-4">Send a Message</h2>
-                        <p class="text-gray-300">
-                            Fill out the form below and I'll get back to you as soon as possible. 
-                            Whether you have a project in mind or just want to say hello!
-                        </p>
+                <div class="contact-card" data-aos="fade-right">
+                    <h2 class="text-3xl font-bold gradient-text mb-6">Send Me a Message</h2>
+                    
+                    <div class="message success" id="success-message">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        Message sent successfully! I'll get back to you soon.
+                    </div>
+                    
+                    <div class="message error" id="error-message">
+                        <i class="fas fa-exclamation-circle mr-2"></i>
+                        Something went wrong. Please try again.
                     </div>
 
-                    <form id="contact-form" class="space-y-6">
-                        <div class="grid md:grid-cols-2 gap-6">
+                    <form id="contact-form">
+                        <div class="grid md:grid-cols-2 gap-4">
                             <div class="form-group">
-                                <label for="name" class="form-label">Full Name *</label>
-                                <input type="text" id="name" name="name" required 
-                                    class="form-input w-full"
-                                    placeholder="Enter your full name">
+                                <label class="form-label" for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" placeholder="John" required>
                             </div>
                             <div class="form-group">
-                                <label for="email" class="form-label">Email Address *</label>
-                                <input type="email" id="email" name="email" required 
-                                    class="form-input w-full"
-                                    placeholder="Enter your email">
+                                <label class="form-label" for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Doe" required>
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
-                            <label for="subject" class="form-label">Subject *</label>
-                            <input type="text" id="subject" name="subject" required 
-                                class="form-input w-full"
-                                placeholder="What's this about?">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
                         </div>
-
+                        
                         <div class="form-group">
-                            <label for="message" class="form-label">Message *</label>
-                            <textarea id="message" name="message" rows="6" required 
-                                class="form-input w-full resize-none"
-                                placeholder="Tell me about your project or just say hello!"></textarea>
+                            <label class="form-label" for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-input" placeholder="Project Collaboration" required>
                         </div>
-
-                        <button type="submit" class="neon-btn w-full py-4 px-8 rounded-lg font-orbitron font-semibold text-black">
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea id="message" name="message" class="form-input form-textarea" placeholder="Tell me about your project or just say hello..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary w-full" id="submit-btn">
                             <i class="fas fa-paper-plane mr-2"></i>
                             Send Message
                         </button>
@@ -203,186 +606,287 @@
 
                 <!-- Contact Info -->
                 <div class="space-y-8" data-aos="fade-left">
-                    <div>
-                        <h2 class="text-3xl font-bold font-orbitron gradient-text mb-4">Get in Touch</h2>
-                        <p class="text-gray-300">
-                            Prefer direct contact? Here are all the ways you can reach me. 
-                            I'm active on all these platforms and respond quickly.
-                        </p>
-                    </div>
-
-                    <!-- Contact Cards -->
-                    <div class="space-y-6">
-                        <!-- Email -->
-                        <div class="enhanced-card glass p-6 rounded-2xl">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-16 h-16 bg-cyber-cyan/20 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-envelope text-2xl text-cyber-cyan"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold font-orbitron">Email</h3>
-                                    <p class="text-gray-300">mathiya.angirasa@gmail.com</p>
-                                    <a href="mailto:mathiya.angirasa@gmail.com" class="text-cyber-cyan hover:underline">
-                                        Send Email →
-                                    </a>
-                                </div>
+                    <div class="contact-card">
+                        <h2 class="text-3xl font-bold gradient-text mb-6">Get In Touch</h2>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Location</h3>
+                                <p class="text-gray-400">Birmingham, United Kingdom</p>
                             </div>
                         </div>
-
-                        <!-- Phone -->
-                        <div class="enhanced-card glass p-6 rounded-2xl">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-16 h-16 bg-neon-pink/20 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-phone text-2xl text-neon-pink"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold font-orbitron">Phone</h3>
-                                    <p class="text-gray-300">+94 77 123 4567</p>
-                                    <a href="tel:+94771234567" class="text-neon-pink hover:underline">
-                                        Call Now →
-                                    </a>
-                                </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">WhatsApp</h3>
+                                <a href="https://wa.me/94715921984" class="text-cyan-400 hover:text-cyan-300">+94 71 592 1984</a>
                             </div>
                         </div>
-
-                        <!-- Location -->
-                        <div class="enhanced-card glass p-6 rounded-2xl">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-16 h-16 bg-electric-blue/20 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-map-marker-alt text-2xl text-electric-blue"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold font-orbitron">Location</h3>
-                                    <p class="text-gray-300">Colombo, Sri Lanka</p>
-                                    <p class="text-electric-blue">Available for remote work</p>
-                                </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Email</h3>
+                                <a href="mailto:mathiya@example.com" class="text-cyan-400 hover:text-cyan-300">mathiya@example.com</a>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Social Links -->
-                    <div>
-                        <h3 class="text-xl font-bold font-orbitron mb-4">Follow Me</h3>
-                        <div class="flex space-x-6">
-                            <a href="https://github.com/Mathiyass" class="social-icon text-3xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="social-icon text-3xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="https://x.com/Mathiya" class="social-icon text-3xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="https://discord.gg/QERP5JJM8k" class="social-icon text-3xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
+                        
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
                                 <i class="fab fa-discord"></i>
-                            </a>
-                            <a href="https://instagram.com/mathiya" class="social-icon text-3xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                                <i class="fab fa-instagram"></i>
-                            </a>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Discord</h3>
+                                <a href="https://discord.gg/QERP5JJM8k" class="text-cyan-400 hover:text-cyan-300">Join My Server</a>
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- Map -->
+                    <div class="contact-card">
+                        <h3 class="text-xl font-bold gradient-text mb-4">Location</h3>
+                        <div class="map-container">
+                            <div class="text-center">
+                                <i class="fas fa-map-marked-alt text-4xl text-cyan-400 mb-4"></i>
+                                <p class="text-gray-400">Birmingham, UK</p>
+                                <p class="text-sm text-gray-500 mt-2">Available for remote work worldwide</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Grid -->
+            <div class="mt-20" data-aos="fade-up">
+                <h2 class="text-3xl font-bold gradient-text text-center mb-12">Connect With Me</h2>
+                <div class="social-grid max-w-4xl mx-auto">
+                    <a href="https://github.com/Mathiyass" class="social-item" target="_blank">
+                        <i class="fab fa-github"></i>
+                        <span class="text-sm font-medium">GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="social-item" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                        <span class="text-sm font-medium">LinkedIn</span>
+                    </a>
+                    <a href="https://x.com/Mathiya" class="social-item" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                        <span class="text-sm font-medium">Twitter</span>
+                    </a>
+                    <a href="https://www.facebook.com/mathisha.angirasa/" class="social-item" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                        <span class="text-sm font-medium">Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/mathi_ya_/" class="social-item" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        <span class="text-sm font-medium">Instagram</span>
+                    </a>
+                    <a href="https://steamcommunity.com/profiles/76561199076879396/" class="social-item" target="_blank">
+                        <i class="fab fa-steam"></i>
+                        <span class="text-sm font-medium">Steam</span>
+                    </a>
+                    <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" class="social-item" target="_blank">
+                        <i class="fas fa-gamepad"></i>
+                        <span class="text-sm font-medium">Epic Games</span>
+                    </a>
+                    <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" class="social-item" target="_blank">
+                        <i class="fab fa-spotify"></i>
+                        <span class="text-sm font-medium">Spotify</span>
+                    </a>
+                    <a href="https://discord.gg/QERP5JJM8k" class="social-item" target="_blank">
+                        <i class="fab fa-discord"></i>
+                        <span class="text-sm font-medium">Discord</span>
+                    </a>
+                    <a href="https://wa.me/94715921984" class="social-item" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <span class="text-sm font-medium">WhatsApp</span>
+                    </a>
+                    <div class="social-item" title="EA ID: M_MATHIYA_M">
+                        <i class="fas fa-headset"></i>
+                        <span class="text-sm font-medium">EA Games</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Call to Action -->
-    <section class="py-20 bg-dark-card/20">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold font-orbitron gradient-text mb-8" data-aos="fade-up">
-                Ready to Start Your Project?
-            </h2>
-            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                Whether you need a stunning website, mobile app, or innovative software solution, 
-                I'm here to turn your vision into reality.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-                <a href="#contact-form" class="neon-btn text-black font-semibold py-4 px-8 rounded-lg transition-all duration-300 font-orbitron">
-                    <i class="fas fa-rocket mr-2"></i>Start Project
-                </a>
-                <a href="resume.html" class="border-2 border-cyber-cyan text-cyber-cyan font-semibold py-4 px-8 rounded-lg hover:bg-cyber-cyan hover:text-black transition-all duration-300 font-orbitron">
-                    <i class="fas fa-download mr-2"></i>Download Resume
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
-                    <p class="text-gray-400">© 2024 Mathiya Angirasa. All rights reserved.</p>
-                </div>
-
-                <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-cyber-cyan text-black rounded-full hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none z-50">
-        <i class="fas fa-arrow-up"></i>
-    </button>
 
     <!-- Scripts -->
-    <script src="assets/js/main.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize particles
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80 },
-                color: { value: '#00FFDE' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#00FFDE',
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: { enable: true, mode: 'repulse' },
-                    onclick: { enable: true, mode: 'push' },
-                    resize: true
-                }
-            },
-            retina_detect: true
-        });
-
         // Initialize AOS
         AOS.init({
             duration: 1000,
             once: true,
             offset: 100
+        });
+
+        // Custom Cursor
+        class CustomCursor {
+            constructor() {
+                this.cursor = document.getElementById('cursor');
+                this.cursorDot = document.getElementById('cursor-dot');
+                this.init();
+            }
+
+            init() {
+                document.addEventListener('mousemove', (e) => {
+                    this.cursor.style.left = e.clientX + 'px';
+                    this.cursor.style.top = e.clientY + 'px';
+                    
+                    setTimeout(() => {
+                        this.cursorDot.style.left = e.clientX + 'px';
+                        this.cursorDot.style.top = e.clientY + 'px';
+                    }, 50);
+                });
+
+                // Hover effects
+                const hoverElements = document.querySelectorAll('a, button, .glow-hover, .form-input, .social-item');
+                hoverElements.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        this.cursor.classList.add('cursor-hover');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        this.cursor.classList.remove('cursor-hover');
+                    });
+                });
+            }
+        }
+
+        // Page Transitions
+        class PageTransitions {
+            constructor() {
+                this.transition = document.getElementById('page-transition');
+                this.init();
+            }
+
+            init() {
+                const links = document.querySelectorAll('a[href$=".html"]');
+                links.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.transitionTo(link.href);
+                    });
+                });
+            }
+
+            transitionTo(url) {
+                this.transition.classList.add('active');
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 500);
+            }
+        }
+
+        // Contact Form Handler
+        class ContactForm {
+            constructor() {
+                this.form = document.getElementById('contact-form');
+                this.submitBtn = document.getElementById('submit-btn');
+                this.successMessage = document.getElementById('success-message');
+                this.errorMessage = document.getElementById('error-message');
+                this.init();
+            }
+
+            init() {
+                this.form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleSubmit();
+                });
+            }
+
+            async handleSubmit() {
+                // Show loading state
+                this.submitBtn.disabled = true;
+                this.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+                
+                // Hide previous messages
+                this.successMessage.style.display = 'none';
+                this.errorMessage.style.display = 'none';
+
+                // Get form data
+                const formData = new FormData(this.form);
+                const data = Object.fromEntries(formData);
+
+                try {
+                    // Simulate API call (replace with actual endpoint)
+                    await this.simulateSubmission(data);
+                    
+                    // Show success message
+                    this.successMessage.style.display = 'block';
+                    this.form.reset();
+                    
+                    // Scroll to success message
+                    this.successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                } catch (error) {
+                    // Show error message
+                    this.errorMessage.style.display = 'block';
+                    console.error('Form submission error:', error);
+                } finally {
+                    // Reset button state
+                    this.submitBtn.disabled = false;
+                    this.submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Send Message';
+                }
+            }
+
+            simulateSubmission(data) {
+                return new Promise((resolve, reject) => {
+                    // Simulate network delay
+                    setTimeout(() => {
+                        // Simulate success (90% chance)
+                        if (Math.random() > 0.1) {
+                            console.log('Form submitted:', data);
+                            resolve();
+                        } else {
+                            reject(new Error('Simulated network error'));
+                        }
+                    }, 2000);
+                });
+            }
+        }
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const icon = themeToggle.querySelector('i');
+            
+            if (body.classList.contains('light-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            new CustomCursor();
+            new PageTransitions();
+            new ContactForm();
         });
     </script>
 </body>
