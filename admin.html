@@ -33,6 +33,37 @@
         body { 
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            cursor: none;
+        }
+
+        /* Enhanced Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00FFDE;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #00FFDE;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.15s ease;
+        }
+
+        .cursor-hover {
+            transform: scale(2.5);
+            background: rgba(0, 255, 222, 0.2);
+            box-shadow: 0 0 30px rgba(0, 255, 222, 0.8);
         }
         
         .glass {
@@ -49,6 +80,10 @@
 </head>
 
 <body class="dark text-white min-h-screen">
+    <!-- Enhanced Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+
     <!-- Login Screen -->
     <div id="login-screen" class="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
         <div class="glass rounded-2xl p-8 max-w-md w-full mx-4">
@@ -270,6 +305,7 @@
         </div>
     </div>
 
+    <script src="assets/js/main.js"></script>
     <script src="assets/js/admin.js"></script>
 </body>
 </html>

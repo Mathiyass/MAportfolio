@@ -15,7 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (password === ADMIN_PASSWORD) {
             localStorage.setItem('adminLoggedIn', 'true');
-            showDashboard();
+            // Use the global modal function from main.js
+            if (typeof showModal === 'function') {
+                showModal('Login Successful', '<p class="text-center text-lg">Welcome back, Admin! Redirecting to dashboard...</p>');
+                setTimeout(showDashboard, 2000);
+            } else {
+                showDashboard();
+            }
         } else {
             showError('Invalid password. Please try again.');
         }

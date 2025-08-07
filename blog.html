@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Mathiya Angirasa | Premium Portfolio</title>
-    <meta name="description" content="Read Mathiya Angirasa's latest blog posts about web development, technology trends, and programming insights.">
+    <title>Blog | MATHIYA</title>
+    <meta name="description" content="Thoughts, insights, and tutorials about web development, technology trends, and programming from Mathiya Angirasa.">
+    <meta name="keywords" content="Mathiya, Blog, Web Development, Software Engineering, Tech">
+    <meta property="og:title" content="Blog | MATHIYA">
+    <meta property="og:description" content="Thoughts, insights, and tutorials about web development, technology trends, and programming from Mathiya Angirasa.">
+    <meta property="og:type" content="website">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300F0FF'>M</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -32,8 +36,8 @@
                         'inter': ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        'cyber-cyan': '#00F0FF',
-                        'cyber-purple': '#8A2BE2',
+                        'cyber-cyan': '#00FFDE',
+                        'cyber-red': '#FF3366',
                         'neon-pink': '#FF10F0',
                         'electric-blue': '#0080FF',
                         'dark-bg': '#0a0a0a',
@@ -43,7 +47,7 @@
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
-                        'blog-hover': 'blogHover 0.3s ease-out',
+                        'text-shimmer': 'textShimmer 3s ease-in-out infinite',
                     },
                     keyframes: {
                         'float': {
@@ -51,12 +55,12 @@
                             '50%': { transform: 'translateY(-20px) rotate(5deg)' },
                         },
                         'glowPulse': {
-                            '0%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.5)' },
-                            '100%': { boxShadow: '0 0 40px rgba(0, 240, 255, 1), 0 0 60px rgba(138, 43, 226, 0.5)' },
+                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 222, 0.5)' },
+                            '100%': { boxShadow: '0 0 40px rgba(0, 255, 222, 1), 0 0 60px rgba(255, 51, 102, 0.5)' },
                         },
-                        'blogHover': {
-                            '0%': { transform: 'translateY(0) scale(1)' },
-                            '100%': { transform: 'translateY(-10px) scale(1.02)' },
+                        'textShimmer': {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
                         },
                     },
                 }
@@ -69,207 +73,133 @@
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             cursor: none;
+            overflow-x: hidden;
         }
-        
-        /* Custom Cursor */
+
+        /* Enhanced Custom Cursor */
         .custom-cursor {
             position: fixed;
             width: 20px;
             height: 20px;
-            border: 2px solid #00F0FF;
+            border: 2px solid #00FFDE;
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
             transition: all 0.1s ease;
             mix-blend-mode: difference;
         }
-        
+
         .cursor-dot {
             position: fixed;
             width: 4px;
             height: 4px;
-            background: #00F0FF;
+            background: #00FFDE;
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transition: all 0.15s ease;
         }
-        
+
         .cursor-hover {
-            transform: scale(2);
-            background: rgba(0, 240, 255, 0.2);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+            transform: scale(2.5);
+            background: rgba(0, 255, 222, 0.2);
+            box-shadow: 0 0 30px rgba(0, 255, 222, 0.8);
         }
-        
-        /* Glassmorphism */
+
+        /* Enhanced Glassmorphism */
         .glass {
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
-        
-        /* Gradient Text */
+
+        /* Enhanced Gradient Text */
         .gradient-text {
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2, #FF10F0);
+            background: linear-gradient(135deg, #00FFDE, #FF3366, #FF10F0, #0080FF);
+            background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: textShimmer 3s ease-in-out infinite;
         }
         
-        /* Blog Card Effects */
-        .blog-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .blog-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.1);
-        }
-        
-        /* Tag Effects */
-        .tag {
-            transition: all 0.3s ease;
-        }
-        
-        .tag:hover {
-            transform: scale(1.1);
-        }
-        
-        /* Floating Shapes */
-        .floating-shape {
-            position: absolute;
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .floating-shape:nth-child(2) { animation-delay: -2s; }
-        .floating-shape:nth-child(3) { animation-delay: -4s; }
-        
-        /* Mobile Menu */
+        /* Mobile Menu Enhancement */
         .mobile-menu {
             transform: translateX(100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .mobile-menu.active {
             transform: translateX(0);
         }
-        
-        /* Scroll Progress */
+
+        /* Scroll Progress Bar */
         .scroll-progress {
             position: fixed;
             top: 0;
             left: 0;
             width: 0%;
             height: 3px;
-            background: linear-gradient(90deg, #00F0FF, #8A2BE2);
+            background: linear-gradient(90deg, #00FFDE, #FF3366);
             z-index: 9999;
             transition: width 0.3s ease;
         }
         
-        /* Scroll to Top */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #00F0FF, #8A2BE2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            cursor: pointer;
+        /* Advanced Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a2e;
         }
-        
-        .scroll-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.5);
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #00FFDE, #FF3366);
+            border-radius: 4px;
         }
-        
-        /* Coming Soon Animation */
-        .coming-soon {
-            animation: glow-pulse 2s ease-in-out infinite alternate;
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #FF3366, #00FFDE);
         }
     </style>
 </head>
 
 <body class="dark text-white">
-    <!-- Custom Cursor -->
+    <!-- Enhanced Custom Cursor -->
     <div class="custom-cursor" id="custom-cursor"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
-    
-    <!-- Scroll Progress -->
+
+    <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scroll-progress"></div>
-    
+
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <!-- Enhanced Logo -->
                 <div class="text-2xl font-bold font-orbitron gradient-text">
                     <a href="index.html" class="hover:scale-110 transition-transform duration-300">MATHIYA</a>
                 </div>
-
-                <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Home
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        About
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Projects
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Skills
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="socials.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Socials
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Contact
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="gallery.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Gallery
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
+                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">Home<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">About<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">Projects<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">Skills<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="socials.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">Socials<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">Contact<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="gallery.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">Gallery<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span></a>
                 </div>
-
-                <!-- Theme Toggle -->
-                <button id="theme-toggle" class="hidden md:block p-2 rounded-lg glass hover:scale-110 transition-transform">
-                    <i class="fas fa-moon text-cyber-cyan"></i>
-                </button>
-
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
-                    <i class="fas fa-bars text-cyber-cyan"></i>
-                </button>
+                <div class="hidden md:flex items-center space-x-4">
+                    <button id="music-toggle" class="p-2 rounded-lg glass hover:scale-110 transition-transform"><i class="fas fa-volume-mute text-cyber-cyan"></i></button>
+                    <button id="theme-toggle" class="p-2 rounded-lg glass hover:scale-110 transition-transform"><i class="fas fa-moon text-cyber-cyan"></i></button>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass"><i class="fas fa-bars text-cyber-cyan"></i></button>
             </div>
         </div>
-
-        <!-- Enhanced Mobile Menu -->
         <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
             <div class="p-6">
-                <button id="close-menu" class="float-right text-2xl text-cyber-cyan hover:rotate-90 transition-transform">
-                    <i class="fas fa-times"></i>
-                </button>
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan hover:rotate-90 transition-transform"><i class="fas fa-times"></i></button>
                 <div class="clear-both mt-8 space-y-6">
                     <a href="index.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Home</a>
                     <a href="about.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">About</a>
@@ -283,362 +213,64 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 relative overflow-hidden">
-        <!-- Floating Blobs -->
-        <div class="floating-shape absolute top-20 left-10 w-64 h-64 bg-cyber-cyan rounded-full blur-3xl"></div>
-        <div class="floating-shape absolute bottom-20 right-10 w-96 h-96 bg-cyber-purple rounded-full blur-3xl"></div>
-        <div class="floating-shape absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink rounded-full blur-3xl"></div>
-        
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up">
-                My Blog
-            </h1>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                Thoughts, insights, and tutorials about web development, technology trends, and programming
-            </p>
-        </div>
-    </section>
-
-    <!-- Coming Soon Section -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                
-                <!-- Coming Soon Card -->
-                <div class="glass rounded-2xl p-12 coming-soon" data-aos="fade-up">
-                    <div class="mb-8">
-                        <i class="fas fa-rocket text-6xl text-cyber-cyan mb-6"></i>
-                        <h2 class="text-3xl md:text-4xl font-bold font-orbitron mb-6 gradient-text">
-                            Blog Coming Soon
-                        </h2>
-                        <p class="text-xl text-gray-300 mb-8 leading-relaxed">
-                            I'm currently working on creating amazing content about web development, 
-                            technology trends, and programming insights. Stay tuned for exciting articles!
-                        </p>
-                    </div>
-                    
-                    <!-- Planned Topics -->
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                        <div class="glass p-6 rounded-lg" data-aos="fade-up" data-aos-delay="100">
-                            <i class="fas fa-code text-2xl text-cyber-cyan mb-4"></i>
-                            <h3 class="font-bold font-orbitron mb-2 text-cyber-cyan">Web Development</h3>
-                            <p class="text-gray-400 text-sm">Modern frameworks, best practices, and tutorials</p>
-                        </div>
-                        
-                        <div class="glass p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
-                            <i class="fas fa-mobile-alt text-2xl text-cyber-purple mb-4"></i>
-                            <h3 class="font-bold font-orbitron mb-2 text-cyber-purple">Mobile Development</h3>
-                            <p class="text-gray-400 text-sm">React Native, Flutter, and mobile UI/UX</p>
-                        </div>
-                        
-                        <div class="glass p-6 rounded-lg" data-aos="fade-up" data-aos-delay="300">
-                            <i class="fas fa-brain text-2xl text-neon-pink mb-4"></i>
-                            <h3 class="font-bold font-orbitron mb-2 text-neon-pink">Tech Insights</h3>
-                            <p class="text-gray-400 text-sm">Industry trends, AI, and future technologies</p>
-                        </div>
-                        
-                        <div class="glass p-6 rounded-lg" data-aos="fade-up" data-aos-delay="400">
-                            <i class="fas fa-palette text-2xl text-electric-blue mb-4"></i>
-                            <h3 class="font-bold font-orbitron mb-2 text-electric-blue">UI/UX Design</h3>
-                            <p class="text-gray-400 text-sm">Design principles, tools, and case studies</p>
-                        </div>
-                        
-                        <div class="glass p-6 rounded-lg" data-aos="fade-up" data-aos-delay="500">
-                            <i class="fas fa-gamepad text-2xl text-cyber-cyan mb-4"></i>
-                            <h3 class="font-bold font-orbitron mb-2 text-cyber-cyan">Game Development</h3>
-                            <p class="text-gray-400 text-sm">JavaScript games, WebGL, and interactive experiences</p>
-                        </div>
-                        
-                        <div class="glass p-6 rounded-lg" data-aos="fade-up" data-aos-delay="600">
-                            <i class="fas fa-graduation-cap text-2xl text-cyber-purple mb-4"></i>
-                            <h3 class="font-bold font-orbitron mb-2 text-cyber-purple">Learning Journey</h3>
-                            <p class="text-gray-400 text-sm">Student life, coding challenges, and growth</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Newsletter Signup -->
-                    <div class="glass p-8 rounded-lg max-w-md mx-auto" data-aos="fade-up" data-aos-delay="700">
-                        <h3 class="text-xl font-bold font-orbitron mb-4 gradient-text">Get Notified</h3>
-                        <p class="text-gray-400 mb-6 text-sm">
-                            Be the first to know when I publish new articles and tutorials.
-                        </p>
-                        <form class="space-y-4">
-                            <input type="email" 
-                                   placeholder="Your email address" 
-                                   class="w-full px-4 py-3 bg-dark-bg border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyber-cyan focus:border-transparent text-white placeholder-gray-400 transition-all duration-300">
-                            <button type="submit" 
-                                    class="w-full px-4 py-3 bg-gradient-to-r from-cyber-cyan to-cyber-purple text-black font-semibold rounded-lg hover:scale-105 transition-all duration-300 font-orbitron">
-                                Notify Me
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                
+    <!-- Main Content -->
+    <main>
+        <section class="pt-32 pb-20 relative overflow-hidden">
+            <div class="absolute inset-0">
+                <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
+                <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
             </div>
-        </div>
-    </section>
-
-    <!-- Preview Posts Section -->
-    <section class="py-20 glass">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
-                What to Expect
-            </h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Preview Post 1 -->
-                <div class="blog-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative overflow-hidden">
-                        <div class="w-full h-48 bg-gradient-to-br from-cyber-cyan to-cyber-purple flex items-center justify-center">
-                            <i class="fas fa-code text-4xl text-black"></i>
-                        </div>
-                        <div class="absolute top-4 right-4 bg-cyber-cyan text-black px-3 py-1 rounded-full text-sm font-semibold font-orbitron">
-                            Coming Soon
-                        </div>
-                    </div>
-                    
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">Web Development</span>
-                            <span class="tag px-3 py-1 bg-cyber-purple/20 text-cyber-purple rounded-full text-sm">React</span>
-                        </div>
-                        
-                        <h3 class="text-xl font-bold font-orbitron mb-3 text-white">
-                            Building Modern React Applications
-                        </h3>
-                        
-                        <p class="text-gray-400 mb-4">
-                            A comprehensive guide to building scalable React applications with modern tools and best practices.
-                        </p>
-                        
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 rounded-full bg-gradient-to-r from-cyber-cyan to-cyber-purple flex items-center justify-center mr-3">
-                                    <i class="fas fa-user text-black text-sm"></i>
-                                </div>
-                                <div>
-                                    <p class="text-white text-sm font-semibold font-orbitron">Mathiya Angirasa</p>
-                                    <p class="text-gray-500 text-xs">Coming Soon</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Preview Post 2 -->
-                <div class="blog-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative overflow-hidden">
-                        <div class="w-full h-48 bg-gradient-to-br from-cyber-purple to-neon-pink flex items-center justify-center">
-                            <i class="fas fa-mobile-alt text-4xl text-black"></i>
-                        </div>
-                        <div class="absolute top-4 right-4 bg-cyber-purple text-white px-3 py-1 rounded-full text-sm font-semibold font-orbitron">
-                            Coming Soon
-                        </div>
-                    </div>
-                    
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag px-3 py-1 bg-cyber-purple/20 text-cyber-purple rounded-full text-sm">Mobile</span>
-                            <span class="tag px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">UI/UX</span>
-                        </div>
-                        
-                        <h3 class="text-xl font-bold font-orbitron mb-3 text-white">
-                            Mobile-First Design Principles
-                        </h3>
-                        
-                        <p class="text-gray-400 mb-4">
-                            Essential principles for creating mobile-first designs that provide excellent user experiences across all devices.
-                        </p>
-                        
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 rounded-full bg-gradient-to-r from-cyber-purple to-neon-pink flex items-center justify-center mr-3">
-                                    <i class="fas fa-user text-black text-sm"></i>
-                                </div>
-                                <div>
-                                    <p class="text-white text-sm font-semibold font-orbitron">Mathiya Angirasa</p>
-                                    <p class="text-gray-500 text-xs">Coming Soon</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Preview Post 3 -->
-                <div class="blog-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                    <div class="relative overflow-hidden">
-                        <div class="w-full h-48 bg-gradient-to-br from-neon-pink to-electric-blue flex items-center justify-center">
-                            <i class="fas fa-brain text-4xl text-black"></i>
-                        </div>
-                        <div class="absolute top-4 right-4 bg-neon-pink text-white px-3 py-1 rounded-full text-sm font-semibold font-orbitron">
-                            Coming Soon
-                        </div>
-                    </div>
-                    
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">AI</span>
-                            <span class="tag px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-sm">Future Tech</span>
-                        </div>
-                        
-                        <h3 class="text-xl font-bold font-orbitron mb-3 text-white">
-                            The Future of Web Development with AI
-                        </h3>
-                        
-                        <p class="text-gray-400 mb-4">
-                            Exploring how artificial intelligence is transforming web development and what it means for developers.
-                        </p>
-                        
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 rounded-full bg-gradient-to-r from-neon-pink to-electric-blue flex items-center justify-center mr-3">
-                                    <i class="fas fa-user text-black text-sm"></i>
-                                </div>
-                                <div>
-                                    <p class="text-white text-sm font-semibold font-orbitron">Mathiya Angirasa</p>
-                                    <p class="text-gray-500 text-xs">Coming Soon</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up">Blog</h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">Thoughts, insights, and tutorials about web development, technology, and more.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
+        <section class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <div class="glass p-12 rounded-2xl max-w-3xl mx-auto" data-aos="fade-up">
+                    <i class="fas fa-rocket text-5xl text-cyber-cyan mb-6 animate-pulse"></i>
+                    <h2 class="text-3xl font-bold font-orbitron mb-4 gradient-text">Coming Soon!</h2>
+                    <p class="text-lg text-gray-300">
+                        I'm currently working on some exciting articles and tutorials. Stay tuned for updates!
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Enhanced Footer -->
     <footer class="py-12 border-t border-gray-800">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
                     <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
-                    <p class="text-gray-400">© 2024 Mathiya Angirasa. All rights reserved.</p>
+                    <p class="text-gray-400">© <span id="current-year">2024</span> Mathiya Angirasa. All rights reserved.</p>
                 </div>
-                
-                <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-discord"></i>
-                    </a>
+                <div class="flex items-center justify-center md:justify-end flex-wrap gap-x-5 gap-y-3">
+                    <a href="https://github.com/Mathiyass" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/Mathiya" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://discord.gg/QERP5JJM8k" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://wa.me/94715921984" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Scroll to Top -->
-    <button class="scroll-to-top" id="scroll-to-top">
-        <i class="fas fa-chevron-up text-black"></i>
-    </button>
-
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
     <script>
         // Initialize AOS
         AOS.init({
             duration: 1000,
             once: true,
-            offset: 100,
+            offset: 100
         });
 
-        // Custom Cursor
-        const cursor = document.getElementById('custom-cursor');
-        const cursorDot = document.getElementById('cursor-dot');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            setTimeout(() => {
-                cursorDot.style.left = e.clientX + 'px';
-                cursorDot.style.top = e.clientY + 'px';
-            }, 50);
-        });
-        
-        // Cursor hover effects
-        const hoverElements = document.querySelectorAll('a, button, .blog-card, .tag, input');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('cursor-hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('cursor-hover');
-            });
-        });
-
-        // Mobile Menu
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenu = document.getElementById('close-menu');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-        });
-        
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-        });
-        
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-        });
-
-        // Newsletter Form
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            
-            if (email) {
-                const button = this.querySelector('button');
-                const originalText = button.textContent;
-                
-                button.textContent = 'Subscribed!';
-                button.style.background = 'linear-gradient(135deg, #00F0FF, #8A2BE2)';
-                
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    this.reset();
-                }, 3000);
-            }
-        });
-
-        // Scroll Progress
-        window.addEventListener('scroll', () => {
-            const scrollProgress = document.getElementById('scroll-progress');
-            const scrollToTop = document.getElementById('scroll-to-top');
-            
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            
-            scrollProgress.style.width = scrollPercent + '%';
-            
-            // Show/hide scroll to top button
-            if (scrollTop > 300) {
-                scrollToTop.classList.add('visible');
-            } else {
-                scrollToTop.classList.remove('visible');
-            }
-        });
-        
-        // Scroll to Top
-        document.getElementById('scroll-to-top').addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+        // Update current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
