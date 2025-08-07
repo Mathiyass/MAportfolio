@@ -514,7 +514,7 @@ function initializeEnhancedForms() {
 
                 // Simulate form submission
                 setTimeout(() => {
-                    showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                    showModal('Message Sent', '<p class="text-center text-lg">Thank you for reaching out! I will get back to you shortly.</p>');
                     this.reset();
                     
                     submitBtn.innerHTML = originalText;
@@ -556,6 +556,13 @@ function initializeAdvancedInteractiveElements() {
             createHoverParticles(this);
         });
     });
+
+    const profilePic = document.getElementById('profile-picture-container');
+    if (profilePic) {
+        profilePic.addEventListener('mouseenter', function(e) {
+            createHoverParticles(this);
+        });
+    }
 
     // Magnetic effect for buttons
     const magneticElements = document.querySelectorAll('.neon-btn, .filter-btn');
@@ -831,6 +838,34 @@ function showNotification(message, type = 'info') {
     }, 3000);
 }
 
+function showModal(title, contentHtml) {
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+        <div class="modal-content glass">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold font-orbitron gradient-text">${title}</h2>
+                <button class="modal-close text-2xl text-gray-400 hover:text-cyber-cyan">&times;</button>
+            </div>
+            <div>${contentHtml}</div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    const closeButton = modal.querySelector('.modal-close');
+    closeButton.addEventListener('click', () => {
+        modal.classList.add('fade-out');
+        setTimeout(() => modal.remove(), 300);
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('fade-out');
+            setTimeout(() => modal.remove(), 300);
+        }
+    });
+}
+
 // Add CSS animations dynamically
 const style = document.createElement('style');
 style.textContent = `
@@ -893,6 +928,35 @@ style.textContent = `
     
     @keyframes spin {
         to { transform: rotate(360deg); }
+    }
+
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0,0,0,0.7);
+        backdrop-filter: blur(10px);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.3s ease;
+    }
+    .modal-overlay.fade-out {
+        animation: fadeOut 0.3s ease forwards;
+    }
+    .modal-content {
+        padding: 2rem;
+        border-radius: 1rem;
+        max-width: 500px;
+        width: 90%;
+        animation: slideIn 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(30px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
     }
 `;
 document.head.appendChild(style);

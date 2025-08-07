@@ -1,31 +1,22 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('signature-canvas');
     const loadingProgress = document.getElementById('loading-progress');
     const loadingScreen = document.getElementById('loading-screen');
     
-    // Check if elements exist before proceeding
     if (!canvas || !loadingProgress || !loadingScreen) {
-        // If loading elements don't exist, start main content immediately
-        if (typeof window.startMainContentAnimation === 'function') {
-            window.startMainContentAnimation();
+        if (loadingScreen) {
+            loadingScreen.style.display = 'none';
         }
         return;
     }
     
     const ctx = canvas.getContext('2d');
-    
-    // Set canvas size
     const width = canvas.width = 400;
     const height = canvas.height = 150;
     
-    // Animation variables
     let progress = 0;
-    let currentLetter = 0;
-    let currentPoint = 0;
     let particles = [];
     
-    // MATHIYA letter paths (simplified signature style)
     const letterPaths = {
         M: [[50, 120], [50, 40], [75, 80], [100, 40], [100, 120]],
         A: [[120, 120], [135, 40], [150, 120], [127, 85], [143, 85]],
@@ -36,37 +27,32 @@ document.addEventListener('DOMContentLoaded', function() {
         A2: [[370, 120], [385, 40], [400, 120], [377, 85], [393, 85]]
     };
     
-    const letters = Object.keys(letterPaths);
-    let allPoints = [];
+    const allPoints = Object.values(letterPaths).flat();
     
-    // Flatten all points
-    letters.forEach(letter => {
-        allPoints = allPoints.concat(letterPaths[letter]);
-    });
-    
-    // Particle class
     class Particle {
         constructor(x, y) {
             this.x = x;
             this.y = y;
             this.size = Math.random() * 3 + 1;
-            this.life = 60;
-            this.maxLife = 60;
-            this.vx = (Math.random() - 0.5) * 2;
-            this.vy = (Math.random() - 0.5) * 2;
+            this.life = Math.random() * 60 + 40;
+            this.maxLife = this.life;
+            this.vx = (Math.random() - 0.5) * 2.5;
+            this.vy = (Math.random() - 0.5) * 2.5;
+            this.gravity = 0.05;
         }
         
         update() {
             this.x += this.vx;
             this.y += this.vy;
+            this.vy += this.gravity;
             this.life--;
         }
         
         draw() {
             const alpha = this.life / this.maxLife;
             ctx.save();
-            ctx.globalAlpha = alpha;
-            ctx.fillStyle = '#00FFDE';
+            ctx.globalAlpha = alpha * 0.8;
+            ctx.fillStyle = Math.random() < 0.1 ? '#FF3366' : '#00FFDE';
             ctx.shadowColor = '#00FFDE';
             ctx.shadowBlur = 10;
             ctx.beginPath();
@@ -75,11 +61,31 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.restore();
         }
     }
+
+    function drawGrid() {
+        ctx.save();
+        ctx.strokeStyle = 'rgba(0, 255, 222, 0.1)';
+        ctx.lineWidth = 0.5;
+        const gridSize = 20;
+        for (let x = 0; x < width; x += gridSize) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, height);
+            ctx.stroke();
+        }
+        for (let y = 0; y < height; y += gridSize) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(width, y);
+            ctx.stroke();
+        }
+        ctx.restore();
+    }
     
     function drawSignature() {
         ctx.clearRect(0, 0, width, height);
+        drawGrid();
         
-        // Draw completed paths
         if (allPoints.length > 0) {
             ctx.strokeStyle = '#00FFDE';
             ctx.lineWidth = 3;
@@ -99,24 +105,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 ctx.stroke();
                 
-                // Add particles at current drawing point
                 if (pointsToDraw < allPoints.length) {
                     const currentPoint = allPoints[pointsToDraw - 1];
-                    if (Math.random() < 0.3) {
+                    if (Math.random() < 0.6) { // Increased particle spawn rate
                         particles.push(new Particle(currentPoint[0], currentPoint[1]));
                     }
                 }
             }
         }
         
-        // Update and draw particles
         particles = particles.filter(particle => {
             particle.update();
             particle.draw();
             return particle.life > 0;
         });
         
-        // Draw current point glow
         if (allPoints.length > 0 && progress < 100) {
             const currentIndex = Math.floor((progress / 100) * allPoints.length);
             if (currentIndex < allPoints.length) {
@@ -137,24 +140,22 @@ document.addEventListener('DOMContentLoaded', function() {
         drawSignature();
         
         if (progress < 100) {
-            progress += 1.5;
+            // Slowed down the progress increment to extend duration
+            progress += 0.35;
             loadingProgress.style.width = progress + '%';
             requestAnimationFrame(animate);
         } else {
-            // Wait a moment then fade out
-            setTimeout(() => {
+            // Animation finished, start fade out
+            if (loadingScreen.style.opacity !== '0') {
                 loadingScreen.style.opacity = '0';
+                loadingScreen.style.pointerEvents = 'none';
+                // After transition, hide it completely
                 setTimeout(() => {
-                    loadingScreen.remove();
-                    // Start main content animations
-                    if (typeof window.startMainContentAnimation === 'function') {
-                        window.startMainContentAnimation();
-                    }
-                }, 1000);
-            }, 500);
+                    loadingScreen.style.display = 'none';
+                }, 1500); // Wait for fade out transition to complete
+            }
         }
     }
     
-    // Start animation
     animate();
 });

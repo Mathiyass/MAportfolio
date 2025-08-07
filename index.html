@@ -295,6 +295,25 @@
         .logo-easter-egg-animation {
             animation: logo-easter-egg 1.5s ease-in-out;
         }
+
+        /* Social Card Styling */
+        .social-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .social-card:hover {
+            transform: translateY(-10px) scale(1.05) perspective(1000px) rotateX(5deg) rotateY(-5deg);
+            box-shadow: 0 20px 40px rgba(0, 255, 222, 0.2);
+        }
+        .social-card .social-name {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        .social-card:hover .social-name {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 
@@ -434,29 +453,59 @@
                 </div>
 
                 <!-- Enhanced Social Links -->
-                <div class="flex justify-center lg:justify-start items-center flex-wrap gap-x-5 gap-y-3">
-                    <a href="https://github.com/Mathiyass" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/Mathiya" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.facebook.com/mathisha.angirasa/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://steamcommunity.com/profiles/76561199076879396/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Steam"><i class="fab fa-steam"></i></a>
-                    <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Epic Games"><i class="fas fa-gamepad"></i></a>
-                    <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Spotify"><i class="fab fa-spotify"></i></a>
-                    <a href="https://discord.gg/QERP5JJM8k" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Discord"><i class="fab fa-discord"></i></a>
-                    <a href="https://wa.me/94715921984" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <div class="relative group flex items-center text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300 cursor-pointer" title="EA ID: M_MATHIYA_M">
-                        <i class="fas fa-headset"></i>
-                        <span class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/70 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">M_MATHIYA_M</span>
+                <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <a href="https://github.com/Mathiyass" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="GitHub">
+                        <i class="fab fa-github text-3xl text-gray-300"></i>
+                        <span class="social-name text-xs text-cyber-cyan font-orbitron">GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="LinkedIn">
+                        <i class="fab fa-linkedin text-3xl text-gray-300"></i>
+                        <span class="social-name text-xs text-cyber-cyan font-orbitron">LinkedIn</span>
+                    </a>
+                    <a href="https://x.com/Mathiya" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="X (Twitter)">
+                        <i class="fab fa-twitter text-3xl text-gray-300"></i>
+                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Twitter</span>
+                    </a>
+                    <a href="https://www.facebook.com/mathisha.angirasa/" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Facebook">
+                        <i class="fab fa-facebook text-3xl text-gray-300"></i>
+                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Instagram">
+                        <i class="fab fa-instagram text-3xl text-gray-300"></i>
+                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Instagram</span>
+                    </a>
+                    <a href="https://steamcommunity.com/profiles/76561199076879396/" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Steam">
+                        <i class="fab fa-steam text-3xl text-gray-300"></i>
+                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Steam</span>
+                    </a>
+                    <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Epic Games">
+                        <i class="fas fa-gamepad text-3xl text-gray-300"></i>
+                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Epic Games</span>
+                    </a>
+                    <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Spotify">
+                        <i class="fab fa-spotify text-3xl text-gray-300"></i>
+                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Spotify</span>
+                    </a>
+                    <a href="https://discord.gg/QERP5JJM8k" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Discord">
+                        <i class="fab fa-discord text-3xl text-gray-300"></i>
+                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Discord</span>
+                    </a>
+                    <a href="https://wa.me/94715921984" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="WhatsApp">
+                        <i class="fab fa-whatsapp text-3xl text-gray-300"></i>
+                        <span class="social-name text-xs text-cyber-cyan font-orbitron">WhatsApp</span>
+                    </a>
+                    <div class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="EA ID: M_MATHIYA_M">
+                        <i class="fas fa-headset text-3xl text-gray-300"></i>
+                        <span class="social-name text-xs text-cyber-cyan font-orbitron">EA ID</span>
                     </div>
                 </div>
             </div>
 
             <!-- Enhanced Profile Section -->
-            <div class="relative" data-aos="fade-left">
+            <div class="relative" data-aos="fade-left" id="profile-picture-container">
                 <div class="relative w-80 h-80 mx-auto">
                     <!-- Animated Border -->
-                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-cyber-cyan via-neon-pink to-cyber-red p-1 animate-rotate-slow">
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-cyber-cyan via-neon-pink to-cyber-red p-1 animate-rotate-slow animate-glow-pulse">
                         <div class="w-full h-full bg-dark-bg rounded-full"></div>
                     </div>
                     
