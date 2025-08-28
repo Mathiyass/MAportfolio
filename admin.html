@@ -76,6 +76,14 @@
             border: 2px solid #00FFDE;
             box-shadow: 0 0 20px rgba(0, 255, 222, 0.3);
         }
+        .content-tab-btn.active {
+            border-bottom: 2px solid #00FFDE;
+            color: #00FFDE;
+        }
+        .content-tab-btn {
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 
@@ -203,28 +211,97 @@
 
                 <!-- Content Section -->
                 <div id="content-section" class="admin-section hidden">
-                    <h2 class="text-3xl font-bold mb-6 font-orbitron">Edit Content</h2>
-                    
-                    <div class="glass rounded-xl p-6">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Hero Title</label>
-                                <input type="text" id="hero-title" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan transition-colors" value="MATHIYA">
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Hero Subtitle</label>
-                                <input type="text" id="hero-subtitle" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan transition-colors" value="Software Engineer">
-                            </div>
-                            
-                            <div class="md:col-span-2">
-                                <label class="block text-sm font-medium mb-2">About Description</label>
-                                <textarea id="about-description" rows="4" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan transition-colors">Gen Z Software Engineer passionate about creating innovative digital experiences...</textarea>
+                    <h2 class="text-3xl font-bold mb-6 font-orbitron">Edit Page Content</h2>
+
+                    <!-- Tab Buttons -->
+                    <div class="flex border-b border-gray-700 mb-6">
+                        <button class="content-tab-btn active px-6 py-3 font-semibold" data-tab="home">Home Page</button>
+                        <button class="content-tab-btn px-6 py-3 font-semibold" data-tab="about">About Page</button>
+                        <button class="content-tab-btn px-6 py-3 font-semibold" data-tab="skills">Skills Page</button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div id="tab-home" class="content-tab">
+                        <div class="glass rounded-xl p-6">
+                            <h3 class="text-xl font-bold font-orbitron mb-4 gradient-text">Hero Section</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Greeting</label>
+                                    <input type="text" id="home-hero-greeting" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan transition-colors">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Name</label>
+                                    <input type="text" id="home-hero-name" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan transition-colors">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium mb-2">Typing Titles (comma-separated)</label>
+                                    <input type="text" id="home-hero-titles" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan transition-colors">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium mb-2">Bio</label>
+                                    <textarea id="home-hero-bio" rows="3" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan transition-colors"></textarea>
+                                </div>
                             </div>
                         </div>
-                        
-                        <button id="save-content-btn" class="mt-6 px-6 py-3 bg-cyber-cyan text-black rounded-lg font-semibold hover:bg-opacity-80 transition-colors">
+                    </div>
+
+                    <div id="tab-about" class="content-tab hidden space-y-6">
+                        <div class="glass rounded-xl p-6">
+                            <h3 class="text-xl font-bold font-orbitron mb-4 gradient-text">Hero Section</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Title</label>
+                                    <input type="text" id="about-hero-title" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Subtitle</label>
+                                    <input type="text" id="about-hero-subtitle" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass rounded-xl p-6">
+                            <h3 class="text-xl font-bold font-orbitron mb-4 gradient-text">My Journey Section</h3>
+                            <div id="about-journey-paragraphs" class="space-y-4">
+                                <!-- Paragraphs will be loaded here -->
+                            </div>
+                        </div>
+                         <div class="glass rounded-xl p-6">
+                            <h3 class="text-xl font-bold font-orbitron mb-4 gradient-text">Timeline</h3>
+                            <div id="about-timeline-events" class="space-y-4">
+                                <!-- Timeline events will be loaded here -->
+                            </div>
+                            <button class="mt-4 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors">Add Timeline Event</button>
+                        </div>
+                    </div>
+                    <div id="tab-skills" class="content-tab hidden space-y-6">
+                        <div class="glass rounded-xl p-6">
+                            <h3 class="text-xl font-bold font-orbitron mb-4 gradient-text">Skills Hero Section</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Title</label>
+                                    <input type="text" id="skills-hero-title" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Subtitle</label>
+                                    <input type="text" id="skills-hero-subtitle" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass rounded-xl p-6">
+                            <h3 class="text-xl font-bold font-orbitron mb-4 gradient-text">Skill Categories</h3>
+                            <div id="skills-categories-container" class="space-y-4">
+                                <!-- Skill categories and their skills will be loaded here -->
+                            </div>
+                            <button class="mt-4 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors">Add Skill Category</button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4 mt-6">
+                        <button id="save-content-btn" class="px-6 py-3 bg-cyber-cyan text-black rounded-lg font-semibold hover:bg-opacity-80 transition-colors">
                             <i class="fas fa-save mr-2"></i>Save Changes
+                        </button>
+                        <button id="download-json-btn" class="px-6 py-3 bg-electric-blue text-white rounded-lg font-semibold hover:bg-opacity-80 transition-colors">
+                            <i class="fas fa-download mr-2"></i>Download database.json
                         </button>
                     </div>
                 </div>

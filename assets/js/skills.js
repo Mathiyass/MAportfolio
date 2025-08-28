@@ -52,23 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Animate skill bars when they come into view
-    const skillBars = document.querySelectorAll('.skill-progress');
-    const skillObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const skillBar = entry.target;
-                const width = skillBar.getAttribute('data-width');
-                skillBar.style.width = width + '%';
-                skillObserver.unobserve(skillBar);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    skillBars.forEach(bar => {
-        skillObserver.observe(bar);
-    });
-
     // Skill bars animation
     const skillProgressBars = document.querySelectorAll('.skill-progress');
     const skillObserver = new IntersectionObserver(function(entries) {

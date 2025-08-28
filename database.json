@@ -1,0 +1,342 @@
+{
+  "site": {
+    "title": "Mathiya Angirasa | Software Engineer & Tech Innovator",
+    "author": "Mathiya Angirasa",
+    "description": "Mathiya Angirasa - Software Engineering Student, Full Stack Developer, and Tech Enthusiast. Building the future with code.",
+    "keywords": "Mathiya, Software Engineer, Full Stack Developer, Web Developer, Tech, Portfolio",
+    "logoText": "MATHIYA",
+    "footerText": "© 2024 Mathiya Angirasa. All rights reserved."
+  },
+  "navigation": [
+    { "name": "Home", "href": "index.html#home" },
+    { "name": "About", "href": "about.html" },
+    { "name": "Projects", "href": "projects.html" },
+    { "name": "Skills", "href": "skills.html" },
+    { "name": "Socials", "href": "socials.html" },
+    { "name": "Contact", "href": "contact.html" },
+    { "name": "Gallery", "href": "gallery.html" }
+  ],
+  "socialLinks": [
+    { "name": "GitHub", "icon": "fab fa-github", "url": "https://github.com/Mathiyass" },
+    { "name": "LinkedIn", "icon": "fab fa-linkedin", "url": "https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" },
+    { "name": "Twitter", "icon": "fab fa-twitter", "url": "https://x.com/Mathiya" },
+    { "name": "Facebook", "icon": "fab fa-facebook", "url": "https://www.facebook.com/mathisha.angirasa/" },
+    { "name": "Instagram", "icon": "fab fa-instagram", "url": "https://www.instagram.com/mathi_ya_/" },
+    { "name": "Steam", "icon": "fab fa-steam", "url": "https://steamcommunity.com/profiles/76561199076879396/" },
+    { "name": "Epic Games", "icon": "fas fa-gamepad", "url": "https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" },
+    { "name": "Spotify", "icon": "fab fa-spotify", "url": "https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" },
+    { "name": "Discord", "icon": "fab fa-discord", "url": "https://discord.gg/QERP5JJM8k" },
+    { "name": "WhatsApp", "icon": "fab fa-whatsapp", "url": "https://wa.me/94715921984" },
+    { "name": "EA ID", "icon": "fas fa-headset", "url": "#", "title": "EA ID: M_MATHIYA_M" }
+  ],
+  "pages": {
+    "home": {
+      "hero": {
+        "greeting": "Hello, I'm",
+        "name": "MATHIYA",
+        "titles": [
+          "A Software Engineer",
+          "A Full-Stack Developer",
+          "A Tech Innovator",
+          "A Creative Designer"
+        ],
+        "bio": "Passionate software engineering student crafting innovative digital experiences with cutting-edge technologies. Building the future, one line of code at a time.",
+        "buttons": [
+          { "text": "View My Work", "href": "projects.html", "icon": "fas fa-code" },
+          { "text": "Get In Touch", "href": "contact.html", "icon": "fas fa-envelope" }
+        ]
+      },
+      "aboutPreview": {
+        "title": "About Me",
+        "cards": [
+          { "icon": "fas fa-graduation-cap", "title": "Education", "text": "Software Engineering Student passionate about learning and innovation" },
+          { "icon": "fas fa-laptop-code", "title": "Development", "text": "Full-stack developer with expertise in modern web technologies" },
+          { "icon": "fas fa-lightbulb", "title": "Innovation", "text": "Creating cutting-edge solutions for tomorrow's challenges" }
+        ],
+        "button": { "text": "Learn More", "href": "about.html", "icon": "fas fa-user" }
+      },
+      "featuredProjects": {
+        "title": "Featured Projects",
+        "projects": [
+          {
+            "id": "proj-ecommerce",
+            "title": "E-Commerce Platform",
+            "description": "Full-stack e-commerce solution with modern features",
+            "icon": "fas fa-shopping-cart",
+            "tags": ["React", "Node.js", "MongoDB"],
+            "liveUrl": "#",
+            "githubUrl": "#"
+          },
+          {
+            "id": "proj-spaceshooter",
+            "title": "Space Shooter Game",
+            "description": "3D space game with immersive gameplay",
+            "icon": "fas fa-rocket",
+            "tags": ["Unity", "C#", "3D"],
+            "liveUrl": "#",
+            "githubUrl": "#"
+          },
+          {
+            "id": "proj-mobileui",
+            "title": "Mobile App UI",
+            "description": "Modern mobile interface design",
+            "icon": "fas fa-mobile-alt",
+            "tags": ["Figma", "UI/UX", "Design"],
+            "liveUrl": "#",
+            "githubUrl": "#"
+          }
+        ],
+        "button": { "text": "View All Projects", "href": "projects.html", "icon": "fas fa-folder-open" }
+      },
+      "skillsOverview": {
+        "title": "Technical Skills",
+        "skills": [
+          { "icon": "fab fa-html5", "category": "Frontend", "list": "HTML, CSS, JavaScript, React" },
+          { "icon": "fas fa-server", "category": "Backend", "list": "Node.js, Python, MongoDB" },
+          { "icon": "fab fa-unity", "category": "Game Dev", "list": "Unity, C#, Game Design" },
+          { "icon": "fas fa-palette", "category": "Design", "list": "UI/UX, Figma, Adobe" }
+        ],
+        "button": { "text": "View All Skills", "href": "skills.html", "icon": "fas fa-tools" }
+      },
+      "contactCTA": {
+        "title": "Let's Build Something Amazing",
+        "text": "Ready to bring your ideas to life? Let's collaborate and create innovative solutions together.",
+        "buttons": [
+          { "text": "Start a Project", "href": "contact.html", "icon": "fas fa-rocket" },
+          { "text": "Download Resume", "href": "resume.html", "icon": "fas fa-download" }
+        ]
+      }
+    },
+    "about": {
+      "hero": {
+        "title": "About Me",
+        "subtitle": "Passionate about technology, innovation, and creating digital experiences that make a difference"
+      },
+      "myJourney": {
+        "title": "My Journey",
+        "images": [
+          "assets/images/Profile Picture.jpg",
+          "assets/images/Profile Picture 2.jpg"
+        ],
+        "paragraphs": [
+          "I'm Mathiya, a passionate Gen Z software engineer who believes in the power of technology to transform ideas into reality. My journey began with curiosity about how digital worlds are created, and it has evolved into a deep commitment to crafting innovative solutions.",
+          "With expertise spanning web development, game creation, and creative coding, I thrive on challenges that push the boundaries of what's possible. Every project is an opportunity to learn, grow, and create something meaningful.",
+          "When I'm not coding, you'll find me exploring the latest tech trends, gaming, or experimenting with new creative tools. I believe in continuous learning and staying ahead of the curve in this ever-evolving digital landscape."
+        ]
+      },
+      "timeline": {
+        "title": "My Timeline",
+        "events": [
+          {
+            "title": "Software Engineering Student",
+            "date": "2022 - Present",
+            "text": "Currently pursuing my degree in Software Engineering, focusing on modern development practices, algorithms, and system design. Maintaining excellent academic performance while working on personal projects."
+          },
+          {
+            "title": "Freelance Developer",
+            "date": "2023 - Present",
+            "text": "Started taking on freelance projects, building websites and applications for local businesses and startups. Gained valuable experience in client communication, project management, and real-world problem solving."
+          },
+          {
+            "title": "First Game Development Project",
+            "date": "2023",
+            "text": "Completed my first major game development project using Unreal Engine. This project sparked my passion for interactive media and 3D graphics programming."
+          },
+          {
+            "title": "Started Programming Journey",
+            "date": "2021",
+            "text": "Began learning programming with Python and JavaScript. Built my first web applications and discovered my passion for creating digital solutions."
+          }
+        ]
+      },
+      "educationAndCertifications": {
+        "education": {
+          "title": "Education",
+          "degree": "Bachelor of Software Engineering",
+          "university": "University of Birmingham | 2022 - 2026",
+          "description": "Comprehensive program covering software development, algorithms, data structures, system design, and modern programming practices."
+        },
+        "certifications": {
+          "title": "Certifications",
+          "items": [
+            {
+              "title": "Full Stack Web Development",
+              "issuer": "FreeCodeCamp | 2023"
+            },
+            {
+              "title": "Game Development with Unreal Engine",
+              "issuer": "Udemy | 2023"
+            },
+            {
+              "title": "JavaScript Algorithms & Data Structures",
+              "issuer": "FreeCodeCamp | 2022"
+            }
+          ]
+        }
+      },
+      "goals": {
+        "title": "Goals & Aspirations",
+        "items": [
+          {
+            "icon": "fas fa-rocket",
+            "title": "Innovation",
+            "text": "Push the boundaries of technology and create solutions that haven't been imagined yet."
+          },
+          {
+            "icon": "fas fa-users",
+            "title": "Impact",
+            "text": "Build technology that makes a positive difference in people's lives and communities."
+          },
+          {
+            "icon": "fas fa-graduation-cap",
+            "title": "Growth",
+            "text": "Continuously learn and evolve with the rapidly changing technology landscape."
+          }
+        ],
+        "resumeButton": {
+          "text": "Download Resume",
+          "href": "assets/documents/mathiya-resume.pdf"
+        }
+      }
+    },
+    "projects": {
+      "hero": {
+        "title": "My Projects",
+        "subtitle": "A showcase of innovative solutions, creative experiments, and digital experiences"
+      },
+      "filterCategories": [
+        { "key": "all", "name": "All Projects" },
+        { "key": "web", "name": "Web Dev" },
+        { "key": "game", "name": "Game Dev" },
+        { "key": "ai", "name": "AI/ML" },
+        { "key": "ui", "name": "UI/UX" }
+      ],
+      "items": [
+        {
+          "id": "proj-ecommerce",
+          "category": "web",
+          "icon": "fas fa-shopping-cart",
+          "title": "E-Commerce Platform",
+          "shortDescription": "Full-stack e-commerce solution with modern UI, secure payments, and admin dashboard.",
+          "longDescription": "A comprehensive e-commerce platform built from the ground up, featuring a modern user interface, secure payment gateway integration, and a full-featured admin dashboard for managing products, orders, and customers.",
+          "tags": ["React", "Node.js", "MongoDB"],
+          "features": ["Secure user authentication", "Product catalog with search and filtering", "Shopping cart and checkout", "Admin dashboard"],
+          "liveUrl": "#",
+          "githubUrl": "#"
+        },
+        {
+          "id": "proj-spaceshooter",
+          "category": "game",
+          "icon": "fas fa-rocket",
+          "title": "Space Shooter Game",
+          "shortDescription": "Immersive 3D space shooter built with Unreal Engine featuring dynamic gameplay.",
+          "longDescription": "A thrilling 3D space shooter game developed in Unreal Engine. It features fast-paced combat, dynamic enemy AI, stunning visual effects, and a progressive difficulty system. This project was a deep dive into game physics, C++, and Blueprint scripting.",
+          "tags": ["Unreal Engine", "C++", "Blueprint"],
+          "features": ["Real-time 3D graphics", "Dynamic enemy wave system", "Power-ups and special abilities", "High score tracking"],
+          "liveUrl": "#",
+          "githubUrl": "#"
+        },
+        {
+          "id": "proj-aichatbot",
+          "category": "ai",
+          "icon": "fas fa-robot",
+          "title": "AI Chatbot Assistant",
+          "shortDescription": "Intelligent chatbot powered by machine learning for customer support automation.",
+          "longDescription": "A smart, conversational AI chatbot designed to automate customer support. It uses Natural Language Processing (NLP) to understand user queries and provide relevant answers. The model is built with TensorFlow and trained on a custom dataset.",
+          "tags": ["Python", "TensorFlow", "NLP"],
+          "features": ["Natural Language Understanding", "Context-aware conversations", "Easy integration with websites", "Analytics dashboard for query analysis"],
+          "liveUrl": "#",
+          "githubUrl": "#"
+        },
+        {
+          "id": "proj-portfolio",
+          "category": "web",
+          "icon": "fas fa-code",
+          "title": "Portfolio Website",
+          "shortDescription": "Modern, responsive portfolio with advanced animations and interactive elements.",
+          "longDescription": "The very website you are looking at. A personal portfolio designed to showcase my skills and projects, built with a focus on performance, aesthetics, and interactivity. It features a futuristic design with custom animations and a dynamic content engine.",
+          "tags": ["HTML5", "Tailwind", "JavaScript"],
+          "features": ["Fully responsive design", "Dynamic content rendering", "Interactive animations and effects", "Password-protected admin panel"],
+          "liveUrl": "#",
+          "githubUrl": "#"
+        },
+        {
+          "id": "proj-mobileui",
+          "category": "ui",
+          "icon": "fas fa-mobile-alt",
+          "title": "Mobile App UI Design",
+          "shortDescription": "Modern mobile app interface design with focus on user experience and accessibility.",
+          "longDescription": "A complete UI/UX design for a modern mobile application, created in Figma. The project involved user research, wireframing, prototyping, and creating a full design system to ensure a consistent and intuitive user experience.",
+          "tags": ["Figma", "Prototyping", "UX Research"],
+          "features": ["Comprehensive design system", "Interactive prototypes", "User flow diagrams", "Accessibility considerations"],
+          "liveUrl": "#",
+          "githubUrl": "#"
+        },
+        {
+          "id": "proj-dataviz",
+          "category": "ai",
+          "icon": "fas fa-chart-line",
+          "title": "Data Visualization Dashboard",
+          "shortDescription": "Interactive dashboard for data analysis with machine learning insights and predictions.",
+          "longDescription": "An interactive data visualization dashboard built with D3.js and a Python backend. It allows users to upload datasets, explore the data through various charts and graphs, and gain insights from integrated machine learning models that provide predictions and trend analysis.",
+          "tags": ["D3.js", "Python", "Pandas"],
+          "features": ["Interactive charts and graphs", "CSV data uploading", "Machine learning-powered insights", "Exportable visualizations"],
+          "liveUrl": "#",
+          "githubUrl": "#"
+        }
+      ]
+    },
+    "skills": {
+      "hero": {
+        "title": "Skills & Expertise",
+        "subtitle": "A comprehensive overview of my technical skills and creative capabilities"
+      },
+      "categories": [
+        {
+          "title": "Frontend Development",
+          "skills": [
+            { "name": "HTML5", "level": 95, "icon": "fab fa-html5", "color": "text-cyber-cyan" },
+            { "name": "CSS3", "level": 92, "icon": "fab fa-css3-alt", "color": "text-cyber-red" },
+            { "name": "JavaScript", "level": 90, "icon": "fab fa-js-square", "color": "text-neon-pink" },
+            { "name": "React", "level": 85, "icon": "fab fa-react", "color": "text-electric-blue" },
+            { "name": "Vue.js", "level": 80, "icon": "fab fa-vuejs", "color": "text-green-400" },
+            { "name": "Tailwind CSS", "level": 88, "icon": "fas fa-wind", "color": "text-blue-400" }
+          ]
+        },
+        {
+          "title": "Backend Development",
+          "skills": [
+            { "name": "Node.js", "level": 87, "icon": "fab fa-node-js", "color": "text-green-500" },
+            { "name": "Python", "level": 83, "icon": "fab fa-python", "color": "text-yellow-400" },
+            { "name": "Java", "level": 78, "icon": "fab fa-java", "color": "text-red-500" },
+            { "name": "MongoDB", "level": 85, "icon": "fas fa-database", "color": "text-green-600" },
+            { "name": "Express.js", "level": 82, "icon": "fas fa-server", "color": "text-gray-400" },
+            { "name": "Firebase", "level": 80, "icon": "fas fa-fire", "color": "text-yellow-500" }
+          ]
+        },
+        {
+          "title": "Game Development & Tools",
+          "display": "icons",
+          "skills": [
+            { "name": "Unity", "level": 75, "icon": "fab fa-unity", "color": "text-white" },
+            { "name": "Unreal Engine", "level": 70, "icon": "fas fa-cube", "color": "text-gray-300" },
+            { "name": "Git", "level": 90, "icon": "fab fa-git-alt", "color": "text-red-600" },
+            { "name": "Figma", "level": 85, "icon": "fab fa-figma", "color": "text-purple-500" }
+          ]
+        }
+      ],
+      "summary": {
+        "title": "Skill Summary",
+        "cards": [
+          { "icon": "fas fa-code", "title": "Frontend Expert", "text": "Specialized in creating responsive, interactive user interfaces with modern frameworks and libraries." },
+          { "icon": "fas fa-server", "title": "Backend Developer", "text": "Experienced in building scalable server-side applications and RESTful APIs with various technologies." },
+          { "icon": "fas fa-gamepad", "title": "Game Developer", "text": "Passionate about creating immersive gaming experiences using industry-standard game engines." }
+        ],
+        "learning": {
+          "title": "Continuous Learning",
+          "text": "I'm constantly expanding my skill set and staying up-to-date with the latest technologies and industry trends. Currently exploring AI/ML, blockchain development, and advanced 3D graphics programming. My goal is to become a versatile developer capable of tackling any technical challenge."
+        }
+      }
+    }
+  }
+}

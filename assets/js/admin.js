@@ -15,13 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (password === ADMIN_PASSWORD) {
             localStorage.setItem('adminLoggedIn', 'true');
-            // Use the global modal function from main.js
-            if (typeof showModal === 'function') {
-                showModal('Login Successful', '<p class="text-center text-lg">Welcome back, Admin! Redirecting to dashboard...</p>');
-                setTimeout(showDashboard, 2000);
-            } else {
-                showDashboard();
-            }
+            showNotification('Login Successful! Redirecting...');
+            setTimeout(showDashboard, 1000); // Reduce timeout as notification is less intrusive
         } else {
             showError('Invalid password. Please try again.');
         }
@@ -47,6 +42,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Gallery upload handler
+    document.querySelectorAll('.content-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tab = this.dataset.tab;
+
+            document.querySelectorAll('.content-tab').forEach(content => content.classList.add('hidden'));
+            document.getElementById(`tab-${tab}`).classList.remove('hidden');
+
+            document.querySelectorAll('.content-tab-btn').forEach(b => b.classList.remove('active', 'text-cyber-cyan'));
+            this.classList.add('active', 'text-cyber-cyan');
+        });
+    });
+
     document.getElementById('gallery-upload').addEventListener('change', function(e) {
         const files = Array.from(e.target.files);
         files.forEach(file => {
@@ -67,13 +75,55 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Save content handler
     document.getElementById('save-content-btn').addEventListener('click', function() {
-        const content = {
-            heroTitle: document.getElementById('hero-title').value,
-            heroSubtitle: document.getElementById('hero-subtitle').value,
-            aboutDescription: document.getElementById('about-description').value
-        };
-        localStorage.setItem('adminContent', JSON.stringify(content));
-        showNotification('Content saved successfully!');
+        if(!db.pages) {
+            showError("Database not loaded correctly.");
+            return;
+        }
+
+        // Collect Home Page Data
+        const homeContent = db.pages.home;
+        homeContent.hero.greeting = document.getElementById('home-hero-greeting').value;
+        homeContent.hero.name = document.getElementById('home-hero-name').value;
+        homeContent.hero.titles = document.getElementById('home-hero-titles').value.split(',').map(s => s.trim()).filter(Boolean);
+        homeContent.hero.bio = document.getElementById('home-hero-bio').value;
+
+        // Collect About Page Data
+        const aboutContent = db.pages.about;
+        aboutContent.hero.title = document.getElementById('about-hero-title').value;
+        aboutContent.hero.subtitle = document.getElementById('about-hero-subtitle').value;
+
+        const journeyParagraphs = document.querySelectorAll('#about-journey-paragraphs textarea');
+        aboutContent.myJourney.paragraphs = Array.from(journeyParagraphs).map(t => t.value);
+
+        const timelineEvents = document.querySelectorAll('#about-timeline-events .glass');
+        aboutContent.timeline.events = Array.from(timelineEvents).map(el => {
+            return {
+                title: el.querySelector('input[type="text"]').value,
+                date: el.querySelectorAll('input[type="text"]')[1].value,
+                text: el.querySelector('textarea').value
+            };
+        });
+
+        showNotification('Content saved to current session!');
+    });
+
+    // Download JSON handler
+    document.getElementById('download-json-btn').addEventListener('click', function() {
+        if(!db.site) {
+            showError("Database not loaded. Cannot download.");
+            return;
+        }
+        const dbString = JSON.stringify(db, null, 2);
+        const blob = new Blob([dbString], {type: 'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'database.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showNotification('database.json has been downloaded!');
     });
     
     // Initialize with overview section
@@ -87,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function showDashboard() {
         document.getElementById('login-screen').classList.add('hidden');
         document.getElementById('admin-dashboard').classList.remove('hidden');
-        loadDashboardData();
+        loadDatabase();
     }
     
     function showError(message) {
@@ -123,26 +173,42 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    let db = {}; // Use a module-level variable
+
+    async function loadDatabase() {
+        try {
+            const response = await fetch('../database.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            db = await response.json();
+            console.log('Admin panel database loaded:', db);
+            loadDashboardData(); // Initial load
+        } catch (error) {
+            console.error("Could not load database for admin panel:", error);
+            alert('Failed to load website data. Check console for errors.');
+        }
+    }
+
     function loadDashboardData() {
-        // Load dashboard statistics
-        const projects = JSON.parse(localStorage.getItem('adminProjects') || '[]');
-        const gallery = JSON.parse(localStorage.getItem('adminGallery') || '[]');
+        if (!db.pages || !db.pages.projects) return;
+        const projects = db.pages.projects.items || [];
+        const gallery = db.pages.gallery ? db.pages.gallery.images : [];
         
-        // Update dashboard stats (would be dynamic in real app)
-        console.log('Dashboard loaded with', projects.length, 'projects and', gallery.length, 'images');
+        const projectCountEl = document.querySelector('#overview-section .text-cyber-cyan');
+        if(projectCountEl) projectCountEl.textContent = projects.length;
+
+        const galleryCountEl = document.querySelector('#overview-section .text-cyber-red');
+        if(galleryCountEl) galleryCountEl.textContent = gallery.length;
     }
     
     function loadProjects() {
-        const projects = JSON.parse(localStorage.getItem('adminProjects') || '[]');
+        if (!db.pages || !db.pages.projects) return;
+        const projects = db.pages.projects.items || [];
         const projectsList = document.getElementById('projects-list');
         
         if (projects.length === 0) {
-            projectsList.innerHTML = `
-                <div class="text-center py-8 text-gray-400">
-                    <i class="fas fa-project-diagram text-4xl mb-4"></i>
-                    <p>No projects yet. Add your first project!</p>
-                </div>
-            `;
+            projectsList.innerHTML = `<div class="text-center py-8 text-gray-400"><i class="fas fa-project-diagram text-4xl mb-4"></i><p>No projects found in database.json.</p></div>`;
             return;
         }
         
@@ -150,45 +216,123 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="glass rounded-lg p-4 flex justify-between items-center">
                 <div>
                     <h4 class="font-semibold text-lg">${project.title}</h4>
-                    <p class="text-gray-400 text-sm">${project.description.substring(0, 100)}...</p>
-                    <div class="flex space-x-2 mt-2">
-                        ${project.tags.map(tag => `<span class="px-2 py-1 bg-cyber-cyan text-black text-xs rounded">${tag}</span>`).join('')}
-                    </div>
+                    <p class="text-gray-400 text-sm">${project.shortDescription}</p>
                 </div>
                 <div class="flex space-x-2">
-                    <button onclick="editProject('${project.id}')" class="px-3 py-2 bg-yellow-600 rounded hover:bg-yellow-700 transition-colors">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button onclick="deleteProject('${project.id}')" class="px-3 py-2 bg-red-600 rounded hover:bg-red-700 transition-colors">
-                        <i class="fas fa-trash"></i>
-                    </button>
+                    <button class="px-3 py-2 bg-yellow-600 rounded hover:bg-yellow-700 transition-colors"><i class="fas fa-edit"></i></button>
+                    <button class="px-3 py-2 bg-red-600 rounded hover:bg-red-700 transition-colors"><i class="fas fa-trash"></i></button>
                 </div>
             </div>
         `).join('');
     }
     
     function loadGallery() {
-        const gallery = JSON.parse(localStorage.getItem('adminGallery') || '[]');
+        // This will be implemented later based on gallery data structure
         const galleryGrid = document.getElementById('gallery-grid');
-        
-        galleryGrid.innerHTML = gallery.map(image => `
-            <div class="relative group">
-                <img src="${image.url}" alt="${image.name}" class="w-full h-24 object-cover rounded-lg">
-                <button onclick="removeFromGallery('${image.id}')" class="absolute top-2 right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <i class="fas fa-times text-xs"></i>
-                </button>
-            </div>
-        `).join('');
+        galleryGrid.innerHTML = `<div class="text-center py-8 text-gray-400 col-span-4"><p>Gallery management will be implemented in a future step.</p></div>`;
     }
     
     function loadContent() {
-        // Load existing content for editing
-        const content = JSON.parse(localStorage.getItem('adminContent') || '{}');
+        if (!db.pages || !db.pages.home) return;
+
+        // --- Home Page Tab ---
+        const homeContent = db.pages.home;
+        if(homeContent && homeContent.hero) {
+            document.getElementById('home-hero-greeting').value = homeContent.hero.greeting || '';
+            document.getElementById('home-hero-name').value = homeContent.hero.name || '';
+            document.getElementById('home-hero-titles').value = (homeContent.hero.titles || []).join(', ');
+            document.getElementById('home-hero-bio').value = homeContent.hero.bio || '';
+        }
         
-        if (content.heroTitle) document.getElementById('hero-title').value = content.heroTitle;
-        if (content.heroSubtitle) document.getElementById('hero-subtitle').value = content.heroSubtitle;
-        if (content.aboutDescription) document.getElementById('about-description').value = content.aboutDescription;
+        // Future steps will populate other tabs here.
+        loadAboutContent();
+        loadSkillsContent();
     }
+
+function loadAboutContent() {
+    if (!db.pages || !db.pages.about) return;
+    const content = db.pages.about;
+
+    // Hero
+    document.getElementById('about-hero-title').value = content.hero.title || '';
+    document.getElementById('about-hero-subtitle').value = content.hero.subtitle || '';
+
+    // Journey Paragraphs
+    const journeyContainer = document.getElementById('about-journey-paragraphs');
+    journeyContainer.innerHTML = ''; // Clear existing
+    content.myJourney.paragraphs.forEach((p, index) => {
+        const p_label = document.createElement('label');
+        p_label.className = 'block text-sm font-medium mb-2';
+        p_label.textContent = `Paragraph ${index + 1}`;
+        const p_textarea = document.createElement('textarea');
+        p_textarea.className = 'w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 focus:border-cyber-cyan transition-colors';
+        p_textarea.rows = 3;
+        p_textarea.value = p;
+        journeyContainer.appendChild(p_label);
+        journeyContainer.appendChild(p_textarea);
+    });
+
+    // Timeline Events
+    const timelineContainer = document.getElementById('about-timeline-events');
+    timelineContainer.innerHTML = ''; // Clear existing
+    content.timeline.events.forEach((event, index) => {
+        const eventDiv = document.createElement('div');
+        eventDiv.className = 'glass p-4 rounded-lg mb-4';
+        eventDiv.innerHTML = `
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Event Title</label>
+                    <input type="text" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-500" value="${event.title}">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Date</label>
+                    <input type="text" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-500" value="${event.date}">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium mb-2">Description</label>
+                    <textarea rows="2" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-500">${event.text}</textarea>
+                </div>
+            </div>
+        `;
+        timelineContainer.appendChild(eventDiv);
+    });
+}
+
+function loadSkillsContent() {
+    if (!db.pages || !db.pages.skills) return;
+    const content = db.pages.skills;
+
+    // Hero
+    document.getElementById('skills-hero-title').value = content.hero.title || '';
+    document.getElementById('skills-hero-subtitle').value = content.hero.subtitle || '';
+
+    // Skills
+    const skillsContainer = document.getElementById('skills-categories-container');
+    skillsContainer.innerHTML = ''; // Clear existing
+    content.categories.forEach(category => {
+        const catDiv = document.createElement('div');
+        catDiv.className = 'glass p-4 rounded-lg mb-4';
+        let skillsHTML = category.skills.map(skill => `
+            <div class="grid grid-cols-3 gap-2 items-center mb-2">
+                <input type="text" class="w-full px-2 py-1 rounded bg-gray-700 border border-gray-500" value="${skill.name}">
+                <input type="number" class="w-full px-2 py-1 rounded bg-gray-700 border border-gray-500" value="${skill.level}" min="0" max="100">
+                <input type="text" class="w-full px-2 py-1 rounded bg-gray-700 border border-gray-500" value="${skill.icon}">
+            </div>
+        `).join('');
+
+        catDiv.innerHTML = `
+            <h4 class="text-lg font-semibold font-orbitron mb-2">${category.title}</h4>
+            <div class="grid grid-cols-3 gap-2 items-center mb-2 font-bold text-sm">
+                <span>Name</span>
+                <span>Level (%)</span>
+                <span>FontAwesome Icon</span>
+            </div>
+            ${skillsHTML}
+            <button class="mt-2 px-3 py-1 bg-gray-600 hover:bg-gray-500 text-xs rounded">Add Skill</button>
+        `;
+        skillsContainer.appendChild(catDiv);
+    });
+}
     
     function addImageToGallery(url, name) {
         const gallery = JSON.parse(localStorage.getItem('adminGallery') || '[]');

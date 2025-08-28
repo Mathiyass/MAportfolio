@@ -199,7 +199,7 @@
     </style>
 </head>
 
-<body class="dark text-white">
+<body class="dark text-white" data-page="about">
     <!-- Custom Cursor -->
     <div class="custom-cursor" id="custom-cursor"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
@@ -211,89 +211,37 @@
     <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <!-- Enhanced Logo -->
                 <div class="text-2xl font-bold font-orbitron gradient-text">
-                    <a href="index.html" class="hover:scale-110 transition-transform duration-300">MATHIYA</a>
+                    <a href="index.html" class="hover:scale-110 transition-transform duration-300"></a>
                 </div>
-
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Home
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="about.html" class="nav-link text-cyber-cyan font-medium transition-colors relative group">
-                        About
-                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-cyber-cyan"></span>
-                    </a>
-                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Projects
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Skills
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="socials.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Socials
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Contact
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="gallery.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Gallery
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                </div>
-
-                <!-- Theme Toggle -->
+                <div class="hidden md:flex space-x-8"></div>
                 <button id="theme-toggle" class="hidden md:block p-2 rounded-lg glass hover:scale-110 transition-transform">
                     <i class="fas fa-moon text-cyber-cyan"></i>
                 </button>
-
-                <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass">
                     <i class="fas fa-bars text-cyber-cyan"></i>
                 </button>
             </div>
         </div>
-
-        <!-- Enhanced Mobile Menu -->
         <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
             <div class="p-6">
                 <button id="close-menu" class="float-right text-2xl text-cyber-cyan hover:rotate-90 transition-transform">
                     <i class="fas fa-times"></i>
                 </button>
-                <div class="clear-both mt-8 space-y-6">
-                    <a href="index.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Home</a>
-                    <a href="about.html" class="block text-xl font-orbitron text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">About</a>
-                    <a href="projects.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Projects</a>
-                    <a href="skills.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Skills</a>
-                    <a href="socials.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Socials</a>
-                    <a href="contact.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Contact</a>
-                    <a href="gallery.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Gallery</a>
-                </div>
+                <div class="clear-both mt-8 space-y-6"></div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 relative overflow-hidden">
-        <!-- Background Elements -->
+    <section id="about-hero" class="pt-32 pb-20 relative overflow-hidden">
         <div class="absolute inset-0">
             <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
             <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
         </div>
-        
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up">
-                About Me
-            </h1>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                Passionate about technology, innovation, and creating digital experiences that make a difference
-            </p>
+            <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up"></h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200"></p>
         </div>
     </section>
 
@@ -302,181 +250,46 @@
         <div class="container mx-auto px-6">
             <div class="max-w-6xl mx-auto">
                 <!-- Personal Story -->
-                <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                <div id="my-journey" class="grid lg:grid-cols-2 gap-12 items-center mb-20">
                     <div data-aos="fade-right">
                         <div class="swiper-container w-full h-96 rounded-2xl overflow-hidden glass">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="assets/images/Profile Picture.jpg" alt="Mathiya" class="w-full h-full object-cover">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="assets/images/Profile Picture 2.jpg" alt="Mathiya" class="w-full h-full object-cover">
-                                </div>
-                            </div>
+                            <div class="swiper-wrapper"></div>
                         </div>
                     </div>
-                    
                     <div data-aos="fade-left">
-                        <h2 class="text-3xl md:text-4xl font-bold font-orbitron mb-6 gradient-text">
-                            My Journey
-                        </h2>
-                        <p class="text-lg text-gray-300 mb-6 leading-relaxed">
-                            I'm Mathiya, a passionate Gen Z software engineer who believes in the power of technology 
-                            to transform ideas into reality. My journey began with curiosity about how digital worlds 
-                            are created, and it has evolved into a deep commitment to crafting innovative solutions.
-                        </p>
-                        <p class="text-lg text-gray-300 mb-6 leading-relaxed">
-                            With expertise spanning web development, game creation, and creative coding, I thrive on 
-                            challenges that push the boundaries of what's possible. Every project is an opportunity 
-                            to learn, grow, and create something meaningful.
-                        </p>
-                        <p class="text-lg text-gray-300 leading-relaxed">
-                            When I'm not coding, you'll find me exploring the latest tech trends, gaming, or 
-                            experimenting with new creative tools. I believe in continuous learning and staying 
-                            ahead of the curve in this ever-evolving digital landscape.
-                        </p>
+                        <h2 class="text-3xl md:text-4xl font-bold font-orbitron mb-6 gradient-text"></h2>
+                        <div id="journey-paragraphs"></div>
                     </div>
                 </div>
                 
                 <!-- Timeline Section -->
-                <div class="mb-20">
-                    <h2 class="text-3xl md:text-4xl font-bold font-orbitron text-center mb-12 gradient-text" data-aos="fade-up">
-                        My Timeline
-                    </h2>
-                    
-                    <div class="max-w-4xl mx-auto">
-                        <div class="timeline-item mb-8" data-aos="fade-up" data-aos-delay="100">
-                            <div class="glass p-6 rounded-lg">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                    <h3 class="text-xl font-bold text-cyber-cyan font-orbitron">Software Engineering Student</h3>
-                                    <span class="text-sm text-gray-400">2022 - Present</span>
-                                </div>
-                                <p class="text-gray-300">
-                                    Currently pursuing my degree in Software Engineering, focusing on modern development 
-                                    practices, algorithms, and system design. Maintaining excellent academic performance 
-                                    while working on personal projects.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item mb-8" data-aos="fade-up" data-aos-delay="200">
-                            <div class="glass p-6 rounded-lg">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                    <h3 class="text-xl font-bold text-cyber-cyan font-orbitron">Freelance Developer</h3>
-                                    <span class="text-sm text-gray-400">2023 - Present</span>
-                                </div>
-                                <p class="text-gray-300">
-                                    Started taking on freelance projects, building websites and applications for local 
-                                    businesses and startups. Gained valuable experience in client communication, 
-                                    project management, and real-world problem solving.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item mb-8" data-aos="fade-up" data-aos-delay="300">
-                            <div class="glass p-6 rounded-lg">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                    <h3 class="text-xl font-bold text-cyber-cyan font-orbitron">First Game Development Project</h3>
-                                    <span class="text-sm text-gray-400">2023</span>
-                                </div>
-                                <p class="text-gray-300">
-                                    Completed my first major game development project using Unreal Engine. This project 
-                                    sparked my passion for interactive media and 3D graphics programming.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item mb-8" data-aos="fade-up" data-aos-delay="400">
-                            <div class="glass p-6 rounded-lg">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                    <h3 class="text-xl font-bold text-cyber-cyan font-orbitron">Started Programming Journey</h3>
-                                    <span class="text-sm text-gray-400">2021</span>
-                                </div>
-                                <p class="text-gray-300">
-                                    Began learning programming with Python and JavaScript. Built my first web applications 
-                                    and discovered my passion for creating digital solutions.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <div id="timeline-section" class="mb-20">
+                    <h2 class="text-3xl md:text-4xl font-bold font-orbitron text-center mb-12 gradient-text" data-aos="fade-up"></h2>
+                    <div id="timeline-container" class="max-w-4xl mx-auto"></div>
                 </div>
                 
                 <!-- Education & Certifications -->
-                <div class="grid md:grid-cols-2 gap-12 mb-20">
+                <div id="education-certs-section" class="grid md:grid-cols-2 gap-12 mb-20">
                     <div data-aos="fade-right">
-                        <h2 class="text-3xl font-bold font-orbitron mb-8 gradient-text">Education</h2>
+                        <h2 id="education-title" class="text-3xl font-bold font-orbitron mb-8 gradient-text"></h2>
                         <div class="glass p-6 rounded-lg mb-6">
-                            <h3 class="text-xl font-bold text-cyber-cyan mb-2 font-orbitron">Bachelor of Software Engineering</h3>
-                            <p class="text-gray-400 mb-2">University of Birmingham | 2022 - 2026</p>
-                            <p class="text-gray-300">
-                                Comprehensive program covering software development, algorithms, data structures, 
-                                system design, and modern programming practices.
-                            </p>
+                            <h3 id="education-degree" class="text-xl font-bold text-cyber-cyan mb-2 font-orbitron"></h3>
+                            <p id="education-university" class="text-gray-400 mb-2"></p>
+                            <p id="education-description" class="text-gray-300"></p>
                         </div>
                     </div>
-                    
                     <div data-aos="fade-left">
-                        <h2 class="text-3xl font-bold font-orbitron mb-8 gradient-text">Certifications</h2>
-                        <div class="space-y-4">
-                            <div class="glass p-4 rounded-lg">
-                                <h4 class="font-bold text-cyber-cyan font-orbitron">Full Stack Web Development</h4>
-                                <p class="text-sm text-gray-400">FreeCodeCamp | 2023</p>
-                            </div>
-                            <div class="glass p-4 rounded-lg">
-                                <h4 class="font-bold text-cyber-cyan font-orbitron">Game Development with Unreal Engine</h4>
-                                <p class="text-sm text-gray-400">Udemy | 2023</p>
-                            </div>
-                            <div class="glass p-4 rounded-lg">
-                                <h4 class="font-bold text-cyber-cyan font-orbitron">JavaScript Algorithms & Data Structures</h4>
-                                <p class="text-sm text-gray-400">FreeCodeCamp | 2022</p>
-                            </div>
-                        </div>
+                        <h2 id="certs-title" class="text-3xl font-bold font-orbitron mb-8 gradient-text"></h2>
+                        <div id="certs-container" class="space-y-4"></div>
                     </div>
                 </div>
                 
                 <!-- Goals & Aspirations -->
-                <div class="text-center" data-aos="fade-up">
-                    <h2 class="text-3xl md:text-4xl font-bold font-orbitron mb-8 gradient-text">
-                        Goals & Aspirations
-                    </h2>
-                    <div class="grid md:grid-cols-3 gap-8 mb-12">
-                        <div class="glass p-6 rounded-lg">
-                            <div class="text-4xl mb-4 text-cyber-cyan">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-4 font-orbitron">Innovation</h3>
-                            <p class="text-gray-300">
-                                Push the boundaries of technology and create solutions that haven't been imagined yet.
-                            </p>
-                        </div>
-                        
-                        <div class="glass p-6 rounded-lg">
-                            <div class="text-4xl mb-4 text-cyber-red">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-4 font-orbitron">Impact</h3>
-                            <p class="text-gray-300">
-                                Build technology that makes a positive difference in people's lives and communities.
-                            </p>
-                        </div>
-                        
-                        <div class="glass p-6 rounded-lg">
-                            <div class="text-4xl mb-4 text-neon-pink">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-4 font-orbitron">Growth</h3>
-                            <p class="text-gray-300">
-                                Continuously learn and evolve with the rapidly changing technology landscape.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <!-- Resume Download -->
+                <div id="goals-section" class="text-center" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold font-orbitron mb-8 gradient-text"></h2>
+                    <div id="goals-container" class="grid md:grid-cols-3 gap-8 mb-12"></div>
                     <div class="mb-12">
-                        <a href="assets/documents/mathiya-resume.pdf" download class="neon-btn px-8 py-4 text-black font-semibold rounded-full font-orbitron">
-                            <i class="fas fa-download mr-2"></i>
-                            Download Resume
-                        </a>
+                        <a id="resume-button" href="#" download class="neon-btn px-8 py-4 text-black font-semibold rounded-full font-orbitron"></a>
                     </div>
                 </div>
             </div>
@@ -488,31 +301,16 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
-                    <p class="text-gray-400">© 2024 Mathiya. All rights reserved.</p>
+                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2"></div>
+                    <p id="footer-text" class="text-gray-400"></p>
                 </div>
-                
-                <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                </div>
+                <div id="footer-social-links" class="flex space-x-6"></div>
             </div>
         </div>
     </footer>
 
+    <script src="assets/js/renderer.js"></script>
     <script src="assets/js/main.js"></script>
-
-    <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="assets/js/slideshow.js"></script>
 </body>
