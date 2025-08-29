@@ -16,9 +16,16 @@
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Three.js for WebGL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Transitions -->
+    <link rel="stylesheet" href="assets/css/transitions.css">
+    <link rel="stylesheet" href="assets/css/theme-red.css">
     
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -311,6 +318,10 @@
             opacity: 1;
             transform: translateY(0);
         }
+        #profile-picture-container .is-hovered {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-out;
+        }
     </style>
 </head>
 
@@ -337,7 +348,7 @@
             <div class="flex justify-between items-center">
                 <!-- Enhanced Logo -->
                 <div class="text-2xl font-bold font-orbitron gradient-text">
-                    <a href="#" class="hover:scale-110 transition-transform duration-300"></a>
+                    <a href="index.html" class="hover:scale-110 transition-transform duration-300"></a>
                 </div>
 
                 <!-- Desktop Navigation -->
@@ -376,8 +387,9 @@
         </div>
     </nav>
 
-    <!-- Enhanced Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative">
+    <main id="main-content">
+        <!-- Enhanced Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center relative">
         <!-- Background Elements -->
         <div class="absolute inset-0 overflow-hidden">
             <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float" data-parallax="0.3"></div>
@@ -484,6 +496,7 @@
             <div id="contact-cta-buttons" class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400"></div>
         </div>
     </section>
+    </main>
 
     <!-- Enhanced Footer -->
     <footer class="py-12 border-t border-gray-800">
@@ -521,6 +534,9 @@
     <script src="assets/js/signature-loader.js"></script>
     <script src="assets/js/renderer.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/webgl.js"></script>
+    <!-- <script src="assets/js/router.js"></script> -->
+    <script src="assets/js/gamification.js"></script>
     <script>
         // Matrix Rain Effect
         function createMatrixRain() {

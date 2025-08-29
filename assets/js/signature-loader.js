@@ -30,15 +30,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const allPoints = Object.values(letterPaths).flat();
     
     class Particle {
-        constructor(x, y) {
+        constructor(x, y, color, size, life, velocity) {
             this.x = x;
             this.y = y;
-            this.size = Math.random() * 3 + 1;
-            this.life = Math.random() * 60 + 40;
+            this.size = size || Math.random() * 3.5 + 1;
+            this.life = life || Math.random() * 80 + 60;
             this.maxLife = this.life;
-            this.vx = (Math.random() - 0.5) * 2.5;
-            this.vy = (Math.random() - 0.5) * 2.5;
-            this.gravity = 0.05;
+            this.color = color || ['#00FFDE', '#FF3366', '#FF10F0'][Math.floor(Math.random() * 3)];
+            const angle = Math.random() * Math.PI * 2;
+            const speed = (Math.random() * 4 + 1) * (velocity || 1);
+            this.vx = Math.cos(angle) * speed;
+            this.vy = Math.sin(angle) * speed;
+            this.gravity = 0.08;
         }
         
         update() {
@@ -49,12 +52,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         draw() {
-            const alpha = this.life / this.maxLife;
+            const alpha = Math.pow(this.life / this.maxLife, 2);
             ctx.save();
-            ctx.globalAlpha = alpha * 0.8;
-            ctx.fillStyle = Math.random() < 0.1 ? '#FF3366' : '#00FFDE';
-            ctx.shadowColor = '#00FFDE';
-            ctx.shadowBlur = 10;
+            ctx.globalAlpha = alpha;
+            ctx.fillStyle = this.color;
+            ctx.shadowColor = this.color;
+            ctx.shadowBlur = 15;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
@@ -62,37 +65,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function drawGrid() {
-        ctx.save();
-        ctx.strokeStyle = 'rgba(0, 255, 222, 0.1)';
-        ctx.lineWidth = 0.5;
-        const gridSize = 20;
-        for (let x = 0; x < width; x += gridSize) {
-            ctx.beginPath();
-            ctx.moveTo(x, 0);
-            ctx.lineTo(x, height);
-            ctx.stroke();
+    function createBurst(x, y, count, color, size, life, velocity) {
+        for (let i = 0; i < count; i++) {
+            particles.push(new Particle(x, y, color, size, life, velocity));
         }
-        for (let y = 0; y < height; y += gridSize) {
-            ctx.beginPath();
-            ctx.moveTo(0, y);
-            ctx.lineTo(width, y);
-            ctx.stroke();
-        }
-        ctx.restore();
     }
-    
+
     function drawSignature() {
         ctx.clearRect(0, 0, width, height);
-        drawGrid();
         
-        if (allPoints.length > 0) {
+        if (allPoints.length > 0 && progress < 100) {
             ctx.strokeStyle = '#00FFDE';
-            ctx.lineWidth = 3;
+            ctx.lineWidth = 3.5;
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
             ctx.shadowColor = '#00FFDE';
-            ctx.shadowBlur = 15;
+            ctx.shadowBlur = 20;
             
             const pointsToDraw = Math.floor((progress / 100) * allPoints.length);
             
@@ -101,15 +89,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 ctx.moveTo(allPoints[0][0], allPoints[0][1]);
                 
                 for (let i = 1; i < pointsToDraw; i++) {
-                    ctx.lineTo(allPoints[i][0], allPoints[i][1]);
+                    const wobbleX = (Math.random() - 0.5) * 1.5;
+                    const wobbleY = (Math.random() - 0.5) * 1.5;
+                    ctx.lineTo(allPoints[i][0] + wobbleX, allPoints[i][1] + wobbleY);
                 }
                 ctx.stroke();
                 
-                if (pointsToDraw < allPoints.length) {
-                    const currentPoint = allPoints[pointsToDraw - 1];
-                    if (Math.random() < 0.6) { // Increased particle spawn rate
-                        particles.push(new Particle(currentPoint[0], currentPoint[1]));
-                    }
+                const currentPoint = allPoints[pointsToDraw - 1];
+                if (Math.random() < 0.8) {
+                    particles.push(new Particle(currentPoint[0], currentPoint[1]));
                 }
             }
         }
@@ -119,42 +107,34 @@ document.addEventListener('DOMContentLoaded', function() {
             particle.draw();
             return particle.life > 0;
         });
-        
-        if (allPoints.length > 0 && progress < 100) {
-            const currentIndex = Math.floor((progress / 100) * allPoints.length);
-            if (currentIndex < allPoints.length) {
-                const point = allPoints[currentIndex];
-                ctx.save();
-                ctx.fillStyle = '#FF3366';
-                ctx.shadowColor = '#FF3366';
-                ctx.shadowBlur = 20;
-                ctx.beginPath();
-                ctx.arc(point[0], point[1], 5, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            }
-        }
     }
     
+    let finalBurstDone = false;
     function animate() {
         drawSignature();
         
         if (progress < 100) {
-            // Slowed down the progress increment to extend duration
-            progress += 0.35;
+            progress += 0.5; // Slightly faster progress
             loadingProgress.style.width = progress + '%';
-            requestAnimationFrame(animate);
         } else {
-            // Animation finished, start fade out
+            if (!finalBurstDone) {
+                createBurst(width / 2, height / 2, 120, null, null, 100, 2.5);
+                finalBurstDone = true;
+            }
+        }
+
+        if (progress >= 100 && particles.length === 0) {
             if (loadingScreen.style.opacity !== '0') {
                 loadingScreen.style.opacity = '0';
                 loadingScreen.style.pointerEvents = 'none';
-                // After transition, hide it completely
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
-                }, 1500); // Wait for fade out transition to complete
+                }, 1000);
             }
+            return; // Stop the animation loop
         }
+
+        requestAnimationFrame(animate);
     }
     
     animate();

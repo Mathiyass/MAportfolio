@@ -1,6 +1,6 @@
 
 // Enhanced Main JavaScript file for portfolio
-document.addEventListener('DOMContentLoaded', function() {
+function initializeMain() {
     // Initialize all enhanced components
     initializeEnhancedCursor();
     initializeAdvancedNavigation();
@@ -287,6 +287,52 @@ function initializeEnhancedAnimations() {
             const speed = parseFloat(element.getAttribute('data-parallax')) || 0.5;
             const yPos = -(scrolled * speed);
             element.style.transform = `translateY(${yPos}px)`;
+        });
+    });
+
+    // Interactive Profile Picture
+    const profilePicContainer = document.getElementById('profile-picture-container');
+    if (profilePicContainer) {
+        const target = profilePicContainer.querySelector('.relative.w-80.h-80');
+        if (target) {
+            profilePicContainer.addEventListener('mouseenter', () => {
+                target.classList.add('is-hovered');
+            });
+            profilePicContainer.addEventListener('mouseleave', () => {
+                target.classList.remove('is-hovered');
+            });
+        }
+    }
+
+    // Add ripple effect to buttons - moved from slideshow.js
+    const buttons = document.querySelectorAll('button, .neon-btn');
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+                z-index: 1;
+            `;
+
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+
+            setTimeout(() => ripple.remove(), 600);
         });
     });
 }
@@ -989,3 +1035,6 @@ console.log(`
 ║                                                              ║
 ╚══════════════════════════════════════════════════════════════╝
             `, 'color: #00FFDE; font-family: monospace; line-height: 1.2;');
+
+document.addEventListener('DOMContentLoaded', initializeMain);
+document.addEventListener('page:load', initializeMain);

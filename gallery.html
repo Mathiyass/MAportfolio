@@ -11,9 +11,16 @@
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Three.js for WebGL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Transitions -->
+    <link rel="stylesheet" href="assets/css/transitions.css">
+    <link rel="stylesheet" href="assets/css/theme-red.css">
     
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -350,7 +357,7 @@
             </div>
         </div>
     </nav>
-
+    <main id="main-content">
     <!-- Hero Section -->
     <section class="pt-32 pb-20 relative overflow-hidden">
         <!-- Background Elements -->
@@ -486,6 +493,7 @@
         </div>
     </section>
 
+    </main>
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
@@ -530,6 +538,9 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/webgl.js"></script>
+    <script src="assets/js/router.js"></script>
+    <script src="assets/js/gamification.js"></script>
     <script src="assets/js/gallery.js"></script>
 </body>
 </html>

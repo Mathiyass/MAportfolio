@@ -1,5 +1,5 @@
 // Skills page functionality
-document.addEventListener('DOMContentLoaded', function() {
+function initializeSkillsPage() {
     // Initialize AOS
     AOS.init({
         duration: 1000,
@@ -167,4 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Start particle animation
     createSkillParticles();
-});
+}
+
+document.addEventListener('DOMContentLoaded', initializeSkillsPage);
+document.addEventListener('page:load', initializeSkillsPage);

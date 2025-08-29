@@ -104,6 +104,33 @@ document.addEventListener('DOMContentLoaded', function() {
             };
         });
 
+        // Collect Skills Page Data
+        const skillsContent = db.pages.skills;
+        skillsContent.hero.title = document.getElementById('skills-hero-title').value;
+        skillsContent.hero.subtitle = document.getElementById('skills-hero-subtitle').value;
+
+        const skillsCategories = document.querySelectorAll('#skills-categories-container > .glass');
+        if (skillsCategories.length > 0) {
+            skillsContent.categories = Array.from(skillsCategories).map((catDiv, index) => {
+                const originalCategory = db.pages.skills.categories[index] || { skills: [] };
+                const skillRows = catDiv.querySelectorAll('.grid.grid-cols-3');
+                const skillsData = Array.from(skillRows).slice(1).map(skillRow => { // slice(1) to skip header
+                    const inputs = skillRow.querySelectorAll('input');
+                    return {
+                        name: inputs[0].value,
+                        level: parseInt(inputs[1].value, 10),
+                        icon: inputs[2].value,
+                        color: originalCategory.skills.find(s => s.name === inputs[0].value)?.color || 'text-cyber-cyan' // preserve color
+                    };
+                });
+                return {
+                    title: catDiv.querySelector('h4').textContent,
+                    display: originalCategory.display,
+                    skills: skillsData
+                };
+            });
+        }
+
         showNotification('Content saved to current session!');
     });
 
@@ -243,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('home-hero-titles').value = (homeContent.hero.titles || []).join(', ');
             document.getElementById('home-hero-bio').value = homeContent.hero.bio || '';
         }
-        
+
         // Future steps will populate other tabs here.
         loadAboutContent();
         loadSkillsContent();

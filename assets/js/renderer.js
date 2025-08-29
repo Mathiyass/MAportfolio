@@ -1,7 +1,10 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initializeRenderer() {
     console.log('Renderer script preparing to load content.');
     loadContent();
-});
+}
+
+document.addEventListener('DOMContentLoaded', initializeRenderer);
+document.addEventListener('page:load', initializeRenderer);
 
 async function loadContent() {
     try {
