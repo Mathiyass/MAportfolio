@@ -400,67 +400,7 @@ function initializeEnhancedScrollEffects() {
 
 // Advanced Typing Effect
 function initializeAdvancedTypingEffect() {
-    const typingTexts = [
-        "Software Engineering Student 🎓",
-        "Full Stack Developer 💻",
-        "Tech Enthusiast 🌟",
-        "Problem Solver 🧩",
-        "Innovation Seeker 🚀",
-        "Code Craftsman ⚡",
-        "Digital Creator 🎨",
-        "UI/UX Designer 🎨",
-        "Game Developer 🎮",
-        "Open Source Contributor 🌍"
-    ];
-
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let isTypingPaused = false;
-    const typingElement = document.getElementById('typing-text');
-
-    if (typingElement) {
-        function typeEffect() {
-            if (isTypingPaused) {
-                setTimeout(typeEffect, 100);
-                return;
-            }
-
-            const currentText = typingTexts[textIndex];
-
-            if (isDeleting) {
-                typingElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = isDeleting ? 50 : 100;
-
-            if (!isDeleting && charIndex === currentText.length) {
-                typeSpeed = 2500; // Pause at end
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % typingTexts.length;
-                typeSpeed = 500; // Pause before next text
-            }
-
-            setTimeout(typeEffect, typeSpeed);
-        }
-
-        // Add typing sound effect simulation
-        typingElement.addEventListener('DOMSubtreeModified', function() {
-            // Create subtle visual feedback
-            this.style.textShadow = '0 0 10px #00FFDE';
-            setTimeout(() => {
-                this.style.textShadow = '';
-            }, 100);
-        });
-
-        typeEffect();
-    }
+    // This function is now empty as the typing effect is handled by Typed.js in animations.js
 }
 
 // Enhanced Forms with validation
