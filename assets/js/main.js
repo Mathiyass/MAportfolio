@@ -1,4 +1,3 @@
-
 // Enhanced Main JavaScript file for portfolio
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all enhanced components
@@ -7,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeEnhancedAnimations();
     initializeAdvancedTheme();
     initializeEnhancedScrollEffects();
-    initializeAdvancedTypingEffect();
     initializeEnhancedForms();
     initializeAdvancedInteractiveElements();
     initializePerformanceOptimization();
@@ -15,6 +13,22 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeEasterEgg();
     initializeMusicToggle();
 });
+
+// Global function called by loader
+window.startMainContentAnimation = function() {
+    // Re-initialize AOS
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100,
+            easing: 'ease-out-cubic'
+        });
+    }
+
+    // Any other start-up logic that should wait for loader
+    console.log("Main content animation started");
+};
 
 // Music Toggle
 function initializeMusicToggle() {

@@ -152,7 +152,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 // After transition, hide it completely
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
-                }, 1500); // Wait for fade out transition to complete
+                    // Signal that main content can animate
+                    if (window.startMainContentAnimation) {
+                        window.startMainContentAnimation();
+                    } else {
+                        // Fallback if main.js isn't ready or function is missing
+                        document.body.classList.remove('overflow-hidden');
+                        if (typeof AOS !== 'undefined') {
+                            AOS.init();
+                        }
+                    }
+                }, 1500);
             }
         }
     }

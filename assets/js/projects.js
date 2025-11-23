@@ -10,69 +10,94 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
-    const modal = document.getElementById('project-modal');
-    const closeModalBtn = document.getElementById('close-modal');
 
     // --- Project Filtering Logic ---
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filter = this.dataset.filter;
+    if (filterButtons.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = this.dataset.filter;
 
-            // Update active state on buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
+                // Update active state on buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
 
-            // Show/hide project cards based on filter
-            projectCards.forEach(card => {
-                if (filter === 'all' || card.dataset.category === filter) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+                // Show/hide project cards based on filter
+                projectCards.forEach(card => {
+                    const category = card.dataset.category;
+                    // Reset animation
+                    card.style.animation = 'none';
+                    card.offsetHeight; /* trigger reflow */
+                    card.style.animation = null;
+
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                        // Add fade in effect
+                        card.classList.add('aos-animate');
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             });
         });
-    });
+    }
 
     // --- Project Modal Logic ---
     projectCards.forEach(card => {
         // Find the "Live Demo" or equivalent button to attach the main click listener
-        const previewButton = card.querySelector('a:first-of-type'); // Assuming the first link is the preview
+        // In the new structure, usually the buttons are inside .p-6
+        const demoBtn = card.querySelector('a:first-child');
 
-        if (previewButton) {
-            previewButton.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent the link from navigating
-                
-                // Extract data from the card
-                const title = card.querySelector('h3').innerText;
-                const description = card.querySelector('p').innerText;
-                const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.outerHTML).join('');
-                
-                // Create the content for the modal
-                const modalContentHtml = `
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <div class="w-full h-64 bg-gradient-to-br from-cyber-cyan to-cyber-red rounded-lg mb-6 flex items-center justify-center">
-                                ${card.querySelector('.relative.overflow-hidden').innerHTML}
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-gray-300 mb-6 leading-relaxed">${description}</p>
-                            <h3 class="text-xl font-bold mb-3 text-cyber-cyan font-orbitron">Technologies Used</h3>
-                            <div class="flex flex-wrap gap-2">${tags}</div>
-                        </div>
-                    </div>
-                `;
+        // We only want to trigger modal if it's intended.
+        // For now, let's make the card title clickable or add a specific 'details' button if needed.
+        // Or keep the behavior that "Live Demo" opens modal? Actually "Live Demo" should go to link.
+        // The previous code intercepted "Live Demo". Let's change it so the CARD IMAGE triggers modal?
 
-                // Use the global showModal function from main.js
-                if (typeof showModal === 'function') {
-                    showModal(title, modalContentHtml);
-                } else {
-                    // Fallback if main.js modal is not available for some reason
-                    console.error('showModal function not found. Make sure main.js is loaded.');
-                }
+        const cardImage = card.querySelector('.relative.overflow-hidden');
+        if (cardImage) {
+            cardImage.style.cursor = 'pointer';
+            cardImage.addEventListener('click', () => {
+                openProjectModal(card);
             });
         }
     });
 
-    // This implementation uses the generic modal from main.js, so no need for separate close listeners here.
+    function openProjectModal(card) {
+        const title = card.querySelector('h3').innerText;
+        const description = card.querySelector('p').innerText;
+        const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.outerHTML).join('');
+        const imageContent = card.querySelector('.relative.overflow-hidden').innerHTML;
+
+        const modalContentHtml = `
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <div class="w-full h-64 bg-gradient-to-br from-cyber-cyan to-cyber-red rounded-lg mb-6 flex items-center justify-center overflow-hidden">
+                        ${imageContent}
+                    </div>
+                </div>
+                <div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">${description}</p>
+                    <p class="text-gray-400 mb-6">
+                        This is a detailed view of the project. Here you would typically see more in-depth information about the challenges faced, solutions implemented, and the impact of the project.
+                    </p>
+                    <h3 class="text-xl font-bold mb-3 text-cyber-cyan font-orbitron">Technologies Used</h3>
+                    <div class="flex flex-wrap gap-2 mb-6">${tags}</div>
+
+                    <div class="flex gap-4">
+                        <a href="#" class="bg-cyber-cyan text-black py-2 px-6 rounded-lg font-bold hover:bg-opacity-80 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i> Visit Live
+                        </a>
+                        <a href="#" class="border-2 border-cyber-cyan text-cyber-cyan py-2 px-6 rounded-lg font-bold hover:bg-cyber-cyan hover:text-black transition-colors">
+                            <i class="fab fa-github mr-2"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        if (typeof showModal === 'function') {
+            showModal(title, modalContentHtml);
+        } else {
+            console.error('showModal function not found. Make sure main.js is loaded.');
+        }
+    }
 });
