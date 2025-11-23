@@ -263,6 +263,16 @@ body {
     animation: glitch-anim-2 2s infinite linear alternate-reverse;
 }
 
+/* Mega Menu Styles */
+#mega-menu-wrapper {
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(0, 255, 222, 0.1);
+}
+
+.mega-menu-container {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 @keyframes glitch-anim-1 {
     0% { clip: rect(42px, 9999px, 44px, 0); }
     5% { clip: rect(12px, 9999px, 60px, 0); }
