@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog | MATHIYA</title>
-    <meta name="description" content="Thoughts, insights, and tutorials about web development, technology trends, and programming from Mathiya Angirasa.">
-    <meta name="keywords" content="Mathiya, Blog, Web Development, Software Engineering, Tech">
-    <meta property="og:title" content="Blog | MATHIYA">
-    <meta property="og:description" content="Thoughts, insights, and tutorials about web development, technology trends, and programming from Mathiya Angirasa.">
-    <meta property="og:type" content="website">
+    <meta name="description" content="Thoughts, tutorials, and insights on software engineering, web development, and technology.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
@@ -19,13 +15,16 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -44,135 +43,16 @@
                         'dark-card': '#1a1a2e',
                         'dark-accent': '#16213e',
                     },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
-                        'text-shimmer': 'textShimmer 3s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        'float': {
-                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
-                        },
-                        'glowPulse': {
-                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 222, 0.5)' },
-                            '100%': { boxShadow: '0 0 40px rgba(0, 255, 222, 1), 0 0 60px rgba(255, 51, 102, 0.5)' },
-                        },
-                        'textShimmer': {
-                            '0%, 100%': { backgroundPosition: '0% 50%' },
-                            '50%': { backgroundPosition: '100% 50%' },
-                        },
-                    },
                 }
             }
         }
     </script>
-    
-    <style>
-        body { 
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            cursor: none;
-            overflow-x: hidden;
-        }
-
-        /* Enhanced Custom Cursor */
-        .custom-cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #00FFDE;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.1s ease;
-            mix-blend-mode: difference;
-        }
-
-        .cursor-dot {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: #00FFDE;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            transition: all 0.15s ease;
-        }
-
-        .cursor-hover {
-            transform: scale(2.5);
-            background: rgba(0, 255, 222, 0.2);
-            box-shadow: 0 0 30px rgba(0, 255, 222, 0.8);
-        }
-
-        /* Enhanced Glassmorphism */
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Enhanced Gradient Text */
-        .gradient-text {
-            background: linear-gradient(135deg, #00FFDE, #FF3366, #FF10F0, #0080FF);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textShimmer 3s ease-in-out infinite;
-        }
-        
-        /* Mobile Menu Enhancement */
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
-
-        /* Scroll Progress Bar */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, #00FFDE, #FF3366);
-            z-index: 9999;
-            transition: width 0.3s ease;
-        }
-        
-        /* Advanced Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1a1a2e;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #00FFDE, #FF3366);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #FF3366, #00FFDE);
-        }
-    </style>
 </head>
 
 <body class="dark text-white">
-    <!-- Enhanced Custom Cursor -->
+    <!-- Custom Cursor -->
     <div class="custom-cursor" id="custom-cursor"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
-
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scroll-progress"></div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
@@ -182,95 +62,132 @@
                     <a href="index.html" class="hover:scale-110 transition-transform duration-300">MATHIYA</a>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">Home<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span></a>
-                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">About<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span></a>
-                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">Projects<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span></a>
-                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">Skills<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span></a>
-                    <a href="socials.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">Socials<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span></a>
-                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">Contact<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span></a>
-                    <a href="gallery.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">Gallery<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span></a>
+                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors">Home</a>
+                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors">About</a>
+                    <a href="blog.html" class="nav-link text-cyber-cyan font-medium transition-colors">Blog</a>
+                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors">Projects</a>
                 </div>
-                <div class="hidden md:flex items-center space-x-4">
-                    <button id="music-toggle" class="p-2 rounded-lg glass hover:scale-110 transition-transform"><i class="fas fa-volume-mute text-cyber-cyan"></i></button>
-                    <button id="theme-toggle" class="p-2 rounded-lg glass hover:scale-110 transition-transform"><i class="fas fa-moon text-cyber-cyan"></i></button>
-                </div>
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass"><i class="fas fa-bars text-cyber-cyan"></i></button>
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass" aria-label="Open Mobile Menu">
+                    <i class="fas fa-bars text-cyber-cyan"></i>
+                </button>
             </div>
         </div>
+
         <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
             <div class="p-6">
-                <button id="close-menu" class="float-right text-2xl text-cyber-cyan hover:rotate-90 transition-transform"><i class="fas fa-times"></i></button>
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan hover:rotate-90 transition-transform" aria-label="Close Mobile Menu">
+                    <i class="fas fa-times"></i>
+                </button>
                 <div class="clear-both mt-8 space-y-6">
-                    <a href="index.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Home</a>
-                    <a href="about.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">About</a>
-                    <a href="projects.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Projects</a>
-                    <a href="skills.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Skills</a>
-                    <a href="socials.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Socials</a>
-                    <a href="contact.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Contact</a>
-                    <a href="gallery.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Gallery</a>
+                    <a href="index.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300">Home</a>
+                    <a href="blog.html" class="block text-xl font-orbitron text-cyber-cyan transition-all duration-300">Blog</a>
+                    <a href="projects.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300">Projects</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main>
-        <section class="pt-32 pb-20 relative overflow-hidden">
-            <div class="absolute inset-0">
-                <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
-                <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
-            </div>
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up">Blog</h1>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">Thoughts, insights, and tutorials about web development, technology, and more.</p>
-            </div>
-        </section>
+    <!-- Header -->
+    <section class="pt-32 pb-12 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-down">
+            Tech Insights
+        </h1>
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+            Exploring the frontiers of code, design, and digital innovation.
+        </p>
+    </section>
 
-        <section class="py-20">
-            <div class="container mx-auto px-6 text-center">
-                <div class="glass p-12 rounded-2xl max-w-3xl mx-auto" data-aos="fade-up">
-                    <i class="fas fa-rocket text-5xl text-cyber-cyan mb-6 animate-pulse"></i>
-                    <h2 class="text-3xl font-bold font-orbitron mb-4 gradient-text">Coming Soon!</h2>
-                    <p class="text-lg text-gray-300">
-                        I'm currently working on some exciting articles and tutorials. Stay tuned for updates!
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Enhanced Footer -->
-    <footer class="py-12 border-t border-gray-800">
+    <!-- Blog Grid -->
+    <section class="py-12 min-h-screen">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
-                    <p class="text-gray-400">© <span id="current-year">2024</span> Mathiya Angirasa. All rights reserved.</p>
-                </div>
-                <div class="flex items-center justify-center md:justify-end flex-wrap gap-x-5 gap-y-3">
-                    <a href="https://github.com/Mathiyass" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/Mathiya" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://discord.gg/QERP5JJM8k" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Discord"><i class="fab fa-discord"></i></a>
-                    <a href="https://wa.me/94715921984" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Article 1 -->
+                <article class="glass rounded-2xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-gradient-to-br from-purple-900 to-indigo-900 flex items-center justify-center">
+                        <i class="fas fa-brain text-5xl text-cyber-cyan"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-400 mb-2">
+                            <span class="mr-3"><i class="far fa-calendar-alt mr-1"></i> Oct 15, 2023</span>
+                            <span><i class="fas fa-tag mr-1"></i> AI & ML</span>
+                        </div>
+                        <h2 class="text-xl font-bold font-orbitron mb-3 hover:text-cyber-cyan transition-colors">
+                            <a href="#">The Future of AI in Web Development</a>
+                        </h2>
+                        <p class="text-gray-300 mb-4 line-clamp-3">
+                            How artificial intelligence is reshaping the way we build and interact with the web. From code generation to personalized user experiences.
+                        </p>
+                        <a href="#" class="text-neon-pink hover:text-cyber-cyan font-bold transition-colors">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="glass rounded-2xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
+                        <i class="fas fa-cube text-5xl text-neon-pink"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-400 mb-2">
+                            <span class="mr-3"><i class="far fa-calendar-alt mr-1"></i> Sep 28, 2023</span>
+                            <span><i class="fas fa-tag mr-1"></i> Three.js</span>
+                        </div>
+                        <h2 class="text-xl font-bold font-orbitron mb-3 hover:text-cyber-cyan transition-colors">
+                            <a href="#">Creating Immersive 3D Web Experiences</a>
+                        </h2>
+                        <p class="text-gray-300 mb-4 line-clamp-3">
+                            A deep dive into Three.js and WebGL. Learn how to bring your website to life with interactive 3D elements and particle systems.
+                        </p>
+                        <a href="#" class="text-neon-pink hover:text-cyber-cyan font-bold transition-colors">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="glass rounded-2xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 bg-gradient-to-br from-blue-900 to-cyan-900 flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-5xl text-cyber-red"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-400 mb-2">
+                            <span class="mr-3"><i class="far fa-calendar-alt mr-1"></i> Aug 10, 2023</span>
+                            <span><i class="fas fa-tag mr-1"></i> Security</span>
+                        </div>
+                        <h2 class="text-xl font-bold font-orbitron mb-3 hover:text-cyber-cyan transition-colors">
+                            <a href="#">Web Security Best Practices for 2024</a>
+                        </h2>
+                        <p class="text-gray-300 mb-4 line-clamp-3">
+                            Essential security tips for modern web applications. Protecting user data, preventing XSS, and securing APIs.
+                        </p>
+                        <a href="#" class="text-neon-pink hover:text-cyber-cyan font-bold transition-colors">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </article>
+
             </div>
+
+            <!-- Pagination (Visual only for now) -->
+            <div class="flex justify-center mt-12">
+                <nav class="flex space-x-2">
+                    <a href="#" class="px-4 py-2 glass rounded hover:bg-cyber-cyan hover:text-black transition-colors">1</a>
+                    <a href="#" class="px-4 py-2 glass rounded hover:bg-cyber-cyan hover:text-black transition-colors">2</a>
+                    <a href="#" class="px-4 py-2 glass rounded hover:bg-cyber-cyan hover:text-black transition-colors">3</a>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+             <p class="text-gray-400">© 2024 Mathiya. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="assets/js/main.js"></script>
     <script>
-        // Initialize AOS
         AOS.init({
             duration: 1000,
-            once: true,
-            offset: 100
+            once: true
         });
-
-        // Update current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>

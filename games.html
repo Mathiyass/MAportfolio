@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade | MATHIYA</title>
+    <meta name="description" content="Play interactive mini-games on Mathiya's portfolio. Snake, Tic-Tac-Toe, and more!">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'orbitron': ['Orbitron', 'monospace'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'cyber-cyan': '#00FFDE',
+                        'cyber-red': '#FF3366',
+                        'neon-pink': '#FF10F0',
+                        'electric-blue': '#0080FF',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#1a1a2e',
+                        'dark-accent': '#16213e',
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .game-canvas {
+            background-color: #000;
+            border: 2px solid #00FFDE;
+            box-shadow: 0 0 20px rgba(0, 255, 222, 0.5);
+            margin: 0 auto;
+            display: block;
+        }
+        .game-btn {
+            background: linear-gradient(45deg, #00FFDE, #0080FF);
+            color: #000;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-family: 'Orbitron', monospace;
+            transition: all 0.3s ease;
+        }
+        .game-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #00FFDE;
+        }
+    </style>
+</head>
+
+<body class="dark text-white">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold font-orbitron gradient-text">
+                    <a href="index.html" class="hover:scale-110 transition-transform duration-300">MATHIYA</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link hover:text-cyber-cyan transition-colors">Home</a>
+                    <a href="games.html" class="nav-link text-cyber-cyan font-medium transition-colors">Arcade</a>
+                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors">Projects</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass" aria-label="Open Mobile Menu">
+                    <i class="fas fa-bars text-cyber-cyan"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Basic Implementation for now) -->
+        <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
+            <div class="p-6">
+                <button id="close-menu" class="float-right text-2xl text-cyber-cyan hover:rotate-90 transition-transform" aria-label="Close Mobile Menu">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="clear-both mt-8 space-y-6">
+                    <a href="index.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300">Home</a>
+                    <a href="games.html" class="block text-xl font-orbitron text-cyber-cyan transition-all duration-300">Arcade</a>
+                    <a href="projects.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300">Projects</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Games Section -->
+    <section class="pt-32 pb-20 min-h-screen">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text">
+                Cyber Arcade
+            </h1>
+            <p class="text-gray-300 mb-12">Take a break and test your skills.</p>
+
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Snake Game Card -->
+                <div class="glass p-8 rounded-2xl">
+                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-cyber-cyan">Neon Snake</h2>
+                    <div class="mb-4">
+                        <canvas id="snakeCanvas" width="300" height="300" class="game-canvas"></canvas>
+                    </div>
+                    <div class="flex justify-between items-center mb-4 px-8">
+                        <div class="text-xl font-orbitron">Score: <span id="snake-score" class="text-cyber-cyan">0</span></div>
+                        <div class="text-sm text-gray-400">High Score: <span id="snake-highscore">0</span></div>
+                    </div>
+                    <button id="start-snake-btn" class="game-btn">Start Game</button>
+                    <p class="mt-4 text-sm text-gray-400">Use Arrow Keys to move</p>
+                </div>
+
+                <!-- Tic Tac Toe Card -->
+                <div class="glass p-8 rounded-2xl">
+                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-neon-pink">Tic-Tac-Toe AI</h2>
+                    <div id="tictactoe-board" class="grid grid-cols-3 gap-2 w-64 mx-auto mb-6">
+                        <!-- Cells generated by JS -->
+                    </div>
+                    <div class="flex justify-between items-center mb-4 px-8">
+                         <div class="text-xl font-orbitron" id="ttt-status">Your Turn (X)</div>
+                    </div>
+                    <button id="reset-ttt-btn" class="game-btn" style="background: linear-gradient(45deg, #FF10F0, #FF3366);">Reset Game</button>
+                </div>
+
+                <!-- Typing Speed Test -->
+                <div class="glass p-8 rounded-2xl md:col-span-2">
+                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-electric-blue">Dev Speed Typer</h2>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold mb-6 text-white" id="word-display">Loading...</div>
+                        <input type="text" id="typing-input" class="bg-dark-bg border-2 border-electric-blue rounded-lg px-4 py-2 text-white text-center text-xl mb-6 focus:outline-none focus:shadow-lg" placeholder="Type the word...">
+
+                        <div class="flex justify-center gap-12 mb-6">
+                            <div>
+                                <div class="text-sm text-gray-400">Time</div>
+                                <div class="text-2xl font-orbitron text-electric-blue" id="typing-time">60</div>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-400">Score</div>
+                                <div class="text-2xl font-orbitron text-electric-blue" id="typing-score">0</div>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-400">WPM</div>
+                                <div class="text-2xl font-orbitron text-electric-blue" id="typing-wpm">0</div>
+                            </div>
+                        </div>
+
+                        <button id="restart-typing-btn" class="game-btn" style="background: linear-gradient(45deg, #0080FF, #00FFDE);">Restart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+             <p class="text-gray-400">© 2024 Mathiya. Arcade Mode.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/games/snake.js"></script>
+    <script src="assets/js/games/tictactoe.js"></script>
+    <script src="assets/js/games/typing.js"></script>
+</body>
+</html>

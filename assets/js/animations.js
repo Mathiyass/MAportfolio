@@ -1,52 +1,123 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Three.js 3D Background
+    // Three.js 3D Background - Enhanced to Geometric Shapes / Neural Network vibe
     if (typeof THREE !== 'undefined') {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('three-js-container').appendChild(renderer.domElement);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 
-        const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ffde, wireframe: true });
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
-
-        camera.position.z = 5;
-
-        function animate() {
-            requestAnimationFrame(animate);
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
+        const container = document.getElementById('three-js-container');
+        if (container) {
             renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-        });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            // Create a group for the objects
+            const group = new THREE.Group();
+            scene.add(group);
+
+            // Create multiple icosahedrons
+            const geometry = new THREE.IcosahedronGeometry(1, 1);
+            const material = new THREE.MeshBasicMaterial({
+                color: 0x00FFDE,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.3
+            });
+
+            // Add scattered geometric shapes
+            for (let i = 0; i < 20; i++) {
+                const mesh = new THREE.Mesh(geometry, material);
+                mesh.position.x = (Math.random() - 0.5) * 20;
+                mesh.position.y = (Math.random() - 0.5) * 20;
+                mesh.position.z = (Math.random() - 0.5) * 10;
+                mesh.rotation.x = Math.random() * Math.PI;
+                mesh.rotation.y = Math.random() * Math.PI;
+                const scale = Math.random();
+                mesh.scale.set(scale, scale, scale);
+                group.add(mesh);
+            }
+
+            // Add a central larger shape
+            const mainGeometry = new THREE.IcosahedronGeometry(2, 2);
+            const mainMaterial = new THREE.MeshBasicMaterial({
+                color: 0xFF3366,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.15
+            });
+            const mainMesh = new THREE.Mesh(mainGeometry, mainMaterial);
+            group.add(mainMesh);
+
+            camera.position.z = 10;
+
+            // Mouse interaction
+            let mouseX = 0;
+            let mouseY = 0;
+            let targetX = 0;
+            let targetY = 0;
+
+            const windowHalfX = window.innerWidth / 2;
+            const windowHalfY = window.innerHeight / 2;
+
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX - windowHalfX);
+                mouseY = (event.clientY - windowHalfY);
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                targetX = mouseX * 0.001;
+                targetY = mouseY * 0.001;
+
+                group.rotation.y += 0.05 * (targetX - group.rotation.y);
+                group.rotation.x += 0.05 * (targetY - group.rotation.x);
+
+                // Continuous slow rotation
+                group.rotation.z += 0.001;
+
+                // Pulse effect for individual meshes
+                group.children.forEach((child, i) => {
+                    child.rotation.x += 0.005 * (i % 2 === 0 ? 1 : -1);
+                    child.rotation.y += 0.005;
+                });
+
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+                renderer.setSize(width, height);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+            });
+        }
     }
 
-    if (typeof particlesJS !== 'undefined') {
+    if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
         particlesJS('particles-js', {
             "particles": {
                 "number": {
-                    "value": 250,
+                    "value": 100,
                     "density": {
                         "enable": true,
                         "value_area": 800
                     }
                 },
                 "color": {
-                    "value": "#00FFDE"
+                    "value": ["#00FFDE", "#FF3366", "#FF10F0"]
                 },
                 "shape": {
-                    "type": "circle"
+                    "type": ["circle", "triangle"],
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
                 },
                 "opacity": {
-                    "value": 0.8,
+                    "value": 0.5,
                     "random": true,
                     "anim": {
                         "enable": true,
@@ -59,15 +130,22 @@ document.addEventListener('DOMContentLoaded', function () {
                     "value": 3,
                     "random": true,
                     "anim": {
-                        "enable": false
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.1,
+                        "sync": false
                     }
                 },
                 "line_linked": {
-                    "enable": false
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#00FFDE",
+                    "opacity": 0.2,
+                    "width": 1
                 },
                 "move": {
                     "enable": true,
-                    "speed": 2,
+                    "speed": 1.5,
                     "direction": "none",
                     "random": true,
                     "straight": false,
@@ -85,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 "events": {
                     "onhover": {
                         "enable": true,
-                        "mode": "bubble"
+                        "mode": "grab"
                     },
                     "onclick": {
                         "enable": true,
@@ -94,12 +172,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     "resize": true
                 },
                 "modes": {
-                    "bubble": {
-                        "distance": 100,
-                        "size": 5,
-                        "duration": 2,
-                        "opacity": 8,
-                        "speed": 3
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 0.6
+                        }
                     },
                     "push": {
                         "particles_nb": 4
@@ -108,27 +185,22 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             "retina_detect": true
         });
-
-        const pJS = window.pJSDom[0].pJS;
-        document.body.addEventListener('mousemove', function (e) {
-            pJS.interactivity.mouse.pos_x = e.clientX;
-            pJS.interactivity.mouse.pos_y = e.clientY;
-        });
     }
 
     // Typed.js Animation
-    if (typeof Typed !== 'undefined') {
+    if (typeof Typed !== 'undefined' && document.getElementById('typing-text')) {
         const options = {
             strings: [
                 "Software Engineering Student.",
                 "Full Stack Developer.",
                 "Tech Enthusiast.",
                 "Problem Solver.",
-                "Innovation Seeker."
+                "Innovation Seeker.",
+                "Creative Coder."
             ],
             typeSpeed: 50,
-            backSpeed: 25,
-            backDelay: 1500,
+            backSpeed: 30,
+            backDelay: 2000,
             startDelay: 500,
             loop: true,
             showCursor: true,
@@ -143,16 +215,32 @@ document.addEventListener('DOMContentLoaded', function () {
     if (glitchElement) {
         setInterval(() => {
             glitchElement.classList.toggle('glitch-active');
-        }, Math.random() * 4000 + 1000);
+        }, Math.random() * 3000 + 2000);
     }
 
-    // Parallax Scrolling
+    // Parallax Scrolling - Refined
     window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
         const parallaxElements = document.querySelectorAll('[data-parallax]');
-        parallaxElements.forEach(el => {
-            const speed = parseFloat(el.getAttribute('data-parallax'));
-            const yPos = -(window.pageYOffset * speed);
-            el.style.transform = `translateY(${yPos}px)`;
+
+        requestAnimationFrame(() => {
+            parallaxElements.forEach(el => {
+                const speed = parseFloat(el.getAttribute('data-parallax'));
+                const yPos = -(scrolled * speed);
+                el.style.transform = `translate3d(0, ${yPos}px, 0)`;
+            });
         });
     });
+
+    // Reveal on Scroll (Custom, in addition to AOS)
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
 });
