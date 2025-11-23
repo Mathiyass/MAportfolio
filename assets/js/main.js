@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAccessibilityFeatures();
     initializeEasterEgg();
     initializeMusicToggle();
+
+    // Initialize Global Modules
+    import('./components/widgets/CommandPalette.js').then(module => {
+        new module.CommandPalette();
+    });
 });
 
 // Global function called by loader

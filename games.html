@@ -1,156 +1,221 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcade | MATHIYA</title>
-    <meta name="description" content="Play interactive mini-games on Mathiya's portfolio. Snake, Tic-Tac-Toe, and more!">
+    <title>Arcade | Mathiya's Portfolio</title>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Custom CSS -->
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'orbitron': ['Orbitron', 'monospace'],
-                        'inter': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'cyber-cyan': '#00FFDE',
-                        'cyber-red': '#FF3366',
-                        'neon-pink': '#FF10F0',
-                        'electric-blue': '#0080FF',
-                        'dark-bg': '#0a0a0a',
-                        'dark-card': '#1a1a2e',
-                        'dark-accent': '#16213e',
-                    },
-                }
-            }
-        }
-    </script>
-
-    <style>
-        .game-canvas {
-            background-color: #000;
-            border: 2px solid #00FFDE;
-            box-shadow: 0 0 20px rgba(0, 255, 222, 0.5);
-            margin: 0 auto;
-            display: block;
-        }
-        .game-btn {
-            background: linear-gradient(45deg, #00FFDE, #0080FF);
-            color: #000;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-family: 'Orbitron', monospace;
-            transition: all 0.3s ease;
-        }
-        .game-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px #00FFDE;
-        }
-    </style>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+<body class="bg-black text-white overflow-x-hidden">
 
-<body class="dark text-white">
-    <!-- Custom Cursor -->
-    <div class="custom-cursor" id="custom-cursor"></div>
-    <div class="cursor-dot" id="cursor-dot"></div>
-
-    <!-- Navigation (Injected by JS) -->
+    <!-- Navbar Container -->
     <div id="navbar-container"></div>
 
-    <!-- Games Section -->
-    <section class="pt-32 pb-20 min-h-screen">
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text">
-                Cyber Arcade
+    <!-- Main Content -->
+    <main class="pt-24 min-h-screen">
+
+        <!-- Arcade Header -->
+        <section class="container mx-auto px-6 py-12 text-center">
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 font-orbitron gradient-text" data-aos="fade-down">
+                ARCADE CENTER
             </h1>
-            <p class="text-gray-300 mb-12">Take a break and test your skills.</p>
+            <p class="text-gray-400 text-xl max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Experience retro gaming reimagined. Compete for the high score in our neon-infused arcade collection.
+            </p>
+        </section>
 
-            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <!-- Game Selection Grid -->
+        <section class="container mx-auto px-6 pb-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
                 <!-- Snake Game Card -->
-                <div class="glass p-8 rounded-2xl">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-cyber-cyan">Neon Snake</h2>
-                    <div class="mb-4">
-                        <canvas id="snakeCanvas" width="300" height="300" class="game-canvas"></canvas>
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                        <div class="text-xl font-orbitron">Score: <span id="snake-score" class="text-cyber-cyan">0</span></div>
-                        <div class="text-sm text-gray-400">High Score: <span id="snake-highscore">0</span></div>
-                    </div>
-                    <button id="start-snake-btn" class="game-btn">Start Game</button>
-                    <p class="mt-4 text-sm text-gray-400">Use Arrow Keys to move</p>
-                </div>
-
-                <!-- Tic Tac Toe Card -->
-                <div class="glass p-8 rounded-2xl">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-neon-pink">Tic-Tac-Toe AI</h2>
-                    <div id="tictactoe-board" class="grid grid-cols-3 gap-2 w-64 mx-auto mb-6">
-                        <!-- Cells generated by JS -->
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                         <div class="text-xl font-orbitron" id="ttt-status">Your Turn (X)</div>
-                    </div>
-                    <button id="reset-ttt-btn" class="game-btn" style="background: linear-gradient(45deg, #FF10F0, #FF3366);">Reset Game</button>
-                </div>
-
-                <!-- Typing Speed Test -->
-                <div class="glass p-8 rounded-2xl md:col-span-2">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-electric-blue">Dev Speed Typer</h2>
-                    <div class="text-center">
-                        <div class="text-4xl font-bold mb-6 text-white" id="word-display">Loading...</div>
-                        <input type="text" id="typing-input" class="bg-dark-bg border-2 border-electric-blue rounded-lg px-4 py-2 text-white text-center text-xl mb-6 focus:outline-none focus:shadow-lg" placeholder="Type the word...">
-
-                        <div class="flex justify-center gap-12 mb-6">
-                            <div>
-                                <div class="text-sm text-gray-400">Time</div>
-                                <div class="text-2xl font-orbitron text-electric-blue" id="typing-time">60</div>
-                            </div>
-                            <div>
-                                <div class="text-sm text-gray-400">Score</div>
-                                <div class="text-2xl font-orbitron text-electric-blue" id="typing-score">0</div>
-                            </div>
-                            <div>
-                                <div class="text-sm text-gray-400">WPM</div>
-                                <div class="text-2xl font-orbitron text-electric-blue" id="typing-wpm">0</div>
-                            </div>
+                <div class="glass-panel p-6 relative group overflow-hidden hover:border-cyber-cyan transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyber-cyan/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="w-20 h-20 mx-auto bg-gray-800 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-dragon text-4xl text-cyber-cyan"></i>
                         </div>
-
-                        <button id="restart-typing-btn" class="game-btn" style="background: linear-gradient(45deg, #0080FF, #00FFDE);">Restart</button>
+                        <h3 class="text-2xl font-bold font-orbitron mb-2">NEON SNAKE</h3>
+                        <p class="text-gray-400 mb-6 text-sm">The classic reimagined with cyberpunk aesthetics. Collect energy, grow longer, don't crash.</p>
+                        <button onclick="launchGame('snake')" class="btn-neon w-full">
+                            PLAY NOW <i class="fas fa-play ml-2"></i>
+                        </button>
                     </div>
+                </div>
+
+                <!-- Tetris Game Card -->
+                <div class="glass-panel p-6 relative group overflow-hidden hover:border-cyber-cyan transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="w-20 h-20 mx-auto bg-gray-800 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-cubes text-4xl text-purple-500"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold font-orbitron mb-2">BLOCK MASTER</h3>
+                        <p class="text-gray-400 mb-6 text-sm">Stack the blocks, clear the lines. The ultimate test of spatial awareness.</p>
+                        <button onclick="launchGame('tetris')" class="btn-neon w-full">
+                            PLAY NOW <i class="fas fa-play ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Coming Soon Card -->
+                <div class="glass-panel p-6 relative group overflow-hidden opacity-50" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative z-10 text-center">
+                        <div class="w-20 h-20 mx-auto bg-gray-800 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-lock text-4xl text-gray-500"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold font-orbitron mb-2">BREAKOUT</h3>
+                        <p class="text-gray-400 mb-6 text-sm">Currently under development. Check back soon for more arcade action.</p>
+                        <button class="btn-neon w-full cursor-not-allowed opacity-50">
+                            LOCKED
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Game Modal Overlay -->
+        <div id="game-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-md">
+            <div class="relative w-full max-w-4xl h-[80vh] bg-gray-900 border border-cyber-cyan rounded-lg overflow-hidden flex flex-col shadow-2xl shadow-cyber-cyan/20">
+
+                <!-- Modal Header -->
+                <div class="flex justify-between items-center px-6 py-4 border-b border-gray-800 bg-gray-900/50">
+                    <div class="flex items-center gap-4">
+                        <h2 id="modal-game-title" class="text-2xl font-orbitron text-cyber-cyan">GAME TITLE</h2>
+                        <div class="flex gap-4 text-sm text-gray-400">
+                            <div>SCORE: <span id="current-score" class="text-white font-mono">0</span></div>
+                            <div>HIGH SCORE: <span id="high-score" class="text-neon-pink font-mono">0</span></div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <button id="pause-btn" class="text-gray-400 hover:text-white transition-colors" title="Pause (P)">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                        <button onclick="closeGameModal()" class="text-gray-400 hover:text-red-500 transition-colors" title="Close (Esc)">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Game Canvas Container -->
+                <div class="flex-1 relative bg-black flex items-center justify-center overflow-hidden" id="canvas-container">
+                    <canvas id="game-canvas"></canvas>
+
+                    <!-- Start/Game Over Overlay -->
+                    <div id="game-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/80 z-10">
+                        <h3 id="overlay-title" class="text-4xl font-orbitron mb-4 text-white">READY?</h3>
+                        <p class="text-gray-400 mb-8">Use Arrow Keys or WASD to Move</p>
+                        <button id="start-btn" class="btn-neon px-8 py-3 text-xl">START GAME</button>
+                    </div>
+                </div>
+
+                <!-- Footer/Controls Hint -->
+                <div class="px-6 py-3 bg-gray-900 border-t border-gray-800 text-xs text-gray-500 text-center">
+                    CONTROLS: ARROW KEYS to Move • SPACE to Start/Pause • ESC to Exit
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-6 text-center">
-             <p class="text-gray-400">© 2024 Mathiya. Arcade Mode.</p>
-        </div>
-    </footer>
+    </main>
 
+    <!-- Global Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/components/navbar.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/games/snake.js"></script>
-    <script src="assets/js/games/tictactoe.js"></script>
-    <script src="assets/js/games/typing.js"></script>
+
+    <!-- Game Scripts (Module type required for imports) -->
+    <script type="module">
+        import { SnakeGame } from './assets/js/games/snake/SnakeGame.js';
+        import { TetrisGame } from './assets/js/games/tetris/TetrisGame.js';
+
+        let activeGame = null;
+        const modal = document.getElementById('game-modal');
+        const overlay = document.getElementById('game-overlay');
+        const startBtn = document.getElementById('start-btn');
+        const overlayTitle = document.getElementById('overlay-title');
+        const pauseBtn = document.getElementById('pause-btn');
+
+        // Global functions for HTML access
+        window.launchGame = function(gameType) {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+
+            const canvas = document.getElementById('game-canvas');
+            // Reset canvas state if needed
+
+            if (gameType === 'snake') {
+                document.getElementById('modal-game-title').innerText = 'NEON SNAKE';
+                activeGame = new SnakeGame('game-canvas');
+            } else if (gameType === 'tetris') {
+                document.getElementById('modal-game-title').innerText = 'BLOCK MASTER';
+                activeGame = new TetrisGame('game-canvas');
+            }
+
+            // Reset Overlay
+            overlay.classList.remove('hidden');
+            overlayTitle.innerText = "READY?";
+            startBtn.innerText = "START GAME";
+            startBtn.onclick = () => {
+                overlay.classList.add('hidden');
+                activeGame.start();
+            };
+        };
+
+        window.closeGameModal = function() {
+            if (activeGame) {
+                activeGame.stop();
+                activeGame = null;
+            }
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        };
+
+        // Pause Button
+        pauseBtn.addEventListener('click', () => {
+            if (activeGame && activeGame.isRunning) {
+                activeGame.pause();
+                const icon = pauseBtn.querySelector('i');
+                if (activeGame.isPaused) {
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
+                    overlay.classList.remove('hidden');
+                    overlayTitle.innerText = "PAUSED";
+                    startBtn.innerText = "RESUME";
+                    startBtn.onclick = () => {
+                        activeGame.pause(); // Resume
+                        overlay.classList.add('hidden');
+                        icon.classList.remove('fa-play');
+                        icon.classList.add('fa-pause');
+                    };
+                } else {
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                }
+            }
+        });
+
+        // Listen for Game Over
+        document.getElementById('game-canvas').addEventListener('game-over', (e) => {
+            overlay.classList.remove('hidden');
+            overlayTitle.innerHTML = `<span class="text-red-500">GAME OVER</span><br><span class="text-sm text-white">Score: ${e.detail.score}</span>`;
+            startBtn.innerText = "PLAY AGAIN";
+            startBtn.onclick = () => {
+                overlay.classList.add('hidden');
+                activeGame.start(); // Restart
+            };
+        });
+
+        // Initialize AOS
+        AOS.init();
+    </script>
 </body>
 </html>

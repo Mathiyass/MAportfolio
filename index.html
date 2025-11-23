@@ -1,521 +1,89 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathiya Angirasa | Software Engineer & Tech Innovator</title>
-    <meta name="description" content="Mathiya Angirasa - Software Engineering Student, Full Stack Developer, and Tech Enthusiast. Building the future with code.">
-    <meta name="keywords" content="Mathiya, Software Engineer, Full Stack Developer, Web Developer, Tech, Portfolio">
-    <meta property="og:title" content="Mathiya Angirasa | Software Engineer">
-    <meta property="og:description" content="Building the future with innovative software solutions">
-    <meta property="og:type" content="website">
+    <title>Mathiya | Ultimate Portfolio</title>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-    <!-- Typed.js -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'orbitron': ['Orbitron', 'monospace'],
-                        'inter': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'cyber-cyan': '#00FFDE',
-                        'cyber-red': '#FF3366',
-                        'neon-pink': '#FF10F0',
-                        'electric-blue': '#0080FF',
-                        'dark-bg': '#0a0a0a',
-                        'dark-card': '#1a1a2e',
-                        'dark-accent': '#16213e',
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
-                        'text-shimmer': 'textShimmer 3s ease-in-out infinite',
-                        'bounce-slow': 'bounceSlow 3s ease-in-out infinite',
-                        'rotate-slow': 'rotateSlow 20s linear infinite',
-                    },
-                    keyframes: {
-                        'float': {
-                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
-                        },
-                        'glowPulse': {
-                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 222, 0.5)' },
-                            '100%': { boxShadow: '0 0 40px rgba(0, 255, 222, 1), 0 0 60px rgba(255, 51, 102, 0.5)' },
-                        },
-                        'textShimmer': {
-                            '0%, 100%': { backgroundPosition: '0% 50%' },
-                            '50%': { backgroundPosition: '100% 50%' },
-                        },
-                        'bounceSlow': {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        'rotateSlow': {
-                            '0%': { transform: 'rotate(0deg)' },
-                            '100%': { transform: 'rotate(360deg)' },
-                        },
-                    },
-                }
-            }
-        }
-    </script>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Animation Libs -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
+<body class="bg-black text-white overflow-x-hidden">
 
-<body class="dark text-white">
-    <!-- Signature Loading Screen -->
-    <div id="loading-screen" class="fixed inset-0 bg-dark-bg z-[100] flex flex-col items-center justify-center transition-opacity duration-1000">
-        <canvas id="signature-canvas" width="400" height="150"></canvas>
-        <div class="w-64 h-1 bg-gray-700 rounded-full overflow-hidden mt-4">
-            <div id="loading-progress" class="h-full bg-gradient-to-r from-cyber-cyan to-neon-pink rounded-full w-0 transition-all duration-300"></div>
-        </div>
-        <p class="text-cyber-cyan font-orbitron mt-4 text-sm tracking-widest animate-pulse">INITIALIZING SYSTEMS...</p>
-    </div>
-
-    <!-- Enhanced Custom Cursor -->
-    <div class="custom-cursor" id="custom-cursor"></div>
-    <div class="cursor-dot" id="cursor-dot"></div>
-
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scroll-progress"></div>
-
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
-
-    <!-- Navigation (Injected by JS) -->
+    <!-- Navbar Container -->
     <div id="navbar-container"></div>
 
-    <!-- Enhanced Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative">
-        <!-- Three.js Canvas -->
-        <div id="three-js-container" class="absolute inset-0 z-0"></div>
-        <!-- Background Elements -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float" data-parallax="0.3"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;" data-parallax="0.5"></div>
-            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float" style="animation-delay: -1.5s;" data-parallax="0.4"></div>
-        </div>
+    <!-- Background Canvas Container -->
+    <div id="bg-container" class="fixed inset-0 z-0 pointer-events-none">
+        <canvas id="particle-canvas" class="absolute inset-0 w-full h-full opacity-60"></canvas>
+    </div>
 
-        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-            <!-- Enhanced Text Content -->
-            <div class="text-center lg:text-left" data-aos="fade-right">
-                <div class="mb-6">
-                    <span class="text-cyber-cyan font-orbitron text-lg tracking-wider">Hello, I'm</span>
-                    <h1 class="text-5xl md:text-7xl font-bold font-orbitron gradient-text mb-4 animate-glow-pulse glitch" data-text="MATHIYA">
-                        MATHIYA
-                    </h1>
-                    <h2 class="text-2xl md:text-3xl font-bold text-gray-300 mb-6">
-                        <span id="typing-text" class="typing-text"></span>
-                    </h2>
-                </div>
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden z-10">
 
-                <p class="text-lg text-gray-300 mb-8 leading-relaxed">
-                    Passionate software engineering student crafting innovative digital experiences with cutting-edge technologies. 
-                    Building the future, one line of code at a time.
-                </p>
+        <!-- Content -->
+        <div class="container mx-auto px-6 text-center relative z-20">
+            <!-- Glitch Name -->
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 font-orbitron tracking-tighter" data-aos="zoom-in">
+                <span class="glitch inline-block" data-text="MATHIYA">MATHIYA</span>
+            </h1>
 
-                <!-- Enhanced Action Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                    <a href="projects.html" class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
-                        <i class="fas fa-code mr-2"></i>View My Work
-                    </a>
-                    <a href="contact.html" class="border-2 border-cyber-cyan text-cyber-cyan font-semibold py-3 px-8 rounded-lg hover:bg-cyber-cyan hover:text-black transition-all duration-300 font-orbitron">
-                        <i class="fas fa-envelope mr-2"></i>Get In Touch
-                    </a>
-                </div>
-
-                <!-- Enhanced Social Links -->
-                <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4">
-                    <a href="https://github.com/Mathiyass" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="GitHub" aria-label="GitHub">
-                        <i class="fab fa-github text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">GitHub</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="LinkedIn" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">LinkedIn</span>
-                    </a>
-                    <a href="https://x.com/Mathiya" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="X (Twitter)" aria-label="Twitter">
-                        <i class="fab fa-twitter text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Twitter</span>
-                    </a>
-                    <a href="https://www.facebook.com/mathisha.angirasa/" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Facebook" aria-label="Facebook">
-                        <i class="fab fa-facebook text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Facebook</span>
-                    </a>
-                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Instagram" aria-label="Instagram">
-                        <i class="fab fa-instagram text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Instagram</span>
-                    </a>
-                    <a href="https://steamcommunity.com/profiles/76561199076879396/" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Steam" aria-label="Steam">
-                        <i class="fab fa-steam text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Steam</span>
-                    </a>
-                    <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Epic Games" aria-label="Epic Games">
-                        <i class="fas fa-gamepad text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Epic Games</span>
-                    </a>
-                    <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Spotify" aria-label="Spotify">
-                        <i class="fab fa-spotify text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Spotify</span>
-                    </a>
-                    <a href="https://discord.gg/QERP5JJM8k" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Discord" aria-label="Discord">
-                        <i class="fab fa-discord text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Discord</span>
-                    </a>
-                    <a href="https://wa.me/94715921984" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="WhatsApp" aria-label="WhatsApp">
-                        <i class="fab fa-whatsapp text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">WhatsApp</span>
-                    </a>
-                    <div class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="EA ID: M_MATHIYA_M">
-                        <i class="fas fa-headset text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">EA ID</span>
-                    </div>
-                </div>
+            <!-- Typing Role -->
+            <div class="text-xl md:text-3xl text-cyber-cyan font-mono mb-8 h-10" data-aos="fade-up" data-aos-delay="200">
+                <span id="typed-output"></span>
             </div>
 
-            <!-- Enhanced Profile Section -->
-            <div class="relative" data-aos="fade-left" id="profile-picture-container">
-                <div class="relative w-80 h-80 mx-auto">
-                    <!-- Animated Border -->
-                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-cyber-cyan via-neon-pink to-cyber-red p-1 animate-rotate-slow animate-glow-pulse">
-                        <div class="w-full h-full bg-dark-bg rounded-full"></div>
-                    </div>
-                    
-                    <!-- Profile Image -->
-                    <div class="absolute inset-2 rounded-full overflow-hidden glass">
-                        <img src="assets/images/Profile Picture.jpg" alt="Mathiya Profile" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
-                    </div>
-                    
-                    <!-- Floating Elements -->
-                    <div class="absolute -top-4 -right-4 w-16 h-16 glass rounded-full flex items-center justify-center animate-bounce-slow">
-                        <i class="fas fa-code text-cyber-cyan text-xl"></i>
-                    </div>
-                    <div class="absolute -bottom-4 -left-4 w-12 h-12 glass rounded-full flex items-center justify-center animate-bounce-slow" style="animation-delay: -1s;">
-                        <i class="fas fa-rocket text-neon-pink"></i>
-                    </div>
-                </div>
+            <!-- Buttons -->
+            <div class="flex flex-col md:flex-row gap-6 justify-center" data-aos="fade-up" data-aos-delay="400">
+                <a href="projects.html" class="btn-neon group relative overflow-hidden">
+                    <span class="relative z-10">VIEW PROJECTS</span>
+                </a>
+                <a href="games.html" class="btn-neon group relative overflow-hidden" style="--color-primary: #FF3366;">
+                    <span class="relative z-10">ENTER ARCADE</span>
+                </a>
             </div>
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#about-preview" class="text-cyber-cyan text-2xl" aria-label="Scroll Down">
-                <i class="fas fa-chevron-down"></i>
-            </a>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-cyber-cyan opacity-70">
+            <i class="fas fa-chevron-down text-2xl"></i>
         </div>
-    </section>
+    </header>
 
-    <!-- Enhanced About Preview -->
-    <section id="about-preview" class="py-20 relative">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
-                About Me
-            </h2>
+    <!-- Global Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <div class="enhanced-card glass p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-5xl mb-6 text-cyber-cyan">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 font-orbitron">Education</h3>
-                    <p class="text-gray-300">Software Engineering Student passionate about learning and innovation</p>
-                </div>
-
-                <div class="enhanced-card glass p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-5xl mb-6 text-neon-pink">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 font-orbitron">Development</h3>
-                    <p class="text-gray-300">Full-stack developer with expertise in modern web technologies</p>
-                </div>
-
-                <div class="enhanced-card glass p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-5xl mb-6 text-cyber-red">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 font-orbitron">Innovation</h3>
-                    <p class="text-gray-300">Creating cutting-edge solutions for tomorrow's challenges</p>
-                </div>
-            </div>
-
-            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
-                <a href="about.html" class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
-                    <i class="fas fa-user mr-2"></i>Learn More
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Featured Projects -->
-    <section class="py-20 bg-dark-card/20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
-                Featured Projects
-            </h2>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Project 1 -->
-                <div class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative group">
-                        <div class="w-full h-48 bg-gradient-to-br from-cyber-cyan to-electric-blue flex items-center justify-center">
-                            <i class="fas fa-shopping-cart text-4xl text-black"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <div class="text-center">
-                                <button class="bg-white text-black px-4 py-2 rounded-lg mr-2 hover:bg-gray-200 transition-colors" aria-label="View Project">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="bg-cyber-cyan text-black px-4 py-2 rounded-lg hover:bg-opacity-80 transition-colors" aria-label="View Source">
-                                    <i class="fab fa-github"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 font-orbitron">E-Commerce Platform</h3>
-                        <p class="text-gray-300 mb-4">Full-stack e-commerce solution with modern features</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">React</span>
-                            <span class="px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">Node.js</span>
-                            <span class="px-3 py-1 bg-cyber-red/20 text-cyber-red rounded-full text-sm">MongoDB</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative group">
-                        <div class="w-full h-48 bg-gradient-to-br from-neon-pink to-cyber-red flex items-center justify-center">
-                            <i class="fas fa-rocket text-4xl text-white"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <div class="text-center">
-                                <button class="bg-white text-black px-4 py-2 rounded-lg mr-2 hover:bg-gray-200 transition-colors" aria-label="View Project">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="bg-cyber-cyan text-black px-4 py-2 rounded-lg hover:bg-opacity-80 transition-colors" aria-label="View Source">
-                                    <i class="fab fa-github"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 font-orbitron">Space Shooter Game</h3>
-                        <p class="text-gray-300 mb-4">3D space game with immersive gameplay</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">Unity</span>
-                            <span class="px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">C#</span>
-                            <span class="px-3 py-1 bg-cyber-red/20 text-cyber-red rounded-full text-sm">3D</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                    <div class="relative group">
-                        <div class="w-full h-48 bg-gradient-to-br from-electric-blue to-cyber-cyan flex items-center justify-center">
-                            <i class="fas fa-mobile-alt text-4xl text-black"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <div class="text-center">
-                                <button class="bg-white text-black px-4 py-2 rounded-lg mr-2 hover:bg-gray-200 transition-colors" aria-label="View Project">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="bg-cyber-cyan text-black px-4 py-2 rounded-lg hover:bg-opacity-80 transition-colors" aria-label="View Source">
-                                    <i class="fab fa-github"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 font-orbitron">Mobile App UI</h3>
-                        <p class="text-gray-300 mb-4">Modern mobile interface design</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">Figma</span>
-                            <span class="px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">UI/UX</span>
-                            <span class="px-3 py-1 bg-cyber-red/20 text-cyber-red rounded-full text-sm">Design</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
-                <a href="projects.html" class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
-                    <i class="fas fa-folder-open mr-2"></i>View All Projects
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Skills Overview -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
-                Technical Skills
-            </h2>
-
-            <div class="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-                <div class="enhanced-card glass p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-4xl mb-4 text-orange-500">
-                        <i class="fab fa-html5"></i>
-                    </div>
-                    <h3 class="font-bold font-orbitron">Frontend</h3>
-                    <p class="text-sm text-gray-400 mt-2">HTML, CSS, JavaScript, React</p>
-                </div>
-
-                <div class="enhanced-card glass p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-4xl mb-4 text-green-500">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3 class="font-bold font-orbitron">Backend</h3>
-                    <p class="text-sm text-gray-400 mt-2">Node.js, Python, MongoDB</p>
-                </div>
-
-                <div class="enhanced-card glass p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-4xl mb-4 text-purple-500">
-                        <i class="fab fa-unity"></i>
-                    </div>
-                    <h3 class="font-bold font-orbitron">Game Dev</h3>
-                    <p class="text-sm text-gray-400 mt-2">Unity, C#, Game Design</p>
-                </div>
-
-                <div class="enhanced-card glass p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="400">
-                    <div class="text-4xl mb-4 text-blue-500">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3 class="font-bold font-orbitron">Design</h3>
-                    <p class="text-sm text-gray-400 mt-2">UI/UX, Figma, Adobe</p>
-                </div>
-            </div>
-
-            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="500">
-                <a href="skills.html" class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
-                    <i class="fas fa-tools mr-2"></i>View All Skills
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Contact CTA -->
-    <section class="py-20 bg-dark-card/20">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold font-orbitron mb-8 gradient-text" data-aos="fade-up">
-                Let's Build Something Amazing
-            </h2>
-            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                Ready to bring your ideas to life? Let's collaborate and create innovative solutions together.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-                <a href="contact.html" class="neon-btn text-black font-semibold py-4 px-8 rounded-lg transition-all duration-300 font-orbitron">
-                    <i class="fas fa-rocket mr-2"></i>Start a Project
-                </a>
-                <a href="resume.html" class="border-2 border-cyber-cyan text-cyber-cyan font-semibold py-4 px-8 rounded-lg hover:bg-cyber-cyan hover:text-black transition-all duration-300 font-orbitron">
-                    <i class="fas fa-download mr-2"></i>Download Resume
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Footer -->
-    <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
-                    <p class="text-gray-400">© <span id="current-year">2024</span> Mathiya Angirasa. All rights reserved.</p>
-                </div>
-
-                <div class="flex items-center justify-center md:justify-end flex-wrap gap-x-5 gap-y-3">
-                    <a href="https://github.com/Mathiyass" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/Mathiya" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="X (Twitter)" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://discord.gg/QERP5JJM8k" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Discord" aria-label="Discord"><i class="fab fa-discord"></i></a>
-                    <a href="https://wa.me/94715921984" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="WhatsApp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating Hire Me Button -->
-    <a href="contact.html" class="fixed bottom-6 left-6 w-auto h-12 px-6 bg-gradient-to-r from-cyber-cyan to-neon-pink text-black rounded-full flex items-center justify-center font-orbitron font-bold shadow-lg hover:scale-110 transition-all duration-300 z-50 animate-bounce-slow" aria-label="Hire Me">
-        <i class="fas fa-briefcase mr-2"></i>
-        <span>Hire Me</span>
-    </a>
-
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-cyber-cyan text-black rounded-full hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none z-50" aria-label="Back to Top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Background Music -->
-    <audio id="background-music" loop>
-        <source src="assets/audio/ambient-loop.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- Scripts -->
-    <script src="assets/js/signature-loader.js"></script>
-    <script src="assets/js/components/navbar.js"></script> <!-- Advanced Navbar -->
+    <!-- Application Scripts -->
+    <script src="assets/js/components/navbar.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/animations.js"></script>
-    <script>
-        // Matrix Rain Effect
-        function createMatrixRain() {
-            const chars = '01';
-            const matrixContainer = document.body;
-            
-            setInterval(() => {
-                if (Math.random() < 0.1) {
-                    const char = document.createElement('div');
-                    char.className = 'matrix-char';
-                    char.textContent = chars[Math.floor(Math.random() * chars.length)];
-                    char.style.left = Math.random() * 100 + '%';
-                    char.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                    
-                    matrixContainer.appendChild(char);
-                    
-                    setTimeout(() => {
-                        char.remove();
-                    }, 5000);
-                }
-            }, 100);
-        }
 
-        // Initialize enhanced features
-        document.addEventListener('DOMContentLoaded', function() {
-            createMatrixRain();
+    <script type="module">
+        import { TransitionManager } from './assets/js/animations/TransitionManager.js';
+        import { ParticleSystem } from './assets/js/animations/backgrounds/ParticleSystem.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Init Background
+            new ParticleSystem('particle-canvas');
             
-            // Update current year
-            document.getElementById('current-year').textContent = new Date().getFullYear();
+            // Init Typing
+            new Typed('#typed-output', {
+                strings: ['FULL STACK DEVELOPER', 'CREATIVE CODER', 'UI/UX DESIGNER', 'GAME DEVELOPER'],
+                typeSpeed: 50,
+                backSpeed: 30,
+                backDelay: 2000,
+                loop: true
+            });
+
+            // Init AOS
+            AOS.init();
         });
     </script>
 </body>
