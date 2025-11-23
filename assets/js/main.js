@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAccessibilityFeatures();
     initializeEasterEgg();
     initializeMusicToggle();
+    initializePageTransitions();
+    initializeKonamiCode();
 });
 
 // Global function called by loader
@@ -70,6 +72,71 @@ function initializeEasterEgg() {
             }
         }
     });
+}
+
+// Konami Code Easter Egg
+function initializeKonamiCode() {
+    const konamiCode = [
+        'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+        'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+        'b', 'a'
+    ];
+    let konamiIndex = 0;
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === konamiCode[konamiIndex]) {
+            konamiIndex++;
+            if (konamiIndex === konamiCode.length) {
+                activateKonamiMode();
+                konamiIndex = 0;
+            }
+        } else {
+            konamiIndex = 0;
+        }
+    });
+
+    function activateKonamiMode() {
+        showNotification('Konami Code Activated!', 'success');
+        document.body.style.transform = 'rotate(180deg)';
+        document.body.style.transition = 'transform 2s ease';
+
+        setTimeout(() => {
+            document.body.style.transform = 'rotate(0deg)';
+        }, 5000);
+
+        // Add some particle explosions or fun effects here
+        const colors = ['#00FFDE', '#FF3366', '#FF10F0'];
+        for (let i = 0; i < 50; i++) {
+            setTimeout(() => {
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                createClickBurst(x, y);
+            }, i * 50);
+        }
+    }
+}
+
+// Page Transitions
+function initializePageTransitions() {
+    const links = document.querySelectorAll('a');
+
+    links.forEach(link => {
+        if (link.hostname === window.location.hostname && link.getAttribute('href').indexOf('#') === -1 && link.getAttribute('target') !== '_blank') {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+
+                document.body.classList.add('page-transition-out');
+
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 500);
+            });
+        }
+    });
+
+    // Fade in on load
+    document.body.classList.add('page-transition-in');
 }
 
 // Enhanced Custom Cursor with advanced features

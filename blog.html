@@ -67,80 +67,34 @@
         </p>
     </section>
 
+    <!-- Search & Filter -->
+    <section class="py-8">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto mb-12">
+                <div class="glass rounded-full p-2 flex items-center mb-8">
+                    <i class="fas fa-search text-gray-400 ml-4 mr-2"></i>
+                    <input type="text" id="blog-search" placeholder="Search articles..." class="bg-transparent w-full p-2 focus:outline-none text-white placeholder-gray-500">
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button class="filter-btn active px-5 py-2 rounded-full border-2 border-cyber-cyan text-cyber-cyan font-orbitron text-sm transition-all hover:bg-cyber-cyan hover:text-black" data-filter="all">All</button>
+                    <button class="filter-btn px-5 py-2 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron text-sm transition-all hover:border-cyber-cyan hover:text-cyber-cyan" data-filter="web">Web Dev</button>
+                    <button class="filter-btn px-5 py-2 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron text-sm transition-all hover:border-cyber-cyan hover:text-cyber-cyan" data-filter="ai">AI & ML</button>
+                    <button class="filter-btn px-5 py-2 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron text-sm transition-all hover:border-cyber-cyan hover:text-cyber-cyan" data-filter="security">Security</button>
+                    <button class="filter-btn px-5 py-2 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron text-sm transition-all hover:border-cyber-cyan hover:text-cyber-cyan" data-filter="tech">Tech Trends</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Blog Grid -->
     <section class="py-12 min-h-screen">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <!-- Article 1 -->
-                <article class="glass rounded-2xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
-                    <div class="h-48 bg-gradient-to-br from-purple-900 to-indigo-900 flex items-center justify-center">
-                        <i class="fas fa-brain text-5xl text-cyber-cyan"></i>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-400 mb-2">
-                            <span class="mr-3"><i class="far fa-calendar-alt mr-1"></i> Oct 15, 2023</span>
-                            <span><i class="fas fa-tag mr-1"></i> AI & ML</span>
-                        </div>
-                        <h2 class="text-xl font-bold font-orbitron mb-3 hover:text-cyber-cyan transition-colors">
-                            <a href="#">The Future of AI in Web Development</a>
-                        </h2>
-                        <p class="text-gray-300 mb-4 line-clamp-3">
-                            How artificial intelligence is reshaping the way we build and interact with the web. From code generation to personalized user experiences.
-                        </p>
-                        <a href="#" class="text-neon-pink hover:text-cyber-cyan font-bold transition-colors">Read More <i class="fas fa-arrow-right ml-1"></i></a>
-                    </div>
-                </article>
-
-                <!-- Article 2 -->
-                <article class="glass rounded-2xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
-                    <div class="h-48 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
-                        <i class="fas fa-cube text-5xl text-neon-pink"></i>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-400 mb-2">
-                            <span class="mr-3"><i class="far fa-calendar-alt mr-1"></i> Sep 28, 2023</span>
-                            <span><i class="fas fa-tag mr-1"></i> Three.js</span>
-                        </div>
-                        <h2 class="text-xl font-bold font-orbitron mb-3 hover:text-cyber-cyan transition-colors">
-                            <a href="#">Creating Immersive 3D Web Experiences</a>
-                        </h2>
-                        <p class="text-gray-300 mb-4 line-clamp-3">
-                            A deep dive into Three.js and WebGL. Learn how to bring your website to life with interactive 3D elements and particle systems.
-                        </p>
-                        <a href="#" class="text-neon-pink hover:text-cyber-cyan font-bold transition-colors">Read More <i class="fas fa-arrow-right ml-1"></i></a>
-                    </div>
-                </article>
-
-                <!-- Article 3 -->
-                <article class="glass rounded-2xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
-                    <div class="h-48 bg-gradient-to-br from-blue-900 to-cyan-900 flex items-center justify-center">
-                        <i class="fas fa-shield-alt text-5xl text-cyber-red"></i>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-400 mb-2">
-                            <span class="mr-3"><i class="far fa-calendar-alt mr-1"></i> Aug 10, 2023</span>
-                            <span><i class="fas fa-tag mr-1"></i> Security</span>
-                        </div>
-                        <h2 class="text-xl font-bold font-orbitron mb-3 hover:text-cyber-cyan transition-colors">
-                            <a href="#">Web Security Best Practices for 2024</a>
-                        </h2>
-                        <p class="text-gray-300 mb-4 line-clamp-3">
-                            Essential security tips for modern web applications. Protecting user data, preventing XSS, and securing APIs.
-                        </p>
-                        <a href="#" class="text-neon-pink hover:text-cyber-cyan font-bold transition-colors">Read More <i class="fas fa-arrow-right ml-1"></i></a>
-                    </div>
-                </article>
-
-            </div>
-
-            <!-- Pagination (Visual only for now) -->
-            <div class="flex justify-center mt-12">
-                <nav class="flex space-x-2">
-                    <a href="#" class="px-4 py-2 glass rounded hover:bg-cyber-cyan hover:text-black transition-colors">1</a>
-                    <a href="#" class="px-4 py-2 glass rounded hover:bg-cyber-cyan hover:text-black transition-colors">2</a>
-                    <a href="#" class="px-4 py-2 glass rounded hover:bg-cyber-cyan hover:text-black transition-colors">3</a>
-                </nav>
+            <div id="blog-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamic Content Loaded via JS -->
+                <div class="col-span-full flex justify-center py-12">
+                    <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-cyber-cyan"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -154,6 +108,7 @@
 
     <script src="assets/js/components/navbar.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/blog.js"></script>
     <script>
         AOS.init({
             duration: 1000,
