@@ -320,3 +320,60 @@ body {
     95% { clip: rect(50px, 9999px, 30px, 0); }
     100% { clip: rect(20px, 9999px, 70px, 0); }
 }
+
+/* Memory Game Styles */
+.memory-card {
+    perspective: 1000px;
+    height: 80px; /* Approx h-20 */
+}
+
+.memory-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.memory-card.flipped .memory-card-inner {
+    transform: rotateY(180deg);
+}
+
+.memory-card-front, .memory-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+}
+
+.memory-card-front {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.memory-card-back {
+    background: rgba(26, 26, 46, 0.95);
+    transform: rotateY(180deg);
+    border: 1px solid #00FFDE;
+    box-shadow: 0 0 10px rgba(0, 255, 222, 0.3);
+}
+
+/* Page Transitions */
+.page-transition-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+@keyframes pageFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.page-transition-in {
+    animation: pageFadeIn 0.5s ease-in-out forwards;
+}
