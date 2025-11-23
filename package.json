@@ -38,16 +38,14 @@
   },
   "homepage": "https://mathiyass.github.io",
   "devDependencies": {
-    "serve": "^14.2.1",
-    "playwright": "^1.41.2"
+    "@playwright/test": "^1.56.1",
+    "playwright": "^1.56.1",
+    "serve": "^14.2.1"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
   ],
-  "type": "commonjs",
-  "dependencies": {
-    "playwright": "^1.56.1"
-  }
+  "type": "commonjs"
 }
