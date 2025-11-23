@@ -111,93 +111,8 @@
     <!-- Particles Background -->
     <div id="particles-js"></div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <!-- Enhanced Logo -->
-                <div class="text-2xl font-bold font-orbitron gradient-text">
-                    <a href="#" class="hover:scale-110 transition-transform duration-300">MATHIYA</a>
-                </div>
-
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Home
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="about.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        About
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="games.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Arcade
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="projects.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Projects
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="blog.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Blog
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="skills.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Skills
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="socials.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Socials
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="contact.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Contact
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="gallery.html" class="nav-link hover:text-cyber-cyan transition-colors relative group">
-                        Gallery
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyber-cyan transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                </div>
-
-                <div class="hidden md:flex items-center space-x-4">
-                    <!-- Music Toggle -->
-                    <button id="music-toggle" class="p-2 rounded-lg glass hover:scale-110 transition-transform" aria-label="Toggle Background Music">
-                        <i class="fas fa-volume-mute text-cyber-cyan"></i>
-                    </button>
-                    <!-- Theme Toggle -->
-                    <button id="theme-toggle" class="p-2 rounded-lg glass hover:scale-110 transition-transform" aria-label="Toggle Theme">
-                        <i class="fas fa-moon text-cyber-cyan"></i>
-                    </button>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg glass" aria-label="Open Mobile Menu">
-                    <i class="fas fa-bars text-cyber-cyan"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Enhanced Mobile Menu -->
-        <div class="mobile-menu fixed top-0 right-0 h-full w-80 glass md:hidden" id="mobile-menu">
-            <div class="p-6">
-                <button id="close-menu" class="float-right text-2xl text-cyber-cyan hover:rotate-90 transition-transform" aria-label="Close Mobile Menu">
-                    <i class="fas fa-times"></i>
-                </button>
-                <div class="clear-both mt-8 space-y-6">
-                    <a href="#home" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Home</a>
-                    <a href="about.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">About</a>
-                    <a href="games.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Arcade</a>
-                    <a href="projects.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Projects</a>
-                    <a href="blog.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Blog</a>
-                    <a href="skills.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Skills</a>
-                    <a href="socials.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Socials</a>
-                    <a href="contact.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Contact</a>
-                    <a href="gallery.html" class="block text-xl font-orbitron hover:text-cyber-cyan transition-all duration-300 mobile-nav-link transform hover:translate-x-2">Gallery</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <!-- Navigation (Injected by JS) -->
+    <div id="navbar-container"></div>
 
     <!-- Enhanced Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center relative">
@@ -569,6 +484,7 @@
 
     <!-- Scripts -->
     <script src="assets/js/signature-loader.js"></script>
+    <script src="assets/js/components/navbar.js"></script> <!-- Advanced Navbar -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/animations.js"></script>
     <script>
