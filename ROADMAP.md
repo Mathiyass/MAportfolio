@@ -1216,4 +1216,4 @@ Make this portfolio **unforgettable**.
 12. **SVG Sprites** - Combine SVGs
 13. **Icon Fonts** - Single font file
 14. **Font Subs**
-15. **All generated pages must follow a unified design system — consistent colors, typography, spacing, component styling, icon style, layout structure, and visual hierarchy. Every page must look like part of the same application with perfectly matched consistency.**
+15. **All pages must follow a unified design system — consistent colors, typography, spacing, component styling, icon style, layout structure, and visual hierarchy. Every page must look like part of the same application with perfectly matched consistency.**
