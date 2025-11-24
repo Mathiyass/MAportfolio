@@ -15,7 +15,7 @@ body {
     border: 2px solid #00FFDE;
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10002;
     transition: all 0.1s ease;
     mix-blend-mode: difference;
 }
@@ -27,7 +27,7 @@ body {
     background: #00FFDE;
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9998;
+    z-index: 10001;
     transition: all 0.15s ease;
 }
 
