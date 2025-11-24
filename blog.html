@@ -15,15 +15,15 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
         tailwind.config = {
@@ -43,10 +43,50 @@
                         'dark-card': '#1a1a2e',
                         'dark-accent': '#16213e',
                     },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                        },
+                        'glowPulse': {
+                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 222, 0.5)' },
+                            '100%': { boxShadow: '0 0 40px rgba(0, 255, 222, 1), 0 0 60px rgba(255, 51, 102, 0.5)' },
+                        },
+                    },
                 }
             }
         }
     </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            cursor: none;
+            overflow-x: hidden;
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #00FFDE, #FF3366);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        /* Filter Button Active State */
+        .filter-btn.active {
+            background-color: rgba(0, 255, 222, 0.2);
+            box-shadow: 0 0 10px rgba(0, 255, 222, 0.5);
+        }
+    </style>
 </head>
 
 <body class="dark text-white">
@@ -54,29 +94,41 @@
     <div class="custom-cursor" id="custom-cursor"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
 
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
     <!-- Navigation (Injected by JS) -->
     <div id="navbar-container"></div>
 
-    <!-- Header -->
-    <section class="pt-32 pb-12 text-center">
-        <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-down">
-            Tech Insights
-        </h1>
-        <p class="text-xl text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-            Exploring the frontiers of code, design, and digital innovation.
-        </p>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-12 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float" style="animation-delay: -1.5s;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-down">
+                Tech Insights
+            </h1>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Exploring the frontiers of code, design, and digital innovation.
+            </p>
+        </div>
     </section>
 
     <!-- Search & Filter -->
-    <section class="py-8">
+    <section class="py-8 relative z-10">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto mb-12">
-                <div class="glass rounded-full p-2 flex items-center mb-8">
+                <div class="glass rounded-full p-2 flex items-center mb-8" data-aos="fade-up" data-aos-delay="300">
                     <i class="fas fa-search text-gray-400 ml-4 mr-2"></i>
-                    <input type="text" id="blog-search" placeholder="Search articles..." class="bg-transparent w-full p-2 focus:outline-none text-white placeholder-gray-500">
+                    <input type="text" id="blog-search" placeholder="Search articles..." class="bg-transparent w-full p-2 focus:outline-none text-white placeholder-gray-500 font-inter">
                 </div>
 
-                <div class="flex flex-wrap justify-center gap-3">
+                <div class="flex flex-wrap justify-center gap-3" data-aos="fade-up" data-aos-delay="400">
                     <button class="filter-btn active px-5 py-2 rounded-full border-2 border-cyber-cyan text-cyber-cyan font-orbitron text-sm transition-all hover:bg-cyber-cyan hover:text-black" data-filter="all">All</button>
                     <button class="filter-btn px-5 py-2 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron text-sm transition-all hover:border-cyber-cyan hover:text-cyber-cyan" data-filter="web">Web Dev</button>
                     <button class="filter-btn px-5 py-2 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron text-sm transition-all hover:border-cyber-cyan hover:text-cyber-cyan" data-filter="ai">AI & ML</button>
@@ -88,7 +140,7 @@
     </section>
 
     <!-- Blog Grid -->
-    <section class="py-12 min-h-screen">
+    <section class="py-12 min-h-screen relative z-10">
         <div class="container mx-auto px-6">
             <div id="blog-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Dynamic Content Loaded via JS -->
@@ -100,9 +152,23 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-6 text-center">
-             <p class="text-gray-400">© 2024 Mathiya. All rights reserved.</p>
+    <footer class="py-12 border-t border-gray-800 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
+                    <p class="text-gray-400">© <span id="current-year">2024</span> Mathiya Angirasa. All rights reserved.</p>
+                </div>
+
+                <div class="flex items-center justify-center md:justify-end flex-wrap gap-x-5 gap-y-3">
+                    <a href="https://github.com/Mathiyass" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/Mathiya" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://discord.gg/QERP5JJM8k" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://wa.me/94715921984" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -110,10 +176,15 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/blog.js"></script>
     <script>
+        // Initialize AOS
         AOS.init({
             duration: 1000,
-            once: true
+            once: true,
+            offset: 100
         });
+
+        // Update current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
