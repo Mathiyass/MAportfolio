@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Global function called by loader
 window.startMainContentAnimation = function() {
+    // Play system welcome speech
+    speakWelcomeMessage();
+
     // Re-initialize AOS
     if (typeof AOS !== 'undefined') {
         AOS.init({
@@ -113,6 +116,47 @@ function initializeKonamiCode() {
                 createClickBurst(x, y);
             }, i * 50);
         }
+    }
+}
+
+// System Welcome Speech
+function speakWelcomeMessage() {
+    if (!window.speechSynthesis) return;
+
+    const text = "System Online. Access granted. Welcome to the digital workspace of Mathiya.";
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.pitch = 0.1; // Deep voice
+    utterance.rate = 0.75; // Slow rate
+    utterance.volume = 1.0;
+
+    function setVoiceAndSpeak() {
+        const voices = window.speechSynthesis.getVoices();
+        // Try to find a male voice by checking for keywords in voice names
+        const maleVoice = voices.find(voice =>
+            voice.name.toLowerCase().includes('male') ||
+            voice.name.toLowerCase().includes('david') ||
+            voice.name.toLowerCase().includes('daniel') ||
+            voice.name.toLowerCase().includes('mark') ||
+            voice.name.toLowerCase().includes('google us english')
+        );
+
+        if (maleVoice) {
+            utterance.voice = maleVoice;
+        }
+
+        // Cancel any current speech
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+    }
+
+    if (window.speechSynthesis.getVoices().length > 0) {
+        setVoiceAndSpeak();
+    } else {
+        // Wait for voices to load
+        window.speechSynthesis.onvoiceschanged = () => {
+            setVoiceAndSpeak();
+            window.speechSynthesis.onvoiceschanged = null;
+        };
     }
 }
 
