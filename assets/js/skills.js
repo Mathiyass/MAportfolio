@@ -1,90 +1,37 @@
 // Skills page functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize AOS
-    AOS.init({
-        duration: 1000,
-        once: true,
-        offset: 100,
-    });
-
-    // Custom Cursor
-    const cursor = document.getElementById('custom-cursor');
-    const cursorDot = document.getElementById('cursor-dot');
-    
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        
-        setTimeout(() => {
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
-        }, 50);
-    });
-    
-    // Cursor hover effects
-    const hoverElements = document.querySelectorAll('a, button, .skill-card, .skill-icon');
-    hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.classList.add('cursor-hover');
-        });
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('cursor-hover');
-        });
-    });
-
-    // Mobile Menu
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const closeMenu = document.getElementById('close-menu');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('active');
-    });
-    
-    closeMenu.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-    });
-    
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-        });
-    });
+    // Note: Global features like Cursor, Navbar, Scroll Progress are handled by main.js and navbar.js
 
     // Animate skill bars when they come into view
     const skillBars = document.querySelectorAll('.skill-progress');
+
+    // Using IntersectionObserver for skill bar animation
     const skillObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const skillBar = entry.target;
                 const width = skillBar.getAttribute('data-width');
-                skillBar.style.width = width + '%';
+
+                // Add delay for a stepped effect
+                setTimeout(() => {
+                    skillBar.style.width = width + '%';
+                    skillBar.style.boxShadow = `0 0 10px rgba(0, 255, 222, 0.5)`;
+
+                    // Animate the percentage text if it exists
+                    const percentageEl = skillBar.parentElement.previousElementSibling?.querySelector('.text-cyber-cyan');
+                    if (percentageEl) {
+                       // animateNumber(percentageEl, 0, parseInt(width), 1000); // animateNumber is in main.js
+                    }
+                }, 200);
+
                 skillObserver.unobserve(skillBar);
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.2 });
 
     skillBars.forEach(bar => {
         skillObserver.observe(bar);
     });
-
-    // Skill bars animation
-    const skillProgressBars = document.querySelectorAll('.skill-progress');
-    const skillObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const bar = entry.target;
-                const width = bar.getAttribute('data-width');
-                setTimeout(() => {
-                    bar.style.width = width + '%';
-                    bar.style.boxShadow = `0 0 10px rgba(0, 255, 222, 0.5)`;
-                }, 200);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    skillProgressBars.forEach(bar => skillObserver.observe(bar));
 
     // Skill icon hover effects
     const skillIcons = document.querySelectorAll('.skill-icon');
@@ -100,16 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Scroll Progress
-    window.addEventListener('scroll', () => {
-        const scrollProgress = document.getElementById('scroll-progress');
-        const scrollTop = window.pageYOffset;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        scrollProgress.style.width = scrollPercent + '%';
-    });
-
-    // Add interactive tooltips to skill cards
+    // Add interactive tooltips/hover effects to skill cards
     const skillCards = document.querySelectorAll('.skill-card');
     skillCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
@@ -135,52 +73,58 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add floating animation to skill summary cards
-    const summaryCards = document.querySelectorAll('.glass');
-    summaryCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.2}s`;
-        card.classList.add('animate-float');
-    });
-
-    // Create floating skill particles
+    // Create floating skill particles background
     function createSkillParticles() {
-        const container = document.querySelector('body');
-        const skillNames = ['HTML', 'CSS', 'JS', 'React', 'Node', 'Python', 'Unity', 'Git'];
+        const container = document.body;
+        // Don't create if too many particles already exist
+        if (document.querySelectorAll('.skill-particle').length > 10) return;
+
+        const skillNames = ['HTML', 'CSS', 'JS', 'React', 'Node', 'Python', 'Unity', 'Git', 'SQL', 'AWS'];
         
-        setInterval(() => {
+        const particleInterval = setInterval(() => {
+            // Stop if we left the page (cleanup handled by browser mostly, but good practice)
+            if (!document.body.contains(container)) {
+                clearInterval(particleInterval);
+                return;
+            }
+
             const particle = document.createElement('div');
+            particle.className = 'skill-particle';
             particle.textContent = skillNames[Math.floor(Math.random() * skillNames.length)];
             particle.style.cssText = `
                 position: fixed;
                 bottom: -50px;
                 left: ${Math.random() * 100}%;
-                color: rgba(0, 255, 222, 0.3);
-                font-size: 12px;
+                color: rgba(0, 255, 222, 0.15);
+                font-size: ${10 + Math.random() * 10}px;
                 font-family: 'Orbitron', monospace;
                 pointer-events: none;
-                z-index: 1;
-                animation: floatUp 8s linear forwards;
+                z-index: -1;
+                animation: floatUp ${10 + Math.random() * 10}s linear forwards;
             `;
             
             container.appendChild(particle);
             
             setTimeout(() => {
                 particle.remove();
-            }, 8000);
-        }, 2000);
+            }, 20000);
+        }, 3000);
     }
 
-    // Add CSS for floating animation
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes floatUp {
-            to {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
+    // Add CSS for floating animation if not present
+    if (!document.getElementById('skill-particle-style')) {
+        const style = document.createElement('style');
+        style.id = 'skill-particle-style';
+        style.textContent = `
+            @keyframes floatUp {
+                to {
+                    transform: translateY(-110vh) rotate(360deg);
+                    opacity: 0;
+                }
             }
-        }
-    `;
-    document.head.appendChild(style);
+        `;
+        document.head.appendChild(style);
+    }
 
     // Start particle animation
     createSkillParticles();
