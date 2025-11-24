@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializePerformanceOptimization();
     initializeAccessibilityFeatures();
     initializeEasterEgg();
+    initializeAdminAccess();
     initializeMusicToggle();
     initializePageTransitions();
     initializeKonamiCode();
@@ -72,6 +73,41 @@ function initializeEasterEgg() {
                     }, 1500); // Remove class after animation ends
                 }
                 keySequence = []; // Reset sequence
+            }
+        }
+    });
+}
+
+// "admin" Access Easter Egg
+function initializeAdminAccess() {
+    const sequence = ['a', 'd', 'm', 'i', 'n'];
+    let keySequence = [];
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key.length === 1) { // Only listen to character keys
+            keySequence.push(e.key.toLowerCase());
+            // Keep the array size equal to the target sequence length
+            keySequence = keySequence.slice(-sequence.length);
+
+            // Check if the typed sequence matches 'admin'
+            if (JSON.stringify(keySequence) === JSON.stringify(sequence)) {
+                keySequence = []; // Reset sequence to avoid re-triggering immediately
+
+                // Small delay to ensure the UI doesn't freeze immediately
+                setTimeout(() => {
+                    const username = prompt("Enter Username:");
+                    // User might cancel the prompt, so check if username is not null
+                    if (username !== null) {
+                        const password = prompt("Enter Password:");
+                        // Verify credentials: Username 'MATHIYA' and Password 'MATHIYA'
+                        if (username === 'MATHIYA' && password === 'MATHIYA') {
+                            alert('Access Granted');
+                            window.location.href = 'admin.html';
+                        } else {
+                            alert('Access Denied');
+                        }
+                    }
+                }, 100);
             }
         }
     });
