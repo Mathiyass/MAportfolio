@@ -73,6 +73,7 @@ class AdvancedNavbar {
         return [
             { name: 'Home', link: 'index.html', icon: 'fa-home' },
             { name: 'About', link: 'about.html', icon: 'fa-user' },
+            { name: 'Resume', link: 'resume.html', icon: 'fa-file-alt' },
             {
                 name: 'Arcade',
                 link: 'games.html',
