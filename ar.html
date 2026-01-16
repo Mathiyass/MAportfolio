@@ -395,7 +395,7 @@
 
         const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: "high-performance" });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1)); // Optimization: Reduce max pixel ratio
         container.appendChild(renderer.domElement);
 
         // Lighting
@@ -408,7 +408,8 @@
         const composer = new EffectComposer(renderer);
         composer.addPass(new RenderPass(scene, camera));
         
-        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+        // Optimization: Half-resolution bloom for performance
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2), 1.5, 0.4, 0.85);
         bloomPass.threshold = 0;
         bloomPass.strength = 1.5;
         bloomPass.radius = 0.8;
@@ -670,6 +671,8 @@
             setTimeout(() => scoreEl.style.transform = "scale(1)", 100);
         }
 
+        const _tempVec = new THREE.Vector3(); // Optimization: Reuse vector to avoid GC
+
         function updateSwords() {
             swordShaderMaterial.uniforms.time.value = state.time;
 
@@ -766,8 +769,9 @@
 
                 // Physics
                 if (state.mode !== 'ATTACK') {
-                    const force = new THREE.Vector3().copy(s.target).sub(s.pos).multiplyScalar(s.speed);
-                    s.vel.add(force);
+                    // Optimization: Zero-allocation vector math
+                    _tempVec.copy(s.target).sub(s.pos).multiplyScalar(s.speed);
+                    s.vel.add(_tempVec);
                     s.vel.multiplyScalar(0.9); // Drag
                 }
                 
@@ -782,6 +786,16 @@
             swords.instanceMatrix.needsUpdate = true;
         }
 
+        // Optimization: UI Caching
+        const uiCache = {
+            cards: document.querySelectorAll('.gesture-card'),
+            open: document.getElementById('hint-open'),
+            closed: document.getElementById('hint-closed'),
+            point: document.getElementById('hint-point'),
+            fusion: document.getElementById('hint-fusion'),
+            lastMode: null
+        };
+
         function animate() {
             requestAnimationFrame(animate);
             state.time += 0.01;
@@ -792,12 +806,16 @@
             
             composer.render();
             
-            // Update UI
-            document.querySelectorAll('.gesture-card').forEach(el => el.classList.remove('active'));
-            if(state.mode === 'DISPERSE') document.getElementById('hint-open').classList.add('active');
-            if(state.mode === 'ATTACK') document.getElementById('hint-closed').classList.add('active');
-            if(state.mode === 'BEAM') document.getElementById('hint-point').classList.add('active');
-            if(state.mode === 'FUSION') document.getElementById('hint-fusion').classList.add('active');
+            // Update UI (Optimized)
+            if (state.mode !== uiCache.lastMode) {
+                uiCache.lastMode = state.mode;
+                uiCache.cards.forEach(el => el.classList.remove('active'));
+                
+                if(state.mode === 'DISPERSE') uiCache.open.classList.add('active');
+                else if(state.mode === 'ATTACK') uiCache.closed.classList.add('active');
+                else if(state.mode === 'BEAM') uiCache.point.classList.add('active');
+                else if(state.mode === 'FUSION') uiCache.fusion.classList.add('active');
+            }
         }
 
         // --- Init & Start ---
@@ -886,7 +904,7 @@
         }
 
         const hands = new Hands({locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`});
-        hands.setOptions({ maxNumHands: 2, modelComplexity: 1, minDetectionConfidence: 0.7, minTrackingConfidence: 0.5 });
+        hands.setOptions({ maxNumHands: 2, modelComplexity: 0, minDetectionConfidence: 0.5, minTrackingConfidence: 0.5 });
         hands.onResults(onResults);
 
         async function initCamera() {
