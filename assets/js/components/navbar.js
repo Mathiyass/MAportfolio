@@ -87,14 +87,16 @@ class AdvancedNavbar {
                             <a href="games.html" class="text-neon-pink hover:text-white transition-colors text-sm font-bold">VIEW ALL GAMES <i class="fas fa-arrow-right ml-1"></i></a>
                         </div>
                         <div class="col-span-3 grid grid-cols-4 gap-4">
-                             ${this.getGameCard('Snake', 'Classic Snake', 'fas fa-dragon')}
-                             ${this.getGameCard('Tetris', 'Block Puzzle', 'fas fa-cubes')}
-                             ${this.getGameCard('Breakout', 'Arcade Classic', 'fas fa-table-tennis')}
-                             ${this.getGameCard('2048', 'Logic Puzzle', 'fas fa-th')}
+                             ${this.getGameCard('Snake', 'Classic Snake', 'fas fa-dragon', 'games.html#snake')}
+                             ${this.getGameCard('Tetris', 'Block Puzzle', 'fas fa-cubes', 'games.html#tetris')}
+                             ${this.getGameCard('Breakout', 'Arcade Classic', 'fas fa-table-tennis', 'games.html#breakout')}
+                             ${this.getGameCard('2048', 'Logic Puzzle', 'fas fa-th', 'games.html#2048')}
+                             ${this.getGameCard('Cyber AR', 'Gesture Control', 'fas fa-hand-sparkles', 'ar.html')}
                         </div>
                     </div>
                 `
             },
+            { name: 'Cyber AR', link: 'ar.html', icon: 'fa-hand-sparkles' },
             {
                 name: 'Projects',
                 link: 'projects.html',
@@ -175,15 +177,17 @@ class AdvancedNavbar {
         `;
     }
 
-    getGameCard(title, subtitle, icon) {
+    getGameCard(title, subtitle, icon, link = 'games.html') {
         return `
-            <div class="group/game text-center p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all cursor-pointer border border-transparent hover:border-neon-pink/50">
-                <div class="text-3xl mb-2 text-neon-pink group-hover/game:scale-110 transition-transform duration-300">
-                    <i class="${icon}"></i>
+            <a href="${link}" class="block h-full">
+                <div class="group/game text-center p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all cursor-pointer border border-transparent hover:border-neon-pink/50 h-full">
+                    <div class="text-3xl mb-2 text-neon-pink group-hover/game:scale-110 transition-transform duration-300">
+                        <i class="${icon}"></i>
+                    </div>
+                    <h4 class="font-bold text-sm text-white">${title}</h4>
+                    <p class="text-[10px] text-gray-400">${subtitle}</p>
                 </div>
-                <h4 class="font-bold text-sm text-white">${title}</h4>
-                <p class="text-[10px] text-gray-400">${subtitle}</p>
-            </div>
+            </a>
         `;
     }
 

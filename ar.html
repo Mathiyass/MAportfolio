@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wan Jian Gui Zong - Cyber Xianxia AR</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Orbitron:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000814;
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffde;
+            user-select: none;
+        }
+
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            transition: transform 0.1s; /* For screen shake */
+        }
+
+        #video-feed {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            height: 240px;
+            border: 2px solid #00ffde;
+            border-radius: 10px;
+            z-index: 10;
+            transform: scaleX(-1); /* Mirror for natural feel */
+            opacity: 0.3;
+            transition: opacity 0.3s;
+            box-shadow: 0 0 20px rgba(0, 255, 222, 0.2);
+        }
+        #video-feed:hover {
+            opacity: 1;
+        }
+
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .title-container {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            text-shadow: 0 0 10px #00ffde;
+            transition: opacity 0.5s;
+        }
+
+        h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 5rem;
+            margin: 0;
+            color: #fff;
+            text-shadow: 0 0 20px #00ffde, 0 0 40px #000814;
+            animation: pulseText 3s infinite alternate;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin-top: -15px;
+            color: #00ffde;
+            letter-spacing: 8px;
+            opacity: 0.8;
+            font-weight: 700;
+        }
+
+        @keyframes pulseText {
+            0% { text-shadow: 0 0 20px #00ffde; }
+            100% { text-shadow: 0 0 40px #00ffde, 0 0 80px #000814; }
+        }
+
+        #start-screen, #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000814;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s;
+        }
+
+        #start-btn {
+            margin-top: 40px;
+            padding: 15px 40px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            background: transparent;
+            color: #00ffde;
+            border: 2px solid #00ffde;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0, 255, 222, 0.3);
+            pointer-events: auto;
+        }
+
+        #start-btn:hover {
+            background: #00ffde;
+            color: #000814;
+            box-shadow: 0 0 40px rgba(0, 255, 222, 0.6);
+        }
+
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(0, 255, 222, 0.1);
+            border-top: 4px solid #00ffde;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        #instructions {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: linear-gradient(to top, rgba(0,8,20,0.95), rgba(0,8,20,0));
+            padding: 20px 40px;
+            border-radius: 20px;
+        }
+
+        .gesture-card {
+            text-align: center;
+            opacity: 0.7;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .gesture-card.active {
+            opacity: 1;
+            transform: translateY(-10px);
+            text-shadow: 0 0 10px #00ffde;
+        }
+        .gesture-icon {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .gesture-name {
+            font-size: 0.8rem;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        #score-display {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            text-align: right;
+        }
+        .score-label { font-size: 0.8rem; color: #888; }
+        .score-val { font-size: 2.5rem; font-weight: bold; }
+        .combo-box { margin-top: 5px; opacity: 0; transition: opacity 0.3s; }
+        .combo-val { font-size: 1.5rem; color: #ff3366; font-weight: bold; }
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(0, 255, 222, 0.1);
+            opacity: 0.1;
+            animation: scan 6s linear infinite;
+            pointer-events: none;
+            z-index: 90;
+        }
+        @keyframes scan { 0% { top: -10%; } 100% { top: 110%; } }
+        
+        #boss-warning {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ff3366;
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 0 0 30px #ff3366;
+            display: none;
+            z-index: 20;
+            animation: warningPulse 0.5s infinite;
+        }
+        @keyframes warningPulse { 0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); } }
+
+    </style>
+    <!-- Import Maps -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <!-- MediaPipe -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="scanline"></div>
+
+    <div id="start-screen">
+        <h1 style="font-size: 3rem; margin-bottom: 20px;">万剑归宗</h1>
+        <p style="color: #888; letter-spacing: 2px;">NEURAL INTERFACE READY</p>
+        <button id="start-btn">BEGIN ASCENSION</button>
+    </div>
+
+    <div id="loading-screen" style="display: none;">
+        <div class="spinner"></div>
+        <p style="margin-top: 20px; letter-spacing: 2px; color: #00ffde;">SYNCHRONIZING...</p>
+    </div>
+
+    <div id="canvas-container"></div>
+    <video id="video-feed" playsinline></video>
+
+    <div id="ui-layer">
+        <div class="title-container">
+            <h1>万剑归宗</h1>
+            <h2>赛博修仙 | CYBER XIANXIA</h2>
+        </div>
+
+        <div id="boss-warning">BOSS APPROACHING</div>
+
+        <div id="score-display">
+            <div class="score-label">SPIRIT ORBS SHATTERED</div>
+            <div class="score-val" id="score">0</div>
+            <div class="combo-box" id="combo-box">
+                <span class="combo-val" id="combo-count">x2</span> COMBO
+            </div>
+        </div>
+
+        <div id="instructions">
+            <div class="gesture-card" id="hint-open">
+                <span class="gesture-icon">✋</span>
+                <span class="gesture-name">SHIELD</span>
+            </div>
+            <div class="gesture-card" id="hint-closed">
+                <span class="gesture-icon">✊</span>
+                <span class="gesture-name">ATTACK</span>
+            </div>
+            <div class="gesture-card" id="hint-point">
+                <span class="gesture-icon">☝️</span>
+                <span class="gesture-name">BEAM</span>
+            </div>
+            <div class="gesture-card" id="hint-fusion">
+                <span class="gesture-icon">👐</span>
+                <span class="gesture-name">FUSION</span>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+        // --- Configuration ---
+        const CONFIG = {
+            swordCount: 400,
+            orbCount: 5,
+            swordColor: new THREE.Color(0x00f0ff),
+            enemyColor: new THREE.Color(0xff0055),
+            bossColor: new THREE.Color(0xffaa00),
+            bgTop: 0x000814,
+        };
+
+        // --- Audio Synthesizer ---
+        class SoundSynth {
+            constructor() {
+                this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+                this.masterGain = this.ctx.createGain();
+                this.masterGain.gain.value = 0.3;
+                this.masterGain.connect(this.ctx.destination);
+                this.isPlayingDrone = false;
+            }
+
+            resume() {
+                if (this.ctx.state === 'suspended') this.ctx.resume();
+            }
+
+            playDrone() {
+                if (this.isPlayingDrone) return;
+                const osc = this.ctx.createOscillator();
+                osc.type = 'sawtooth';
+                osc.frequency.value = 55; 
+                const filter = this.ctx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.value = 200;
+                
+                const lfo = this.ctx.createOscillator();
+                lfo.frequency.value = 0.1;
+                const lfoGain = this.ctx.createGain();
+                lfoGain.gain.value = 100;
+                
+                lfo.connect(lfoGain);
+                lfoGain.connect(filter.frequency);
+                
+                osc.connect(filter);
+                filter.connect(this.masterGain);
+                
+                osc.start();
+                lfo.start();
+                this.isPlayingDrone = true;
+            }
+
+            playAttack() {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.connect(gain);
+                gain.connect(this.masterGain);
+                
+                const now = this.ctx.currentTime;
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(800, now);
+                osc.frequency.exponentialRampToValueAtTime(100, now + 0.2);
+                
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+                
+                osc.start(now);
+                osc.stop(now + 0.2);
+            }
+
+            playImpact(isBoss = false) {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.connect(gain);
+                gain.connect(this.masterGain);
+
+                const now = this.ctx.currentTime;
+                osc.type = isBoss ? 'sawtooth' : 'triangle';
+                const freq = isBoss ? 100 : 200;
+                osc.frequency.setValueAtTime(freq, now);
+                osc.frequency.exponentialRampToValueAtTime(50, now + (isBoss ? 0.5 : 0.1));
+
+                gain.gain.setValueAtTime(isBoss ? 0.8 : 0.5, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + (isBoss ? 0.5 : 0.1));
+
+                osc.start(now);
+                osc.stop(now + (isBoss ? 0.5 : 0.1));
+            }
+        }
+
+        const audio = new SoundSynth();
+
+        // --- Global State ---
+        const state = {
+            mode: 'IDLE', 
+            handCentroids: [new THREE.Vector3(), new THREE.Vector3()],
+            gestures: [null, null],
+            time: 0,
+            score: 0,
+            combo: 0,
+            lastHitTime: 0,
+            bossMode: false,
+            bossHealth: 0
+        };
+
+        // --- Scene Setup ---
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(CONFIG.bgTop, 0.02);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 2, 12);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: "high-performance" });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        container.appendChild(renderer.domElement);
+
+        // Lighting
+        const dirLight = new THREE.DirectionalLight(0xffffff, 2);
+        dirLight.position.set(0, 10, 10);
+        scene.add(dirLight);
+        scene.add(new THREE.AmbientLight(0x222222));
+
+        // Post-Processing
+        const composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
+        
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+        bloomPass.threshold = 0;
+        bloomPass.strength = 1.5;
+        bloomPass.radius = 0.8;
+        composer.addPass(bloomPass);
+
+        // --- Custom Shaders ---
+        
+        // Sword Shader: Pulsing energy core
+        const swordShaderMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                time: { value: 0 },
+                color: { value: CONFIG.swordColor },
+                coreColor: { value: new THREE.Color(0xffffff) }
+            },
+            vertexShader: `
+                varying vec2 vUv;
+                varying vec3 vNormal;
+                void main() {
+                    vUv = uv;
+                    vNormal = normal;
+                    gl_Position = projectionMatrix * modelViewMatrix * instanceMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                uniform float time;
+                uniform vec3 color;
+                uniform vec3 coreColor;
+                varying vec2 vUv;
+                varying vec3 vNormal;
+                
+                void main() {
+                    float glow = dot(vNormal, vec3(0.0, 0.0, 1.0));
+                    float pulse = sin(time * 5.0) * 0.2 + 0.8;
+                    
+                    vec3 finalColor = mix(color, coreColor, glow * 0.5);
+                    gl_FragColor = vec4(finalColor * pulse, 1.0);
+                }
+            `
+        });
+
+        // Aura Shader
+        const auraMaterial = new THREE.PointsMaterial({
+            color: 0x00ffde,
+            size: 0.5,
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending
+        });
+
+        // --- Objects ---
+
+        // 1. Swords
+        const swordGeo = new THREE.ConeGeometry(0.1, 1.8, 4);
+        swordGeo.rotateX(Math.PI / 2);
+        const swords = new THREE.InstancedMesh(swordGeo, swordShaderMaterial, CONFIG.swordCount);
+        scene.add(swords);
+
+        const swordData = [];
+        const dummy = new THREE.Object3D();
+
+        for(let i=0; i<CONFIG.swordCount; i++) {
+            swordData.push({
+                pos: new THREE.Vector3((Math.random()-0.5)*30, (Math.random()-0.5)*20, (Math.random()-0.5)*10),
+                vel: new THREE.Vector3(),
+                target: new THREE.Vector3(),
+                phase: Math.random() * Math.PI * 2,
+                speed: 0.05 + Math.random() * 0.05
+            });
+        }
+
+        // 2. Spirit Orbs (Targets)
+        const orbs = [];
+        const orbGeo = new THREE.IcosahedronGeometry(0.8, 1);
+        const orbMat = new THREE.MeshBasicMaterial({ color: CONFIG.enemyColor, wireframe: true });
+        const bossMat = new THREE.MeshBasicMaterial({ color: CONFIG.bossColor, wireframe: true });
+
+        for(let i=0; i<CONFIG.orbCount; i++) {
+            const mesh = new THREE.Mesh(orbGeo, orbMat);
+            resetOrb(mesh);
+            scene.add(mesh);
+            orbs.push({ mesh: mesh, active: true, isBoss: false });
+        }
+        
+        // Boss Orb (Hidden initially)
+        const bossOrb = new THREE.Mesh(new THREE.IcosahedronGeometry(3, 2), bossMat);
+        bossOrb.position.set(0, 100, 0); // Hide
+        scene.add(bossOrb);
+
+        function resetOrb(mesh) {
+            mesh.position.set(
+                (Math.random() - 0.5) * 30,
+                (Math.random() - 0.5) * 15 + 5,
+                (Math.random() - 0.5) * 20 - 10
+            );
+            mesh.scale.setScalar(0);
+        }
+
+        // 3. Hand Auras (Particles)
+        const auraGeo = new THREE.BufferGeometry();
+        const auraCount = 50;
+        const auraPos = new Float32Array(auraCount * 3);
+        auraGeo.setAttribute('position', new THREE.BufferAttribute(auraPos, 3));
+        const handAuras = [
+            new THREE.Points(auraGeo.clone(), auraMaterial),
+            new THREE.Points(auraGeo.clone(), auraMaterial)
+        ];
+        scene.add(handAuras[0]);
+        scene.add(handAuras[1]);
+
+
+        // 4. Stars
+        const starGeo = new THREE.BufferGeometry();
+        const starPos = new Float32Array(3000 * 3);
+        for(let i=0; i<3000*3; i++) starPos[i] = (Math.random()-0.5) * 200;
+        starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({color: 0x88ccff, size: 0.2, transparent: true, opacity: 0.6}));
+        scene.add(stars);
+
+
+        // --- Logic ---
+        
+        function shakeScreen(magnitude = 1) {
+            const el = document.getElementById('canvas-container');
+            let shakes = 0;
+            const interval = setInterval(() => {
+                const x = (Math.random() - 0.5) * magnitude * 20;
+                const y = (Math.random() - 0.5) * magnitude * 20;
+                el.style.transform = `translate(${x}px, ${y}px)`;
+                shakes++;
+                if(shakes > 5) {
+                    clearInterval(interval);
+                    el.style.transform = 'none';
+                }
+            }, 20);
+        }
+
+        function triggerBoss() {
+            state.bossMode = true;
+            state.bossHealth = 20;
+            const warn = document.getElementById('boss-warning');
+            warn.style.display = 'block';
+            setTimeout(() => warn.style.display = 'none', 3000);
+            
+            bossOrb.position.set(0, 5, -10);
+            bossOrb.scale.setScalar(0.1);
+            
+            // Disable regular orbs
+            orbs.forEach(o => { o.active = false; o.mesh.visible = false; });
+        }
+        
+        function updateAuras() {
+            for(let h=0; h<2; h++) {
+                const positions = handAuras[h].geometry.attributes.position.array;
+                const center = state.handCentroids[h];
+                
+                for(let i=0; i<auraCount; i++) {
+                    const idx = i*3;
+                    // Random point in sphere around hand
+                    positions[idx] = center.x + (Math.random()-0.5);
+                    positions[idx+1] = center.y + (Math.random()-0.5);
+                    positions[idx+2] = center.z + (Math.random()-0.5);
+                }
+                handAuras[h].geometry.attributes.position.needsUpdate = true;
+                handAuras[h].visible = state.handCentroids[h].lengthSq() > 0.1; // Hide if 0,0,0
+            }
+        }
+
+        function updateOrbs() {
+            // Combo Decay
+            if (state.time - state.lastHitTime > 2.0 && state.combo > 0) {
+                state.combo = 0;
+                document.getElementById('combo-box').style.opacity = 0;
+            }
+
+            // Regular Orbs
+            if (!state.bossMode) {
+                orbs.forEach(orb => {
+                    if (!orb.active) return;
+                    if (!orb.mesh.visible) orb.mesh.visible = true;
+
+                    // Spawn animation
+                    if (orb.mesh.scale.x < 1) orb.mesh.scale.addScalar(0.05);
+
+                    // Float
+                    orb.mesh.rotation.x += 0.01;
+                    orb.mesh.rotation.y += 0.02;
+                    orb.mesh.position.y += Math.sin(state.time + orb.mesh.position.x) * 0.02;
+
+                    // Collision
+                    if (state.mode === 'ATTACK' || state.mode === 'BEAM') {
+                         for (let i = 0; i < CONFIG.swordCount; i+=10) {
+                             if (swordData[i].pos.distanceTo(orb.mesh.position) < 1.5) {
+                                 // Hit!
+                                 audio.playImpact();
+                                 orb.mesh.scale.setScalar(0); 
+                                 resetOrb(orb.mesh);
+                                 
+                                 // Score & Combo
+                                 state.score += 100 * (1 + (state.combo * 0.1));
+                                 state.combo++;
+                                 state.lastHitTime = state.time;
+                                 
+                                 updateUI();
+                                 shakeScreen(0.5);
+                                 
+                                 // Trigger Boss?
+                                 if (state.score > 2000 && !state.bossMode && state.score < 2500) triggerBoss();
+                                 
+                                 break;
+                             }
+                         }
+                    }
+                });
+            } 
+            else {
+                // Boss Logic
+                if (bossOrb.scale.x < 1) bossOrb.scale.addScalar(0.02);
+                bossOrb.rotation.y += 0.05;
+                bossOrb.rotation.x += 0.02;
+                
+                if (state.mode === 'ATTACK' || state.mode === 'BEAM') {
+                    let hits = 0;
+                    for (let i = 0; i < CONFIG.swordCount; i+=5) {
+                         if (swordData[i].pos.distanceTo(bossOrb.position) < 4) {
+                             hits++;
+                         }
+                    }
+                    if (hits > 0 && Math.random() > 0.8) {
+                        state.bossHealth -= 0.5;
+                        audio.playImpact(true);
+                        shakeScreen(1.5);
+                        bossOrb.material.color.setHex(0xffffff);
+                        setTimeout(() => bossOrb.material.color.set(CONFIG.bossColor), 50);
+                        
+                        if (state.bossHealth <= 0) {
+                            // Boss Defeated
+                            state.bossMode = false;
+                            state.score += 5000;
+                            bossOrb.position.y = 100; // Hide
+                            orbs.forEach(o => { o.active = true; });
+                            updateUI();
+                        }
+                    }
+                }
+            }
+        }
+        
+        function updateUI() {
+            document.getElementById('score').innerText = Math.floor(state.score);
+            const comboEl = document.getElementById('combo-box');
+            if (state.combo > 1) {
+                comboEl.style.opacity = 1;
+                document.getElementById('combo-count').innerText = 'x' + state.combo;
+            }
+            
+            // Pop effect
+            const scoreEl = document.getElementById('score-display');
+            scoreEl.style.transform = "scale(1.2)";
+            setTimeout(() => scoreEl.style.transform = "scale(1)", 100);
+        }
+
+        function updateSwords() {
+            swordShaderMaterial.uniforms.time.value = state.time;
+
+            for (let i = 0; i < CONFIG.swordCount; i++) {
+                const s = swordData[i];
+                
+                // --- Behavior Tree ---
+                if (state.mode === 'IDLE') {
+                    // Gentle figure-8 orbit
+                    const t = state.time * 0.5 + s.phase;
+                    s.target.set(
+                        Math.cos(t) * 10,
+                        Math.sin(t * 0.5) * 4 + 2,
+                        Math.sin(t) * 5 - 5
+                    );
+                    s.speed = 0.05;
+                }
+                else if (state.mode === 'DISPERSE') {
+                    // Defensive sphere around user
+                    const r = 8;
+                    const phi = Math.acos(-1 + (2 * i) / CONFIG.swordCount);
+                    const theta = Math.sqrt(CONFIG.swordCount * Math.PI) * phi;
+                    s.target.setFromSphericalCoords(r, phi, theta);
+                    s.target.add(state.handCentroids[0]);
+                    
+                    // Rotate the shield
+                    const rotSpeed = 2.0;
+                    const x = s.target.x - state.handCentroids[0].x;
+                    const z = s.target.z - state.handCentroids[0].z;
+                    s.target.x = x * Math.cos(state.time*rotSpeed) - z * Math.sin(state.time*rotSpeed) + state.handCentroids[0].x;
+                    s.target.z = x * Math.sin(state.time*rotSpeed) + z * Math.cos(state.time*rotSpeed) + state.handCentroids[0].z;
+                    s.speed = 0.1;
+                }
+                else if (state.mode === 'ATTACK') {
+                    // Swarm to primary hand, then shoot at nearest orb or forward
+                    const hand = state.handCentroids[0];
+                    if (s.pos.distanceTo(hand) > 5) {
+                         // Converge
+                         s.target.copy(hand).addRandom(2);
+                    } else {
+                        // Shoot
+                        // Determine Target (Boss or nearest Orb)
+                        let targetPos = null;
+                        if (state.bossMode) {
+                            targetPos = bossOrb.position;
+                        } else {
+                            // Find nearest orb
+                            let minDist = 999;
+                            orbs.forEach(o => {
+                                if (o.active && o.mesh.visible) {
+                                    const d = s.pos.distanceTo(o.mesh.position);
+                                    if (d < minDist) { minDist = d; targetPos = o.mesh.position; }
+                                }
+                            });
+                        }
+
+                        if (targetPos && minDist < 20) {
+                            // Homing behavior
+                            s.target.copy(targetPos).addRandom(1);
+                            s.vel.subVectors(targetPos, s.pos).normalize().multiplyScalar(1.5); // Fast homing
+                        } else {
+                            // Default shoot forward
+                            s.vel.z -= 0.8; 
+                            s.vel.x += (Math.random()-0.5) * 0.5;
+                            s.vel.y += (Math.random()-0.5) * 0.5;
+                            s.target.copy(s.pos).add(s.vel); 
+                        }
+                    }
+                    s.speed = 0.2;
+                }
+                else if (state.mode === 'BEAM') {
+                    // Direct flow
+                    const origin = state.handCentroids[0];
+                    const direction = new THREE.Vector3(0, 0, -30); // Into screen
+                    
+                    const offset = i * 0.1; 
+                    s.target.copy(origin).add(direction).add(new THREE.Vector3(
+                        Math.cos(state.time * 20 + i) * 1.5,
+                        Math.sin(state.time * 20 + i) * 1.5,
+                        0
+                    ));
+                     s.speed = 0.3;
+                }
+                else if (state.mode === 'FUSION') {
+                    // Giant Sword Construction
+                    const center = new THREE.Vector3(0, 0, -8);
+                    const h = (i / CONFIG.swordCount) * 15 - 7.5;
+                    s.target.set(0, h, -8);
+                    const width = (1 - Math.abs(h)/8) * 2;
+                    if (i % 2 === 0) s.target.x += width;
+                    else s.target.x -= width;
+                    s.speed = 0.1;
+                }
+
+                // Physics
+                if (state.mode !== 'ATTACK') {
+                    const force = new THREE.Vector3().copy(s.target).sub(s.pos).multiplyScalar(s.speed);
+                    s.vel.add(force);
+                    s.vel.multiplyScalar(0.9); // Drag
+                }
+                
+                s.pos.add(s.vel);
+
+                // Update Instance
+                dummy.position.copy(s.pos);
+                if (s.vel.lengthSq() > 0.001) dummy.lookAt(s.pos.clone().add(s.vel));
+                dummy.updateMatrix();
+                swords.setMatrixAt(i, dummy.matrix);
+            }
+            swords.instanceMatrix.needsUpdate = true;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            state.time += 0.01;
+            
+            updateSwords();
+            updateOrbs();
+            updateAuras();
+            
+            composer.render();
+            
+            // Update UI
+            document.querySelectorAll('.gesture-card').forEach(el => el.classList.remove('active'));
+            if(state.mode === 'DISPERSE') document.getElementById('hint-open').classList.add('active');
+            if(state.mode === 'ATTACK') document.getElementById('hint-closed').classList.add('active');
+            if(state.mode === 'BEAM') document.getElementById('hint-point').classList.add('active');
+            if(state.mode === 'FUSION') document.getElementById('hint-fusion').classList.add('active');
+        }
+
+        // --- Init & Start ---
+        
+        THREE.Vector3.prototype.addRandom = function(scale) {
+            this.x += (Math.random()-0.5)*scale;
+            this.y += (Math.random()-0.5)*scale;
+            this.z += (Math.random()-0.5)*scale;
+            return this;
+        };
+
+        const startBtn = document.getElementById('start-btn');
+        const startScreen = document.getElementById('start-screen');
+        const loadingScreen = document.getElementById('loading-screen');
+
+        startBtn.addEventListener('click', async () => {
+            startScreen.style.opacity = 0;
+            setTimeout(() => startScreen.remove(), 800);
+            loadingScreen.style.display = 'flex';
+            
+            audio.resume();
+            audio.playDrone();
+            
+            await initCamera();
+        });
+
+        // --- MediaPipe ---
+        
+        function onResults(results) {
+            if (!results.multiHandLandmarks || results.multiHandLandmarks.length === 0) {
+                state.mode = 'IDLE';
+                // Reset centroids to prevent stuck auras
+                state.handCentroids[0].set(0,0,0);
+                state.handCentroids[1].set(0,0,0);
+                return;
+            }
+
+            let activeHands = 0;
+            let primaryGesture = 'UNKNOWN';
+
+            for (const [index, landmarks] of results.multiHandLandmarks.entries()) {
+                if (index > 1) break;
+                activeHands++;
+
+                // Map coordinates
+                const x = (0.5 - landmarks[9].x) * 30;
+                const y = (0.5 - landmarks[9].y) * 20;
+                const z = landmarks[9].z * -15;
+                state.handCentroids[index].lerp(new THREE.Vector3(x, y, z), 0.3);
+
+                // Detect Gesture
+                const isIndexOpen = landmarks[8].y < landmarks[6].y;
+                const isMiddleOpen = landmarks[12].y < landmarks[10].y;
+                const isRingOpen = landmarks[16].y < landmarks[14].y;
+                const isPinkyOpen = landmarks[20].y < landmarks[18].y;
+                const openCount = [isIndexOpen, isMiddleOpen, isRingOpen, isPinkyOpen].filter(Boolean).length;
+
+                let g = 'UNKNOWN';
+                if (openCount === 4) g = 'OPEN';
+                else if (openCount === 0) g = 'CLOSED';
+                else if (openCount === 1 && isIndexOpen) g = 'POINT';
+                
+                state.gestures[index] = g;
+                if (index === 0) primaryGesture = g;
+            }
+
+            // State Logic
+            if (activeHands === 2) {
+                 const dist = state.handCentroids[0].distanceTo(state.handCentroids[1]);
+                 if (dist < 4) state.mode = 'FUSION';
+                 else if (state.gestures[0] === 'OPEN' && state.gestures[1] === 'OPEN') state.mode = 'DISPERSE';
+                 else if (state.gestures[0] === 'CLOSED' && state.gestures[1] === 'CLOSED') {
+                     if (state.mode !== 'ATTACK') audio.playAttack();
+                     state.mode = 'ATTACK';
+                 }
+                 else state.mode = 'IDLE';
+            } else {
+                if (primaryGesture === 'POINT') state.mode = 'BEAM';
+                else if (primaryGesture === 'CLOSED') {
+                    if (state.mode !== 'ATTACK') audio.playAttack();
+                    state.mode = 'ATTACK';
+                }
+                else if (primaryGesture === 'OPEN') state.mode = 'DISPERSE';
+                else state.mode = 'IDLE';
+            }
+        }
+
+        const hands = new Hands({locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`});
+        hands.setOptions({ maxNumHands: 2, modelComplexity: 1, minDetectionConfidence: 0.7, minTrackingConfidence: 0.5 });
+        hands.onResults(onResults);
+
+        async function initCamera() {
+            const videoElement = document.getElementById('video-feed');
+            const cameraUtils = new Camera(videoElement, {
+                onFrame: async () => { await hands.send({image: videoElement}); },
+                width: 640, height: 480
+            });
+            
+            try {
+                await cameraUtils.start();
+                loadingScreen.style.opacity = 0;
+                setTimeout(() => loadingScreen.remove(), 500);
+                animate();
+            } catch (e) {
+                console.error(e);
+                alert("Camera access failed. Please enable it.");
+            }
+        }
+        
+        // Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+    </script>
+</body>
+</html>
