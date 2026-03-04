@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Three.js 3D Background - Enhanced to Geometric Shapes / Neural Network vibe
+// Three.js 3D Background - Enhanced to Geometric Shapes / Neural Network vibe
+export function initThreeBackground() {
     if (typeof THREE !== 'undefined') {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -95,7 +95,10 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
+}
 
+// Particles.js Background
+export function initParticlesBackground() {
     if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
         particlesJS('particles-js', {
             "particles": {
@@ -186,8 +189,10 @@ document.addEventListener('DOMContentLoaded', function () {
             "retina_detect": true
         });
     }
+}
 
-    // Typed.js Animation
+// Typed.js Animation
+export function initTypingAnimation() {
     if (typeof Typed !== 'undefined' && document.getElementById('typing-text')) {
         const options = {
             strings: [
@@ -207,18 +212,22 @@ document.addEventListener('DOMContentLoaded', function () {
             cursorChar: '|',
             autoInsertCss: true
         };
-        const typed = new Typed('#typing-text', options);
+        new Typed('#typing-text', options);
     }
+}
 
-    // Glitch Effect Trigger
-    const glitchElement = document.querySelector('.glitch');
-    if (glitchElement) {
+// Glitch Effect Trigger
+export function initGlitchEffects() {
+    const glitchElements = document.querySelectorAll('.glitch');
+    glitchElements.forEach(el => {
         setInterval(() => {
-            glitchElement.classList.toggle('glitch-active');
+            el.classList.toggle('glitch-active');
         }, Math.random() * 3000 + 2000);
-    }
+    });
+}
 
-    // Parallax Scrolling - Refined
+// Parallax Scrolling
+export function initParallaxScrolling() {
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const parallaxElements = document.querySelectorAll('[data-parallax]');
@@ -231,8 +240,10 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     });
+}
 
-    // Reveal on Scroll (Custom, in addition to AOS)
+// Reveal on Scroll
+export function initRevealOnScroll() {
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -243,4 +254,41 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { threshold: 0.1 });
 
     revealElements.forEach(el => revealObserver.observe(el));
-});
+}
+
+// Matrix Rain Effect
+export function createMatrixRain() {
+    const chars = '01';
+    const matrixContainer = document.body;
+
+    // Only run if on a page that wants it (or just always run if context is right)
+    // For now, let's just make it available
+    setInterval(() => {
+        if (Math.random() < 0.1) {
+            const char = document.createElement('div');
+            char.className = 'matrix-char';
+            char.textContent = chars[Math.floor(Math.random() * chars.length)];
+            char.style.left = Math.random() * 100 + '%';
+            char.style.animationDuration = (Math.random() * 3 + 2) + 's';
+
+            matrixContainer.appendChild(char);
+
+            setTimeout(() => {
+                char.remove();
+            }, 5000);
+        }
+    }, 100);
+}
+
+// Initialize all animations if this script is loaded directly (for non-module compatibility if needed)
+// but since we want to move to modules, we'll call these from main.js
+export function initAllAnimations() {
+    initThreeBackground();
+    initParticlesBackground();
+    initTypingAnimation();
+    initGlitchEffects();
+    initParallaxScrolling();
+    initRevealOnScroll();
+    createMatrixRain();
+}
+

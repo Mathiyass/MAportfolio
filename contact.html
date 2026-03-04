@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | MATHIYA</title>
-    <meta name="description" content="Get in touch with Mathiya Angirasa for collaboration opportunities, project inquiries, or just to say hello.">
+    <meta name="description"
+        content="Get in touch with Mathiya Angirasa for collaboration opportunities, project inquiries, or just to say hello.">
     <meta name="keywords" content="Mathiya, Contact, Software Engineer, Full Stack Developer, Web Developer">
     <meta property="og:title" content="Contact | MATHIYA">
-    <meta property="og:description" content="Get in touch with Mathiya Angirasa for collaboration opportunities, project inquiries, or just to say hello.">
+    <meta property="og:description"
+        content="Get in touch with Mathiya Angirasa for collaboration opportunities, project inquiries, or just to say hello.">
     <meta property="og:type" content="website">
-    
+
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
-    
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -68,146 +74,7 @@
         }
     </script>
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            cursor: none;
-            overflow-x: hidden;
-        }
-
-        /* Enhanced Custom Cursor */
-        .custom-cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #00FFDE;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.1s ease;
-            mix-blend-mode: difference;
-        }
-
-        .cursor-dot {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: #00FFDE;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            transition: all 0.15s ease;
-        }
-
-        .cursor-hover {
-            transform: scale(2.5);
-            background: rgba(0, 255, 222, 0.2);
-            box-shadow: 0 0 30px rgba(0, 255, 222, 0.8);
-        }
-
-        /* Enhanced Glassmorphism */
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Enhanced Gradient Text */
-        .gradient-text {
-            background: linear-gradient(135deg, #00FFDE, #FF3366, #FF10F0, #0080FF);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textShimmer 3s ease-in-out infinite;
-        }
-
-        /* Neon Button Enhancement */
-        .neon-btn {
-            background: linear-gradient(45deg, #00FFDE, #FF3366);
-            border: none;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(0, 255, 222, 0.4);
-        }
-
-        .neon-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .neon-btn:hover::before {
-            left: 100%;
-        }
-
-        .neon-btn:hover {
-            box-shadow: 0 0 40px rgba(0, 255, 222, 0.8);
-            transform: translateY(-2px) scale(1.05);
-        }
-
-        /* Mobile Menu Enhancement */
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
-
-        /* Scroll Progress Bar */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, #00FFDE, #FF3366);
-            z-index: 9999;
-            transition: width 0.3s ease;
-        }
-
-        /* Advanced Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1a1a2e;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #00FFDE, #FF3366);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #FF3366, #00FFDE);
-        }
-
-        /* Contact Form Styles */
-        .form-input {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-        .form-input:focus {
-            outline: none;
-            --tw-border-opacity: 1;
-            border-color: rgb(0 255 222 / var(--tw-border-opacity));
-            box-shadow: 0 0 20px rgba(0, 255, 222, 0.3);
-            background: rgba(255, 255, 255, 0.1);
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
 
 <body class="dark text-white">
@@ -225,12 +92,17 @@
     <main>
         <section class="pt-32 pb-20 relative overflow-hidden">
             <div class="absolute inset-0">
-                <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
-                <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+                <div
+                    class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float">
+                </div>
+                <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float"
+                    style="animation-delay: -3s;"></div>
             </div>
             <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up">Let's Connect</h1>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">Ready to collaborate on your next project or just want to say hello? I'd love to hear from you!</p>
+                <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up">Let's
+                    Connect</h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">Ready to
+                    collaborate on your next project or just want to say hello? I'd love to hear from you!</p>
             </div>
         </section>
 
@@ -242,27 +114,41 @@
                         <form id="contact-form">
                             <div class="grid md:grid-cols-2 gap-6 mb-6">
                                 <div>
-                                    <label class="block text-sm font-medium mb-2 text-cyber-cyan" for="firstName">First Name</label>
-                                    <input type="text" id="firstName" name="firstName" class="form-input w-full px-4 py-3 rounded-lg" placeholder="John" required>
+                                    <label class="block text-sm font-medium mb-2 text-cyber-cyan" for="firstName">First
+                                        Name</label>
+                                    <input type="text" id="firstName" name="firstName"
+                                        class="form-input w-full px-4 py-3 rounded-lg" placeholder="John" required>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium mb-2 text-cyber-cyan" for="lastName">Last Name</label>
-                                    <input type="text" id="lastName" name="lastName" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Doe" required>
+                                    <label class="block text-sm font-medium mb-2 text-cyber-cyan" for="lastName">Last
+                                        Name</label>
+                                    <input type="text" id="lastName" name="lastName"
+                                        class="form-input w-full px-4 py-3 rounded-lg" placeholder="Doe" required>
                                 </div>
                             </div>
                             <div class="mb-6">
-                                <label class="block text-sm font-medium mb-2 text-cyber-cyan" for="email">Email Address</label>
-                                <input type="email" id="email" name="email" class="form-input w-full px-4 py-3 rounded-lg" placeholder="john@example.com" required>
+                                <label class="block text-sm font-medium mb-2 text-cyber-cyan" for="email">Email
+                                    Address</label>
+                                <input type="email" id="email" name="email"
+                                    class="form-input w-full px-4 py-3 rounded-lg" placeholder="john@example.com"
+                                    required>
                             </div>
                             <div class="mb-6">
-                                <label class="block text-sm font-medium mb-2 text-cyber-cyan" for="subject">Subject</label>
-                                <input type="text" id="subject" name="subject" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Project Collaboration" required>
+                                <label class="block text-sm font-medium mb-2 text-cyber-cyan"
+                                    for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject"
+                                    class="form-input w-full px-4 py-3 rounded-lg" placeholder="Project Collaboration"
+                                    required>
                             </div>
                             <div class="mb-6">
-                                <label class="block text-sm font-medium mb-2 text-cyber-cyan" for="message">Message</label>
-                                <textarea id="message" name="message" class="form-input w-full px-4 py-3 rounded-lg" rows="4" placeholder="Tell me about your project or just say hello..." required></textarea>
+                                <label class="block text-sm font-medium mb-2 text-cyber-cyan"
+                                    for="message">Message</label>
+                                <textarea id="message" name="message" class="form-input w-full px-4 py-3 rounded-lg"
+                                    rows="4" placeholder="Tell me about your project or just say hello..."
+                                    required></textarea>
                             </div>
-                            <button type="submit" class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron w-full">
+                            <button type="submit"
+                                class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron w-full">
                                 <i class="fas fa-paper-plane mr-2"></i>Send Message
                             </button>
                         </form>
@@ -272,20 +158,39 @@
                         <div class="glass p-8 rounded-2xl">
                             <h2 class="text-3xl font-bold gradient-text mb-6">Get In Touch</h2>
                             <div class="space-y-4">
-                                <div class="flex items-center"><i class="fas fa-map-marker-alt text-cyber-cyan w-6"></i><span class="ml-4">Birmingham, United Kingdom</span></div>
-                                <div class="flex items-center"><i class="fab fa-whatsapp text-cyber-cyan w-6"></i><a href="https://wa.me/94715921984" class="ml-4 hover:text-cyber-cyan transition-colors">+94 71 592 1984</a></div>
-                                <div class="flex items-center"><i class="fas fa-envelope text-cyber-cyan w-6"></i><a href="mailto:mathiya@example.com" class="ml-4 hover:text-cyber-cyan transition-colors">mathiya@example.com</a></div>
-                                <div class="flex items-center"><i class="fab fa-discord text-cyber-cyan w-6"></i><a href="https://discord.gg/QERP5JJM8k" class="ml-4 hover:text-cyber-cyan transition-colors">Join My Discord</a></div>
+                                <div class="flex items-center"><i
+                                        class="fas fa-map-marker-alt text-cyber-cyan w-6"></i><span
+                                        class="ml-4">Birmingham, United Kingdom</span></div>
+                                <div class="flex items-center"><i class="fab fa-whatsapp text-cyber-cyan w-6"></i><a
+                                        href="https://wa.me/94715921984"
+                                        class="ml-4 hover:text-cyber-cyan transition-colors">+94 71 592 1984</a></div>
+                                <div class="flex items-center"><i class="fas fa-envelope text-cyber-cyan w-6"></i><a
+                                        href="mailto:mathiya@example.com"
+                                        class="ml-4 hover:text-cyber-cyan transition-colors">mathiya@example.com</a>
+                                </div>
+                                <div class="flex items-center"><i class="fab fa-discord text-cyber-cyan w-6"></i><a
+                                        href="https://discord.gg/QERP5JJM8k"
+                                        class="ml-4 hover:text-cyber-cyan transition-colors">Join My Discord</a></div>
                             </div>
                         </div>
                         <div class="glass p-8 rounded-2xl">
                             <h3 class="text-xl font-bold gradient-text mb-4">Connect With Me</h3>
                             <div class="flex items-center flex-wrap gap-x-5 gap-y-3">
-                                <a href="https://github.com/Mathiyass" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="GitHub"><i class="fab fa-github"></i></a>
-                                <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                                <a href="https://x.com/Mathiya" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
-                                <a href="https://www.facebook.com/mathisha.angirasa/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Facebook"><i class="fab fa-facebook"></i></a>
-                                <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://github.com/Mathiyass" target="_blank"
+                                    class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                                    title="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank"
+                                    class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                                    title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://x.com/Mathiya" target="_blank"
+                                    class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                                    title="X (Twitter)"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/mathisha.angirasa/" target="_blank"
+                                    class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                                    title="Facebook"><i class="fab fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/mathi_ya_/" target="_blank"
+                                    class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                                    title="Instagram"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>
@@ -300,15 +205,28 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
                     <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
-                    <p class="text-gray-400">© <span id="current-year">2024</span> Mathiya Angirasa. All rights reserved.</p>
+                    <p class="text-gray-400">© <span id="current-year">2024</span> Mathiya Angirasa. All rights
+                        reserved.</p>
                 </div>
                 <div class="flex items-center justify-center md:justify-end flex-wrap gap-x-5 gap-y-3">
-                    <a href="https://github.com/Mathiyass" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/Mathiya" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://discord.gg/QERP5JJM8k" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Discord"><i class="fab fa-discord"></i></a>
-                    <a href="https://wa.me/94715921984" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://github.com/Mathiyass" target="_blank"
+                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                        title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank"
+                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                        title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/Mathiya" target="_blank"
+                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                        title="X (Twitter)"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank"
+                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                        title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://discord.gg/QERP5JJM8k" target="_blank"
+                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                        title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://wa.me/94715921984" target="_blank"
+                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                        title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
@@ -330,4 +248,5 @@
     </script>
     <script type="module" src="assets/js/gesture-control.js"></script>
 </body>
+
 </html>

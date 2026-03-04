@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
+import { showModal } from './utils.js';
+
+document.addEventListener('DOMContentLoaded', function () {
     // Note: AOS init is handled globally in main.js
 
     const filterButtons = document.querySelectorAll('.filter-btn');
@@ -7,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Project Filtering Logic ---
     if (filterButtons.length > 0) {
         filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 const filter = this.dataset.filter;
 
                 // Update active state on buttons
@@ -102,10 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
 
-        if (typeof showModal === 'function') {
-            showModal(title, modalContentHtml);
-        } else {
-            console.error('showModal function not found. Make sure main.js is loaded.');
-        }
+        showModal(title, modalContentHtml);
     }
 });

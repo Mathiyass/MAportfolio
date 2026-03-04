@@ -1,104 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mathiya Angirasa | Software Engineer & Tech Innovator</title>
-    <meta name="description" content="Mathiya Angirasa - Software Engineering Student, Full Stack Developer, and Tech Enthusiast. Building the future with code.">
+    <meta name="description"
+        content="Mathiya Angirasa - Software Engineering Student, Full Stack Developer, and Tech Enthusiast. Building the future with code.">
     <meta name="keywords" content="Mathiya, Software Engineer, Full Stack Developer, Web Developer, Tech, Portfolio">
     <meta property="og:title" content="Mathiya Angirasa | Software Engineer">
     <meta property="og:description" content="Building the future with innovative software solutions">
     <meta property="og:type" content="website">
-    
+
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
-    
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-    <!-- Typed.js -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'orbitron': ['Orbitron', 'monospace'],
-                        'inter': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'cyber-cyan': '#00FFDE',
-                        'cyber-red': '#FF3366',
-                        'neon-pink': '#FF10F0',
-                        'electric-blue': '#0080FF',
-                        'dark-bg': '#0a0a0a',
-                        'dark-card': '#1a1a2e',
-                        'dark-accent': '#16213e',
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
-                        'text-shimmer': 'textShimmer 3s ease-in-out infinite',
-                        'bounce-slow': 'bounceSlow 3s ease-in-out infinite',
-                        'rotate-slow': 'rotateSlow 20s linear infinite',
-                    },
-                    keyframes: {
-                        'float': {
-                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
-                        },
-                        'glowPulse': {
-                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 222, 0.5)' },
-                            '100%': { boxShadow: '0 0 40px rgba(0, 255, 222, 1), 0 0 60px rgba(255, 51, 102, 0.5)' },
-                        },
-                        'textShimmer': {
-                            '0%, 100%': { backgroundPosition: '0% 50%' },
-                            '50%': { backgroundPosition: '100% 50%' },
-                        },
-                        'bounceSlow': {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        'rotateSlow': {
-                            '0%': { transform: 'rotate(0deg)' },
-                            '100%': { transform: 'rotate(360deg)' },
-                        },
-                    },
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
 </head>
 
 <body class="dark text-white">
     <!-- Signature Loading Screen -->
-    <div id="loading-screen" class="fixed inset-0 bg-dark-bg z-[100] flex flex-col items-center justify-center transition-opacity duration-1000">
+    <div id="loading-screen"
+        class="fixed inset-0 bg-dark-bg z-[100] flex flex-col items-center justify-center transition-opacity duration-1000">
         <canvas id="signature-canvas" width="800" height="400" class="max-w-full"></canvas>
         <div class="w-64 h-1 bg-gray-700 rounded-full overflow-hidden mt-4">
-            <div id="loading-progress" class="h-full bg-gradient-to-r from-cyber-cyan to-neon-pink rounded-full w-0 transition-all duration-300"></div>
+            <div id="loading-progress"
+                class="h-full bg-gradient-to-r from-cyber-cyan to-neon-pink rounded-full w-0 transition-all duration-300">
+            </div>
         </div>
-    <p id="loading-text" class="text-cyber-cyan font-orbitron mt-4 text-sm tracking-widest">INITIALIZING SYSTEMS...</p>
+        <p id="loading-text" class="text-cyber-cyan font-orbitron mt-4 text-sm tracking-widest">INITIALIZING SYSTEMS...
+        </p>
     </div>
 
     <!-- Enhanced Custom Cursor -->
@@ -120,9 +69,12 @@
         <div id="three-js-container" class="absolute inset-0 z-0"></div>
         <!-- Background Elements -->
         <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float" data-parallax="0.3"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;" data-parallax="0.5"></div>
-            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float" style="animation-delay: -1.5s;" data-parallax="0.4"></div>
+            <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"
+                data-parallax="0.3"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float"
+                style="animation-delay: -3s;" data-parallax="0.5"></div>
+            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float"
+                style="animation-delay: -1.5s;" data-parallax="0.4"></div>
         </div>
 
         <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
@@ -130,7 +82,8 @@
             <div class="text-center lg:text-left" data-aos="fade-right">
                 <div class="mb-6">
                     <span class="text-cyber-cyan font-orbitron text-lg tracking-wider">Hello, I'm</span>
-                    <h1 class="text-5xl md:text-7xl font-bold font-orbitron gradient-text mb-4 animate-glow-pulse glitch" data-text="MATHIYA">
+                    <h1 class="text-5xl md:text-7xl font-bold font-orbitron gradient-text mb-4 animate-glow-pulse glitch"
+                        data-text="MATHIYA">
                         MATHIYA
                     </h1>
                     <h2 class="text-2xl md:text-3xl font-bold text-gray-300 mb-6">
@@ -139,63 +92,87 @@
                 </div>
 
                 <p class="text-lg text-gray-300 mb-8 leading-relaxed">
-                    Passionate software engineering student crafting innovative digital experiences with cutting-edge technologies. 
+                    Passionate software engineering student crafting innovative digital experiences with cutting-edge
+                    technologies.
                     Building the future, one line of code at a time.
                 </p>
 
                 <!-- Enhanced Action Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                    <a href="projects.html" class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
+                    <a href="projects.html"
+                        class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
                         <i class="fas fa-code mr-2"></i>View My Work
                     </a>
-                    <a href="contact.html" class="border-2 border-cyber-cyan text-cyber-cyan font-semibold py-3 px-8 rounded-lg hover:bg-cyber-cyan hover:text-black transition-all duration-300 font-orbitron">
+                    <a href="contact.html"
+                        class="border-2 border-cyber-cyan text-cyber-cyan font-semibold py-3 px-8 rounded-lg hover:bg-cyber-cyan hover:text-black transition-all duration-300 font-orbitron">
                         <i class="fas fa-envelope mr-2"></i>Get In Touch
                     </a>
                 </div>
 
                 <!-- Enhanced Social Links -->
                 <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4">
-                    <a href="https://github.com/Mathiyass" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="GitHub" aria-label="GitHub">
+                    <a href="https://github.com/Mathiyass" target="_blank"
+                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
+                        title="GitHub" aria-label="GitHub">
                         <i class="fab fa-github text-3xl text-gray-300"></i>
                         <span class="social-name text-xs text-cyber-cyan font-orbitron">GitHub</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="LinkedIn" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank"
+                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
+                        title="LinkedIn" aria-label="LinkedIn">
                         <i class="fab fa-linkedin text-3xl text-gray-300"></i>
                         <span class="social-name text-xs text-cyber-cyan font-orbitron">LinkedIn</span>
                     </a>
-                    <a href="https://x.com/Mathiya" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="X (Twitter)" aria-label="Twitter">
+                    <a href="https://x.com/Mathiya" target="_blank"
+                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
+                        title="X (Twitter)" aria-label="Twitter">
                         <i class="fab fa-twitter text-3xl text-gray-300"></i>
                         <span class="social-name text-xs text-cyber-cyan font-orbitron">Twitter</span>
                     </a>
-                    <a href="https://www.facebook.com/mathisha.angirasa/" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Facebook" aria-label="Facebook">
+                    <a href="https://www.facebook.com/mathisha.angirasa/" target="_blank"
+                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
+                        title="Facebook" aria-label="Facebook">
                         <i class="fab fa-facebook text-3xl text-gray-300"></i>
                         <span class="social-name text-xs text-cyber-cyan font-orbitron">Facebook</span>
                     </a>
-                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Instagram" aria-label="Instagram">
+                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank"
+                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
+                        title="Instagram" aria-label="Instagram">
                         <i class="fab fa-instagram text-3xl text-gray-300"></i>
                         <span class="social-name text-xs text-cyber-cyan font-orbitron">Instagram</span>
                     </a>
-                    <a href="https://steamcommunity.com/profiles/76561199076879396/" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Steam" aria-label="Steam">
+                    <a href="https://steamcommunity.com/profiles/76561199076879396/" target="_blank"
+                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
+                        title="Steam" aria-label="Steam">
                         <i class="fab fa-steam text-3xl text-gray-300"></i>
                         <span class="social-name text-xs text-cyber-cyan font-orbitron">Steam</span>
                     </a>
-                    <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Epic Games" aria-label="Epic Games">
+                    <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" target="_blank"
+                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
+                        title="Epic Games" aria-label="Epic Games">
                         <i class="fas fa-gamepad text-3xl text-gray-300"></i>
                         <span class="social-name text-xs text-cyber-cyan font-orbitron">Epic Games</span>
                     </a>
-                    <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Spotify" aria-label="Spotify">
+                    <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" target="_blank"
+                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
+                        title="Spotify" aria-label="Spotify">
                         <i class="fab fa-spotify text-3xl text-gray-300"></i>
                         <span class="social-name text-xs text-cyber-cyan font-orbitron">Spotify</span>
                     </a>
-                    <a href="https://discord.gg/QERP5JJM8k" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="Discord" aria-label="Discord">
+                    <a href="https://discord.gg/QERP5JJM8k" target="_blank"
+                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
+                        title="Discord" aria-label="Discord">
                         <i class="fab fa-discord text-3xl text-gray-300"></i>
                         <span class="social-name text-xs text-cyber-cyan font-orbitron">Discord</span>
                     </a>
-                    <a href="https://wa.me/94715921984" target="_blank" class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="WhatsApp" aria-label="WhatsApp">
+                    <a href="https://wa.me/94715921984" target="_blank"
+                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
+                        title="WhatsApp" aria-label="WhatsApp">
                         <i class="fab fa-whatsapp text-3xl text-gray-300"></i>
                         <span class="social-name text-xs text-cyber-cyan font-orbitron">WhatsApp</span>
                     </a>
-                    <div class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2" title="EA ID: M_MATHIYA_M">
+                    <div class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
+                        title="EA ID: M_MATHIYA_M">
                         <i class="fas fa-headset text-3xl text-gray-300"></i>
                         <span class="social-name text-xs text-cyber-cyan font-orbitron">EA ID</span>
                     </div>
@@ -206,20 +183,24 @@
             <div class="relative" data-aos="fade-left" id="profile-picture-container">
                 <div class="relative w-80 h-80 mx-auto">
                     <!-- Animated Border -->
-                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-cyber-cyan via-neon-pink to-cyber-red p-1 animate-rotate-slow animate-glow-pulse">
+                    <div
+                        class="absolute inset-0 rounded-full bg-gradient-to-r from-cyber-cyan via-neon-pink to-cyber-red p-1 animate-rotate-slow animate-glow-pulse">
                         <div class="w-full h-full bg-dark-bg rounded-full"></div>
                     </div>
-                    
+
                     <!-- Profile Image -->
                     <div class="absolute inset-2 rounded-full overflow-hidden glass">
-                        <img src="assets/images/Profile Picture.jpg" alt="Mathiya Profile" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                        <img src="assets/images/Profile Picture.jpg" alt="Mathiya Profile"
+                            class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
                     </div>
-                    
+
                     <!-- Floating Elements -->
-                    <div class="absolute -top-4 -right-4 w-16 h-16 glass rounded-full flex items-center justify-center animate-bounce-slow">
+                    <div
+                        class="absolute -top-4 -right-4 w-16 h-16 glass rounded-full flex items-center justify-center animate-bounce-slow">
                         <i class="fas fa-code text-cyber-cyan text-xl"></i>
                     </div>
-                    <div class="absolute -bottom-4 -left-4 w-12 h-12 glass rounded-full flex items-center justify-center animate-bounce-slow" style="animation-delay: -1s;">
+                    <div class="absolute -bottom-4 -left-4 w-12 h-12 glass rounded-full flex items-center justify-center animate-bounce-slow"
+                        style="animation-delay: -1s;">
                         <i class="fas fa-rocket text-neon-pink"></i>
                     </div>
                 </div>
@@ -268,7 +249,8 @@
             </div>
 
             <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
-                <a href="about.html" class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
+                <a href="about.html"
+                    class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
                     <i class="fas fa-user mr-2"></i>Learn More
                 </a>
             </div>
@@ -286,15 +268,21 @@
                 <!-- Project 1 -->
                 <div class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
                     <div class="relative group">
-                        <div class="w-full h-48 bg-gradient-to-br from-cyber-cyan to-electric-blue flex items-center justify-center">
+                        <div
+                            class="w-full h-48 bg-gradient-to-br from-cyber-cyan to-electric-blue flex items-center justify-center">
                             <i class="fas fa-shopping-cart text-4xl text-black"></i>
                         </div>
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div
+                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                             <div class="text-center">
-                                <button class="bg-white text-black px-4 py-2 rounded-lg mr-2 hover:bg-gray-200 transition-colors" aria-label="View Project">
+                                <button
+                                    class="bg-white text-black px-4 py-2 rounded-lg mr-2 hover:bg-gray-200 transition-colors"
+                                    aria-label="View Project">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="bg-cyber-cyan text-black px-4 py-2 rounded-lg hover:bg-opacity-80 transition-colors" aria-label="View Source">
+                                <button
+                                    class="bg-cyber-cyan text-black px-4 py-2 rounded-lg hover:bg-opacity-80 transition-colors"
+                                    aria-label="View Source">
                                     <i class="fab fa-github"></i>
                                 </button>
                             </div>
@@ -314,15 +302,21 @@
                 <!-- Project 2 -->
                 <div class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
                     <div class="relative group">
-                        <div class="w-full h-48 bg-gradient-to-br from-neon-pink to-cyber-red flex items-center justify-center">
+                        <div
+                            class="w-full h-48 bg-gradient-to-br from-neon-pink to-cyber-red flex items-center justify-center">
                             <i class="fas fa-rocket text-4xl text-white"></i>
                         </div>
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div
+                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                             <div class="text-center">
-                                <button class="bg-white text-black px-4 py-2 rounded-lg mr-2 hover:bg-gray-200 transition-colors" aria-label="View Project">
+                                <button
+                                    class="bg-white text-black px-4 py-2 rounded-lg mr-2 hover:bg-gray-200 transition-colors"
+                                    aria-label="View Project">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="bg-cyber-cyan text-black px-4 py-2 rounded-lg hover:bg-opacity-80 transition-colors" aria-label="View Source">
+                                <button
+                                    class="bg-cyber-cyan text-black px-4 py-2 rounded-lg hover:bg-opacity-80 transition-colors"
+                                    aria-label="View Source">
                                     <i class="fab fa-github"></i>
                                 </button>
                             </div>
@@ -342,15 +336,21 @@
                 <!-- Project 3 -->
                 <div class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
                     <div class="relative group">
-                        <div class="w-full h-48 bg-gradient-to-br from-electric-blue to-cyber-cyan flex items-center justify-center">
+                        <div
+                            class="w-full h-48 bg-gradient-to-br from-electric-blue to-cyber-cyan flex items-center justify-center">
                             <i class="fas fa-mobile-alt text-4xl text-black"></i>
                         </div>
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div
+                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                             <div class="text-center">
-                                <button class="bg-white text-black px-4 py-2 rounded-lg mr-2 hover:bg-gray-200 transition-colors" aria-label="View Project">
+                                <button
+                                    class="bg-white text-black px-4 py-2 rounded-lg mr-2 hover:bg-gray-200 transition-colors"
+                                    aria-label="View Project">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="bg-cyber-cyan text-black px-4 py-2 rounded-lg hover:bg-opacity-80 transition-colors" aria-label="View Source">
+                                <button
+                                    class="bg-cyber-cyan text-black px-4 py-2 rounded-lg hover:bg-opacity-80 transition-colors"
+                                    aria-label="View Source">
                                     <i class="fab fa-github"></i>
                                 </button>
                             </div>
@@ -369,7 +369,8 @@
             </div>
 
             <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
-                <a href="projects.html" class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
+                <a href="projects.html"
+                    class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
                     <i class="fas fa-folder-open mr-2"></i>View All Projects
                 </a>
             </div>
@@ -418,7 +419,8 @@
             </div>
 
             <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="500">
-                <a href="skills.html" class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
+                <a href="skills.html"
+                    class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
                     <i class="fas fa-tools mr-2"></i>View All Skills
                 </a>
             </div>
@@ -435,10 +437,12 @@
                 Ready to bring your ideas to life? Let's collaborate and create innovative solutions together.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-                <a href="contact.html" class="neon-btn text-black font-semibold py-4 px-8 rounded-lg transition-all duration-300 font-orbitron">
+                <a href="contact.html"
+                    class="neon-btn text-black font-semibold py-4 px-8 rounded-lg transition-all duration-300 font-orbitron">
                     <i class="fas fa-rocket mr-2"></i>Start a Project
                 </a>
-                <a href="resume.html" class="border-2 border-cyber-cyan text-cyber-cyan font-semibold py-4 px-8 rounded-lg hover:bg-cyber-cyan hover:text-black transition-all duration-300 font-orbitron">
+                <a href="resume.html"
+                    class="border-2 border-cyber-cyan text-cyber-cyan font-semibold py-4 px-8 rounded-lg hover:bg-cyber-cyan hover:text-black transition-all duration-300 font-orbitron">
                     <i class="fas fa-download mr-2"></i>Download Resume
                 </a>
             </div>
@@ -451,29 +455,46 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
                     <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
-                    <p class="text-gray-400">© <span id="current-year">2024</span> Mathiya Angirasa. All rights reserved.</p>
+                    <p class="text-gray-400">© <span id="current-year">2024</span> Mathiya Angirasa. All rights
+                        reserved.</p>
                 </div>
 
                 <div class="flex items-center justify-center md:justify-end flex-wrap gap-x-5 gap-y-3">
-                    <a href="https://github.com/Mathiyass" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/Mathiya" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="X (Twitter)" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://discord.gg/QERP5JJM8k" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Discord" aria-label="Discord"><i class="fab fa-discord"></i></a>
-                    <a href="https://wa.me/94715921984" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="WhatsApp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://github.com/Mathiyass" target="_blank"
+                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                        title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank"
+                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                        title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/Mathiya" target="_blank"
+                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                        title="X (Twitter)" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank"
+                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                        title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://discord.gg/QERP5JJM8k" target="_blank"
+                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                        title="Discord" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://wa.me/94715921984" target="_blank"
+                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
+                        title="WhatsApp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- Floating Hire Me Button -->
-    <a href="contact.html" class="fixed bottom-6 left-6 w-auto h-12 px-6 bg-gradient-to-r from-cyber-cyan to-neon-pink text-black rounded-full flex items-center justify-center font-orbitron font-bold shadow-lg hover:scale-110 transition-all duration-300 z-50 animate-bounce-slow" aria-label="Hire Me">
+    <a href="contact.html"
+        class="fixed bottom-6 left-6 w-auto h-12 px-6 bg-gradient-to-r from-cyber-cyan to-neon-pink text-black rounded-full flex items-center justify-center font-orbitron font-bold shadow-lg hover:scale-110 transition-all duration-300 z-50 animate-bounce-slow"
+        aria-label="Hire Me">
         <i class="fas fa-briefcase mr-2"></i>
         <span>Hire Me</span>
     </a>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-cyber-cyan text-black rounded-full hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none z-50" aria-label="Back to Top">
+    <button id="back-to-top"
+        class="fixed bottom-6 right-6 w-12 h-12 bg-cyber-cyan text-black rounded-full hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none z-50"
+        aria-label="Back to Top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -486,39 +507,15 @@
     <script src="assets/js/signature-loader.js"></script>
     <script src="assets/js/components/navbar.js"></script> <!-- Advanced Navbar -->
     <script src="assets/js/start-overlay.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/animations.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
     <script type="module" src="assets/js/gesture-control.js"></script>
     <script>
-        // Matrix Rain Effect
-        function createMatrixRain() {
-            const chars = '01';
-            const matrixContainer = document.body;
-            
-            setInterval(() => {
-                if (Math.random() < 0.1) {
-                    const char = document.createElement('div');
-                    char.className = 'matrix-char';
-                    char.textContent = chars[Math.floor(Math.random() * chars.length)];
-                    char.style.left = Math.random() * 100 + '%';
-                    char.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                    
-                    matrixContainer.appendChild(char);
-                    
-                    setTimeout(() => {
-                        char.remove();
-                    }, 5000);
-                }
-            }, 100);
-        }
-
-        // Initialize enhanced features
-        document.addEventListener('DOMContentLoaded', function() {
-            createMatrixRain();
-            
-            // Update current year
-            document.getElementById('current-year').textContent = new Date().getFullYear();
+        // Update current year
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearEl = document.getElementById('current-year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
         });
     </script>
 </body>
+
 </html>

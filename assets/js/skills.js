@@ -1,5 +1,7 @@
+import { animateNumber } from './utils.js';
+
 // Skills page functionality
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Note: Global features like Cursor, Navbar, Scroll Progress are handled by main.js and navbar.js
 
     // Animate skill bars when they come into view
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Animate the percentage text if it exists
                     const percentageEl = skillBar.parentElement.previousElementSibling?.querySelector('.text-cyber-cyan');
                     if (percentageEl) {
-                       // animateNumber(percentageEl, 0, parseInt(width), 1000); // animateNumber is in main.js
+                        animateNumber(percentageEl, 0, parseInt(width), 1000);
                     }
                 }, 200);
 
@@ -36,12 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Skill icon hover effects
     const skillIcons = document.querySelectorAll('.skill-icon');
     skillIcons.forEach(icon => {
-        icon.addEventListener('mouseenter', function() {
+        icon.addEventListener('mouseenter', function () {
             this.style.transform = 'scale(1.2) rotate(10deg)';
             this.style.textShadow = '0 0 20px currentColor';
         });
-        
-        icon.addEventListener('mouseleave', function() {
+
+        icon.addEventListener('mouseleave', function () {
             this.style.transform = 'scale(1) rotate(0deg)';
             this.style.textShadow = 'none';
         });
@@ -50,21 +52,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add interactive tooltips/hover effects to skill cards
     const skillCards = document.querySelectorAll('.skill-card');
     skillCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-10px) scale(1.02)';
             this.style.boxShadow = '0 20px 40px rgba(0, 255, 222, 0.1)';
-            
+
             // Add glow effect to skill icon
             const icon = this.querySelector('.skill-icon');
             if (icon) {
                 icon.style.textShadow = '0 0 20px currentColor';
             }
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0) scale(1)';
             this.style.boxShadow = 'none';
-            
+
             // Remove glow effect
             const icon = this.querySelector('.skill-icon');
             if (icon) {
@@ -80,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (document.querySelectorAll('.skill-particle').length > 10) return;
 
         const skillNames = ['HTML', 'CSS', 'JS', 'React', 'Node', 'Python', 'Unity', 'Git', 'SQL', 'AWS'];
-        
+
         const particleInterval = setInterval(() => {
             // Stop if we left the page (cleanup handled by browser mostly, but good practice)
             if (!document.body.contains(container)) {
@@ -102,9 +104,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 z-index: -1;
                 animation: floatUp ${10 + Math.random() * 10}s linear forwards;
             `;
-            
+
             container.appendChild(particle);
-            
+
             setTimeout(() => {
                 particle.remove();
             }, 20000);
