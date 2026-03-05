@@ -1,490 +1,134 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html class="dark" lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | MATHIYA</title>
-    <meta name="description"
-        content="Explore Mathiya's portfolio of innovative projects including web applications, games, and creative coding experiments.">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>All Projects | Mathiya Angirasa</title>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <!-- Google Fonts -->
+    <!-- Fonts & Icons -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.0.45/dist/lenis.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="./assets/css/global.css" rel="stylesheet" />
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'orbitron': ['Orbitron', 'monospace'],
-                        'inter': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'cyber-cyan': '#00FFDE',
-                        'cyber-red': '#FF3366',
-                        'neon-pink': '#FF10F0',
-                        'electric-blue': '#0080FF',
-                        'dark-bg': '#0a0a0a',
-                        'dark-card': '#1a1a2e',
-                        'dark-accent': '#16213e',
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
-                        'project-hover': 'projectHover 0.3s ease-out',
-                    },
-                    keyframes: {
-                        'float': {
-                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
-                        },
-                        'glowPulse': {
-                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 222, 0.5)' },
-                            '100%': { boxShadow: '0 0 40px rgba(0, 255, 222, 1), 0 0 60px rgba(255, 51, 102, 0.5)' },
-                        },
-                        'projectHover': {
-                            '0%': { transform: 'translateY(0) scale(1)' },
-                            '100%': { transform: 'translateY(-10px) scale(1.02)' },
-                        },
-                    },
-                }
-            }
-        }
-    </script>
+    <!-- Tailwind JS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="./assets/js/tailwind-config.js"></script>
 </head>
 
-<body class="dark text-white">
-    <!-- Custom Cursor -->
-    <div class="custom-cursor" id="custom-cursor"></div>
-    <div class="cursor-dot" id="cursor-dot"></div>
+<body class="bg-background-dark font-sans text-slate-100 selection:bg-primary/30">
+    <div id="particles-canvas" class="fixed inset-0 pointer-events-none z-0"></div>
 
-    <!-- Scroll Progress -->
-    <div class="scroll-progress" id="scroll-progress"></div>
-
-    <!-- Navigation (Injected by JS) -->
-    <div id="navbar-container"></div>
-
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 relative overflow-hidden">
-        <!-- Background Elements -->
-        <div class="absolute inset-0">
-            <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float">
+    <!-- Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 flex justify-center p-6 transition-all duration-300">
+        <nav class="glass-effect flex items-center justify-between w-full max-w-7xl px-8 py-4 rounded-2xl">
+            <a href="index.html" class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-primary to-accent-violet rounded-lg flex items-center justify-center font-display font-bold text-background-dark">
+                    MA
+                </div>
+                <span class="font-display font-bold text-xl tracking-tight hidden sm:block">MATHIYA</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <div class="flex items-center gap-10">
+                    <a class="text-sm font-medium hover:text-primary transition-colors"
+                        href="index.html#about">About</a>
+                    <a class="text-sm font-medium text-primary transition-colors" href="projects.html">Projects</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="blog.html">Blog</a>
+                </div>
+                <a href="index.html#contact"
+                    class="bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-background-dark px-6 py-2 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20">Let's
+                    Talk</a>
             </div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float"
-                style="animation-delay: -3s;"></div>
-            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float"
-                style="animation-delay: -1.5s;"></div>
-        </div>
+            <button id="mobile-menu-btn" class="md:hidden text-white hover:text-primary">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </button>
+        </nav>
+    </header>
 
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up">
-                My Projects
-            </h1>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                A showcase of innovative solutions, creative experiments, and digital experiences
-            </p>
-        </div>
-    </section>
-
-    <!-- Filter Section -->
-    <section class="py-10">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
-                <button
-                    class="filter-btn px-6 py-3 rounded-full border-2 border-cyber-cyan text-cyber-cyan font-orbitron active"
-                    data-filter="all">
-                    All Projects
-                </button>
-                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron"
-                    data-filter="web">
-                    Web Dev
-                </button>
-                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron"
-                    data-filter="game">
-                    Game Dev
-                </button>
-                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron"
-                    data-filter="ai">
-                    AI/ML
-                </button>
-                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron"
-                    data-filter="ui">
-                    UI/UX
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Grid -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
-
-                <!-- Project 1: E-Commerce Platform -->
-                <div class="project-card glass rounded-2xl overflow-hidden" data-category="web" data-aos="fade-up"
-                    data-aos-delay="100">
-                    <div class="relative overflow-hidden">
-                        <div
-                            class="w-full h-48 bg-gradient-to-br from-cyber-cyan to-cyber-red flex items-center justify-center">
-                            <i class="fas fa-shopping-cart text-4xl text-black"></i>
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 bg-cyber-cyan text-black px-3 py-1 rounded-full text-sm font-semibold font-orbitron">
-                            Web Dev
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 gradient-text font-orbitron">E-Commerce Platform</h3>
-                        <p class="text-gray-400 mb-4">
-                            Full-stack e-commerce solution with modern UI, secure payments, and admin dashboard.
-                        </p>
-
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="tag px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">React</span>
-                            <span
-                                class="tag px-3 py-1 bg-cyber-red/20 text-cyber-red rounded-full text-sm">Node.js</span>
-                            <span
-                                class="tag px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">MongoDB</span>
-                        </div>
-
-                        <div class="flex gap-3">
-                            <a href="#"
-                                class="flex-1 bg-cyber-cyan text-black py-2 px-4 rounded-lg text-center font-semibold hover:bg-opacity-80 transition-all">
-                                <i class="fas fa-external-link-alt mr-2"></i>Live Demo
-                            </a>
-                            <a href="#"
-                                class="flex-1 border-2 border-cyber-cyan text-cyber-cyan py-2 px-4 rounded-lg text-center font-semibold hover:bg-cyber-cyan hover:text-black transition-all">
-                                <i class="fab fa-github mr-2"></i>Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2: Space Shooter Game -->
-                <div class="project-card glass rounded-2xl overflow-hidden" data-category="game" data-aos="fade-up"
-                    data-aos-delay="200">
-                    <div class="relative overflow-hidden">
-                        <div
-                            class="w-full h-48 bg-gradient-to-br from-neon-pink to-electric-blue flex items-center justify-center">
-                            <i class="fas fa-rocket text-4xl text-black"></i>
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 bg-neon-pink text-black px-3 py-1 rounded-full text-sm font-semibold font-orbitron">
-                            Game Dev
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 gradient-text font-orbitron">Space Shooter Game</h3>
-                        <p class="text-gray-400 mb-4">
-                            Immersive 3D space shooter built with Unreal Engine featuring dynamic gameplay.
-                        </p>
-
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">Unreal
-                                Engine</span>
-                            <span
-                                class="tag px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-sm">C++</span>
-                            <span
-                                class="tag px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">Blueprint</span>
-                        </div>
-
-                        <div class="flex gap-3">
-                            <a href="#"
-                                class="flex-1 bg-neon-pink text-black py-2 px-4 rounded-lg text-center font-semibold hover:bg-opacity-80 transition-all">
-                                <i class="fas fa-play mr-2"></i>Play Game
-                            </a>
-                            <a href="#"
-                                class="flex-1 border-2 border-neon-pink text-neon-pink py-2 px-4 rounded-lg text-center font-semibold hover:bg-neon-pink hover:text-black transition-all">
-                                <i class="fab fa-github mr-2"></i>Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3: AI Chatbot -->
-                <div class="project-card glass rounded-2xl overflow-hidden" data-category="ai" data-aos="fade-up"
-                    data-aos-delay="300">
-                    <div class="relative overflow-hidden">
-                        <div
-                            class="w-full h-48 bg-gradient-to-br from-electric-blue to-cyber-cyan flex items-center justify-center">
-                            <i class="fas fa-robot text-4xl text-black"></i>
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 bg-electric-blue text-black px-3 py-1 rounded-full text-sm font-semibold font-orbitron">
-                            AI/ML
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 gradient-text font-orbitron">AI Chatbot Assistant</h3>
-                        <p class="text-gray-400 mb-4">
-                            Intelligent chatbot powered by machine learning for customer support automation.
-                        </p>
-
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="tag px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-sm">Python</span>
-                            <span
-                                class="tag px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">TensorFlow</span>
-                            <span class="tag px-3 py-1 bg-cyber-red/20 text-cyber-red rounded-full text-sm">NLP</span>
-                        </div>
-
-                        <div class="flex gap-3">
-                            <a href="#"
-                                class="flex-1 bg-electric-blue text-black py-2 px-4 rounded-lg text-center font-semibold hover:bg-opacity-80 transition-all">
-                                <i class="fas fa-comments mr-2"></i>Try Bot
-                            </a>
-                            <a href="#"
-                                class="flex-1 border-2 border-electric-blue text-electric-blue py-2 px-4 rounded-lg text-center font-semibold hover:bg-electric-blue hover:text-black transition-all">
-                                <i class="fab fa-github mr-2"></i>Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4: Portfolio Website -->
-                <div class="project-card glass rounded-2xl overflow-hidden" data-category="web" data-aos="fade-up"
-                    data-aos-delay="400">
-                    <div class="relative overflow-hidden">
-                        <div
-                            class="w-full h-48 bg-gradient-to-br from-cyber-red to-neon-pink flex items-center justify-center">
-                            <i class="fas fa-code text-4xl text-black"></i>
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 bg-cyber-red text-white px-3 py-1 rounded-full text-sm font-semibold font-orbitron">
-                            Web Dev
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 gradient-text font-orbitron">Portfolio Website</h3>
-                        <p class="text-gray-400 mb-4">
-                            Modern, responsive portfolio with advanced animations and interactive elements.
-                        </p>
-
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag px-3 py-1 bg-cyber-red/20 text-cyber-red rounded-full text-sm">HTML5</span>
-                            <span
-                                class="tag px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">Tailwind</span>
-                            <span
-                                class="tag px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">JavaScript</span>
-                        </div>
-
-                        <div class="flex gap-3">
-                            <a href="#"
-                                class="flex-1 bg-cyber-red text-white py-2 px-4 rounded-lg text-center font-semibold hover:bg-opacity-80 transition-all">
-                                <i class="fas fa-eye mr-2"></i>View Site
-                            </a>
-                            <a href="#"
-                                class="flex-1 border-2 border-cyber-red text-cyber-red py-2 px-4 rounded-lg text-center font-semibold hover:bg-cyber-red hover:text-white transition-all">
-                                <i class="fab fa-github mr-2"></i>Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5: Mobile App UI -->
-                <div class="project-card glass rounded-2xl overflow-hidden" data-category="ui" data-aos="fade-up"
-                    data-aos-delay="500">
-                    <div class="relative overflow-hidden">
-                        <div
-                            class="w-full h-48 bg-gradient-to-br from-cyber-cyan to-electric-blue flex items-center justify-center">
-                            <i class="fas fa-mobile-alt text-4xl text-black"></i>
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 bg-cyber-cyan text-black px-3 py-1 rounded-full text-sm font-semibold font-orbitron">
-                            UI/UX
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 gradient-text font-orbitron">Mobile App UI Design</h3>
-                        <p class="text-gray-400 mb-4">
-                            Modern mobile app interface design with focus on user experience and accessibility.
-                        </p>
-
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="tag px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">Figma</span>
-                            <span
-                                class="tag px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-sm">Prototyping</span>
-                            <span class="tag px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">UX
-                                Research</span>
-                        </div>
-
-                        <div class="flex gap-3">
-                            <a href="#"
-                                class="flex-1 bg-cyber-cyan text-black py-2 px-4 rounded-lg text-center font-semibold hover:bg-opacity-80 transition-all">
-                                <i class="fas fa-eye mr-2"></i>View Design
-                            </a>
-                            <a href="#"
-                                class="flex-1 border-2 border-cyber-cyan text-cyber-cyan py-2 px-4 rounded-lg text-center font-semibold hover:bg-cyber-cyan hover:text-black transition-all">
-                                <i class="fas fa-download mr-2"></i>Download
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 6: Data Visualization -->
-                <div class="project-card glass rounded-2xl overflow-hidden" data-category="ai" data-aos="fade-up"
-                    data-aos-delay="600">
-                    <div class="relative overflow-hidden">
-                        <div
-                            class="w-full h-48 bg-gradient-to-br from-neon-pink to-cyber-red flex items-center justify-center">
-                            <i class="fas fa-chart-line text-4xl text-black"></i>
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 bg-neon-pink text-black px-3 py-1 rounded-full text-sm font-semibold font-orbitron">
-                            AI/ML
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 gradient-text font-orbitron">Data Visualization Dashboard</h3>
-                        <p class="text-gray-400 mb-4">
-                            Interactive dashboard for data analysis with machine learning insights and predictions.
-                        </p>
-
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">D3.js</span>
-                            <span
-                                class="tag px-3 py-1 bg-cyber-red/20 text-cyber-red rounded-full text-sm">Python</span>
-                            <span
-                                class="tag px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-sm">Pandas</span>
-                        </div>
-
-                        <div class="flex gap-3">
-                            <a href="#"
-                                class="flex-1 bg-neon-pink text-black py-2 px-4 rounded-lg text-center font-semibold hover:bg-opacity-80 transition-all">
-                                <i class="fas fa-chart-bar mr-2"></i>View Dashboard
-                            </a>
-                            <a href="#"
-                                class="flex-1 border-2 border-neon-pink text-neon-pink py-2 px-4 rounded-lg text-center font-semibold hover:bg-neon-pink hover:text-black transition-all">
-                                <i class="fab fa-github mr-2"></i>Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Project Modal -->
-    <div id="project-modal"
-        class="fixed inset-0 bg-black bg-opacity-80 modal hidden z-50 flex items-center justify-center p-4">
-        <div class="modal-content glass rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div class="p-8">
-                <div class="flex justify-between items-start mb-6">
-                    <h2 class="text-3xl font-bold gradient-text font-orbitron" id="modal-title">Project Title</h2>
-                    <button id="close-modal" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-colors">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <div class="w-full h-64 bg-gradient-to-br from-cyber-cyan to-cyber-red rounded-lg mb-6 flex items-center justify-center"
-                            id="modal-image">
-                            <i class="fas fa-code text-6xl text-black"></i>
-                        </div>
-
-                        <div class="flex gap-4 mb-6">
-                            <a href="#"
-                                class="flex-1 bg-cyber-cyan text-black py-3 px-6 rounded-lg text-center font-semibold hover:bg-opacity-80 transition-all"
-                                id="modal-demo">
-                                <i class="fas fa-external-link-alt mr-2"></i>Live Demo
-                            </a>
-                            <a href="#"
-                                class="flex-1 border-2 border-cyber-cyan text-cyber-cyan py-3 px-6 rounded-lg text-center font-semibold hover:bg-cyber-cyan hover:text-black transition-all"
-                                id="modal-github">
-                                <i class="fab fa-github mr-2"></i>View Code
-                            </a>
-                        </div>
-                    </div>
-
-                    <div>
-                        <p class="text-gray-300 mb-6 leading-relaxed" id="modal-description">
-                            Detailed project description will appear here...
-                        </p>
-
-                        <div class="mb-6">
-                            <h3 class="text-xl font-bold mb-3 text-cyber-cyan font-orbitron">Technologies Used</h3>
-                            <div class="flex flex-wrap gap-2" id="modal-tags">
-                                <!-- Tags will be inserted here -->
-                            </div>
-                        </div>
-
-                        <div class="mb-6">
-                            <h3 class="text-xl font-bold mb-3 text-cyber-cyan font-orbitron">Key Features</h3>
-                            <ul class="list-disc list-inside text-gray-300 space-y-2" id="modal-features">
-                                <!-- Features will be inserted here -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-40 hidden flex-col items-center justify-center bg-background-dark/95 backdrop-blur-xl">
+        <a href="index.html#about" class="text-2xl font-display font-bold mb-6 hover:text-primary mobile-link">About</a>
+        <a href="projects.html" class="text-2xl font-display font-bold mb-6 text-primary mobile-link">Projects</a>
+        <a href="blog.html" class="text-2xl font-display font-bold mb-6 hover:text-primary mobile-link">Blog</a>
+        <a href="index.html#contact"
+            class="text-2xl font-display font-bold mb-6 hover:text-primary mobile-link">Contact</a>
     </div>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
-                    <p class="text-gray-400">© 2024 Mathiya. All rights reserved.</p>
-                </div>
+    <main class="relative z-10 pt-40 pb-24 px-6 max-w-7xl mx-auto min-h-screen">
+        <div class="text-center mb-16 animate-fade-up">
+            <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 glow-text">All Projects</h1>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto">A comprehensive collection of my engineering, design,
+                and experimental work.</p>
+        </div>
 
-                <div class="flex space-x-6">
-                    <a href="https://github.com/mathiya"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/mathiya"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://twitter.com/mathiya"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://discord.gg/mathiya"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                </div>
-            </div>
+        <!-- Filter Controls -->
+        <div class="flex flex-wrap justify-center gap-4 mb-16 animate-fade-up" style="animation-delay: 0.2s"
+            id="projects-filters">
+            <!-- Populated by JS -->
+        </div>
+
+        <div id="full-projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Populated by JS -->
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-white/10 glass-effect relative z-10 w-full mt-auto">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-slate-500 text-sm">&copy; 2025 Mathiya Angirasa. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <script src="assets/js/components/navbar.js"></script>
-    <script type="module" src="assets/js/main.js"></script>
-    <script type="module" src="assets/js/projects.js"></script>
-    <script type="module" src="assets/js/gesture-control.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.45/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script src="./assets/js/data.js"></script>
+    <script src="./assets/js/core.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const data = window.portfolioData;
+            if (!data) return;
+            const projects = data.getProjects();
+            const grid = document.getElementById('full-projects-grid');
+
+            let html = '';
+            projects.forEach((project, index) => {
+                html += `
+                    <div class="group rounded-2xl glass-effect border border-white/10 overflow-hidden hover:border-primary/50 transition-all duration-300 animate-fade-up tilt-card" style="animation-delay: ${0.05 * index}s">
+                        <div class="relative h-64 overflow-hidden">
+                            <div class="absolute inset-0 bg-background-dark/50 group-hover:bg-transparent transition-colors z-10"></div>
+                            <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                            <div class="absolute top-4 right-4 z-20 flex gap-2">
+                                <a href="${project.github}" class="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white hover:text-primary transition-colors border border-white/10">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+                                </a>
+                                <a href="${project.link}" class="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white hover:text-primary transition-colors border border-white/10">
+                                    <span class="material-symbols-outlined text-[20px]">open_in_new</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-display font-bold text-white mb-3 group-hover:text-primary transition-colors">${project.title}</h3>
+                            <p class="text-slate-400 mb-6 line-clamp-2">${project.description}</p>
+                            <div class="flex flex-wrap gap-2">
+                                ${project.tech.map(t => `<span class="text-xs font-bold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">${t}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            if (grid) grid.innerHTML = html;
+        });
+    </script>
 </body>
 
 </html>

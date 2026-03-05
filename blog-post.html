@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Post | Mathiya Angirasa</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.0.45/dist/lenis.css">
+
+    <!-- PrismJS for code highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-one-dark.min.css" rel="stylesheet" />
+
+    <link href="./assets/css/global.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,typography"></script>
+    <script src="./assets/js/tailwind-config.js"></script>
+</head>
+
+<body class="bg-background-dark font-sans text-slate-100 selection:bg-primary/30">
+    <div id="read-progress"
+        class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary to-accent-violet z-[60] w-0 transition-all duration-150">
+    </div>
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-orb-cyan blur-3xl opacity-30"></div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 flex justify-center p-6 transition-all duration-300">
+        <!-- ... nav omitted for brevity, reusing from blog.html ... -->
+        <nav class="glass-effect flex items-center justify-between w-full max-w-7xl px-8 py-4 rounded-2xl">
+            <a href="index.html" class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-primary to-accent-violet rounded-lg flex items-center justify-center font-display font-bold text-background-dark">
+                    MA</div>
+                <span class="font-display font-bold text-xl tracking-tight hidden sm:block">MATHIYA</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <div class="flex items-center gap-10">
+                    <a class="text-sm font-medium hover:text-primary transition-colors"
+                        href="index.html#about">About</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors"
+                        href="projects.html">Projects</a>
+                    <a class="text-sm font-medium text-primary transition-colors" href="blog.html">Blog</a>
+                </div>
+            </div>
+            <a href="blog.html" class="md:hidden text-white"><span
+                    class="material-symbols-outlined">arrow_back</span></a>
+        </nav>
+    </header>
+
+    <main class="relative z-10 pt-32 pb-24">
+        <div id="hero-placeholder" class="w-full h-[50vh] relative animate-fade-up">
+            <div class="absolute inset-0 bg-background-dark/60 z-10"></div>
+            <img id="post-hero-img" src="" class="w-full h-full object-cover grayscale opacity-50 block" />
+            <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6">
+                <span id="post-category"
+                    class="text-primary bg-primary/10 px-4 py-1.5 rounded-full uppercase tracking-widest text-sm font-bold border border-primary/20 mb-6"></span>
+                <h1 id="post-title"
+                    class="text-4xl md:text-6xl font-display font-bold max-w-4xl text-white glow-text mb-6">Loading...
+                </h1>
+                <div class="flex items-center gap-6 text-slate-300 font-medium">
+                    <div class="flex items-center gap-2"><img id="author-img"
+                            class="w-8 h-8 rounded-full border border-white/20" src="" /><span id="author-name"></span>
+                    </div>
+                    <span id="post-date"></span>
+                    <span id="post-read-time" class="flex items-center gap-1"><span
+                            class="material-symbols-outlined text-[18px]">schedule</span> </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 mt-16 flex flex-col md:flex-row gap-16">
+            <div class="w-full md:w-2/3 glass-effect p-8 md:p-12 rounded-3xl border border-white/10 animate-fade-up"
+                style="animation-delay: 0.2s">
+                <article id="post-content"
+                    class="markdown-body prose prose-invert prose-lg max-w-none prose-a:text-primary hover:prose-a:text-white prose-pre:bg-black/50 prose-pre:border prose-pre:border-white/10 prose-img:rounded-xl">
+                    <!-- Markdown Rendered Here -->
+                </article>
+            </div>
+            <div class="w-full md:w-1/3 animate-fade-up" style="animation-delay: 0.3s">
+                <div class="sticky top-40 glass-effect p-8 rounded-2xl border border-white/10">
+                    <h3 class="text-xl font-display font-bold text-white mb-6">On This Page</h3>
+                    <div id="toc" class="space-y-4 text-slate-400 text-sm font-medium">
+                        <!-- TOC Generate Here -->
+                        <p class="italic">Generating...</p>
+                    </div>
+
+                    <div class="mt-12 pt-8 border-t border-white/10">
+                        <h3 class="text-sm font-display font-bold text-white uppercase tracking-widest mb-4">Share this
+                        </h3>
+                        <div class="flex gap-4">
+                            <button
+                                class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors"><span
+                                    class="material-symbols-outlined text-[18px]">link</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.45/bundled/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+
+    <script src="./assets/js/data.js"></script>
+    <script src="./assets/js/core.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id') || 'b1'; // default temp fallback
+
+            const data = window.portfolioData;
+            if (!data) return;
+
+            const post = data.getBlogPosts().find(p => p.id === id);
+            if (!post) {
+                document.getElementById('post-title').innerText = 'Post Not Found';
+                return;
+            }
+
+            const profile = data.getProfile();
+
+            document.getElementById('post-title').innerText = post.title;
+            document.getElementById('post-category').innerText = post.category;
+            document.getElementById('post-date').innerText = post.date;
+            document.getElementById('post-read-time').innerText = post.readTime;
+            document.getElementById('post-hero-img').src = post.image;
+            document.getElementById('author-name').innerText = profile.name;
+            document.getElementById('author-img').src = profile.avatar;
+            document.title = `${post.title} | Mathiya Angirasa`;
+
+            // Parse markdown
+            const contentDiv = document.getElementById('post-content');
+            contentDiv.innerHTML = marked.parse(post.content);
+
+            // Highlight code
+            Prism.highlightAllUnder(contentDiv);
+
+            // Generate TOC
+            const tocContainer = document.getElementById('toc');
+            const headings = contentDiv.querySelectorAll('h2, h3');
+            if (headings.length > 0) {
+                tocContainer.innerHTML = '';
+                headings.forEach((h, i) => {
+                    h.id = `heading-${i}`;
+                    const a = document.createElement('a');
+                    a.href = `#heading-${i}`;
+                    a.className = `block hover:text-primary transition-colors ${h.tagName === 'H3' ? 'ml-4' : ''}`;
+                    a.innerText = h.innerText;
+                    tocContainer.appendChild(a);
+                });
+            } else {
+                tocContainer.innerHTML = '<span class="text-slate-500">No headings found.</span>';
+            }
+
+            // Reading progress
+            const progressBar = document.getElementById('read-progress');
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                progressBar.style.width = scrolled + '%';
+            });
+        });
+    </script>
+</body>
+
+</html>

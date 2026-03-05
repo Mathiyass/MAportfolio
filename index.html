@@ -1,521 +1,183 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html class="dark" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathiya Angirasa | Software Engineer & Tech Innovator</title>
-    <meta name="description"
-        content="Mathiya Angirasa - Software Engineering Student, Full Stack Developer, and Tech Enthusiast. Building the future with code.">
-    <meta name="keywords" content="Mathiya, Software Engineer, Full Stack Developer, Web Developer, Tech, Portfolio">
-    <meta property="og:title" content="Mathiya Angirasa | Software Engineer">
-    <meta property="og:description" content="Building the future with innovative software solutions">
-    <meta property="og:type" content="website">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Mathiya Angirasa | Premium Developer Portfolio</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- External CSS Dependencies -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.0.45/dist/lenis.css">
+    
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
-</head>
-</head>
+    <link href="./assets/css/global.css" rel="stylesheet"/>
 
-<body class="dark text-white">
-    <!-- Signature Loading Screen -->
-    <div id="loading-screen"
-        class="fixed inset-0 bg-dark-bg z-[100] flex flex-col items-center justify-center transition-opacity duration-1000">
-        <canvas id="signature-canvas" width="800" height="400" class="max-w-full"></canvas>
-        <div class="w-64 h-1 bg-gray-700 rounded-full overflow-hidden mt-4">
-            <div id="loading-progress"
-                class="h-full bg-gradient-to-r from-cyber-cyan to-neon-pink rounded-full w-0 transition-all duration-300">
-            </div>
-        </div>
-        <p id="loading-text" class="text-cyber-cyan font-orbitron mt-4 text-sm tracking-widest">INITIALIZING SYSTEMS...
-        </p>
+    <!-- Tailwind JS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="./assets/js/tailwind-config.js"></script>
+</head>
+<body class="bg-background-dark font-sans text-slate-100 selection:bg-primary/30">
+    
+    <!-- Background Decorative Elements -->
+    <div id="particles-canvas" class="fixed inset-0 pointer-events-none z-0"></div>
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-orb-cyan blur-3xl opacity-50"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-orb-violet blur-3xl opacity-50"></div>
     </div>
 
-    <!-- Enhanced Custom Cursor -->
-    <div class="custom-cursor" id="custom-cursor"></div>
-    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="relative z-10 flex flex-col min-h-screen">
+        <!-- Top Navigation Bar -->
+        <header class="fixed top-0 left-0 right-0 z-50 flex justify-center p-6 transition-all duration-300">
+            <nav class="glass-effect flex items-center justify-between w-full max-w-7xl px-8 py-4 rounded-2xl">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent-violet rounded-lg flex items-center justify-center font-display font-bold text-background-dark">
+                        MA
+                    </div>
+                    <span class="font-display font-bold text-xl tracking-tight hidden sm:block glow-text">MATHIYA</span>
+                </div>
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center gap-8">
+                    <div class="flex items-center gap-10">
+                        <a class="text-sm font-medium hover:text-primary transition-colors" href="#about">About</a>
+                        <a class="text-sm font-medium hover:text-primary transition-colors" href="#skills">Skills</a>
+                        <a class="text-sm font-medium hover:text-primary transition-colors" href="#projects">Projects</a>
+                        <a class="text-sm font-medium hover:text-primary transition-colors" href="blog.html">Blog</a>
+                    </div>
+                    <a href="#contact" class="bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-background-dark px-6 py-2 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20">
+                        Let's Talk
+                    </a>
+                </div>
+                <!-- Mobile Nav Toggle -->
+                <button id="mobile-menu-btn" class="md:hidden text-white hover:text-primary">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </nav>
+        </header>
 
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scroll-progress"></div>
-
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
-
-    <!-- Navigation (Injected by JS) -->
-    <div id="navbar-container"></div>
-
-    <!-- Enhanced Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative">
-        <!-- Three.js Canvas -->
-        <div id="three-js-container" class="absolute inset-0 z-0"></div>
-        <!-- Background Elements -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"
-                data-parallax="0.3"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float"
-                style="animation-delay: -3s;" data-parallax="0.5"></div>
-            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float"
-                style="animation-delay: -1.5s;" data-parallax="0.4"></div>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 z-40 hidden flex-col items-center justify-center bg-background-dark/95 backdrop-blur-xl">
+            <a href="#about" class="text-2xl font-display font-bold mb-6 hover:text-primary mobile-link">About</a>
+            <a href="#skills" class="text-2xl font-display font-bold mb-6 hover:text-primary mobile-link">Skills</a>
+            <a href="#projects" class="text-2xl font-display font-bold mb-6 hover:text-primary mobile-link">Projects</a>
+            <a href="blog.html" class="text-2xl font-display font-bold mb-6 hover:text-primary mobile-link">Blog</a>
+            <a href="#contact" class="text-2xl font-display font-bold mb-6 text-primary mobile-link">Contact</a>
         </div>
 
-        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-            <!-- Enhanced Text Content -->
-            <div class="text-center lg:text-left" data-aos="fade-right">
-                <div class="mb-6">
-                    <span class="text-cyber-cyan font-orbitron text-lg tracking-wider">Hello, I'm</span>
-                    <h1 class="text-5xl md:text-7xl font-bold font-orbitron gradient-text mb-4 animate-glow-pulse glitch"
-                        data-text="MATHIYA">
-                        MATHIYA
-                    </h1>
-                    <h2 class="text-2xl md:text-3xl font-bold text-gray-300 mb-6">
-                        <span id="typing-text" class="typing-text"></span>
-                    </h2>
+        <main class="flex-1 flex flex-col justify-center w-full">
+            
+            <!-- Hero Section -->
+            <section id="hero" class="min-h-screen flex items-center justify-center px-6 pt-32 pb-16 text-center">
+                <div class="max-w-4xl w-full" id="hero-content">
+                    <!-- Populated by main.js -->
                 </div>
+            </section>
 
-                <p class="text-lg text-gray-300 mb-8 leading-relaxed">
-                    Passionate software engineering student crafting innovative digital experiences with cutting-edge
-                    technologies.
-                    Building the future, one line of code at a time.
-                </p>
-
-                <!-- Enhanced Action Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                    <a href="projects.html"
-                        class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
-                        <i class="fas fa-code mr-2"></i>View My Work
-                    </a>
-                    <a href="contact.html"
-                        class="border-2 border-cyber-cyan text-cyber-cyan font-semibold py-3 px-8 rounded-lg hover:bg-cyber-cyan hover:text-black transition-all duration-300 font-orbitron">
-                        <i class="fas fa-envelope mr-2"></i>Get In Touch
-                    </a>
-                </div>
-
-                <!-- Enhanced Social Links -->
-                <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4">
-                    <a href="https://github.com/Mathiyass" target="_blank"
-                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
-                        title="GitHub" aria-label="GitHub">
-                        <i class="fab fa-github text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">GitHub</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank"
-                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
-                        title="LinkedIn" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">LinkedIn</span>
-                    </a>
-                    <a href="https://x.com/Mathiya" target="_blank"
-                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
-                        title="X (Twitter)" aria-label="Twitter">
-                        <i class="fab fa-twitter text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Twitter</span>
-                    </a>
-                    <a href="https://www.facebook.com/mathisha.angirasa/" target="_blank"
-                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
-                        title="Facebook" aria-label="Facebook">
-                        <i class="fab fa-facebook text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Facebook</span>
-                    </a>
-                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank"
-                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
-                        title="Instagram" aria-label="Instagram">
-                        <i class="fab fa-instagram text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Instagram</span>
-                    </a>
-                    <a href="https://steamcommunity.com/profiles/76561199076879396/" target="_blank"
-                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
-                        title="Steam" aria-label="Steam">
-                        <i class="fab fa-steam text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Steam</span>
-                    </a>
-                    <a href="https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b" target="_blank"
-                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
-                        title="Epic Games" aria-label="Epic Games">
-                        <i class="fas fa-gamepad text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Epic Games</span>
-                    </a>
-                    <a href="https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm" target="_blank"
-                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
-                        title="Spotify" aria-label="Spotify">
-                        <i class="fab fa-spotify text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Spotify</span>
-                    </a>
-                    <a href="https://discord.gg/QERP5JJM8k" target="_blank"
-                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
-                        title="Discord" aria-label="Discord">
-                        <i class="fab fa-discord text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">Discord</span>
-                    </a>
-                    <a href="https://wa.me/94715921984" target="_blank"
-                        class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
-                        title="WhatsApp" aria-label="WhatsApp">
-                        <i class="fab fa-whatsapp text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">WhatsApp</span>
-                    </a>
-                    <div class="social-card glass p-4 rounded-lg flex flex-col items-center justify-center gap-2"
-                        title="EA ID: M_MATHIYA_M">
-                        <i class="fas fa-headset text-3xl text-gray-300"></i>
-                        <span class="social-name text-xs text-cyber-cyan font-orbitron">EA ID</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Enhanced Profile Section -->
-            <div class="relative" data-aos="fade-left" id="profile-picture-container">
-                <div class="relative w-80 h-80 mx-auto">
-                    <!-- Animated Border -->
-                    <div
-                        class="absolute inset-0 rounded-full bg-gradient-to-r from-cyber-cyan via-neon-pink to-cyber-red p-1 animate-rotate-slow animate-glow-pulse">
-                        <div class="w-full h-full bg-dark-bg rounded-full"></div>
-                    </div>
-
-                    <!-- Profile Image -->
-                    <div class="absolute inset-2 rounded-full overflow-hidden glass">
-                        <img src="assets/images/Profile Picture.jpg" alt="Mathiya Profile"
-                            class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
-                    </div>
-
-                    <!-- Floating Elements -->
-                    <div
-                        class="absolute -top-4 -right-4 w-16 h-16 glass rounded-full flex items-center justify-center animate-bounce-slow">
-                        <i class="fas fa-code text-cyber-cyan text-xl"></i>
-                    </div>
-                    <div class="absolute -bottom-4 -left-4 w-12 h-12 glass rounded-full flex items-center justify-center animate-bounce-slow"
-                        style="animation-delay: -1s;">
-                        <i class="fas fa-rocket text-neon-pink"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#about-preview" class="text-cyber-cyan text-2xl" aria-label="Scroll Down">
-                <i class="fas fa-chevron-down"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- Enhanced About Preview -->
-    <section id="about-preview" class="py-20 relative">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
-                About Me
-            </h2>
-
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <div class="enhanced-card glass p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-5xl mb-6 text-cyber-cyan">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 font-orbitron">Education</h3>
-                    <p class="text-gray-300">Software Engineering Student passionate about learning and innovation</p>
-                </div>
-
-                <div class="enhanced-card glass p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-5xl mb-6 text-neon-pink">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 font-orbitron">Development</h3>
-                    <p class="text-gray-300">Full-stack developer with expertise in modern web technologies</p>
-                </div>
-
-                <div class="enhanced-card glass p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-5xl mb-6 text-cyber-red">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 font-orbitron">Innovation</h3>
-                    <p class="text-gray-300">Creating cutting-edge solutions for tomorrow's challenges</p>
-                </div>
-            </div>
-
-            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
-                <a href="about.html"
-                    class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
-                    <i class="fas fa-user mr-2"></i>Learn More
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Featured Projects -->
-    <section class="py-20 bg-dark-card/20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
-                Featured Projects
-            </h2>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Project 1 -->
-                <div class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative group">
-                        <div
-                            class="w-full h-48 bg-gradient-to-br from-cyber-cyan to-electric-blue flex items-center justify-center">
-                            <i class="fas fa-shopping-cart text-4xl text-black"></i>
-                        </div>
-                        <div
-                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <div class="text-center">
-                                <button
-                                    class="bg-white text-black px-4 py-2 rounded-lg mr-2 hover:bg-gray-200 transition-colors"
-                                    aria-label="View Project">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button
-                                    class="bg-cyber-cyan text-black px-4 py-2 rounded-lg hover:bg-opacity-80 transition-colors"
-                                    aria-label="View Source">
-                                    <i class="fab fa-github"></i>
-                                </button>
-                            </div>
+            <!-- About Section -->
+            <section id="about" class="py-32 px-6">
+                <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+                    <div class="w-full md:w-1/2 animate-fade-up">
+                        <div class="glass-effect p-2 rounded-2xl relative group">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-primary/30 to-accent-violet/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800" alt="Terminal Coding" class="rounded-xl relative z-10 w-full object-cover h-[500px] border border-white/10" />
                         </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 font-orbitron">E-Commerce Platform</h3>
-                        <p class="text-gray-300 mb-4">Full-stack e-commerce solution with modern features</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">React</span>
-                            <span class="px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">Node.js</span>
-                            <span class="px-3 py-1 bg-cyber-red/20 text-cyber-red rounded-full text-sm">MongoDB</span>
-                        </div>
+                    <div class="w-full md:w-1/2 animate-fade-up" id="about-content">
+                        <!-- Populated by main.js -->
                     </div>
                 </div>
+            </section>
 
-                <!-- Project 2 -->
-                <div class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative group">
-                        <div
-                            class="w-full h-48 bg-gradient-to-br from-neon-pink to-cyber-red flex items-center justify-center">
-                            <i class="fas fa-rocket text-4xl text-white"></i>
-                        </div>
-                        <div
-                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <div class="text-center">
-                                <button
-                                    class="bg-white text-black px-4 py-2 rounded-lg mr-2 hover:bg-gray-200 transition-colors"
-                                    aria-label="View Project">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button
-                                    class="bg-cyber-cyan text-black px-4 py-2 rounded-lg hover:bg-opacity-80 transition-colors"
-                                    aria-label="View Source">
-                                    <i class="fab fa-github"></i>
-                                </button>
-                            </div>
-                        </div>
+            <!-- Skills Section -->
+            <section id="skills" class="py-32 px-6 relative">
+                <div class="absolute inset-0 bg-white/5 border-y border-white/10 glass-effect -z-10"></div>
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-16 animate-fade-up">
+                        <h2 class="text-4xl md:text-5xl font-display font-bold mb-4 glow-text">Technical Arsenal</h2>
+                        <p class="text-slate-400 max-w-2xl mx-auto text-lg">The tools and technologies I use to build robust, scalable, and beautiful digital experiences.</p>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 font-orbitron">Space Shooter Game</h3>
-                        <p class="text-gray-300 mb-4">3D space game with immersive gameplay</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">Unity</span>
-                            <span class="px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">C#</span>
-                            <span class="px-3 py-1 bg-cyber-red/20 text-cyber-red rounded-full text-sm">3D</span>
-                        </div>
+                    <div id="skills-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Populated by main.js -->
                     </div>
                 </div>
+            </section>
 
-                <!-- Project 3 -->
-                <div class="enhanced-card glass rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                    <div class="relative group">
-                        <div
-                            class="w-full h-48 bg-gradient-to-br from-electric-blue to-cyber-cyan flex items-center justify-center">
-                            <i class="fas fa-mobile-alt text-4xl text-black"></i>
+            <!-- Projects Preview Section -->
+            <section id="projects" class="py-32 px-6">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex justify-between items-end mb-16 animate-fade-up">
+                        <div>
+                            <h2 class="text-4xl md:text-5xl font-display font-bold mb-4 glow-text">Featured Work</h2>
+                            <p class="text-slate-400 text-lg">A selection of my recent engineering and design projects.</p>
                         </div>
-                        <div
-                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <div class="text-center">
-                                <button
-                                    class="bg-white text-black px-4 py-2 rounded-lg mr-2 hover:bg-gray-200 transition-colors"
-                                    aria-label="View Project">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button
-                                    class="bg-cyber-cyan text-black px-4 py-2 rounded-lg hover:bg-opacity-80 transition-colors"
-                                    aria-label="View Source">
-                                    <i class="fab fa-github"></i>
-                                </button>
-                            </div>
-                        </div>
+                        <a href="projects.html" class="hidden md:flex items-center gap-2 text-primary hover:text-white transition-colors font-medium">
+                            View All Projects <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 font-orbitron">Mobile App UI</h3>
-                        <p class="text-gray-300 mb-4">Modern mobile interface design</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-cyber-cyan/20 text-cyber-cyan rounded-full text-sm">Figma</span>
-                            <span class="px-3 py-1 bg-neon-pink/20 text-neon-pink rounded-full text-sm">UI/UX</span>
-                            <span class="px-3 py-1 bg-cyber-red/20 text-cyber-red rounded-full text-sm">Design</span>
-                        </div>
+                    <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Populated by main.js -->
+                    </div>
+                    <div class="mt-12 text-center md:hidden">
+                        <a href="projects.html" class="flex items-center justify-center gap-2 text-primary border border-primary/30 py-3 rounded-xl">
+                            View All Projects <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
                     </div>
                 </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="py-32 px-6 relative overflow-hidden">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orb-violet blur-[100px] opacity-30 -z-10 pointer-events-none"></div>
+                
+                <div class="max-w-4xl mx-auto text-center glass-effect p-12 md:p-24 rounded-3xl border border-white/10 animate-fade-up shadow-2xl relative">
+                    <span class="inline-block py-1 px-4 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+                        Available for Opportunities
+                    </span>
+                    <h2 class="text-5xl md:text-7xl font-display font-bold mb-6 glow-text">Let's Build Something<br/>Extraordinary</h2>
+                    <p class="text-slate-400 text-xl max-w-2xl mx-auto mb-12">I'm currently open for new freelance opportunities, collaborative projects, or full-time roles.</p>
+                    
+                    <a href="mailto:mathiya@example.com" class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-primary to-accent-violet text-background-dark font-bold rounded-xl text-xl hover:scale-105 transition-transform shadow-[0_0_40px_rgba(0,212,255,0.4)]">
+                        <span class="material-symbols-outlined">mail</span>
+                        Start a Conversation
+                    </a>
+                    
+                    <div class="mt-16 flex justify-center gap-8">
+                        <a href="#" class="text-slate-500 hover:text-primary transition-colors text-lg font-medium">GitHub</a>
+                        <a href="#" class="text-slate-500 hover:text-primary transition-colors text-lg font-medium">LinkedIn</a>
+                        <a href="#" class="text-slate-500 hover:text-primary transition-colors text-lg font-medium">Twitter</a>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="py-12 border-t border-white/10 glass-effect relative z-10 w-full mt-auto">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-primary to-accent-violet rounded flex items-center justify-center font-display font-bold text-background-dark text-xs">
+                        MA
+                    </div>
+                    <span class="font-display font-bold tracking-tight text-white">MATHIYA</span>
+                </div>
+                <p class="text-slate-500 text-sm">&copy; 2025 Mathiya Angirasa. All Rights Reserved.</p>
+                <div class="text-slate-500 text-sm">Crafted with precision.</div>
             </div>
+        </footer>
+    </div>
 
-            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
-                <a href="projects.html"
-                    class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
-                    <i class="fas fa-folder-open mr-2"></i>View All Projects
-                </a>
-            </div>
-        </div>
-    </section>
+    <!-- External JS CDN Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.45/bundled/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.0.3/dist/tsparticles.engine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/basic@3.0.3/dist/tsparticles.basic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
-    <!-- Enhanced Skills Overview -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold font-orbitron text-center mb-16 gradient-text" data-aos="fade-up">
-                Technical Skills
-            </h2>
-
-            <div class="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-                <div class="enhanced-card glass p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-4xl mb-4 text-orange-500">
-                        <i class="fab fa-html5"></i>
-                    </div>
-                    <h3 class="font-bold font-orbitron">Frontend</h3>
-                    <p class="text-sm text-gray-400 mt-2">HTML, CSS, JavaScript, React</p>
-                </div>
-
-                <div class="enhanced-card glass p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-4xl mb-4 text-green-500">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3 class="font-bold font-orbitron">Backend</h3>
-                    <p class="text-sm text-gray-400 mt-2">Node.js, Python, MongoDB</p>
-                </div>
-
-                <div class="enhanced-card glass p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-4xl mb-4 text-purple-500">
-                        <i class="fab fa-unity"></i>
-                    </div>
-                    <h3 class="font-bold font-orbitron">Game Dev</h3>
-                    <p class="text-sm text-gray-400 mt-2">Unity, C#, Game Design</p>
-                </div>
-
-                <div class="enhanced-card glass p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="400">
-                    <div class="text-4xl mb-4 text-blue-500">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3 class="font-bold font-orbitron">Design</h3>
-                    <p class="text-sm text-gray-400 mt-2">UI/UX, Figma, Adobe</p>
-                </div>
-            </div>
-
-            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="500">
-                <a href="skills.html"
-                    class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron">
-                    <i class="fas fa-tools mr-2"></i>View All Skills
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Contact CTA -->
-    <section class="py-20 bg-dark-card/20">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold font-orbitron mb-8 gradient-text" data-aos="fade-up">
-                Let's Build Something Amazing
-            </h2>
-            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                Ready to bring your ideas to life? Let's collaborate and create innovative solutions together.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-                <a href="contact.html"
-                    class="neon-btn text-black font-semibold py-4 px-8 rounded-lg transition-all duration-300 font-orbitron">
-                    <i class="fas fa-rocket mr-2"></i>Start a Project
-                </a>
-                <a href="resume.html"
-                    class="border-2 border-cyber-cyan text-cyber-cyan font-semibold py-4 px-8 rounded-lg hover:bg-cyber-cyan hover:text-black transition-all duration-300 font-orbitron">
-                    <i class="fas fa-download mr-2"></i>Download Resume
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Footer -->
-    <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
-                    <p class="text-gray-400">© <span id="current-year">2024</span> Mathiya Angirasa. All rights
-                        reserved.</p>
-                </div>
-
-                <div class="flex items-center justify-center md:justify-end flex-wrap gap-x-5 gap-y-3">
-                    <a href="https://github.com/Mathiyass" target="_blank"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
-                        title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
-                        title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/Mathiya" target="_blank"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
-                        title="X (Twitter)" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
-                        title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://discord.gg/QERP5JJM8k" target="_blank"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
-                        title="Discord" aria-label="Discord"><i class="fab fa-discord"></i></a>
-                    <a href="https://wa.me/94715921984" target="_blank"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
-                        title="WhatsApp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating Hire Me Button -->
-    <a href="contact.html"
-        class="fixed bottom-6 left-6 w-auto h-12 px-6 bg-gradient-to-r from-cyber-cyan to-neon-pink text-black rounded-full flex items-center justify-center font-orbitron font-bold shadow-lg hover:scale-110 transition-all duration-300 z-50 animate-bounce-slow"
-        aria-label="Hire Me">
-        <i class="fas fa-briefcase mr-2"></i>
-        <span>Hire Me</span>
-    </a>
-
-    <!-- Back to Top Button -->
-    <button id="back-to-top"
-        class="fixed bottom-6 right-6 w-12 h-12 bg-cyber-cyan text-black rounded-full hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none z-50"
-        aria-label="Back to Top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Background Music -->
-    <audio id="background-music" loop>
-        <source src="assets/audio/ambient-loop.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- Scripts -->
-    <script src="assets/js/signature-loader.js"></script>
-    <script src="assets/js/components/navbar.js"></script> <!-- Advanced Navbar -->
-    <script src="assets/js/start-overlay.js"></script>
-    <script type="module" src="assets/js/main.js"></script>
-    <script type="module" src="assets/js/gesture-control.js"></script>
-    <script>
-        // Update current year
-        document.addEventListener('DOMContentLoaded', () => {
-            const yearEl = document.getElementById('current-year');
-            if (yearEl) yearEl.textContent = new Date().getFullYear();
-        });
-    </script>
+    <!-- Custom App JS -->
+    <script src="./assets/js/data.js"></script>
+    <script src="./assets/js/core.js"></script>
+    <script src="./assets/js/main.js"></script>
 </body>
-
 </html>
