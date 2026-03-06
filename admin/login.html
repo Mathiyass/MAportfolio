@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MATHIYA Neural Auth Gateway</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00ffdd",
+                        "accent-red": "#dc143c",
+                        "background-light": "#050f0e",
+                        "background-dark": "#000000",
+                        "surface": "rgba(0, 255, 221, 0.03)",
+                        "surface-border": "rgba(0, 255, 221, 0.15)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem", "2xl": "1rem" },
+                    backgroundImage: {
+                        'glass-gradient': 'linear-gradient(135deg, rgba(0, 255, 221, 0.05) 0%, rgba(0, 0, 0, 0.8) 100%)',
+                        'glow-gradient': 'radial-gradient(circle at center, rgba(0, 255, 221, 0.15) 0%, transparent 70%)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.6) 0%, rgba(0, 0, 0, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 221, 0.2);
+            box-shadow: 0 0 40px rgba(0, 255, 221, 0.05), inset 0 0 20px rgba(0, 255, 221, 0.02);
+        }
+
+        .neon-border-cyan {
+            box-shadow: 0 0 15px rgba(0, 255, 221, 0.3), inset 0 0 10px rgba(0, 255, 221, 0.1);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(0, 255, 221, 0.5);
+        }
+    </style>
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <script src="../assets/js/admin-auth.js"></script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col items-center justify-center overflow-hidden">
+    <!-- Background Elements -->
+    <div class="fixed inset-0 pointer-events-none bg-glow-gradient"></div>
+    <div class="fixed inset-0 pointer-events-none"
+        style="background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 50px 50px;">
+    </div>
+    <main class="relative z-10 flex flex-col items-center justify-center w-full max-w-4xl p-6">
+        <!-- Header / Logo -->
+        <div class="mb-12 text-center space-y-4">
+            <div
+                class="inline-flex items-center justify-center w-16 h-16 rounded-full border border-primary/40 bg-primary/10 mb-4 neon-border-cyan">
+                <span class="material-symbols-outlined text-primary text-3xl">fingerprint</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tighter text-white uppercase text-glow">
+                Mathiya
+            </h1>
+            <h2 class="text-sm md:text-base tracking-[0.3em] text-primary/70 uppercase">
+                Neural Auth Gateway
+            </h2>
+        </div>
+        <!-- Auth Panel -->
+        <div class="glass-panel rounded-2xl p-8 md:p-12 w-full max-w-md relative overflow-hidden group">
+            <!-- Decorative corner elements -->
+            <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/50 rounded-tl-2xl"></div>
+            <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/50 rounded-tr-2xl"></div>
+            <div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/50 rounded-bl-2xl"></div>
+            <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary/50 rounded-br-2xl"></div>
+            <div class="flex flex-col items-center gap-8">
+                <!-- Biometric Viz Placeholder -->
+                <div class="relative w-48 h-48 flex items-center justify-center"
+                    data-alt="Abstract 3D glowing neural network visualization">
+                    <div class="absolute inset-0 border-[0.5px] border-primary/20 rounded-full"></div>
+                    <div class="absolute inset-4 border border-primary/30 rounded-full border-dashed"></div>
+                    <div class="absolute inset-8 border border-primary/40 rounded-full"></div>
+                    <span class="material-symbols-outlined text-primary/80" style="font-size: 80px;">psychology</span>
+                    <!-- Scanning line effect simulated -->
+                    <div class="absolute top-1/2 left-0 w-full h-[1px] bg-primary/60 shadow-[0_0_10px_#00ffdd]"></div>
+                </div>
+                <div class="text-center space-y-2">
+                    <h3 class="text-xl font-medium text-white tracking-wide">Awaiting Bio-Signature</h3>
+                    <p class="text-xs text-primary/50 uppercase tracking-widest">Establish Neural Link</p>
+                </div>
+                <form id="loginForm" class="w-full flex flex-col gap-4">
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-primary/50 text-sm">key</span>
+                        </div>
+                        <input id="passwordInput"
+                            class="w-full bg-surface border border-surface-border text-white text-sm rounded-lg focus:ring-1 focus:ring-primary focus:border-primary block pl-10 p-3.5 transition-all duration-300 placeholder:text-primary/30"
+                            placeholder="ENTER NEURAL ID SEQUENCE" required="" type="password" />
+                    </div>
+                    <button
+                        class="w-full relative overflow-hidden group/btn mt-2 bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20 hover:border-primary/60 rounded-lg p-4 transition-all duration-300"
+                        type="submit">
+                        <span class="relative z-10 font-bold tracking-[0.2em] uppercase text-sm">Initialize
+                            Access</span>
+                        <!-- Hover effect background -->
+                        <div
+                            class="absolute inset-0 h-full w-0 bg-primary/20 transition-all duration-500 ease-out group-hover/btn:w-full">
+                        </div>
+                    </button>
+                </form>
+                <div class="flex items-center justify-between w-full mt-4 pt-4 border-t border-primary/10">
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-accent-red animate-pulse"></div>
+                        <span class="text-[10px] text-primary/40 uppercase tracking-widest">System Locked</span>
+                    </div>
+                    <span class="text-[10px] text-primary/40 uppercase tracking-widest">v.2050.1</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="../assets/js/particles.js"></script>
+    <script src="../assets/js/core.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/gesture.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const pwd = document.getElementById('passwordInput').value;
+            const success = await window.AppAuth.login(pwd);
+            if (success) {
+                window.location.href = '../admin.html';
+            } else {
+                // Shake effect or red glow for error
+                const input = document.getElementById('passwordInput');
+                input.classList.add('border-accent-red');
+                setTimeout(() => input.classList.remove('border-accent-red'), 1000);
+                input.value = '';
+            }
+        });
+    </script>
+</body>
+
+</html>
