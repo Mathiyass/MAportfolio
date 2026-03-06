@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create image element
         const img = document.createElement('img');
         img.src = images[0];
-        img.alt = 'Mathiya Profile';
+        img.alt = 'Mthisha Profile';
         img.className = 'w-full h-full object-cover transition-opacity duration-1000';
         
         // Clear swiper structure and add simple image

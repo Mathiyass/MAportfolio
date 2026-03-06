@@ -1,13 +1,13 @@
 /**
  * ========================================================
- * MATHIYA PORTFOLIO - V2 ADMIN AUTHENTICATION
+ * MTHISHA PORTFOLIO - V2 ADMIN AUTHENTICATION
  * admin-auth.js
  * ========================================================
  */
 
 class AdminAuth {
     constructor() {
-        // SHA-256 hash of "mathiya2025"
+        // SHA-256 hash of "mthisha2025"
         this.validHash = "e0c7a5f6af360b6ae9d0cfb4db745a7da7d3536ac9e6b66ddb44321682390a3a";
     }
 

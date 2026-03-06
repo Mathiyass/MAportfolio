@@ -1,5 +1,5 @@
 /**
- * Shared utility functions for Mathiya Portfolio
+ * Shared utility functions for Mthisha Portfolio
  */
 
 /**

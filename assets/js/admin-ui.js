@@ -1,6 +1,6 @@
 /**
  * ========================================================
- * MATHIYA PORTFOLIO - V2 ADMIN UI BINDING
+ * MTHISHA PORTFOLIO - V2 ADMIN UI BINDING
  * admin-ui.js
  * ========================================================
  */
@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     bindStat('[data-stat="status"]', stats.systemStatus);
 
     // Initial setup listener for db updates
-    window.addEventListener('mathiyaDBUpdated', () => {
-        console.log('Mathiya OS System Data updated.');
+    window.addEventListener('mthishaDBUpdated', () => {
+        console.log('Mthisha OS System Data updated.');
         // Re-bind or refresh graphs
     });
 });

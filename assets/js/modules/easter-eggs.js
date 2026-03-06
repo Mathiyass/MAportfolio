@@ -41,7 +41,7 @@ export function initializeAdminAccess() {
                     const username = prompt("Enter Username:");
                     if (username !== null) {
                         const password = prompt("Enter Password:");
-                        if (username === 'MATHIYA' && password === 'MATHIYA') {
+                        if (username === 'MTHISHA' && password === 'MTHISHA') {
                             showNotification('Access Granted', 'success');
                             window.location.href = 'admin.html';
                         } else {

@@ -26,7 +26,7 @@ class Terminal {
                         <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
                         <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                     </div>
-                    <span class="text-white text-sm">Terminal - MATHIYA Portfolio</span>
+                    <span class="text-white text-sm">Terminal - MTHISHA Portfolio</span>
                     <button id="terminal-close" class="text-white hover:text-red-400">
                         <i class="fas fa-times"></i>
                     </button>
@@ -34,7 +34,7 @@ class Terminal {
                 <div class="flex-1 p-4 overflow-y-auto">
                     <div id="terminal-output" class="text-green-400 text-sm leading-relaxed"></div>
                     <div class="flex items-center mt-2">
-                        <span class="text-cyan-400 mr-2">mathiya@portfolio:${this.currentPath}$</span>
+                        <span class="text-cyan-400 mr-2">mthisha@portfolio:${this.currentPath}$</span>
                         <input type="text" id="terminal-input" class="bg-transparent text-green-400 outline-none flex-1" autocomplete="off">
                     </div>
                 </div>
@@ -90,7 +90,7 @@ class Terminal {
             projects: () => this.showProjects(),
             contact: () => this.showContact(),
             socials: () => this.showSocials(),
-            whoami: () => 'mathiya',
+            whoami: () => 'mthisha',
             pwd: () => this.currentPath,
             ls: () => this.listFiles(),
             cat: (args) => this.catFile(args[0]),
@@ -145,7 +145,7 @@ class Terminal {
         this.history.push(command);
         this.historyIndex = this.history.length;
 
-        this.addOutput(`<span class="text-cyan-400">mathiya@portfolio:${this.currentPath}$</span> ${command}`);
+        this.addOutput(`<span class="text-cyan-400">mthisha@portfolio:${this.currentPath}$</span> ${command}`);
 
         const [cmd, ...args] = command.split(' ');
         
@@ -188,7 +188,7 @@ class Terminal {
     getWelcomeMessage() {
         return `
 <span class="text-cyan-400">╔══════════════════════════════════════════════════════════════╗</span>
-<span class="text-cyan-400">║</span>                    <span class="text-green-400">Welcome to MATHIYA Terminal</span>                    <span class="text-cyan-400">║</span>
+<span class="text-cyan-400">║</span>                    <span class="text-green-400">Welcome to MTHISHA Terminal</span>                    <span class="text-cyan-400">║</span>
 <span class="text-cyan-400">║</span>                                                              <span class="text-cyan-400">║</span>
 <span class="text-cyan-400">║</span>  <span class="text-yellow-400">🚀 Portfolio Terminal Interface v2.0</span>                      <span class="text-cyan-400">║</span>
 <span class="text-cyan-400">║</span>  <span class="text-white">Type 'help' to see available commands</span>                       <span class="text-cyan-400">║</span>
@@ -202,7 +202,7 @@ class Terminal {
         return `
 <span class="text-yellow-400">Available Commands:</span>
 <span class="text-green-400">help</span>      - Show this help message
-<span class="text-green-400">about</span>     - Display information about Mathiya
+<span class="text-green-400">about</span>     - Display information about Mthisha
 <span class="text-green-400">skills</span>    - List technical skills
 <span class="text-green-400">projects</span>  - Show recent projects
 <span class="text-green-400">contact</span>   - Display contact information
@@ -225,10 +225,10 @@ class Terminal {
     showAbout() {
         return `
 <span class="text-cyan-400">╔══════════════════════════════════════════════════════════════╗</span>
-<span class="text-cyan-400">║</span>                        <span class="text-green-400">ABOUT MATHIYA</span>                           <span class="text-cyan-400">║</span>
+<span class="text-cyan-400">║</span>                        <span class="text-green-400">ABOUT MTHISHA</span>                           <span class="text-cyan-400">║</span>
 <span class="text-cyan-400">╚══════════════════════════════════════════════════════════════╝</span>
 
-<span class="text-yellow-400">Name:</span> Mathiya Angirasa
+<span class="text-yellow-400">Name:</span> Mthisha Angirasa
 <span class="text-yellow-400">Role:</span> Software Engineering Student
 <span class="text-yellow-400">Location:</span> Birmingham, UK
 <span class="text-yellow-400">University:</span> University of Birmingham
@@ -353,12 +353,12 @@ web development, game development, and creative coding.</span>
     listFiles() {
         return `
 <span class="text-blue-400">total 8</span>
-<span class="text-green-400">drwxr-xr-x</span>  2 mathiya mathiya 4096 Dec 25 2024 <span class="text-cyan-400">projects/</span>
-<span class="text-green-400">drwxr-xr-x</span>  2 mathiya mathiya 4096 Dec 25 2024 <span class="text-cyan-400">skills/</span>
-<span class="text-white">-rw-r--r--</span>  1 mathiya mathiya  256 Dec 25 2024 about.txt
-<span class="text-white">-rw-r--r--</span>  1 mathiya mathiya  512 Dec 25 2024 contact.txt
-<span class="text-white">-rw-r--r--</span>  1 mathiya mathiya  128 Dec 25 2024 readme.txt
-<span class="text-white">-rw-r--r--</span>  1 mathiya mathiya 1024 Dec 25 2024 resume.pdf
+<span class="text-green-400">drwxr-xr-x</span>  2 mthisha mthisha 4096 Dec 25 2024 <span class="text-cyan-400">projects/</span>
+<span class="text-green-400">drwxr-xr-x</span>  2 mthisha mthisha 4096 Dec 25 2024 <span class="text-cyan-400">skills/</span>
+<span class="text-white">-rw-r--r--</span>  1 mthisha mthisha  256 Dec 25 2024 about.txt
+<span class="text-white">-rw-r--r--</span>  1 mthisha mthisha  512 Dec 25 2024 contact.txt
+<span class="text-white">-rw-r--r--</span>  1 mthisha mthisha  128 Dec 25 2024 readme.txt
+<span class="text-white">-rw-r--r--</span>  1 mthisha mthisha 1024 Dec 25 2024 resume.pdf
         `;
     }
 
@@ -367,10 +367,10 @@ web development, game development, and creative coding.</span>
             'about.txt': this.showAbout(),
             'contact.txt': this.showContact(),
             'readme.txt': `
-<span class="text-yellow-400">MATHIYA PORTFOLIO TERMINAL</span>
+<span class="text-yellow-400">MTHISHA PORTFOLIO TERMINAL</span>
 
 This is an interactive terminal interface for exploring
-Mathiya's portfolio. Use 'help' to see available commands.
+Mthisha's portfolio. Use 'help' to see available commands.
 
 Built with vanilla JavaScript and lots of ❤️
 
@@ -385,10 +385,10 @@ Last updated: December 2024
 
     showNeofetch() {
         return `
-<span class="text-cyan-400">                    -\`                </span>    <span class="text-yellow-400">mathiya</span>@<span class="text-yellow-400">portfolio</span>
+<span class="text-cyan-400">                    -\`                </span>    <span class="text-yellow-400">mthisha</span>@<span class="text-yellow-400">portfolio</span>
 <span class="text-cyan-400">                   .o+\`               </span>    <span class="text-cyan-400">-----------------</span>
 <span class="text-cyan-400">                  \`ooo/               </span>    <span class="text-yellow-400">OS</span>: Portfolio Linux x86_64
-<span class="text-cyan-400">                 \`+oooo:              </span>    <span class="text-yellow-400">Host</span>: MATHIYA Portfolio v2.0
+<span class="text-cyan-400">                 \`+oooo:              </span>    <span class="text-yellow-400">Host</span>: MTHISHA Portfolio v2.0
 <span class="text-cyan-400">                \`+oooooo:             </span>    <span class="text-yellow-400">Kernel</span>: JavaScript 5.1.0
 <span class="text-cyan-400">                -+oooooo+:            </span>    <span class="text-yellow-400">Uptime</span>: ${Math.floor(performance.now() / 1000)} seconds
 <span class="text-cyan-400">              \`/:-:++oooo+:           </span>    <span class="text-yellow-400">Packages</span>: 42 (npm)

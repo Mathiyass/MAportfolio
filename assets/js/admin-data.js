@@ -1,6 +1,6 @@
 /**
  * ========================================================
- * MATHIYA PORTFOLIO - V2 ADMIN DATA MANAGER
+ * MTHISHA PORTFOLIO - V2 ADMIN DATA MANAGER
  * admin-data.js
  * ========================================================
  */
@@ -61,7 +61,7 @@ class AdminDataManager {
                     }
                 ],
                 settings: {
-                    siteName: 'MATHIYA OS',
+                    siteName: 'MTHISHA OS',
                     accentColor: '#00ffdd',
                     maintenanceMode: false
                 }
@@ -77,7 +77,7 @@ class AdminDataManager {
     saveData(data) {
         localStorage.setItem(this.DB_KEY, JSON.stringify(data));
         // Dispatch custom event so UI can update
-        window.dispatchEvent(new Event('mathiyaDBUpdated'));
+        window.dispatchEvent(new Event('mthishaDBUpdated'));
     }
 
     // Specific Getters and Setters

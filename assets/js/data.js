@@ -12,7 +12,7 @@ class PortfolioData {
     initDefaults() {
         this.data = {
             profile: {
-                name: "Mathiya Angirasa",
+                name: "Mthisha Angirasa",
                 role: "Software Engineering Student & Full Stack Developer",
                 bio: "Software Engineering student dedicated to crafting premium digital experiences. I bridge the gap between complex logic and stunning visual aesthetics with precision and modern engineering.",
                 avatar: "https://avatars.githubusercontent.com/u/120613292?v=4",
@@ -25,7 +25,7 @@ class PortfolioData {
                 social: {
                     github: "https://github.com/Mathiyass",
                     linkedin: "#",
-                    email: "mathiya@example.com"
+                    email: "mthisha@example.com"
                 }
             },
             skills: [

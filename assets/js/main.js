@@ -1,6 +1,6 @@
 /**
  * ========================================================
- * MATHIYA PORTFOLIO - V2 MAIN LOGIC
+ * MTHISHA PORTFOLIO - V2 MAIN LOGIC
  * MAIN.JS: GSAP Config, Preloader, Page Specifics
  * ========================================================
  */
@@ -154,8 +154,8 @@ class MainApp {
         mask.style.zIndex = '99999';
         mask.style.transform = 'translateY(100%)';
 
-        // Add minimal mathiya logo or text in the center
-        mask.innerHTML = `<div style="display:flex;justify-content:center;align-items:center;height:100%;color:#00FFDE;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2rem;letter-spacing:0.5rem;opacity:0.5;">MATHIYA</div>`;
+        // Add minimal mthisha logo or text in the center
+        mask.innerHTML = `<div style="display:flex;justify-content:center;align-items:center;height:100%;color:#00FFDE;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2rem;letter-spacing:0.5rem;opacity:0.5;">MTHISHA</div>`;
         document.body.appendChild(mask);
 
         gsap.to(mask, {

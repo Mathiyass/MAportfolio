@@ -1,6 +1,6 @@
 /* 
  * ========================================================
- * MATHIYA PORTFOLIO - V2 FOUNDATION
+ * MTHISHA PORTFOLIO - V2 FOUNDATION
  * CORE CSS & DESIGN TOKENS
  * ========================================================
  */
@@ -334,4 +334,65 @@ body.hover-active #cursor-ring {
     height: 100%;
     z-index: var(--z-canvas);
     pointer-events: none;
+}
+
+/* 
+ * ========================================================
+ * SCROLL-TO-TOP BUTTON
+ * ========================================================
+ */
+#scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--border-glow-primary);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 9000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 15px rgba(0, 255, 222, 0.2);
+}
+
+#scroll-to-top:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(0, 255, 222, 0.5);
+    background: rgba(0, 255, 222, 0.1);
+}
+
+/* 
+ * ========================================================
+ * SCROLL PROGRESS BAR
+ * ========================================================
+ */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--color-primary), #7c3aed);
+    z-index: 10000;
+    transition: width 0.05s linear;
+    box-shadow: 0 0 8px var(--color-primary);
+}
+
+/* 
+ * ========================================================
+ * SMART NAVBAR (.scrolled STATE)
+ * ========================================================
+ */
+nav.scrolled,
+header.scrolled {
+    background: rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
 }

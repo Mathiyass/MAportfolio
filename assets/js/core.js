@@ -1,6 +1,6 @@
 /**
  * ========================================================
- * MATHIYA PORTFOLIO - V2 FOUNDATION
+ * MTHISHA PORTFOLIO - V2 FOUNDATION
  * CORE.JS: Gloabl Utilities, Lenis Smooth Scroll, Custom Cursor
  * ========================================================
  */
@@ -9,10 +9,13 @@ class CoreSystem {
     constructor() {
         this.initLenis();
         this.initCustomCursor();
+        this.initScrollToTop();
+        this.initScrollProgress();
+        this.initSmartNavbar();
         this.attachGlobalListeners();
 
         // Log initialization
-        console.log("%c SYSTEM ONLINE: MATHIYA PORTFOLIO CORE V2 ", "background: #00FFDE; color: #000; font-weight: bold; padding: 4px; border-radius: 4px;");
+        console.log("%c SYSTEM ONLINE: MTHISHA PORTFOLIO CORE V2 ", "background: #00FFDE; color: #000; font-weight: bold; padding: 4px; border-radius: 4px;");
     }
 
     /**
@@ -137,6 +140,79 @@ class CoreSystem {
                 ScrollTrigger.refresh();
             }
         }, 250));
+    }
+
+    /**
+     * Scroll-to-Top floating button
+     */
+    initScrollToTop() {
+        const btn = document.createElement('button');
+        btn.id = 'scroll-to-top';
+        btn.innerHTML = '&#8593;';
+        btn.setAttribute('aria-label', 'Scroll to top');
+        document.body.appendChild(btn);
+
+        window.addEventListener('scroll', () => {
+            btn.style.opacity = window.scrollY > 300 ? '1' : '0';
+            btn.style.pointerEvents = window.scrollY > 300 ? 'auto' : 'none';
+        });
+
+        btn.addEventListener('click', () => {
+            if (this.lenis) {
+                this.lenis.scrollTo(0);
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    }
+
+    /**
+     * Scroll progress bar at very top of viewport
+     */
+    initScrollProgress() {
+        const bar = document.createElement('div');
+        bar.id = 'scroll-progress';
+        document.body.appendChild(bar);
+
+        window.addEventListener('scroll', () => {
+            const scrollH = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = scrollH > 0 ? (window.scrollY / scrollH) * 100 : 0;
+            bar.style.width = pct + '%';
+        });
+    }
+
+    /**
+     * Smart Navbar: hides on scroll down, reveals on scroll up
+     */
+    initSmartNavbar() {
+        const nav = document.querySelector('nav, header');
+        if (!nav) return;
+
+        let lastY = 0;
+        const threshold = 80;
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+
+            if (y > threshold && y > lastY) {
+                // Scrolling down past threshold — hide
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up — show
+                nav.style.transform = 'translateY(0)';
+            }
+
+            // Add glass effect after scrolling
+            if (y > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            lastY = y;
+        });
+
+        nav.style.transition = 'transform 0.35s ease';
     }
 
     // Utility: Debounce function

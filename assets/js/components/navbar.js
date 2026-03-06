@@ -24,7 +24,7 @@ class AdvancedNavbar {
                     <div class="flex justify-between items-center">
                         <!-- Logo -->
                         <div class="text-2xl font-bold font-orbitron gradient-text relative group z-50">
-                            <a href="index.html" class="block hover:scale-110 transition-transform duration-300">MATHIYA</a>
+                            <a href="index.html" class="block hover:scale-110 transition-transform duration-300">MTHISHA</a>
                             <div class="absolute -bottom-2 left-0 w-full h-0.5 bg-cyber-cyan transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
                         </div>
 

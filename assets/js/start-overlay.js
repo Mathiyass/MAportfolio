@@ -111,7 +111,7 @@
     function speakWelcomeMessage() {
         if (!window.speechSynthesis) return;
 
-        const text = "System Online. Access granted. Welcome to the digital workspace of Mathiya.";
+        const text = "System Online. Access granted. Welcome to the digital workspace of Mthisha.";
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.pitch = 0.1; // Deep voice
         utterance.rate = 0.75; // Slow rate

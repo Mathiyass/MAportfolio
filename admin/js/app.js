@@ -294,7 +294,7 @@ function renderMessages(container) {
                             <h4 class="font-bold text-white text-sm">Sarah Jenkins</h4>
                             <span class="text-xs text-primary">12:30 PM</span>
                         </div>
-                        <p class="text-slate-400 text-xs truncate">Hey Mathiya, I saw your portfolio and...</p>
+                        <p class="text-slate-400 text-xs truncate">Hey Mthisha, I saw your portfolio and...</p>
                     </div>
                     <div class="p-4 border-b border-white/5 hover:bg-white/5 cursor-pointer">
                         <div class="flex justify-between items-center mb-1">
@@ -315,7 +315,7 @@ function renderMessages(container) {
                 </div>
                 <div class="flex-1 p-6 overflow-y-auto">
                     <div class="bg-white/5 p-4 rounded-xl rounded-tl-none border border-white/10 max-w-[80%] text-slate-300">
-                        Hey Mathiya,<br/><br/>I saw your portfolio on GitHub and absolutely loved the design. We are looking for a frontend developer to help build a new web3 dashboard. Are you currently taking on any freelance projects?<br/><br/>Best,<br/>Sarah
+                        Hey Mthisha,<br/><br/>I saw your portfolio on GitHub and absolutely loved the design. We are looking for a frontend developer to help build a new web3 dashboard. Are you currently taking on any freelance projects?<br/><br/>Best,<br/>Sarah
                     </div>
                 </div>
                 <div class="p-4 border-t border-white/10 glass-effect">

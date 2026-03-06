@@ -1,11 +1,11 @@
 /**
  * ========================================================
- * MATHIYA PORTFOLIO - V2 API SERVICE
+ * MTHISHA PORTFOLIO - V2 API SERVICE
  * api.js: Stubbed OpenAPI client for future backend integration
  * ========================================================
  */
 
-class MathiyaAPI {
+class MthishaAPI {
     constructor(baseURL = 'https://api.mathiya.dev/v1') {
         this.baseURL = baseURL;
         this.headers = {
@@ -47,4 +47,4 @@ class MathiyaAPI {
     }
 }
 
-window.AppAPI = new MathiyaAPI();
+window.AppAPI = new MthishaAPI();

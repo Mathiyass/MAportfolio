@@ -1,12 +1,12 @@
 /**
  * ========================================================
- * MATHIYA PORTFOLIO - V2 GESTURE NAVIGATION
+ * MTHISHA PORTFOLIO - V2 GESTURE NAVIGATION
  * gesture.js
  * Integrate MediaPipe Hands for Hand Tracking & Navigation
  * ========================================================
  */
 
-class MathiyaGestureSystem {
+class MthishaGestureSystem {
     constructor() {
         this.isActive = false;
         this.isLoading = false;
@@ -199,5 +199,5 @@ class MathiyaGestureSystem {
 
 // Auto-init on page load
 window.addEventListener('load', () => {
-    window.AppGestures = new MathiyaGestureSystem();
+    window.AppGestures = new MthishaGestureSystem();
 });

@@ -1,12 +1,12 @@
 /**
  * ========================================================
- * MATHIYA PORTFOLIO - V2 3D PARTICLES
+ * MTHISHA PORTFOLIO - V2 3D PARTICLES
  * particles.js
  * Advanced Cybernetic Particle Field via tsParticles
  * ========================================================
  */
 
-class MathiyaParticles {
+class MthishaParticles {
     constructor() {
         this.containerId = 'tsparticles';
         this.initContainer();
@@ -133,7 +133,7 @@ window.addEventListener('load', () => {
     const checkEngine = setInterval(() => {
         if (typeof tsParticles !== 'undefined') {
             clearInterval(checkEngine);
-            window.AppParticles = new MathiyaParticles();
+            window.AppParticles = new MthishaParticles();
         }
     }, 100);
 });

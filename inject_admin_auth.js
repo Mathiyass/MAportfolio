@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const dir = 'c:\\Users\\MATHIYA\\Documents\\GitHub\\MAportfolio';
+const dir = 'c:\\Users\\MTHISHA\\Documents\\GitHub\\MAportfolio';
 const adminFiles = [
     'admin.html',
     'admin/blog-editor.html',
