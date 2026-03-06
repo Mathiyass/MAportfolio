@@ -1,134 +1,231 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
 
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>All Projects | Mathiya Angirasa</title>
-
-    <!-- Fonts & Icons -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.0.45/dist/lenis.css">
-
-    <!-- Custom CSS -->
-    <link href="./assets/css/global.css" rel="stylesheet" />
-
-    <!-- Tailwind JS -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script src="./assets/js/tailwind-config.js"></script>
-</head>
-
-<body class="bg-background-dark font-sans text-slate-100 selection:bg-primary/30">
-    <div id="particles-canvas" class="fixed inset-0 pointer-events-none z-0"></div>
-
-    <!-- Navbar -->
-    <header class="fixed top-0 left-0 right-0 z-50 flex justify-center p-6 transition-all duration-300">
-        <nav class="glass-effect flex items-center justify-between w-full max-w-7xl px-8 py-4 rounded-2xl">
-            <a href="index.html" class="flex items-center gap-3">
-                <div
-                    class="w-10 h-10 bg-gradient-to-br from-primary to-accent-violet rounded-lg flex items-center justify-center font-display font-bold text-background-dark">
-                    MA
-                </div>
-                <span class="font-display font-bold text-xl tracking-tight hidden sm:block">MATHIYA</span>
-            </a>
-            <div class="hidden md:flex items-center gap-8">
-                <div class="flex items-center gap-10">
-                    <a class="text-sm font-medium hover:text-primary transition-colors"
-                        href="index.html#about">About</a>
-                    <a class="text-sm font-medium text-primary transition-colors" href="projects.html">Projects</a>
-                    <a class="text-sm font-medium hover:text-primary transition-colors" href="blog.html">Blog</a>
-                </div>
-                <a href="index.html#contact"
-                    class="bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-background-dark px-6 py-2 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20">Let's
-                    Talk</a>
-            </div>
-            <button id="mobile-menu-btn" class="md:hidden text-white hover:text-primary">
-                <span class="material-symbols-outlined text-3xl">menu</span>
-            </button>
-        </nav>
-    </header>
-
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu"
-        class="fixed inset-0 z-40 hidden flex-col items-center justify-center bg-background-dark/95 backdrop-blur-xl">
-        <a href="index.html#about" class="text-2xl font-display font-bold mb-6 hover:text-primary mobile-link">About</a>
-        <a href="projects.html" class="text-2xl font-display font-bold mb-6 text-primary mobile-link">Projects</a>
-        <a href="blog.html" class="text-2xl font-display font-bold mb-6 hover:text-primary mobile-link">Blog</a>
-        <a href="index.html#contact"
-            class="text-2xl font-display font-bold mb-6 hover:text-primary mobile-link">Contact</a>
-    </div>
-
-    <main class="relative z-10 pt-40 pb-24 px-6 max-w-7xl mx-auto min-h-screen">
-        <div class="text-center mb-16 animate-fade-up">
-            <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 glow-text">All Projects</h1>
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto">A comprehensive collection of my engineering, design,
-                and experimental work.</p>
-        </div>
-
-        <!-- Filter Controls -->
-        <div class="flex flex-wrap justify-center gap-4 mb-16 animate-fade-up" style="animation-delay: 0.2s"
-            id="projects-filters">
-            <!-- Populated by JS -->
-        </div>
-
-        <div id="full-projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Populated by JS -->
-        </div>
-    </main>
-
-    <footer class="py-12 border-t border-white/10 glass-effect relative z-10 w-full mt-auto">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-slate-500 text-sm">&copy; 2025 Mathiya Angirasa. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.45/bundled/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-    <script src="./assets/js/data.js"></script>
-    <script src="./assets/js/core.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const data = window.portfolioData;
-            if (!data) return;
-            const projects = data.getProjects();
-            const grid = document.getElementById('full-projects-grid');
-
-            let html = '';
-            projects.forEach((project, index) => {
-                html += `
-                    <div class="group rounded-2xl glass-effect border border-white/10 overflow-hidden hover:border-primary/50 transition-all duration-300 animate-fade-up tilt-card" style="animation-delay: ${0.05 * index}s">
-                        <div class="relative h-64 overflow-hidden">
-                            <div class="absolute inset-0 bg-background-dark/50 group-hover:bg-transparent transition-colors z-10"></div>
-                            <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
-                            <div class="absolute top-4 right-4 z-20 flex gap-2">
-                                <a href="${project.github}" class="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white hover:text-primary transition-colors border border-white/10">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
-                                </a>
-                                <a href="${project.link}" class="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white hover:text-primary transition-colors border border-white/10">
-                                    <span class="material-symbols-outlined text-[20px]">open_in_new</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="p-8">
-                            <h3 class="text-2xl font-display font-bold text-white mb-3 group-hover:text-primary transition-colors">${project.title}</h3>
-                            <p class="text-slate-400 mb-6 line-clamp-2">${project.description}</p>
-                            <div class="flex flex-wrap gap-2">
-                                ${project.tech.map(t => `<span class="text-xs font-bold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">${t}</span>`).join('')}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            if (grid) grid.innerHTML = html;
-        });
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MATHIYA Project Archive Void</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00ffdd",
+                        "secondary": "#dc143c",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#050a09",
+                        "surface-dark": "#0a1412",
+                        "border-dark": "#142925"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
     </script>
-</body>
+<link rel="stylesheet" href="assets/css/index.css">
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen relative overflow-x-hidden">
+<!-- Abstract Background Effects -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+<div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-primary/5 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-secondary/5 blur-[120px] rounded-full"></div>
+<!-- Grid overlay -->
+<div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none"></div>
+</div>
+<div class="relative z-10 flex h-full grow flex-col w-full max-w-[1440px] mx-auto">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-background-dark/80 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-100">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z"></path>
+</svg>
+</div>
+<h2 class="text-slate-100 text-xl font-bold leading-tight tracking-widest uppercase">Mathiya</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal tracking-wider" href="#">HOME</a>
+<a class="text-primary text-sm font-medium leading-normal tracking-wider" href="#">ARCHIVE</a>
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal tracking-wider" href="#">SYSTEMS</a>
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal tracking-wider" href="#">CONTACT</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="hidden lg:flex flex-col min-w-40 h-10 max-w-64 relative group">
+<div class="absolute inset-0 bg-primary/10 rounded group-hover:bg-primary/20 transition-colors"></div>
+<div class="flex w-full flex-1 items-center rounded h-full relative z-10 border border-border-dark group-hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-primary ml-3 text-[20px]">search</span>
+<input class="form-input flex w-full min-w-0 flex-1 bg-transparent text-slate-100 border-none focus:ring-0 placeholder:text-slate-500 text-sm font-medium" placeholder="Query Archive..." type="text"/>
+<div class="mr-2 px-1.5 py-0.5 rounded bg-surface-dark border border-border-dark flex items-center justify-center">
+<span class="text-xs text-slate-400 font-mono">⌘K</span>
+</div>
+</div>
+</label>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded h-10 px-5 bg-surface-dark border border-border-dark text-slate-300 hover:text-primary hover:border-primary/50 transition-all text-sm font-bold tracking-widest">
+<span>INITIATE</span>
+</button>
+<button class="flex items-center justify-center rounded h-10 px-5 bg-primary text-background-dark hover:bg-primary/90 transition-colors text-sm font-bold tracking-widest shadow-[0_0_15px_rgba(0,255,221,0.3)]">
+<span>CONNECT</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-10 py-16 flex flex-col gap-12">
+<!-- Header Section -->
+<div class="flex flex-col gap-4 max-w-3xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-max">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-primary text-xs font-bold tracking-widest uppercase">System Online</span>
+</div>
+<h1 class="text-slate-100 text-5xl md:text-7xl font-black leading-tight tracking-tighter uppercase">
+                    Project Archive <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Void</span>
+</h1>
+<p class="text-slate-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl border-l-2 border-primary pl-4">
+                    Explore the deep abyss of MATHIYA's multi-billion dollar luxury tech showcase for the year 2050. High-fidelity systems and architectural marvels.
+                </p>
+</div>
+<!-- Controls -->
+<div class="flex flex-wrap items-center justify-between gap-4 py-4 border-b border-border-dark">
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 rounded bg-surface-dark border border-primary text-primary text-sm font-bold tracking-wider">ALL</button>
+<button class="px-4 py-2 rounded bg-transparent border border-border-dark text-slate-400 hover:text-slate-100 hover:border-slate-600 transition-colors text-sm font-bold tracking-wider">WEB3</button>
+<button class="px-4 py-2 rounded bg-transparent border border-border-dark text-slate-400 hover:text-slate-100 hover:border-slate-600 transition-colors text-sm font-bold tracking-wider">AI AGENTS</button>
+<button class="px-4 py-2 rounded bg-transparent border border-border-dark text-slate-400 hover:text-slate-100 hover:border-slate-600 transition-colors text-sm font-bold tracking-wider">SPATIAL</button>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-slate-500 text-sm font-mono">DISPLAY: GRID</span>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded bg-surface-dark border border-primary/50 text-primary">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+</button>
+<button class="p-2 rounded bg-transparent border border-border-dark text-slate-500 hover:text-slate-300 transition-colors">
+<span class="material-symbols-outlined text-[20px]">view_list</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Project Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-[2000px]">
+<!-- Card 1 -->
+<div class="group relative flex flex-col gap-4 rounded-xl bg-surface-dark border border-border-dark hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,255,221,0.15)] overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="p-4 relative z-10">
+<div class="bg-cover bg-center rounded-lg aspect-[4/3] relative overflow-hidden border border-border-dark/50" data-alt="Abstract liquid neon waves" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnBX2W4laqRmNbKeEtPixR6G1Vcno5EgtwhHLl0NPnTvV3iNCByaz8gLicLNOFt21WtWKMxgemZkgJcfhabLbx9x2UKSFlLweSu_3RtGh7XseEMSjH4oYe4_jXtTfBHZlBGxwlO3KJt09I9GS1EL-Kio_ZRHoxR7VlRIDrHc2d5fy_cp35HL_4m8yCHL8eWnXZf9IOFKOhniNwEQkbgjHijXzJEsWfb8tkOgqfQsNR4SupTaQ4B5Ns1T1cstVxXrejJGMLwRx9eu4");'>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/20 to-transparent"></div>
+<div class="absolute top-3 right-3 px-2 py-1 rounded bg-background-dark/80 backdrop-blur border border-primary/30 text-primary text-[10px] font-bold tracking-widest uppercase">Deployed</div>
+<div class="absolute bottom-4 left-4 right-4">
+<h3 class="text-slate-100 text-2xl font-bold leading-tight mb-1 group-hover:text-primary transition-colors">Neural Net Protocol</h3>
+<p class="text-slate-400 text-sm font-mono line-clamp-1">SYS.001 // Core Architecture</p>
+</div>
+</div>
+</div>
+<div class="px-6 pb-6 pt-2 relative z-10 flex justify-between items-end">
+<div class="flex flex-wrap gap-2">
+<span class="text-xs font-medium text-slate-300 bg-surface-dark border border-border-dark px-2 py-1 rounded">React</span>
+<span class="text-xs font-medium text-slate-300 bg-surface-dark border border-border-dark px-2 py-1 rounded">WebGL</span>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-dark border border-border-dark flex items-center justify-center group-hover:bg-primary group-hover:text-background-dark group-hover:border-primary transition-all duration-300">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative flex flex-col gap-4 rounded-xl bg-surface-dark border border-border-dark hover:border-secondary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(220,20,60,0.15)] overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="p-4 relative z-10">
+<div class="bg-cover bg-center rounded-lg aspect-[4/3] relative overflow-hidden border border-border-dark/50" data-alt="Cyberpunk server room dark" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAld_15DbVsyGYn2098QvQ_458QlVPNhqICuRR6iWBJ6P2_1bG23uSHrmvFYjSEYawK2LPFBt1MBnVEq2XKWmUV8QXWPfmYSRck7MwqR_hNKpMXNLcerPJmlOMuIOt3PfrnmnFi8LVCzVt51LON0IqZyjAL5TUQ3j6Ye93dhCv8bI0JmTL4fAYok6lvAglvQhWeAGWSY7zqR_q_n-dxtDuFYYnYXmScVAiCXOjH6B7W0fXHczeKAu7zuVzNbOwgKSrzKIjTIogYaoA");'>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/20 to-transparent"></div>
+<div class="absolute top-3 right-3 px-2 py-1 rounded bg-background-dark/80 backdrop-blur border border-secondary/30 text-secondary text-[10px] font-bold tracking-widest uppercase">Classified</div>
+<div class="absolute bottom-4 left-4 right-4">
+<h3 class="text-slate-100 text-2xl font-bold leading-tight mb-1 group-hover:text-secondary transition-colors">Quantum Vault</h3>
+<p class="text-slate-400 text-sm font-mono line-clamp-1">SEC.092 // High Security</p>
+</div>
+</div>
+</div>
+<div class="px-6 pb-6 pt-2 relative z-10 flex justify-between items-end">
+<div class="flex flex-wrap gap-2">
+<span class="text-xs font-medium text-slate-300 bg-surface-dark border border-border-dark px-2 py-1 rounded">Rust</span>
+<span class="text-xs font-medium text-slate-300 bg-surface-dark border border-border-dark px-2 py-1 rounded">Cryptography</span>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-dark border border-border-dark flex items-center justify-center group-hover:bg-secondary group-hover:text-slate-100 group-hover:border-secondary transition-all duration-300">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative flex flex-col gap-4 rounded-xl bg-surface-dark border border-border-dark hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,255,221,0.15)] overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="p-4 relative z-10">
+<div class="bg-cover bg-center rounded-lg aspect-[4/3] relative overflow-hidden border border-border-dark/50" data-alt="Abstract glowing grid structures" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDnWU0DJQV5golzyo2A5z47zQngtwjXt5Q5pUZFM2dk1MOvJdOJGt_BbBuC0Fqfe_EAo3SlXuVt8mDIqtaIVd-UrFk42VZVohj7TgWs_-8FD0CWIYjJmsSQ0WlYDe4IIpmXChuUqbWAGKTsnv29yKm9Gp_LDpTkwq2pKjHF289jMQBzd7P4-ecwaZz3wnn0JtdOnpIlQKDxAcs076-nPo8auE6EOjEZIiBJIVVg5yqLu3-W5OdeJsv77jwwmVma-UuweuAHkZsfXzU");'>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/20 to-transparent"></div>
+<div class="absolute top-3 right-3 px-2 py-1 rounded bg-background-dark/80 backdrop-blur border border-primary/30 text-primary text-[10px] font-bold tracking-widest uppercase">Active</div>
+<div class="absolute bottom-4 left-4 right-4">
+<h3 class="text-slate-100 text-2xl font-bold leading-tight mb-1 group-hover:text-primary transition-colors">Omni-Matrix Interface</h3>
+<p class="text-slate-400 text-sm font-mono line-clamp-1">UI.044 // Spatial Design</p>
+</div>
+</div>
+</div>
+<div class="px-6 pb-6 pt-2 relative z-10 flex justify-between items-end">
+<div class="flex flex-wrap gap-2">
+<span class="text-xs font-medium text-slate-300 bg-surface-dark border border-border-dark px-2 py-1 rounded">Three.js</span>
+<span class="text-xs font-medium text-slate-300 bg-surface-dark border border-border-dark px-2 py-1 rounded">GLSL</span>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-dark border border-border-dark flex items-center justify-center group-hover:bg-primary group-hover:text-background-dark group-hover:border-primary transition-all duration-300">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-center py-8 gap-2">
+<button class="flex size-10 items-center justify-center rounded border border-border-dark bg-surface-dark text-slate-400 hover:text-primary hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="text-sm font-bold flex size-10 items-center justify-center text-background-dark rounded bg-primary shadow-[0_0_10px_rgba(0,255,221,0.2)]">1</button>
+<button class="text-sm font-medium flex size-10 items-center justify-center text-slate-400 rounded border border-transparent hover:border-border-dark hover:bg-surface-dark transition-colors">2</button>
+<button class="text-sm font-medium flex size-10 items-center justify-center text-slate-400 rounded border border-transparent hover:border-border-dark hover:bg-surface-dark transition-colors">3</button>
+<span class="text-slate-600 px-2">...</span>
+<button class="text-sm font-medium flex size-10 items-center justify-center text-slate-400 rounded border border-transparent hover:border-border-dark hover:bg-surface-dark transition-colors">9</button>
+<button class="flex size-10 items-center justify-center rounded border border-border-dark bg-surface-dark text-slate-400 hover:text-primary hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto border-t border-border-dark py-8 px-10 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+<div class="flex items-center gap-2">
+<div class="size-4 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z"></path>
+</svg>
+</div>
+<span class="text-slate-400 text-sm font-medium tracking-widest uppercase">MATHIYA ORG. © 2050</span>
+</div>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-primary transition-colors text-sm font-mono uppercase tracking-wider" href="#">SECURE LINK</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-sm font-mono uppercase tracking-wider" href="#">TERMS</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-sm font-mono uppercase tracking-wider" href="#">SYS STATUS</a>
+</div>
+</footer>
+</div>
 
-</html>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/core.js"></script>
+<script src="assets/js/main.js"></script>
+    <script src="assets/js/gesture.js"></script>
+</body></html>

@@ -1,429 +1,117 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcade | MATHIYA</title>
-    <meta name="description" content="Play interactive mini-games on Mathiya's portfolio. Snake, Tic-Tac-Toe, and more!">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-
-    <script>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MATHIYA Games Archive Void</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
         tailwind.config = {
-            darkMode: 'class',
+            darkMode: "class",
             theme: {
                 extend: {
-                    fontFamily: {
-                        'orbitron': ['Orbitron', 'monospace'],
-                        'inter': ['Inter', 'sans-serif'],
-                    },
                     colors: {
-                        'cyber-cyan': '#00FFDE',
-                        'cyber-red': '#FF3366',
-                        'neon-pink': '#FF10F0',
-                        'electric-blue': '#0080FF',
-                        'dark-bg': '#0a0a0a',
-                        'dark-card': '#1a1a2e',
-                        'dark-accent': '#16213e',
+                        "primary": "#00ffdd",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#000000",
                     },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
                     },
-                    keyframes: {
-                        'float': {
-                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
-                        },
-                        'glowPulse': {
-                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 222, 0.5)' },
-                            '100%': { boxShadow: '0 0 40px rgba(0, 255, 222, 1), 0 0 60px rgba(255, 51, 102, 0.5)' },
-                        },
-                    },
-                }
-            }
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
         }
     </script>
-
-    <style>
-        .game-canvas {
-            background-color: #000;
-            border: 2px solid #00FFDE;
-            box-shadow: 0 0 20px rgba(0, 255, 222, 0.5);
-            margin: 0 auto;
-            display: block;
-        }
-        .game-btn {
-            background: linear-gradient(45deg, #00FFDE, #0080FF);
-            color: #000;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-family: 'Orbitron', monospace;
-            transition: all 0.3s ease;
-        }
-        .game-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px #00FFDE;
-        }
-    </style>
+<link rel="stylesheet" href="assets/css/index.css">
 </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 px-10 py-5">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-6">
+<span class="material-symbols-outlined text-[24px]">hexagon</span>
+</div>
+<h2 class="text-primary text-2xl font-bold leading-tight tracking-[0.1em] uppercase">MATHIYA</h2>
+</div>
+<div class="flex flex-1 justify-end gap-12">
+<div class="flex items-center gap-10">
+<a class="text-primary text-sm font-medium leading-normal tracking-widest hover:text-white transition-colors" href="#">GAMES ARCHIVE</a>
+<a class="text-slate-400 hover:text-primary text-sm font-medium leading-normal tracking-widest transition-colors" href="#">PROJECTS</a>
+<a class="text-slate-400 hover:text-primary text-sm font-medium leading-normal tracking-widest transition-colors" href="#">ABOUT</a>
+<a class="text-slate-400 hover:text-primary text-sm font-medium leading-normal tracking-widest transition-colors" href="#">CONTACT</a>
+</div>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded h-10 bg-primary/10 hover:bg-primary/20 text-primary gap-2 text-sm font-bold leading-normal tracking-[0.1em] px-4 border border-primary/30 transition-all">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+</button>
+</div>
+</header>
+<div class="px-10 py-10 flex justify-between items-center">
+<h2 class="text-white text-5xl font-bold leading-tight tracking-[-0.02em]">Interactive Games Archive</h2>
+<label class="flex flex-col min-w-[300px] h-12">
+<div class="flex w-full flex-1 items-stretch rounded-full h-full border border-primary/30 bg-primary/5 backdrop-blur-md">
+<div class="text-primary flex items-center justify-center pl-4 pr-2">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full text-white focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-primary/50 px-2 text-sm font-medium leading-normal tracking-wide" placeholder="Search Everything..." value=""/>
+</div>
+</label>
+</div>
+<div class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8 p-10">
+<div class="group relative flex flex-col justify-end p-8 aspect-[4/5] rounded-xl overflow-hidden border border-primary/20 hover:border-primary/60 bg-gradient-to-t from-black via-black/50 to-transparent backdrop-blur-sm transition-all duration-500" data-alt="Abstract dark cyberpunk neon grid">
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors duration-500"></div>
+<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500" style="background-image: radial-gradient(circle at 50% 0%, #00ffdd 0%, transparent 70%);"></div>
+<h3 class="relative text-white text-3xl font-bold leading-tight mb-2 tracking-tight group-hover:text-primary transition-colors">Neon Abyss</h3>
+<p class="relative text-slate-400 text-sm font-medium tracking-wide">CYBERPUNK ROGUELIKE</p>
+</div>
+<div class="group relative flex flex-col justify-end p-8 aspect-[4/5] rounded-xl overflow-hidden border border-[#dc143c]/20 hover:border-[#dc143c]/60 bg-gradient-to-t from-black via-black/50 to-transparent backdrop-blur-sm transition-all duration-500" data-alt="Dark red glowing nebula">
+<div class="absolute inset-0 bg-[#dc143c]/5 group-hover:bg-[#dc143c]/10 transition-colors duration-500"></div>
+<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500" style="background-image: radial-gradient(circle at 50% 0%, #dc143c 0%, transparent 70%);"></div>
+<h3 class="relative text-white text-3xl font-bold leading-tight mb-2 tracking-tight group-hover:text-[#dc143c] transition-colors">Crimson Void</h3>
+<p class="relative text-slate-400 text-sm font-medium tracking-wide">SPACE HORROR SURVIVAL</p>
+</div>
+<div class="group relative flex flex-col justify-end p-8 aspect-[4/5] rounded-xl overflow-hidden border border-primary/20 hover:border-primary/60 bg-gradient-to-t from-black via-black/50 to-transparent backdrop-blur-sm transition-all duration-500" data-alt="Abstract geometric quantum field">
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors duration-500"></div>
+<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500" style="background-image: radial-gradient(circle at 50% 0%, #00ffdd 0%, transparent 70%);"></div>
+<h3 class="relative text-white text-3xl font-bold leading-tight mb-2 tracking-tight group-hover:text-primary transition-colors">Quantum Rift</h3>
+<p class="relative text-slate-400 text-sm font-medium tracking-wide">PUZZLE PLATFORMER</p>
+</div>
+<div class="group relative flex flex-col justify-end p-8 aspect-[4/5] rounded-xl overflow-hidden border border-[#dc143c]/20 hover:border-[#dc143c]/60 bg-gradient-to-t from-black via-black/50 to-transparent backdrop-blur-sm transition-all duration-500" data-alt="Digital pulse energy waves">
+<div class="absolute inset-0 bg-[#dc143c]/5 group-hover:bg-[#dc143c]/10 transition-colors duration-500"></div>
+<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500" style="background-image: radial-gradient(circle at 50% 0%, #dc143c 0%, transparent 70%);"></div>
+<h3 class="relative text-white text-3xl font-bold leading-tight mb-2 tracking-tight group-hover:text-[#dc143c] transition-colors">Cyber Pulse</h3>
+<p class="relative text-slate-400 text-sm font-medium tracking-wide">RHYTHM ACTION</p>
+</div>
+<div class="group relative flex flex-col justify-end p-8 aspect-[4/5] rounded-xl overflow-hidden border border-primary/20 hover:border-primary/60 bg-gradient-to-t from-black via-black/50 to-transparent backdrop-blur-sm transition-all duration-500" data-alt="Glowing echoing data cores">
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors duration-500"></div>
+<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500" style="background-image: radial-gradient(circle at 50% 0%, #00ffdd 0%, transparent 70%);"></div>
+<h3 class="relative text-white text-3xl font-bold leading-tight mb-2 tracking-tight group-hover:text-primary transition-colors">Echo Core</h3>
+<p class="relative text-slate-400 text-sm font-medium tracking-wide">METROIDVANIA</p>
+</div>
+<div class="group relative flex flex-col justify-end p-8 aspect-[4/5] rounded-xl overflow-hidden border border-[#dc143c]/20 hover:border-[#dc143c]/60 bg-gradient-to-t from-black via-black/50 to-transparent backdrop-blur-sm transition-all duration-500" data-alt="Deep space stellar drift">
+<div class="absolute inset-0 bg-[#dc143c]/5 group-hover:bg-[#dc143c]/10 transition-colors duration-500"></div>
+<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500" style="background-image: radial-gradient(circle at 50% 0%, #dc143c 0%, transparent 70%);"></div>
+<h3 class="relative text-white text-3xl font-bold leading-tight mb-2 tracking-tight group-hover:text-[#dc143c] transition-colors">Stellar Drift</h3>
+<p class="relative text-slate-400 text-sm font-medium tracking-wide">RACING SIMULATOR</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-<body class="dark text-white">
-    <!-- Custom Cursor -->
-    <div class="custom-cursor" id="custom-cursor"></div>
-    <div class="cursor-dot" id="cursor-dot"></div>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <!-- Scroll Progress -->
-    <div class="scroll-progress" id="scroll-progress"></div>
-
-    <!-- Navigation (Injected by JS) -->
-    <div id="navbar-container"></div>
-
-    <!-- Games Section -->
-    <section class="pt-32 pb-20 min-h-screen relative overflow-hidden">
-         <!-- Background Elements -->
-         <div class="absolute inset-0 pointer-events-none">
-            <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
-            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float" style="animation-delay: -1.5s;"></div>
-        </div>
-
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-down">
-                Cyber Arcade
-            </h1>
-            <p class="text-gray-300 mb-12" data-aos="fade-up" data-aos-delay="200">Take a break and test your skills.</p>
-
-            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                <!-- Snake Game Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-cyber-cyan">Neon Snake</h2>
-                    <div class="mb-4">
-                        <canvas id="snakeCanvas" width="300" height="300" class="game-canvas"></canvas>
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                        <div class="text-xl font-orbitron">Score: <span id="snake-score" class="text-cyber-cyan">0</span></div>
-                        <div class="text-sm text-gray-400">High Score: <span id="snake-highscore">0</span></div>
-                    </div>
-                    <button id="start-snake-btn" class="game-btn">Start Game</button>
-                    <p class="mt-4 text-sm text-gray-400">Use Arrow Keys to move</p>
-                </div>
-
-                <!-- Tic Tac Toe Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-neon-pink">Tic-Tac-Toe AI</h2>
-                    <div id="tictactoe-board" class="grid grid-cols-3 gap-2 w-64 mx-auto mb-6">
-                        <!-- Cells generated by JS -->
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                         <div class="text-xl font-orbitron" id="ttt-status">Your Turn (X)</div>
-                    </div>
-                    <button id="reset-ttt-btn" class="game-btn w-full" style="background: linear-gradient(45deg, #FF10F0, #FF3366);">Reset Game</button>
-                </div>
-
-                <!-- Memory Match Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-cyber-cyan">System Hack</h2>
-                    <div id="memory-board" class="grid grid-cols-4 gap-2 w-64 mx-auto mb-6">
-                        <!-- Cards generated by JS -->
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-4 text-sm">
-                        <div class="font-orbitron">Time: <span id="memory-time" class="text-cyber-cyan">00:00</span></div>
-                        <div class="font-orbitron">Moves: <span id="memory-moves" class="text-cyber-cyan">0</span></div>
-                    </div>
-                    <div class="text-center mb-4">
-                        <div class="text-sm font-orbitron min-h-[20px]" id="memory-status">Find matching pairs</div>
-                    </div>
-                    <button id="start-memory-btn" class="game-btn w-full">Reset System</button>
-                </div>
-
-                <!-- Pong Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="400">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-cyber-cyan">Cyber Pong</h2>
-                    <div class="mb-4">
-                        <canvas id="pongCanvas" width="300" height="300" class="game-canvas"></canvas>
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                        <div class="text-xl font-orbitron">Score: <span id="pong-score" class="text-cyber-cyan">0</span></div>
-                        <div class="text-sm text-gray-400">High Score: <span id="pong-highscore">0</span></div>
-                    </div>
-                    <button id="start-pong-btn" class="game-btn">Start Game</button>
-                    <p class="mt-4 text-sm text-gray-400">Use Arrow Keys Up/Down</p>
-                </div>
-
-                <!-- Breakout Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="500">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-neon-pink">Neon Breakout</h2>
-                    <div class="mb-4">
-                        <canvas id="breakoutCanvas" width="300" height="300" class="game-canvas"></canvas>
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                        <div class="text-xl font-orbitron">Score: <span id="breakout-score" class="text-neon-pink">0</span></div>
-                        <div class="text-sm text-gray-400">High Score: <span id="breakout-highscore">0</span></div>
-                    </div>
-                    <button id="start-breakout-btn" class="game-btn" style="background: linear-gradient(45deg, #FF10F0, #FF3366);">Start Game</button>
-                    <p class="mt-4 text-sm text-gray-400">Use Arrow Keys Left/Right</p>
-                </div>
-
-                <!-- Tetris Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="600">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-electric-blue">Tetris Block</h2>
-                    <div class="mb-4">
-                        <canvas id="tetrisCanvas" width="240" height="360" class="game-canvas"></canvas>
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                        <div class="text-xl font-orbitron">Score: <span id="tetris-score" class="text-electric-blue">0</span></div>
-                    </div>
-                    <button id="start-tetris-btn" class="game-btn" style="background: linear-gradient(45deg, #0080FF, #00FFDE);">Start Game</button>
-                    <p class="mt-4 text-sm text-gray-400">Arrow Keys to Move/Rotate</p>
-                </div>
-
-                <!-- Flappy Drone Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="700">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-cyber-cyan">Flappy Drone</h2>
-                    <div class="mb-4">
-                        <canvas id="flappyCanvas" width="300" height="400" class="game-canvas"></canvas>
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                        <div class="text-xl font-orbitron">Score: <span id="flappy-score" class="text-cyber-cyan">0</span></div>
-                        <div class="text-sm text-gray-400">High Score: <span id="flappy-highscore">0</span></div>
-                    </div>
-                    <button id="start-flappy-btn" class="game-btn">Start Game</button>
-                    <p class="mt-4 text-sm text-gray-400">Press Space or Click to Jump</p>
-                </div>
-
-                <!-- 2048 Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="800">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-neon-pink">2048 Cyber</h2>
-                    <div id="game-2048-container" class="relative bg-dark-accent p-2 rounded-lg mx-auto w-64 h-64 mb-6">
-                        <!-- Grid generated by JS -->
-                        <div id="grid-2048" class="grid grid-cols-4 gap-2 w-full h-full"></div>
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                        <div class="text-xl font-orbitron">Score: <span id="score-2048" class="text-neon-pink">0</span></div>
-                    </div>
-                    <button id="restart-2048-btn" class="game-btn" style="background: linear-gradient(45deg, #FF10F0, #FF3366);">New Game</button>
-                    <p class="mt-4 text-sm text-gray-400">Use Arrow Keys to Slide</p>
-                </div>
-
-                <!-- Whack-a-Bug Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="900">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-cyber-cyan">Debug Mode</h2>
-                    <div id="whack-grid" class="grid grid-cols-3 gap-2 w-64 mx-auto mb-6 h-64">
-                        <!-- Holes generated by JS -->
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                        <div class="text-xl font-orbitron">Bugs: <span id="whack-score" class="text-cyber-cyan">0</span></div>
-                        <div class="text-sm text-gray-400">Time: <span id="whack-time">30</span>s</div>
-                    </div>
-                    <button id="start-whack-btn" class="game-btn">Start Debugging</button>
-                </div>
-
-                <!-- Rock Paper Scissors Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="1000">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-electric-blue">RPS Battle</h2>
-                    <div class="flex justify-center items-center h-40 mb-4 text-4xl gap-8">
-                        <div id="player-choice" class="text-cyber-cyan"><i class="far fa-hand-rock"></i></div>
-                        <div class="text-sm text-gray-500">VS</div>
-                        <div id="computer-choice" class="text-neon-pink"><i class="far fa-hand-rock"></i></div>
-                    </div>
-                    <div id="rps-result" class="text-xl font-orbitron text-center h-8 mb-4">Choose your weapon</div>
-                    <div class="flex justify-center gap-4 mb-6">
-                        <button class="rps-btn game-btn p-4" data-choice="rock"><i class="far fa-hand-rock"></i></button>
-                        <button class="rps-btn game-btn p-4" data-choice="paper"><i class="far fa-hand-paper"></i></button>
-                        <button class="rps-btn game-btn p-4" data-choice="scissors"><i class="far fa-hand-scissors"></i></button>
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                        <div class="text-sm text-gray-400">Player: <span id="rps-player-score" class="text-electric-blue">0</span></div>
-                        <div class="text-sm text-gray-400">Comp: <span id="rps-comp-score" class="text-neon-pink">0</span></div>
-                    </div>
-                </div>
-
-                <!-- Space Invaders Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="1100">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-neon-pink">Space Defenders</h2>
-                    <div class="mb-4">
-                        <canvas id="spaceInvadersCanvas" width="300" height="300" class="game-canvas"></canvas>
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                        <div class="text-xl font-orbitron">Score: <span id="space-invaders-score" class="text-neon-pink">0</span></div>
-                        <div class="text-sm text-gray-400">High Score: <span id="space-invaders-highscore">0</span></div>
-                    </div>
-                    <button id="start-space-invaders-btn" class="game-btn" style="background: linear-gradient(45deg, #FF10F0, #FF3366);">Start Mission</button>
-                    <p class="mt-4 text-sm text-gray-400">Arrow Keys to Move & Space to Shoot</p>
-                </div>
-
-                <!-- Minesweeper Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="1200">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-electric-blue">Cyber Mines</h2>
-                    <div id="minesweeper-grid" class="grid grid-cols-10 gap-1 w-fit mx-auto mb-6">
-                        <!-- Cells generated by JS -->
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                        <div class="text-xl font-orbitron">Mines: <span id="minesweeper-flags" class="text-electric-blue">10</span></div>
-                    </div>
-                    <div id="minesweeper-status" class="text-center text-sm mb-2 text-gray-400 h-5"></div>
-                    <button id="start-minesweeper-btn" class="game-btn w-full" style="background: linear-gradient(45deg, #0080FF, #00FFDE);">Scan Sector</button>
-                    <p class="mt-4 text-sm text-gray-400">Left Click: Reveal / Right Click: Flag</p>
-                </div>
-
-                <!-- Connect Four Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="1300">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-cyber-cyan">Connect Links</h2>
-                    <div class="flex justify-center mb-6">
-                        <div id="connect4-grid" class="grid grid-cols-7 gap-2 bg-blue-900 p-4 rounded-lg shadow-lg">
-                            <!-- Cells generated by JS -->
-                        </div>
-                    </div>
-                    <div id="connect4-status" class="text-center font-orbitron text-xl mb-4 text-cyber-cyan">Your Turn</div>
-                    <button id="reset-connect4-btn" class="game-btn w-full">Reset Connection</button>
-                </div>
-
-                <!-- Simon Says Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="1400">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-neon-pink">Memory Core</h2>
-                    <div id="simon-game" class="flex flex-wrap justify-center gap-4 mb-6 w-64 mx-auto">
-                        <div id="simon-green" class="w-28 h-28 bg-green-600 rounded-tl-full cursor-pointer hover:bg-green-500 transition-colors shadow-lg border-2 border-gray-800"></div>
-                        <div id="simon-red" class="w-28 h-28 bg-red-600 rounded-tr-full cursor-pointer hover:bg-red-500 transition-colors shadow-lg border-2 border-gray-800"></div>
-                        <div id="simon-yellow" class="w-28 h-28 bg-yellow-600 rounded-bl-full cursor-pointer hover:bg-yellow-500 transition-colors shadow-lg border-2 border-gray-800"></div>
-                        <div id="simon-blue" class="w-28 h-28 bg-blue-600 rounded-br-full cursor-pointer hover:bg-blue-500 transition-colors shadow-lg border-2 border-gray-800"></div>
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                        <div id="simon-status" class="text-xl font-orbitron text-neon-pink mx-auto">Follow Pattern</div>
-                    </div>
-                    <button id="start-simon-btn" class="game-btn w-full" style="background: linear-gradient(45deg, #FF10F0, #FF3366);">Start Sequence</button>
-                </div>
-
-                <!-- Tower of Hanoi Card -->
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="1500">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-electric-blue">Data Stack</h2>
-                    <div id="hanoi-container" class="flex justify-between items-end h-48 w-full mb-6 bg-dark-card rounded-lg p-2 border-b-4 border-gray-600">
-                        <!-- Towers generated by JS -->
-                    </div>
-                    <div class="flex justify-between items-center mb-4 px-8">
-                        <div class="text-xl font-orbitron">Moves: <span id="hanoi-moves" class="text-electric-blue">0</span></div>
-                    </div>
-                    <button id="restart-hanoi-btn" class="game-btn w-full" style="background: linear-gradient(45deg, #0080FF, #00FFDE);">Reset Stack</button>
-                    <p class="mt-4 text-sm text-gray-400">Move stack to rightmost tower</p>
-                </div>
-
-                <!-- Sudoku Card -->
-                <div class="glass p-8 rounded-2xl md:col-span-2" data-aos="fade-up" data-aos-delay="1600">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-cyber-cyan">Sudoku Logic</h2>
-                    <div class="flex flex-col md:flex-row gap-8 justify-center items-start">
-                        <div id="sudoku-grid" class="grid grid-cols-9 gap-0 border-2 border-gray-500 bg-gray-800 shadow-2xl mx-auto">
-                            <!-- Cells generated by JS -->
-                        </div>
-                        <div class="flex flex-col gap-4 w-full md:w-48">
-                            <select id="sudoku-difficulty" class="bg-dark-card text-white border border-cyber-cyan p-2 rounded font-orbitron focus:outline-none">
-                                <option value="easy">Easy</option>
-                                <option value="medium">Medium</option>
-                                <option value="hard">Hard</option>
-                            </select>
-                            <button id="new-sudoku-btn" class="game-btn w-full">New Puzzle</button>
-                            <button id="check-sudoku-btn" class="game-btn w-full" style="background: linear-gradient(45deg, #0080FF, #00FFDE);">Check</button>
-                            <div id="sudoku-status" class="text-center font-orbitron text-lg h-8"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Typing Speed Test -->
-                <div class="glass p-8 rounded-2xl md:col-span-2" data-aos="fade-up" data-aos-delay="1700">
-                    <h2 class="text-2xl font-bold font-orbitron mb-4 text-electric-blue">Dev Speed Typer</h2>
-                    <div class="text-center">
-                        <div class="text-4xl font-bold mb-6 text-white" id="word-display">Loading...</div>
-                        <input type="text" id="typing-input" class="bg-dark-bg border-2 border-electric-blue rounded-lg px-4 py-2 text-white text-center text-xl mb-6 focus:outline-none focus:shadow-lg" placeholder="Type the word...">
-
-                        <div class="flex justify-center gap-12 mb-6">
-                            <div>
-                                <div class="text-sm text-gray-400">Time</div>
-                                <div class="text-2xl font-orbitron text-electric-blue" id="typing-time">60</div>
-                            </div>
-                            <div>
-                                <div class="text-sm text-gray-400">Score</div>
-                                <div class="text-2xl font-orbitron text-electric-blue" id="typing-score">0</div>
-                            </div>
-                            <div>
-                                <div class="text-sm text-gray-400">WPM</div>
-                                <div class="text-2xl font-orbitron text-electric-blue" id="typing-wpm">0</div>
-                            </div>
-                        </div>
-
-                        <button id="restart-typing-btn" class="game-btn" style="background: linear-gradient(45deg, #0080FF, #00FFDE);">Restart</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-12 border-t border-gray-800 relative z-10">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MATHIYA</div>
-                    <p class="text-gray-400">© <span id="current-year">2024</span> Mathiya. Arcade Mode.</p>
-                </div>
-
-                <div class="flex items-center justify-center md:justify-end flex-wrap gap-x-5 gap-y-3">
-                    <a href="https://github.com/Mathiyass" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/Mathiya" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://discord.gg/QERP5JJM8k" target="_blank" class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300" title="Discord"><i class="fab fa-discord"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="assets/js/components/navbar.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/games/snake.js"></script>
-    <script src="assets/js/games/tictactoe.js"></script>
-    <script src="assets/js/games/typing.js"></script>
-    <script src="assets/js/games/memory.js"></script>
-    <script src="assets/js/games/pong.js"></script>
-    <script src="assets/js/games/breakout.js"></script>
-    <script src="assets/js/games/tetris.js"></script>
-    <script src="assets/js/games/flappy.js"></script>
-    <script src="assets/js/games/2048.js"></script>
-    <script src="assets/js/games/whackabug.js"></script>
-    <script src="assets/js/games/rps.js"></script>
-    <script src="assets/js/games/spaceinvaders.js"></script>
-    <script src="assets/js/games/minesweeper.js"></script>
-    <script src="assets/js/games/connectfour.js"></script>
-    <script src="assets/js/games/simon.js"></script>
-    <script src="assets/js/games/hanoi.js"></script>
-    <script src="assets/js/games/sudoku.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
-
-        // Update current year
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
-    <script type="module" src="assets/js/gesture-control.js"></script>
-</body>
-</html>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/core.js"></script>
+<script src="assets/js/main.js"></script>
+    <script src="assets/js/gesture.js"></script>
+</body></html>
