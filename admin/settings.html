@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MATHIYA Core System Settings</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00ffde",
+                        "secondary": "#dc143c",
+                        "background-light": "#050f0e",
+                        "background-dark": "#000000",
+                        "surface-dark": "#0a1f1d",
+                        "surface-glass": "rgba(10, 31, 29, 0.6)",
+                        "border-accent": "rgba(0, 255, 222, 0.2)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                    boxShadow: {
+                        'neon': '0 0 15px rgba(0, 255, 222, 0.3)',
+                        'neon-red': '0 0 15px rgba(220, 20, 60, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+            background-color: #000000;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(0, 255, 222, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(220, 20, 60, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: #e2e8f0;
+        }
+        .glass-panel {
+            background: rgba(5, 15, 14, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 222, 0.1);
+        }
+        .glowing-edge {
+            box-shadow: inset 0 0 0 1px rgba(0, 255, 222, 0.2), 0 0 20px rgba(0, 255, 222, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glowing-edge:hover {
+            box-shadow: inset 0 0 0 1px rgba(0, 255, 222, 0.4), 0 0 30px rgba(0, 255, 222, 0.1);
+        }
+        .glowing-edge-red {
+            box-shadow: inset 0 0 0 1px rgba(220, 20, 60, 0.2), 0 0 20px rgba(220, 20, 60, 0.05);
+        }
+        
+        /* Custom Scrollbar for inner elements */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 255, 222, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 255, 222, 0.6);
+        }
+    </style>
+<link rel="stylesheet" href="../assets/css/index.css">
+<script src="../assets/js/admin-auth.js"></script>
+<script src="../assets/js/admin-data.js"></script>
+</head>
+<body class="min-h-screen w-full flex flex-col overflow-x-hidden font-display">
+<!-- Top Navigation Core -->
+<header class="glass-panel sticky top-0 z-50 border-b border-primary/20 px-8 py-4 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<!-- Branding -->
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-size: 32px;">memory</span>
+</div>
+<div>
+<h1 class="text-primary text-xl font-bold tracking-widest uppercase shadow-neon">MATHIYA</h1>
+<p class="text-slate-400 text-xs tracking-[0.2em] uppercase">Core System</p>
+</div>
+</div>
+<!-- Main Navigation Links -->
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium tracking-wide uppercase" href="#">Dashboard</a>
+<a class="text-primary border-b border-primary pb-1 transition-colors text-sm font-medium tracking-wide uppercase" href="#">System</a>
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium tracking-wide uppercase" href="#">Security</a>
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium tracking-wide uppercase" href="#">Network</a>
+<a class="text-slate-300 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase" href="#">Access Control</a>
+</nav>
+</div>
+<!-- Right Side Actions -->
+<div class="flex items-center gap-6">
+<!-- Master Search HUD -->
+<div class="relative group hidden md:block w-72">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-primary/50 group-focus-within:text-primary">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-primary/20 rounded bg-black/50 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-surface-dark transition-all text-sm font-display" placeholder="Search Omega Protocols..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-2 flex items-center">
+<span class="text-xs text-primary/40 border border-primary/20 rounded px-1">⌘K</span>
+</div>
+</div>
+<!-- Action Icons -->
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 rounded border border-primary/20 bg-black/40 flex items-center justify-center text-primary/70 hover:text-primary hover:border-primary/50 transition-all hover:shadow-neon">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 rounded border border-primary/20 bg-primary/10 flex items-center justify-center text-primary shadow-neon">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="w-10 h-10 rounded border border-primary/20 bg-black/40 flex items-center justify-center text-primary/70 hover:text-primary hover:border-primary/50 transition-all hover:shadow-neon">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 max-w-7xl w-full mx-auto p-6 lg:p-10 flex flex-col gap-10">
+<!-- Page Header -->
+<div class="flex flex-col gap-2 relative">
+<div class="absolute -left-10 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-primary/50 to-transparent"></div>
+<h2 class="text-5xl font-bold text-slate-100 tracking-tight uppercase">Core System Settings</h2>
+<p class="text-primary/70 text-lg tracking-wide uppercase">Manage absolute configurations and deep system parameters. Level: Omega.</p>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Global Parameters -->
+<div class="lg:col-span-2 flex flex-col gap-8">
+<!-- Section Title -->
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">blur_on</span>
+<h3 class="text-2xl font-semibold text-slate-200 uppercase tracking-wider">Global Parameters</h3>
+<div class="flex-1 h-px bg-gradient-to-r from-primary/30 to-transparent"></div>
+</div>
+<!-- Parameters Cards Container -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Param 1: Core Processing -->
+<div class="glass-panel glowing-edge p-6 rounded-lg flex flex-col gap-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">memory</span>
+</div>
+<div class="flex justify-between items-start z-10">
+<div>
+<h4 class="text-lg font-medium text-slate-200">Core Processing Output</h4>
+<p class="text-sm text-slate-500">Neural matrix allocation</p>
+</div>
+<div class="px-2 py-1 bg-primary/10 border border-primary/30 rounded text-primary text-xs font-bold font-mono">
+                                ACTIVE
+                            </div>
+</div>
+<div class="flex flex-col gap-2 z-10">
+<div class="flex justify-between items-end">
+<span class="text-4xl font-light text-primary">94<span class="text-xl text-primary/50">%</span></span>
+<span class="text-xs text-slate-400">Optimum: 90-98%</span>
+</div>
+<!-- Volumetric Slider visually -->
+<div class="relative h-2 bg-surface-dark rounded overflow-hidden border border-primary/20">
+<div class="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-primary/50 to-primary w-[94%] shadow-[0_0_10px_rgba(0,255,222,0.8)]"></div>
+<!-- Thumb indicator -->
+<div class="absolute top-1/2 -translate-y-1/2 w-1 h-4 bg-white left-[94%] -ml-0.5 shadow-neon"></div>
+</div>
+</div>
+</div>
+<!-- Param 2: Quantum Sync -->
+<div class="glass-panel glowing-edge p-6 rounded-lg flex flex-col gap-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">sync_alt</span>
+</div>
+<div class="flex justify-between items-start z-10">
+<div>
+<h4 class="text-lg font-medium text-slate-200">Quantum Sync Threshold</h4>
+<p class="text-sm text-slate-500">Entanglement stability</p>
+</div>
+<div class="px-2 py-1 bg-primary/10 border border-primary/30 rounded text-primary text-xs font-bold font-mono">
+                                STABLE
+                            </div>
+</div>
+<div class="flex flex-col gap-2 z-10">
+<div class="flex justify-between items-end">
+<span class="text-4xl font-light text-primary">88<span class="text-xl text-primary/50">%</span></span>
+<span class="text-xs text-slate-400">Warning at &lt; 85%</span>
+</div>
+<div class="relative h-2 bg-surface-dark rounded overflow-hidden border border-primary/20">
+<div class="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-primary/50 to-primary w-[88%] shadow-[0_0_10px_rgba(0,255,222,0.8)]"></div>
+<div class="absolute top-1/2 -translate-y-1/2 w-1 h-4 bg-white left-[88%] -ml-0.5 shadow-neon"></div>
+</div>
+</div>
+</div>
+<!-- Param 3: Thermal Dissipation -->
+<div class="glass-panel glowing-edge-red p-6 rounded-lg flex flex-col gap-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-secondary">thermostat</span>
+</div>
+<div class="flex justify-between items-start z-10">
+<div>
+<h4 class="text-lg font-medium text-slate-200">Thermal Dissipation</h4>
+<p class="text-sm text-slate-500">Core temperature control</p>
+</div>
+<div class="px-2 py-1 bg-secondary/10 border border-secondary/30 rounded text-secondary text-xs font-bold font-mono shadow-neon-red">
+                                ELEVATED
+                            </div>
+</div>
+<div class="flex flex-col gap-2 z-10">
+<div class="flex justify-between items-end">
+<span class="text-4xl font-light text-secondary">72<span class="text-xl text-secondary/50">°C</span></span>
+<span class="text-xs text-slate-400">Critical: 85°C</span>
+</div>
+<div class="relative h-2 bg-surface-dark rounded overflow-hidden border border-secondary/20">
+<div class="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-secondary/50 to-secondary w-[75%] shadow-[0_0_10px_rgba(220,20,60,0.8)]"></div>
+<div class="absolute top-1/2 -translate-y-1/2 w-1 h-4 bg-white left-[75%] -ml-0.5 shadow-neon-red"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Deep Systems Toggles -->
+<div class="mt-4">
+<div class="flex items-center gap-4 mb-6">
+<span class="material-symbols-outlined text-primary">account_tree</span>
+<h3 class="text-2xl font-semibold text-slate-200 uppercase tracking-wider">Subroutine Overrides</h3>
+<div class="flex-1 h-px bg-gradient-to-r from-primary/30 to-transparent"></div>
+</div>
+<div class="glass-panel glowing-edge rounded-lg divide-y divide-primary/10">
+<!-- Toggle Item 1 -->
+<div class="p-5 flex items-center justify-between hover:bg-white/5 transition-colors">
+<div class="flex items-start gap-4">
+<div class="mt-1 text-primary/70"><span class="material-symbols-outlined">shield</span></div>
+<div>
+<h5 class="text-slate-200 font-medium">Aegis Protocol Defenses</h5>
+<p class="text-sm text-slate-500">Enable predictive threat modeling and automated countermeasures.</p>
+</div>
+</div>
+<!-- Custom Cyber Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-dark peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-300 after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary/50 border border-primary/30 shadow-[inset_0_0_5px_rgba(0,0,0,0.5)] peer-checked:shadow-[0_0_10px_rgba(0,255,222,0.4)]"></div>
+</label>
+</div>
+<!-- Toggle Item 2 -->
+<div class="p-5 flex items-center justify-between hover:bg-white/5 transition-colors">
+<div class="flex items-start gap-4">
+<div class="mt-1 text-primary/70"><span class="material-symbols-outlined">speed</span></div>
+<div>
+<h5 class="text-slate-200 font-medium">Overclock Mainframe Sequence</h5>
+<p class="text-sm text-slate-500">Bypass standard limits. May cause instability if thermal management fails.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-dark peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-500 after:border-slate-500 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary/50 border border-primary/30 shadow-[inset_0_0_5px_rgba(0,0,0,0.5)] peer-checked:shadow-[0_0_10px_rgba(220,20,60,0.4)]"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Status & Action Core -->
+<div class="flex flex-col gap-8">
+<!-- System Status Panel -->
+<div class="glass-panel glowing-edge p-6 rounded-lg flex flex-col gap-6">
+<h3 class="text-xl font-semibold text-primary uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined">terminal</span>
+                        Live Diagnostic
+                    </h3>
+<div class="bg-black/60 rounded border border-primary/20 p-4 font-mono text-sm h-64 overflow-y-auto relative">
+<div class="absolute inset-0 pointer-events-none border border-primary/10 rounded shadow-[inset_0_0_20px_rgba(0,255,222,0.05)]"></div>
+<p class="text-slate-400 mb-1">&gt; Initializing connection to Omega Core...</p>
+<p class="text-primary mb-1">&gt; Connection established. Latency: 0.04ms</p>
+<p class="text-slate-400 mb-1">&gt; Running subroutine verify_integrity()</p>
+<p class="text-primary mb-1">&gt; Checksum valid. Hash: 0x9f8b7c6d5e4a</p>
+<p class="text-secondary mb-1">&gt; [WARN] Sector 7 thermal reading elevated.</p>
+<p class="text-slate-400 mb-1">&gt; Rerouting coolant flow...</p>
+<p class="text-primary mb-1">&gt; Adjustment complete. Monitoring.</p>
+<p class="text-slate-400 mb-1">&gt; Awaiting input...</p>
+<div class="flex items-center gap-2 mt-2">
+<span class="text-primary">&gt;_</span>
+<span class="w-2 h-4 bg-primary animate-pulse"></span>
+</div>
+</div>
+</div>
+<!-- Action Directives -->
+<div class="glass-panel p-6 rounded-lg flex flex-col gap-4 border border-primary/20 bg-gradient-to-b from-surface-dark to-black">
+<h3 class="text-sm font-semibold text-slate-400 uppercase tracking-widest mb-2">Master Directives</h3>
+<button class="w-full py-3 px-4 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 rounded flex justify-between items-center transition-all group hover:shadow-neon">
+<span class="font-medium tracking-wide uppercase text-sm">Deploy Configuration</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="w-full py-3 px-4 bg-transparent hover:bg-white/5 text-slate-300 border border-slate-700 hover:border-slate-500 rounded flex justify-between items-center transition-all">
+<span class="font-medium tracking-wide text-sm">Save as Template</span>
+<span class="material-symbols-outlined text-sm">save</span>
+</button>
+<button class="w-full mt-4 py-3 px-4 bg-secondary/10 hover:bg-secondary/20 text-secondary border border-secondary/30 rounded flex justify-center items-center gap-2 transition-all hover:shadow-neon-red">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span class="font-bold tracking-widest uppercase text-xs">Initiate Hard Reset</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="../assets/js/particles.js"></script>
+    <script src="../assets/js/core.js"></script>
+<script src="../assets/js/main.js"></script>
+    <script src="../assets/js/gesture.js"></script>
+</body></html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MATHIYA Comms Matrix Inbox</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00ffdd",
+                        "secondary": "#dc143c",
+                        "background-light": "#000000",
+                        "background-dark": "#000000",
+                        "surface": "rgba(0, 255, 221, 0.03)",
+                        "surface-hover": "rgba(0, 255, 221, 0.08)",
+                        "border-accent": "rgba(0, 255, 221, 0.2)",
+                        "border-alert": "rgba(220, 20, 60, 0.3)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(0, 255, 221, 0.1), inset 0 0 10px rgba(0, 255, 221, 0.05)',
+                        'neon-alert': '0 0 10px rgba(220, 20, 60, 0.1), inset 0 0 10px rgba(220, 20, 60, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 255, 221, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(220, 20, 60, 0.03), transparent 25%);
+            background-attachment: fixed;
+        }
+        
+        .glass-panel {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 221, 0.15);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-panel-alert {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(220, 20, 60, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Scrollbar styling for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 255, 221, 0.2);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 255, 221, 0.4);
+        }
+    </style>
+<link rel="stylesheet" href="../assets/css/index.css">
+<script src="../assets/js/admin-auth.js"></script>
+<script src="../assets/js/admin-data.js"></script>
+</head>
+<body class="bg-background-dark min-h-screen font-display antialiased overflow-hidden flex flex-col">
+<!-- Top Navbar / HUD -->
+<header class="glass-panel border-b border-border-accent px-8 py-4 flex items-center justify-between z-50 relative">
+<div class="flex items-center gap-4">
+<div class="text-primary material-symbols-outlined" style="font-size: 28px;">
+                hexagon
+            </div>
+<h1 class="text-white text-xl font-bold tracking-widest uppercase" style="text-shadow: 0 0 10px rgba(0, 255, 221, 0.5);">
+                Mathiya <span class="text-primary font-light">Matrix</span>
+</h1>
+</div>
+<div class="flex-1 max-w-2xl mx-8">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-primary/50 group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="w-full bg-surface border border-border-accent rounded-lg py-2.5 pl-12 pr-4 text-white placeholder-primary/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all font-mono text-sm uppercase tracking-wide" placeholder="Search Everything HUD // Initialize Comms Scan..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+<span class="text-[10px] text-primary/40 font-mono tracking-widest">CMD+K</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="flex gap-6">
+<a class="text-primary/60 hover:text-primary text-sm font-medium tracking-wider uppercase transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold tracking-wider uppercase" href="#" style="text-shadow: 0 0 8px rgba(0,255,221,0.4);">Matrix</a>
+<a class="text-primary/60 hover:text-primary text-sm font-medium tracking-wider uppercase transition-colors" href="#">Archives</a>
+</nav>
+<div class="h-6 w-px bg-border-accent"></div>
+<div class="flex gap-3">
+<button class="bg-surface hover:bg-surface-hover border border-border-accent text-primary rounded-lg px-4 py-2 flex items-center gap-2 transition-all font-mono text-xs uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    New Encrypted
+                </button>
+<button class="bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary rounded-lg w-10 h-10 flex items-center justify-center transition-all">
+<span class="material-symbols-outlined">settings_ethernet</span>
+</button>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface border border-border-accent overflow-hidden relative">
+<img alt="Admin Profile" class="w-full h-full object-cover opacity-80 mix-blend-luminosity" data-alt="Admin avatar portrait view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPwD02SYU6ozekfnf0DmH9I4IhAW6O-LA0oIh9UiqNjmWVEP-ayiRhJxbQ874k_0A_qvUR1J1tz5qgWiSrDxV0TaDX4-KxyGUL2gfHhxiXWdSWJWiufUhr5xcRUaDv76hUL-Dkkf65llERuKUUot3c7qr18Q3R0dABFhqeUEs8gRq-KLoue05c-wH4slc6Lv7eR4DmGzx2EEDWy-0pxciCYKLG3FH1DJz2izw2yugLauo_na81osL7rV2WCnd-T9c15w7s1FLIBj0"/>
+<div class="absolute inset-0 border border-primary/20 rounded-lg"></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden relative z-10">
+<!-- Sidebar / Filter List -->
+<aside class="w-72 glass-panel border-r border-border-accent flex flex-col">
+<div class="p-6 border-b border-border-accent/50">
+<h2 class="text-3xl font-bold tracking-tighter uppercase mb-2">Comms</h2>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse" style="box-shadow: 0 0 8px #00ffdd;"></div>
+<span class="text-primary/70 font-mono text-xs tracking-widest uppercase">12 Pending Decryption</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-2">
+<button class="w-full flex items-center justify-between p-3 rounded-lg bg-surface border border-primary/30 text-primary transition-all shadow-neon">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px]">all_inbox</span>
+<span class="font-mono text-sm tracking-wide uppercase">All Signals</span>
+</div>
+<span class="text-xs font-mono bg-primary/20 px-2 py-0.5 rounded">142</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface border border-transparent hover:border-border-alert text-secondary transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span class="font-mono text-sm tracking-wide uppercase">Priority Red</span>
+</div>
+<span class="text-xs font-mono bg-secondary/20 px-2 py-0.5 rounded">3</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface border border-transparent hover:border-border-accent text-primary/60 hover:text-primary transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+<span class="font-mono text-sm tracking-wide uppercase">Direct Links</span>
+</div>
+</button>
+<button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface border border-transparent hover:border-border-accent text-primary/60 hover:text-primary transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px]">data_object</span>
+<span class="font-mono text-sm tracking-wide uppercase">Automated Data</span>
+</div>
+</button>
+<div class="pt-6 pb-2 px-3">
+<h3 class="text-primary/40 font-mono text-[10px] tracking-widest uppercase">Encrypted Nodes</h3>
+</div>
+<button class="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-surface border border-transparent hover:border-border-accent text-primary/60 hover:text-primary transition-all">
+<div class="w-2 h-2 rounded-sm border border-primary/50 rotate-45"></div>
+<span class="font-mono text-xs tracking-wide uppercase">Sector 7G</span>
+</button>
+<button class="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-surface border border-transparent hover:border-border-accent text-primary/60 hover:text-primary transition-all">
+<div class="w-2 h-2 rounded-sm border border-primary/50 rotate-45"></div>
+<span class="font-mono text-xs tracking-wide uppercase">Orbital Command</span>
+</button>
+</div>
+<div class="p-4 border-t border-border-accent/50">
+<button class="w-full bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary rounded-lg py-3 flex items-center justify-center gap-2 transition-all font-mono text-xs uppercase tracking-widest">
+<span class="material-symbols-outlined text-[16px]">lock_open</span>
+                    Decrypt All
+                </button>
+</div>
+</aside>
+<!-- Message List -->
+<div class="flex-1 flex flex-col relative">
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none"></div>
+<!-- List Header -->
+<div class="px-8 py-4 border-b border-border-accent/30 flex justify-between items-center backdrop-blur-md z-10">
+<div class="flex gap-6">
+<span class="text-primary font-mono text-sm tracking-widest uppercase border-b-2 border-primary pb-1">Incoming Stream</span>
+<span class="text-primary/40 font-mono text-sm tracking-widest uppercase hover:text-primary/80 cursor-pointer transition-colors pb-1">Archived Data</span>
+</div>
+<div class="flex gap-2">
+<button class="text-primary/50 hover:text-primary transition-colors material-symbols-outlined">filter_list</button>
+<button class="text-primary/50 hover:text-primary transition-colors material-symbols-outlined">sort</button>
+</div>
+</div>
+<!-- Messages -->
+<div class="flex-1 overflow-y-auto p-6 space-y-4 z-10">
+<!-- Alert Message -->
+<div class="glass-panel-alert rounded-xl p-5 flex gap-5 cursor-pointer hover:bg-secondary/5 transition-all shadow-neon-alert group relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary shadow-[0_0_10px_#dc143c]"></div>
+<div class="w-12 h-12 rounded bg-secondary/10 border border-secondary/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary">crisis_alert</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-white font-bold tracking-wide truncate group-hover:text-secondary transition-colors">Priority Data Stream - Access Request</h4>
+<span class="text-secondary/70 font-mono text-xs whitespace-nowrap">0.003ms ago</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-secondary font-mono text-[10px] tracking-widest uppercase border border-secondary/30 px-2 py-0.5 rounded-sm bg-secondary/10">Security Level: Alpha-Omega</span>
+<span class="text-primary/40 font-mono text-[10px] tracking-widest uppercase">Node: Sec-7G</span>
+</div>
+<p class="text-primary/60 text-sm truncate font-light">Encrypted payload detected from Sector 7G. Immediate decryption required for protocol continuation.</p>
+</div>
+</div>
+<!-- Active Message -->
+<div class="glass-panel rounded-xl p-5 flex gap-5 cursor-pointer bg-surface border-primary/40 transition-all shadow-neon relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary shadow-[0_0_10px_#00ffdd]"></div>
+<div class="w-12 h-12 rounded bg-surface border border-border-accent overflow-hidden shrink-0 relative">
+<img alt="Sender" class="w-full h-full object-cover mix-blend-luminosity opacity-70" data-alt="Male avatar profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVWsrUwtl_07IJE3kysMkJB25jtberjVhQjkLCg4f1C51_SjfFKJBBCgyZNFeDWaa8z3O6EM39qeZ8FI4EeQrGOEbBq52LHWh9fITACQiE19KXosiHz4h7Pn5IGHubiWy7B5slwbzp5jeCX0PCEIn9a3SH2rzlqXBPb8OAFTMzNTh9FkirvTKYSt7908i1mA1h3nzV_hpU6G3K4TETVvtEH2AyKfKPrSjHCA-yLYAf-FPul9H5y_lL_pUCFzJyNft0l3OlW1tj1oI"/>
+<div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-primary font-bold tracking-wide truncate">Architecture Blueprint v9.4 Upload</h4>
+<span class="text-primary/70 font-mono text-xs whitespace-nowrap">12 mins ago</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-white/70 font-mono text-[10px] tracking-widest uppercase border border-border-accent px-2 py-0.5 rounded-sm bg-surface">Sender: Dr. Aris V.</span>
+</div>
+<p class="text-white/60 text-sm truncate font-light">The latest spatial rendering models have been compiled. Ready for your review in the main holodeck terminal.</p>
+</div>
+</div>
+<!-- Standard Messages -->
+<div class="glass-panel rounded-xl p-5 flex gap-5 cursor-pointer hover:bg-surface-hover hover:border-primary/30 transition-all group">
+<div class="w-12 h-12 rounded bg-surface border border-border-accent flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary/50 group-hover:text-primary">memory</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-white font-medium tracking-wide truncate group-hover:text-primary transition-colors">System Diagnostics Routine Complete</h4>
+<span class="text-primary/40 font-mono text-xs whitespace-nowrap">1.2 hrs ago</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-white/40 font-mono text-[10px] tracking-widest uppercase border border-white/10 px-2 py-0.5 rounded-sm">Source: Automated</span>
+</div>
+<p class="text-primary/40 text-sm truncate font-light">All core servers operating at 99.9% efficiency. Minor thermal anomaly detected in cooling block C-4.</p>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-5 flex gap-5 cursor-pointer hover:bg-surface-hover hover:border-primary/30 transition-all group">
+<div class="w-12 h-12 rounded bg-surface border border-border-accent overflow-hidden shrink-0 relative">
+<img alt="Sender" class="w-full h-full object-cover mix-blend-luminosity opacity-50" data-alt="Female avatar profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4V41N8XWptr5NVh2kMy9Dua0niyou2rs7OrqiencOovqxhh9X-SbE1I8gXsVPDsgA76t2ll1GeQPB-aTTotcWsuPGhfco7COupUnS6VMM518dBT8n4sFDh_PupBNo6XfKVg_nGwlHC2dijk6hILd1hbgfAci_i-Z15m9khjQFqd-WUEzsk3mP1ourx1ocKNLl3sfa0QxnBp-hZQWBuE2M3BQUdGwFcDkpcHXaDXCaDzRDmF6xK2eFVdlrwM_6mm5Ky7C_ka8zieE"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-white font-medium tracking-wide truncate group-hover:text-primary transition-colors">Quarterly Resource Allocation Review</h4>
+<span class="text-primary/40 font-mono text-xs whitespace-nowrap">4 hrs ago</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-white/40 font-mono text-[10px] tracking-widest uppercase border border-white/10 px-2 py-0.5 rounded-sm">Sender: E. Vance (Finance Ops)</span>
+</div>
+<p class="text-primary/40 text-sm truncate font-light">Attached are the encrypted ledgers for Q3. Awaiting cryptographic signature to proceed with distribution.</p>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-5 flex gap-5 cursor-pointer hover:bg-surface-hover hover:border-primary/30 transition-all group opacity-70">
+<div class="w-12 h-12 rounded bg-surface border border-border-accent flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary/30">lock</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h4 class="text-primary/50 font-mono tracking-wide truncate">ENCRYPTED_DATA_PACKET_0x8F2A</h4>
+<span class="text-primary/30 font-mono text-xs whitespace-nowrap">Yesterday</span>
+</div>
+<p class="text-primary/30 text-xs font-mono truncate mt-2">01000101 01110010 01110010 01101111 01110010... [Requires Key]</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Detail / Conversation View (Placeholder for right side) -->
+<div class="hidden lg:flex w-[400px] xl:w-[500px] glass-panel border-l border-border-accent flex-col relative z-20 shadow-[-10px_0_30px_rgba(0,0,0,0.8)]">
+<div class="p-6 border-b border-border-accent/30 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface border border-primary/50 overflow-hidden relative">
+<img alt="Sender" class="w-full h-full object-cover mix-blend-luminosity opacity-80" data-alt="Male avatar profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI_PbJEcztwifo1M6J9kqMKgGJz6rkCIpZF5_VStXIXJd1cDnHFbvBOMYnoKamjalsHpTN2yLlE201E2VEoLZuRxxlsdRrC6YjP5jYsvR54aDskuxGugoZgi5wH6zKHmZj3_3ZOGarpOvNMGjVwZ_ekq6C3SRZ1azMPAUgE7sLERDRz6rFmJehXORxbIxF4Jy5arPu5EMGMDQEI94vqibrEsDd3p0Qph72QHwr5Mezo3XVtSNG2NDwm5I4MqnpWRvATkXy2J8hL34"/>
+<div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+</div>
+<div>
+<h3 class="text-white font-bold tracking-wide">Dr. Aris V.</h3>
+<p class="text-primary/60 font-mono text-[10px] tracking-widest uppercase">ID: XR-992-A</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded bg-surface border border-border-accent flex items-center justify-center text-primary/60 hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">reply</span></button>
+<button class="w-8 h-8 rounded bg-surface border border-border-accent flex items-center justify-center text-primary/60 hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">more_vert</span></button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-6 flex flex-col gap-6 relative">
+<!-- Grid Background overlay -->
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMCwgMjU1LCAyMjEsIDAuMSkiLz48L3N2Zz4=')] opacity-20 pointer-events-none"></div>
+<div class="self-start max-w-[85%] relative z-10">
+<div class="bg-surface border border-border-accent rounded-2xl rounded-tl-sm p-4 backdrop-blur-sm">
+<p class="text-white/80 font-light leading-relaxed text-sm">Mathiya, the latest spatial rendering models (v9.4) have been compiled and passed preliminary integrity checks.</p>
+</div>
+<span class="text-primary/40 font-mono text-[10px] tracking-widest mt-1 ml-1 block">11:45 AM - DECRYPTED</span>
+</div>
+<div class="self-start max-w-[85%] relative z-10">
+<div class="bg-surface border border-border-accent rounded-2xl p-4 backdrop-blur-sm">
+<p class="text-white/80 font-light leading-relaxed text-sm">I've attached the volumetric data structure. It's ready for your review in the main holodeck terminal when you are.</p>
+<div class="mt-4 p-3 bg-black/40 border border-primary/20 rounded-lg flex items-center gap-3 cursor-pointer hover:border-primary/50 transition-colors">
+<div class="w-10 h-10 rounded bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">view_in_ar</span>
+</div>
+<div class="flex-1">
+<p class="text-white text-xs font-mono truncate">model_v9.4_spatial.vol</p>
+<p class="text-primary/50 text-[10px] font-mono">1.2 TB • Secure Packet</p>
+</div>
+<span class="material-symbols-outlined text-primary/50 text-sm">download</span>
+</div>
+</div>
+<span class="text-primary/40 font-mono text-[10px] tracking-widest mt-1 ml-1 block">11:48 AM - DECRYPTED</span>
+</div>
+</div>
+<div class="p-4 border-t border-border-accent/30 bg-black/50 backdrop-blur-md relative z-10">
+<div class="relative">
+<textarea class="w-full bg-surface border border-border-accent rounded-xl py-3 pl-4 pr-12 text-white placeholder-primary/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all font-light text-sm resize-none" placeholder="Transmit encrypted reply..." rows="1"></textarea>
+<button class="absolute right-2 top-2 bottom-2 w-8 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="../assets/js/particles.js"></script>
+    <script src="../assets/js/core.js"></script>
+<script src="../assets/js/main.js"></script>
+    <script src="../assets/js/gesture.js"></script>
+</body></html>
