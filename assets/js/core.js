@@ -1,22 +1,30 @@
 /**
- * CORE.JS - Global Functionality & Initializations
- * Handles Lenis smooth scroll, GSAP base configs, Particles, and Navigation.
+ * ========================================================
+ * MATHIYA PORTFOLIO - V2 FOUNDATION
+ * CORE.JS: Gloabl Utilities, Lenis Smooth Scroll, Custom Cursor
+ * ========================================================
  */
 
-class PortfolioCore {
+class CoreSystem {
     constructor() {
-        this.initSmoothScroll();
-        this.initParticles();
-        this.initNavigation();
+        this.initLenis();
         this.initCustomCursor();
-        this.initGlobalAnimations();
-        this.initParallax();
-        this.initNumberCounters();
+        this.attachGlobalListeners();
+
+        // Log initialization
+        console.log("%c SYSTEM ONLINE: MATHIYA PORTFOLIO CORE V2 ", "background: #00FFDE; color: #000; font-weight: bold; padding: 4px; border-radius: 4px;");
     }
 
-    initSmoothScroll() {
-        // Initialize Lenis
-        const lenis = new Lenis({
+    /**
+     * Initialize Lenis for buttery smooth scrolling
+     */
+    initLenis() {
+        if (typeof Lenis === 'undefined') {
+            console.warn('Lenis is not loaded. Ensure CDN is included.');
+            return;
+        }
+
+        this.lenis = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             direction: 'vertical',
@@ -28,247 +36,124 @@ class PortfolioCore {
             infinite: false,
         });
 
-        // Integrate Lenis with GSAP ScrollTrigger
+        // Integrate Lenis with GSAP ScrollTrigger if present
         if (typeof ScrollTrigger !== 'undefined') {
-            lenis.on('scroll', ScrollTrigger.update);
-            gsap.ticker.add((time) => {
-                lenis.raf(time * 1000);
-            });
-            gsap.ticker.lagSmoothing(0);
-        }
+            this.lenis.on('scroll', ScrollTrigger.update);
 
-        // Raf loop for Lenis fallback if GSAP ticker isn't handling it
-        function raf(time) {
-            lenis.raf(time);
+            gsap.ticker.add((time) => {
+                this.lenis.raf(time * 1000);
+            });
+
+            gsap.ticker.lagSmoothing(0);
+        } else {
+            const raf = (time) => {
+                this.lenis.raf(time);
+                requestAnimationFrame(raf);
+            };
             requestAnimationFrame(raf);
         }
-        requestAnimationFrame(raf);
     }
 
-    initParticles() {
-        if (typeof tsParticles !== 'undefined') {
-            const containerId = 'particles-canvas';
-            const container = document.getElementById(containerId);
-            if (!container) return;
-
-            tsParticles.load(containerId, {
-                background: {
-                    color: {
-                        value: "transparent",
-                    },
-                },
-                fpsLimit: 60,
-                interactivity: {
-                    events: {
-                        onClick: { enable: true, mode: "push" },
-                        onHover: { enable: true, mode: "repulse" },
-                        resize: true,
-                    },
-                    modes: {
-                        push: { quantity: 4 },
-                        repulse: { distance: 100, duration: 0.4 },
-                    },
-                },
-                particles: {
-                    color: { value: ["#00d4ff", "#7c3aed", "#ffffff"] },
-                    links: {
-                        color: "#ffffff",
-                        distance: 150,
-                        enable: true,
-                        opacity: 0.1,
-                        width: 1,
-                    },
-                    collisions: { enable: false },
-                    move: {
-                        direction: "none",
-                        enable: true,
-                        outModes: { default: "bounce" },
-                        random: true,
-                        speed: 0.5,
-                        straight: false,
-                    },
-                    number: {
-                        density: { enable: true, area: 800 },
-                        value: 40,
-                    },
-                    opacity: {
-                        value: 0.3,
-                        random: true,
-                        anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
-                    },
-                    shape: { type: "circle" },
-                    size: {
-                        value: { min: 1, max: 3 },
-                        random: true,
-                    },
-                },
-                detectRetina: true,
-            });
-        }
-    }
-
-    initNavigation() {
-        const header = document.querySelector('header');
-        if (header) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('backdrop-blur-md', 'shadow-lg', 'bg-black/20');
-                } else {
-                    header.classList.remove('backdrop-blur-md', 'shadow-lg', 'bg-black/20');
-                }
-            });
-        }
-
-        // Mobile Menu Toggle
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                // Basic fade animation
-                if (!mobileMenu.classList.contains('hidden')) {
-                    gsap.fromTo(mobileMenu, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.3 });
-                }
-            });
-        }
-    }
-
+    /**
+     * Advanced Magnetic Custom Cursor
+     */
     initCustomCursor() {
-        // Check if device is touch
-        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+        // Create cursor elements if they don't exist
+        if (!document.getElementById('cursor-dot')) {
+            const dot = document.createElement('div');
+            dot.id = 'cursor-dot';
+            document.body.appendChild(dot);
+        }
+        if (!document.getElementById('cursor-ring')) {
+            const ring = document.createElement('div');
+            ring.id = 'cursor-ring';
+            document.body.appendChild(ring);
+        }
 
-        const cursor = document.createElement('div');
-        cursor.className = 'custom-cursor';
-        cursor.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--color-primary);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-            mix-blend-mode: difference;
-        `;
-        document.body.appendChild(cursor);
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
 
-        document.addEventListener('mousemove', (e) => {
-            gsap.to(cursor, {
-                x: e.clientX,
-                y: e.clientY,
-                duration: 0.1,
-                ease: 'power2.out'
+        // GSAP quickTo for high performance following
+        if (typeof gsap !== 'undefined') {
+            let xTo = gsap.quickTo(cursorDot, "x", { duration: 0.1, ease: "power3", force3D: true });
+            let yTo = gsap.quickTo(cursorDot, "y", { duration: 0.1, ease: "power3", force3D: true });
+
+            let xRingTo = gsap.quickTo(cursorRing, "x", { duration: 0.4, ease: "power3.out", force3D: true });
+            let yRingTo = gsap.quickTo(cursorRing, "y", { duration: 0.4, ease: "power3.out", force3D: true });
+
+            window.addEventListener("mousemove", (e) => {
+                xTo(e.clientX);
+                yTo(e.clientY);
+                xRingTo(e.clientX);
+                yRingTo(e.clientY);
             });
-        });
+        }
 
-        const interactables = document.querySelectorAll('a, button, input, textarea, .glass-effect');
-        interactables.forEach(el => {
+        // Add hover effects for interactive elements
+        this.attachMagneticHover();
+    }
+
+    attachMagneticHover() {
+        const interactiveElements = document.querySelectorAll('a, button, .interactive');
+
+        interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursor.style.width = '40px';
-                cursor.style.height = '40px';
-                cursor.style.backgroundColor = 'rgba(0, 212, 255, 0.2)';
+                document.body.classList.add('hover-active');
             });
             el.addEventListener('mouseleave', () => {
-                cursor.style.width = '20px';
-                cursor.style.height = '20px';
-                cursor.style.backgroundColor = 'transparent';
+                document.body.classList.remove('hover-active');
+                // Reset magnetic transform
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(el, { x: 0, y: 0, duration: 0.3, ease: 'power2.out' });
+                }
+            });
+
+            // Magnetic effect calculation
+            el.addEventListener('mousemove', (e) => {
+                if (typeof gsap !== 'undefined') {
+                    const rect = el.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+
+                    const distanceX = e.clientX - centerX;
+                    const distanceY = e.clientY - centerY;
+
+                    // Magnet strength factor
+                    gsap.to(el, {
+                        x: distanceX * 0.2,
+                        y: distanceY * 0.2,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                }
             });
         });
     }
 
-    initGlobalAnimations() {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-        // Register ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Fade Up Elements
-        const fadeUpElements = document.querySelectorAll('.animate-fade-up');
-        fadeUpElements.forEach(el => {
-            gsap.fromTo(el,
-                { opacity: 0, y: 30 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse"
-                    }
-                }
-            );
-        });
-
-        // Initialize Vanilla Tilt if present
-        if (typeof VanillaTilt !== 'undefined') {
-            const tiltElements = document.querySelectorAll('.tilt-card');
-            if (tiltElements.length > 0) {
-                VanillaTilt.init(tiltElements, {
-                    max: 10,
-                    speed: 400,
-                    glare: true,
-                    "max-glare": 0.2,
-                });
+    attachGlobalListeners() {
+        // Handle window resize logic
+        window.addEventListener('resize', this.debounce(() => {
+            if (typeof ScrollTrigger !== 'undefined') {
+                ScrollTrigger.refresh();
             }
-        }
+        }, 250));
     }
 
-    initParallax() {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-        const parallaxElements = document.querySelectorAll('.parallax');
-        parallaxElements.forEach(el => {
-            const speed = el.dataset.speed || 0.5;
-            gsap.to(el, {
-                y: () => (ScrollTrigger.maxScroll(window) * speed),
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "body",
-                    start: "top top",
-                    end: "bottom bottom",
-                    scrub: true
-                }
-            });
-        });
-    }
-
-    initNumberCounters() {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-        const counters = document.querySelectorAll('.count-up');
-        counters.forEach(counter => {
-            const target = parseFloat(counter.innerText.replace(/,/g, ''));
-            const isSuffix = counter.innerText.includes('+') ? '+' : (counter.innerText.includes('k') ? 'k' : '');
-
-            counter.innerText = '0' + isSuffix;
-
-            gsap.to(counter, {
-                innerText: target,
-                duration: 2.5,
-                ease: "power2.out",
-                snap: { innerText: 1 },
-                scrollTrigger: {
-                    trigger: counter,
-                    start: "top 85%",
-                    toggleActions: "play none none none"
-                },
-                onUpdate: function () {
-                    let val = Math.round(this.targets()[0].innerText);
-                    // Add back suffix if needed
-                    counter.innerText = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + isSuffix;
-                }
-            });
-        });
+    // Utility: Debounce function
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
     }
 }
 
-// Initialize when DOM is ready
+// Initialize core on DOM construct
 document.addEventListener('DOMContentLoaded', () => {
-    window.portfolioCore = new PortfolioCore();
+    window.AppCore = new CoreSystem();
 });
