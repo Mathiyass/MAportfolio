@@ -1,108 +1,174 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
 
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Blog | Mathiya Angirasa</title>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.0.45/dist/lenis.css">
-
-    <link href="./assets/css/global.css" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script src="./assets/js/tailwind-config.js"></script>
-</head>
-
-<body class="bg-background-dark font-sans text-slate-100 selection:bg-primary/30">
-    <div id="particles-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-50"></div>
-
-    <!-- Navbar -->
-    <header class="fixed top-0 left-0 right-0 z-50 flex justify-center p-6 transition-all duration-300">
-        <nav class="glass-effect flex items-center justify-between w-full max-w-7xl px-8 py-4 rounded-2xl">
-            <a href="index.html" class="flex items-center gap-3">
-                <div
-                    class="w-10 h-10 bg-gradient-to-br from-primary to-accent-violet rounded-lg flex items-center justify-center font-display font-bold text-background-dark">
-                    MA
-                </div>
-                <span class="font-display font-bold text-xl tracking-tight hidden sm:block glow-text">MATHIYA</span>
-            </a>
-            <div class="hidden md:flex items-center gap-8">
-                <div class="flex items-center gap-10">
-                    <a class="text-sm font-medium hover:text-primary transition-colors"
-                        href="index.html#about">About</a>
-                    <a class="text-sm font-medium hover:text-primary transition-colors"
-                        href="projects.html">Projects</a>
-                    <a class="text-sm font-medium text-primary transition-colors" href="blog.html">Blog</a>
-                </div>
-                <a href="index.html#contact"
-                    class="bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-background-dark px-6 py-2 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20">Let's
-                    Talk</a>
-            </div>
-            <button id="mobile-menu-btn" class="md:hidden text-white hover:text-primary">
-                <span class="material-symbols-outlined text-3xl">menu</span>
-            </button>
-        </nav>
-    </header>
-
-    <main class="relative z-10 pt-40 pb-24 px-6 max-w-5xl mx-auto min-h-screen">
-        <div class="text-center mb-16 animate-fade-up">
-            <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 glow-text">Insights & Writings</h1>
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto">Thoughts on software engineering, design patterns, and
-                building the future of the web.</p>
-        </div>
-
-        <div id="blog-list" class="space-y-8">
-            <!-- Populated by JS -->
-        </div>
-    </main>
-
-    <footer class="py-12 border-t border-white/10 glass-effect relative z-10 w-full mt-auto">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-slate-500 text-sm">&copy; 2025 Mathiya Angirasa. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.45/bundled/lenis.min.js"></script>
-    <script src="./assets/js/data.js"></script>
-    <script src="./assets/js/core.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const data = window.portfolioData;
-            if (!data) return;
-            const posts = data.getBlogPosts();
-            const container = document.getElementById('blog-list');
-
-            let html = '';
-            posts.forEach((post, index) => {
-                html += `
-                    <a href="blog-post.html?id=${post.id}" class="block group animate-fade-up" style="animation-delay: ${0.1 * index}s">
-                        <div class="glass-effect p-8 rounded-2xl border border-white/10 hover:border-primary/50 transition-all duration-300 flex flex-col md:flex-row gap-8 items-center">
-                            <div class="w-full md:w-1/3 h-48 overflow-hidden rounded-xl">
-                                <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-                            </div>
-                            <div class="w-full md:w-2/3">
-                                <div class="flex items-center gap-4 mb-4 text-sm font-medium">
-                                    <span class="text-primary bg-primary/10 px-3 py-1 rounded-full uppercase tracking-wider text-xs">${post.category}</span>
-                                    <span class="text-slate-500 flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">calendar_today</span> ${post.date}</span>
-                                    <span class="text-slate-500 flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span> ${post.readTime}</span>
-                                </div>
-                                <h2 class="text-3xl font-display font-bold text-white mb-4 group-hover:text-primary transition-colors">${post.title}</h2>
-                                <p class="text-slate-400 text-lg line-clamp-2">${post.excerpt}</p>
-                            </div>
-                        </div>
-                    </a>
-                `;
-            });
-            if (container) container.innerHTML = html;
-        });
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MATHIYA Hyper-Dimensional Blog Void</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00ffdd",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#000000",
+                        "accent-red": "#DC143C"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
     </script>
-</body>
+<link rel="stylesheet" href="assets/css/index.css">
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display selection:bg-primary selection:text-background-dark min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- Abstract glowing background particles (simulated with gradients) -->
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute top-[20%] left-[10%] w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[20%] right-[10%] w-[30rem] h-[30rem] bg-accent-red/10 rounded-full blur-[150px]"></div>
+</div>
+<div class="layout-container flex h-full grow flex-col z-10 relative">
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-white/5 bg-background-dark/80 backdrop-blur-xl px-10 py-4 shadow-[0_4px_30px_rgba(0,255,221,0.05)]">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-6">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-slate-100 text-xl font-bold leading-tight tracking-[0.1em] uppercase">MATHIYA</h2>
+</div>
+<div class="flex-1 max-w-2xl mx-10">
+<label class="flex flex-col w-full h-12">
+<div class="flex w-full flex-1 items-stretch rounded-full h-full border border-white/10 bg-white/5 backdrop-blur-md overflow-hidden focus-within:border-primary/50 focus-within:shadow-[0_0_15px_rgba(0,255,221,0.2)] transition-all">
+<div class="text-slate-400 flex items-center justify-center pl-5">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="w-full flex-1 bg-transparent border-none text-slate-100 placeholder:text-slate-500 focus:ring-0 px-4 text-sm font-medium tracking-wide" placeholder="Search the void... HUD 2.0" value=""/>
+</div>
+</label>
+</div>
+<div class="flex justify-end gap-8 items-center">
+<nav class="flex items-center gap-8">
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-bold tracking-widest uppercase" href="#">Home</a>
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-bold tracking-widest uppercase" href="#">Projects</a>
+<a class="text-primary text-sm font-bold tracking-widest uppercase relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-full after:h-[2px] after:bg-primary after:shadow-[0_0_10px_#00ffdd]" href="#">Articles</a>
+</nav>
+<button class="flex items-center justify-center rounded-full h-10 px-6 bg-primary text-background-dark text-sm font-bold uppercase tracking-widest hover:shadow-[0_0_20px_rgba(0,255,221,0.6)] transition-all">
+<span>Initialize Link</span>
+</button>
+</div>
+</header>
+<main class="flex-1 px-10 py-20 flex flex-col items-center">
+<div class="w-full max-w-[1400px]">
+<h1 class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-slate-100 to-accent-red text-[5rem] font-bold leading-none tracking-tighter text-center mb-6 drop-shadow-[0_0_20px_rgba(0,255,221,0.2)]">
+                        HYPER-DIMENSIONAL<br/>BLOG VOID
+                    </h1>
+<p class="text-slate-400 text-center text-xl max-w-2xl mx-auto mb-20 font-light tracking-wide">
+                        Transmitting architectural patterns and neon data streams from the edge of the digital frontier.
+                    </p>
+<!-- Spatial Helix Grid Simulation -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+<!-- Card 1 -->
+<article class="group relative rounded-2xl overflow-hidden aspect-[4/5] border border-white/5 bg-white/5 backdrop-blur-xl hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(0,255,221,0.15)] flex flex-col justify-end p-8" data-alt="Abstract neon cyan geometric pattern representing data streams" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBj5fzsxx0GVVUMWSgYrGgaci3H2Y9c1oKFY8trdFNOwOs4knuOCG6cpEIXThMxpkVVizcopWxBn7Y2S35CR1Wz8GwenM54jllhtBUCgR2UkjOZYkAp9MaDsfNgs_q-BI1rJiyGRD7qz0nfg0Xdic8HLRGGIh2LXvQJ32pQThyLLMsVne5lSgGhdqX8qilh8jrL64dzOvklZux5nU97jjxCQb7FPnImGncWlWcXfiPMZvbpgyXL48JLZITrmJ1j6Roco1I6E15gpz4');">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent opacity-80"></div>
+<div class="relative z-10 flex flex-col gap-3">
+<span class="text-primary text-xs font-bold tracking-widest uppercase">System Architecture</span>
+<h3 class="text-slate-100 text-3xl font-bold leading-tight">Architecting the Void: Scalable Systems for 2050</h3>
+<p class="text-slate-400 text-sm line-clamp-2 mt-2">Designing infrastructure that transcends physical limitations using quantum state routing.</p>
+<div class="mt-4 flex items-center gap-2 text-primary">
+<span class="text-sm font-bold uppercase tracking-wider">Read Transmission</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="group relative rounded-2xl overflow-hidden aspect-[4/5] border border-white/5 bg-white/5 backdrop-blur-xl hover:border-accent-red/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(220,20,60,0.15)] flex flex-col justify-end p-8 lg:translate-y-12" data-alt="Deep red volumetric shadows and grid lines" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAhJoUu7333s6HB9V7pPLxaMvs6hy_hpf4gG3LiXy4G7kIpUMHaEBGBy3LAS4Swzp27zZunyHwsdP1PgggsKa3we7FBvjd927zV1t26GKoWhtR2BE9XTGV9MzYYTuN3kATQ8cyeDsGoTZL-UEkhtJWzW5zfTImuNAMKC3KF61aW2eIlUcKz5WL9LQdKXJC5Wqhqw4ODbVK9JwdlnqJnCe1QijidUl_rSLODhHMhTd_6jMTWpM8h58MivphOt5H6FVgldluIzHDwwsc');">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent opacity-80"></div>
+<div class="relative z-10 flex flex-col gap-3">
+<span class="text-accent-red text-xs font-bold tracking-widest uppercase">UI/UX Engineering</span>
+<h3 class="text-slate-100 text-3xl font-bold leading-tight">Glassmorphism &amp; Volumetric Shadows</h3>
+<p class="text-slate-400 text-sm line-clamp-2 mt-2">Exploring the synthesis of light and depth in spatial interfaces.</p>
+<div class="mt-4 flex items-center gap-2 text-accent-red">
+<span class="text-sm font-bold uppercase tracking-wider">Read Transmission</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="group relative rounded-2xl overflow-hidden aspect-[4/5] border border-white/5 bg-white/5 backdrop-blur-xl hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(0,255,221,0.15)] flex flex-col justify-end p-8 lg:translate-y-24" data-alt="Monochrome futuristic typography and interface elements" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBrKZrnAdHqYmfIr6CRo63i2aEprDmpG4k-3J3FYLMmdiT9usKHKbEgWUZN3cqnapYVBLaod5P2NSv8GAnJOpLbc6JdmBAGZS_F3P38TmKvvFdSqbxollP4vZTwAHOsGNZ91uxoJP6p0_UsEZ45RqQYohE74fGPV3ZFV-nypxBE9AWCI4cUtjY9FzGzrzdO9DsZpifAV6vNTmDDuzorN758JIwuyT5LNPXoN8h4W6PRns60mHAuIiShn_V9G_5WsVPcwB5EhRQQp7s');">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent opacity-80"></div>
+<div class="relative z-10 flex flex-col gap-3">
+<span class="text-slate-300 text-xs font-bold tracking-widest uppercase">Cybernetics</span>
+<h3 class="text-slate-100 text-3xl font-bold leading-tight">Neural Interfaces &amp; Frictionless Logic</h3>
+<p class="text-slate-400 text-sm line-clamp-2 mt-2">The evolution of human-computer interaction beyond the screen.</p>
+<div class="mt-4 flex items-center gap-2 text-primary">
+<span class="text-sm font-bold uppercase tracking-wider">Read Transmission</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="group relative rounded-2xl overflow-hidden aspect-[4/5] border border-white/5 bg-white/5 backdrop-blur-xl hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(0,255,221,0.15)] flex flex-col justify-end p-8" data-alt="Abstract rendering of quantum computing cores" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtWQx0LhgNkbKv6UH4BeEecQn83vp46NzxpGKA49tGasBOuOUqicvJ8wy7V0SZohCWH8syoc03R8M1nN5Bu9IrWkmJ2b07YouuvLmO0WUfsk-GVFs12ONkLoyq-mIXT8r-rbWBKjGaV_tb7_SXaNlwXMmALUMMYBKa7GhZRRrudjiioix1HXtuyOCh7EMeS3WmJtk44VKy__plmSW06gLdXMI1QAdJ5sIKnpS35HNd2i2aXioavg13oZ5G5058P9CvjipgR3JkIyM');">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent opacity-80"></div>
+<div class="relative z-10 flex flex-col gap-3">
+<span class="text-primary text-xs font-bold tracking-widest uppercase">Data Science</span>
+<h3 class="text-slate-100 text-3xl font-bold leading-tight">Neon Data Streams Parsing</h3>
+<p class="text-slate-400 text-sm line-clamp-2 mt-2">Visualizing multi-dimensional datasets in real-time holographic space.</p>
+<div class="mt-4 flex items-center gap-2 text-primary">
+<span class="text-sm font-bold uppercase tracking-wider">Read Transmission</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="group relative rounded-2xl overflow-hidden aspect-[4/5] border border-white/5 bg-white/5 backdrop-blur-xl hover:border-accent-red/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-10px_rgba(220,20,60,0.15)] flex flex-col justify-end p-8 lg:translate-y-12" data-alt="Crimson abstract geometry and sharp vectors" style="background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuB2Nh8gJup7-9dATu5P_UW7QuqLoWsnC_hjgNeBRANnI_fdc0tUWfwkv-uZA4QCLHuSUekbEzu_YDWp_Oyv-slfBz0x6eDM56sTWsY-mD6zy3zSsPcSsJZK8WjRHgOQnKXEk63JnsseCtE3ZTquN__0gXBJRUdlfBno5K8i8tQp8jKG9Znbw4yFS4M6zwnXlCW0nsyZXmwQj2Rurd0cvmURVSoQGltvCZ1fxEPjTcnBqzLd8O-ccffbyKR_MXeXPRjeVWRciFzx9RM');">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent opacity-80"></div>
+<div class="relative z-10 flex flex-col gap-3">
+<span class="text-accent-red text-xs font-bold tracking-widest uppercase">Security</span>
+<h3 class="text-slate-100 text-3xl font-bold leading-tight">Cryptographic Echoes in the Void</h3>
+<p class="text-slate-400 text-sm line-clamp-2 mt-2">Securing communications across vast hyper-dimensional networks.</p>
+<div class="mt-4 flex items-center gap-2 text-accent-red">
+<span class="text-sm font-bold uppercase tracking-wider">Read Transmission</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</article>
+</div>
+<div class="mt-32 flex justify-center pb-20">
+<button class="flex items-center gap-3 rounded-full h-14 px-8 border border-white/10 bg-white/5 backdrop-blur-md text-slate-100 text-sm font-bold uppercase tracking-widest hover:border-primary/50 hover:text-primary transition-all">
+<span>Load More Transmissions</span>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+</main>
+<footer class="border-t border-white/5 bg-background-dark/50 backdrop-blur-lg flex flex-col gap-6 px-10 py-12 text-center">
+<div class="flex flex-wrap items-center justify-center gap-10">
+<a class="text-slate-500 hover:text-primary transition-colors text-xs font-bold tracking-widest uppercase" href="#">Privacy Protocol</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-xs font-bold tracking-widest uppercase" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-primary transition-colors text-xs font-bold tracking-widest uppercase" href="#">Secure Contact</a>
+</div>
+<p class="text-slate-600 text-xs font-medium tracking-wider">© 2050 MATHIYA SYSTEMS. ALL RIGHTS RESERVED IN THIS DIMENSION.</p>
+</footer>
+</div>
+</div>
 
-</html>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/core.js"></script>
+<script src="assets/js/main.js"></script>
+    <script src="assets/js/gesture.js"></script>
+</body></html>
