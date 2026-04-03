@@ -1,163 +1,83 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MTHISHA.SYS - 404 System Anomaly</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "primary": "#db143c",
-              "accent-cyan": "#00FFDE",
-              "background-light": "#000000",
-              "background-dark": "#000000",
-              "surface-dark": "#0a0305",
-              "surface-border": "#2d0811",
-            },
-            fontFamily: {
-              "display": ["Space Grotesk", "sans-serif"]
-            },
-            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
-            backgroundImage: {
-              'radial-gradient-primary': 'radial-gradient(circle at center, rgba(219,20,60,0.15) 0%, rgba(0,0,0,0) 70%)',
-              'radial-gradient-cyan': 'radial-gradient(circle at center, rgba(0,255,222,0.1) 0%, rgba(0,0,0,0) 50%)',
-            }
-          },
-        },
-      }
-    </script>
-<style>
-        .glitch-text {
-            text-shadow: 2px 0 0 #db143c, -2px 0 0 #00FFDE;
-        }
-        .glass-panel {
-            background: rgba(10, 3, 5, 0.6);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(219, 20, 60, 0.2);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(219, 20, 60, 0.05);
-        }
-    </style>
-<link rel="stylesheet" href="assets/css/index.css">
+<html lang="en" data-theme="dual">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00E5FF">
+  <title>404 // Mathisha Angirasa</title>
+  
+  <meta name="description" content="Page not found.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  
+  <style>
+    body, html { height: 100%; overflow: hidden; margin: 0; padding: 0; }
+    .content-404 { position: absolute; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; pointer-events: none; }
+    .title-404 { font-family: var(--font-display); font-size: clamp(100px, 15vw, 220px); font-weight: 900; line-height: 1; color: var(--text-0); margin-bottom: 24px; }
+    .title-404.glitching { animation: glitchH 1.5s infinite; color: var(--cyan); }
+    .cd-wrap { font-family: var(--font-stat); font-size: 80px; color: var(--red); margin-bottom: 32px; }
+    .cd-pulse { animation: neonPulseRed 1s infinite; }
+  </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen overflow-x-hidden selection:bg-primary selection:text-white">
-<div class="relative flex h-screen w-full flex-col group/design-root">
-<!-- Abstract Volumetric Background Effects -->
-<div class="absolute inset-0 z-0 pointer-events-none">
-<div class="absolute inset-0 bg-radial-gradient-primary opacity-70"></div>
-<div class="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-radial-gradient-cyan opacity-40 mix-blend-screen"></div>
-<!-- Simulated Grid/Data Smoke Pattern -->
-<div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(rgba(219,20,60,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(219,20,60,0.2) 1px, transparent 1px); background-size: 40px 40px;"></div>
-</div>
-<div class="layout-container flex h-full grow flex-col relative z-10">
-<div class="px-8 lg:px-40 flex flex-1 justify-center py-5 h-full">
-<div class="layout-content-container flex flex-col w-full max-w-[1200px] flex-1 h-full">
-<!-- HUD Header -->
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-surface-border/50 px-6 py-4 glass-panel rounded-lg mb-8 mt-4">
-<div class="flex items-center gap-8">
-<div class="flex items-center gap-4 text-white">
-<div class="size-6 text-primary flex items-center justify-center">
-<span class="material-symbols-outlined text-[24px]">api</span>
-</div>
-<h2 class="text-white text-xl font-bold leading-tight tracking-[0.1em] uppercase">MTHISHA.SYS</h2>
-</div>
-<div class="hidden md:flex items-center gap-9">
-<a class="text-slate-400 hover:text-white transition-colors text-xs font-semibold uppercase tracking-widest flex items-center gap-2" href="#">
-<span class="material-symbols-outlined text-[16px]">monitor_heart</span> Diagnostics
-                            </a>
-<a class="text-slate-400 hover:text-white transition-colors text-xs font-semibold uppercase tracking-widest flex items-center gap-2" href="#">
-<span class="material-symbols-outlined text-[16px]">hub</span> Network Matrix
-                            </a>
-<a class="text-slate-400 hover:text-white transition-colors text-xs font-semibold uppercase tracking-widest flex items-center gap-2" href="#">
-<span class="material-symbols-outlined text-[16px]">terminal</span> Terminal
-                            </a>
-</div>
-</div>
-<div class="flex flex-1 justify-end gap-8">
-<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
-<div class="flex w-full flex-1 items-stretch rounded h-full">
-<div class="text-slate-400 flex border border-surface-border bg-surface-dark items-center justify-center pl-4 rounded-l border-r-0">
-<span class="material-symbols-outlined text-[20px]">search</span>
-</div>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-surface-border bg-surface-dark h-full placeholder:text-slate-500 px-4 rounded-l-none border-l-0 pl-2 text-sm font-medium" placeholder="Quick Search" value=""/>
-</div>
-</label>
-<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded h-10 px-6 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 text-xs font-bold uppercase tracking-widest">
-<span class="truncate flex items-center gap-2">
-<span class="material-symbols-outlined text-[18px]">restart_alt</span> Reboot
-                            </span>
-</button>
-</div>
-</header>
-<!-- Main Anomaly Content -->
-<div class="flex-1 flex flex-col items-center justify-center w-full @container">
-<div class="relative w-full max-w-4xl mx-auto flex flex-col items-center justify-center py-12 px-4 @[480px]:px-8">
-<!-- 3D Shattered Structure Representation (CSS/Image placeholder) -->
-<div class="relative w-full h-64 md:h-96 flex items-center justify-center mb-8">
-<!-- In a real implementation this would be a WebGL canvas, using CSS representation here -->
-<div class="absolute inset-0 flex items-center justify-center animate-pulse">
-<h1 class="text-[120px] md:text-[200px] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-primary via-white to-accent-cyan opacity-20 filter blur-sm transform scale-110">404</h1>
-</div>
-<div class="relative z-10 flex items-center justify-center w-full h-full bg-contain bg-center bg-no-repeat" data-alt="Abstract shattered glass 3D geometric structure in space" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBBPDsmpSgn98s4a5rf7sUmLYNiwnRqvB2HwUuWebmNQ1qyMTw_T9QAaB6T1ULuyuZkm5oiPczoB1D6YeRVT86XhKiLlbd-1GAbFWh6UJhOpJDRkDCFtok-dk2kTbB7oF6_6iZd56WKFMowY1LwoxIDYXNgKvibgntD0I1ym1SyvggGo3LIyUJhXazCF01WIC7JjouGnEIiTboOuMi-PMOHejGC4Mtk8yIgibxbpxIQ4AA6iSKBgAbdfEIOcMeD7piBTTPu3RIQ-9Q"); mix-blend-mode: hard-light;'>
-<h1 class="text-[100px] md:text-[180px] font-black tracking-tighter text-white glitch-text relative z-20 mix-blend-overlay">404</h1>
-</div>
-</div>
-<!-- Error Typography -->
-<div class="flex flex-col gap-4 text-center max-w-2xl mx-auto mb-12">
-<div class="inline-flex items-center justify-center gap-2 px-3 py-1 rounded border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-[0.2em] mb-2 self-center">
-<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span> System Anomaly
-                            </div>
-<h2 class="text-white text-3xl md:text-5xl font-black leading-tight tracking-[-0.033em] uppercase">
-                                Critical Failure
-                            </h2>
-<p class="text-slate-400 text-sm md:text-base font-medium leading-relaxed uppercase tracking-wider">
-                                Fragmented data shards detected in the void. Reality matrix compromised. Neural link severed. Awaiting manual override.
-                            </p>
-</div>
-<!-- Recovery Search HUD -->
-<div class="w-full max-w-3xl glass-panel p-2 rounded-lg">
-<label class="flex flex-col w-full h-14 md:h-16">
-<div class="flex w-full flex-1 items-stretch rounded h-full relative">
-<div class="absolute left-4 top-1/2 -translate-y-1/2 text-accent-cyan flex items-center justify-center">
-<span class="material-symbols-outlined text-[24px]">manage_search</span>
-</div>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded bg-transparent text-white focus:outline-0 focus:ring-0 border-none h-full placeholder:text-slate-600 px-[15px] pl-14 text-sm md:text-lg font-medium tracking-wide uppercase" placeholder="Enter override command or search sector..." value=""/>
-<div class="flex items-center justify-center pr-2">
-<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded h-10 md:h-12 px-6 md:px-8 bg-primary text-white text-xs md:text-sm font-bold uppercase tracking-[0.15em] hover:bg-primary/80 transition-colors shadow-[0_0_20px_rgba(219,20,60,0.4)]">
-<span class="truncate flex items-center gap-2">
-                                                Execute Recovery <span class="material-symbols-outlined text-[18px]">terminal</span>
-</span>
-</button>
-</div>
-</div>
-</label>
-</div>
-<!-- HUD Footer Meta Data -->
-<div class="flex flex-wrap justify-center gap-8 mt-12 text-xs font-mono text-slate-600 uppercase tracking-widest">
-<span class="flex items-center gap-1"><span class="text-primary">SYS:</span> OFFLINE</span>
-<span class="flex items-center gap-1"><span class="text-accent-cyan">LATENCY:</span> 999MS</span>
-<span class="flex items-center gap-1"><span class="text-primary">SECTOR:</span> NULL</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<body>
+  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
+  
+  <canvas id="canvas-hole" style="position:fixed; inset:0; z-index:-1; width:100vw; height:100vh;"></canvas>
 
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <div class="content-404">
+    <div class="badge badge--red" style="margin-bottom: 24px;" data-reveal>CRITICAL ERROR</div>
+    <h1 class="title-404" id="glitch-title">404</h1>
+    <div style="font-family: var(--font-mono); font-size: 14px; color: var(--text-1); letter-spacing: 0.2em; margin-bottom: 48px; max-width: 400px;">
+      THE REQUESTED SECTOR DOES NOT EXIST. <br> EVENT HORIZON IMMINENT.
+    </div>
+    <div class="cd-wrap">T MINUS <span id="countdown" class="cd-pulse">10</span></div>
+    <a href="index.html" class="btn btn--red" style="pointer-events: auto;">ABORT (RETURN TO BASE)</a>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-    <script src="assets/js/particles.js"></script>
-    <script src="assets/js/core.js"></script>
-<script src="assets/js/main.js"></script>
-    <script src="assets/js/gesture.js"></script>
-</body></html>
+  <script type="module">
+    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+    import { SHADER_09_BLACK_HOLE } from './assets/js/engine/shaders.js';
+    import { CustomCursor } from './assets/js/core/Cursor.js';
+    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+
+    new ThemeSystem();
+    new CustomCursor();
+
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (!isReduced) {
+      const cHole = document.getElementById('canvas-hole');
+      const eHole = new WebGLEngine(cHole);
+      eHole.compileProgram('hole', SHADER_09_BLACK_HOLE.vert, SHADER_09_BLACK_HOLE.frag);
+      eHole.createFullscreenQuad('fullscreen');
+      eHole.render('hole');
+    }
+
+    // Glitch effect
+    const title = document.getElementById('glitch-title');
+    title.classList.add('glitching');
+    setTimeout(() => { title.classList.remove('glitching'); }, 1500);
+
+    // Countdown
+    let time = 10;
+    const cd = document.getElementById('countdown');
+    const interval = setInterval(() => {
+      time--;
+      cd.textContent = time;
+      if (time <= 0) {
+        clearInterval(interval);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

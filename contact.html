@@ -1,371 +1,243 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en">
-
+<html lang="en" data-theme="dual">
 <head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>MTHISHA Global Comms Hub</title>
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
-    rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-    rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-    rel="stylesheet" />
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#DC143C",
-            "accent-cyan": "#00FFDE",
-            "background-light": "#f8f6f6",
-            "background-dark": "#000000",
-            "panel-bg": "rgba(20, 20, 20, 0.4)",
-            "panel-border": "rgba(255, 255, 255, 0.1)",
-          },
-          fontFamily: {
-            "display": ["Space Grotesk", "sans-serif"]
-          },
-          borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
-          boxShadow: {
-            'glow-red': '0 0 15px rgba(220, 20, 60, 0.5)',
-            'glow-cyan': '0 0 20px rgba(0, 255, 222, 0.3)',
-            'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
-          }
-        },
-      },
-    }
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00E5FF">
+  <title>Contact // Mathisha Angirasa</title>
+  
+  <meta name="description" content="Contact Mathisha Angirasa - Open to opportunities">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  
   <style>
-    body {
-      background-color: #000000;
-      color: #ffffff;
-      font-family: 'Space Grotesk', sans-serif;
-      overflow-x: hidden;
-    }
-
-    .glass-panel {
-      background: rgba(15, 15, 15, 0.6);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-    }
-
-    .glass-panel-glow {
-      border: 1px solid rgba(220, 20, 60, 0.3);
-      box-shadow: 0 0 20px rgba(220, 20, 60, 0.15), inset 0 0 10px rgba(220, 20, 60, 0.05);
-    }
-
-    .text-glow {
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    }
-
-    .accent-text-glow {
-      text-shadow: 0 0 10px rgba(0, 255, 222, 0.5);
-    }
-
-    /* Simulate the 3D globe background */
-    .globe-bg {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100vw;
-      height: 100vh;
-      background: radial-gradient(circle at center, rgba(0, 255, 222, 0.08) 0%, transparent 60%);
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .globe-grid {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image:
-        linear-gradient(to right, rgba(0, 255, 222, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 255, 222, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      perspective: 1000px;
-      transform: rotateX(60deg) translateY(-100px) scale(2);
-      transform-origin: top;
-      opacity: 0.3;
-    }
+    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
+    .nav-center { display: none; }
+    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    
+    .contact-split { display: grid; grid-template-columns: 5fr 7fr; gap: 48px; align-items: flex-start; }
+    @media (max-width: 768px) { .contact-split { grid-template-columns: 1fr; } }
+    
+    .term-line { font-family: var(--font-mono); font-size: 13px; color: var(--text-1); margin-bottom: 16px; display: flex; flex-direction: column; gap: 4px; }
+    .term-label { display: flex; align-items: center; gap: 8px; color: var(--text-0); }
+    .term-label svg { stroke: var(--cyan); width: 16px; height: 16px; }
+    .term-status { color: var(--cyan); opacity: 0; transform: translateX(-10px); transition: all 0.3s; }
+    .term-line.active .term-status { opacity: 1; transform: translateX(0); }
+    
+    .form-group { margin-bottom: 24px; position: relative; }
+    .form-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-1); margin-bottom: 8px; display: block; }
+    
+    .success-overlay { position: fixed; inset: 0; z-index: 10000; background: var(--void); display: none; align-items: center; justify-content: center; flex-direction: column; }
+    .success-overlay.active { display: flex; }
+    .success-border { position: absolute; inset: 24px; border: 2px solid transparent; background: linear-gradient(135deg, var(--cyan), var(--red)) border-box; -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: borderPulse 2s infinite; }
   </style>
-  <link rel="stylesheet" href="assets/css/index.css">
 </head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
 
-<body
-  class="bg-background-dark font-display min-h-screen text-slate-100 antialiased selection:bg-primary selection:text-white relative">
-  <!-- Background Effect -->
-  <div class="globe-bg">
-    <div class="globe-grid"></div>
-  </div>
-  <div class="relative flex min-h-screen w-full flex-col z-10">
-    <!-- Ultra-premium HUD Top Navigation -->
-    <header
-      class="glass-panel sticky top-0 z-50 flex items-center justify-between border-b border-white/5 px-8 py-4 lg:px-12 backdrop-blur-xl">
-      <div class="flex items-center gap-6 lg:gap-12">
-        <a class="flex items-center gap-3 group" href="#">
-          <div
-            class="flex items-center justify-center size-8 rounded-full bg-primary/20 border border-primary/50 group-hover:shadow-glow-red transition-all duration-300">
-            <span class="material-symbols-outlined text-primary text-xl">hexagon</span>
+  <canvas id="canvas-circ" style="position:fixed; inset:0; z-index:-3; opacity:0.18; pointer-events:none; width:100vw; height:100vh;"></canvas>
+  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
+
+  <nav id="navbar" role="navigation">
+    <a href="index.html" class="logo">
+      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+    </a>
+    
+    <div class="nav-center">
+      <a href="index.html" class="nav-link">INDEX</a>
+      <a href="projects.html" class="nav-link">PROJECTS</a>
+      <a href="skills.html" class="nav-link">SKILLS</a>
+      <a href="blog.html" class="nav-link">BLOG</a>
+      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
+      <a href="contact.html" class="nav-link active">CONTACT</a>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: var(--s-16);">
+      <button class="hamburger" aria-label="Toggle Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="scroll-container">
+    <main id="main" role="main" style="padding-top: 120px;">
+      
+      <section class="container" style="margin-bottom: 64px;">
+        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px);" data-reveal data-reveal-clip>INITIATE <span style="color: var(--cyan);">//</span> HANDSHAKE</h1>
+      </section>
+
+      <section class="container">
+        <div class="contact-split">
+          
+          <div data-reveal data-reveal-dir="left">
+            <div class="section-label" style="margin-bottom: 24px;">[ 01 ] SIGNALS</div>
+            
+            <div class="term-line" id="ping-1">
+              <div class="term-label">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                mathiyass.github.io@gmail.com
+              </div>
+              <div class="term-status">CONNECTED ✓ 0ms</div>
+            </div>
+
+            <div class="term-line" id="ping-2">
+              <div class="term-label">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                github.com/Mathiyass
+              </div>
+              <div class="term-status">CONNECTED ✓ 12ms</div>
+            </div>
+
+            <div class="term-line" id="ping-3">
+              <div class="term-label">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                linkedin.com/in/mathisha
+              </div>
+              <div class="term-status">CONNECTED ✓ 45ms</div>
+            </div>
+            
+            <p style="color: var(--text-1); font-size: 14px; margin-top: 48px;">
+              Based in Sri Lanka. Open for remote opportunities, full-time roles, or ambitious contract work.
+            </p>
           </div>
-          <h2 class="text-white text-xl font-bold tracking-[0.2em] uppercase text-glow hidden sm:block">MTHISHA</h2>
-        </a>
-        <!-- Search HUD -->
-        <div class="hidden md:flex relative group">
-          <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-            <span class="material-symbols-outlined text-accent-cyan/70 text-sm">search</span>
-          </div>
-          <input aria-label="Search query"
-            class="w-64 lg:w-96 bg-white/5 border border-white/10 text-white text-sm rounded-full focus:ring-1 focus:ring-accent-cyan/50 focus:border-accent-cyan/50 block w-full pl-10 p-2.5 placeholder-white/30 transition-all duration-300 group-hover:bg-white/10"
-            placeholder="INITIALIZE QUERY..." type="text" />
-        </div>
-      </div>
-      <nav class="hidden lg:flex items-center gap-8">
-        <a class="text-white/60 hover:text-white hover:text-glow text-xs tracking-[0.15em] font-medium transition-colors uppercase"
-          href="#">Architecture</a>
-        <a class="text-white/60 hover:text-white hover:text-glow text-xs tracking-[0.15em] font-medium transition-colors uppercase"
-          href="#">Quantum Systems</a>
-        <a class="text-accent-cyan text-xs tracking-[0.15em] font-bold uppercase accent-text-glow relative" href="#">
-          Comms Hub
-          <span class="absolute -bottom-2 left-0 w-full h-[2px] bg-accent-cyan shadow-glow-cyan"></span>
-        </a>
-      </nav>
-      <div class="flex items-center gap-4">
-        <button aria-label="Open Terminal"
-          class="flex items-center justify-center size-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors text-white/70 hover:text-white">
-          <span class="material-symbols-outlined text-sm">terminal</span>
-        </button>
-        <button
-          class="hidden sm:flex items-center justify-center h-10 px-6 rounded-full bg-primary hover:bg-primary/90 text-white text-xs font-bold tracking-[0.1em] uppercase shadow-glow-red transition-all">
-          Secure Uplink
-        </button>
-        <!-- Mobile Menu Toggle -->
-        <button aria-label="Toggle Mobile Menu"
-          class="lg:hidden flex items-center justify-center size-10 rounded-full bg-white/5 border border-white/10 text-white">
-          <span class="material-symbols-outlined">menu</span>
-        </button>
-      </div>
-    </header>
-    <main class="flex-1 flex flex-col items-center justify-center p-6 lg:p-12 relative z-10 w-full max-w-7xl mx-auto">
-      <!-- Main Hero Section -->
-      <div class="text-center mb-16 mt-8 lg:mt-0 relative">
-        <div
-          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-cyan/10 border border-accent-cyan/20 text-accent-cyan text-[10px] font-bold tracking-[0.2em] uppercase mb-6 backdrop-blur-md">
-          <span class="size-1.5 rounded-full bg-accent-cyan animate-pulse"></span>
-          Global Network Online
-        </div>
-        <h1 class="text-5xl lg:text-7xl font-bold tracking-tight text-white mb-4 uppercase">
-          Transmission <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">Hub</span>
-        </h1>
-        <p class="text-white/50 text-sm lg:text-base max-w-2xl mx-auto tracking-wide font-light">
-          Establish a secure, zero-latency connection with MTHISHA architecture systems globally. End-to-end quantum
-          encryption enabled.
-        </p>
-      </div>
-      <!-- Content Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full">
-        <!-- Left Panel: Status & Intel -->
-        <div class="lg:col-span-4 flex flex-col gap-6">
-          <div class="glass-panel rounded-2xl p-6 relative overflow-hidden group">
-            <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity">
-              <span class="material-symbols-outlined text-4xl text-accent-cyan">radar</span>
-            </div>
-            <h3 class="text-white/40 text-xs font-bold tracking-[0.2em] uppercase mb-6">System Status</h3>
-            <div class="space-y-6">
-              <div>
-                <div class="flex justify-between text-xs mb-2">
-                  <span class="text-white/70 uppercase tracking-widest">Server Integrity</span>
-                  <span class="text-accent-cyan font-mono">99.99%</span>
-                </div>
-                <div class="h-1 w-full bg-white/10 rounded-full overflow-hidden">
-                  <div class="h-full bg-accent-cyan w-full shadow-glow-cyan"></div>
-                </div>
+
+          <div class="card" style="padding: 48px;" data-reveal data-reveal-dir="right">
+            <div class="section-label" style="margin-bottom: 32px;">[ 02 ] TRANSMIT DATA</div>
+            
+            <!-- Using FormSubmit.co -->
+            <form action="https://formsubmit.co/mathiyass.github.io@gmail.com" method="POST" id="contact-form">
+              <input type="hidden" name="_subject" value="New submission from MAportfolio v7!">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_next" id="next-url" value="">
+              <input type="text" name="_honey" style="display:none">
+
+              <div class="form-group">
+                <label class="form-label" for="name">ID_NAME</label>
+                <input type="text" id="name" name="name" class="input" required placeholder="Enter your designation">
               </div>
-              <div>
-                <div class="flex justify-between text-xs mb-2">
-                  <span class="text-white/70 uppercase tracking-widest">Encryption Level</span>
-                  <span class="text-primary font-mono">Q-Grade</span>
-                </div>
-                <div class="h-1 w-full bg-white/10 rounded-full overflow-hidden">
-                  <div class="h-full bg-primary w-[85%] shadow-glow-red"></div>
-                </div>
+
+              <div class="form-group">
+                <label class="form-label" for="email">NET_ADDRESS</label>
+                <input type="email" id="email" name="email" class="input" required placeholder="name@domain.com">
               </div>
-              <div class="pt-4 border-t border-white/10 flex items-center gap-4">
-                <div class="size-12 rounded-full border border-white/20 flex items-center justify-center bg-white/5">
-                  <span class="material-symbols-outlined text-white/70">public</span>
-                </div>
-                <div>
-                  <div class="text-[10px] text-white/40 uppercase tracking-widest mb-1">Active Nodes</div>
-                  <div class="text-xl font-light tracking-widest">1,024<span
-                      class="text-accent-cyan text-sm ml-1">+</span></div>
-                </div>
+
+              <div class="form-group">
+                <label class="form-label" for="message">PAYLOAD</label>
+                <textarea id="message" name="message" class="textarea" required placeholder="Enter transmission body..."></textarea>
               </div>
-            </div>
-          </div>
-          <!-- Secondary Contact Info -->
-          <div class="glass-panel rounded-2xl p-6 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="text-white/40 text-xs font-bold tracking-[0.2em] uppercase mb-6">Direct Channels</h3>
-              <div class="space-y-4">
-                <a class="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 border border-transparent hover:border-white/10 transition-all group"
-                  href="#">
-                  <div class="text-white/40 group-hover:text-primary transition-colors">
-                    <span class="material-symbols-outlined">mail</span>
-                  </div>
-                  <div>
-                    <div class="text-xs text-white/80 tracking-wider">init@mathiya.dev</div>
-                    <div class="text-[10px] text-white/40 uppercase tracking-widest">Primary Routing</div>
-                  </div>
-                </a>
-                <a class="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 border border-transparent hover:border-white/10 transition-all group"
-                  href="#">
-                  <div class="text-white/40 group-hover:text-accent-cyan transition-colors">
-                    <span class="material-symbols-outlined">terminal</span>
-                  </div>
-                  <div>
-                    <div class="text-xs text-white/80 tracking-wider">ssh root@mathiya.dev</div>
-                    <div class="text-[10px] text-white/40 uppercase tracking-widest">Secure Shell</div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Right Panel: Main Transmission Form -->
-        <div class="lg:col-span-8">
-          <div class="glass-panel glass-panel-glow rounded-3xl p-8 lg:p-10 relative overflow-hidden h-full">
-            <!-- Decorative elements -->
-            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-[50px] rounded-full pointer-events-none">
-            </div>
-            <div
-              class="absolute bottom-0 left-0 w-40 h-40 bg-accent-cyan/10 blur-[60px] rounded-full pointer-events-none">
-            </div>
-            <div class="flex items-center justify-between mb-8 pb-6 border-b border-white/10">
-              <div>
-                <h2 class="text-2xl font-bold tracking-wider uppercase mb-1 flex items-center gap-3">
-                  <span class="material-symbols-outlined text-primary">send</span>
-                  Initialize Protocol
-                </h2>
-                <p class="text-xs text-white/50 tracking-widest uppercase">Secure Data Transmission Interface</p>
-              </div>
-              <div class="hidden sm:flex gap-1 text-primary">
-                <span class="size-1.5 bg-primary rounded-full animate-pulse shadow-glow-red"></span>
-                <span class="size-1.5 bg-primary/50 rounded-full"></span>
-                <span class="size-1.5 bg-primary/20 rounded-full"></span>
-              </div>
-            </div>
-            <form id="contact-form" class="space-y-6 relative z-10">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Identity Input -->
-                <div class="space-y-2 group">
-                  <label for="identity-designation"
-                    class="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 group-focus-within:text-accent-cyan transition-colors">
-                    <span class="material-symbols-outlined text-[14px]">fingerprint</span>
-                    Identity Designation <span class="text-primary ml-1" aria-hidden="true">*</span>
-                  </label>
-                  <input id="identity-designation" required
-                    class="w-full bg-black/40 border border-white/10 text-white rounded-lg focus:ring-1 focus:ring-accent-cyan focus:border-accent-cyan block p-4 placeholder-white/20 text-sm transition-all focus:bg-black/60"
-                    placeholder="Enter recognized alias or name" type="text" />
-                </div>
-                <!-- Return Vector Input -->
-                <div class="space-y-2 group">
-                  <label for="return-vector"
-                    class="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 group-focus-within:text-accent-cyan transition-colors">
-                    <span class="material-symbols-outlined text-[14px]">cell_tower</span>
-                    Return Vector [Email] <span class="text-primary ml-1" aria-hidden="true">*</span>
-                  </label>
-                  <input id="return-vector" required
-                    class="w-full bg-black/40 border border-white/10 text-white rounded-lg focus:ring-1 focus:ring-accent-cyan focus:border-accent-cyan block p-4 placeholder-white/20 text-sm transition-all focus:bg-black/60"
-                    placeholder="Secure return address" type="email" />
-                </div>
-              </div>
-              <!-- Transmission Purpose -->
-              <div class="space-y-2 group">
-                <label for="transmission-classification"
-                  class="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 group-focus-within:text-accent-cyan transition-colors">
-                  <span class="material-symbols-outlined text-[14px]">category</span>
-                  Transmission Classification <span class="text-primary ml-1" aria-hidden="true">*</span>
-                </label>
-                <div class="relative">
-                  <select id="transmission-classification" required
-                    class="w-full bg-black/40 border border-white/10 text-white rounded-lg focus:ring-1 focus:ring-accent-cyan focus:border-accent-cyan block p-4 appearance-none text-sm transition-all focus:bg-black/60">
-                    <option class="bg-background-dark text-white/50" value="">Select Classification Vector</option>
-                    <option class="bg-background-dark" value="project">Project Proposal / Architecture</option>
-                    <option class="bg-background-dark" value="contract">Contractual Inquiry</option>
-                    <option class="bg-background-dark" value="general">General Comms</option>
-                  </select>
-                  <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-white/50">
-                    <span class="material-symbols-outlined text-sm">expand_more</span>
-                  </div>
-                </div>
-              </div>
-              <!-- Payload -->
-              <div class="space-y-2 group">
-                <label for="encrypted-payload"
-                  class="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 group-focus-within:text-accent-cyan transition-colors">
-                  <span class="material-symbols-outlined text-[14px]">data_object</span>
-                  Encrypted Payload <span class="text-primary ml-1" aria-hidden="true">*</span>
-                </label>
-                <textarea id="encrypted-payload" required
-                  class="w-full bg-black/40 border border-white/10 text-white rounded-lg focus:ring-1 focus:ring-accent-cyan focus:border-accent-cyan block p-4 placeholder-white/20 text-sm resize-none transition-all focus:bg-black/60 font-mono"
-                  placeholder="// Enter transmission data here..." rows="5"></textarea>
-              </div>
-              <!-- Action Area -->
-              <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-white/10">
-                <div class="flex items-center gap-3 text-white/40 text-xs font-mono">
-                  <span class="material-symbols-outlined text-lg text-primary">lock</span>
-                  <span>E2E Encryption Active</span>
-                </div>
-                <button
-                  class="w-full sm:w-auto flex items-center justify-center gap-3 h-14 px-8 rounded-xl bg-primary hover:bg-primary/90 text-white text-sm font-bold tracking-[0.15em] uppercase shadow-glow-red transition-all group overflow-hidden relative"
-                  type="submit">
-                  <div
-                    class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]">
-                  </div>
-                  <span class="relative z-10">Transmit Data</span>
-                  <span
-                    class="material-symbols-outlined relative z-10 group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                </button>
-              </div>
+
+              <button type="submit" class="btn btn--dual" style="width: 100%;">SEND TRANSMISSION</button>
             </form>
           </div>
+
         </div>
-      </div>
+      </section>
+
+      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden; margin-top: 64px;">
+        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
+          <div class="grid-12">
+            <div style="grid-column: span 4;">
+              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
+              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
-    <!-- Footer Footer -->
-    <footer class="mt-auto py-6 text-center border-t border-white/5 relative z-10">
-      <p class="text-[10px] text-white/30 tracking-[0.3em] uppercase font-mono">
-        © 2050 MTHISHA SYSTEMS // ALL NODES SECURE
-      </p>
-    </footer>
   </div>
-  <style>
-    @keyframes shimmer {
-      100% {
-        transform: translateX(100%);
-      }
+
+  <div class="success-overlay" id="success-overlay">
+    <canvas id="canvas-success-hex" style="position: absolute; inset: 0; width: 100%; height: 100%;"></canvas>
+    <div class="success-border"></div>
+    <h2 id="success-tw" style="font-family: var(--font-display); font-size: 48px; color: var(--cyan); z-index: 10; position: relative;"></h2>
+    <a href="index.html" class="btn btn--ghost" style="z-index: 10; margin-top: 32px; pointer-events: auto;">RETURN TO BASE</a>
+  </div>
+
+  <script type="module">
+    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+    import { SHADER_03_CIRCUIT, SHADER_01_HEXGRID } from './assets/js/engine/shaders.js';
+    import { CustomCursor } from './assets/js/core/Cursor.js';
+    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+    import { AudioSystem } from './assets/js/core/Audio.js';
+    import { PageTransitions } from './assets/js/core/PageTransitions.js';
+    import { Konami } from './assets/js/core/Konami.js';
+    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+    import { TypeWriter } from './assets/js/core/TypeWriter.js';
+    import { toast } from './assets/js/core/Toast.js';
+
+    new ThemeSystem();
+    new CustomCursor();
+    new SmoothScroll();
+    new ScrollReveal();
+    new AudioSystem();
+    new PageTransitions();
+    new Konami();
+
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (!isReduced) {
+      const cCirc = document.getElementById('canvas-circ');
+      const eCirc = new WebGLEngine(cCirc);
+      eCirc.compileProgram('circ', SHADER_03_CIRCUIT.vert, SHADER_03_CIRCUIT.frag);
+      eCirc.createFullscreenQuad('fullscreen');
+      eCirc.render('circ');
     }
-  </style>
 
-  <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    // Ping animations
+    setTimeout(() => document.getElementById('ping-1').classList.add('active'), 500);
+    setTimeout(() => document.getElementById('ping-2').classList.add('active'), 1200);
+    setTimeout(() => document.getElementById('ping-3').classList.add('active'), 1900);
 
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-  <script src="assets/js/particles.js"></script>
-  <script src="assets/js/core.js"></script>
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/gesture.js"></script>
+    // Form logic
+    const form = document.getElementById('contact-form');
+    const url = new URL(window.location.href);
+    
+    // Auto-setup next URL
+    document.getElementById('next-url').value = url.origin + url.pathname + '?success=true';
+
+    // Handle success state
+    if (url.searchParams.get('success') === 'true') {
+      const overlay = document.getElementById('success-overlay');
+      overlay.classList.add('active');
+      
+      if (!isReduced) {
+        const cHex = document.getElementById('canvas-success-hex');
+        const eHex = new WebGLEngine(cHex);
+        eHex.compileProgram('hex', SHADER_01_HEXGRID.vert, SHADER_01_HEXGRID.frag);
+        eHex.createFullscreenQuad('fs');
+        eHex.render('hex');
+      }
+
+      new TypeWriter(document.getElementById('success-tw'), ["TRANSMISSION COMPLETE"]);
+      toast("PAYLOAD DELIVERED SUCCESSFULLY", "success", 5000);
+      
+      // Clean URL
+      window.history.replaceState({}, document.title, url.pathname);
+    }
+
+    // Real-time validation
+    const inputs = form.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+      input.addEventListener('blur', () => {
+        if (!input.checkValidity()) {
+          input.setAttribute('aria-invalid', 'true');
+        } else {
+          input.removeAttribute('aria-invalid');
+        }
+      });
+    });
+
+  </script>
 </body>
-
 </html>

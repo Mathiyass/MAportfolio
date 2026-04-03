@@ -1,398 +1,230 @@
 <!DOCTYPE html>
+<html lang="en" data-theme="dual">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00E5FF">
+  <title>Admin Terminal // Mathisha Angirasa</title>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <style>
+    body { background: var(--void); display: flex; height: 100vh; overflow: hidden; }
+    .gate { position: absolute; inset: 0; background: var(--surface-00); z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .gate.hidden { opacity: 0; pointer-events: none; transition: opacity 0.5s; }
+    
+    .sidebar { width: 240px; background: var(--surface-0); border-right: 1px solid var(--cyan-border); display: flex; flex-direction: column; }
+    .main-view { flex: 1; padding: 48px; overflow-y: auto; }
+    
+    .nav-item { padding: 16px 24px; color: var(--text-1); cursor: pointer; font-family: var(--font-mono); font-size: 12px; display: flex; align-items: center; gap: 12px; border-left: 2px solid transparent; }
+    .nav-item:hover, .nav-item.active { background: var(--surface-1); color: var(--cyan); border-left-color: var(--cyan); }
+    
+    .panel { display: none; }
+    .panel.active { display: block; animation: fadeSlideUp 0.3s ease-out forwards; }
+    
+    .editor-wrap { display: flex; gap: 24px; height: 500px; }
+    .editor, .preview { flex: 1; background: var(--surface-1); border: 1px solid var(--cyan-border); padding: 24px; overflow-y: auto; }
+    .editor { outline: none; font-family: var(--font-mono); font-size: 14px; white-space: pre-wrap; }
+    
+    .toolbar { display: flex; gap: 8px; margin-bottom: 16px; }
+    .tool-btn { padding: 8px; border: 1px solid var(--cyan-border); background: var(--surface-0); cursor: pointer; color: var(--cyan); }
+    .tool-btn:hover { background: var(--cyan); color: var(--void); }
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MTHISHA Quantum Command Center</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "primary": "#00ffdd",
-              "background-light": "#f5f8f8",
-              "background-dark": "#000000",
-              "surface-dark": "#0a1118",
-              "border-dark": "#1a2b3c",
-              "accent-crimson": "#DC143C"
-            },
-            fontFamily: {
-              "display": ["Space Grotesk", "sans-serif"]
-            },
-            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
-          },
-        },
-      }
-    </script>
-<style>
-        .glass-panel {
-            background: rgba(10, 17, 24, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 255, 221, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 255, 221, 0.05);
-        }
-        .neon-text-primary {
-            text-shadow: 0 0 10px rgba(0, 255, 221, 0.5), 0 0 20px rgba(0, 255, 221, 0.3);
-        }
-        .neon-border-primary {
-            box-shadow: 0 0 10px rgba(0, 255, 221, 0.2), inset 0 0 10px rgba(0, 255, 221, 0.1);
-        }
-        .neon-border-crimson {
-            box-shadow: 0 0 10px rgba(220, 20, 60, 0.2), inset 0 0 10px rgba(220, 20, 60, 0.1);
-            border-color: rgba(220, 20, 60, 0.3) !important;
-        }
-    </style>
-<link rel="stylesheet" href="assets/css/index.css">
-<script src="assets/js/admin-auth.js"></script>
-<script src="assets/js/admin-data.js"></script>
+    .chart-svg { width: 100%; height: 200px; border: 1px solid var(--cyan-border); background: var(--surface-1); }
+    .bar { fill: var(--cyan-dim); transition: height 0.5s; }
+    .bar.today { fill: var(--red); }
+  </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen relative">
-<!-- Grid Background Overlay -->
-<div class="fixed inset-0 pointer-events-none z-0 opacity-10" style="background-image: linear-gradient(rgba(0, 255, 221, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 221, 0.2) 1px, transparent 1px); background-size: 50px 50px; transform: perspective(1000px) rotateX(60deg) scale(2); transform-origin: top;"></div>
-<div class="relative z-10 flex h-auto min-h-screen w-full flex-col group/design-root">
-<div class="layout-container flex h-full grow flex-col">
-<div class="px-4 sm:px-10 lg:px-40 flex flex-1 justify-center py-5">
-<div class="layout-content-container flex flex-col w-full max-w-[1440px] flex-1">
-<!-- Header HUD -->
-<header class="flex flex-col sm:flex-row items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 px-6 py-4 glass-panel rounded-xl mb-8 neon-border-primary">
-<div class="flex items-center gap-8 mb-4 sm:mb-0">
-<div class="flex items-center gap-4 text-primary">
-<div class="size-8">
-<span class="material-symbols-outlined text-3xl">hexagon</span>
-</div>
-<h2 class="text-white text-xl sm:text-2xl font-bold leading-tight tracking-widest uppercase neon-text-primary">MTHISHA <span class="text-primary/70 font-light">OS//2050</span></h2>
-</div>
-<div class="hidden lg:flex items-center gap-9 ml-8 border-l border-primary/20 pl-8">
-<a class="text-primary text-sm font-bold tracking-widest uppercase hover:text-white transition-colors" href="#">Dashboard</a>
-<a class="text-slate-400 hover:text-primary text-sm font-medium tracking-wider uppercase transition-colors" href="#">System Metrics</a>
-<a class="text-slate-400 hover:text-primary text-sm font-medium tracking-wider uppercase transition-colors" href="#">Global Tech OS</a>
-<a class="text-slate-400 hover:text-primary text-sm font-medium tracking-wider uppercase transition-colors" href="#">Settings</a>
-</div>
-</div>
-<div class="flex flex-1 justify-end gap-6 w-full sm:w-auto">
-<label class="flex flex-col flex-1 sm:flex-none sm:min-w-64 !h-12 max-w-xl">
-<div class="flex w-full flex-1 items-stretch rounded h-full glass-panel neon-border-primary relative overflow-hidden group">
-<div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors pointer-events-none"></div>
-<div class="text-primary flex border-none items-center justify-center pl-4 rounded-l border-r-0 relative z-10">
-<span class="material-symbols-outlined">search</span>
-</div>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded text-white focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-primary/40 px-4 rounded-l-none border-l-0 pl-2 text-sm font-medium tracking-widest uppercase relative z-10" placeholder="Search Global Data Net..." value=""/>
-</div>
-</label>
-<div class="flex gap-3">
-<button class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded h-12 px-6 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.05em] uppercase hover:bg-white transition-colors shadow-[0_0_15px_rgba(0,255,221,0.5)]">
-<span class="truncate">Execute</span>
-</button>
-<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded h-12 w-12 glass-panel text-primary hover:text-white hover:bg-primary/20 transition-all">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded h-12 w-12 glass-panel text-primary hover:text-white hover:bg-primary/20 transition-all">
-<span class="material-symbols-outlined">person</span>
-</button>
-</div>
-</div>
-</header>
-<!-- Top Metrics Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-<div class="flex flex-col gap-3 rounded-xl p-6 glass-panel neon-border-primary relative overflow-hidden">
-<div class="absolute top-0 right-0 w-16 h-16 bg-primary/10 blur-2xl rounded-full"></div>
-<div class="flex justify-between items-start">
-<p class="text-slate-400 text-xs font-bold tracking-widest uppercase">System Status</p>
-<span class="material-symbols-outlined text-primary text-sm">memory</span>
-</div>
-<p class="text-white tracking-widest text-3xl font-bold leading-tight neon-text-primary mt-2">OPTIMAL</p>
-<div class="flex items-center gap-2 mt-auto">
-<span class="material-symbols-outlined text-primary text-xs">arrow_upward</span>
-<p class="text-primary text-sm font-bold tracking-wider">+0.05% EFFICIENCY</p>
-</div>
-</div>
-<div class="flex flex-col gap-3 rounded-xl p-6 glass-panel neon-border-primary relative overflow-hidden">
-<div class="absolute top-0 right-0 w-16 h-16 bg-primary/10 blur-2xl rounded-full"></div>
-<div class="flex justify-between items-start">
-<p class="text-slate-400 text-xs font-bold tracking-widest uppercase">Conglomerate Value</p>
-<span class="material-symbols-outlined text-primary text-sm">account_balance</span>
-</div>
-<p class="text-white tracking-widest text-3xl font-bold leading-tight mt-2">$5.3T</p>
-<div class="flex items-center gap-2 mt-auto">
-<span class="material-symbols-outlined text-primary text-xs">arrow_upward</span>
-<p class="text-primary text-sm font-bold tracking-wider">+1.2% CAP</p>
-</div>
-</div>
-<div class="flex flex-col gap-3 rounded-xl p-6 glass-panel neon-border-crimson relative overflow-hidden">
-<div class="absolute top-0 right-0 w-16 h-16 bg-accent-crimson/10 blur-2xl rounded-full"></div>
-<div class="flex justify-between items-start">
-<p class="text-slate-400 text-xs font-bold tracking-widest uppercase">Proprietary OS Uptime</p>
-<span class="material-symbols-outlined text-accent-crimson text-sm">warning</span>
-</div>
-<p class="text-white tracking-widest text-3xl font-bold leading-tight mt-2">99.999%</p>
-<div class="flex items-center gap-2 mt-auto">
-<span class="material-symbols-outlined text-accent-crimson text-xs">arrow_downward</span>
-<p class="text-accent-crimson text-sm font-bold tracking-wider">-0.001% DROP</p>
-</div>
-</div>
-<div class="flex flex-col gap-3 rounded-xl p-6 glass-panel neon-border-primary relative overflow-hidden">
-<div class="absolute top-0 right-0 w-16 h-16 bg-primary/10 blur-2xl rounded-full"></div>
-<div class="flex justify-between items-start">
-<p class="text-slate-400 text-xs font-bold tracking-widest uppercase">Quantum Processing</p>
-<span class="material-symbols-outlined text-primary text-sm">speed</span>
-</div>
-<p class="text-white tracking-widest text-3xl font-bold leading-tight mt-2">EXAFLOPS</p>
-<div class="flex items-center gap-2 mt-auto">
-<span class="material-symbols-outlined text-primary text-xs">arrow_upward</span>
-<p class="text-primary text-sm font-bold tracking-wider">+5.5% CORE ALLOC</p>
-</div>
-</div>
-</div>
-<!-- Main Data Visualizations -->
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-<!-- Traffic Chart -->
-<div class="flex flex-col gap-4 rounded-xl glass-panel neon-border-primary p-8 relative">
-<div class="flex justify-between items-end mb-4">
-<div>
-<p class="text-primary text-xs font-bold tracking-widest uppercase mb-1">Global Network Traffic</p>
-<p class="text-white tracking-widest text-4xl font-bold leading-tight">3.2 PB/s</p>
-</div>
-<div class="flex items-center gap-2 bg-primary/10 px-3 py-1 rounded border border-primary/20">
-<span class="material-symbols-outlined text-primary text-sm">trending_up</span>
-<p class="text-primary text-xs font-bold tracking-widest">+15.5% 24H</p>
-</div>
-</div>
-<div class="flex min-h-[220px] flex-1 flex-col justify-end relative mt-6">
-<!-- Grid lines -->
-<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20">
-<div class="border-b border-primary/50 w-full h-0"></div>
-<div class="border-b border-primary/50 w-full h-0"></div>
-<div class="border-b border-primary/50 w-full h-0"></div>
-<div class="border-b border-primary/50 w-full h-0"></div>
-</div>
-<svg class="relative z-10 drop-shadow-[0_0_15px_rgba(0,255,221,0.3)]" fill="none" height="180" preserveaspectratio="none" viewbox="0 0 480 150" width="100%" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H326.769H0V109Z" fill="url(#grad_traffic)"></path>
-<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="#00ffdd" stroke-linecap="round" stroke-width="2"></path>
-<defs>
-<lineargradient gradientunits="userSpaceOnUse" id="grad_traffic" x1="0" x2="0" y1="0" y2="150">
-<stop stop-color="#00ffdd" stop-opacity="0.3"></stop>
-<stop offset="1" stop-color="#00ffdd" stop-opacity="0"></stop>
-</lineargradient>
-</defs>
-</svg>
-<div class="flex justify-between mt-4 pt-4 border-t border-primary/20">
-<p class="text-primary/70 text-[10px] font-bold tracking-widest">00:00</p>
-<p class="text-primary/70 text-[10px] font-bold tracking-widest">04:00</p>
-<p class="text-primary/70 text-[10px] font-bold tracking-widest">08:00</p>
-<p class="text-primary/70 text-[10px] font-bold tracking-widest">12:00</p>
-<p class="text-primary/70 text-[10px] font-bold tracking-widest">16:00</p>
-<p class="text-primary/70 text-[10px] font-bold tracking-widest">20:00</p>
-<p class="text-primary/70 text-[10px] font-bold tracking-widest">24:00</p>
-</div>
-</div>
-</div>
-<!-- Volumetric Data Chart -->
-<div class="flex flex-col gap-4 rounded-xl glass-panel neon-border-primary p-8 relative">
-<div class="flex justify-between items-end mb-4">
-<div>
-<p class="text-primary text-xs font-bold tracking-widest uppercase mb-1">Volumetric Processing</p>
-<p class="text-white tracking-widest text-4xl font-bold leading-tight">ELITE TIER</p>
-</div>
-<div class="flex items-center gap-2 bg-primary/10 px-3 py-1 rounded border border-primary/20">
-<span class="material-symbols-outlined text-primary text-sm">analytics</span>
-<p class="text-primary text-xs font-bold tracking-widest">CAPACITY</p>
-</div>
-</div>
-<div class="grid min-h-[220px] grid-flow-col gap-4 grid-rows-[1fr_auto] items-end justify-items-center mt-6 relative z-10">
-<!-- Background horizontal lines -->
-<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20 -z-10">
-<div class="border-b border-primary/50 w-full h-0"></div>
-<div class="border-b border-primary/50 w-full h-0"></div>
-<div class="border-b border-primary/50 w-full h-0"></div>
-<div class="border-b border-primary/50 w-full h-0"></div>
-</div>
-<div class="w-full flex flex-col items-center justify-end h-full gap-2 group">
-<div class="w-full bg-gradient-to-t from-primary/10 to-primary/60 border-t-2 border-primary shadow-[0_0_15px_rgba(0,255,221,0.5)] rounded-t-sm transition-all group-hover:from-primary/20 group-hover:to-primary/80" style="height: 50%;"></div>
-<p class="text-primary/70 text-[10px] font-bold tracking-widest uppercase">Mon</p>
-</div>
-<div class="w-full flex flex-col items-center justify-end h-full gap-2 group">
-<div class="w-full bg-gradient-to-t from-primary/10 to-primary/60 border-t-2 border-primary shadow-[0_0_15px_rgba(0,255,221,0.5)] rounded-t-sm transition-all group-hover:from-primary/20 group-hover:to-primary/80" style="height: 25%;"></div>
-<p class="text-primary/70 text-[10px] font-bold tracking-widest uppercase">Tue</p>
-</div>
-<div class="w-full flex flex-col items-center justify-end h-full gap-2 group">
-<div class="w-full bg-gradient-to-t from-accent-crimson/10 to-accent-crimson/60 border-t-2 border-accent-crimson shadow-[0_0_15px_rgba(220,20,60,0.5)] rounded-t-sm transition-all group-hover:from-accent-crimson/20 group-hover:to-accent-crimson/80" style="height: 15%;"></div>
-<p class="text-accent-crimson/70 text-[10px] font-bold tracking-widest uppercase">Wed</p>
-</div>
-<div class="w-full flex flex-col items-center justify-end h-full gap-2 group">
-<div class="w-full bg-gradient-to-t from-primary/10 to-primary/60 border-t-2 border-primary shadow-[0_0_15px_rgba(0,255,221,0.5)] rounded-t-sm transition-all group-hover:from-primary/20 group-hover:to-primary/80" style="height: 85%;"></div>
-<p class="text-primary/70 text-[10px] font-bold tracking-widest uppercase">Thu</p>
-</div>
-<div class="w-full flex flex-col items-center justify-end h-full gap-2 group">
-<div class="w-full bg-gradient-to-t from-primary/10 to-primary/80 border-t-2 border-primary shadow-[0_0_20px_rgba(0,255,221,0.8)] rounded-t-sm transition-all group-hover:from-primary/30 group-hover:to-primary" style="height: 95%;"></div>
-<p class="text-white text-[10px] font-bold tracking-widest uppercase neon-text-primary">Fri</p>
-</div>
-<div class="w-full flex flex-col items-center justify-end h-full gap-2 group">
-<div class="w-full bg-gradient-to-t from-primary/10 to-primary/60 border-t-2 border-primary shadow-[0_0_15px_rgba(0,255,221,0.5)] rounded-t-sm transition-all group-hover:from-primary/20 group-hover:to-primary/80" style="height: 40%;"></div>
-<p class="text-primary/70 text-[10px] font-bold tracking-widest uppercase">Sat</p>
-</div>
-<div class="w-full flex flex-col items-center justify-end h-full gap-2 group">
-<div class="w-full bg-gradient-to-t from-primary/10 to-primary/60 border-t-2 border-primary shadow-[0_0_15px_rgba(0,255,221,0.5)] rounded-t-sm transition-all group-hover:from-primary/20 group-hover:to-primary/80" style="height: 55%;"></div>
-<p class="text-primary/70 text-[10px] font-bold tracking-widest uppercase">Sun</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Process Table -->
-<div class="mb-8 @container">
-<div class="flex flex-col glass-panel rounded-xl neon-border-primary overflow-hidden">
-<div class="px-6 py-4 border-b border-primary/20 bg-primary/5 flex justify-between items-center">
-<h3 class="text-primary text-sm font-bold tracking-widest uppercase">Active Quantum Processes</h3>
-<button class="text-primary/70 hover:text-primary text-xs font-bold tracking-widest uppercase flex items-center gap-1 transition-colors">
-<span class="material-symbols-outlined text-sm">refresh</span> Sync Grid
-                                </button>
-</div>
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="border-b border-primary/20 text-slate-400 text-xs tracking-widest uppercase">
-<th class="px-6 py-4 font-bold">Process ID</th>
-<th class="px-6 py-4 font-bold">Command Directive</th>
-<th class="px-6 py-4 font-bold">Status</th>
-<th class="px-6 py-4 font-bold hidden sm:table-cell">Memory Allocation</th>
-<th class="px-6 py-4 font-bold hidden md:table-cell">CPU Matrix</th>
-</tr>
-</thead>
-<tbody class="text-sm">
-<tr class="border-b border-primary/10 hover:bg-primary/5 transition-colors group">
-<td class="px-6 py-4 font-mono text-primary tracking-wider">#00FFDE-1</td>
-<td class="px-6 py-4 text-white font-medium tracking-wide">Quantum Calculation Alpha</td>
-<td class="px-6 py-4">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
-<div class="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_5px_#00ffdd] animate-pulse"></div> Active
-                                                </div>
-</td>
-<td class="px-6 py-4 text-slate-300 font-mono tracking-wider hidden sm:table-cell">45.2 TB</td>
-<td class="px-6 py-4 hidden md:table-cell w-48">
-<div class="flex items-center gap-3">
-<div class="w-full h-1.5 rounded-full bg-surface-dark border border-primary/20 overflow-hidden"><div class="h-full bg-primary shadow-[0_0_10px_#00ffdd]" style="width: 95%;"></div></div>
-<p class="text-primary font-mono text-xs w-8 text-right">95%</p>
-</div>
-</td>
-</tr>
-<tr class="border-b border-primary/10 hover:bg-primary/5 transition-colors group">
-<td class="px-6 py-4 font-mono text-accent-crimson tracking-wider">#DC143C-2</td>
-<td class="px-6 py-4 text-white font-medium tracking-wide">Neural Defense System</td>
-<td class="px-6 py-4">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded border border-accent-crimson/30 bg-accent-crimson/10 text-accent-crimson text-xs font-bold uppercase tracking-widest">
-<div class="w-1.5 h-1.5 rounded-full bg-accent-crimson shadow-[0_0_5px_#DC143C]"></div> Alert
-                                                </div>
-</td>
-<td class="px-6 py-4 text-slate-300 font-mono tracking-wider hidden sm:table-cell">2.8 TB</td>
-<td class="px-6 py-4 hidden md:table-cell w-48">
-<div class="flex items-center gap-3">
-<div class="w-full h-1.5 rounded-full bg-surface-dark border border-accent-crimson/20 overflow-hidden"><div class="h-full bg-accent-crimson shadow-[0_0_10px_#DC143C]" style="width: 85%;"></div></div>
-<p class="text-accent-crimson font-mono text-xs w-8 text-right">85%</p>
-</div>
-</td>
-</tr>
-<tr class="border-b border-primary/10 hover:bg-primary/5 transition-colors group">
-<td class="px-6 py-4 font-mono text-primary tracking-wider">#00FFDE-3</td>
-<td class="px-6 py-4 text-white font-medium tracking-wide">Spatial Data Visualization</td>
-<td class="px-6 py-4">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
-<div class="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_5px_#00ffdd]"></div> Stable
-                                                </div>
-</td>
-<td class="px-6 py-4 text-slate-300 font-mono tracking-wider hidden sm:table-cell">15.0 TB</td>
-<td class="px-6 py-4 hidden md:table-cell w-48">
-<div class="flex items-center gap-3">
-<div class="w-full h-1.5 rounded-full bg-surface-dark border border-primary/20 overflow-hidden"><div class="h-full bg-primary/60" style="width: 60%;"></div></div>
-<p class="text-primary font-mono text-xs w-8 text-right">60%</p>
-</div>
-</td>
-</tr>
-<tr class="hover:bg-primary/5 transition-colors group">
-<td class="px-6 py-4 font-mono text-slate-500 tracking-wider">#00FFDE-4</td>
-<td class="px-6 py-4 text-slate-400 font-medium tracking-wide">Archival Backup Sequence</td>
-<td class="px-6 py-4">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded border border-slate-700 bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-widest">
-<div class="w-1.5 h-1.5 rounded-full bg-slate-500"></div> Pending
-                                                </div>
-</td>
-<td class="px-6 py-4 text-slate-500 font-mono tracking-wider hidden sm:table-cell">0.0 TB</td>
-<td class="px-6 py-4 hidden md:table-cell w-48">
-<div class="flex items-center gap-3">
-<div class="w-full h-1.5 rounded-full bg-surface-dark border border-slate-700 overflow-hidden"><div class="h-full bg-slate-600" style="width: 0%;"></div></div>
-<p class="text-slate-500 font-mono text-xs w-8 text-right">0%</p>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<!-- Footer Alert / Status Panel -->
-<div class="mb-10">
-<div class="flex flex-col md:flex-row items-stretch justify-between gap-6 rounded-xl glass-panel neon-border-primary p-6">
-<div class="flex flex-col justify-between gap-4 md:w-1/2">
-<div>
-<div class="flex items-center gap-2 mb-2">
-<span class="material-symbols-outlined text-primary">terminal</span>
-<p class="text-primary text-xs font-bold tracking-widest uppercase">System Terminal Output</p>
-</div>
-<h4 class="text-white text-xl font-bold leading-tight tracking-wider mb-2">MTHISHA Core Initialized</h4>
-<p class="text-slate-400 text-sm leading-relaxed tracking-wide font-mono">
-                                        &gt; Executing high-end software architecture sequence.<br/>
-                                        &gt; Establishing quantum links... [OK]<br/>
-                                        &gt; Bypassing global security protocols... [AUTHORIZED]<br/>
-                                        &gt; All primary subsystems nominal and operating at peak efficiency.
-                                    </p>
-</div>
-<div class="flex gap-4 mt-4">
-<button class="flex px-6 py-3 cursor-pointer items-center justify-center rounded border border-primary/50 bg-primary/10 text-primary text-xs font-bold tracking-[0.1em] uppercase hover:bg-primary hover:text-background-dark transition-all">
-                                        View Full Logs
-                                    </button>
-<button class="flex px-6 py-3 cursor-pointer items-center justify-center rounded border border-slate-700 bg-surface-dark text-slate-300 text-xs font-bold tracking-[0.1em] uppercase hover:border-slate-500 transition-all">
-                                        Run Diagnostics
-                                    </button>
-</div>
-</div>
-<!-- 3D Visualization Placeholder (rendered as abstract gradient map) -->
-<div class="md:w-1/2 rounded-lg border border-primary/20 bg-surface-dark relative overflow-hidden min-h-[200px]" data-alt="Abstract 3D quantum network nodes connecting in cyberspace">
-<div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-screen" style="background-image: radial-gradient(circle at center, rgba(0,255,221,0.2) 0%, transparent 70%);"></div>
-<!-- Abstract nodes representation -->
-<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
-<div class="absolute top-[30%] left-[20%] w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_#00ffdd]"></div>
-<div class="absolute top-[60%] left-[40%] w-3 h-3 rounded-full bg-primary shadow-[0_0_15px_#00ffdd]"></div>
-<div class="absolute top-[40%] left-[70%] w-2 h-2 rounded-full bg-accent-crimson shadow-[0_0_10px_#DC143C]"></div>
-<div class="absolute top-[70%] left-[80%] w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_#00ffdd]"></div>
-<!-- Connecting lines (simplified SVG) -->
-<svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-<line stroke="#00ffdd" stroke-opacity="0.3" stroke-width="1" x1="20%" x2="40%" y1="30%" y2="60%"></line>
-<line stroke="#00ffdd" stroke-opacity="0.2" stroke-width="1" x1="40%" x2="70%" y1="60%" y2="40%"></line>
-<line stroke="#DC143C" stroke-opacity="0.3" stroke-width="1" x1="70%" x2="80%" y1="40%" y2="70%"></line>
-</svg>
-</div>
-<div class="absolute bottom-4 left-4 flex gap-2">
-<div class="px-2 py-1 bg-background-dark/80 backdrop-blur rounded border border-primary/30 text-[10px] text-primary font-mono tracking-widest uppercase">Node Map Active</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<body>
+  <div class="gate" id="gate">
+    <h1 style="font-family: var(--font-display); color: var(--cyan); margin-bottom: 32px;">MA_DEV SECURE</h1>
+    <input type="password" id="pwd" class="input" style="max-width: 300px; text-align: center; letter-spacing: 0.5em;" placeholder="ENTER PASSPHRASE">
+    <p id="gate-msg" style="color: var(--red); font-family: var(--font-mono); font-size: 12px; margin-top: 16px;"></p>
+  </div>
 
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <aside class="sidebar">
+    <div style="padding: 32px 24px; font-family: var(--font-display); color: var(--cyan); border-bottom: 1px solid var(--cyan-border); margin-bottom: 24px;">MA_DEV</div>
+    <div class="nav-item active" data-target="dashboard">DASHBOARD</div>
+    <div class="nav-item" data-target="editor">BLOG EDITOR</div>
+    <div class="nav-item" data-target="settings">SETTINGS</div>
+    <div style="margin-top: auto; padding: 24px;">
+      <button class="btn btn--red" style="width: 100%;" onclick="window.location.href='index.html'">LOGOUT</button>
+    </div>
+  </aside>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-    <script src="assets/js/particles.js"></script>
-    <script src="assets/js/core.js"></script>
-<script src="assets/js/main.js"></script>
-    <script src="assets/js/gesture.js"></script>
-</body></html>
+  <main class="main-view">
+    
+    <div class="panel active" id="panel-dashboard">
+      <h2 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 32px;">OVERVIEW</h2>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px;">
+        <div class="card" style="padding: 24px;">
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-1); margin-bottom: 16px;">GITHUB API LIMIT</div>
+          <svg class="chart-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect x="10" y="20" width="80" height="80" class="bar today"/>
+          </svg>
+        </div>
+        <div class="card" style="padding: 24px;">
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-1); margin-bottom: 16px;">VISITORS (7 DAYS)</div>
+          <svg class="chart-svg" id="visitor-chart" viewBox="0 0 70 100" preserveAspectRatio="none">
+            <!-- Populated via JS -->
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-editor">
+      <h2 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 32px;">TRANSMISSION EDITOR</h2>
+      <div class="toolbar">
+        <button class="tool-btn" data-tag="**">B</button>
+        <button class="tool-btn" data-tag="*">I</button>
+        <button class="tool-btn" data-tag="\`">Code</button>
+        <button class="tool-btn" data-tag="# ">H1</button>
+      </div>
+      <div class="editor-wrap">
+        <div class="editor" id="md-editor" contenteditable="true"># New Transmission</div>
+        <div class="preview" id="md-preview"></div>
+      </div>
+      <div style="margin-top: 24px;">
+        <button class="btn btn--dual" id="btn-export">EXPORT MARKDOWN</button>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-settings">
+      <h2 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 32px;">SYSTEM CONFIG</h2>
+      <div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 24px; max-width: 600px;">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-family: var(--font-mono);">CUSTOM CURSOR</span>
+          <button class="btn" id="t-cursor">ON</button>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-family: var(--font-mono);">AUDIO SYSTEM</span>
+          <button class="btn" id="t-audio">ON</button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-family: var(--font-mono);">REDUCED MOTION</span>
+          <button class="btn btn--red" id="t-motion">OFF</button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-family: var(--font-mono);">MATRIX SCREENSAVER</span>
+          <button class="btn" id="t-matrix">ON</button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script type="module">
+    // Simple SHA-256 hash for gate (Hash of "MADEV7")
+    const targetHash = "29b8c66e92c42c94d0eec9563d7e5d8b7cb6bbd7bdba8f52230a8d298eaef3b3";
+    let attempts = 0;
+
+    const hashString = async (str) => {
+      const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    };
+
+    document.getElementById('pwd').addEventListener('keydown', async (e) => {
+      if (e.key === 'Enter') {
+        const val = e.target.value;
+        const h = await hashString(val);
+        if (h === targetHash) {
+          document.getElementById('gate').classList.add('hidden');
+          console.log("[ ADMIN TERMINAL UNLOCKED // MA_DEV SOLUTIONS // CLEARANCE LEVEL: MAX ]");
+        } else {
+          attempts++;
+          document.getElementById('gate-msg').textContent = \`ACCESS DENIED (\${3 - attempts} ATTEMPTS REMAINING)\`;
+          if (attempts >= 3) {
+            document.getElementById('pwd').disabled = true;
+            document.getElementById('gate-msg').textContent = "SYSTEM LOCKED. IP LOGGED.";
+          }
+        }
+      }
+    });
+
+    // Nav logic
+    const navItems = document.querySelectorAll('.nav-item');
+    const panels = document.querySelectorAll('.panel');
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navItems.forEach(n => n.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        item.classList.add('active');
+        document.getElementById(\`panel-\${item.dataset.target}\`).classList.add('active');
+      });
+    });
+
+    // Editor Logic
+    const editor = document.getElementById('md-editor');
+    const preview = document.getElementById('md-preview');
+    
+    const updatePreview = () => {
+      let html = editor.innerText
+        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+        .replace(/\\*\\*(.*)\\*\\*/gim, '<strong>$1</strong>')
+        .replace(/\\*(.*)\\*/gim, '<em>$1</em>')
+        .replace(/`(.*)`/gim, '<code>$1</code>')
+        .replace(/\n/gim, '<br>');
+      preview.innerHTML = html;
+    };
+    editor.addEventListener('input', updatePreview);
+    
+    document.querySelectorAll('.tool-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = btn.dataset.tag;
+        document.execCommand('insertText', false, \`\${tag}text\${tag}\`);
+        updatePreview();
+      });
+    });
+
+    document.getElementById('btn-export').addEventListener('click', () => {
+      const blob = new Blob([editor.innerText], { type: 'text/markdown' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'transmission.md';
+      a.click();
+    });
+
+    // Mock Visitor Chart
+    const svg = document.getElementById('visitor-chart');
+    let svgHtml = '';
+    for(let i=0; i<7; i++) {
+      const h = Math.random() * 80 + 10;
+      const isToday = i === 6;
+      svgHtml += \`<rect x="\${i*10}" y="\${100-h}" width="8" height="\${h}" class="bar \${isToday ? 'today' : ''}"/>\`;
+    }
+    svg.innerHTML = svgHtml;
+
+    // Settings
+    const setupToggle = (id, key, defaultVal) => {
+      const btn = document.getElementById(id);
+      let state = localStorage.getItem(key) === null ? defaultVal : localStorage.getItem(key) === 'true';
+      
+      const render = () => {
+        btn.textContent = state ? 'ON' : 'OFF';
+        btn.className = state ? 'btn' : 'btn btn--red';
+      };
+      
+      btn.addEventListener('click', () => {
+        state = !state;
+        localStorage.setItem(key, state);
+        render();
+      });
+      render();
+    };
+
+    setupToggle('t-cursor', 'madev_cursor', true);
+    setupToggle('t-audio', 'madev_audio', false);
+    setupToggle('t-motion', 'madev_motion', false);
+    setupToggle('t-matrix', 'madev_matrix', true);
+
+  </script>
+</body>
+</html>
