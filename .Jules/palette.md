@@ -1,0 +1,3 @@
+## 2024-04-03 - Form Component Accessibility
+**Learning:** In custom stylized designs (like cyber-minimalist interfaces), inputs nested inside stylized groups often omit native `<label for="id">` and `<input id="id">` bindings. Similarly, visually apparent "required" form expectations lack explicit DOM attributes (`required`, explicit visual markers, or `aria-required`).
+**Action:** When auditing custom futuristic UI components, verify that visual hierarchy and layout groupings are translating into proper programmatic associations (labels matching input IDs, essential fields properly marked required).

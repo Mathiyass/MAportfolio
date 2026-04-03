@@ -125,7 +125,7 @@
           <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
             <span class="material-symbols-outlined text-accent-cyan/70 text-sm">search</span>
           </div>
-          <input
+          <input aria-label="Search query"
             class="w-64 lg:w-96 bg-white/5 border border-white/10 text-white text-sm rounded-full focus:ring-1 focus:ring-accent-cyan/50 focus:border-accent-cyan/50 block w-full pl-10 p-2.5 placeholder-white/30 transition-all duration-300 group-hover:bg-white/10"
             placeholder="INITIALIZE QUERY..." type="text" />
         </div>
@@ -141,7 +141,7 @@
         </a>
       </nav>
       <div class="flex items-center gap-4">
-        <button
+        <button aria-label="Open Terminal"
           class="flex items-center justify-center size-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors text-white/70 hover:text-white">
           <span class="material-symbols-outlined text-sm">terminal</span>
         </button>
@@ -150,7 +150,7 @@
           Secure Uplink
         </button>
         <!-- Mobile Menu Toggle -->
-        <button
+        <button aria-label="Toggle Mobile Menu"
           class="lg:hidden flex items-center justify-center size-10 rounded-full bg-white/5 border border-white/10 text-white">
           <span class="material-symbols-outlined">menu</span>
         </button>
@@ -268,36 +268,36 @@
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Identity Input -->
                 <div class="space-y-2 group">
-                  <label
+                  <label for="identity-designation"
                     class="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 group-focus-within:text-accent-cyan transition-colors">
                     <span class="material-symbols-outlined text-[14px]">fingerprint</span>
-                    Identity Designation
+                    Identity Designation <span class="text-primary ml-1" aria-hidden="true">*</span>
                   </label>
-                  <input
+                  <input id="identity-designation" required
                     class="w-full bg-black/40 border border-white/10 text-white rounded-lg focus:ring-1 focus:ring-accent-cyan focus:border-accent-cyan block p-4 placeholder-white/20 text-sm transition-all focus:bg-black/60"
                     placeholder="Enter recognized alias or name" type="text" />
                 </div>
                 <!-- Return Vector Input -->
                 <div class="space-y-2 group">
-                  <label
+                  <label for="return-vector"
                     class="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 group-focus-within:text-accent-cyan transition-colors">
                     <span class="material-symbols-outlined text-[14px]">cell_tower</span>
-                    Return Vector [Email]
+                    Return Vector [Email] <span class="text-primary ml-1" aria-hidden="true">*</span>
                   </label>
-                  <input
+                  <input id="return-vector" required
                     class="w-full bg-black/40 border border-white/10 text-white rounded-lg focus:ring-1 focus:ring-accent-cyan focus:border-accent-cyan block p-4 placeholder-white/20 text-sm transition-all focus:bg-black/60"
                     placeholder="Secure return address" type="email" />
                 </div>
               </div>
               <!-- Transmission Purpose -->
               <div class="space-y-2 group">
-                <label
+                <label for="transmission-classification"
                   class="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 group-focus-within:text-accent-cyan transition-colors">
                   <span class="material-symbols-outlined text-[14px]">category</span>
-                  Transmission Classification
+                  Transmission Classification <span class="text-primary ml-1" aria-hidden="true">*</span>
                 </label>
                 <div class="relative">
-                  <select
+                  <select id="transmission-classification" required
                     class="w-full bg-black/40 border border-white/10 text-white rounded-lg focus:ring-1 focus:ring-accent-cyan focus:border-accent-cyan block p-4 appearance-none text-sm transition-all focus:bg-black/60">
                     <option class="bg-background-dark text-white/50" value="">Select Classification Vector</option>
                     <option class="bg-background-dark" value="project">Project Proposal / Architecture</option>
@@ -311,12 +311,12 @@
               </div>
               <!-- Payload -->
               <div class="space-y-2 group">
-                <label
+                <label for="encrypted-payload"
                   class="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 group-focus-within:text-accent-cyan transition-colors">
                   <span class="material-symbols-outlined text-[14px]">data_object</span>
-                  Encrypted Payload
+                  Encrypted Payload <span class="text-primary ml-1" aria-hidden="true">*</span>
                 </label>
-                <textarea
+                <textarea id="encrypted-payload" required
                   class="w-full bg-black/40 border border-white/10 text-white rounded-lg focus:ring-1 focus:ring-accent-cyan focus:border-accent-cyan block p-4 placeholder-white/20 text-sm resize-none transition-all focus:bg-black/60 font-mono"
                   placeholder="// Enter transmission data here..." rows="5"></textarea>
               </div>
