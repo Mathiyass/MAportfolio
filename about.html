@@ -1,331 +1,312 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" data-theme="dual">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | MTHISHA</title>
-    <meta name="description" content="Learn more about Mthisha - Software Engineer, Creative Coder, and Tech Enthusiast passionate about innovation and digital experiences.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00E5FF">
+  <title>About // Mathisha Angirasa</title>
+  
+  <meta name="description" content="About Mathisha Angirasa - Software Engineering Student & Full-Stack Developer">
+  <meta property="og:title" content="About // Mathisha Angirasa">
+  <meta property="og:image" content="https://mathiyass.github.io/MAportfolio/assets/img/about-bg.webp">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  
+  <style>
+    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
+    .nav-center { display: none; }
+    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
+    .ascii-art { font-family: var(--font-mono); font-size: 8px; line-height: 1; letter-spacing: 2px; white-space: pre; color: var(--cyan); transition: transform 0.1s ease-out; }
+    .ascii-art span:nth-child(even) { color: var(--red); }
     
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    .timeline-node { position: relative; padding-left: 48px; margin-bottom: 48px; }
+    .timeline-node::before { content: ""; position: absolute; left: 0; top: 0; bottom: -48px; width: 1px; background: linear-gradient(180deg, var(--cyan), var(--red)); }
+    .timeline-node:last-child::before { display: none; }
+    .timeline-marker { position: absolute; left: -5px; top: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--void); border: 2px solid var(--cyan); }
+    .timeline-node.red-node .timeline-marker { border-color: var(--red); }
     
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    .value-card { padding: 32px; border: 1px solid var(--cyan-border); background: var(--surface-0); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+    .value-card svg { width: 48px; height: 48px; stroke: var(--cyan); }
+    .value-card.red-val { border-color: var(--red-border); }
+    .value-card.red-val svg { stroke: var(--red); }
     
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'orbitron': ['Orbitron', 'monospace'],
-                        'inter': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'cyber-cyan': '#00FFDE',
-                        'cyber-red': '#FF3366',
-                        'neon-pink': '#FF10F0',
-                        'electric-blue': '#0080FF',
-                        'dark-bg': '#0a0a0a',
-                        'dark-card': '#1a1a2e',
-                        'dark-accent': '#16213e',
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate',
-                    },
-                    keyframes: {
-                        'float': {
-                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
-                        },
-                        'glowPulse': {
-                            '0%': { boxShadow: '0 0 20px rgba(0, 255, 222, 0.5)' },
-                            '100%': { boxShadow: '0 0 40px rgba(0, 255, 222, 1), 0 0 60px rgba(255, 51, 102, 0.5)' },
-                        },
-                    },
-                }
-            }
-        }
-    </script>
-<link rel="stylesheet" href="assets/css/index.css">
+    mark.cyan { background: transparent; color: var(--cyan); font-weight: 700; text-shadow: 0 0 8px rgba(0,229,255,0.3); }
+    mark.red { background: transparent; color: var(--red); font-weight: 700; text-shadow: 0 0 8px rgba(255,77,109,0.3); }
+  </style>
 </head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
 
-<body class="dark text-white">
-    <!-- Custom Cursor -->
-    <div class="custom-cursor" id="custom-cursor"></div>
-    <div class="cursor-dot" id="cursor-dot"></div>
-    
-    <!-- Scroll Progress -->
-    <div class="scroll-progress" id="scroll-progress"></div>
-    
-    <!-- Navigation (Injected by JS) -->
-    <div id="navbar-container"></div>
+  <canvas id="canvas-particles" style="position:fixed; inset:0; z-index:-2; width:100vw; height:100vh; mix-blend-mode: screen; pointer-events:auto;"></canvas>
+  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
 
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 relative overflow-hidden">
-        <!-- Background Elements -->
-        <div class="absolute inset-0">
-            <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
-        </div>
-        
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up">
-                About Me
-            </h1>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                Passionate about technology, innovation, and creating digital experiences that make a difference
+  <nav id="navbar" role="navigation">
+    <a href="index.html" class="logo">
+      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+    </a>
+    
+    <div class="nav-center">
+      <a href="index.html" class="nav-link">INDEX</a>
+      <a href="projects.html" class="nav-link">PROJECTS</a>
+      <a href="skills.html" class="nav-link">SKILLS</a>
+      <a href="blog.html" class="nav-link">BLOG</a>
+      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
+      <a href="contact.html" class="nav-link">CONTACT</a>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: var(--s-16);">
+      <button class="btn btn--red" style="padding: 8px 16px; height: 36px; border-color: var(--red-border);" onclick="window.location.href='contact.html'">HIRE ME</button>
+      <button class="hamburger" aria-label="Toggle Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="scroll-container">
+    <main id="main" role="main" style="padding-top: 120px;">
+      
+      <section class="container" style="min-height: 50vh; display: flex; flex-direction: column; justify-content: center;">
+        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px);" data-reveal data-reveal-clip>ABOUT <span style="color: var(--cyan);">//</span> MATHISHA ANGIRASA</h1>
+      </section>
+
+      <section class="section container">
+        <div class="grid-12">
+          
+          <!-- ASCII Art Portrait -->
+          <div style="grid-column: span 4;" class="ascii-wrapper" data-reveal data-reveal-dir="left">
+            <pre class="ascii-art" id="ascii-art">
+<span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span>
+<span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span>
+<span>░▒▓█</span><span>█▓▒░</span><span>████</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span>
+<span>█▓▒░</span><span>░███</span><span>████</span><span>███░</span><span>█▓▒░</span><span>░▒▓█</span>
+<span>░▒▓█</span><span>████</span><span>████</span><span>████</span><span>░▒▓█</span><span>█▓▒░</span>
+<span>█▓▒░</span><span>████</span><span>████</span><span>████</span><span>█▓▒░</span><span>░▒▓█</span>
+<span>░▒▓█</span><span>████</span><span>████</span><span>████</span><span>░▒▓█</span><span>█▓▒░</span>
+<span>█▓▒░</span><span>░███</span><span>████</span><span>███░</span><span>█▓▒░</span><span>░▒▓█</span>
+<span>░▒▓█</span><span>█▓▒░</span><span>████</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span>
+<span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span>
+<span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span>
+            </pre>
+          </div>
+
+          <!-- Bio -->
+          <div style="grid-column: span 8;" data-reveal data-reveal-dir="right">
+            <h2 id="bio-tw" style="font-family: var(--font-mono); font-size: 24px; color: var(--cyan); margin-bottom: 24px; height: 32px;"></h2>
+            <p style="font-size: 18px; margin-bottom: 24px; max-width: 66ch;">
+              I am a Software Engineering Student at JIAT (HHDPII) and the founder of MA_Dev Solutions (Pvt) Ltd in Sri Lanka. I <mark class="red">build</mark> robust applications, high-performance web experiences, and scalable systems.
             </p>
-        </div>
-    </section>
+            <p style="font-size: 18px; margin-bottom: 24px; max-width: 66ch;">
+              My expertise spans across mobile and web platforms. I specialize in <mark class="cyan">Kotlin</mark> and <mark class="cyan">Android SDK</mark> for native mobile apps, and <mark class="cyan">WebGL2</mark> with <mark class="cyan">Vanilla JS</mark> for immersive web experiences. For backends, I architect solutions using <mark class="cyan">Supabase</mark> and <mark class="cyan">Firebase</mark>.
+            </p>
+            <p style="font-size: 18px; max-width: 66ch;">
+              I recently <mark class="red">launched</mark> the MA_Dev Marketplace, an ecosystem designed to empower developers. I believe in writing code that is as performant as it is beautiful. No compromises.
+            </p>
+          </div>
 
-    <!-- About Content -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="max-w-6xl mx-auto">
-                <!-- Personal Story -->
-                <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
-                    <div data-aos="fade-right">
-                        <div class="swiper-container w-full h-96 rounded-2xl overflow-hidden glass">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="assets/images/Profile Picture.jpg" alt="Mthisha" class="w-full h-full object-cover">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="assets/images/Profile Picture 2.jpg" alt="Mthisha" class="w-full h-full object-cover">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div data-aos="fade-left">
-                        <h2 class="text-3xl md:text-4xl font-bold font-orbitron mb-6 gradient-text">
-                            My Journey
-                        </h2>
-                        <p class="text-lg text-gray-300 mb-6 leading-relaxed">
-                            I'm Mthisha, a passionate Gen Z software engineer who believes in the power of technology 
-                            to transform ideas into reality. My journey began with curiosity about how digital worlds 
-                            are created, and it has evolved into a deep commitment to crafting innovative solutions.
-                        </p>
-                        <p class="text-lg text-gray-300 mb-6 leading-relaxed">
-                            With expertise spanning web development, game creation, and creative coding, I thrive on 
-                            challenges that push the boundaries of what's possible. Every project is an opportunity 
-                            to learn, grow, and create something meaningful.
-                        </p>
-                        <p class="text-lg text-gray-300 leading-relaxed">
-                            When I'm not coding, you'll find me exploring the latest tech trends, gaming, or 
-                            experimenting with new creative tools. I believe in continuous learning and staying 
-                            ahead of the curve in this ever-evolving digital landscape.
-                        </p>
-                    </div>
+        </div>
+      </section>
+
+      <!-- Currently Building -->
+      <section class="section container">
+        <div class="card card--red" style="border-left: 2px solid var(--red); padding: 48px;" data-reveal>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--red); letter-spacing: 0.2em; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+            <div style="width: 8px; height: 8px; background: var(--red); border-radius: 50%; animation: neonPulseRed 2s infinite;"></div>
+            ▶ CURRENTLY BUILDING
+          </div>
+          <h3 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 16px;">MA_Dev Marketplace</h3>
+          <p style="color: var(--text-1); margin-bottom: 24px;">Kotlin · Clean MVVM · Supabase · Firebase FCM · PayHere · Dark Terminal UI</p>
+          <div style="display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap;">
+            <span class="tag tag--red">IN DEVELOPMENT</span>
+            <span class="tag">ANDROID</span>
+            <span class="tag">SUPABASE BACKEND</span>
+          </div>
+          <a href="marketplace.html" class="btn btn--dual">VIEW FLAGSHIP →</a>
+        </div>
+      </section>
+
+      <!-- Timeline & Values -->
+      <section class="section container">
+        <div class="grid-12">
+          
+          <div style="grid-column: span 6;">
+            <div class="section-label" data-reveal>[ 03 ] TIMELINE</div>
+            <div style="padding-left: 16px;">
+              <div class="timeline-node" data-reveal data-reveal-dir="right">
+                <div class="timeline-marker"></div>
+                <div class="card" style="padding: 24px;">
+                  <div style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); margin-bottom: 8px;">2024 - PRESENT</div>
+                  <h4 style="font-family: var(--font-display); font-size: 20px; margin-bottom: 8px;">Founder & Architect</h4>
+                  <p style="color: var(--text-1); font-size: 14px;">MA_Dev Solutions (Pvt) Ltd. Building the MA_Dev Marketplace ecosystem.</p>
                 </div>
-                
-                <!-- Timeline Section -->
-                <div class="mb-20">
-                    <h2 class="text-3xl md:text-4xl font-bold font-orbitron text-center mb-12 gradient-text" data-aos="fade-up">
-                        My Timeline
-                    </h2>
-                    
-                    <div class="max-w-4xl mx-auto">
-                        <div class="timeline-item mb-8" data-aos="fade-up" data-aos-delay="100">
-                            <div class="glass p-6 rounded-lg">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                    <h3 class="text-xl font-bold text-cyber-cyan font-orbitron">Software Engineering Student</h3>
-                                    <span class="text-sm text-gray-400">2022 - Present</span>
-                                </div>
-                                <p class="text-gray-300">
-                                    Currently pursuing my degree in Software Engineering, focusing on modern development 
-                                    practices, algorithms, and system design. Maintaining excellent academic performance 
-                                    while working on personal projects.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item mb-8" data-aos="fade-up" data-aos-delay="200">
-                            <div class="glass p-6 rounded-lg">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                    <h3 class="text-xl font-bold text-cyber-cyan font-orbitron">Freelance Developer</h3>
-                                    <span class="text-sm text-gray-400">2023 - Present</span>
-                                </div>
-                                <p class="text-gray-300">
-                                    Started taking on freelance projects, building websites and applications for local 
-                                    businesses and startups. Gained valuable experience in client communication, 
-                                    project management, and real-world problem solving.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item mb-8" data-aos="fade-up" data-aos-delay="300">
-                            <div class="glass p-6 rounded-lg">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                    <h3 class="text-xl font-bold text-cyber-cyan font-orbitron">First Game Development Project</h3>
-                                    <span class="text-sm text-gray-400">2023</span>
-                                </div>
-                                <p class="text-gray-300">
-                                    Completed my first major game development project using Unreal Engine. This project 
-                                    sparked my passion for interactive media and 3D graphics programming.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item mb-8" data-aos="fade-up" data-aos-delay="400">
-                            <div class="glass p-6 rounded-lg">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                    <h3 class="text-xl font-bold text-cyber-cyan font-orbitron">Started Programming Journey</h3>
-                                    <span class="text-sm text-gray-400">2021</span>
-                                </div>
-                                <p class="text-gray-300">
-                                    Began learning programming with Python and JavaScript. Built my first web applications 
-                                    and discovered my passion for creating digital solutions.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+
+              <div class="timeline-node red-node" data-reveal data-reveal-dir="right">
+                <div class="timeline-marker"></div>
+                <div class="card card--red" style="padding: 24px;">
+                  <div style="font-family: var(--font-mono); font-size: 12px; color: var(--red); margin-bottom: 8px;">2023 - PRESENT</div>
+                  <h4 style="font-family: var(--font-display); font-size: 20px; margin-bottom: 8px;">Software Engineering Student</h4>
+                  <p style="color: var(--text-1); font-size: 14px;">JIAT (HHDPII). Focusing on algorithms, systems design, and advanced OOP.</p>
                 </div>
-                
-                <!-- Education & Certifications -->
-                <div class="grid md:grid-cols-2 gap-12 mb-20">
-                    <div data-aos="fade-right">
-                        <h2 class="text-3xl font-bold font-orbitron mb-8 gradient-text">Education</h2>
-                        <div class="glass p-6 rounded-lg mb-6">
-                            <h3 class="text-xl font-bold text-cyber-cyan mb-2 font-orbitron">Bachelor of Software Engineering</h3>
-                            <p class="text-gray-400 mb-2">University of Birmingham | 2022 - 2026</p>
-                            <p class="text-gray-300">
-                                Comprehensive program covering software development, algorithms, data structures, 
-                                system design, and modern programming practices.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div data-aos="fade-left">
-                        <h2 class="text-3xl font-bold font-orbitron mb-8 gradient-text">Certifications</h2>
-                        <div class="space-y-4">
-                            <div class="glass p-4 rounded-lg">
-                                <h4 class="font-bold text-cyber-cyan font-orbitron">Full Stack Web Development</h4>
-                                <p class="text-sm text-gray-400">FreeCodeCamp | 2023</p>
-                            </div>
-                            <div class="glass p-4 rounded-lg">
-                                <h4 class="font-bold text-cyber-cyan font-orbitron">Game Development with Unreal Engine</h4>
-                                <p class="text-sm text-gray-400">Udemy | 2023</p>
-                            </div>
-                            <div class="glass p-4 rounded-lg">
-                                <h4 class="font-bold text-cyber-cyan font-orbitron">JavaScript Algorithms & Data Structures</h4>
-                                <p class="text-sm text-gray-400">FreeCodeCamp | 2022</p>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+
+              <div class="timeline-node" data-reveal data-reveal-dir="right">
+                <div class="timeline-marker"></div>
+                <div class="card" style="padding: 24px;">
+                  <div style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); margin-bottom: 8px;">2023</div>
+                  <h4 style="font-family: var(--font-display); font-size: 20px; margin-bottom: 8px;">First Systems Deployed</h4>
+                  <p style="color: var(--text-1); font-size: 14px;">Started building full-stack web and mobile applications using Kotlin and Vanilla JS.</p>
                 </div>
-                
-                <!-- Goals & Aspirations -->
-                <div class="text-center" data-aos="fade-up">
-                    <h2 class="text-3xl md:text-4xl font-bold font-orbitron mb-8 gradient-text">
-                        Goals & Aspirations
-                    </h2>
-                    <div class="grid md:grid-cols-3 gap-8 mb-12">
-                        <div class="glass p-6 rounded-lg">
-                            <div class="text-4xl mb-4 text-cyber-cyan">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-4 font-orbitron">Innovation</h3>
-                            <p class="text-gray-300">
-                                Push the boundaries of technology and create solutions that haven't been imagined yet.
-                            </p>
-                        </div>
-                        
-                        <div class="glass p-6 rounded-lg">
-                            <div class="text-4xl mb-4 text-cyber-red">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-4 font-orbitron">Impact</h3>
-                            <p class="text-gray-300">
-                                Build technology that makes a positive difference in people's lives and communities.
-                            </p>
-                        </div>
-                        
-                        <div class="glass p-6 rounded-lg">
-                            <div class="text-4xl mb-4 text-neon-pink">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-4 font-orbitron">Growth</h3>
-                            <p class="text-gray-300">
-                                Continuously learn and evolve with the rapidly changing technology landscape.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <!-- Resume Download -->
-                    <div class="mb-12">
-                        <a href="assets/documents/mathiya-resume.pdf" download class="neon-btn px-8 py-4 text-black font-semibold rounded-full font-orbitron">
-                            <i class="fas fa-download mr-2"></i>
-                            Download Resume
-                        </a>
-                    </div>
-                </div>
+              </div>
             </div>
-        </div>
-    </section>
+          </div>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MTHISHA</div>
-                    <p class="text-gray-400">© 2024 Mthisha. All rights reserved.</p>
-                </div>
-                
-                <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://x.com/Mathiya" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://discord.gg/QERP5JJM8k" class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300" aria-label="Discord">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                </div>
+          <div style="grid-column: span 6;">
+            <div class="section-label" data-reveal>[ 04 ] CORE VALUES</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="stagger">
+              
+              <div class="value-card" data-reveal>
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="square"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+                <h4 style="font-family: var(--font-mono); font-size: 14px;">PRECISION</h4>
+                <p style="font-size: 12px; color: var(--text-1);">Every pixel, every byte, exactly where it belongs.</p>
+              </div>
+
+              <div class="value-card red-val" data-reveal>
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="square"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <h4 style="font-family: var(--font-mono); font-size: 14px;">VELOCITY</h4>
+                <p style="font-size: 12px; color: var(--text-1);">Ship fast. Iterate faster. No bloat allowed.</p>
+              </div>
+
+              <div class="value-card" data-reveal>
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="square"><path d="M12 2l9 4.5v7L12 22l-9-4.5v-7L12 2z"/></svg>
+                <h4 style="font-family: var(--font-mono); font-size: 14px;">CRAFT</h4>
+                <p style="font-size: 12px; color: var(--text-1);">Hand-written code. Deep understanding of the stack.</p>
+              </div>
+
+              <div class="value-card red-val" data-reveal>
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="square"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <h4 style="font-family: var(--font-mono); font-size: 14px;">SYSTEMS THINKING</h4>
+                <p style="font-size: 12px; color: var(--text-1);">Building ecosystems, not just isolated applications.</p>
+              </div>
+
             </div>
+          </div>
+
         </div>
-    </footer>
+      </section>
 
-    <!-- Scripts -->
-    <script src="assets/js/components/navbar.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/gesture.js"></script>
+      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden; margin-top: 64px;">
+        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
+          <div class="grid-12">
+            <div style="grid-column: span 4;">
+              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
+              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
+            </div>
+            <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 8px;">
+              <a href="index.html" class="nav-link" style="align-self: flex-start;">INDEX</a>
+              <a href="projects.html" class="nav-link" style="align-self: flex-start;">PROJECTS</a>
+              <a href="about.html" class="nav-link active" style="align-self: flex-start;">ABOUT</a>
+              <a href="contact.html" class="nav-link" style="align-self: flex-start;">CONTACT</a>
+            </div>
+            <div style="grid-column: span 4; display: flex; gap: 16px; align-items: flex-start; justify-content: flex-end;">
+              <a href="https://github.com/Mathiyass" target="_blank" aria-label="GitHub" class="glow-cyan" style="color: var(--cyan);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div style="margin-top: 64px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--text-2);">
+            <span>© 2026 Mathisha Angirasa — MA_Dev Solutions (Pvt) Ltd</span>
+            <span>BUILT WITH RAW WEBGL2 + VANILLA JS // ZERO FRAMEWORKS</span>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
 
-    <!-- Swiper JS -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/js/slideshow.js"></script>
-    <script type="module" src="assets/js/gesture-control.js"></script>
+  <script type="module">
+    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+    import { SHADER_06_PARTICLE_FIELD } from './assets/js/engine/shaders.js';
+    import { CustomCursor } from './assets/js/core/Cursor.js';
+    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+    import { TypeWriter } from './assets/js/core/TypeWriter.js';
+    import { AudioSystem } from './assets/js/core/Audio.js';
+    import { ProgressBar } from './assets/js/core/ProgressBar.js';
+    import { PageTransitions } from './assets/js/core/PageTransitions.js';
+    import { Konami } from './assets/js/core/Konami.js';
+    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+    import { LazyLoad } from './assets/js/core/LazyLoad.js';
+    import { toast } from './assets/js/core/Toast.js';
 
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    new ThemeSystem();
+    
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.matchMedia('(pointer: coarse)').matches;
+    
+    if (!isReduced && !isMobile) {
+      const cPart = document.getElementById('canvas-particles');
+      const ePart = new WebGLEngine(cPart);
+      // We implement a simplified particle field in SHADER_06, directly rendering it
+      ePart.compileProgram('part', SHADER_06_PARTICLE_FIELD.vert, SHADER_06_PARTICLE_FIELD.frag);
+      
+      // Mocking the u_particles sampler with a random texture since ping-pong is heavy to fully setup in limited script
+      const gl = ePart.gl;
+      const tex = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      const data = new Float32Array(64 * 1 * 4);
+      for(let i=0; i<data.length; i+=4) {
+        data[i] = Math.random();
+        data[i+1] = Math.random();
+        data[i+2] = (Math.random()-0.5)*0.01;
+        data[i+3] = (Math.random()-0.5)*0.01;
+      }
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, 64, 1, 0, gl.RGBA, gl.FLOAT, data);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+      
+      ePart.createFullscreenQuad('fullscreen');
+      ePart.render('part', { u_particles: 0 });
+    } else {
+      document.getElementById('canvas-particles').style.display = 'none';
+    }
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-    <script src="assets/js/particles.js"></script>
-    <script src="assets/js/core.js"></script>
-<script src="assets/js/main.js"></script>
+    new CustomCursor();
+    new SmoothScroll();
+    new ScrollReveal();
+    new LazyLoad();
+    new AudioSystem();
+    new ProgressBar();
+    new PageTransitions();
+    new Konami();
+
+    // Bio Typewriter
+    const bioTw = document.getElementById('bio-tw');
+    new TypeWriter(bioTw, ["I build systems that matter."], { pauseDuration: 10000 });
+
+    // ASCII parallax
+    const ascii = document.getElementById('ascii-art');
+    window.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      ascii.style.transform = \`translate(\${x}px, \${y}px)\`;
+    });
+
+    window.sudo = (cmd) => {
+      if (cmd === 'hire') window.location.href = 'contact.html';
+      else if (cmd === 'konami') window.dispatchEvent(new CustomEvent('konami'));
+      else if (cmd === 'signal') { document.documentElement.dataset.theme = 'red'; setTimeout(()=>document.documentElement.dataset.theme = 'dual', 3000); }
+    };
+  </script>
 </body>
 </html>

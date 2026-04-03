@@ -1,145 +1,174 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="en" data-theme="dual">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume | MTHISHA</title>
-    <meta name="description"
-        content="Download and view the professional resume of Mthisha Angirasa, a passionate Software Engineering Student.">
-    <meta name="keywords" content="Mthisha, Resume, CV, Software Engineer, Full Stack Developer">
-    <meta property="og:title" content="Resume | MTHISHA">
-    <meta property="og:description" content="Download and view the professional resume of Mthisha Angirasa.">
-    <meta property="og:type" content="website">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
-<link rel="stylesheet" href="assets/css/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00E5FF">
+  <title>Resume // Mathisha Angirasa</title>
+  
+  <meta name="description" content="Resume of Mathisha Angirasa - Full-Stack Developer">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  
+  <style>
+    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
+    .nav-center { display: none; }
+    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    
+    .resume-container { background: var(--surface-0); border: 1px solid var(--cyan-border); padding: 48px; position: relative; }
+    .resume-header { border-bottom: 1px solid var(--cyan-border); padding-bottom: 32px; margin-bottom: 32px; display: flex; justify-content: space-between; align-items: flex-end; }
+    
+    .timeline-item { margin-bottom: 32px; }
+    .timeline-title { font-family: var(--font-display); font-size: 20px; color: var(--text-0); }
+    .timeline-meta { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); margin-bottom: 8px; }
+    .timeline-desc { color: var(--text-1); font-size: 14px; }
+    
+    .hex-skill { display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 90px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); background: var(--surface-1); color: var(--cyan); font-family: var(--font-mono); font-size: 10px; flex-direction: column; gap: 4px; transition: all var(--dur-fast); position: relative; border: 1px solid transparent; }
+    .hex-skill::before { content: ""; position: absolute; inset: 1px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); background: var(--surface-0); z-index: -1; }
+    .hex-skill.red::before { background: var(--surface-0); }
+    .hex-skill.red { color: var(--red); }
+    .hex-skill:hover { transform: translateY(-4px); background: var(--cyan); color: var(--void); }
+    .hex-skill.red:hover { background: var(--red); color: var(--void); }
+    .hex-skill:hover::before { display: none; }
+    
+    .print-btn { position: fixed; bottom: 24px; right: 24px; z-index: 1000; box-shadow: var(--glow-cyan); }
+    
+    @media print {
+      body { background: white; color: black; }
+      nav, .print-btn, #canvas-crt, .skip-link, footer { display: none !important; }
+      .resume-container { border: none; padding: 0; box-shadow: none; background: white; }
+      * { color: black !important; text-shadow: none !important; }
+      .timeline-meta { color: #555 !important; }
+      .hex-skill { border: 1px solid #333; background: white !important; color: black !important; }
+      .hex-skill::before { display: none; }
+      a { text-decoration: underline; }
+    }
+  </style>
 </head>
-</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
 
-<body class="dark text-white">
-    <!-- Enhanced Custom Cursor -->
-    <div class="custom-cursor" id="custom-cursor"></div>
-    <div class="cursor-dot" id="cursor-dot"></div>
+  <nav id="navbar" role="navigation">
+    <a href="index.html" class="logo">
+      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+    </a>
+    <div class="nav-center">
+      <a href="index.html" class="nav-link">INDEX</a>
+      <a href="projects.html" class="nav-link">PROJECTS</a>
+      <a href="skills.html" class="nav-link">SKILLS</a>
+      <a href="blog.html" class="nav-link">BLOG</a>
+      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
+      <a href="contact.html" class="nav-link">CONTACT</a>
+    </div>
+  </nav>
 
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scroll-progress"></div>
-
-    <!-- Navigation (Injected by JS) -->
-    <div id="navbar-container"></div>
-
-    <!-- Main Content -->
-    <main>
-        <section class="pt-32 pb-20 relative overflow-hidden">
-            <div class="absolute inset-0">
-                <div
-                    class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float">
-                </div>
-                <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float"
-                    style="animation-delay: -3s;"></div>
+  <div class="scroll-container">
+    <main id="main" role="main" style="padding-top: 120px; padding-bottom: 64px;">
+      <section class="container">
+        <div class="resume-container" data-reveal>
+          <div class="resume-header">
+            <div>
+              <h1 style="font-family: var(--font-display); font-size: 48px; margin-bottom: 8px;">MATHISHA ANGIRASA</h1>
+              <p style="font-family: var(--font-mono); font-size: 14px; color: var(--text-1); letter-spacing: 0.1em;">SOFTWARE ENGINEER // SYSTEMS BUILDER</p>
             </div>
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up">My Resume
-                </h1>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">A
-                    comprehensive overview of my professional experience, skills, and education.</p>
-                <div data-aos="fade-up" data-aos-delay="400">
-                    <a href="assets/documents/mathiya-resume.pdf" download="mthisha-resume.pdf"
-                        class="neon-btn text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-orbitron inline-block">
-                        <i class="fas fa-download mr-2"></i>Download PDF
-                    </a>
-                </div>
+            <div style="text-align: right; font-family: var(--font-mono); font-size: 12px; color: var(--text-1); line-height: 1.8;">
+              mathiyass.github.io<br>
+              github.com/Mathiyass<br>
+              Sri Lanka
             </div>
-        </section>
+          </div>
 
-        <section class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="max-w-5xl mx-auto glass rounded-2xl p-4 md:p-8" data-aos="fade-up">
-                    <iframe src="assets/documents/mathiya-resume.pdf" width="100%" height="800px"
-                        class="rounded-lg"></iframe>
-                </div>
-            </div>
-        </section>
-    </main>
+          <div class="grid-12">
+            <div style="grid-column: span 8;">
+              
+              <div class="section-label">[ 01 ] EXPERIENCE</div>
+              <div class="timeline-item">
+                <div class="timeline-title">Founder & Architect</div>
+                <div class="timeline-meta">MA_Dev Solutions (Pvt) Ltd // 2024 - Present</div>
+                <ul class="timeline-desc" style="list-style: square inside; padding-left: 16px; display: flex; flex-direction: column; gap: 8px;">
+                  <li>Architecting and building MA_Dev Marketplace, a comprehensive platform for developers to distribute software components.</li>
+                  <li>Developing native Android applications using Kotlin, clean architecture (MVVM), and coroutines.</li>
+                  <li>Designing robust backend infrastructures leveraging Supabase, Firebase FCM, and secure payment integrations.</li>
+                </ul>
+              </div>
 
-    <!-- Enhanced Footer -->
-    <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MTHISHA</div>
-                    <p class="text-gray-400">© <span id="current-year">2024</span> Mthisha Angirasa. All rights
-                        reserved.</p>
-                </div>
-                <div class="flex items-center justify-center md:justify-end flex-wrap gap-x-5 gap-y-3">
-                    <a href="https://github.com/Mathiyass" target="_blank"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
-                        title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/" target="_blank"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
-                        title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/Mathiya" target="_blank"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
-                        title="X (Twitter)"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/mathi_ya_/" target="_blank"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
-                        title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://discord.gg/QERP5JJM8k" target="_blank"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
-                        title="Discord"><i class="fab fa-discord"></i></a>
-                    <a href="https://wa.me/94715921984" target="_blank"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan hover:scale-125 transition-all duration-300"
-                        title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
+              <div class="section-label" style="margin-top: 48px;">[ 02 ] EDUCATION</div>
+              <div class="timeline-item">
+                <div class="timeline-title">Software Engineering Diploma</div>
+                <div class="timeline-meta" style="color: var(--red);">JIAT (HHDPII) // 2023 - Present</div>
+                <p class="timeline-desc">Intensive coursework in Java, advanced OOP, algorithms, and system design.</p>
+              </div>
+
+              <div class="section-label" style="margin-top: 48px;">[ 03 ] KEY PROJECTS</div>
+              <div class="timeline-item">
+                <div class="timeline-title">Killer Quebes</div>
+                <div class="timeline-meta">C++ / TL-Engine</div>
+                <p class="timeline-desc">A highly optimized 3D survival shooter utilizing custom collision detection algorithms and entity management within a proprietary engine.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-title">MAportfolio v7.0</div>
+                <div class="timeline-meta">Vanilla JS / WebGL2 / GLSL</div>
+                <p class="timeline-desc">A custom-built, framework-free portfolio featuring a bespoke WebGL2 engine, 12 original shaders, and zero dependencies.</p>
+              </div>
+
             </div>
+
+            <div style="grid-column: span 4;">
+              <div class="section-label">[ 04 ] SKILLS</div>
+              
+              <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px;">
+                <div class="hex-skill"><span>100%</span>Kotlin</div>
+                <div class="hex-skill"><span>95%</span>Supabase</div>
+                <div class="hex-skill red"><span>90%</span>C++</div>
+                <div class="hex-skill"><span>95%</span>WebGL2</div>
+                <div class="hex-skill"><span>100%</span>Vanilla JS</div>
+                <div class="hex-skill red"><span>85%</span>Python</div>
+              </div>
+
+              <div class="section-label">[ 05 ] DOMAINS</div>
+              <ul style="font-family: var(--font-mono); font-size: 12px; color: var(--text-1); display: flex; flex-direction: column; gap: 12px;">
+                <li>> Native Android (SDK)</li>
+                <li>> High-Performance WebGL</li>
+                <li>> API Architecture</li>
+                <li>> Real-time Systems (FCM)</li>
+                <li>> Shader Programming</li>
+                <li>> Game Development</li>
+              </ul>
+            </div>
+          </div>
         </div>
-    </footer>
+      </section>
+    </main>
+  </div>
 
-    <!-- Scripts -->
-    <script src="assets/js/components/navbar.js"></script>
-    <script type="module" src="assets/js/main.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
+  <button class="btn btn--dual print-btn" onclick="window.print()">DOWNLOAD PDF</button>
 
-        // Update current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
-    <script type="module" src="assets/js/gesture-control.js"></script>
+  <script type="module">
+    import { CustomCursor } from './assets/js/core/Cursor.js';
+    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+    import { AudioSystem } from './assets/js/core/Audio.js';
+    import { PageTransitions } from './assets/js/core/PageTransitions.js';
+    import { Konami } from './assets/js/core/Konami.js';
+    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
 
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-    <script src="assets/js/particles.js"></script>
-    <script src="assets/js/core.js"></script>
-<script src="assets/js/main.js"></script>
-    <script src="assets/js/gesture.js"></script>
+    new ThemeSystem();
+    new CustomCursor();
+    new SmoothScroll();
+    new ScrollReveal();
+    new AudioSystem();
+    new PageTransitions();
+    new Konami();
+  </script>
 </body>
-
 </html>
