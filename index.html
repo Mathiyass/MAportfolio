@@ -1,282 +1,530 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en">
-
+<html lang="en" data-theme="dual">
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>MTHISHA Infinite Horizon Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#00ffdd",
-                        "accent": "#dc143c",
-                        "background-light": "#f5f8f8",
-                        "background-dark": "#000000",
-                    },
-                    fontFamily: {
-                        "display": ["Space Grotesk", "sans-serif"]
-                    },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
-                },
-            },
-        }
-    </script>
-    <style>
-        .glass-panel {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 255, 221, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 255, 221, 0.05);
-        }
-
-        .text-glow {
-            text-shadow: 0 0 10px rgba(0, 255, 221, 0.5);
-        }
-    </style>
-    <link rel="stylesheet" href="assets/css/index.css">
-</head>
-
-<body
-    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display overflow-x-hidden min-h-screen antialiased">
-    <div id="preloader">
-        <svg class="signature-svg overflow-visible" width="600" height="150" viewBox="0 0 600 150">
-            <!-- Glow Layer -->
-            <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="text-glow-svg font-display"
-                style="font-size: 80px; font-weight: 900; letter-spacing: 0.1em;">
-                MTHISHA
-            </text>
-            <!-- Core Stroke Layer -->
-            <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="font-display"
-                style="font-size: 80px; font-weight: 900; letter-spacing: 0.1em;">
-                MTHISHA
-            </text>
-        </svg>
-        <div class="loading-text">INITIALIZING SYSTEMS</div>
-    </div>
-    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
-        <!-- Abstract Background Decoration -->
-        <div class="fixed inset-0 z-0 pointer-events-none opacity-40 mix-blend-screen"
-            style="background: radial-gradient(circle at 50% 50%, rgba(0, 255, 221, 0.1) 0%, transparent 60%);">
-        </div>
-        <div class="layout-container flex h-full grow flex-col relative z-10">
-            <div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
-                <div class="layout-content-container flex flex-col max-w-[1200px] w-full flex-1">
-                    <!-- Top Nav Bar (Glassmorphism HUD) -->
-                    <header
-                        class="glass-panel flex items-center justify-between whitespace-nowrap rounded-xl px-6 py-4 mb-8 sticky top-4 z-50">
-                        <div class="flex items-center gap-8">
-                            <div class="flex items-center gap-4 text-primary">
-                                <span class="material-symbols-outlined text-3xl">architecture</span>
-                                <h2 class="text-primary text-xl font-bold leading-tight tracking-widest text-glow">
-                                    MTHISHA</h2>
-                            </div>
-                            <nav class="hidden md:flex items-center gap-8">
-                                <a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal uppercase tracking-wider"
-                                    href="#">Work</a>
-                                <a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal uppercase tracking-wider"
-                                    href="#">Experience</a>
-                                <a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal uppercase tracking-wider"
-                                    href="#">Skills</a>
-                                <a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal uppercase tracking-wider"
-                                    href="#">Contact</a>
-                            </nav>
-                        </div>
-                        <div class="flex flex-1 justify-end gap-6 items-center">
-                            <label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-sm w-full group">
-                                <div
-                                    class="flex w-full flex-1 items-stretch rounded-full h-full glass-panel overflow-hidden transition-all duration-300 focus-within:border-primary/50 focus-within:ring-1 focus-within:ring-primary/50">
-                                    <div class="text-primary/70 flex border-none items-center justify-center pl-4 pr-2">
-                                        <span class="material-symbols-outlined">search</span>
-                                    </div>
-                                    <input
-                                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-slate-100 focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-slate-500 px-2 text-sm font-normal leading-normal"
-                                        placeholder="Search Everything..." value="" />
-                                </div>
-                            </label>
-                            <button
-                                class="flex min-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-primary text-background-dark text-sm font-bold leading-normal tracking-wider uppercase hover:bg-primary/90 transition-colors shadow-[0_0_15px_rgba(0,255,221,0.4)]">
-                                <span>Hire Me</span>
-                            </button>
-                        </div>
-                    </header>
-                    <!-- Hero Section -->
-                    <div class="@container mb-16">
-                        <div
-                            class="flex min-h-[60vh] flex-col gap-8 glass-panel rounded-2xl items-center justify-center p-8 relative overflow-hidden group">
-                            <!-- Background Image -->
-                            <div class="absolute inset-0 z-0 opacity-30 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
-                                data-alt="Deep space abstract 3d geometry"
-                                style='background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCXt6UyI2n7pgcF5eGH8ubtZMmHun21HTC6bW9CWopCLMeGe6ALvNPSCbgTWBqZHBSnkpPKw3WN9giFObezWEZd67UCCScyzOaJleT0ZHdErjE_wseH8OnFNW0mVrR__AiKfKgBaeQJ9HtBUqZ49_ltPsoq2TzPeSx5SliyQJ9usJiBvec1fBkjO74fgjV4DKqilmwR8O2BW7hHpg7tKhoVnM1aRzQz5Le2o9TvVvrdYUDSpNzGizPryixyHKOhcsdVgTxDLzOZpOE");'>
-                            </div>
-                            <div class="relative z-10 flex flex-col gap-6 text-center items-center max-w-4xl mx-auto">
-                                <div
-                                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold tracking-widest uppercase mb-4">
-                                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                                    System Online
-                                </div>
-                                <h1
-                                    class="text-transparent bg-clip-text bg-gradient-to-r from-slate-100 via-primary to-slate-100 text-5xl font-black leading-tight tracking-tighter sm:text-7xl lg:text-8xl drop-shadow-2xl">
-                                    MTHISHA
-                                </h1>
-                                <p
-                                    class="text-slate-300 text-lg font-light leading-relaxed sm:text-xl max-w-2xl tracking-wide">
-                                    High-End Software Architect <span class="text-accent font-bold px-2">|</span>
-                                    Crafting the Future of Digital Experiences
-                                </p>
-                                <div class="mt-8 flex gap-4 flex-wrap justify-center">
-                                    <button
-                                        class="flex items-center justify-center overflow-hidden rounded-full h-14 px-8 bg-primary text-background-dark text-base font-bold leading-normal tracking-wider uppercase hover:scale-105 transition-transform shadow-[0_0_20px_rgba(0,255,221,0.5)]">
-                                        Explore Portfolio
-                                    </button>
-                                    <button
-                                        class="flex items-center justify-center overflow-hidden rounded-full h-14 px-8 border border-slate-700 bg-background-dark/50 text-slate-100 hover:text-primary hover:border-primary/50 text-base font-bold leading-normal tracking-wider uppercase backdrop-blur-md transition-all">
-                                        View Data Core
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Technical Specialties -->
-                    <div class="flex flex-col gap-12 py-10 @container">
-                        <div
-                            class="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-slate-800 pb-6">
-                            <div class="flex flex-col gap-4">
-                                <h2
-                                    class="text-slate-100 tracking-tight text-3xl font-black leading-tight sm:text-4xl md:text-5xl">
-                                    Technical <span class="text-accent">Specialties</span>
-                                </h2>
-                                <p class="text-slate-400 text-lg font-light leading-normal max-w-[600px]">
-                                    Mastering the art of software architecture and advanced engineering for the year
-                                    2050.
-                                </p>
-                            </div>
-                            <a class="text-primary flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-primary/80 transition-colors"
-                                href="#">
-                                All Systems <span class="material-symbols-outlined text-lg">arrow_forward</span>
-                            </a>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <!-- Card 1 -->
-                            <div
-                                class="glass-panel p-6 rounded-xl flex flex-col gap-6 hover:-translate-y-2 transition-transform duration-300 group">
-                                <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg border border-slate-800 relative overflow-hidden"
-                                    data-alt="Abstract neural network concept"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6c6RuHHFR0OhouDn4nBf4Rmi16cSa-PGbKyN7l2ZF4IioCgafddc6cegSvsbCwqvDESvVFW_T3HLeepr8-ho50cEwQRZgoXoIfSgm5OrTVSl85pBo6n5nWMpZdMKP-Zo024faq5Fi7B4b1RBizCgcbJKOe4nX1Qj6gJWAvhEWqUr4GbqldA0MtpcdoloTjlPyYPkOQALqMbqUEtNP0lT6LODIage2sHVKsjSFTXGgpWxyxZhWid1kXUxwPlZwxHPB4GTDd_FfE00");'>
-                                    <div
-                                        class="absolute inset-0 bg-background-dark/40 group-hover:bg-transparent transition-colors duration-300">
-                                    </div>
-                                    <div
-                                        class="absolute top-4 right-4 bg-background-dark/80 backdrop-blur-sm p-2 rounded-full border border-primary/30">
-                                        <span class="material-symbols-outlined text-primary">dns</span>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <h3 class="text-slate-100 text-xl font-bold leading-tight tracking-wide">System
-                                        Architecture</h3>
-                                    <p class="text-slate-400 text-sm font-light leading-relaxed">Designing scalable,
-                                        high-performance distributed systems capable of handling planetary-scale
-                                        operations with zero latency.</p>
-                                </div>
-                            </div>
-                            <!-- Card 2 -->
-                            <div
-                                class="glass-panel p-6 rounded-xl flex flex-col gap-6 hover:-translate-y-2 transition-transform duration-300 group">
-                                <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg border border-slate-800 relative overflow-hidden"
-                                    data-alt="Complex circuit board pattern"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAYp0mDlLpO1Mnx3ELrZ3uLyQ19DUqWNzw-57qvvk7r7uwG3kzmsadYWns7apaTlG885OUTaqk2km1Jw9bvIOV1nlHQUJrQSnQjM6EcElHnSGQaLZzVoWeDwKVHLwMhk9eQ5euhNa2vRLwTFmQexrPBwNwDdjzlorWEhdgyragtaCLJ2EAbdP0OpqkcaMUuiG6fN3mYSL4cqvTWrmcK5uu2HPa6B2zmaiaORd5HVdb68uIw1ckkm2TMYLFD61OCiULi78cWJ5wU8mo");'>
-                                    <div
-                                        class="absolute inset-0 bg-background-dark/40 group-hover:bg-transparent transition-colors duration-300">
-                                    </div>
-                                    <div
-                                        class="absolute top-4 right-4 bg-background-dark/80 backdrop-blur-sm p-2 rounded-full border border-accent/50">
-                                        <span class="material-symbols-outlined text-accent">memory</span>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <h3
-                                        class="text-slate-100 text-xl font-bold leading-tight tracking-wide flex items-center gap-2">
-                                        Advanced Algorithms
-                                        <span class="w-2 h-2 rounded-full bg-accent"></span>
-                                    </h3>
-                                    <p class="text-slate-400 text-sm font-light leading-relaxed">Solving quantum-level
-                                        computational problems with elegant, highly optimized mathematical solutions.
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Card 3 -->
-                            <div
-                                class="glass-panel p-6 rounded-xl flex flex-col gap-6 hover:-translate-y-2 transition-transform duration-300 group">
-                                <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg border border-slate-800 relative overflow-hidden"
-                                    data-alt="Abstract colorful neon waves"
-                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD8eWlGqriCDvIAamQQyLR2ZxYegYRjlkPwPAeJtQzYaMPNzDIluTLXiXe7BZElk90U98qVIFEb4Zu8k962UgjIBONB7OGjZLo8q5RdqOkW_QTjYXiDBZsY4fXFuqUKFsDHAgVdg95SvBZmJvqhxH6tyCxdfk6Zalx6A3j4tZJ84rbZJS-kTV-ydlpASUeDM1IZ489XnSIkJ6owL32AjW5-YEeBN5FWTVmnbNQuqgJKKbZH18uubftpuksu84ngjuJ_U0EgRfW2BIU");'>
-                                    <div
-                                        class="absolute inset-0 bg-background-dark/40 group-hover:bg-transparent transition-colors duration-300">
-                                    </div>
-                                    <div
-                                        class="absolute top-4 right-4 bg-background-dark/80 backdrop-blur-sm p-2 rounded-full border border-primary/30">
-                                        <span class="material-symbols-outlined text-primary">visibility</span>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <h3 class="text-slate-100 text-xl font-bold leading-tight tracking-wide">Next-Gen
-                                        UI/UX</h3>
-                                    <p class="text-slate-400 text-sm font-light leading-relaxed">Creating
-                                        hyper-luxurious, futuristic spatial interfaces that blur the line between
-                                        reality and digital space.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Footer -->
-                    <footer class="mt-20 border-t border-slate-800 flex flex-col gap-6 px-5 py-10 text-center relative">
-                        <!-- Decorative line -->
-                        <div
-                            class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent shadow-[0_0_10px_rgba(0,255,221,0.5)]">
-                        </div>
-                        <div class="flex flex-col md:flex-row items-center justify-between gap-6 w-full">
-                            <div class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-primary">architecture</span>
-                                <span class="text-slate-100 font-bold tracking-widest uppercase">MTHISHA</span>
-                            </div>
-                            <div class="flex flex-wrap items-center justify-center gap-8">
-                                <a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium uppercase tracking-wider"
-                                    href="#">Privacy Protocol</a>
-                                <a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium uppercase tracking-wider"
-                                    href="#">Terms of Service</a>
-                                <a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium uppercase tracking-wider"
-                                    href="#">Security Core</a>
-                            </div>
-                            <p class="text-slate-500 text-xs font-light tracking-widest uppercase">© 2050 MTHISHA.
-                                Secure.</p>
-                        </div>
-                    </footer>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00E5FF">
+  <title>Mathisha Angirasa // MA_Dev Solutions</title>
+  
+  <meta name="description" content="Mathisha Angirasa - Software Engineering Student & Full-Stack Developer at MA_Dev Solutions (Pvt) Ltd, Sri Lanka.">
+  <meta property="og:title" content="Mathisha Angirasa // MA_Dev Solutions">
+  <meta property="og:description" content="Portfolio of Mathisha Angirasa - Builder of systems, WebGL experiences, and MA_Dev Marketplace.">
+  <meta property="og:image" content="https://mathiyass.github.io/MAportfolio/assets/img/og-card.webp">
+  <meta property="og:url" content="https://mathiyass.github.io/MAportfolio/">
+  <meta property="og:type" content="website">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  
+  <style>
+    /* Inline critical styles */
+    .hero { min-height: 100svh; position: relative; overflow: hidden; display: flex; align-items: center; }
+    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
+    .nav--transparent { background: transparent; backdrop-filter: none; border-color: transparent; }
+    .nav--hidden { transform: translateY(-100%); }
+    .nav-center { display: none; }
+    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    .hero-h1 { font-family: var(--font-display); font-size: clamp(44px, 7.5vw, 108px); font-weight: 900; line-height: 0.86; letter-spacing: -0.02em; color: var(--text-0); margin-bottom: var(--s-16); }
+    .hero-h1 span.dual { background: linear-gradient(135deg, var(--cyan), var(--red)); -webkit-background-clip: text; color: transparent; display: inline-block; }
+    .top-badge { position: absolute; top: 90px; left: var(--gutter); }
+    .corner-dec { position: absolute; width: 24px; height: 24px; border: 2px solid var(--cyan-border); opacity: 0.5; pointer-events: none; }
+    .c-tl { top: 80px; left: var(--gutter); border-right: none; border-bottom: none; }
+    .c-tr { top: 80px; right: var(--gutter); border-left: none; border-bottom: none; }
+    .c-bl { bottom: 24px; left: var(--gutter); border-right: none; border-top: none; }
+    .c-br { bottom: 24px; right: var(--gutter); border-left: none; border-top: none; }
     
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-    <script src="assets/js/particles.js"></script>
-    <script src="assets/js/core.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/gesture.js"></script>
-</body>
+    .tech-marquee-wrapper { position: relative; overflow: hidden; white-space: nowrap; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+    .tech-marquee { display: inline-flex; gap: 32px; animation: scrollLeft 40s linear infinite; }
+    .tech-marquee.reverse { animation: scrollRight 50s linear infinite; }
+    .tech-item { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--text-1); }
+    .tech-item svg { width: 20px; height: 20px; fill: currentColor; }
+    .tech-item:hover { color: var(--cyan); }
+    .tech-item:hover svg { filter: drop-shadow(0 0 8px var(--cyan)); }
+    @keyframes scrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes scrollRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 
+    .featured-grid { grid-template-rows: auto auto; }
+    .card-a { grid-column: 1 / 9; height: 400px; }
+    .card-b { grid-column: 9 / 13; height: 400px; }
+    .card-c { grid-column: 1 / 7; height: 280px; }
+    .card-d { grid-column: 7 / 13; height: 280px; }
+    @media (max-width: 1023px) { .card-a, .card-b, .card-c, .card-d { grid-column: 1 / 13; } }
+    
+    .bg-img { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: -1; }
+    .card-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, var(--surface-0) 0%, transparent 100%); z-index: 0; }
+    .card-content { position: relative; z-index: 1; padding: var(--s-32); height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mathisha Angirasa",
+    "jobTitle": "Software Engineering Student",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "MA_Dev Solutions (Pvt) Ltd"
+    },
+    "url": "https://mathiyass.github.io/MAportfolio/"
+  }
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <canvas id="canvas-noise" style="position:fixed; inset:0; z-index:-3; opacity:0.4; pointer-events:none; width:100vw; height:100vh;"></canvas>
+  <canvas id="canvas-hex" style="position:fixed; inset:0; z-index:-2; opacity:0.15; pointer-events:auto; width:100vw; height:100vh; mix-blend-mode: screen;"></canvas>
+  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
+
+  <nav id="navbar" class="nav--transparent" role="navigation" aria-label="Main Navigation">
+    <a href="index.html" class="logo">
+      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+    </a>
+    
+    <div class="nav-center">
+      <a href="index.html" class="nav-link active" aria-current="page">INDEX</a>
+      <a href="projects.html" class="nav-link">PROJECTS</a>
+      <a href="skills.html" class="nav-link">SKILLS</a>
+      <a href="blog.html" class="nav-link">BLOG</a>
+      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
+      <a href="contact.html" class="nav-link">CONTACT</a>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: var(--s-16);">
+      <button class="btn btn--red" style="padding: 8px 16px; height: 36px; border-color: var(--red-border);" onclick="window.location.href='contact.html'">HIRE ME</button>
+      <div id="live-clock" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); width: 80px; text-align: right; display: none;">00:00:00</div>
+      <button class="hamburger" aria-label="Toggle Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" style="display: none; position: fixed; inset: 0; background: var(--void); z-index: 999; flex-direction: column; justify-content: center; align-items: center; gap: 32px;">
+    <!-- Filled via JS if needed, simple implementation below -->
+    <a href="index.html" style="font-family: var(--font-display); font-size: 32px; color: var(--cyan);">INDEX</a>
+    <a href="projects.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">PROJECTS</a>
+    <a href="skills.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">SKILLS</a>
+    <a href="blog.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">BLOG</a>
+    <a href="marketplace.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">MARKETPLACE</a>
+    <a href="contact.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">CONTACT</a>
+  </div>
+
+  <div class="scroll-container">
+    <main id="main" role="main">
+      <section class="hero container">
+        <div class="corner-dec c-tl"></div>
+        <div class="corner-dec c-tr"></div>
+        <div class="corner-dec c-bl"></div>
+        <div class="corner-dec c-br"></div>
+        
+        <div class="top-badge badge" data-reveal>
+          [SYS: ONLINE // LK // MADEV v7.0]<span class="terminal-blink">▋</span>
+        </div>
+
+        <div style="position: absolute; right: -80px; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: var(--font-mono); font-size: 9px; color: var(--text-2); letter-spacing: 0.2em;">EST. 2023 // MA_DEV SOLUTIONS // SRI LANKA</div>
+
+        <div style="width: 100%;">
+          <div class="badge" style="margin-bottom: var(--s-24);" data-reveal data-reveal-dir="left">OPEN TO OPPORTUNITIES</div>
+          
+          <h1 class="hero-h1" id="typewriter-h1" data-reveal data-reveal-clip>MATHISHA ANGIRASA</h1>
+          
+          <div style="font-family: var(--font-mono); font-size: 13px; color: var(--text-1); letter-spacing: 0.22em; margin-bottom: var(--s-48);" data-reveal>
+            <span style="color: var(--white);">SOFTWARE ENGINEER</span> <span style="color: var(--cyan);">//</span> 
+            <span style="color: var(--white);">SRI LANKA</span> <span style="color: var(--cyan);">//</span> 
+            <span style="color: var(--white);">JIAT HHDPII</span> <span style="color: var(--cyan);">//</span> 
+            <span style="color: var(--white);">MA_DEV SOLUTIONS (PVT) LTD</span>
+          </div>
+
+          <div style="display: flex; gap: var(--s-16); flex-wrap: wrap;" class="stagger" data-reveal>
+            <a href="projects.html" class="btn btn--dual">VIEW WORK →</a>
+            <a href="contact.html" class="btn btn--ghost btn--red">CONTACT</a>
+          </div>
+
+          <div style="display: flex; gap: var(--s-32); margin-top: var(--s-32);" class="stagger" data-reveal>
+            <div class="stat-block">
+              <span class="value" id="stat-repos">--</span>
+              <span class="label">REPOS</span>
+            </div>
+            <div style="width: 1px; background: var(--cyan-border);"></div>
+            <div class="stat-block">
+              <span class="value" id="stat-stars">--</span>
+              <span class="label">STARS</span>
+            </div>
+            <div style="width: 1px; background: var(--cyan-border);"></div>
+            <div class="stat-block">
+              <span class="value" id="stat-followers">--</span>
+              <span class="label">FOLLOWERS</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="scroll-ind" style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px;">
+          <span style="font-family: var(--font-mono); font-size: 10px; color: var(--text-2); letter-spacing: 0.4em; writing-mode: vertical-rl;">SCROLL</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" class="float"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </section>
+
+      <section class="section container">
+        <div class="section-label" data-reveal>[ 01 ] SELECTED WORK</div>
+        <div class="grid-12 featured-grid stagger">
+          
+          <a href="marketplace.html" class="card card-a" data-reveal data-reveal-dir="left">
+            <div class="bg-img" style="background-image: url('assets/img/project-marketplace.webp');"></div>
+            <div class="card-overlay"></div>
+            <canvas id="holo-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0; pointer-events: none; transition: opacity 0.3s;"></canvas>
+            <div class="card-content" style="width: 60%;">
+              <h2 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 8px;">MA_Dev Marketplace</h2>
+              <p style="color: var(--text-1); margin-bottom: 16px;">Flagship product. Steam for developers.</p>
+              <div style="display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;">
+                <span class="tag">KOTLIN</span><span class="tag">SUPABASE</span><span class="tag">FIREBASE</span><span class="tag">ANDROID</span>
+              </div>
+              <div style="display: flex; gap: 24px; margin-bottom: 24px;">
+                <div class="stat-block"><span class="value" style="font-size: 32px;" id="count-assets">0</span><span class="label">ASSETS</span></div>
+                <div class="stat-block"><span class="value" style="font-size: 32px;" id="count-devs">0</span><span class="label">DEVS</span></div>
+                <div class="stat-block"><span class="value" style="font-size: 32px;" id="count-builds">0</span><span class="label">BUILDS</span></div>
+              </div>
+              <div><span class="btn btn--ghost" style="padding: 8px 16px;">OPEN PROJECT →</span></div>
+            </div>
+          </a>
+
+          <a href="projects.html" class="card card-b" data-reveal data-reveal-dir="right">
+            <div class="bg-img" style="background-image: url('assets/img/project-game.webp');"></div>
+            <div class="card-overlay" style="background: linear-gradient(180deg, transparent 0%, var(--surface-0) 100%);"></div>
+            <div class="card-content">
+              <h2 style="font-family: var(--font-display); font-size: 24px;">Killer Quebes</h2>
+              <p style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">3D Survival Shooter built with TL-Engine</p>
+              <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                <span class="tag">C++</span><span class="tag">TL-ENGINE</span>
+              </div>
+              <div><span class="btn btn--ghost" style="padding: 8px 16px;">VIEW →</span></div>
+            </div>
+          </a>
+
+          <a href="about.html" class="card card-c" data-reveal data-reveal-dir="left">
+            <div class="card-content">
+              <h2 style="font-family: var(--font-display); font-size: 24px;">MAportfolio v7.0</h2>
+              <p style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">The terminal you are browsing right now.</p>
+              <div style="display: flex; gap: 8px;">
+                <span class="tag">WEBGL2</span><span class="tag">VANILLA JS</span><span class="tag">12 SHADERS</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="resume.html" class="card card-d card--red" data-reveal data-reveal-dir="right">
+            <div class="card-content">
+              <h2 style="font-family: var(--font-display); font-size: 24px;">JIAT / HHDPII</h2>
+              <p style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">Academic Coursework & Assignments</p>
+              <div style="display: flex; gap: 8px;">
+                <span class="tag tag--red">JAVA</span><span class="tag tag--red">SPRING</span><span class="tag tag--red">ALGORITHMS</span>
+              </div>
+            </div>
+          </a>
+
+        </div>
+        <div style="text-align: center; margin-top: var(--s-48);" data-reveal>
+          <a href="projects.html" class="btn btn--ghost">ALL PROJECTS →</a>
+        </div>
+      </section>
+
+      <section class="section" style="overflow: hidden; border-top: 1px solid var(--cyan-border); border-bottom: 1px solid var(--cyan-border); background: var(--surface-1);">
+        <div class="container">
+          <div class="section-label" data-reveal>[ 02 ] TECHNOLOGY STACK</div>
+        </div>
+        <div class="tech-marquee-wrapper" style="margin-bottom: 24px;" data-reveal>
+          <div class="tech-marquee">
+            <div class="tech-marquee">
+              <!-- Replicated twice for seamless loop -->
+              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Kotlin</span>
+              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Python</span>
+              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> C++</span>
+              <span class="tech-item"><svg><path d="M2 12l10-10 10 10-10 10z"/></svg> JavaScript</span>
+              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Android SDK</span>
+              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Supabase</span>
+              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Firebase</span>
+              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> PostgreSQL</span>
+              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> WebGL2</span>
+              <!-- Repeat for loop -->
+              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Kotlin</span>
+              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Python</span>
+              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> C++</span>
+              <span class="tech-item"><svg><path d="M2 12l10-10 10 10-10 10z"/></svg> JavaScript</span>
+              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Android SDK</span>
+              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Supabase</span>
+              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Firebase</span>
+              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> PostgreSQL</span>
+              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> WebGL2</span>
+            </div>
+          </div>
+        </div>
+        <div class="tech-marquee-wrapper" data-reveal>
+          <div class="tech-marquee reverse">
+            <div class="tech-marquee reverse">
+              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Docker</span>
+              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> GitHub Actions</span>
+              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> TL-Engine</span>
+              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Figma</span>
+              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Playwright</span>
+              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> WebXR</span>
+              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> REST APIs</span>
+              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Linux</span>
+              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Git</span>
+              <!-- Repeat -->
+              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Docker</span>
+              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> GitHub Actions</span>
+              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> TL-Engine</span>
+              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Figma</span>
+              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Playwright</span>
+              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> WebXR</span>
+              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> REST APIs</span>
+              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Linux</span>
+              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Git</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container">
+        <div class="card" style="padding: 48px; border-radius: 0;" data-reveal>
+          <div class="grid-12" style="text-align: center;">
+            <div class="stat-block" style="grid-column: span 4;">
+              <span class="value" id="gh-repos">--</span>
+              <span class="label">REPOS</span>
+            </div>
+            <div class="stat-block" style="grid-column: span 4;">
+              <span class="value" id="gh-stars">--</span>
+              <span class="label">STARS</span>
+            </div>
+            <div class="stat-block" style="grid-column: span 4;">
+              <span class="value" id="gh-followers">--</span>
+              <span class="label">FOLLOWERS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden;">
+        <canvas id="footer-circuit" style="position: absolute; top: 0; left: 0; width: 100%; height: 80px; opacity: 0.2; pointer-events: none; z-index: 0;"></canvas>
+        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
+          <div class="grid-12">
+            <div style="grid-column: span 4;">
+              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
+              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
+            </div>
+            <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 8px;">
+              <a href="index.html" class="nav-link" style="align-self: flex-start;">INDEX</a>
+              <a href="projects.html" class="nav-link" style="align-self: flex-start;">PROJECTS</a>
+              <a href="about.html" class="nav-link" style="align-self: flex-start;">ABOUT</a>
+              <a href="contact.html" class="nav-link" style="align-self: flex-start;">CONTACT</a>
+            </div>
+            <div style="grid-column: span 4; display: flex; gap: 16px; align-items: flex-start; justify-content: flex-end;">
+              <a href="https://github.com/Mathiyass" target="_blank" aria-label="GitHub" class="glow-cyan" style="color: var(--cyan);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+              <a href="#" aria-label="LinkedIn" class="glow-cyan" style="color: var(--cyan);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div style="margin-top: 64px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--text-2);">
+            <span>© 2026 Mathisha Angirasa — MA_Dev Solutions (Pvt) Ltd</span>
+            <span>BUILT WITH RAW WEBGL2 + VANILLA JS // ZERO FRAMEWORKS</span>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script type="module">
+    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+    import { SHADER_01_HEXGRID, SHADER_02_NOISE_FIELD, SHADER_03_CIRCUIT, SHADER_08_GLITCH } from './assets/js/engine/shaders.js';
+    import { CustomCursor } from './assets/js/core/Cursor.js';
+    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+    import { TypeWriter } from './assets/js/core/TypeWriter.js';
+    import { CountUp } from './assets/js/core/CountUp.js';
+    import { GitHubStats } from './assets/js/core/GitHubStats.js';
+    import { AudioSystem } from './assets/js/core/Audio.js';
+    import { ProgressBar } from './assets/js/core/ProgressBar.js';
+    import { PageTransitions } from './assets/js/core/PageTransitions.js';
+    import { Konami } from './assets/js/core/Konami.js';
+    import { MatrixRain } from './assets/js/core/MatrixRain.js';
+    import { toast } from './assets/js/core/Toast.js';
+    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+    import { LazyLoad } from './assets/js/core/LazyLoad.js';
+    import { $ } from './assets/js/utils/dom.js';
+
+    // Init Theme
+    new ThemeSystem();
+    
+    // Engine & Shaders
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (!isReduced) {
+      // Noise bg
+      const cNoise = document.getElementById('canvas-noise');
+      const eNoise = new WebGLEngine(cNoise);
+      eNoise.compileProgram('noise', SHADER_02_NOISE_FIELD.vert, SHADER_02_NOISE_FIELD.frag);
+      eNoise.createFullscreenQuad('fullscreen');
+      eNoise.render('noise');
+
+      // Hex grid
+      const cHex = document.getElementById('canvas-hex');
+      const eHex = new WebGLEngine(cHex);
+      eHex.compileProgram('hex', SHADER_01_HEXGRID.vert, SHADER_01_HEXGRID.frag);
+      eHex.createFullscreenQuad('fullscreen');
+      eHex.render('hex');
+
+      // Footer circuit
+      const cCirc = document.getElementById('footer-circuit');
+      const eCirc = new WebGLEngine(cCirc);
+      eCirc.compileProgram('circ', SHADER_03_CIRCUIT.vert, SHADER_03_CIRCUIT.frag);
+      eCirc.createFullscreenQuad('fullscreen');
+      eCirc.render('circ');
+      
+      // Easter Egg 04: Hero Click Burst
+      cHex.addEventListener('click', (e) => {
+        // Mock burst logic, ideally implemented in webgl or canvas2d overlay
+        toast('BURST DEPLOYED', 'info', 1000);
+      });
+    }
+
+    // Core modules
+    const cursor = new CustomCursor();
+    new SmoothScroll();
+    new ScrollReveal();
+    new LazyLoad();
+    
+    const h1Phrases = ["MATHISHA ANGIRASA", "FULL-STACK ENGINEER", "MA_DEV SOLUTIONS", "SYSTEMS BUILDER"];
+    const h1El = document.getElementById('typewriter-h1');
+    new TypeWriter(h1El, h1Phrases);
+
+    h1El.addEventListener('tw:switch', () => {
+      // Highlight dual words
+      const text = h1El.textContent;
+      const words = text.split(' ');
+      if (words.length > 1) {
+        words[0] = `<span class="dual">${words[0]}</span>`;
+        words[words.length - 1] = `<span class="dual">${words[words.length - 1]}</span>`;
+      } else {
+        words[0] = `<span class="dual">${words[0]}</span>`;
+      }
+      h1El.innerHTML = words.join(' ') + '<span class="terminal-blink">█</span>';
+    });
+
+    const ghStats = new GitHubStats();
+    ghStats.getStats().then(stats => {
+      document.getElementById('stat-repos').textContent = stats.publicRepos;
+      document.getElementById('stat-stars').textContent = stats.totalStars;
+      document.getElementById('stat-followers').textContent = stats.followers;
+
+      document.getElementById('gh-repos').textContent = stats.publicRepos;
+      document.getElementById('gh-stars').textContent = stats.totalStars;
+      document.getElementById('gh-followers').textContent = stats.followers;
+
+      new CountUp(document.getElementById('gh-repos'), stats.publicRepos);
+      new CountUp(document.getElementById('gh-stars'), stats.totalStars);
+      new CountUp(document.getElementById('gh-followers'), stats.followers);
+    });
+
+    // Mock countups for project card
+    new CountUp(document.getElementById('count-assets'), 450);
+    new CountUp(document.getElementById('count-devs'), 1200);
+    new CountUp(document.getElementById('count-builds'), 89);
+
+    new AudioSystem();
+    new ProgressBar();
+    new PageTransitions();
+    
+    const matrix = new MatrixRain();
+    const konami = new Konami();
+
+    window.addEventListener('konami', () => {
+      matrix.setMode('dual');
+      matrix.setOpacity(0.8);
+      toast("SIGNAL COMPROMISED — MATRIX MODE ENGAGED", 'error', 3000);
+      document.title = ">>> SIGNAL OVERRIDE <<<";
+      setTimeout(() => {
+        matrix.setOpacity(0.04);
+        document.title = "Mathisha Angirasa // MA_Dev Solutions";
+      }, 3000);
+    });
+
+    window.addEventListener('madev-code', () => {
+      toast("CREDENTIALS VERIFIED", 'success');
+      document.title = ">>> MA_DEV SOLUTIONS <<<";
+      setTimeout(() => document.title = "Mathisha Angirasa // MA_Dev Solutions", 3000);
+    });
+
+    window.addEventListener('sudo-code', () => {
+      console.log("%c ███╗   ███╗ █████╗      ██████╗ ███████╗██╗   ██╗\n%c ████╗ ████║██╔══██╗     ██╔══██╗██╔════╝██║   ██║\n%c ██╔████╔██║███████║     ██║  ██║█████╗  ██║   ██║\n%c ██║╚██╔╝██║██╔══██║     ██║  ██║██╔══╝  ╚██╗ ██╔╝\n%c ██║ ╚═╝ ██║██║  ██║     ██████╔╝███████╗ ╚████╔╝\n%c ╚═╝     ╚═╝╚═╝  ╚═╝     ╚═════╝ ╚══════╝  ╚═══╝", "color:#00E5FF", "color:#00E5FF", "color:#00E5FF", "color:#00E5FF", "color:#00E5FF", "color:#00E5FF");
+      console.log("Hey developer 👾 → github.com/Mathiyass");
+      toast("SUDO MODE UNLOCKED", 'success');
+    });
+
+    // Nav logic
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) nav.classList.remove('nav--transparent');
+      else nav.classList.add('nav--transparent');
+      
+      if (window.scrollY > 120 && window.__scrollDir === 1) nav.classList.add('nav--hidden');
+      else nav.classList.remove('nav--hidden');
+    });
+
+    window.addEventListener('scroll:progress', e => window.__scrollDir = e.detail.direction);
+
+    // Live clock
+    const clock = document.getElementById('live-clock');
+    clock.style.display = 'block';
+    setInterval(() => {
+      const d = new Date();
+      clock.textContent = d.toLocaleTimeString('en-US', { hour12: false });
+    }, 1000);
+
+    // Easter Egg 05: Cursor color cycle
+    setTimeout(() => { cursor.setMode('red'); toast('SIGNAL WARMING UP', 'info', 2000); }, 45000);
+    setTimeout(() => { cursor.setMode('dual'); }, 90000);
+    setTimeout(() => { cursor.setMode('cyan'); }, 180000);
+    
+    // Idle screensaver
+    let idleTimer;
+    const resetIdle = () => {
+      clearTimeout(idleTimer);
+      if (matrix.active) {
+        matrix.stop();
+        document.title = "Mathisha Angirasa // MA_Dev Solutions";
+      }
+      idleTimer = setTimeout(() => {
+        matrix.start();
+        matrix.setOpacity(0.25);
+        document.title = "[ IDLE // MA_DEV PORTAL ]";
+      }, 60000);
+    };
+    window.addEventListener('mousemove', resetIdle);
+    window.addEventListener('keydown', resetIdle);
+    resetIdle();
+
+    window.sudo = (cmd) => {
+      if (cmd === 'stats') ghStats.getStats().then(console.table);
+      else if (cmd === 'hire') window.location.href = 'contact.html';
+      else if (cmd === 'konami') window.dispatchEvent(new CustomEvent('konami'));
+      else if (cmd === 'matrix') { matrix.start(); matrix.setOpacity(1.0); setTimeout(()=>matrix.stop(), 10000); }
+      else if (cmd === 'help') console.table({ stats: 'Show stats', hire: 'Contact', konami: 'Trigger Konami', matrix: 'Matrix mode', signal: 'Swap colors', whereami: 'Location' });
+      else if (cmd === 'whereami') console.log("MA_Dev Portfolio // mathiyass.github.io // Sri Lanka");
+      else if (cmd === 'signal') { document.documentElement.dataset.theme = 'red'; setTimeout(()=>document.documentElement.dataset.theme = 'dual', 3000); }
+    };
+  </script>
+</body>
 </html>
