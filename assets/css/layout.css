@@ -1,0 +1,60 @@
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: var(--gutter);
+}
+
+.section {
+  padding: var(--s-128) 0;
+  position: relative;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--s-48);
+}
+
+.section-label::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1px;
+  background-color: var(--cyan);
+  margin-right: var(--s-16);
+}
+
+.bg-grid {
+  background-image: 
+    repeating-linear-gradient(
+      to right, 
+      var(--grid-line) 0, 
+      var(--grid-line) 1px,
+      transparent 1px, 
+      transparent 40px
+    ),
+    repeating-linear-gradient(
+      to bottom, 
+      var(--grid-line) 0, 
+      var(--grid-line) 1px,
+      transparent 1px, 
+      transparent 40px
+    );
+}
+
+.scroll-container {
+  position: relative;
+  width: 100%;
+}
