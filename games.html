@@ -1,117 +1,388 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MTHISHA Games Archive Void</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#00ffdd",
-                        "background-light": "#f5f8f8",
-                        "background-dark": "#000000",
-                    },
-                    fontFamily: {
-                        "display": ["Space Grotesk"]
-                    },
-                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
-                },
-            },
-        }
-    </script>
-<link rel="stylesheet" href="assets/css/index.css">
+<html lang="en" data-theme="dual">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00E5FF">
+  <title>Games // Mathisha Angirasa</title>
+  
+  <meta name="description" content="MA_Dev Games - Playable terminal snake">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  
+  <style>
+    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
+    .nav-center { display: none; }
+    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    
+    .game-container { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 600px; margin: 0 auto; }
+    .game-header { display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 24px; }
+    
+    .score-display { font-family: var(--font-stat); font-size: 48px; color: var(--cyan); line-height: 1; transition: color 0.3s; }
+    .score-display.gold { color: #FFD700; text-shadow: 0 0 16px rgba(255,215,0,0.5); }
+    
+    .canvas-wrapper { position: relative; width: 100%; max-width: 600px; aspect-ratio: 1 / 1; border: 1px solid var(--cyan-border); background: var(--void); overflow: hidden; box-shadow: var(--glow-cyan); }
+    .canvas-wrapper.game-over { animation: glitchH 1.5s step-end; border-color: var(--red); box-shadow: var(--glow-red); }
+    
+    #snake-canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+    
+    .game-overlay { position: absolute; inset: 0; background: rgba(3,3,10,0.8); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; font-family: var(--font-mono); text-align: center; }
+    .game-overlay.hidden { display: none; }
+    
+    .d-pad { display: none; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; width: 200px; }
+    @media (pointer: coarse) { .d-pad { display: grid; } }
+    .d-btn { width: 60px; height: 60px; border: 1px solid var(--cyan-border); background: var(--surface-1); display: flex; align-items: center; justify-content: center; color: var(--cyan); transition: all 0.1s; border-radius: 0; }
+    .d-btn:active { background: var(--cyan); color: var(--void); box-shadow: var(--glow-cyan); }
+    .d-up { grid-column: 2; grid-row: 1; }
+    .d-left { grid-column: 1; grid-row: 2; }
+    .d-down { grid-column: 2; grid-row: 2; }
+    .d-right { grid-column: 3; grid-row: 2; }
+  </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen">
-<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
-<div class="layout-container flex h-full grow flex-col">
-<div class="px-40 flex flex-1 justify-center py-5">
-<div class="layout-content-container flex flex-col max-w-[1200px] flex-1">
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 px-10 py-5">
-<div class="flex items-center gap-4 text-primary">
-<div class="size-6">
-<span class="material-symbols-outlined text-[24px]">hexagon</span>
-</div>
-<h2 class="text-primary text-2xl font-bold leading-tight tracking-[0.1em] uppercase">MTHISHA</h2>
-</div>
-<div class="flex flex-1 justify-end gap-12">
-<div class="flex items-center gap-10">
-<a class="text-primary text-sm font-medium leading-normal tracking-widest hover:text-white transition-colors" href="#">GAMES ARCHIVE</a>
-<a class="text-slate-400 hover:text-primary text-sm font-medium leading-normal tracking-widest transition-colors" href="#">PROJECTS</a>
-<a class="text-slate-400 hover:text-primary text-sm font-medium leading-normal tracking-widest transition-colors" href="#">ABOUT</a>
-<a class="text-slate-400 hover:text-primary text-sm font-medium leading-normal tracking-widest transition-colors" href="#">CONTACT</a>
-</div>
-<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded h-10 bg-primary/10 hover:bg-primary/20 text-primary gap-2 text-sm font-bold leading-normal tracking-[0.1em] px-4 border border-primary/30 transition-all">
-<span class="material-symbols-outlined text-[20px]">grid_view</span>
-</button>
-</div>
-</header>
-<div class="px-10 py-10 flex justify-between items-center">
-<h2 class="text-white text-5xl font-bold leading-tight tracking-[-0.02em]">Interactive Games Archive</h2>
-<label class="flex flex-col min-w-[300px] h-12">
-<div class="flex w-full flex-1 items-stretch rounded-full h-full border border-primary/30 bg-primary/5 backdrop-blur-md">
-<div class="text-primary flex items-center justify-center pl-4 pr-2">
-<span class="material-symbols-outlined text-[24px]">search</span>
-</div>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full text-white focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-primary/50 px-2 text-sm font-medium leading-normal tracking-wide" placeholder="Search Everything..." value=""/>
-</div>
-</label>
-</div>
-<div class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8 p-10">
-<div class="group relative flex flex-col justify-end p-8 aspect-[4/5] rounded-xl overflow-hidden border border-primary/20 hover:border-primary/60 bg-gradient-to-t from-black via-black/50 to-transparent backdrop-blur-sm transition-all duration-500" data-alt="Abstract dark cyberpunk neon grid">
-<div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors duration-500"></div>
-<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500" style="background-image: radial-gradient(circle at 50% 0%, #00ffdd 0%, transparent 70%);"></div>
-<h3 class="relative text-white text-3xl font-bold leading-tight mb-2 tracking-tight group-hover:text-primary transition-colors">Neon Abyss</h3>
-<p class="relative text-slate-400 text-sm font-medium tracking-wide">CYBERPUNK ROGUELIKE</p>
-</div>
-<div class="group relative flex flex-col justify-end p-8 aspect-[4/5] rounded-xl overflow-hidden border border-[#dc143c]/20 hover:border-[#dc143c]/60 bg-gradient-to-t from-black via-black/50 to-transparent backdrop-blur-sm transition-all duration-500" data-alt="Dark red glowing nebula">
-<div class="absolute inset-0 bg-[#dc143c]/5 group-hover:bg-[#dc143c]/10 transition-colors duration-500"></div>
-<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500" style="background-image: radial-gradient(circle at 50% 0%, #dc143c 0%, transparent 70%);"></div>
-<h3 class="relative text-white text-3xl font-bold leading-tight mb-2 tracking-tight group-hover:text-[#dc143c] transition-colors">Crimson Void</h3>
-<p class="relative text-slate-400 text-sm font-medium tracking-wide">SPACE HORROR SURVIVAL</p>
-</div>
-<div class="group relative flex flex-col justify-end p-8 aspect-[4/5] rounded-xl overflow-hidden border border-primary/20 hover:border-primary/60 bg-gradient-to-t from-black via-black/50 to-transparent backdrop-blur-sm transition-all duration-500" data-alt="Abstract geometric quantum field">
-<div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors duration-500"></div>
-<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500" style="background-image: radial-gradient(circle at 50% 0%, #00ffdd 0%, transparent 70%);"></div>
-<h3 class="relative text-white text-3xl font-bold leading-tight mb-2 tracking-tight group-hover:text-primary transition-colors">Quantum Rift</h3>
-<p class="relative text-slate-400 text-sm font-medium tracking-wide">PUZZLE PLATFORMER</p>
-</div>
-<div class="group relative flex flex-col justify-end p-8 aspect-[4/5] rounded-xl overflow-hidden border border-[#dc143c]/20 hover:border-[#dc143c]/60 bg-gradient-to-t from-black via-black/50 to-transparent backdrop-blur-sm transition-all duration-500" data-alt="Digital pulse energy waves">
-<div class="absolute inset-0 bg-[#dc143c]/5 group-hover:bg-[#dc143c]/10 transition-colors duration-500"></div>
-<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500" style="background-image: radial-gradient(circle at 50% 0%, #dc143c 0%, transparent 70%);"></div>
-<h3 class="relative text-white text-3xl font-bold leading-tight mb-2 tracking-tight group-hover:text-[#dc143c] transition-colors">Cyber Pulse</h3>
-<p class="relative text-slate-400 text-sm font-medium tracking-wide">RHYTHM ACTION</p>
-</div>
-<div class="group relative flex flex-col justify-end p-8 aspect-[4/5] rounded-xl overflow-hidden border border-primary/20 hover:border-primary/60 bg-gradient-to-t from-black via-black/50 to-transparent backdrop-blur-sm transition-all duration-500" data-alt="Glowing echoing data cores">
-<div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors duration-500"></div>
-<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500" style="background-image: radial-gradient(circle at 50% 0%, #00ffdd 0%, transparent 70%);"></div>
-<h3 class="relative text-white text-3xl font-bold leading-tight mb-2 tracking-tight group-hover:text-primary transition-colors">Echo Core</h3>
-<p class="relative text-slate-400 text-sm font-medium tracking-wide">METROIDVANIA</p>
-</div>
-<div class="group relative flex flex-col justify-end p-8 aspect-[4/5] rounded-xl overflow-hidden border border-[#dc143c]/20 hover:border-[#dc143c]/60 bg-gradient-to-t from-black via-black/50 to-transparent backdrop-blur-sm transition-all duration-500" data-alt="Deep space stellar drift">
-<div class="absolute inset-0 bg-[#dc143c]/5 group-hover:bg-[#dc143c]/10 transition-colors duration-500"></div>
-<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500" style="background-image: radial-gradient(circle at 50% 0%, #dc143c 0%, transparent 70%);"></div>
-<h3 class="relative text-white text-3xl font-bold leading-tight mb-2 tracking-tight group-hover:text-[#dc143c] transition-colors">Stellar Drift</h3>
-<p class="relative text-slate-400 text-sm font-medium tracking-wide">RACING SIMULATOR</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
 
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <nav id="navbar" role="navigation">
+    <a href="index.html" class="logo">
+      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+    </a>
+    
+    <div class="nav-center">
+      <a href="index.html" class="nav-link">INDEX</a>
+      <a href="projects.html" class="nav-link">PROJECTS</a>
+      <a href="skills.html" class="nav-link">SKILLS</a>
+      <a href="blog.html" class="nav-link">BLOG</a>
+      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
+      <a href="contact.html" class="nav-link">CONTACT</a>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-    <script src="assets/js/particles.js"></script>
-    <script src="assets/js/core.js"></script>
-<script src="assets/js/main.js"></script>
-    <script src="assets/js/gesture.js"></script>
-</body></html>
+    <div style="display: flex; align-items: center; gap: var(--s-16);">
+      <button class="btn btn--red" style="padding: 8px 16px; height: 36px; border-color: var(--red-border);" onclick="window.location.href='contact.html'">HIRE ME</button>
+      <button class="hamburger" aria-label="Toggle Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="scroll-container">
+    <main id="main" role="main" style="padding-top: 120px;">
+      
+      <section class="container" style="text-align: center; margin-bottom: 48px;">
+        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px);" data-reveal data-reveal-clip>SNAKE <span style="color: var(--cyan);">//</span> TERMINAL</h1>
+      </section>
+
+      <section class="container" data-reveal>
+        <div class="game-container">
+          <div class="game-header">
+            <div style="font-family: var(--font-mono); font-size: 14px; color: var(--text-1);">HIGH SCORE: <span id="hi-score" style="color: var(--cyan);">0</span></div>
+            <div class="score-display" id="score">0</div>
+          </div>
+          
+          <div class="canvas-wrapper" id="game-wrapper">
+            <canvas id="snake-canvas" width="600" height="600"></canvas>
+            
+            <div class="game-overlay" id="overlay-start">
+              <h2 style="font-family: var(--font-display); font-size: 32px; color: var(--cyan); margin-bottom: 16px;">READY</h2>
+              <p style="color: var(--text-1); margin-bottom: 24px; font-size: 12px;">USE ARROWS TO MOVE. ENTER TO START.</p>
+              <button class="btn" id="btn-start">START PROTOCOL</button>
+            </div>
+
+            <div class="game-overlay hidden" id="overlay-over">
+              <h2 style="font-family: var(--font-display); font-size: 32px; color: var(--red); margin-bottom: 16px;">PROCESS TERMINATED</h2>
+              <p style="color: var(--text-1); margin-bottom: 24px; font-size: 12px;">COLLISION DETECTED.</p>
+              <button class="btn btn--red" id="btn-restart">REBOOT</button>
+            </div>
+          </div>
+
+          <div class="d-pad">
+            <button class="d-btn d-up" data-dir="up"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+            <button class="d-btn d-left" data-dir="left"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+            <button class="d-btn d-down" data-dir="down"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button>
+            <button class="d-btn d-right" data-dir="right"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </section>
+
+      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden; margin-top: 64px;">
+        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
+          <div class="grid-12">
+            <div style="grid-column: span 4;">
+              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
+              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script type="module">
+    import { CustomCursor } from './assets/js/core/Cursor.js';
+    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+    import { AudioSystem } from './assets/js/core/Audio.js';
+    import { PageTransitions } from './assets/js/core/PageTransitions.js';
+    import { Konami } from './assets/js/core/Konami.js';
+    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+    import { toast } from './assets/js/core/Toast.js';
+
+    new ThemeSystem();
+    new CustomCursor();
+    new SmoothScroll();
+    new ScrollReveal();
+    const audioSys = new AudioSystem();
+    new PageTransitions();
+    new Konami();
+
+    // GAME LOGIC
+    const canvas = document.getElementById('snake-canvas');
+    const ctx = canvas.getContext('2d');
+    const gridSize = 20;
+    const tileCount = 30; // 600 / 20
+    
+    let snake = [];
+    let food = { x: 15, y: 15 };
+    let velocity = { x: 0, y: 0 };
+    let nextVelocity = { x: 0, y: 0 };
+    let score = 0;
+    let hiScore = localStorage.getItem('madev_snake_hi') || 0;
+    document.getElementById('hi-score').textContent = hiScore;
+    
+    let state = 'IDLE'; // IDLE, PLAYING, GAME_OVER
+    let rafId = null;
+    let lastRender = 0;
+    let baseSpeed = 100;
+    let currentSpeed = baseSpeed;
+    
+    // Easter Egg 06
+    let secretMode = false;
+    let heatIndex = 0;
+    const heatSeq = ['h','e','a','t'];
+
+    const wrapper = document.getElementById('game-wrapper');
+    const scoreEl = document.getElementById('score');
+    const startOverlay = document.getElementById('overlay-start');
+    const overOverlay = document.getElementById('overlay-over');
+
+    const resetGame = () => {
+      snake = [{ x: 10, y: 10 }, { x: 10, y: 11 }, { x: 10, y: 12 }];
+      velocity = { x: 0, y: -1 };
+      nextVelocity = { x: 0, y: -1 };
+      score = 0;
+      currentSpeed = baseSpeed;
+      updateScore();
+      spawnFood();
+      draw();
+    };
+
+    const updateScore = () => {
+      scoreEl.textContent = score;
+      if (score > 0 && score % 10 === 0) {
+        scoreEl.style.color = (score / 10) % 2 === 0 ? 'var(--cyan)' : 'var(--red)';
+      }
+      if (secretMode) scoreEl.classList.add('gold');
+    };
+
+    const spawnFood = () => {
+      food = {
+        x: Math.floor(Math.random() * tileCount),
+        y: Math.floor(Math.random() * tileCount)
+      };
+      // Check collision with snake
+      for (let s of snake) {
+        if (s.x === food.x && s.y === food.y) spawnFood();
+      }
+    };
+
+    const drawGrid = () => {
+      ctx.strokeStyle = 'rgba(0, 229, 255, 0.04)';
+      ctx.lineWidth = 1;
+      for(let i=0; i<tileCount; i++) {
+        ctx.beginPath();
+        ctx.moveTo(i*gridSize, 0);
+        ctx.lineTo(i*gridSize, canvas.height);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(0, i*gridSize);
+        ctx.lineTo(canvas.width, i*gridSize);
+        ctx.stroke();
+      }
+    };
+
+    const draw = () => {
+      ctx.fillStyle = '#03030A';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      drawGrid();
+
+      // Draw Food
+      const time = performance.now();
+      const pulse = Math.sin(time * 0.005) * 2;
+      ctx.fillStyle = secretMode ? '#00E5FF' : '#FF4D6D';
+      ctx.beginPath();
+      ctx.arc(food.x * gridSize + gridSize/2, food.y * gridSize + gridSize/2, gridSize/2 - 2 + pulse, 0, Math.PI*2);
+      ctx.fill();
+
+      // Draw Snake
+      snake.forEach((segment, i) => {
+        const isHead = i === 0;
+        const alpha = 1.0 - (i / snake.length) * 0.6;
+        
+        if (secretMode) {
+          ctx.fillStyle = \`rgba(255, 77, 109, \${alpha})\`;
+        } else {
+          ctx.fillStyle = \`rgba(0, 229, 255, \${alpha})\`;
+        }
+        
+        ctx.fillRect(segment.x * gridSize + 2, segment.y * gridSize + 2, gridSize - 4, gridSize - 4);
+      });
+    };
+
+    const update = () => {
+      velocity = { ...nextVelocity };
+      
+      const head = { x: snake[0].x + velocity.x, y: snake[0].y + velocity.y };
+
+      // Wall collision
+      if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+        return gameOver();
+      }
+
+      // Self collision
+      for (let i = 0; i < snake.length; i++) {
+        if (head.x === snake[i].x && head.y === snake[i].y) return gameOver();
+      }
+
+      snake.unshift(head);
+
+      // Eat food
+      if (head.x === food.x && head.y === food.y) {
+        score += secretMode ? 2 : 1;
+        updateScore();
+        spawnFood();
+        
+        if (audioSys && audioSys.audioEnabled && audioSys.ctx) {
+          const osc = audioSys.ctx.createOscillator();
+          const gain = audioSys.ctx.createGain();
+          osc.type = 'square';
+          osc.frequency.value = 1200;
+          gain.gain.value = 0.05;
+          osc.connect(gain);
+          gain.connect(audioSys.ctx.destination);
+          osc.start();
+          gain.gain.exponentialRampToValueAtTime(0.00001, audioSys.ctx.currentTime + 0.1);
+          osc.stop(audioSys.ctx.currentTime + 0.1);
+        }
+        
+        wrapper.style.animation = 'snakeEat 0.2s';
+        setTimeout(() => wrapper.style.animation = '', 200);
+
+        if (score % 5 === 0) currentSpeed = Math.max(33, currentSpeed * 0.95);
+      } else {
+        snake.pop();
+      }
+    };
+
+    const loop = (timestamp) => {
+      if (state !== 'PLAYING') return;
+      if (timestamp - lastRender < currentSpeed) {
+        rafId = requestAnimationFrame(loop);
+        return;
+      }
+      lastRender = timestamp;
+      update();
+      if (state === 'PLAYING') draw();
+      rafId = requestAnimationFrame(loop);
+    };
+
+    const startGame = () => {
+      state = 'PLAYING';
+      startOverlay.classList.add('hidden');
+      overOverlay.classList.add('hidden');
+      wrapper.classList.remove('game-over');
+      resetGame();
+      lastRender = performance.now();
+      rafId = requestAnimationFrame(loop);
+    };
+
+    const gameOver = () => {
+      state = 'GAME_OVER';
+      wrapper.classList.add('game-over');
+      overOverlay.classList.remove('hidden');
+      if (score > hiScore) {
+        hiScore = score;
+        localStorage.setItem('madev_snake_hi', hiScore);
+        document.getElementById('hi-score').textContent = hiScore;
+        // Could add particle burst here
+      }
+    };
+
+    // Inputs
+    window.addEventListener('keydown', (e) => {
+      // Secret HEAT mode
+      if (state === 'IDLE' && e.key.toLowerCase() === heatSeq[heatIndex]) {
+        heatIndex++;
+        if (heatIndex === heatSeq.length) {
+          secretMode = true;
+          baseSpeed = 65;
+          toast("HEAT MODE — 2X SCORE", "error", 3000);
+          heatIndex = 0;
+        }
+      } else {
+        heatIndex = 0;
+      }
+
+      if (e.key === 'Enter') {
+        if (state === 'IDLE' || state === 'GAME_OVER') startGame();
+        return;
+      }
+
+      if (state !== 'PLAYING') return;
+      
+      if (e.key === 'ArrowUp' && velocity.y !== 1) nextVelocity = { x: 0, y: -1 };
+      if (e.key === 'ArrowDown' && velocity.y !== -1) nextVelocity = { x: 0, y: 1 };
+      if (e.key === 'ArrowLeft' && velocity.x !== 1) nextVelocity = { x: -1, y: 0 };
+      if (e.key === 'ArrowRight' && velocity.x !== -1) nextVelocity = { x: 1, y: 0 };
+      
+      // Prevent scrolling
+      if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) e.preventDefault();
+    });
+
+    document.getElementById('btn-start').addEventListener('click', startGame);
+    document.getElementById('btn-restart').addEventListener('click', startGame);
+
+    // D-Pad
+    document.querySelectorAll('.d-btn').forEach(btn => {
+      btn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        const dir = btn.dataset.dir;
+        if (dir === 'up' && velocity.y !== 1) nextVelocity = { x: 0, y: -1 };
+        if (dir === 'down' && velocity.y !== -1) nextVelocity = { x: 0, y: 1 };
+        if (dir === 'left' && velocity.x !== 1) nextVelocity = { x: -1, y: 0 };
+        if (dir === 'right' && velocity.x !== -1) nextVelocity = { x: 1, y: 0 };
+      }, { passive: false });
+    });
+
+    resetGame(); // initial draw
+
+    // Konami
+    window.addEventListener('konami', () => {
+      secretMode = true;
+      baseSpeed = 50;
+      currentSpeed = 50;
+      toast("HEAT MODE ENGAGED", 'error', 3000);
+    });
+
+  </script>
+</body>
+</html>
