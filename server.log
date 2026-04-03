@@ -1,0 +1,15 @@
+ INFO  Accepting connections at http://localhost:3000
+ HTTP  4/3/2026 11:35:44 AM ::1 GET /contact.html
+ HTTP  4/3/2026 11:35:44 AM ::1 Returned 301 in 339 ms
+ HTTP  4/3/2026 11:35:45 AM ::1 GET /contact
+ HTTP  4/3/2026 11:35:45 AM ::1 Returned 200 in 17 ms
+ HTTP  4/3/2026 11:35:45 AM ::1 GET /assets/css/index.css
+ HTTP  4/3/2026 11:35:45 AM ::1 Returned 200 in 4 ms
+ HTTP  4/3/2026 11:35:45 AM ::1 GET /assets/js/particles.js
+ HTTP  4/3/2026 11:35:45 AM ::1 GET /assets/js/core.js
+ HTTP  4/3/2026 11:35:45 AM ::1 GET /assets/js/main.js
+ HTTP  4/3/2026 11:35:45 AM ::1 GET /assets/js/gesture.js
+ HTTP  4/3/2026 11:35:45 AM ::1 Returned 200 in 17 ms
+ HTTP  4/3/2026 11:35:45 AM ::1 Returned 200 in 16 ms
+ HTTP  4/3/2026 11:35:45 AM ::1 Returned 200 in 16 ms
+ HTTP  4/3/2026 11:35:45 AM ::1 Returned 200 in 15 ms
