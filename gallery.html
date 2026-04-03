@@ -1,326 +1,236 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="en" data-theme="dual">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery | MTHISHA</title>
-    <meta name="description"
-        content="Explore Mthisha's visual gallery featuring personal photos, gaming screenshots, and creative design work.">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300FFDE'>M</text></svg>">
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
-
-    <style>
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            font-size: 2rem;
-            padding: 1rem;
-            cursor: pointer;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .lightbox-nav:hover {
-            background: rgba(0, 255, 222, 0.3);
-        }
-
-        .lightbox-prev {
-            left: -80px;
-        }
-
-        .lightbox-next {
-            right: -80px;
-        }
-
-        /* Filter Buttons */
-        .filter-btn {
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn.active {
-            background: linear-gradient(135deg, #00FFDE, #FF3366);
-            color: #0a0a0a;
-            box-shadow: 0 0 20px rgba(0, 255, 222, 0.4);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
-
-        /* Scroll Progress */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, #00FFDE, #FF3366);
-            z-index: 9999;
-            transition: width 0.3s ease;
-        }
-    </style>
-<link rel="stylesheet" href="assets/css/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00E5FF">
+  <title>Gallery // Mathisha Angirasa</title>
+  
+  <meta name="description" content="Visual Gallery and Designs by Mathisha Angirasa">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  
+  <style>
+    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
+    .nav-center { display: none; }
+    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    
+    .filter-bar { display: flex; gap: 16px; margin-bottom: 48px; flex-wrap: wrap; }
+    .filter-btn { font-family: var(--font-mono); font-size: 12px; color: var(--text-1); border: 1px solid var(--cyan-border); padding: 8px 16px; cursor: pointer; transition: all var(--dur-fast); background: var(--surface-1); }
+    .filter-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+    .filter-btn.active { border-color: var(--cyan); color: var(--cyan); box-shadow: var(--glow-cyan); background: rgba(0,229,255,0.1); }
+    
+    .masonry-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); grid-auto-rows: 10px; gap: 0 24px; }
+    .g-item { position: relative; margin-bottom: 24px; cursor: pointer; border: 1px solid var(--cyan-border); overflow: hidden; background: var(--surface-1); }
+    .g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-expo); }
+    .g-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, var(--void) 0%, transparent 50%, rgba(0,229,255,0.1) 100%); opacity: 0; transition: opacity 0.3s; z-index: 1; display: flex; align-items: flex-end; padding: 24px; }
+    .g-caption { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); text-transform: uppercase; transform: translateY(20px); opacity: 0; transition: all 0.3s var(--ease-expo); text-shadow: 0 0 8px rgba(0,229,255,0.5); }
+    
+    .g-item:hover img { transform: scale(1.05); }
+    .g-item:hover .g-overlay { opacity: 1; }
+    .g-item:hover .g-caption { transform: translateY(0); opacity: 1; }
+    
+    .lightbox { position: fixed; inset: 0; background: rgba(3,3,10,0.95); backdrop-filter: blur(8px); z-index: 10000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+    .lightbox.active { display: flex; opacity: 1; }
+    .lb-img { max-width: 90vw; max-height: 85vh; object-fit: contain; border: 1px solid var(--cyan-border); box-shadow: var(--glow-cyan); }
+    .lb-caption { position: absolute; bottom: 24px; font-family: var(--font-mono); font-size: 14px; color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase; }
+    
+    .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--cyan-border); color: var(--cyan); cursor: pointer; transition: all 0.2s; }
+    .lb-nav:hover { background: var(--cyan); color: var(--void); box-shadow: var(--glow-cyan); }
+    .lb-prev { left: 24px; }
+    .lb-next { right: 24px; }
+    .lb-close { position: absolute; top: 24px; right: 24px; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--red-border); color: var(--red); cursor: pointer; transition: all 0.2s; z-index: 10001; }
+    .lb-close:hover { background: var(--red); color: var(--void); box-shadow: var(--glow-red); }
+  </style>
 </head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
 
-<body class="dark text-white">
-    <!-- Custom Cursor -->
-    <div class="custom-cursor" id="custom-cursor"></div>
-    <div class="cursor-dot" id="cursor-dot"></div>
-
-    <!-- Scroll Progress -->
-    <div class="scroll-progress" id="scroll-progress"></div>
-
-    <!-- Navigation (Injected by JS) -->
-    <div id="navbar-container"></div>
-
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 relative overflow-hidden">
-        <!-- Background Elements -->
-        <div class="absolute inset-0">
-            <div class="absolute top-20 left-10 w-64 h-64 bg-cyber-cyan opacity-10 rounded-full blur-3xl animate-float">
-            </div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyber-red opacity-10 rounded-full blur-3xl animate-float"
-                style="animation-delay: -3s;"></div>
-            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-neon-pink opacity-5 rounded-full blur-3xl animate-float"
-                style="animation-delay: -1.5s;"></div>
-        </div>
-
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold font-orbitron mb-6 gradient-text" data-aos="fade-up">
-                Visual Gallery
-            </h1>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                A collection of personal moments, gaming achievements, and creative work
-            </p>
-        </div>
-    </section>
-
-    <!-- Filter Section -->
-    <section class="py-10">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
-                <button
-                    class="filter-btn px-6 py-3 rounded-full border-2 border-cyber-cyan text-cyber-cyan font-orbitron active"
-                    data-filter="all">
-                    All Photos
-                </button>
-                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron"
-                    data-filter="personal">
-                    Personal
-                </button>
-                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron"
-                    data-filter="gaming">
-                    Gaming
-                </button>
-                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron"
-                    data-filter="design">
-                    Design Work
-                </button>
-                <button class="filter-btn px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-orbitron"
-                    data-filter="tech">
-                    Tech Setup
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Grid -->
-    <section class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="gallery-grid" id="gallery-grid">
-
-                <!-- Personal Photos -->
-                <div class="gallery-item glass" data-category="personal" data-aos="fade-up" data-aos-delay="100">
-                    <img src="assets/images/personal-1.jpg" alt="Personal Photo 1"
-                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjEyMCIgcj0iNDAiIGZpbGw9IiMwMEZGREUiLz4KPHBhdGggZD0iTTEwMCAxODBDMTAwIDE4MCAxMjAgMTYwIDE1MCAxNjBTMjAwIDE4MCAyMDAgMTgwVjI0MEgxMDBWMTgwWiIgZmlsbD0iIzAwRkZERSIvPgo8dGV4dCB4PSIxNTAiIHk9IjI3MCIgZmlsbD0iIzAwRkZERSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNCIgZm9udC1mYW1pbHk9IkFyaWFsIj5QZXJzb25hbDwvdGV4dD4KPHN2Zz4K'">
-                    <div class="gallery-overlay">
-                        <div>
-                            <h3 class="text-lg font-bold font-orbitron text-white">Personal Moment</h3>
-                            <p class="text-sm text-gray-300">Capturing life's beautiful moments</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item glass" data-category="personal" data-aos="fade-up" data-aos-delay="200">
-                    <img src="assets/images/personal-2.jpg" alt="Personal Photo 2"
-                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjEyMCIgcj0iNDAiIGZpbGw9IiNGRjMzNjYiLz4KPHBhdGggZD0iTTEwMCAxODBDMTAwIDE4MCAxMjAgMTYwIDE1MCAxNjBTMjAwIDE4MCAyMDAgMTgwVjI0MEgxMDBWMTgwWiIgZmlsbD0iI0ZGMzM2NiIvPgo8dGV4dCB4PSIxNTAiIHk9IjI3MCIgZmlsbD0iI0ZGMzM2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNCIgZm9udC1mYW1pbHk9IkFyaWFsIj5BZHZlbnR1cmU8L3RleHQ+Cjwvc3ZnPgo='">
-                    <div class="gallery-overlay">
-                        <div>
-                            <h3 class="text-lg font-bold font-orbitron text-white">Adventure Time</h3>
-                            <p class="text-sm text-gray-300">Exploring new places and experiences</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gaming Screenshots -->
-                <div class="gallery-item glass" data-category="gaming" data-aos="fade-up" data-aos-delay="300">
-                    <img src="assets/images/gaming-1.jpg" alt="Gaming Screenshot 1"
-                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiMwMEZGREUiIG9wYWNpdHk9IjAuMyIvPgo8Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMjUiIHI9IjMwIiBmaWxsPSIjMDBGRkRFIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjcwIiBmaWxsPSIjMDBGRkRFIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE0IiBmb250LWZhbWlseT0iQXJpYWwiPkdhbWluZzwvdGV4dD4KPHN2Zz4K'">
-                    <div class="gallery-overlay">
-                        <div>
-                            <h3 class="text-lg font-bold font-orbitron text-white">Epic Gaming Moment</h3>
-                            <p class="text-sm text-gray-300">Achievement unlocked!</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item glass" data-category="gaming" data-aos="fade-up" data-aos-delay="400">
-                    <img src="assets/images/gaming-2.jpg" alt="Gaming Screenshot 2"
-                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNGRjMzNjYiIG9wYWNpdHk9IjAuMyIvPgo8cG9seWdvbiBwb2ludHM9IjEyMCwxMDAgMTgwLDEwMCAxNTAsMTUwIiBmaWxsPSIjRkYzMzY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjcwIiBmaWxsPSIjRkYzMzY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE0IiBmb250LWZhbWlseT0iQXJpYWwiPkdhbWUgV2luPC90ZXh0Pgo8L3N2Zz4K'">
-                    <div class="gallery-overlay">
-                        <div>
-                            <h3 class="text-lg font-bold font-orbitron text-white">Victory Screen</h3>
-                            <p class="text-sm text-gray-300">Another successful match</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Design Work -->
-                <div class="gallery-item glass" data-category="design" data-aos="fade-up" data-aos-delay="500">
-                    <img src="assets/images/design-1.jpg" alt="Design Work 1"
-                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGMTBGMCIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjE1MCIgcj0iNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGMTBGMCIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjgwIiBmaWxsPSIjRkYxMEYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE0IiBmb250LWZhbWlseT0iQXJpYWwiPkRlc2lnbjwvdGV4dD4KPHN2Zz4K'">
-                    <div class="gallery-overlay">
-                        <div>
-                            <h3 class="text-lg font-bold font-orbitron text-white">UI Design Concept</h3>
-                            <p class="text-sm text-gray-300">Modern interface design</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item glass" data-category="design" data-aos="fade-up" data-aos-delay="600">
-                    <img src="assets/images/design-2.jpg" alt="Design Work 2"
-                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxwYXRoIGQ9Ik03NSA3NUwyMjUgNzVMMjI1IDIyNUw3NSAyMjVaIiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDgwRkYiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNMTAwIDEwMEwyMDAgMTAwTDIwMCAyMDBMMTAwIDIwMFoiIGZpbGw9IiMwMDgwRkYiIG9wYWNpdHk9IjAuMyIvPgo8dGV4dCB4PSIxNTAiIHk9IjI4MCIgZmlsbD0iIzAwODBGRiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNCIgZm9udC1mYW1pbHk9IkFyaWFsIj5Mb2dvPC90ZXh0Pgo8L3N2Zz4K'">
-                    <div class="gallery-overlay">
-                        <div>
-                            <h3 class="text-lg font-bold font-orbitron text-white">Logo Design</h3>
-                            <p class="text-sm text-gray-300">Brand identity creation</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tech Setup -->
-                <div class="gallery-item glass" data-category="tech" data-aos="fade-up" data-aos-delay="700">
-                    <img src="assets/images/setup-1.jpg" alt="Tech Setup 1"
-                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxyZWN0IHg9IjUwIiB5PSI4MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwRkZERSIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxyZWN0IHg9IjYwIiB5PSI5MCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiMwMEZGREUiIG9wYWNpdHk9IjAuMiIvPgo8Y2lyY2xlIGN4PSIxNTAiIGN5PSIyMzAiIHI9IjIwIiBmaWxsPSIjMDBGRkRFIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjgwIiBmaWxsPSIjMDBGRkRFIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE0IiBmb250LWZhbWlseT0iQXJpYWwiPlNldHVwPC90ZXh0Pgo8L3N2Zz4K'">
-                    <div class="gallery-overlay">
-                        <div>
-                            <h3 class="text-lg font-bold font-orbitron text-white">Coding Setup</h3>
-                            <p class="text-sm text-gray-300">My development workspace</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gallery-item glass" data-category="tech" data-aos="fade-up" data-aos-delay="800">
-                    <img src="assets/images/setup-2.jpg" alt="Tech Setup 2"
-                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+CjxyZWN0IHg9IjUwIiB5PSI1MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjE1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkYzMzY2IiBzdHJva2Utd2lkdGg9IjMiLz4KPHJlY3QgeD0iMTcwIiB5PSI1MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjE1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkYzMzY2IiBzdHJva2Utd2lkdGg9IjMiLz4KPGNpcmNsZSBjeD0iMTUwIiBjeT0iMjMwIiByPSIyMCIgZmlsbD0iI0ZGMzM2NiIvPgo8dGV4dCB4PSIxNTAiIHk9IjI4MCIgZmlsbD0iI0ZGMzM2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNCIgZm9udC1mYW1pbHk9IkFyaWFsIj5HYW1pbmcgUmlnPC90ZXh0Pgo8L3N2Zz4K'">
-                    <div class="gallery-overlay">
-                        <div>
-                            <h3 class="text-lg font-bold font-orbitron text-white">Gaming Rig</h3>
-                            <p class="text-sm text-gray-300">High-performance gaming setup</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-close" id="lightbox-close">
-                <i class="fas fa-times"></i>
-            </button>
-            <button class="lightbox-nav lightbox-prev" id="lightbox-prev">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="lightbox-nav lightbox-next" id="lightbox-next">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-            <img id="lightbox-img" src="" alt="">
-        </div>
+  <nav id="navbar" role="navigation">
+    <a href="index.html" class="logo">
+      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+    </a>
+    
+    <div class="nav-center">
+      <a href="index.html" class="nav-link">INDEX</a>
+      <a href="projects.html" class="nav-link">PROJECTS</a>
+      <a href="skills.html" class="nav-link">SKILLS</a>
+      <a href="blog.html" class="nav-link">BLOG</a>
+      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
+      <a href="contact.html" class="nav-link">CONTACT</a>
     </div>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold font-orbitron gradient-text mb-2">MTHISHA</div>
-                    <p class="text-gray-400">© 2024 Mthisha. All rights reserved.</p>
-                </div>
+    <div style="display: flex; align-items: center; gap: var(--s-16);">
+      <button class="btn btn--red" style="padding: 8px 16px; height: 36px; border-color: var(--red-border);" onclick="window.location.href='contact.html'">HIRE ME</button>
+      <button class="hamburger" aria-label="Toggle Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
 
-                <div class="flex space-x-6">
-                    <a href="https://github.com/Mathiyass"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/mathisha-angirasa-a955941a2/"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://x.com/Mathiya"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://discord.gg/QERP5JJM8k"
-                        class="text-2xl text-gray-400 hover:text-cyber-cyan transition-all duration-300">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                </div>
-            </div>
+  <div class="scroll-container">
+    <main id="main" role="main" style="padding-top: 120px;">
+      
+      <section class="container">
+        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); margin-bottom: 48px;" data-reveal data-reveal-clip>VISUAL <span style="color: var(--cyan);">//</span> GALLERY</h1>
+        
+        <div class="filter-bar" data-reveal>
+          <button class="filter-btn active" data-filter="all">ALL</button>
+          <button class="filter-btn" data-filter="screenshots">SCREENSHOTS</button>
+          <button class="filter-btn" data-filter="ui">UI DESIGN</button>
+          <button class="filter-btn" data-filter="3d">3D</button>
+          <button class="filter-btn" data-filter="art">ART</button>
         </div>
-    </footer>
 
-    <script src="assets/js/components/navbar.js"></script>
-    <script type="module" src="assets/js/main.js"></script>
-    <script type="module">
-        import { initializeAdvancedGallery } from './assets/js/modules/gallery.js';
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeAdvancedGallery();
+        <div class="masonry-grid" id="gallery-grid">
+          <!-- Populated by JS to calculate row spans -->
+          <div class="g-item filter-item" data-category="screenshots ui" data-caption="MA_Dev Marketplace UI" data-src="assets/img/project-marketplace.webp" style="grid-row-end: span 30;" data-reveal>
+            <img src="assets/img/project-marketplace.webp" alt="Marketplace UI" loading="lazy">
+            <div class="g-overlay"><div class="g-caption">MA_Dev Marketplace UI</div></div>
+          </div>
+          
+          <div class="g-item filter-item" data-category="3d" data-caption="Killer Quebes Engine" data-src="assets/img/project-game.webp" style="grid-row-end: span 25;" data-reveal>
+            <img src="assets/img/project-game.webp" alt="Game Render" loading="lazy">
+            <div class="g-overlay"><div class="g-caption">Killer Quebes Engine</div></div>
+          </div>
+
+          <div class="g-item filter-item" data-category="ui art" data-caption="Terminal Wireframe" data-src="assets/img/avatar-wireframe.webp" style="grid-row-end: span 35;" data-reveal>
+            <img src="assets/img/avatar-wireframe.webp" alt="Avatar Wireframe" loading="lazy">
+            <div class="g-overlay"><div class="g-caption">Terminal Wireframe</div></div>
+          </div>
+
+          <div class="g-item filter-item" data-category="art" data-caption="Void Texture" data-src="assets/img/texture-noise.webp" style="grid-row-end: span 20;" data-reveal>
+            <img src="assets/img/texture-noise.webp" alt="Texture" loading="lazy">
+            <div class="g-overlay"><div class="g-caption">Void Texture</div></div>
+          </div>
+          
+          <div class="g-item filter-item" data-category="screenshots" data-caption="Code Architecture" data-src="assets/img/blog-featured.webp" style="grid-row-end: span 28;" data-reveal>
+            <img src="assets/img/blog-featured.webp" alt="Code" loading="lazy">
+            <div class="g-overlay"><div class="g-caption">Code Architecture</div></div>
+          </div>
+
+          <div class="g-item filter-item" data-category="3d art" data-caption="XR Hologram" data-src="assets/img/ar-hero.webp" style="grid-row-end: span 28;" data-reveal>
+            <img src="assets/img/ar-hero.webp" alt="XR Hologram" loading="lazy">
+            <div class="g-overlay"><div class="g-caption">XR Hologram</div></div>
+          </div>
+        </div>
+
+        <div id="empty-state" style="display: none; text-align: center; padding: 64px; font-family: var(--font-mono); color: var(--text-2); font-size: 14px;">
+          [ NO ASSETS FOUND FOR THIS CATEGORY ]
+        </div>
+
+      </section>
+
+      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden; margin-top: 64px;">
+        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
+          <div class="grid-12">
+            <div style="grid-column: span 4;">
+              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
+              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">←</button>
+    <img src="" alt="" class="lb-img" id="lb-img">
+    <div class="lb-caption" id="lb-caption"></div>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="Next">→</button>
+  </div>
+
+  <script type="module">
+    import { CustomCursor } from './assets/js/core/Cursor.js';
+    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+    import { AudioSystem } from './assets/js/core/Audio.js';
+    import { PageTransitions } from './assets/js/core/PageTransitions.js';
+    import { Konami } from './assets/js/core/Konami.js';
+    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+
+    new ThemeSystem();
+    new CustomCursor();
+    new SmoothScroll();
+    new ScrollReveal();
+    new AudioSystem();
+    new PageTransitions();
+    new Konami();
+
+    // Filtering logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.filter-item');
+    const emptyState = document.getElementById('empty-state');
+    
+    let visibleItems = Array.from(items);
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const filter = btn.dataset.filter;
+        visibleItems = [];
+
+        items.forEach(item => {
+          if (filter === 'all' || item.dataset.category.includes(filter)) {
+            item.style.display = '';
+            visibleItems.push(item);
+          } else {
+            item.style.display = 'none';
+          }
         });
-    </script>
 
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        emptyState.style.display = visibleItems.length === 0 ? 'block' : 'none';
+      });
+    });
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-    <script src="assets/js/particles.js"></script>
-    <script src="assets/js/core.js"></script>
-<script src="assets/js/main.js"></script>
-    <script src="assets/js/gesture.js"></script>
+    // Lightbox Logic
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbCaption = document.getElementById('lb-caption');
+    let currentIndex = 0;
+
+    const showLightbox = (index) => {
+      if(visibleItems.length === 0) return;
+      currentIndex = (index + visibleItems.length) % visibleItems.length;
+      const item = visibleItems[currentIndex];
+      lbImg.src = item.dataset.src;
+      lbCaption.textContent = item.dataset.caption;
+      lb.classList.add('active');
+    };
+
+    items.forEach((item) => {
+      item.addEventListener('click', () => {
+        const idx = visibleItems.indexOf(item);
+        if(idx !== -1) showLightbox(idx);
+      });
+    });
+
+    document.getElementById('lb-close').addEventListener('click', () => lb.classList.remove('active'));
+    document.getElementById('lb-prev').addEventListener('click', () => showLightbox(currentIndex - 1));
+    document.getElementById('lb-next').addEventListener('click', () => showLightbox(currentIndex + 1));
+
+    window.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('active')) return;
+      if (e.key === 'Escape') lb.classList.remove('active');
+      if (e.key === 'ArrowLeft') showLightbox(currentIndex - 1);
+      if (e.key === 'ArrowRight') showLightbox(currentIndex + 1);
+    });
+
+  </script>
 </body>
-
 </html>

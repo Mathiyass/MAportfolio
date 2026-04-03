@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dual">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00E5FF">
+  <title>Marketplace // Mathisha Angirasa</title>
+  
+  <meta name="description" content="MA_Dev Marketplace - Steam for Developers">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  
+  <style>
+    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
+    .nav-center { display: none; }
+    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    
+    .hero-mp { min-height: 100svh; position: relative; overflow: hidden; display: flex; align-items: center; }
+    .mp-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, var(--void) 0%, transparent 40%, var(--surface-00) 100%); z-index: 0; }
+    
+    .diag-svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .diag-path { stroke-dasharray: 1000; stroke-dashoffset: 1000; transition: stroke-dashoffset 2s var(--ease-expo); }
+    .diag-path.active { stroke-dashoffset: 0; }
+    .diag-node { transform-origin: center; animation: orbFloat 4s infinite ease-in-out; }
+    .diag-text { font-family: var(--font-mono); font-size: 11px; fill: var(--text-0); }
+    
+    .feature-card { padding: 32px; background: var(--surface-0); border: 1px solid var(--cyan-border); position: relative; }
+    .feature-card.red-icon svg { stroke: var(--red); }
+    .feature-card svg { stroke: var(--cyan); width: 32px; height: 32px; margin-bottom: 24px; }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <canvas id="canvas-aurora" style="position:fixed; inset:0; z-index:-3; opacity:0.8; pointer-events:none; width:100vw; height:100vh;"></canvas>
+  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
+
+  <nav id="navbar" class="nav--transparent" role="navigation">
+    <a href="index.html" class="logo">
+      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+    </a>
+    
+    <div class="nav-center">
+      <a href="index.html" class="nav-link">INDEX</a>
+      <a href="projects.html" class="nav-link">PROJECTS</a>
+      <a href="skills.html" class="nav-link">SKILLS</a>
+      <a href="blog.html" class="nav-link">BLOG</a>
+      <a href="marketplace.html" class="nav-link active">MARKETPLACE</a>
+      <a href="contact.html" class="nav-link">CONTACT</a>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: var(--s-16);">
+      <button class="btn btn--red" style="padding: 8px 16px; height: 36px; border-color: var(--red-border);" onclick="window.location.href='contact.html'">HIRE ME</button>
+    </div>
+  </nav>
+
+  <div class="scroll-container">
+    <main id="main" role="main">
+      
+      <section class="hero-mp">
+        <div style="position:absolute; inset:0; background: url('assets/img/marketplace-hero.webp') center/cover; opacity: 0.3; z-index:-1;"></div>
+        <div class="mp-overlay"></div>
+        <div class="container" style="position: relative; z-index: 1; text-align: center;">
+          <div class="badge" style="margin-bottom: 24px;" data-reveal>FLAGSHIP PRODUCT</div>
+          <h1 style="font-family: var(--font-display); font-size: clamp(48px, 8vw, 120px); font-weight: 900; line-height: 0.85; margin-bottom: 24px;" data-reveal data-reveal-clip>
+            <span style="background: linear-gradient(135deg, var(--cyan), var(--red)); -webkit-background-clip: text; color: transparent;">MA_DEV</span><br>MARKETPLACE
+          </h1>
+          <p style="font-size: 20px; color: var(--text-1); max-width: 600px; margin: 0 auto 48px;" data-reveal>
+            Steam for developers. A unified distribution ecosystem for components, templates, and systems.
+          </p>
+          <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" class="stagger" data-reveal>
+            <a href="#waitlist" class="btn btn--dual">JOIN WAITLIST</a>
+            <a href="https://github.com/Mathiyass/MAportfolio" class="btn btn--ghost">STAR ON GITHUB</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Architecture -->
+      <section class="section container">
+        <div class="section-label" data-reveal>[ 01 ] SYSTEM ARCHITECTURE</div>
+        
+        <div class="card" style="padding: 48px; background: var(--surface-0);" data-reveal>
+          <svg viewBox="0 0 1000 400" class="diag-svg" id="arch-diagram">
+            <!-- Nodes -->
+            <g class="diag-node" style="animation-delay: 0s;">
+              <circle cx="150" cy="200" r="40" fill="var(--surface-1)" stroke="var(--cyan)" stroke-width="2"/>
+              <text x="150" y="205" text-anchor="middle" class="diag-text">CLIENT</text>
+            </g>
+
+            <g class="diag-node" style="animation-delay: 0.5s;">
+              <circle cx="500" cy="100" r="40" fill="var(--surface-1)" stroke="var(--cyan)" stroke-width="2"/>
+              <text x="500" y="105" text-anchor="middle" class="diag-text">SUPABASE</text>
+            </g>
+
+            <g class="diag-node" style="animation-delay: 1.0s;">
+              <circle cx="500" cy="300" r="40" fill="var(--surface-1)" stroke="var(--red)" stroke-width="2"/>
+              <text x="500" y="305" text-anchor="middle" class="diag-text">FIREBASE</text>
+            </g>
+
+            <g class="diag-node" style="animation-delay: 1.5s;">
+              <circle cx="850" cy="200" r="40" fill="var(--surface-1)" stroke="var(--red)" stroke-width="2"/>
+              <text x="850" y="205" text-anchor="middle" class="diag-text">PAYHERE</text>
+            </g>
+
+            <!-- Paths -->
+            <path d="M 190 190 C 300 190, 350 100, 460 100" fill="none" stroke="var(--cyan)" stroke-width="2" class="diag-path"/>
+            <path d="M 190 210 C 300 210, 350 300, 460 300" fill="none" stroke="var(--red)" stroke-width="2" class="diag-path" style="transition-delay: 0.2s;"/>
+            <path d="M 540 100 C 700 100, 750 190, 810 190" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-dasharray="5,5" class="diag-path" style="transition-delay: 0.4s;"/>
+            <path d="M 540 300 C 700 300, 750 210, 810 210" fill="none" stroke="var(--red)" stroke-width="2" class="diag-path" style="transition-delay: 0.6s;"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="section container">
+        <div class="section-label" data-reveal>[ 02 ] CORE FEATURES</div>
+        <div class="grid-12 stagger" data-reveal>
+          <div class="feature-card" style="grid-column: span 6;">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 22h20L12 2z"/></svg>
+            <h3 style="font-family: var(--font-display); font-size: 24px; margin-bottom: 12px;">Unified SDK</h3>
+            <p style="color: var(--text-1);">Single import for all component drops. Managed via custom package manager built into the Android client.</p>
+          </div>
+          <div class="feature-card red-icon" style="grid-column: span 6;">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <h3 style="font-family: var(--font-display); font-size: 24px; margin-bottom: 12px;">Real-time Delivery</h3>
+            <p style="color: var(--text-1);">Firebase Cloud Messaging pushes component updates to your devices instantly. Zero polling.</p>
+          </div>
+          <div class="feature-card red-icon" style="grid-column: span 6;">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            <h3 style="font-family: var(--font-display); font-size: 24px; margin-bottom: 12px;">Secure Ledger</h3>
+            <p style="color: var(--text-1);">Supabase RLS secures all asset entitlements. PayHere handles Sri Lankan localized payments flawlessly.</p>
+          </div>
+          <div class="feature-card" style="grid-column: span 6;">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            <h3 style="font-family: var(--font-display); font-size: 24px; margin-bottom: 12px;">Global Access</h3>
+            <p style="color: var(--text-1);">Edge-cached assets distributed globally via CDN, ensuring lightning-fast download speeds.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats -->
+      <section class="section container">
+        <div class="section-label" data-reveal>[ 03 ] LIVE NETWORK STATS</div>
+        <div class="grid-12" style="background: var(--surface-1); padding: 48px; border: 1px solid var(--cyan-border);" data-reveal>
+          <div class="stat-block" style="grid-column: span 4; text-align: center;">
+            <span class="value" id="mp-devs">0</span>
+            <span class="label">REGISTERED DEVS</span>
+          </div>
+          <div class="stat-block" style="grid-column: span 4; text-align: center;">
+            <span class="value" id="mp-assets">0</span>
+            <span class="label">ASSETS DEPLOYED</span>
+          </div>
+          <div class="stat-block" style="grid-column: span 4; text-align: center;">
+            <span class="value" id="mp-tx">0</span>
+            <span class="label">TRANSACTIONS</span>
+          </div>
+        </div>
+      </section>
+
+      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden; margin-top: 64px;">
+        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
+          <div class="grid-12">
+            <div style="grid-column: span 4;">
+              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
+              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script type="module">
+    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+    import { SHADER_10_AURORA } from './assets/js/engine/shaders.js';
+    import { CustomCursor } from './assets/js/core/Cursor.js';
+    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+    import { AudioSystem } from './assets/js/core/Audio.js';
+    import { PageTransitions } from './assets/js/core/PageTransitions.js';
+    import { Konami } from './assets/js/core/Konami.js';
+    import { CountUp } from './assets/js/core/CountUp.js';
+    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+
+    new ThemeSystem();
+    new CustomCursor();
+    new SmoothScroll();
+    new ScrollReveal();
+    new AudioSystem();
+    new PageTransitions();
+    new Konami();
+
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (!isReduced) {
+      const cAur = document.getElementById('canvas-aurora');
+      const eAur = new WebGLEngine(cAur);
+      eAur.compileProgram('aur', SHADER_10_AURORA.vert, SHADER_10_AURORA.frag);
+      eAur.createFullscreenQuad('fullscreen');
+      eAur.render('aur');
+    }
+
+    // Architecture animation on scroll
+    const diag = document.getElementById('arch-diagram');
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        document.querySelectorAll('.diag-path').forEach(p => {
+          p.classList.add('active');
+        });
+        observer.unobserve(diag);
+      }
+    }, { threshold: 0.5 });
+    if (diag) observer.observe(diag);
+
+    // Nav scroll effect
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) nav.classList.remove('nav--transparent');
+      else nav.classList.add('nav--transparent');
+    });
+
+    // Mock stats
+    new CountUp(document.getElementById('mp-devs'), 1254);
+    new CountUp(document.getElementById('mp-assets'), 450);
+    new CountUp(document.getElementById('mp-tx'), 8920);
+
+  </script>
+</body>
+</html>
