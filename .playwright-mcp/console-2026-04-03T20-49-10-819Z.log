@@ -1,0 +1,6 @@
+[    1138ms] [WARNING] cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation @ https://cdn.tailwindcss.com/?plugins=forms,container-queries:63
+[    1313ms] [LOG] %c SYSTEM ONLINE: MTHISHA PORTFOLIO CORE V2  background: #00FFDE; color: #000; font-weight: bold; padding: 4px; border-radius: 4px; @ https://mathiyass.github.io/MAportfolio/assets/js/core.js:17
+[    2147ms] [LOG] Particle System Engine Activated @ https://mathiyass.github.io/MAportfolio/assets/js/particles.js:125
+[    2348ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://mathiyass.github.io/favicon.ico:0
+[    7130ms] [WARNING] GSAP target .hero-content > * not found. https://greensock.com @ https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js:9
+[    7130ms] [WARNING] GSAP target  not found. https://greensock.com @ https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js:9
