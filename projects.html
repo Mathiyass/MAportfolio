@@ -1,231 +1,236 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MTHISHA Project Archive Void</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#00ffdd",
-                        "secondary": "#dc143c",
-                        "background-light": "#f5f8f8",
-                        "background-dark": "#050a09",
-                        "surface-dark": "#0a1412",
-                        "border-dark": "#142925"
-                    },
-                    fontFamily: {
-                        "display": ["Space Grotesk", "sans-serif"]
-                    },
-                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
-                },
-            },
-        }
-    </script>
-<link rel="stylesheet" href="assets/css/index.css">
+<html lang="en" data-theme="dual">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00E5FF">
+  <title>Projects // Mathisha Angirasa</title>
+  
+  <meta name="description" content="Projects by Mathisha Angirasa">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  
+  <style>
+    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
+    .nav-center { display: none; }
+    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    
+    .filter-bar { display: flex; gap: 16px; margin-bottom: 48px; flex-wrap: wrap; }
+    .filter-btn { font-family: var(--font-mono); font-size: 12px; color: var(--text-1); border: 1px solid var(--cyan-border); padding: 8px 16px; cursor: pointer; transition: all var(--dur-fast); background: var(--surface-1); }
+    .filter-btn:hover { border-color: var(--red); color: var(--red); box-shadow: var(--glow-red); }
+    .filter-btn.active { border-color: var(--cyan); color: var(--cyan); box-shadow: var(--glow-cyan); background: rgba(0,229,255,0.1); }
+    
+    .project-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+    .proj-card { grid-column: span 4; height: 360px; }
+    @media (max-width: 1023px) { .proj-card { grid-column: span 6; } }
+    @media (max-width: 767px) { .proj-card { grid-column: span 12; } }
+    
+    .bg-img { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: -1; }
+    .card-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, var(--surface-0) 100%); z-index: 0; }
+    .card-content { position: relative; z-index: 1; padding: 24px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
+    
+    .flagship-card { height: 480px; width: 100%; margin-bottom: 64px; }
+    .flagship-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, var(--surface-0) 0%, transparent 100%); z-index: 0; }
+  </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen relative overflow-x-hidden">
-<!-- Abstract Background Effects -->
-<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-<div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-primary/5 blur-[120px] rounded-full"></div>
-<div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-secondary/5 blur-[120px] rounded-full"></div>
-<!-- Grid overlay -->
-<div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none"></div>
-</div>
-<div class="relative z-10 flex h-full grow flex-col w-full max-w-[1440px] mx-auto">
-<!-- Top Navigation -->
-<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-background-dark/80 backdrop-blur-md px-10 py-4">
-<div class="flex items-center gap-8">
-<div class="flex items-center gap-4 text-slate-100">
-<div class="size-6 text-primary">
-<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z"></path>
-</svg>
-</div>
-<h2 class="text-slate-100 text-xl font-bold leading-tight tracking-widest uppercase">Mthisha</h2>
-</div>
-<nav class="hidden md:flex items-center gap-9">
-<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal tracking-wider" href="#">HOME</a>
-<a class="text-primary text-sm font-medium leading-normal tracking-wider" href="#">ARCHIVE</a>
-<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal tracking-wider" href="#">SYSTEMS</a>
-<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium leading-normal tracking-wider" href="#">CONTACT</a>
-</nav>
-</div>
-<div class="flex flex-1 justify-end gap-6 items-center">
-<label class="hidden lg:flex flex-col min-w-40 h-10 max-w-64 relative group">
-<div class="absolute inset-0 bg-primary/10 rounded group-hover:bg-primary/20 transition-colors"></div>
-<div class="flex w-full flex-1 items-center rounded h-full relative z-10 border border-border-dark group-hover:border-primary/50 transition-colors">
-<span class="material-symbols-outlined text-primary ml-3 text-[20px]">search</span>
-<input class="form-input flex w-full min-w-0 flex-1 bg-transparent text-slate-100 border-none focus:ring-0 placeholder:text-slate-500 text-sm font-medium" placeholder="Query Archive..." type="text"/>
-<div class="mr-2 px-1.5 py-0.5 rounded bg-surface-dark border border-border-dark flex items-center justify-center">
-<span class="text-xs text-slate-400 font-mono">⌘K</span>
-</div>
-</div>
-</label>
-<div class="flex gap-3">
-<button class="flex items-center justify-center rounded h-10 px-5 bg-surface-dark border border-border-dark text-slate-300 hover:text-primary hover:border-primary/50 transition-all text-sm font-bold tracking-widest">
-<span>INITIATE</span>
-</button>
-<button class="flex items-center justify-center rounded h-10 px-5 bg-primary text-background-dark hover:bg-primary/90 transition-colors text-sm font-bold tracking-widest shadow-[0_0_15px_rgba(0,255,221,0.3)]">
-<span>CONNECT</span>
-</button>
-</div>
-</div>
-</header>
-<!-- Main Content -->
-<main class="flex-1 px-10 py-16 flex flex-col gap-12">
-<!-- Header Section -->
-<div class="flex flex-col gap-4 max-w-3xl">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-max">
-<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-<span class="text-primary text-xs font-bold tracking-widest uppercase">System Online</span>
-</div>
-<h1 class="text-slate-100 text-5xl md:text-7xl font-black leading-tight tracking-tighter uppercase">
-                    Project Archive <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Void</span>
-</h1>
-<p class="text-slate-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl border-l-2 border-primary pl-4">
-                    Explore the deep abyss of MTHISHA's multi-billion dollar luxury tech showcase for the year 2050. High-fidelity systems and architectural marvels.
-                </p>
-</div>
-<!-- Controls -->
-<div class="flex flex-wrap items-center justify-between gap-4 py-4 border-b border-border-dark">
-<div class="flex items-center gap-2">
-<button class="px-4 py-2 rounded bg-surface-dark border border-primary text-primary text-sm font-bold tracking-wider">ALL</button>
-<button class="px-4 py-2 rounded bg-transparent border border-border-dark text-slate-400 hover:text-slate-100 hover:border-slate-600 transition-colors text-sm font-bold tracking-wider">WEB3</button>
-<button class="px-4 py-2 rounded bg-transparent border border-border-dark text-slate-400 hover:text-slate-100 hover:border-slate-600 transition-colors text-sm font-bold tracking-wider">AI AGENTS</button>
-<button class="px-4 py-2 rounded bg-transparent border border-border-dark text-slate-400 hover:text-slate-100 hover:border-slate-600 transition-colors text-sm font-bold tracking-wider">SPATIAL</button>
-</div>
-<div class="flex items-center gap-4">
-<span class="text-slate-500 text-sm font-mono">DISPLAY: GRID</span>
-<div class="flex items-center gap-1">
-<button class="p-2 rounded bg-surface-dark border border-primary/50 text-primary">
-<span class="material-symbols-outlined text-[20px]">grid_view</span>
-</button>
-<button class="p-2 rounded bg-transparent border border-border-dark text-slate-500 hover:text-slate-300 transition-colors">
-<span class="material-symbols-outlined text-[20px]">view_list</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Project Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-[2000px]">
-<!-- Card 1 -->
-<div class="group relative flex flex-col gap-4 rounded-xl bg-surface-dark border border-border-dark hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,255,221,0.15)] overflow-hidden">
-<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-<div class="p-4 relative z-10">
-<div class="bg-cover bg-center rounded-lg aspect-[4/3] relative overflow-hidden border border-border-dark/50" data-alt="Abstract liquid neon waves" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnBX2W4laqRmNbKeEtPixR6G1Vcno5EgtwhHLl0NPnTvV3iNCByaz8gLicLNOFt21WtWKMxgemZkgJcfhabLbx9x2UKSFlLweSu_3RtGh7XseEMSjH4oYe4_jXtTfBHZlBGxwlO3KJt09I9GS1EL-Kio_ZRHoxR7VlRIDrHc2d5fy_cp35HL_4m8yCHL8eWnXZf9IOFKOhniNwEQkbgjHijXzJEsWfb8tkOgqfQsNR4SupTaQ4B5Ns1T1cstVxXrejJGMLwRx9eu4");'>
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/20 to-transparent"></div>
-<div class="absolute top-3 right-3 px-2 py-1 rounded bg-background-dark/80 backdrop-blur border border-primary/30 text-primary text-[10px] font-bold tracking-widest uppercase">Deployed</div>
-<div class="absolute bottom-4 left-4 right-4">
-<h3 class="text-slate-100 text-2xl font-bold leading-tight mb-1 group-hover:text-primary transition-colors">Neural Net Protocol</h3>
-<p class="text-slate-400 text-sm font-mono line-clamp-1">SYS.001 // Core Architecture</p>
-</div>
-</div>
-</div>
-<div class="px-6 pb-6 pt-2 relative z-10 flex justify-between items-end">
-<div class="flex flex-wrap gap-2">
-<span class="text-xs font-medium text-slate-300 bg-surface-dark border border-border-dark px-2 py-1 rounded">React</span>
-<span class="text-xs font-medium text-slate-300 bg-surface-dark border border-border-dark px-2 py-1 rounded">WebGL</span>
-</div>
-<button class="w-10 h-10 rounded-full bg-surface-dark border border-border-dark flex items-center justify-center group-hover:bg-primary group-hover:text-background-dark group-hover:border-primary transition-all duration-300">
-<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- Card 2 -->
-<div class="group relative flex flex-col gap-4 rounded-xl bg-surface-dark border border-border-dark hover:border-secondary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(220,20,60,0.15)] overflow-hidden">
-<div class="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-<div class="p-4 relative z-10">
-<div class="bg-cover bg-center rounded-lg aspect-[4/3] relative overflow-hidden border border-border-dark/50" data-alt="Cyberpunk server room dark" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAld_15DbVsyGYn2098QvQ_458QlVPNhqICuRR6iWBJ6P2_1bG23uSHrmvFYjSEYawK2LPFBt1MBnVEq2XKWmUV8QXWPfmYSRck7MwqR_hNKpMXNLcerPJmlOMuIOt3PfrnmnFi8LVCzVt51LON0IqZyjAL5TUQ3j6Ye93dhCv8bI0JmTL4fAYok6lvAglvQhWeAGWSY7zqR_q_n-dxtDuFYYnYXmScVAiCXOjH6B7W0fXHczeKAu7zuVzNbOwgKSrzKIjTIogYaoA");'>
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/20 to-transparent"></div>
-<div class="absolute top-3 right-3 px-2 py-1 rounded bg-background-dark/80 backdrop-blur border border-secondary/30 text-secondary text-[10px] font-bold tracking-widest uppercase">Classified</div>
-<div class="absolute bottom-4 left-4 right-4">
-<h3 class="text-slate-100 text-2xl font-bold leading-tight mb-1 group-hover:text-secondary transition-colors">Quantum Vault</h3>
-<p class="text-slate-400 text-sm font-mono line-clamp-1">SEC.092 // High Security</p>
-</div>
-</div>
-</div>
-<div class="px-6 pb-6 pt-2 relative z-10 flex justify-between items-end">
-<div class="flex flex-wrap gap-2">
-<span class="text-xs font-medium text-slate-300 bg-surface-dark border border-border-dark px-2 py-1 rounded">Rust</span>
-<span class="text-xs font-medium text-slate-300 bg-surface-dark border border-border-dark px-2 py-1 rounded">Cryptography</span>
-</div>
-<button class="w-10 h-10 rounded-full bg-surface-dark border border-border-dark flex items-center justify-center group-hover:bg-secondary group-hover:text-slate-100 group-hover:border-secondary transition-all duration-300">
-<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- Card 3 -->
-<div class="group relative flex flex-col gap-4 rounded-xl bg-surface-dark border border-border-dark hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,255,221,0.15)] overflow-hidden">
-<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-<div class="p-4 relative z-10">
-<div class="bg-cover bg-center rounded-lg aspect-[4/3] relative overflow-hidden border border-border-dark/50" data-alt="Abstract glowing grid structures" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDnWU0DJQV5golzyo2A5z47zQngtwjXt5Q5pUZFM2dk1MOvJdOJGt_BbBuC0Fqfe_EAo3SlXuVt8mDIqtaIVd-UrFk42VZVohj7TgWs_-8FD0CWIYjJmsSQ0WlYDe4IIpmXChuUqbWAGKTsnv29yKm9Gp_LDpTkwq2pKjHF289jMQBzd7P4-ecwaZz3wnn0JtdOnpIlQKDxAcs076-nPo8auE6EOjEZIiBJIVVg5yqLu3-W5OdeJsv77jwwmVma-UuweuAHkZsfXzU");'>
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/20 to-transparent"></div>
-<div class="absolute top-3 right-3 px-2 py-1 rounded bg-background-dark/80 backdrop-blur border border-primary/30 text-primary text-[10px] font-bold tracking-widest uppercase">Active</div>
-<div class="absolute bottom-4 left-4 right-4">
-<h3 class="text-slate-100 text-2xl font-bold leading-tight mb-1 group-hover:text-primary transition-colors">Omni-Matrix Interface</h3>
-<p class="text-slate-400 text-sm font-mono line-clamp-1">UI.044 // Spatial Design</p>
-</div>
-</div>
-</div>
-<div class="px-6 pb-6 pt-2 relative z-10 flex justify-between items-end">
-<div class="flex flex-wrap gap-2">
-<span class="text-xs font-medium text-slate-300 bg-surface-dark border border-border-dark px-2 py-1 rounded">Three.js</span>
-<span class="text-xs font-medium text-slate-300 bg-surface-dark border border-border-dark px-2 py-1 rounded">GLSL</span>
-</div>
-<button class="w-10 h-10 rounded-full bg-surface-dark border border-border-dark flex items-center justify-center group-hover:bg-primary group-hover:text-background-dark group-hover:border-primary transition-all duration-300">
-<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Pagination -->
-<div class="flex items-center justify-center py-8 gap-2">
-<button class="flex size-10 items-center justify-center rounded border border-border-dark bg-surface-dark text-slate-400 hover:text-primary hover:border-primary transition-colors">
-<span class="material-symbols-outlined text-[20px]">chevron_left</span>
-</button>
-<button class="text-sm font-bold flex size-10 items-center justify-center text-background-dark rounded bg-primary shadow-[0_0_10px_rgba(0,255,221,0.2)]">1</button>
-<button class="text-sm font-medium flex size-10 items-center justify-center text-slate-400 rounded border border-transparent hover:border-border-dark hover:bg-surface-dark transition-colors">2</button>
-<button class="text-sm font-medium flex size-10 items-center justify-center text-slate-400 rounded border border-transparent hover:border-border-dark hover:bg-surface-dark transition-colors">3</button>
-<span class="text-slate-600 px-2">...</span>
-<button class="text-sm font-medium flex size-10 items-center justify-center text-slate-400 rounded border border-transparent hover:border-border-dark hover:bg-surface-dark transition-colors">9</button>
-<button class="flex size-10 items-center justify-center rounded border border-border-dark bg-surface-dark text-slate-400 hover:text-primary hover:border-primary transition-colors">
-<span class="material-symbols-outlined text-[20px]">chevron_right</span>
-</button>
-</div>
-</main>
-<!-- Footer -->
-<footer class="mt-auto border-t border-border-dark py-8 px-10 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-<div class="flex items-center gap-2">
-<div class="size-4 text-primary">
-<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z"></path>
-</svg>
-</div>
-<span class="text-slate-400 text-sm font-medium tracking-widest uppercase">MTHISHA ORG. © 2050</span>
-</div>
-<div class="flex gap-6">
-<a class="text-slate-500 hover:text-primary transition-colors text-sm font-mono uppercase tracking-wider" href="#">SECURE LINK</a>
-<a class="text-slate-500 hover:text-primary transition-colors text-sm font-mono uppercase tracking-wider" href="#">TERMS</a>
-<a class="text-slate-500 hover:text-primary transition-colors text-sm font-mono uppercase tracking-wider" href="#">SYS STATUS</a>
-</div>
-</footer>
-</div>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
 
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <canvas id="canvas-noise" style="position:fixed; inset:0; z-index:-3; opacity:0.5; pointer-events:none; width:100vw; height:100vh;"></canvas>
+  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-    <script src="assets/js/particles.js"></script>
-    <script src="assets/js/core.js"></script>
-<script src="assets/js/main.js"></script>
-    <script src="assets/js/gesture.js"></script>
-</body></html>
+  <nav id="navbar" role="navigation">
+    <a href="index.html" class="logo">
+      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+    </a>
+    
+    <div class="nav-center">
+      <a href="index.html" class="nav-link">INDEX</a>
+      <a href="projects.html" class="nav-link active">PROJECTS</a>
+      <a href="skills.html" class="nav-link">SKILLS</a>
+      <a href="blog.html" class="nav-link">BLOG</a>
+      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
+      <a href="contact.html" class="nav-link">CONTACT</a>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: var(--s-16);">
+      <button class="btn btn--red" style="padding: 8px 16px; height: 36px; border-color: var(--red-border);" onclick="window.location.href='contact.html'">HIRE ME</button>
+      <button class="hamburger" aria-label="Toggle Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="scroll-container">
+    <main id="main" role="main" style="padding-top: 120px;">
+      
+      <section class="container">
+        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); margin-bottom: 48px;" data-reveal data-reveal-clip>PROJECTS <span style="color: var(--cyan);">//</span> ARCHIVE</h1>
+        
+        <div class="filter-bar" data-reveal>
+          <button class="filter-btn active" data-filter="all">ALL</button>
+          <button class="filter-btn" data-filter="web">WEB</button>
+          <button class="filter-btn" data-filter="mobile">MOBILE</button>
+          <button class="filter-btn" data-filter="ai">AI</button>
+          <button class="filter-btn" data-filter="games">GAMES</button>
+          <button class="filter-btn" data-filter="systems">SYSTEMS</button>
+        </div>
+
+        <!-- Flagship -->
+        <a href="marketplace.html" class="card flagship-card filter-item" data-category="mobile web systems" data-reveal>
+          <div class="bg-img" style="background-image: url('assets/img/marketplace-hero.webp');"></div>
+          <div class="flagship-overlay"></div>
+          <div class="card-content" style="width: 60%;">
+            <div class="badge" style="margin-bottom: 16px; align-self: flex-start;">FLAGSHIP</div>
+            <h2 style="font-family: var(--font-display); font-size: 48px; margin-bottom: 8px;">MA_Dev Marketplace</h2>
+            <p style="color: var(--text-1); margin-bottom: 24px; font-size: 18px;">Steam for developers. Distribution ecosystem.</p>
+            <div style="display: flex; gap: 8px; margin-bottom: 24px;">
+              <span class="tag">KOTLIN</span><span class="tag">SUPABASE</span><span class="tag">FIREBASE</span>
+            </div>
+            <div><span class="btn btn--dual">OPEN PROJECT →</span></div>
+          </div>
+        </a>
+
+        <!-- Grid -->
+        <div class="project-grid" id="project-grid">
+          
+          <a href="#" class="card proj-card filter-item" data-category="games systems" data-reveal>
+            <div class="bg-img" style="background-image: url('assets/img/project-game.webp');"></div>
+            <canvas class="holo-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0; pointer-events: none; transition: opacity 0.3s;"></canvas>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h3 style="font-family: var(--font-display); font-size: 24px;">Killer Quebes</h3>
+              <p style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">3D Survival Shooter</p>
+              <div style="display: flex; gap: 8px;"><span class="tag">C++</span><span class="tag">TL-ENGINE</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="card proj-card filter-item" data-category="web systems" data-reveal>
+            <div class="bg-img" style="background-image: url('assets/img/hero-bg.webp');"></div>
+            <canvas class="holo-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0; pointer-events: none; transition: opacity 0.3s;"></canvas>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h3 style="font-family: var(--font-display); font-size: 24px;">MAportfolio v7</h3>
+              <p style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">WebGL2 + Vanilla JS Portfolio</p>
+              <div style="display: flex; gap: 8px;"><span class="tag">WEBGL2</span><span class="tag">JS</span></div>
+            </div>
+          </a>
+
+          <!-- GitHub API dynamic card placeholder -->
+          <a href="#" id="gh-active-repo" class="card proj-card filter-item card--red" data-category="web mobile systems" data-reveal>
+            <div class="card-overlay" style="background: var(--surface-1);"></div>
+            <div class="card-content">
+              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--red); margin-bottom: 8px;">MOST ACTIVE REPO</div>
+              <h3 id="gh-repo-name" style="font-family: var(--font-display); font-size: 24px; color: var(--white);">Loading...</h3>
+              <p id="gh-repo-desc" style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">Fetching from GitHub API...</p>
+              <div style="display: flex; gap: 8px;" id="gh-repo-tags"></div>
+            </div>
+          </a>
+
+        </div>
+
+        <div id="empty-state" style="display: none; text-align: center; padding: 64px; font-family: var(--font-mono); color: var(--text-2); font-size: 14px;">
+          [ NO SIGNALS FOUND FOR THIS CATEGORY ]
+        </div>
+
+      </section>
+
+      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden; margin-top: 64px;">
+        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
+          <div class="grid-12">
+            <div style="grid-column: span 4;">
+              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
+              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
+              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script type="module">
+    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+    import { SHADER_02_NOISE_FIELD, SHADER_05_HOLOGRAM } from './assets/js/engine/shaders.js';
+    import { CustomCursor } from './assets/js/core/Cursor.js';
+    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+    import { GitHubStats } from './assets/js/core/GitHubStats.js';
+    import { AudioSystem } from './assets/js/core/Audio.js';
+    import { PageTransitions } from './assets/js/core/PageTransitions.js';
+    import { Konami } from './assets/js/core/Konami.js';
+    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+    import { LazyLoad } from './assets/js/core/LazyLoad.js';
+
+    new ThemeSystem();
+    new CustomCursor();
+    new SmoothScroll();
+    new ScrollReveal();
+    new LazyLoad();
+    new AudioSystem();
+    new PageTransitions();
+    new Konami();
+
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (!isReduced) {
+      const cNoise = document.getElementById('canvas-noise');
+      const eNoise = new WebGLEngine(cNoise);
+      eNoise.compileProgram('noise', SHADER_02_NOISE_FIELD.vert, SHADER_02_NOISE_FIELD.frag);
+      eNoise.createFullscreenQuad('fullscreen');
+      eNoise.render('noise');
+
+      // Hologram logic on hover
+      // Note: Full implementation would instantiate an engine per canvas or use one engine and scissors.
+      // We will skip heavy multi-canvas WebGL here for simplicity, but the CSS overlay gradient on hover (defined in components) acts as fallback.
+    }
+
+    // GitHub stats integration
+    const ghStats = new GitHubStats();
+    ghStats.getStats().then(stats => {
+      const activeRepo = stats.mostActiveRepo || 'MAportfolio';
+      document.getElementById('gh-repo-name').textContent = activeRepo;
+      document.getElementById('gh-repo-desc').textContent = "Most recently pushed repository.";
+      const tags = document.getElementById('gh-repo-tags');
+      tags.innerHTML = stats.topLanguages.map(l => \`<span class="tag tag--red">\${l}</span>\`).join('');
+      document.getElementById('gh-active-repo').href = \`https://github.com/Mathiyass/\${activeRepo}\`;
+    });
+
+    // Filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.filter-item');
+    const emptyState = document.getElementById('empty-state');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const filter = btn.dataset.filter;
+        let visibleCount = 0;
+
+        items.forEach(item => {
+          if (filter === 'all' || item.dataset.category.includes(filter)) {
+            item.style.display = '';
+            visibleCount++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+      });
+    });
+
+  </script>
+</body>
+</html>
