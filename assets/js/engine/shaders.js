@@ -88,8 +88,8 @@ vec3 red_col = vec3(1.0, 0.302, 0.427);
 
 export const SHADER_01_HEXGRID = {
   vert: VERT_SHARED,
-  frag: \`#version 300 es
-\${FRAG_HELPERS}
+  frag: `#version 300 es
+${FRAG_HELPERS}
 void main() {
     vec2 uv = (v_uv - 0.5) * u_res / u_res.y;
     float r = 0.04;
@@ -127,13 +127,13 @@ void main() {
     
     fragColor = vec4(col, length(col)*0.5);
 }
-\`
+`
 };
 
 export const SHADER_02_NOISE_FIELD = {
   vert: VERT_SHARED,
-  frag: \`#version 300 es
-\${FRAG_HELPERS}
+  frag: `#version 300 es
+${FRAG_HELPERS}
 void main() {
     vec2 p0 = v_uv * 2.5 + vec2(u_time*0.03, u_time*0.015);
     vec2 q = vec2(fbm(p0, 4), fbm(p0 + vec2(5.2, 1.3), 4));
@@ -153,13 +153,13 @@ void main() {
     
     fragColor = vec4(col, 0.6);
 }
-\`
+`
 };
 
 export const SHADER_03_CIRCUIT = {
   vert: VERT_SHARED,
-  frag: \`#version 300 es
-\${FRAG_HELPERS}
+  frag: `#version 300 es
+${FRAG_HELPERS}
 void main() {
     float row_y = floor(v_uv.y * 40.0);
     float col_x = floor(v_uv.x * u_res.x/u_res.y * 40.0);
@@ -185,13 +185,13 @@ void main() {
     
     fragColor = vec4(col, 1.0);
 }
-\`
+`
 };
 
 export const SHADER_04_DATA_STREAM = {
   vert: VERT_SHARED,
-  frag: \`#version 300 es
-\${FRAG_HELPERS}
+  frag: `#version 300 es
+${FRAG_HELPERS}
 void main() {
     float col = floor(v_uv.x * 60.0);
     float speed = 0.3 + hash(col) * 0.4;
@@ -208,13 +208,13 @@ void main() {
     
     fragColor = vec4(c, length(c) * 0.12);
 }
-\`
+`
 };
 
 export const SHADER_05_HOLOGRAM = {
   vert: VERT_SHARED,
-  frag: \`#version 300 es
-\${FRAG_HELPERS}
+  frag: `#version 300 es
+${FRAG_HELPERS}
 uniform sampler2D u_tex;
 uniform float u_trigger;
 void main() {
@@ -243,13 +243,13 @@ void main() {
     
     fragColor = vec4(mix(base, holo, u_trigger * 0.65), 1.0);
 }
-\`
+`
 };
 
 export const SHADER_06_PARTICLE_FIELD = {
   vert: VERT_SHARED,
-  frag: \`#version 300 es
-\${FRAG_HELPERS}
+  frag: `#version 300 es
+${FRAG_HELPERS}
 uniform sampler2D u_particles;
 void main() {
     vec3 col = vec3(0.0);
@@ -265,13 +265,13 @@ void main() {
     }
     fragColor = vec4(col * 0.8, length(col));
 }
-\`
+`
 };
 
 export const SHADER_07_WORMHOLE = {
   vert: VERT_SHARED,
-  frag: \`#version 300 es
-\${FRAG_HELPERS}
+  frag: `#version 300 es
+${FRAG_HELPERS}
 void main() {
     vec2 p = (v_uv * 2.0 - 1.0) * vec2(u_res.x/u_res.y, 1.0);
     float r = length(p);
@@ -293,13 +293,13 @@ void main() {
     
     fragColor = vec4(col, 1.0);
 }
-\`
+`
 };
 
 export const SHADER_08_GLITCH = {
   vert: VERT_SHARED,
-  frag: \`#version 300 es
-\${FRAG_HELPERS}
+  frag: `#version 300 es
+${FRAG_HELPERS}
 uniform sampler2D u_tex;
 uniform float u_intensity;
 void main() {
@@ -322,13 +322,13 @@ void main() {
     
     fragColor = vec4(mix(clean, glitched, u_intensity), 1.0);
 }
-\`
+`
 };
 
 export const SHADER_09_BLACK_HOLE = {
   vert: VERT_SHARED,
-  frag: \`#version 300 es
-\${FRAG_HELPERS}
+  frag: `#version 300 es
+${FRAG_HELPERS}
 void main() {
     vec2 c = vec2(0.5) * vec2(u_res.x/u_res.y, 1.0);
     vec2 uv = v_uv * vec2(u_res.x/u_res.y, 1.0);
@@ -358,13 +358,13 @@ void main() {
     
     fragColor = vec4(col, 1.0);
 }
-\`
+`
 };
 
 export const SHADER_10_AURORA = {
   vert: VERT_SHARED,
-  frag: \`#version 300 es
-\${FRAG_HELPERS}
+  frag: `#version 300 es
+${FRAG_HELPERS}
 void main() {
     float y1 = 0.3 * sin(v_uv.x * 2.5 + u_time * 0.5) + fbm(v_uv*vec2(1.0,0.5)+u_time*0.02, 3)*0.1;
     float y2 = 0.2 * sin(v_uv.x * 3.8 + u_time * 0.35 + 2.1) + fbm(v_uv*vec2(1.0,0.5)+u_time*0.02, 3)*0.1;
@@ -384,13 +384,13 @@ void main() {
     
     fragColor = vec4(col * 0.55, 1.0);
 }
-\`
+`
 };
 
 export const SHADER_11_PLASMA = {
   vert: VERT_SHARED,
-  frag: \`#version 300 es
-\${FRAG_HELPERS}
+  frag: `#version 300 es
+${FRAG_HELPERS}
 void main() {
     float v1 = sin(v_uv.x * 10.0 + u_time);
     float v2 = sin(v_uv.y * 10.0 + u_time * 0.8);
@@ -408,13 +408,13 @@ void main() {
     
     fragColor = vec4(c, 1.0);
 }
-\`
+`
 };
 
 export const SHADER_12_PORTAL = {
   vert: VERT_SHARED,
-  frag: \`#version 300 es
-\${FRAG_HELPERS}
+  frag: `#version 300 es
+${FRAG_HELPERS}
 void main() {
     vec2 p = (v_uv * 2.0 - 1.0) * vec2(u_res.x/u_res.y, 1.0);
     p += (u_mouse - 0.5) * 0.3;
@@ -435,5 +435,5 @@ void main() {
     
     fragColor = vec4(col, min(1.0 - r, 1.0));
 }
-\`
+`
 };
