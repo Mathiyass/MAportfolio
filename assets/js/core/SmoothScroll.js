@@ -1,78 +1,45 @@
-import { $, on, addStyles } from '../utils/dom.js';
-import { lerp } from '../utils/math.js';
-
 export class SmoothScroll {
-  constructor() {
-    this.container = $('.scroll-container');
-    if (!this.container) return;
+    constructor() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.matchMedia('(pointer: coarse)').matches) {
+            document.body.style.overflow = 'auto';
+            return;
+        }
 
-    this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (this.isReducedMotion) return;
+        this.container = document.querySelector('.scroll-container');
+        if (!this.container) return;
 
-    this.currentY = 0;
-    this.targetY = 0;
-    this.ease = 0.09;
-    
-    this.progress = 0;
-    this.velocity = 0;
-    this.direction = 1; // 1 down, -1 up
+        document.body.style.height = `${this.container.getBoundingClientRect().height}px`;
 
-    this._setup();
-    this._bindEvents();
-    this._loop();
-  }
+        this.sy = 0;
+        this.dy = 0;
+        this.ease = 0.09;
+        this.progress = 0;
 
-  _setup() {
-    document.body.style.height = \`\${this.container.getBoundingClientRect().height}px\`;
-    addStyles(this.container, {
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      width: '100%',
-      willChange: 'transform'
-    });
-  }
+        this.callbacks = new Set();
 
-  _bindEvents() {
-    on(window, 'scroll', () => {
-      this.targetY = window.scrollY;
-    }, { passive: true });
+        window.addEventListener('resize', () => {
+            document.body.style.height = `${this.container.getBoundingClientRect().height}px`;
+        });
 
-    on(window, 'resize', () => {
-      document.body.style.height = \`\${this.container.getBoundingClientRect().height}px\`;
-    });
-    
-    const ro = new ResizeObserver(() => {
-      document.body.style.height = \`\${this.container.getBoundingClientRect().height}px\`;
-    });
-    ro.observe(this.container);
-  }
-
-  _loop() {
-    const prevY = this.currentY;
-    this.currentY = lerp(this.currentY, this.targetY, this.ease);
-    
-    // velocity
-    this.velocity = this.currentY - prevY;
-    if (Math.abs(this.velocity) > 0.1) {
-      this.direction = this.velocity > 0 ? 1 : -1;
+        this._loop();
     }
 
-    // transform
-    const diff = Math.abs(this.currentY - this.targetY);
-    if (diff > 0.1) {
-      this.container.style.transform = \`translate3d(0, \${-this.currentY}px, 0)\`;
+    _loop() {
+        this.sy = window.scrollY;
+        this.dy += (this.sy - this.dy) * this.ease;
+
+        this.progress = this.dy / (document.body.scrollHeight - window.innerHeight);
+
+        this.container.style.transform = `translate3d(0, -${this.dy}px, 0)`;
+
+        for (let cb of this.callbacks) {
+            cb(this.progress, this.sy - this.dy, this.sy > this.dy ? 1 : -1);
+        }
+
+        requestAnimationFrame(() => this._loop());
     }
-
-    // progress
-    const maxScroll = document.body.scrollHeight - window.innerHeight;
-    this.progress = maxScroll > 0 ? this.currentY / maxScroll : 0;
     
-    // custom event
-    window.dispatchEvent(new CustomEvent('scroll:progress', {
-      detail: { progress: this.progress, velocity: this.velocity, direction: this.direction }
-    }));
-
-    requestAnimationFrame(() => this._loop());
-  }
+    onScroll(callback) {
+        this.callbacks.add(callback);
+    }
 }

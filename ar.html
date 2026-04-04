@@ -1,154 +1,169 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dual">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>AR/XR // Mathisha Angirasa</title>
-  
-  <meta name="description" content="Augmented Reality & WebXR by Mathisha Angirasa">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-  
-  <style>
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    <meta property="og:image" content="https://mathiyass.github.io/MAportfolio/assets/img/og-card.webp">
+    <meta name="description" content="MA_Dev Solutions AR / XR experiments.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR / XR // Mathisha Angirasa</title>
+    <meta name="theme-color" content="#00E5FF">
     
-    .tilt-card { perspective: 1200px; transform-style: preserve-3d; }
-    .tilt-inner { width: 100%; height: 400px; background: var(--surface-0); border: 1px solid var(--cyan-border); padding: 32px; position: relative; transition: transform 0.1s; transform-style: preserve-3d; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-    .tilt-inner::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,229,255,0.1), transparent); z-index: 0; transform: translateZ(-20px); }
-    .tilt-content { transform: translateZ(40px); z-index: 1; }
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
     
-    .gyro-layer { position: absolute; inset: -50px; background-size: cover; background-position: center; transition: transform 0.1s ease-out; }
-  </style>
+    <style>
+        body { perspective: 1200px; height: 100vh; overflow: hidden; }
+        .nav-wrapper { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); padding: 0 var(--gutter); height: 64px; background: transparent; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 100%; max-width: var(--max-w); margin: 0 auto; }
+        .logo-compound { display: flex; align-items: baseline; font-weight: 700; cursor: pointer; }
+        .logo-ma { font-family: var(--font-display); font-size: 20px; color: var(--cyan); }
+        .logo-dev { font-family: var(--font-mono); font-size: 20px; color: var(--text-1); }
+
+        #canvas-bg { position: fixed; inset: 0; z-index: -1; }
+
+        .xr-container { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; transform-style: preserve-3d; }
+
+        .card-3d { width: 320px; height: 480px; background: rgba(9,9,22,0.6); backdrop-filter: blur(24px); border: 1px solid var(--cyan-border); position: absolute; padding: var(--s-32); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.1s ease-out; transform-style: preserve-3d; }
+        .card-3d::before { content:''; position:absolute; inset:0; box-shadow: inset 0 0 60px rgba(0,229,255,0.1); pointer-events:none; }
+
+        /* Desktop specific layout */
+        @media (min-width: 768px) {
+            .c1 { transform: translateX(-350px) translateZ(-100px) rotateY(15deg); }
+            .c2 { transform: translateX(0) translateZ(0) rotateY(0); z-index: 10; border-color: var(--cyan); box-shadow: var(--glow-cyan); }
+            .c3 { transform: translateX(350px) translateZ(-100px) rotateY(-15deg); }
+        }
+        /* Mobile specific layout */
+        @media (max-width: 767px) {
+             .card-3d { width: 85vw; height: 60vh; }
+             .c1, .c3 { display: none; }
+        }
+
+        .xr-badge { position: absolute; top: calc(64px + var(--s-24)); right: var(--gutter); font-family: var(--font-mono); font-size: 11px; padding: 6px 12px; border: 1px solid; border-radius: 0; background: var(--surface-1); }
+        .xr-supported { color: var(--cyan); border-color: var(--cyan); box-shadow: var(--glow-cyan); }
+        .xr-unsupported { color: var(--red); border-color: var(--red); }
+
+        .content-layer { transform: translateZ(50px); }
+    </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
+    <canvas id="canvas-bg"></canvas>
 
-  <canvas id="canvas-wormhole" style="position:fixed; inset:0; z-index:-3; width:100vw; height:100vh;"></canvas>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
-
-  <nav id="navbar" role="navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    <div class="nav-center">
-      <a href="index.html" class="nav-link">INDEX</a>
-      <a href="projects.html" class="nav-link">PROJECTS</a>
-      <a href="skills.html" class="nav-link">SKILLS</a>
-      <a href="blog.html" class="nav-link">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link">CONTACT</a>
-    </div>
-  </nav>
-
-  <div class="scroll-container">
-    <main id="main" role="main" style="padding-top: 120px;">
-      
-      <section class="container" style="text-align: center; margin-bottom: 64px;">
-        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); margin-bottom: 24px;" data-reveal data-reveal-clip>AR <span style="color: var(--cyan);">//</span> XR</h1>
-        <div id="xr-badge" class="badge badge--red" data-reveal>WEBXR NOT SUPPORTED</div>
-      </section>
-
-      <section class="container">
-        <div class="grid-12">
-          
-          <div class="tilt-card" style="grid-column: span 6;" data-reveal>
-            <div class="tilt-inner interactive-tilt">
-              <div class="tilt-content">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" style="margin-bottom: 24px;"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                <h3 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 16px;">Spatial Configurator</h3>
-                <p style="color: var(--text-1); margin-bottom: 24px;">View technical assemblies in 3D space directly through the browser.</p>
-                <button class="btn btn--ghost">LAUNCH AR</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="tilt-card" style="grid-column: span 6;" data-reveal>
-            <div class="tilt-inner interactive-tilt" style="border-color: var(--red-border);">
-              <div class="tilt-content">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" style="margin-bottom: 24px;"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                <h3 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 16px;">Live Diagnostics</h3>
-                <p style="color: var(--text-1); margin-bottom: 24px;">Overlay server health metrics onto physical server racks using markers.</p>
-                <button class="btn btn--red btn--ghost">REQUEST ACCESS</button>
-              </div>
-            </div>
-          </div>
-
+    <header class="nav-wrapper">
+        <div class="nav-inner">
+            <a href="index.html" class="logo-compound interactable">
+                <span class="logo-ma">MA*</span><span class="logo-dev">_DEV</span>
+            </a>
+            <a href="index.html" class="nav-link">&lt; ABORT</a>
         </div>
-      </section>
+    </header>
 
+    <div class="xr-badge xr-unsupported" id="xr-badge">XR STATUS: CHECKING...</div>
+
+    <main class="xr-container" id="scene">
+        <div class="card-3d c1">
+            <div class="content-layer">
+                <h2 style="font-family: var(--font-display); font-size: 24px;">HOLO_RENDER</h2>
+                <p style="font-family: var(--font-mono); font-size: 12px; color: var(--text-1); margin-top: 16px;">Spatial rendering tests using WebGL matrix transformations.</p>
+            </div>
+        </div>
+        <div class="card-3d c2">
+            <div class="content-layer">
+                <h2 style="font-family: var(--font-display); font-size: 32px; color: var(--cyan);">EVENT HORIZON</h2>
+                <p style="font-family: var(--font-mono); font-size: 14px; color: var(--text-1); margin-top: 16px;">Projecting interfaces into the void. This system utilizes hardware acceleration for fluid optical parallax.</p>
+                <div style="margin-top: 32px; display: flex; gap: 8px;">
+                    <span class="tag">THREE.JS</span><span class="tag">WEBXR</span>
+                </div>
+                <button class="btn btn--ghost" style="margin-top: auto; align-self: flex-start; transform: translateZ(20px);">INITIATE SEQUENCE</button>
+            </div>
+        </div>
+        <div class="card-3d c3">
+            <div class="content-layer">
+                <h2 style="font-family: var(--font-display); font-size: 24px;">VOID_MAPPER</h2>
+                <p style="font-family: var(--font-mono); font-size: 12px; color: var(--text-1); margin-top: 16px;">Raymarching geometries for augmented reality tracking.</p>
+            </div>
+        </div>
     </main>
-  </div>
 
-  <script type="module">
-    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
-    import { SHADER_07_WORMHOLE } from './assets/js/engine/shaders.js';
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { AudioSystem } from './assets/js/core/Audio.js';
-    import { PageTransitions } from './assets/js/core/PageTransitions.js';
-    import { Konami } from './assets/js/core/Konami.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+    <script type="module">
+        import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+        import { SHADER_07_WORMHOLE } from './assets/js/engine/shaders.js';
+        import { CustomCursor } from './assets/js/core/Cursor.js';
+        import { PageTransitions } from './assets/js/core/PageTransitions.js';
 
-    new ThemeSystem();
-    new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-    new AudioSystem();
-    new PageTransitions();
-    new Konami();
+        new CustomCursor();
+        new PageTransitions();
 
-    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!isReduced) {
-      const cWorm = document.getElementById('canvas-wormhole');
-      const eWorm = new WebGLEngine(cWorm);
-      eWorm.compileProgram('worm', SHADER_07_WORMHOLE.vert, SHADER_07_WORMHOLE.frag);
-      eWorm.createFullscreenQuad('fullscreen');
-      eWorm.render('worm');
-    }
-
-    // 3D Tilt Logic
-    const cards = document.querySelectorAll('.interactive-tilt');
-    cards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -12;
-        const rotateY = ((x - centerX) / centerX) * 12;
-        card.style.transform = \`rotateX(\${rotateX}deg) rotateY(\${rotateY}deg)\`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateX(0deg) rotateY(0deg)';
-      });
-    });
-
-    // WebXR check
-    if (navigator.xr) {
-      navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
-        const badge = document.getElementById('xr-badge');
-        if (supported) {
-          badge.className = 'badge badge--cyan';
-          badge.textContent = 'WEBXR AR SUPPORTED';
+        // Background
+        if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const engine = new WebGLEngine(document.getElementById('canvas-bg'));
+            engine.compileProgram('wormhole', SHADER_07_WORMHOLE.vert, SHADER_07_WORMHOLE.frag);
+            engine.render('wormhole');
         }
-      });
-    }
 
-  </script>
+        // XR Check
+        const badge = document.getElementById('xr-badge');
+        if ('xr' in navigator) {
+            navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
+                if(supported) {
+                    badge.textContent = "XR STATUS: SUPPORTED";
+                    badge.className = "xr-badge xr-supported";
+                } else {
+                    badge.textContent = "XR STATUS: UNSUPPORTED";
+                    badge.className = "xr-badge xr-unsupported";
+                }
+            });
+        } else {
+            badge.textContent = "XR STATUS: NOT AVAILABLE";
+        }
+
+        // Parallax Logic
+        const scene = document.getElementById('scene');
+        const cards = document.querySelectorAll('.card-3d');
+
+        const applyTransform = (cx, cy) => {
+            // Only apply active parallax to the center card on desktop
+            if(window.innerWidth > 767) {
+                const c2 = cards[1];
+                c2.style.transform = `rotateY(${cx * 15}deg) rotateX(${-cy * 15}deg)`;
+
+                // Slight counter-rotation for background cards
+                cards[0].style.transform = `translateX(-350px) translateZ(-100px) rotateY(${15 + cx*5}deg) rotateX(${-cy*5}deg)`;
+                cards[2].style.transform = `translateX(350px) translateZ(-100px) rotateY(${-15 + cx*5}deg) rotateX(${-cy*5}deg)`;
+            } else {
+                cards[1].style.transform = `rotateY(${cx * 20}deg) rotateX(${-cy * 20}deg)`;
+            }
+        };
+
+        // Mouse Parallax
+        document.addEventListener('mousemove', (e) => {
+            const cx = (e.clientX / window.innerWidth) * 2 - 1;
+            const cy = (e.clientY / window.innerHeight) * 2 - 1;
+            applyTransform(cx, cy);
+        });
+
+        // Gyro Parallax (Mobile)
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', (e) => {
+                // Normalize roughly
+                let x = e.gamma; // In degree in the range [-90,90]
+                let y = e.beta;  // In degree in the range [-180,180]
+
+                // Limit range
+                if (x >  45) { x =  45};
+                if (x < -45) { x = -45};
+                if (y >  45) { y =  45};
+                if (y < -45) { y = -45};
+
+                const cx = x / 45;
+                const cy = (y - 45) / 45; // Offset for viewing angle
+
+                applyTransform(cx, cy);
+            });
+        }
+    </script>
 </body>
 </html>

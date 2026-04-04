@@ -1,248 +1,190 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dual">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>Blog // Mathisha Angirasa</title>
-  
-  <meta name="description" content="Technical blog and transmissions by Mathisha Angirasa">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-  
-  <style>
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    <meta property="og:image" content="https://mathiyass.github.io/MAportfolio/assets/img/og-card.webp">
+    <meta name="description" content="MA_Dev Solutions Blog & Transmissions.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transmissions // Mathisha Angirasa</title>
+    <meta name="theme-color" content="#00E5FF">
     
-    .filter-bar { display: flex; gap: 16px; margin-bottom: 48px; flex-wrap: wrap; }
-    .filter-btn { font-family: var(--font-mono); font-size: 12px; color: var(--text-1); border: 1px solid var(--cyan-border); padding: 8px 16px; cursor: pointer; transition: all var(--dur-fast); background: var(--surface-1); display: flex; align-items: center; gap: 8px; }
-    .filter-btn:hover { border-color: var(--cyan); color: var(--cyan); }
-    .filter-btn.active { border-color: var(--cyan); color: var(--cyan); box-shadow: var(--glow-cyan); background: rgba(0,229,255,0.1); }
-    .filter-btn .close-icon { display: none; width: 12px; height: 12px; stroke: var(--red); }
-    .filter-btn.active .close-icon { display: block; }
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
     
-    .masonry { column-count: 2; column-gap: 24px; }
-    @media (max-width: 768px) { .masonry { column-count: 1; } }
-    
-    .blog-card { break-inside: avoid; margin-bottom: 24px; padding: 32px; background: var(--surface-0); border: 1px solid var(--cyan-border); transition: all 0.3s var(--ease-expo); display: block; position: relative; }
-    .blog-card:hover { transform: translateY(-4px); border-color: var(--cyan-hot); box-shadow: var(--glow-cyan); }
-    .blog-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--red)); transform: scaleX(0); transform-origin: left; transition: transform 350ms var(--ease-expo); }
-    .blog-card:hover::before { transform: scaleX(1); }
-    
-    .b-meta { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; margin-bottom: 16px; }
-    .b-date { color: var(--cyan); }
-    .b-cat { color: var(--red); }
-    
-    .b-title { font-family: var(--font-display); font-size: 24px; margin-bottom: 16px; color: var(--text-0); }
-    .b-excerpt { color: var(--text-1); font-size: 15px; margin-bottom: 24px; line-height: 1.6; }
-    .b-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--cyan-border); padding-top: 16px; font-family: var(--font-mono); font-size: 10px; color: var(--text-2); }
-    
-    .featured { column-span: all; display: flex; gap: 48px; align-items: center; }
-    .f-img { width: 50%; height: 320px; background-size: cover; background-position: center; border: 1px solid var(--cyan-border); }
-    .f-content { width: 50%; }
-    @media (max-width: 1024px) { .featured { flex-direction: column; gap: 24px; } .f-img, .f-content { width: 100%; } }
-  </style>
+    <style>
+        .nav-wrapper { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); padding: 0 var(--gutter); height: 64px; background: var(--surface-glass); backdrop-filter: blur(28px); border-bottom: 1px solid var(--cyan-border); }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 100%; max-width: var(--max-w); margin: 0 auto; }
+        .logo-compound { display: flex; align-items: baseline; font-weight: 700; cursor: pointer; }
+        .logo-ma { font-family: var(--font-display); font-size: 20px; color: var(--cyan); }
+        .logo-dev { font-family: var(--font-mono); font-size: 20px; color: var(--text-1); }
+        .nav-links { display: none; gap: var(--s-24); }
+        @media (min-width: 1024px) { .nav-links { display: flex; } }
+
+        #canvas-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.1; }
+
+        .hero-strip { padding: calc(64px + var(--s-64)) 0 var(--s-32); }
+        .hero-strip h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); text-transform: uppercase; margin-bottom: var(--s-16); }
+
+        .featured-post { position: relative; height: 50vh; min-height: 400px; overflow: hidden; margin-bottom: var(--s-64); display: flex; align-items: flex-end; padding: var(--s-48); }
+        .featured-post::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--void) 10%, transparent 60%); z-index: 1; }
+        .featured-post img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; filter: grayscale(100%) contrast(1.2); opacity: 0.6; mix-blend-mode: screen;}
+        .featured-content { position: relative; z-index: 2; max-width: 800px; }
+        .post-meta { font-family: var(--font-mono); font-size: 12px; margin-bottom: 16px; display: flex; gap: 16px; align-items: center; }
+        .post-date { color: var(--cyan); }
+        .post-readtime { color: var(--text-2); display: flex; align-items: center; gap: 4px; }
+
+        .filters { display: flex; gap: var(--s-16); overflow-x: auto; padding-bottom: var(--s-16); margin-bottom: var(--s-48); }
+        .filters::-webkit-scrollbar { height: 4px; }
+        .filters::-webkit-scrollbar-thumb { background: var(--cyan-border); }
+        .filter-btn { font-family: var(--font-mono); font-size: 12px; color: var(--text-1); padding: 8px 16px; border: 1px solid var(--cyan-border); cursor: pointer; white-space: nowrap; transition: all var(--dur-fast); text-transform: uppercase; border-radius: 0; }
+        .filter-btn.active { background: var(--cyan); color: var(--void); border-color: var(--cyan); }
+        .filter-btn.active .close-x { display: inline-block; color: var(--red); margin-left: 8px; font-weight: bold; }
+        .filter-btn .close-x { display: none; }
+
+        .masonry { column-count: 1; column-gap: var(--s-24); }
+        @media (min-width: 768px) { .masonry { column-count: 2; } }
+
+        .blog-card { break-inside: avoid; margin-bottom: var(--s-24); padding: var(--s-24); display: flex; flex-direction: column; gap: 16px; }
+        .blog-card h3 { font-family: var(--font-display); font-size: 20px; line-height: 1.2; transition: color 0.2s; }
+        .blog-card:hover h3 { color: var(--cyan); }
+        .blog-excerpt { font-family: var(--font-mono); font-size: 13px; color: var(--text-1); }
+    </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
+    <div class="scroll-container">
+        <canvas id="canvas-bg"></canvas>
+        
+        <header class="nav-wrapper">
+            <div class="nav-inner">
+                <a href="index.html" class="logo-compound interactable">
+                    <span class="logo-ma">MA*</span><span class="logo-dev">_DEV</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">INDEX</a>
+                    <a href="projects.html" class="nav-link">PROJECTS</a>
+                    <a href="skills.html" class="nav-link">SKILLS</a>
+                    <a href="blog.html" class="nav-link active">BLOG</a>
+                    <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
+                    <a href="contact.html" class="nav-link">CONTACT</a>
+                </nav>
+            </div>
+        </header>
 
-  <canvas id="canvas-stream" style="position:fixed; inset:0; z-index:-3; opacity:0.1; pointer-events:none; width:100vw; height:100vh;"></canvas>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
+        <main class="container" style="padding-bottom: var(--s-128);">
+            <div class="hero-strip" data-reveal-clip>
+                <h1>TRANSMISSIONS</h1>
+                <p style="font-family: var(--font-mono); color: var(--text-1);">SYSTEM LOGS // ARCHITECTURE REVIEWS</p>
+            </div>
 
-  <nav id="navbar" role="navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    
-    <div class="nav-center">
-      <a href="index.html" class="nav-link">INDEX</a>
-      <a href="projects.html" class="nav-link">PROJECTS</a>
-      <a href="skills.html" class="nav-link">SKILLS</a>
-      <a href="blog.html" class="nav-link active">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link">CONTACT</a>
+            <a href="#" class="featured-post interactable" data-reveal>
+                <img src="assets/img/blog-featured.webp" alt="Kotlin Syntax" loading="lazy">
+                <div class="featured-content">
+                    <div class="post-meta">
+                        <span class="post-date">[ 05.22.24 ]</span>
+                        <span class="tag tag--red">KINETIC_UX</span>
+                        <span class="post-readtime">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            4 MIN_READ
+                        </span>
+                    </div>
+                    <h2 style="font-family: var(--font-display); font-size: clamp(28px, 4vw, 48px); margin-bottom: 16px;">Building the Dual-Signal Design System</h2>
+                    <p style="font-family: var(--font-mono); font-size: 14px; color: var(--text-1); max-width: 60ch;">Why typical component libraries fail high-performance applications, and how shifting to a 'tactical' mindset changes development velocity.</p>
+                </div>
+            </a>
+
+            <div class="filters" id="filter-bar" data-reveal>
+                <button class="filter-btn active" data-filter="all">ALL</button>
+                <button class="filter-btn" data-filter="ai">AI<span class="close-x">×</span></button>
+                <button class="filter-btn" data-filter="web">WEB<span class="close-x">×</span></button>
+                <button class="filter-btn" data-filter="hardware">HARDWARE<span class="close-x">×</span></button>
+                <button class="filter-btn" data-filter="mobile">MOBILE<span class="close-x">×</span></button>
+            </div>
+
+            <div class="masonry stagger" id="blog-grid">
+                <!-- Populated via JS -->
+            </div>
+
+        </main>
     </div>
 
-    <div style="display: flex; align-items: center; gap: var(--s-16);">
-      <button class="btn btn--red" style="padding: 8px 16px; height: 36px; border-color: var(--red-border);" onclick="window.location.href='contact.html'">HIRE ME</button>
-      <button class="hamburger" aria-label="Toggle Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      </button>
-    </div>
-  </nav>
+    <script type="module">
+        import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+        import { SHADER_04_DATA_STREAM } from './assets/js/engine/shaders.js';
+        import { CustomCursor } from './assets/js/core/Cursor.js';
+        import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+        import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+        import { PageTransitions } from './assets/js/core/PageTransitions.js';
 
-  <div class="scroll-container">
-    <main id="main" role="main" style="padding-top: 120px;">
-      
-      <section class="container">
-        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); margin-bottom: 48px;" data-reveal data-reveal-clip>TRANSMISSIONS <span style="color: var(--cyan);">//</span> LOGS</h1>
+        new CustomCursor();
+        new SmoothScroll();
+        new PageTransitions();
+
+        // Background Shader
+        if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const engine = new WebGLEngine(document.getElementById('canvas-bg'));
+            engine.compileProgram('data', SHADER_04_DATA_STREAM.vert, SHADER_04_DATA_STREAM.frag);
+            engine.render('data');
+        }
+
+        const posts = [
+            { title: "Kotlin Multiplatform in Production", excerpt: "Evaluating shared business logic performance across Android and iOS targets.", date: "04.12.24", tag: "MOBILE", wordCount: 1200 },
+            { title: "Supabase vs Firebase Realtime", excerpt: "A latency analysis of Postgres RLS policies versus NoSQL rules.", date: "03.28.24", tag: "WEB", wordCount: 800 },
+            { title: "Optimizing GLSL in the Browser", excerpt: "Techniques for maintaining 60fps across mobile devices when pushing heavy fragment shaders.", date: "02.15.24", tag: "WEB", wordCount: 1500 },
+            { title: "Neural Networks for UI Prediction", excerpt: "Prototyping lightweight models for anticipating user interactions in tactical interfaces.", date: "01.05.24", tag: "AI", wordCount: 2200 },
+            { title: "The End of Rounded Corners", excerpt: "A design manifest on the psychological impact of geometric precision.", date: "12.10.23", tag: "WEB", wordCount: 600 }
+        ];
+
+        const grid = document.getElementById('blog-grid');
         
-        <div class="filter-bar" data-reveal>
-          <button class="filter-btn active" data-filter="all">
-            ALL
-            <svg class="close-icon" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-          </button>
-          <button class="filter-btn" data-filter="architecture">
-            ARCHITECTURE
-            <svg class="close-icon" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-          </button>
-          <button class="filter-btn" data-filter="webgl">
-            WEBGL
-            <svg class="close-icon" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-          </button>
-          <button class="filter-btn" data-filter="systems">
-            SYSTEMS
-            <svg class="close-icon" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-          </button>
-        </div>
+        posts.forEach(p => {
+            const el = document.createElement('a');
+            el.href = "#";
+            el.className = 'card blog-card interactable';
+            el.setAttribute('data-reveal', '');
+            el.setAttribute('data-category', p.tag.toLowerCase());
 
-        <div class="masonry">
-          
-          <!-- Featured -->
-          <a href="#" class="blog-card featured filter-item" data-category="architecture systems" data-reveal>
-            <div class="f-img" style="background-image: url('assets/img/blog-featured.webp');"></div>
-            <div class="f-content">
-              <div class="b-meta">
-                <span class="b-date">APR 03, 2026</span>
-                <span class="b-cat">ARCHITECTURE</span>
-              </div>
-              <h2 class="b-title" style="font-size: 32px;">Building the MA_Dev Marketplace Ecosystem</h2>
-              <p class="b-excerpt">A deep dive into the architecture behind the flagship MA_Dev Marketplace. How Kotlin, Supabase, and Firebase FCM work in tandem to deliver a seamless developer experience with real-time updates and secure transactions.</p>
-              <div class="b-footer">
-                <span>READ TIME: <span data-words="1200">6</span> MIN</span>
-                <span>READ MORE →</span>
-              </div>
-            </div>
-          </a>
+            const readTime = Math.ceil(p.wordCount / 200);
 
-          <!-- Standard Cards -->
-          <a href="#" class="blog-card filter-item" data-category="webgl" data-reveal>
-            <div class="b-meta"><span class="b-date">MAR 15, 2026</span><span class="b-cat">WEBGL</span></div>
-            <h2 class="b-title">Raw GLSL: Why I Abandoned Three.js</h2>
-            <p class="b-excerpt">Writing 12 custom shaders from scratch using pure WebGL2 and vanilla JS. An exploration of performance, control, and the beauty of math over abstraction layers.</p>
-            <div class="b-footer">
-              <span>READ TIME: <span data-words="850">4</span> MIN</span>
-              <span>READ MORE →</span>
-            </div>
-          </a>
-
-          <a href="#" class="blog-card filter-item" data-category="systems" data-reveal>
-            <div class="b-meta"><span class="b-date">FEB 28, 2026</span><span class="b-cat">SYSTEMS</span></div>
-            <h2 class="b-title">Collision Detection in C++ / TL-Engine</h2>
-            <p class="b-excerpt">Optimizing AABB and Sphere collision for the Killer Quebes 3D shooter. Strategies for maintaining 60fps while handling hundreds of active entities.</p>
-            <div class="b-footer">
-              <span>READ TIME: <span data-words="1500">7</span> MIN</span>
-              <span>READ MORE →</span>
-            </div>
-          </a>
-
-          <a href="#" class="blog-card filter-item" data-category="architecture" data-reveal>
-            <div class="b-meta"><span class="b-date">JAN 10, 2026</span><span class="b-cat">ARCHITECTURE</span></div>
-            <h2 class="b-title">Clean MVVM in Native Android</h2>
-            <p class="b-excerpt">Structuring large-scale Kotlin codebases for maintainability. My approach to Repository pattern, Flows, and dependency injection without Hilt overhead.</p>
-            <div class="b-footer">
-              <span>READ TIME: <span data-words="950">5</span> MIN</span>
-              <span>READ MORE →</span>
-            </div>
-          </a>
-
-          <a href="#" class="blog-card filter-item" data-category="systems" data-reveal>
-            <div class="b-meta"><span class="b-date">DEC 05, 2025</span><span class="b-cat">SYSTEMS</span></div>
-            <h2 class="b-title">Zero Frameworks: The MAportfolio Manifesto</h2>
-            <p class="b-excerpt">Building a highly interactive, animated, WebGL-powered portfolio with 0 bytes of external CSS or JS libraries. A case study in web fundamentals.</p>
-            <div class="b-footer">
-              <span>READ TIME: <span data-words="600">3</span> MIN</span>
-              <span>READ MORE →</span>
-            </div>
-          </a>
-
-        </div>
-
-        <div id="empty-state" style="display: none; text-align: center; padding: 64px; font-family: var(--font-mono); color: var(--text-2); font-size: 14px;">
-          [ NO TRANSMISSIONS FOUND FOR THIS FREQUENCY ]
-        </div>
-
-      </section>
-
-      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden; margin-top: 64px;">
-        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
-          <div class="grid-12">
-            <div style="grid-column: span 4;">
-              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
-              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </main>
-  </div>
-
-  <script type="module">
-    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
-    import { SHADER_04_DATA_STREAM } from './assets/js/engine/shaders.js';
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { AudioSystem } from './assets/js/core/Audio.js';
-    import { PageTransitions } from './assets/js/core/PageTransitions.js';
-    import { Konami } from './assets/js/core/Konami.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
-
-    new ThemeSystem();
-    new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-    new AudioSystem();
-    new PageTransitions();
-    new Konami();
-
-    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!isReduced) {
-      const cStream = document.getElementById('canvas-stream');
-      const eStream = new WebGLEngine(cStream);
-      eStream.compileProgram('stream', SHADER_04_DATA_STREAM.vert, SHADER_04_DATA_STREAM.frag);
-      eStream.createFullscreenQuad('fullscreen');
-      eStream.render('stream');
-    }
-
-    // Filtering logic
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const items = document.querySelectorAll('.filter-item');
-    const emptyState = document.getElementById('empty-state');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        const filter = btn.dataset.filter;
-        let visibleCount = 0;
-
-        items.forEach(item => {
-          if (filter === 'all' || item.dataset.category.includes(filter)) {
-            item.style.display = '';
-            visibleCount++;
-          } else {
-            item.style.display = 'none';
-          }
+            el.innerHTML = `
+                <div class="post-meta">
+                    <span class="post-date">[ ${p.date} ]</span>
+                    <span class="tag tag--red">${p.tag}</span>
+                </div>
+                <h3>${p.title}</h3>
+                <p class="blog-excerpt">${p.excerpt}</p>
+                <div class="post-readtime" style="margin-top:auto; font-size:10px;">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    ${readTime} MIN_READ
+                </div>
+            `;
+            grid.appendChild(el);
         });
 
-        emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
-      });
-    });
+        new ScrollReveal();
 
-  </script>
+        // Filter
+        const btns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.blog-card');
+
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                cards.forEach(c => {
+                    if(filter === 'all' || c.getAttribute('data-category') === filter) {
+                        c.style.display = 'flex';
+                    } else {
+                        c.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

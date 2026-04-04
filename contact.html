@@ -1,243 +1,225 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dual">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>Contact // Mathisha Angirasa</title>
-  
-  <meta name="description" content="Contact Mathisha Angirasa - Open to opportunities">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-  
-  <style>
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact // Mathisha Angirasa</title>
+    <meta name="theme-color" content="#00E5FF">
     
-    .contact-split { display: grid; grid-template-columns: 5fr 7fr; gap: 48px; align-items: flex-start; }
-    @media (max-width: 768px) { .contact-split { grid-template-columns: 1fr; } }
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
     
-    .term-line { font-family: var(--font-mono); font-size: 13px; color: var(--text-1); margin-bottom: 16px; display: flex; flex-direction: column; gap: 4px; }
-    .term-label { display: flex; align-items: center; gap: 8px; color: var(--text-0); }
-    .term-label svg { stroke: var(--cyan); width: 16px; height: 16px; }
-    .term-status { color: var(--cyan); opacity: 0; transform: translateX(-10px); transition: all 0.3s; }
-    .term-line.active .term-status { opacity: 1; transform: translateX(0); }
-    
-    .form-group { margin-bottom: 24px; position: relative; }
-    .form-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-1); margin-bottom: 8px; display: block; }
-    
-    .success-overlay { position: fixed; inset: 0; z-index: 10000; background: var(--void); display: none; align-items: center; justify-content: center; flex-direction: column; }
-    .success-overlay.active { display: flex; }
-    .success-border { position: absolute; inset: 24px; border: 2px solid transparent; background: linear-gradient(135deg, var(--cyan), var(--red)) border-box; -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: borderPulse 2s infinite; }
-  </style>
+    <style>
+        .nav-wrapper { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); padding: 0 var(--gutter); height: 64px; background: var(--surface-glass); backdrop-filter: blur(28px); border-bottom: 1px solid var(--cyan-border); }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 100%; max-width: var(--max-w); margin: 0 auto; }
+        .logo-compound { display: flex; align-items: baseline; font-weight: 700; cursor: pointer; }
+        .logo-ma { font-family: var(--font-display); font-size: 20px; color: var(--cyan); }
+        .logo-dev { font-family: var(--font-mono); font-size: 20px; color: var(--text-1); }
+        .nav-links { display: none; gap: var(--s-24); }
+        @media (min-width: 1024px) { .nav-links { display: flex; } }
+
+        #canvas-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.18; }
+
+        .hero-strip { padding: calc(64px + var(--s-64)) 0 var(--s-32); }
+        .hero-strip h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); text-transform: uppercase; margin-bottom: var(--s-16); }
+
+        .split-layout { display: grid; grid-template-columns: 1fr; gap: var(--s-64); margin-bottom: var(--s-128); }
+        @media (min-width: 1024px) { .split-layout { grid-template-columns: 1fr 1fr; } }
+
+        .ping-list { display: flex; flex-direction: column; gap: var(--s-24); font-family: var(--font-mono); font-size: 14px; }
+        .ping-item { display: flex; flex-direction: column; gap: 8px; padding: var(--s-16); border-left: 2px solid var(--cyan-border); background: var(--surface-1); }
+        .ping-item .lbl { color: var(--text-1); font-size: 12px; }
+        .ping-item .val { color: var(--text-0); font-weight: 700; }
+        .ping-status { font-size: 10px; display: flex; align-items: center; gap: 6px; }
+        .ping-status.success { color: var(--cyan); }
+        .ping-status.error { color: var(--red); }
+        .dot { width: 6px; height: 6px; border-radius: 50%; }
+        .success .dot { background: var(--cyan); animation: neonPulseCyan 2s infinite alternate; }
+        .error .dot { background: var(--red); animation: neonPulseRed 1s infinite alternate; }
+
+        .form-group { margin-bottom: var(--s-24); }
+        .form-label { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--text-1); margin-bottom: 8px; text-transform: uppercase; }
+        .error-msg { color: var(--red); font-family: var(--font-mono); font-size: 10px; margin-top: 4px; display: none; }
+        .input[aria-invalid="true"] + .error-msg { display: block; }
+
+        .success-overlay { position: fixed; inset: 0; background: var(--void); z-index: 100000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.5s; flex-direction: column; gap: 24px; text-align: center; }
+        .success-overlay.active { opacity: 1; pointer-events: auto; }
+        .success-overlay::before { content: ''; position: absolute; inset: 0; border: 4px solid transparent; border-image: linear-gradient(to right, var(--cyan), var(--red)) 1; animation: borderPulse 4s infinite linear; pointer-events: none; }
+        @keyframes borderPulse { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
+        #canvas-success { position: absolute; inset: 0; z-index: -1; opacity: 0.3; mix-blend-mode: screen; }
+    </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
+    <div class="scroll-container">
+        <canvas id="canvas-bg"></canvas>
 
-  <canvas id="canvas-circ" style="position:fixed; inset:0; z-index:-3; opacity:0.18; pointer-events:none; width:100vw; height:100vh;"></canvas>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
+        <header class="nav-wrapper">
+            <div class="nav-inner">
+                <a href="index.html" class="logo-compound interactable">
+                    <span class="logo-ma">MA*</span><span class="logo-dev">_DEV</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">INDEX</a>
+                    <a href="projects.html" class="nav-link">PROJECTS</a>
+                    <a href="skills.html" class="nav-link">SKILLS</a>
+                    <a href="blog.html" class="nav-link">BLOG</a>
+                    <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
+                    <a href="contact.html" class="nav-link active">CONTACT</a>
+                </nav>
+            </div>
+        </header>
 
-  <nav id="navbar" role="navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    
-    <div class="nav-center">
-      <a href="index.html" class="nav-link">INDEX</a>
-      <a href="projects.html" class="nav-link">PROJECTS</a>
-      <a href="skills.html" class="nav-link">SKILLS</a>
-      <a href="blog.html" class="nav-link">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link active">CONTACT</a>
+        <main class="container">
+            <div class="hero-strip" data-reveal-clip>
+                <h1>ESTABLISH_UPLINK</h1>
+                <p style="font-family: var(--font-mono); color: var(--text-1);">SECURE COMMUNICATIONS CHANNEL</p>
+            </div>
+            
+            <div class="split-layout">
+                <div class="ping-list stagger">
+                    <div class="ping-item" data-reveal>
+                        <div class="lbl">ENCRYPTED_EMAIL</div>
+                        <div class="val">mathisha@madev.solutions</div>
+                        <div class="ping-status success" id="ping-1"><div class="dot"></div> CONNECTED ✓ 12MS</div>
+                    </div>
+                    <div class="ping-item" data-reveal>
+                        <div class="lbl">LINKEDIN_RELAY</div>
+                        <a href="https://linkedin.com" target="_blank" class="val interactable" style="text-decoration:underline; text-underline-offset:4px;">in/mathisha-angirasa</a>
+                        <div class="ping-status success" id="ping-2"><div class="dot"></div> RESOLVED ✓ 45MS</div>
+                    </div>
+                    <div class="ping-item" style="border-color: var(--red-border);" data-reveal>
+                        <div class="lbl">SATELLITE_UPLINK</div>
+                        <div class="val" style="color: var(--red);">OFFLINE</div>
+                        <div class="ping-status error" id="ping-3"><div class="dot"></div> SIGNAL COMPROMISED ✕ TIMEOUT</div>
+                    </div>
+                </div>
+
+                <div class="form-container" data-reveal>
+                    <form id="contact-form" action="https://formsubmit.co/mathisha@madev.solutions" method="POST">
+                        <!-- Disable captcha & next page for custom UX -->
+                        <input type="hidden" name="_captcha" value="false">
+
+                        <div class="form-group">
+                            <label for="name" class="form-label">OPERATIVE_ID (NAME)</label>
+                            <input type="text" id="name" name="name" class="input interactable" required aria-required="true" placeholder="Enter your designation">
+                            <div class="error-msg">Identification required.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">RETURN_ADDRESS (EMAIL)</label>
+                            <input type="email" id="email" name="email" class="input interactable" required aria-required="true" placeholder="Enter secure channel">
+                            <div class="error-msg">Valid channel required.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">PAYLOAD (MESSAGE)</label>
+                            <textarea id="message" name="message" class="input textarea interactable" required aria-required="true" placeholder="Enter transmission data..."></textarea>
+                            <div class="error-msg">Payload cannot be empty.</div>
+                        </div>
+
+                        <button type="submit" class="btn btn--dual interactable" style="width:100%; padding: 16px;">TRANSMIT INTEL</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <div class="success-overlay" id="success-overlay">
+            <canvas id="canvas-success"></canvas>
+            <h2 style="font-family: var(--font-display); font-size: 48px; color: var(--cyan); z-index:1;" id="success-tw"></h2>
+            <button class="btn btn--ghost" onclick="window.location.reload()" style="z-index:1;">RETURN TO BASE</button>
+        </div>
     </div>
 
-    <div style="display: flex; align-items: center; gap: var(--s-16);">
-      <button class="hamburger" aria-label="Toggle Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      </button>
-    </div>
-  </nav>
+    <script type="module">
+        import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+        import { SHADER_03_CIRCUIT, SHADER_01_HEXGRID } from './assets/js/engine/shaders.js';
+        import { CustomCursor } from './assets/js/core/Cursor.js';
+        import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+        import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+        import { TypeWriter } from './assets/js/core/TypeWriter.js';
+        import { PageTransitions } from './assets/js/core/PageTransitions.js';
 
-  <div class="scroll-container">
-    <main id="main" role="main" style="padding-top: 120px;">
-      
-      <section class="container" style="margin-bottom: 64px;">
-        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px);" data-reveal data-reveal-clip>INITIATE <span style="color: var(--cyan);">//</span> HANDSHAKE</h1>
-      </section>
+        new CustomCursor();
+        new SmoothScroll();
+        new ScrollReveal();
+        new PageTransitions();
 
-      <section class="container">
-        <div class="contact-split">
-          
-          <div data-reveal data-reveal-dir="left">
-            <div class="section-label" style="margin-bottom: 24px;">[ 01 ] SIGNALS</div>
-            
-            <div class="term-line" id="ping-1">
-              <div class="term-label">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                mathiyass.github.io@gmail.com
-              </div>
-              <div class="term-status">CONNECTED ✓ 0ms</div>
-            </div>
-
-            <div class="term-line" id="ping-2">
-              <div class="term-label">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                github.com/Mathiyass
-              </div>
-              <div class="term-status">CONNECTED ✓ 12ms</div>
-            </div>
-
-            <div class="term-line" id="ping-3">
-              <div class="term-label">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                linkedin.com/in/mathisha
-              </div>
-              <div class="term-status">CONNECTED ✓ 45ms</div>
-            </div>
-            
-            <p style="color: var(--text-1); font-size: 14px; margin-top: 48px;">
-              Based in Sri Lanka. Open for remote opportunities, full-time roles, or ambitious contract work.
-            </p>
-          </div>
-
-          <div class="card" style="padding: 48px;" data-reveal data-reveal-dir="right">
-            <div class="section-label" style="margin-bottom: 32px;">[ 02 ] TRANSMIT DATA</div>
-            
-            <!-- Using FormSubmit.co -->
-            <form action="https://formsubmit.co/mathiyass.github.io@gmail.com" method="POST" id="contact-form">
-              <input type="hidden" name="_subject" value="New submission from MAportfolio v7!">
-              <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_next" id="next-url" value="">
-              <input type="text" name="_honey" style="display:none">
-
-              <div class="form-group">
-                <label class="form-label" for="name">ID_NAME</label>
-                <input type="text" id="name" name="name" class="input" required placeholder="Enter your designation">
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="email">NET_ADDRESS</label>
-                <input type="email" id="email" name="email" class="input" required placeholder="name@domain.com">
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="message">PAYLOAD</label>
-                <textarea id="message" name="message" class="textarea" required placeholder="Enter transmission body..."></textarea>
-              </div>
-
-              <button type="submit" class="btn btn--dual" style="width: 100%;">SEND TRANSMISSION</button>
-            </form>
-          </div>
-
-        </div>
-      </section>
-
-      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden; margin-top: 64px;">
-        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
-          <div class="grid-12">
-            <div style="grid-column: span 4;">
-              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
-              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </main>
-  </div>
-
-  <div class="success-overlay" id="success-overlay">
-    <canvas id="canvas-success-hex" style="position: absolute; inset: 0; width: 100%; height: 100%;"></canvas>
-    <div class="success-border"></div>
-    <h2 id="success-tw" style="font-family: var(--font-display); font-size: 48px; color: var(--cyan); z-index: 10; position: relative;"></h2>
-    <a href="index.html" class="btn btn--ghost" style="z-index: 10; margin-top: 32px; pointer-events: auto;">RETURN TO BASE</a>
-  </div>
-
-  <script type="module">
-    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
-    import { SHADER_03_CIRCUIT, SHADER_01_HEXGRID } from './assets/js/engine/shaders.js';
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { AudioSystem } from './assets/js/core/Audio.js';
-    import { PageTransitions } from './assets/js/core/PageTransitions.js';
-    import { Konami } from './assets/js/core/Konami.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
-    import { TypeWriter } from './assets/js/core/TypeWriter.js';
-    import { toast } from './assets/js/core/Toast.js';
-
-    new ThemeSystem();
-    new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-    new AudioSystem();
-    new PageTransitions();
-    new Konami();
-
-    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!isReduced) {
-      const cCirc = document.getElementById('canvas-circ');
-      const eCirc = new WebGLEngine(cCirc);
-      eCirc.compileProgram('circ', SHADER_03_CIRCUIT.vert, SHADER_03_CIRCUIT.frag);
-      eCirc.createFullscreenQuad('fullscreen');
-      eCirc.render('circ');
-    }
-
-    // Ping animations
-    setTimeout(() => document.getElementById('ping-1').classList.add('active'), 500);
-    setTimeout(() => document.getElementById('ping-2').classList.add('active'), 1200);
-    setTimeout(() => document.getElementById('ping-3').classList.add('active'), 1900);
-
-    // Form logic
-    const form = document.getElementById('contact-form');
-    const url = new URL(window.location.href);
-    
-    // Auto-setup next URL
-    document.getElementById('next-url').value = url.origin + url.pathname + '?success=true';
-
-    // Handle success state
-    if (url.searchParams.get('success') === 'true') {
-      const overlay = document.getElementById('success-overlay');
-      overlay.classList.add('active');
-      
-      if (!isReduced) {
-        const cHex = document.getElementById('canvas-success-hex');
-        const eHex = new WebGLEngine(cHex);
-        eHex.compileProgram('hex', SHADER_01_HEXGRID.vert, SHADER_01_HEXGRID.frag);
-        eHex.createFullscreenQuad('fs');
-        eHex.render('hex');
-      }
-
-      new TypeWriter(document.getElementById('success-tw'), ["TRANSMISSION COMPLETE"]);
-      toast("PAYLOAD DELIVERED SUCCESSFULLY", "success", 5000);
-      
-      // Clean URL
-      window.history.replaceState({}, document.title, url.pathname);
-    }
-
-    // Real-time validation
-    const inputs = form.querySelectorAll('input, textarea');
-    inputs.forEach(input => {
-      input.addEventListener('blur', () => {
-        if (!input.checkValidity()) {
-          input.setAttribute('aria-invalid', 'true');
-        } else {
-          input.removeAttribute('aria-invalid');
+        if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const engineCircuit = new WebGLEngine(document.getElementById('canvas-bg'));
+            engineCircuit.compileProgram('circuit', SHADER_03_CIRCUIT.vert, SHADER_03_CIRCUIT.frag);
+            engineCircuit.render('circuit');
         }
-      });
-    });
 
-  </script>
+        // Ping Animation Simulation
+        setTimeout(() => document.getElementById('ping-1').innerHTML = '<div class="dot"></div> CONNECTED ✓ ' + Math.floor(Math.random()*20+5) + 'MS', 1000);
+        setTimeout(() => document.getElementById('ping-2').innerHTML = '<div class="dot"></div> RESOLVED ✓ ' + Math.floor(Math.random()*40+20) + 'MS', 1500);
+
+        // Form Validation & Submit
+        const form = document.getElementById('contact-form');
+        const inputs = form.querySelectorAll('input, textarea');
+
+        inputs.forEach(input => {
+            input.addEventListener('blur', () => {
+                if(!input.checkValidity()) input.setAttribute('aria-invalid', 'true');
+                else input.setAttribute('aria-invalid', 'false');
+            });
+            input.addEventListener('input', () => input.setAttribute('aria-invalid', 'false'));
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let valid = true;
+            inputs.forEach(input => {
+                if(!input.checkValidity()) {
+                    input.setAttribute('aria-invalid', 'true');
+                    valid = false;
+                }
+            });
+
+            if(valid) {
+                const btn = form.querySelector('button[type="submit"]');
+                btn.textContent = "TRANSMITTING...";
+                btn.style.pointerEvents = 'none';
+
+                // Fetch to FormSubmit
+                const formData = new FormData(form);
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                }).then(response => {
+                    if (response.ok) {
+                        showSuccess();
+                    } else {
+                        window.toast.show("TRANSMISSION FAILED. RETRY.", "error");
+                        btn.textContent = "TRANSMIT INTEL";
+                        btn.style.pointerEvents = 'auto';
+                    }
+                }).catch(error => {
+                    window.toast.show("NETWORK ERROR.", "error");
+                    btn.textContent = "TRANSMIT INTEL";
+                    btn.style.pointerEvents = 'auto';
+                });
+            }
+        });
+
+        function showSuccess() {
+            const overlay = document.getElementById('success-overlay');
+            overlay.classList.add('active');
+
+            if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                const engineHex = new WebGLEngine(document.getElementById('canvas-success'));
+                engineHex.compileProgram('hex', SHADER_01_HEXGRID.vert, SHADER_01_HEXGRID.frag);
+                engineHex.render('hex');
+            }
+
+            new TypeWriter(document.getElementById('success-tw'), ["TRANSMISSION COMPLETE", "INTEL RECEIVED"], {pauseDuration: 3000});
+        }
+
+    </script>
 </body>
 </html>

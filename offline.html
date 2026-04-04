@@ -1,36 +1,79 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dual">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>Offline // Mathisha Angirasa</title>
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <style>
-    body { font-family: var(--font-mono); background: var(--void); color: var(--cyan); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; text-align: center; }
-    .ascii { font-size: 14px; line-height: 1.2; letter-spacing: 2px; white-space: pre; margin-bottom: 48px; color: var(--red); }
-    h1 { font-family: var(--font-display); font-size: 48px; color: var(--text-0); margin-bottom: 16px; }
-    .blink { animation: b 1s infinite step-end; color: var(--red); }
-    @keyframes b { 50% { opacity: 0; } }
-    .msg { font-size: 12px; color: var(--text-2); letter-spacing: 0.1em; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline // MA_Dev</title>
+    <meta name="theme-color" content="#FF4D6D">
+
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --void: #03030A;
+            --cyan: #00E5FF;
+            --red: #FF4D6D;
+            --text: #8888AA;
+            --mono: 'JetBrains Mono', monospace;
+        }
+        body {
+            background: var(--void);
+            color: var(--text);
+            font-family: var(--mono);
+            height: 100vh; margin: 0;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; overflow: hidden;
+        }
+
+        .container { max-width: 600px; padding: 24px; }
+
+        .ascii { color: var(--red); font-size: 14px; white-space: pre; line-height: 1.2; margin-bottom: 32px; font-weight: bold;}
+
+        h1 { font-family: 'Orbitron', sans-serif; font-size: 48px; color: white; margin: 0 0 16px 0; }
+
+        .cursor { display: inline-block; width: 24px; height: 32px; background: var(--cyan); vertical-align: bottom; animation: blink 1s step-end infinite; }
+        @keyframes blink {
+            0%, 100% { opacity: 1; background: var(--cyan); }
+            50% { opacity: 0; }
+            75% { opacity: 1; background: var(--red); }
+        }
+
+        .btn { display: inline-block; margin-top: 32px; padding: 12px 24px; border: 1px solid var(--cyan); color: var(--cyan); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
+        .btn:hover { background: var(--cyan); color: var(--void); }
+
+        /* CRT overlay pure CSS */
+        body::before {
+            content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 10;
+            background: repeating-linear-gradient(to bottom, transparent, transparent 2px, rgba(0, 229, 255, 0.02) 2px, rgba(0, 229, 255, 0.02) 3px);
+        }
+    </style>
 </head>
 <body>
-  <pre class="ascii">
-  ╔═════════════════════╗
-  ║ SIGNAL LOST         ║
-  ║ ▒▒▒▒▒▒▒░░░░░░       ║
-  ╚═════════════════════╝
-       │      │
-      ─┼─    ─┼─
-       │      │
-  </pre>
-  <h1>CONNECTION LOST<span class="blink">_</span></h1>
-  <p class="msg">SERVING CACHED VERSION // MA_DEV PORTAL</p>
+    <div class="container">
+        <div class="ascii">
+      /\
+     /  \
+    /____\
+   /      \
+  /   ()   \
+ /__________\
+      ||
+      ||
+        </div>
 
-  <script>
-    window.addEventListener('online', () => { window.location.reload(); });
-  </script>
+        <h1>CONNECTION LOST <span class="cursor"></span></h1>
+        <p>SERVING CACHED VERSION // MA_DEV PORTAL</p>
+        <p style="font-size: 12px; margin-top: 16px;">NETWORK LATENCY OUT OF BOUNDS. AWAITING SIGNAL RESTORATION.</p>
+
+        <a href="index.html" class="btn">REBOOT CACHE</a>
+    </div>
+
+    <script>
+        window.addEventListener('online', () => {
+            document.querySelector('h1').innerHTML = 'SIGNAL RESTORED <span class="cursor"></span>';
+            document.querySelector('h1').style.color = 'var(--cyan)';
+            setTimeout(() => window.location.reload(), 1500);
+        });
+    </script>
 </body>
 </html>

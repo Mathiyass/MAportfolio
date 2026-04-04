@@ -1,233 +1,201 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dual">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>Skills // Mathisha Angirasa</title>
-  
-  <meta name="description" content="Technical Skills of Mathisha Angirasa">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-  
-  <style>
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills // Mathisha Angirasa</title>
+    <meta name="theme-color" content="#00E5FF">
     
-    .hex-cluster { display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 64px; justify-content: center; }
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
     
-    .hex { width: 120px; height: 135px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); background: var(--surface-1); position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 0.3s; cursor: crosshair; }
-    
-    .hex-fill { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, var(--cyan), var(--red)); opacity: 0.2; z-index: 0; height: 0; transition: height 1.5s var(--ease-expo); }
-    
-    .hex-content { position: relative; z-index: 1; text-align: center; }
-    .hex-perc { font-family: var(--font-stat); font-size: 32px; color: var(--cyan); line-height: 1; }
-    .hex-name { font-family: var(--font-mono); font-size: 11px; color: var(--white); margin-top: 4px; }
-    
-    .hex:hover { transform: scale(1.1); z-index: 10; }
-    .hex:hover .hex-fill { opacity: 0.5; }
-    
-    .pg-bar { height: 4px; background: var(--surface-1); border-radius: 0; margin-bottom: 24px; position: relative; }
-    .pg-fill { position: absolute; top: 0; left: 0; bottom: 0; background: linear-gradient(90deg, var(--cyan), var(--red)); width: 0; transition: width 1.5s var(--ease-expo); }
-    .pg-label { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 12px; margin-bottom: 8px; color: var(--text-0); }
-  </style>
+    <style>
+        .nav-wrapper { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); padding: 0 var(--gutter); height: 64px; background: var(--surface-glass); backdrop-filter: blur(28px); border-bottom: 1px solid var(--cyan-border); }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 100%; max-width: var(--max-w); margin: 0 auto; }
+        .logo-compound { display: flex; align-items: baseline; font-weight: 700; cursor: pointer; }
+        .logo-ma { font-family: var(--font-display); font-size: 20px; color: var(--cyan); }
+        .logo-dev { font-family: var(--font-mono); font-size: 20px; color: var(--text-1); }
+        .nav-links { display: none; gap: var(--s-24); }
+        @media (min-width: 1024px) { .nav-links { display: flex; } }
+
+        #canvas-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.25; }
+
+        .hero-strip { padding: calc(64px + var(--s-64)) 0 var(--s-32); }
+        .hero-strip h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); text-transform: uppercase; margin-bottom: var(--s-16); }
+
+        /* Hex Grid */
+        .hex-grid-wrapper { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; padding: var(--s-48) 0; }
+        .hex-cell {
+            width: 104px; height: 120px;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: var(--surface-1);
+            position: relative;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center;
+            transition: transform var(--dur-fast);
+            cursor: default;
+        }
+        .hex-cell:hover { transform: scale(1.1); z-index: 2; }
+        .hex-fill {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: linear-gradient(to top, var(--red), var(--cyan));
+            z-index: 0; opacity: 0.6;
+            height: 0%; /* Animates to target % */
+            transition: height 1s var(--ease-expo);
+        }
+        .hex-cell:hover .hex-fill { opacity: 1; }
+        .hex-content { position: relative; z-index: 1; }
+        .hex-title { font-family: var(--font-mono); font-size: 11px; font-weight: bold; color: var(--text-0); text-shadow: 0 1px 2px black; }
+        .hex-pct { font-family: var(--font-stat); font-size: 24px; color: var(--white); text-shadow: 0 1px 2px black; margin-top: 4px; }
+
+        /* Bar charts */
+        .bar-container { margin-bottom: var(--s-32); }
+        .bar-header { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 12px; margin-bottom: 8px; }
+        .bar-title { color: var(--text-0); }
+        .bar-pct { color: var(--cyan); }
+
+        /* Marquee */
+        .marquee-wrapper { overflow: hidden; white-space: nowrap; width: 100%; background: var(--cyan); color: var(--void); font-family: var(--font-mono); font-size: 14px; font-weight: bold; text-transform: uppercase; padding: 12px 0; margin-top: var(--s-96); }
+        .marquee-track { display: inline-flex; gap: var(--s-48); animation: marquee-anim 20s linear infinite; }
+        @keyframes marquee-anim { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
-
-  <canvas id="canvas-circuit" style="position:fixed; inset:0; z-index:-3; opacity:0.25; pointer-events:none; width:100vw; height:100vh;"></canvas>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
-
-  <nav id="navbar" role="navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    
-    <div class="nav-center">
-      <a href="index.html" class="nav-link">INDEX</a>
-      <a href="projects.html" class="nav-link">PROJECTS</a>
-      <a href="skills.html" class="nav-link active">SKILLS</a>
-      <a href="blog.html" class="nav-link">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link">CONTACT</a>
-    </div>
-
-    <div style="display: flex; align-items: center; gap: var(--s-16);">
-      <button class="btn btn--red" style="padding: 8px 16px; height: 36px; border-color: var(--red-border);" onclick="window.location.href='contact.html'">HIRE ME</button>
-      <button class="hamburger" aria-label="Toggle Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      </button>
-    </div>
-  </nav>
-
-  <div class="scroll-container">
-    <main id="main" role="main" style="padding-top: 120px;">
-      
-      <section class="container" style="text-align: center; margin-bottom: 64px;">
-        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px);" data-reveal data-reveal-clip>TECHNICAL <span style="color: var(--cyan);">//</span> CAPABILITIES</h1>
-      </section>
-
-      <section class="container">
+    <div class="scroll-container">
+        <canvas id="canvas-bg"></canvas>
         
-        <!-- CORE -->
-        <div class="section-label" data-reveal>[ 01 ] CORE LANGUAGES</div>
-        <div class="hex-cluster stagger" data-reveal>
-          <div class="hex" data-target="100">
-            <div class="hex-fill"></div>
-            <div class="hex-content"><div class="hex-perc">100%</div><div class="hex-name">KOTLIN</div></div>
-          </div>
-          <div class="hex" data-target="100">
-            <div class="hex-fill"></div>
-            <div class="hex-content"><div class="hex-perc">100%</div><div class="hex-name">JS (ES6+)</div></div>
-          </div>
-          <div class="hex" data-target="90">
-            <div class="hex-fill"></div>
-            <div class="hex-content"><div class="hex-perc">90%</div><div class="hex-name">C++</div></div>
-          </div>
-          <div class="hex" data-target="85">
-            <div class="hex-fill"></div>
-            <div class="hex-content"><div class="hex-perc">85%</div><div class="hex-name">PYTHON</div></div>
-          </div>
-          <div class="hex" data-target="80">
-            <div class="hex-fill"></div>
-            <div class="hex-content"><div class="hex-perc">80%</div><div class="hex-name">JAVA</div></div>
-          </div>
-        </div>
+        <header class="nav-wrapper">
+            <div class="nav-inner">
+                <a href="index.html" class="logo-compound interactable">
+                    <span class="logo-ma">MA*</span><span class="logo-dev">_DEV</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">INDEX</a>
+                    <a href="projects.html" class="nav-link">PROJECTS</a>
+                    <a href="skills.html" class="nav-link active">SKILLS</a>
+                    <a href="blog.html" class="nav-link">BLOG</a>
+                    <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
+                    <a href="contact.html" class="nav-link">CONTACT</a>
+                </nav>
+            </div>
+        </header>
 
-        <!-- FRAMEWORKS & SYSTEMS -->
-        <div class="section-label" style="color: var(--red);" data-reveal>[ 02 ] SYSTEMS & FRAMEWORKS</div>
-        <div class="hex-cluster stagger" data-reveal>
-          <div class="hex" data-target="95">
-            <div class="hex-fill" style="background: linear-gradient(0deg, var(--red), var(--cyan));"></div>
-            <div class="hex-content"><div class="hex-perc" style="color: var(--red);">95%</div><div class="hex-name">SUPABASE</div></div>
-          </div>
-          <div class="hex" data-target="95">
-            <div class="hex-fill" style="background: linear-gradient(0deg, var(--red), var(--cyan));"></div>
-            <div class="hex-content"><div class="hex-perc" style="color: var(--red);">95%</div><div class="hex-name">WEBGL2</div></div>
-          </div>
-          <div class="hex" data-target="90">
-            <div class="hex-fill" style="background: linear-gradient(0deg, var(--red), var(--cyan));"></div>
-            <div class="hex-content"><div class="hex-perc" style="color: var(--red);">90%</div><div class="hex-name">FIREBASE</div></div>
-          </div>
-          <div class="hex" data-target="85">
-            <div class="hex-fill" style="background: linear-gradient(0deg, var(--red), var(--cyan));"></div>
-            <div class="hex-content"><div class="hex-perc" style="color: var(--red);">85%</div><div class="hex-name">ANDROID SDK</div></div>
-          </div>
-        </div>
-
-        <div class="grid-12" style="margin-top: 96px;">
-          <div style="grid-column: span 6;" data-reveal data-reveal-dir="left">
-            <div class="section-label">[ 03 ] INFRASTRUCTURE</div>
+        <main class="container" style="padding-bottom: var(--s-64);">
+            <div class="hero-strip" data-reveal-clip>
+                <h1>TECHNICAL CAPABILITIES</h1>
+                <p style="font-family: var(--font-mono); color: var(--text-1);">NODE_STATUS: OPTIMAL</p>
+            </div>
             
-            <div class="pg-item">
-              <div class="pg-label"><span>Git / GitHub Actions</span><span style="color: var(--cyan);">90%</span></div>
-              <div class="pg-bar"><div class="pg-fill" data-width="90"></div></div>
+            <h2 class="section-label" data-reveal>[ 01 ] CORE ENGINEERING</h2>
+            <div class="hex-grid-wrapper stagger" id="hex-grid">
+                <!-- Populated via JS -->
             </div>
-            <div class="pg-item">
-              <div class="pg-label"><span>Docker</span><span style="color: var(--cyan);">80%</span></div>
-              <div class="pg-bar"><div class="pg-fill" data-width="80"></div></div>
-            </div>
-            <div class="pg-item">
-              <div class="pg-label"><span>Linux / Shell</span><span style="color: var(--cyan);">85%</span></div>
-              <div class="pg-bar"><div class="pg-fill" data-width="85"></div></div>
-            </div>
-          </div>
 
-          <div style="grid-column: span 6;" data-reveal data-reveal-dir="right">
-            <div class="section-label" style="color: var(--red);">[ 04 ] CREATIVE</div>
-            
-            <div class="pg-item">
-              <div class="pg-label"><span>GLSL Shaders</span><span style="color: var(--red);">95%</span></div>
-              <div class="pg-bar"><div class="pg-fill" data-width="95"></div></div>
+            <div class="grid-12" style="margin-top: var(--s-96);">
+                <div style="grid-column: span 12;">
+                    <h2 class="section-label" style="border-color: var(--red); color: var(--red);" data-reveal>[ 02 ] SYSTEMS PROFICIENCY</h2>
+                </div>
+
+                <div style="grid-column: span 12;" id="bars-container" class="stagger">
+                    <!-- Populated via JS -->
+                </div>
             </div>
-            <div class="pg-item">
-              <div class="pg-label"><span>UI/UX Design (Figma)</span><span style="color: var(--red);">85%</span></div>
-              <div class="pg-bar"><div class="pg-fill" data-width="85"></div></div>
+        </main>
+
+        <div class="marquee-wrapper">
+            <div class="marquee-track" id="marquee-learning">
+                <span>> CONSTANTLY LEARNING</span><span>> EXPLORING WEBGPU</span><span>> RUST EVALUATION</span><span>> KOTLIN MULTIPLATFORM</span><span>> CONSTANTLY LEARNING</span><span>> EXPLORING WEBGPU</span><span>> RUST EVALUATION</span><span>> KOTLIN MULTIPLATFORM</span>
             </div>
-            <div class="pg-item">
-              <div class="pg-label"><span>TL-Engine</span><span style="color: var(--red);">90%</span></div>
-              <div class="pg-bar"><div class="pg-fill" data-width="90"></div></div>
-            </div>
-          </div>
         </div>
-      </section>
+    </div>
 
-      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden; margin-top: 64px;">
-        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
-          <div class="grid-12">
-            <div style="grid-column: span 4;">
-              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
-              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </main>
-  </div>
+    <script type="module">
+        import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+        import { SHADER_03_CIRCUIT } from './assets/js/engine/shaders.js';
+        import { CustomCursor } from './assets/js/core/Cursor.js';
+        import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+        import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+        import { AudioSystem } from './assets/js/core/Audio.js';
+        import { PageTransitions } from './assets/js/core/PageTransitions.js';
 
-  <script type="module">
-    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
-    import { SHADER_03_CIRCUIT } from './assets/js/engine/shaders.js';
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { AudioSystem } from './assets/js/core/Audio.js';
-    import { PageTransitions } from './assets/js/core/PageTransitions.js';
-    import { Konami } from './assets/js/core/Konami.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+        new CustomCursor();
+        const scroller = new SmoothScroll();
+        new PageTransitions();
+        document.addEventListener('click', () => new AudioSystem(), {once:true});
 
-    new ThemeSystem();
-    new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-    new AudioSystem();
-    new PageTransitions();
-    new Konami();
-
-    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!isReduced) {
-      const cCirc = document.getElementById('canvas-circuit');
-      const eCirc = new WebGLEngine(cCirc);
-      eCirc.compileProgram('circ', SHADER_03_CIRCUIT.vert, SHADER_03_CIRCUIT.frag);
-      eCirc.createFullscreenQuad('fullscreen');
-      eCirc.render('circ');
-    }
-
-    // Animate hex fills
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const hexes = entry.target.querySelectorAll('.hex');
-          hexes.forEach(h => {
-            const fill = h.querySelector('.hex-fill');
-            const tgt = h.dataset.target;
-            setTimeout(() => { fill.style.height = \`\${tgt}%\`; }, Math.random() * 500);
-          });
-          
-          const bars = entry.target.querySelectorAll('.pg-fill');
-          bars.forEach(b => {
-            setTimeout(() => { b.style.width = \`\${b.dataset.width}%\`; }, Math.random() * 500);
-          });
-          
-          observer.unobserve(entry.target);
+        // Background Shader
+        if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const engineCircuit = new WebGLEngine(document.getElementById('canvas-bg'));
+            engineCircuit.compileProgram('circuit', SHADER_03_CIRCUIT.vert, SHADER_03_CIRCUIT.frag);
+            engineCircuit.render('circuit');
         }
-      });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.hex-cluster, .grid-12').forEach(el => observer.observe(el));
+        const skills = [
+            { name: 'KOTLIN', pct: 90, desc: '3 years' },
+            { name: 'ANDROID', pct: 85, desc: '2 years' },
+            { name: 'VANILLA JS', pct: 95, desc: '4 years' },
+            { name: 'WEBGL2', pct: 80, desc: '1 year' },
+            { name: 'SUPABASE', pct: 85, desc: '2 years' },
+            { name: 'FIREBASE', pct: 90, desc: '3 years' },
+            { name: 'C++', pct: 70, desc: '2 years' },
+            { name: 'HTML/CSS', pct: 98, desc: '5 years' }
+        ];
 
-  </script>
+        const hexGrid = document.getElementById('hex-grid');
+        const barsContainer = document.getElementById('bars-container');
+
+        skills.forEach((s, i) => {
+            // Hex
+            const hex = document.createElement('div');
+            hex.className = 'hex-cell interactable';
+            hex.setAttribute('data-reveal', '');
+            hex.innerHTML = `
+                <div class="hex-fill" data-target="${s.pct}"></div>
+                <div class="hex-content">
+                    <div class="hex-title">${s.name}</div>
+                    <div class="hex-pct">${s.pct}%</div>
+                </div>
+                <div class="tooltip">${s.desc}</div>
+            `;
+            hexGrid.appendChild(hex);
+
+            // Bar
+            const bar = document.createElement('div');
+            bar.className = 'bar-container';
+            bar.setAttribute('data-reveal', '');
+            bar.innerHTML = `
+                <div class="bar-header">
+                    <span class="bar-title">${s.name}</span>
+                    <span class="bar-pct">${s.pct}%</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-fill" data-target="${s.pct}"></div>
+                </div>
+            `;
+            barsContainer.appendChild(bar);
+        });
+
+        // Animate fills on scroll
+        const fillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const fills = entry.target.querySelectorAll('[data-target]');
+                    fills.forEach(f => {
+                        f.style.height = f.getAttribute('data-target') + '%'; // Hex
+                        f.style.width = f.getAttribute('data-target') + '%';  // Bar
+                    });
+                    fillObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.hex-cell, .bar-container').forEach(el => fillObserver.observe(el));
+
+        new ScrollReveal();
+    </script>
 </body>
 </html>

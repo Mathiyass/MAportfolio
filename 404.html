@@ -1,83 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dual">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>404 // Mathisha Angirasa</title>
-  
-  <meta name="description" content="Page not found.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-  
-  <style>
-    body, html { height: 100%; overflow: hidden; margin: 0; padding: 0; }
-    .content-404 { position: absolute; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; pointer-events: none; }
-    .title-404 { font-family: var(--font-display); font-size: clamp(100px, 15vw, 220px); font-weight: 900; line-height: 1; color: var(--text-0); margin-bottom: 24px; }
-    .title-404.glitching { animation: glitchH 1.5s infinite; color: var(--cyan); }
-    .cd-wrap { font-family: var(--font-stat); font-size: 80px; color: var(--red); margin-bottom: 32px; }
-    .cd-pulse { animation: neonPulseRed 1s infinite; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 // SYSTEM_FAILURE</title>
+    <meta name="theme-color" content="#FF4D6D">
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+
+    <style>
+        body { overflow: hidden; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+        #canvas-bh { position: fixed; inset: 0; z-index: -1; }
+
+        .error-content { position: relative; z-index: 10; padding: var(--s-32); background: rgba(9,9,22,0.4); backdrop-filter: blur(8px); border: 1px solid var(--red-border); }
+        .error-content::before { content:''; position:absolute; inset:0; box-shadow: inset 0 0 60px rgba(255,77,109,0.1); pointer-events:none; }
+
+        .glitch-404 { font-family: var(--font-display); font-size: clamp(80px, 15vw, 220px); font-weight: 900; line-height: 1; color: var(--text-0); margin-bottom: 16px; animation: glitch-flash 4s infinite; }
+        @keyframes glitch-flash {
+            0%, 90% { color: var(--text-0); transform: none; }
+            91% { color: var(--cyan); transform: translateX(-4px); }
+            92% { color: var(--red); transform: translateX(4px); }
+            93% { color: var(--text-0); transform: none; }
+        }
+
+        .err-lbl { font-family: var(--font-mono); font-size: 16px; color: var(--red); letter-spacing: 0.2em; margin-bottom: var(--s-32); }
+
+        .countdown { font-family: var(--font-stat); font-size: 80px; color: var(--red); line-height: 1; margin: var(--s-32) 0; }
+
+        .actions { display: flex; gap: var(--s-16); justify-content: center; }
+    </style>
 </head>
 <body>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
-  
-  <canvas id="canvas-hole" style="position:fixed; inset:0; z-index:-1; width:100vw; height:100vh;"></canvas>
+    <canvas id="canvas-bh"></canvas>
 
-  <div class="content-404">
-    <div class="badge badge--red" style="margin-bottom: 24px;" data-reveal>CRITICAL ERROR</div>
-    <h1 class="title-404" id="glitch-title">404</h1>
-    <div style="font-family: var(--font-mono); font-size: 14px; color: var(--text-1); letter-spacing: 0.2em; margin-bottom: 48px; max-width: 400px;">
-      THE REQUESTED SECTOR DOES NOT EXIST. <br> EVENT HORIZON IMMINENT.
+    <div class="error-content" id="err-box">
+        <div class="glitch-404" id="err-text">404</div>
+        <div class="err-lbl">SYSTEM_FAILURE: VOID_DETECTED</div>
+
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-1);">REDIRECTING_IN:</div>
+        <div class="countdown" id="cd-timer">10</div>
+
+        <div class="actions">
+            <a href="index.html" class="btn btn--red interactable">ABORT_REDIRECT</a>
+        </div>
     </div>
-    <div class="cd-wrap">T MINUS <span id="countdown" class="cd-pulse">10</span></div>
-    <a href="index.html" class="btn btn--red" style="pointer-events: auto;">ABORT (RETURN TO BASE)</a>
-  </div>
 
-  <script type="module">
-    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
-    import { SHADER_09_BLACK_HOLE } from './assets/js/engine/shaders.js';
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+    <script type="module">
+        import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+        import { SHADER_09_BLACK_HOLE } from './assets/js/engine/shaders.js';
+        import { CustomCursor } from './assets/js/core/Cursor.js';
+        import { PageTransitions } from './assets/js/core/PageTransitions.js';
 
-    new ThemeSystem();
-    new CustomCursor();
+        new CustomCursor();
+        const pt = new PageTransitions();
 
-    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!isReduced) {
-      const cHole = document.getElementById('canvas-hole');
-      const eHole = new WebGLEngine(cHole);
-      eHole.compileProgram('hole', SHADER_09_BLACK_HOLE.vert, SHADER_09_BLACK_HOLE.frag);
-      eHole.createFullscreenQuad('fullscreen');
-      eHole.render('hole');
-    }
+        if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const engine = new WebGLEngine(document.getElementById('canvas-bh'));
+            engine.compileProgram('bh', SHADER_09_BLACK_HOLE.vert, SHADER_09_BLACK_HOLE.frag);
+            engine.render('bh');
 
-    // Glitch effect
-    const title = document.getElementById('glitch-title');
-    title.classList.add('glitching');
-    setTimeout(() => { title.classList.remove('glitching'); }, 1500);
+            // Trigger 1.5s glitch on load
+            const errBox = document.getElementById('err-box');
+            errBox.style.animation = 'glitchH 1.5s linear forwards';
+        }
 
-    // Countdown
-    let time = 10;
-    const cd = document.getElementById('countdown');
-    const interval = setInterval(() => {
-      time--;
-      cd.textContent = time;
-      if (time <= 0) {
-        clearInterval(interval);
-        window.location.href = 'index.html';
-      }
-    }, 1000);
-  </script>
+        // Countdown
+        let timeLeft = 10;
+        const timerEl = document.getElementById('cd-timer');
+
+        const tick = setInterval(() => {
+            timeLeft--;
+            timerEl.textContent = String(timeLeft).padStart(2, '0');
+
+            // CSS beat animation
+            timerEl.style.animation = 'none';
+            timerEl.offsetHeight;
+            timerEl.style.animation = 'neonPulseRed 0.5s alternate';
+
+            if(timeLeft <= 0) {
+                clearInterval(tick);
+                pt._exit('index.html');
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
