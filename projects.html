@@ -1,236 +1,252 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dual">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>Projects // Mathisha Angirasa</title>
-  
-  <meta name="description" content="Projects by Mathisha Angirasa">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-  
-  <style>
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects // Mathisha Angirasa</title>
+    <meta name="description" content="Projects by Mathisha Angirasa.">
+    <link rel="canonical" href="https://mathiyass.github.io/MAportfolio/projects.html" />
+    <meta name="theme-color" content="#00E5FF">
     
-    .filter-bar { display: flex; gap: 16px; margin-bottom: 48px; flex-wrap: wrap; }
-    .filter-btn { font-family: var(--font-mono); font-size: 12px; color: var(--text-1); border: 1px solid var(--cyan-border); padding: 8px 16px; cursor: pointer; transition: all var(--dur-fast); background: var(--surface-1); }
-    .filter-btn:hover { border-color: var(--red); color: var(--red); box-shadow: var(--glow-red); }
-    .filter-btn.active { border-color: var(--cyan); color: var(--cyan); box-shadow: var(--glow-cyan); background: rgba(0,229,255,0.1); }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
     
-    .project-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
-    .proj-card { grid-column: span 4; height: 360px; }
-    @media (max-width: 1023px) { .proj-card { grid-column: span 6; } }
-    @media (max-width: 767px) { .proj-card { grid-column: span 12; } }
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
     
-    .bg-img { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: -1; }
-    .card-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, var(--surface-0) 100%); z-index: 0; }
-    .card-content { position: relative; z-index: 1; padding: 24px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
-    
-    .flagship-card { height: 480px; width: 100%; margin-bottom: 64px; }
-    .flagship-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, var(--surface-0) 0%, transparent 100%); z-index: 0; }
-  </style>
+    <style>
+        .nav-wrapper { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); padding: 0 var(--gutter); height: 64px; background: var(--surface-glass); backdrop-filter: blur(28px); border-bottom: 1px solid var(--cyan-border); }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 100%; max-width: var(--max-w); margin: 0 auto; }
+        .logo-compound { display: flex; align-items: baseline; font-weight: 700; cursor: pointer; }
+        .logo-ma { font-family: var(--font-display); font-size: 20px; color: var(--cyan); }
+        .logo-dev { font-family: var(--font-mono); font-size: 20px; color: var(--text-1); }
+        .nav-links { display: none; gap: var(--s-24); }
+        @media (min-width: 1024px) { .nav-links { display: flex; } }
+
+        #canvas-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.5; }
+
+        .hero-strip { padding: calc(64px + var(--s-64)) 0 var(--s-32); }
+        .hero-strip h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); text-transform: uppercase; margin-bottom: var(--s-16); }
+
+        .filters { display: flex; gap: var(--s-16); overflow-x: auto; padding-bottom: var(--s-16); margin-bottom: var(--s-48); }
+        .filters::-webkit-scrollbar { height: 4px; }
+        .filters::-webkit-scrollbar-thumb { background: var(--cyan-border); }
+        .filter-btn { font-family: var(--font-mono); font-size: 12px; color: var(--text-1); padding: 8px 16px; border: 1px solid var(--cyan-border); cursor: pointer; white-space: nowrap; transition: all var(--dur-fast); text-transform: uppercase; }
+        .filter-btn:hover { border-color: var(--red-border); color: var(--red); }
+        .filter-btn.active { background: var(--cyan); color: var(--void); border-color: var(--cyan); box-shadow: var(--glow-cyan); }
+
+        .masonry { column-count: 1; column-gap: var(--s-24); }
+        @media (min-width: 768px) { .masonry { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry { column-count: 3; } }
+
+        .project-card { break-inside: avoid; margin-bottom: var(--s-24); }
+        .project-card .bg-img { height: 200px; object-fit: cover; width: 100%; border-bottom: 1px solid var(--cyan-border); position: relative; }
+        .project-card .holo-canvas { position: absolute; inset: 0; height: 200px; pointer-events: none; z-index: 10; opacity: 0; transition: opacity var(--dur-mid); }
+        .project-card:hover .holo-canvas { opacity: 1; }
+        .project-card-content { padding: var(--s-24); display: flex; flex-direction: column; gap: 16px; }
+        .project-card h3 { font-size: 20px; }
+        .project-card p { font-size: 14px; color: var(--text-1); }
+
+        .empty-state { text-align: center; padding: var(--s-96) 0; font-family: var(--font-mono); color: var(--text-2); font-size: 16px; display: none; }
+
+        /* Hero card full width override */
+        .feat-hero { column-span: all; margin-bottom: var(--s-48); border: 1px solid var(--cyan-hot); display: grid; grid-template-columns: 1fr; }
+        @media (min-width: 1024px) { .feat-hero { grid-template-columns: 1fr 1fr; } }
+        .feat-hero .img-wrap { position: relative; height: 300px; }
+        @media (min-width: 1024px) { .feat-hero .img-wrap { height: 100%; } }
+        .feat-hero img { width: 100%; height: 100%; object-fit: cover; }
+        .feat-hero .content { padding: var(--s-48); display: flex; flex-direction: column; justify-content: center; }
+    </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
+    <div class="scroll-container">
+        <canvas id="canvas-bg"></canvas>
+        
+        <header class="nav-wrapper">
+            <div class="nav-inner">
+                <a href="index.html" class="logo-compound interactable">
+                    <span class="logo-ma">MA*</span><span class="logo-dev">_DEV</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">INDEX</a>
+                    <a href="projects.html" class="nav-link active">PROJECTS</a>
+                    <a href="skills.html" class="nav-link">SKILLS</a>
+                    <a href="blog.html" class="nav-link">BLOG</a>
+                    <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
+                    <a href="contact.html" class="nav-link">CONTACT</a>
+                </nav>
+            </div>
+        </header>
 
-  <canvas id="canvas-noise" style="position:fixed; inset:0; z-index:-3; opacity:0.5; pointer-events:none; width:100vw; height:100vh;"></canvas>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
+        <main class="container" style="padding-bottom: var(--s-128);">
+            <div class="hero-strip" data-reveal-clip>
+                <h1>ARCHIVE_CORE_v1.0</h1>
+                <p style="font-family: var(--font-mono); color: var(--text-1);">DEPLOYED PROJECTS // SYSTEM LOGS</p>
+            </div>
 
-  <nav id="navbar" role="navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    
-    <div class="nav-center">
-      <a href="index.html" class="nav-link">INDEX</a>
-      <a href="projects.html" class="nav-link active">PROJECTS</a>
-      <a href="skills.html" class="nav-link">SKILLS</a>
-      <a href="blog.html" class="nav-link">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link">CONTACT</a>
+            <div class="filters" id="filter-bar" data-reveal>
+                <button class="filter-btn active" data-filter="all">ALL</button>
+                <button class="filter-btn" data-filter="web">WEB</button>
+                <button class="filter-btn" data-filter="mobile">MOBILE</button>
+                <button class="filter-btn" data-filter="ai">AI</button>
+                <button class="filter-btn" data-filter="games">GAMES</button>
+                <button class="filter-btn" data-filter="systems">SYSTEMS</button>
+            </div>
+
+            <div class="masonry stagger" id="project-grid">
+
+                <div class="card feat-hero project-card" data-category="mobile systems" data-reveal-clip data-reveal>
+                    <div class="img-wrap">
+                        <img src="assets/img/marketplace-hero.webp" alt="MA_Dev Marketplace" loading="lazy">
+                        <canvas class="holo-canvas" data-tex="assets/img/marketplace-hero.webp"></canvas>
+                    </div>
+                    <div class="content">
+                        <div class="building-label" style="font-family: var(--font-mono); font-size: 10px; color: var(--red); margin-bottom: 8px; letter-spacing: 0.1em;">[ FEATURED BUILD ]</div>
+                        <h2 style="font-family: var(--font-display); font-size: clamp(24px, 4vw, 40px); margin-bottom: 16px;">MA_DEV MARKETPLACE</h2>
+                        <p style="color: var(--text-1); margin-bottom: 24px; font-size: 16px; max-width: 40ch;">High-performance asset distribution platform utilizing Kotlin MVVM and Supabase Edge Functions.</p>
+                        <div style="display:flex; gap:8px; margin-bottom: 32px; flex-wrap: wrap;">
+                            <span class="tag tag--red">KOTLIN</span><span class="tag">SUPABASE</span><span class="tag">ANDROID</span>
+                        </div>
+                        <a href="marketplace.html" class="btn btn--dual" style="align-self: flex-start;">ENTER MARKETPLACE →</a>
+                    </div>
+                </div>
+
+                <!-- Dynamic Repo Cards appended here -->
+
+            </div>
+
+            <div class="empty-state" id="empty-state">
+                <p>NO SIGNALS FOUND IN THIS SECTOR.</p>
+            </div>
+
+        </main>
     </div>
 
-    <div style="display: flex; align-items: center; gap: var(--s-16);">
-      <button class="btn btn--red" style="padding: 8px 16px; height: 36px; border-color: var(--red-border);" onclick="window.location.href='contact.html'">HIRE ME</button>
-      <button class="hamburger" aria-label="Toggle Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      </button>
-    </div>
-  </nav>
+    <script type="module">
+        import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+        import { SHADER_02_NOISE_FIELD, SHADER_05_HOLOGRAM } from './assets/js/engine/shaders.js';
+        import { CustomCursor } from './assets/js/core/Cursor.js';
+        import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+        import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+        import { GitHubStats } from './assets/js/core/GitHubStats.js';
+        import { AudioSystem } from './assets/js/core/Audio.js';
+        import { PageTransitions } from './assets/js/core/PageTransitions.js';
 
-  <div class="scroll-container">
-    <main id="main" role="main" style="padding-top: 120px;">
-      
-      <section class="container">
-        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); margin-bottom: 48px;" data-reveal data-reveal-clip>PROJECTS <span style="color: var(--cyan);">//</span> ARCHIVE</h1>
+        new CustomCursor();
+        new SmoothScroll();
+        new PageTransitions();
+        document.addEventListener('click', () => new AudioSystem(), {once:true});
         
-        <div class="filter-bar" data-reveal>
-          <button class="filter-btn active" data-filter="all">ALL</button>
-          <button class="filter-btn" data-filter="web">WEB</button>
-          <button class="filter-btn" data-filter="mobile">MOBILE</button>
-          <button class="filter-btn" data-filter="ai">AI</button>
-          <button class="filter-btn" data-filter="games">GAMES</button>
-          <button class="filter-btn" data-filter="systems">SYSTEMS</button>
-        </div>
+        // Background Shader
+        if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const engineNoise = new WebGLEngine(document.getElementById('canvas-bg'));
+            engineNoise.compileProgram('noise', SHADER_02_NOISE_FIELD.vert, SHADER_02_NOISE_FIELD.frag);
+            engineNoise.render('noise');
+        }
 
-        <!-- Flagship -->
-        <a href="marketplace.html" class="card flagship-card filter-item" data-category="mobile web systems" data-reveal>
-          <div class="bg-img" style="background-image: url('assets/img/marketplace-hero.webp');"></div>
-          <div class="flagship-overlay"></div>
-          <div class="card-content" style="width: 60%;">
-            <div class="badge" style="margin-bottom: 16px; align-self: flex-start;">FLAGSHIP</div>
-            <h2 style="font-family: var(--font-display); font-size: 48px; margin-bottom: 8px;">MA_Dev Marketplace</h2>
-            <p style="color: var(--text-1); margin-bottom: 24px; font-size: 18px;">Steam for developers. Distribution ecosystem.</p>
-            <div style="display: flex; gap: 8px; margin-bottom: 24px;">
-              <span class="tag">KOTLIN</span><span class="tag">SUPABASE</span><span class="tag">FIREBASE</span>
-            </div>
-            <div><span class="btn btn--dual">OPEN PROJECT →</span></div>
-          </div>
-        </a>
+        // Fetch Repos and build cards
+        const gh = new GitHubStats();
+        gh.getStats().then(stats => {
+            // Mock categories for demonstration since GH API doesn't provide these natively
+            const mockData = [
+                { title: 'MAportfolio', desc: 'WebGL2 portfolio architecture.', tags: ['WEBGL2', 'JS'], cat: 'web systems' },
+                { title: 'Killer-Quebes', desc: '3D Isometric survival shooter.', tags: ['C++', 'TL-ENGINE'], cat: 'games' },
+                { title: 'Neural-Sync', desc: 'Real-time state management protocol.', tags: ['TYPESCRIPT', 'WEBSOCKETS'], cat: 'systems web' },
+                { title: 'Droid-Commander', desc: 'Mobile fleet management tool.', tags: ['KOTLIN', 'ANDROID'], cat: 'mobile' },
+                { title: 'Vision-Core', desc: 'Computer vision processing pipeline.', tags: ['PYTHON', 'OPENCV'], cat: 'ai' }
+            ];
 
-        <!-- Grid -->
-        <div class="project-grid" id="project-grid">
-          
-          <a href="#" class="card proj-card filter-item" data-category="games systems" data-reveal>
-            <div class="bg-img" style="background-image: url('assets/img/project-game.webp');"></div>
-            <canvas class="holo-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0; pointer-events: none; transition: opacity 0.3s;"></canvas>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-              <h3 style="font-family: var(--font-display); font-size: 24px;">Killer Quebes</h3>
-              <p style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">3D Survival Shooter</p>
-              <div style="display: flex; gap: 8px;"><span class="tag">C++</span><span class="tag">TL-ENGINE</span></div>
-            </div>
-          </a>
+            const grid = document.getElementById('project-grid');
 
-          <a href="#" class="card proj-card filter-item" data-category="web systems" data-reveal>
-            <div class="bg-img" style="background-image: url('assets/img/hero-bg.webp');"></div>
-            <canvas class="holo-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0; pointer-events: none; transition: opacity 0.3s;"></canvas>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-              <h3 style="font-family: var(--font-display); font-size: 24px;">MAportfolio v7</h3>
-              <p style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">WebGL2 + Vanilla JS Portfolio</p>
-              <div style="display: flex; gap: 8px;"><span class="tag">WEBGL2</span><span class="tag">JS</span></div>
-            </div>
-          </a>
+            mockData.forEach(p => {
+                const el = document.createElement('div');
+                el.className = 'card project-card interactable stagger';
+                el.setAttribute('data-category', p.cat);
 
-          <!-- GitHub API dynamic card placeholder -->
-          <a href="#" id="gh-active-repo" class="card proj-card filter-item card--red" data-category="web mobile systems" data-reveal>
-            <div class="card-overlay" style="background: var(--surface-1);"></div>
-            <div class="card-content">
-              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--red); margin-bottom: 8px;">MOST ACTIVE REPO</div>
-              <h3 id="gh-repo-name" style="font-family: var(--font-display); font-size: 24px; color: var(--white);">Loading...</h3>
-              <p id="gh-repo-desc" style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">Fetching from GitHub API...</p>
-              <div style="display: flex; gap: 8px;" id="gh-repo-tags"></div>
-            </div>
-          </a>
+                // Assign a random placeholder image
+                const imgId = Math.floor(Math.random() * 4) + 1;
+                const imgSrc = `https://picsum.photos/seed/madev${imgId}/600/400`;
 
-        </div>
+                el.innerHTML = `
+                    <div style="position:relative;">
+                        <img src="${imgSrc}" class="bg-img" alt="${p.title}" loading="lazy">
+                        <canvas class="holo-canvas" data-tex="${imgSrc}"></canvas>
+                    </div>
+                    <div class="project-card-content">
+                        <h3 style="font-family: var(--font-display);">${p.title}</h3>
+                        <p>${p.desc}</p>
+                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:auto;">
+                            ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(el);
+            });
 
-        <div id="empty-state" style="display: none; text-align: center; padding: 64px; font-family: var(--font-mono); color: var(--text-2); font-size: 14px;">
-          [ NO SIGNALS FOUND FOR THIS CATEGORY ]
-        </div>
+            // Init Hologram Shaders on all new canvases
+            if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && !window.matchMedia('(pointer: coarse)').matches) {
+                document.querySelectorAll('.holo-canvas').forEach(canvas => {
+                    const engineHolo = new WebGLEngine(canvas, {alpha: true});
+                    engineHolo.compileProgram('holo', SHADER_05_HOLOGRAM.vert, SHADER_05_HOLOGRAM.frag);
 
-      </section>
+                    const src = canvas.getAttribute('data-tex');
+                    engineHolo.loadTexture('tex', src).then(() => {
+                        let trigger = 0;
+                        canvas.parentElement.parentElement.addEventListener('mouseenter', () => trigger = 1.0);
+                        canvas.parentElement.parentElement.addEventListener('mouseleave', () => trigger = 0.0);
 
-      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden; margin-top: 64px;">
-        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
-          <div class="grid-12">
-            <div style="grid-column: span 4;">
-              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
-              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </main>
-  </div>
+                        engineHolo.render('holo', {}, (gl) => {
+                            const l = engineHolo.getUniform('holo', 'u_trigger');
+                            const curT = engineHolo.gl.getUniform(engineHolo.programs.get('holo'), l);
+                            const newT = curT + (trigger - curT) * 0.1;
+                            engineHolo.gl.uniform1f(l, newT);
 
-  <script type="module">
-    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
-    import { SHADER_02_NOISE_FIELD, SHADER_05_HOLOGRAM } from './assets/js/engine/shaders.js';
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { GitHubStats } from './assets/js/core/GitHubStats.js';
-    import { AudioSystem } from './assets/js/core/Audio.js';
-    import { PageTransitions } from './assets/js/core/PageTransitions.js';
-    import { Konami } from './assets/js/core/Konami.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
-    import { LazyLoad } from './assets/js/core/LazyLoad.js';
+                            const texLoc = engineHolo.getUniform('holo', 'u_tex');
+                            engineHolo.gl.activeTexture(engineHolo.gl.TEXTURE0);
+                            engineHolo.gl.bindTexture(engineHolo.gl.TEXTURE_2D, engineHolo.textures.get('tex'));
+                            engineHolo.gl.uniform1i(texLoc, 0);
+                        });
+                    });
+                });
+            }
 
-    new ThemeSystem();
-    new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-    new LazyLoad();
-    new AudioSystem();
-    new PageTransitions();
-    new Konami();
+            // Reveal new elements
+            new ScrollReveal();
 
-    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!isReduced) {
-      const cNoise = document.getElementById('canvas-noise');
-      const eNoise = new WebGLEngine(cNoise);
-      eNoise.compileProgram('noise', SHADER_02_NOISE_FIELD.vert, SHADER_02_NOISE_FIELD.frag);
-      eNoise.createFullscreenQuad('fullscreen');
-      eNoise.render('noise');
+            // Filter Logic
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.project-card');
+            const emptyState = document.getElementById('empty-state');
 
-      // Hologram logic on hover
-      // Note: Full implementation would instantiate an engine per canvas or use one engine and scissors.
-      // We will skip heavy multi-canvas WebGL here for simplicity, but the CSS overlay gradient on hover (defined in components) acts as fallback.
-    }
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
 
-    // GitHub stats integration
-    const ghStats = new GitHubStats();
-    ghStats.getStats().then(stats => {
-      const activeRepo = stats.mostActiveRepo || 'MAportfolio';
-      document.getElementById('gh-repo-name').textContent = activeRepo;
-      document.getElementById('gh-repo-desc').textContent = "Most recently pushed repository.";
-      const tags = document.getElementById('gh-repo-tags');
-      tags.innerHTML = stats.topLanguages.map(l => \`<span class="tag tag--red">\${l}</span>\`).join('');
-      document.getElementById('gh-active-repo').href = \`https://github.com/Mathiyass/\${activeRepo}\`;
-    });
+                    const filter = btn.getAttribute('data-filter');
+                    let count = 0;
 
-    // Filtering
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const items = document.querySelectorAll('.filter-item');
-    const emptyState = document.getElementById('empty-state');
+                    cards.forEach(card => {
+                        if(filter === 'all' || card.getAttribute('data-category').includes(filter)) {
+                            card.style.display = 'flex';
+                            count++;
+                            // re-trigger animation
+                            card.style.animation = 'none';
+                            card.offsetHeight;
+                            card.style.animation = 'fadeSlideUp var(--dur-mid) var(--ease-expo) forwards';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        const filter = btn.dataset.filter;
-        let visibleCount = 0;
-
-        items.forEach(item => {
-          if (filter === 'all' || item.dataset.category.includes(filter)) {
-            item.style.display = '';
-            visibleCount++;
-          } else {
-            item.style.display = 'none';
-          }
+                    emptyState.style.display = count === 0 ? 'block' : 'none';
+                });
+            });
         });
-
-        emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
-      });
-    });
-
-  </script>
+    </script>
 </body>
 </html>

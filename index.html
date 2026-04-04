@@ -1,530 +1,666 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dual">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>Mathisha Angirasa // MA_Dev Solutions</title>
-  
-  <meta name="description" content="Mathisha Angirasa - Software Engineering Student & Full-Stack Developer at MA_Dev Solutions (Pvt) Ltd, Sri Lanka.">
-  <meta property="og:title" content="Mathisha Angirasa // MA_Dev Solutions">
-  <meta property="og:description" content="Portfolio of Mathisha Angirasa - Builder of systems, WebGL experiences, and MA_Dev Marketplace.">
-  <meta property="og:image" content="https://mathiyass.github.io/MAportfolio/assets/img/og-card.webp">
-  <meta property="og:url" content="https://mathiyass.github.io/MAportfolio/">
-  <meta property="og:type" content="website">
-  
-  <meta name="twitter:card" content="summary_large_image">
-  
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-  
-  <style>
-    /* Inline critical styles */
-    .hero { min-height: 100svh; position: relative; overflow: hidden; display: flex; align-items: center; }
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav--transparent { background: transparent; backdrop-filter: none; border-color: transparent; }
-    .nav--hidden { transform: translateY(-100%); }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
-    .hero-h1 { font-family: var(--font-display); font-size: clamp(44px, 7.5vw, 108px); font-weight: 900; line-height: 0.86; letter-spacing: -0.02em; color: var(--text-0); margin-bottom: var(--s-16); }
-    .hero-h1 span.dual { background: linear-gradient(135deg, var(--cyan), var(--red)); -webkit-background-clip: text; color: transparent; display: inline-block; }
-    .top-badge { position: absolute; top: 90px; left: var(--gutter); }
-    .corner-dec { position: absolute; width: 24px; height: 24px; border: 2px solid var(--cyan-border); opacity: 0.5; pointer-events: none; }
-    .c-tl { top: 80px; left: var(--gutter); border-right: none; border-bottom: none; }
-    .c-tr { top: 80px; right: var(--gutter); border-left: none; border-bottom: none; }
-    .c-bl { bottom: 24px; left: var(--gutter); border-right: none; border-top: none; }
-    .c-br { bottom: 24px; right: var(--gutter); border-left: none; border-top: none; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathisha Angirasa // MA_Dev Solutions</title>
+    <meta name="description" content="Mathisha Angirasa - Software Engineering Student & Full-Stack Developer at MA_Dev Solutions (Pvt) Ltd, Sri Lanka.">
+    <link rel="canonical" href="https://mathiyass.github.io/MAportfolio/" />
     
-    .tech-marquee-wrapper { position: relative; overflow: hidden; white-space: nowrap; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
-    .tech-marquee { display: inline-flex; gap: 32px; animation: scrollLeft 40s linear infinite; }
-    .tech-marquee.reverse { animation: scrollRight 50s linear infinite; }
-    .tech-item { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--text-1); }
-    .tech-item svg { width: 20px; height: 20px; fill: currentColor; }
-    .tech-item:hover { color: var(--cyan); }
-    .tech-item:hover svg { filter: drop-shadow(0 0 8px var(--cyan)); }
-    @keyframes scrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    @keyframes scrollRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-
-    .featured-grid { grid-template-rows: auto auto; }
-    .card-a { grid-column: 1 / 9; height: 400px; }
-    .card-b { grid-column: 9 / 13; height: 400px; }
-    .card-c { grid-column: 1 / 7; height: 280px; }
-    .card-d { grid-column: 7 / 13; height: 280px; }
-    @media (max-width: 1023px) { .card-a, .card-b, .card-c, .card-d { grid-column: 1 / 13; } }
+    <meta property="og:title" content="Mathisha Angirasa // MA_Dev Solutions">
+    <meta property="og:description" content="Portfolio of Mathisha Angirasa - Builder of systems, WebGL experiences, and MA_Dev Marketplace.">
+    <meta property="og:image" content="https://mathiyass.github.io/MAportfolio/assets/img/og-card.webp">
+    <meta property="og:url" content="https://mathiyass.github.io/MAportfolio/">
+    <meta property="og:type" content="website">
     
-    .bg-img { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: -1; }
-    .card-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, var(--surface-0) 0%, transparent 100%); z-index: 0; }
-    .card-content { position: relative; z-index: 1; padding: var(--s-32); height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
-  </style>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#00E5FF">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
+    <link rel="manifest" href="manifest.json">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Mathisha Angirasa",
-    "jobTitle": "Software Engineering Student",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "MA_Dev Solutions (Pvt) Ltd"
-    },
-    "url": "https://mathiyass.github.io/MAportfolio/"
-  }
-  </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+
+    <style>
+        .nav-wrapper { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); padding: 0 var(--gutter); height: 64px; transition: background 300ms, transform 300ms; }
+        .nav-wrapper.scrolled { background: var(--surface-glass); backdrop-filter: blur(28px) saturate(180%); border-bottom: 1px solid var(--cyan-border); }
+        .nav-wrapper.hidden { transform: translateY(-100%); }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 100%; max-width: var(--max-w); margin: 0 auto; }
+        
+        .logo-compound { display: flex; align-items: baseline; font-weight: 700; cursor: pointer; }
+        .logo-ma { font-family: var(--font-display); font-size: 20px; color: var(--cyan); }
+        .logo-dev { font-family: var(--font-mono); font-size: 20px; color: var(--text-1); }
+        .logo-compound:hover .logo-ma, .logo-compound:hover .logo-dev { color: var(--cyan-bright); text-shadow: var(--glow-cyan); }
+
+        .nav-links { display: none; gap: var(--s-24); }
+        @media (min-width: 1024px) { .nav-links { display: flex; } }
+
+        .nav-right { display: flex; align-items: center; gap: var(--s-16); }
+        .live-clock { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); position: relative; }
+        .live-clock-date { position: absolute; top: 100%; right: 0; background: var(--surface-1); padding: 4px 8px; display: none; white-space: nowrap; border: 1px solid var(--cyan-border); }
+        .live-clock:hover .live-clock-date { display: block; }
+
+        .mobile-toggle { display: block; width: 24px; height: 24px; position: relative; z-index: 1001; }
+        @media (min-width: 1024px) { .mobile-toggle { display: none; } }
+        .mobile-toggle span { display: block; width: 100%; height: 2px; background: var(--cyan); position: absolute; transition: all var(--dur-fast); }
+        .mobile-toggle span:nth-child(1) { top: 4px; }
+        .mobile-toggle span:nth-child(2) { top: 11px; }
+        .mobile-toggle span:nth-child(3) { top: 18px; }
+        .mobile-toggle.open span:nth-child(1) { transform: rotate(45deg); top: 11px; }
+        .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+        .mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg); top: 11px; }
+
+        .mobile-menu { position: fixed; inset: 0; background: var(--void); z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: var(--s-32); opacity: 0; pointer-events: none; transition: opacity var(--dur-mid); }
+        .mobile-menu.open { opacity: 1; pointer-events: auto; }
+        .mobile-menu .nav-link { font-family: var(--font-display); font-size: 32px; letter-spacing: 0; opacity: 0; transform: translateX(-20px); transition: all var(--dur-mid); }
+        .mobile-menu.open .nav-link { opacity: 1; transform: translateX(0); }
+
+        #canvas-noise { position: fixed; inset: 0; z-index: -3; opacity: 0.4; }
+        #canvas-hex { position: fixed; inset: 0; z-index: -2; opacity: 0.15; mix-blend-mode: screen; pointer-events: none; }
+
+        .hero { min-height: 100svh; position: relative; overflow: hidden; display: flex; align-items: center; }
+        .corner { position: absolute; width: 24px; height: 24px; border: 2px solid var(--cyan); opacity: 0.5; pointer-events: none; }
+        .corner-tl { top: var(--gutter); left: var(--gutter); border-right: none; border-bottom: none; }
+        .corner-tr { top: var(--gutter); right: var(--gutter); border-left: none; border-bottom: none; }
+        .corner-bl { bottom: var(--gutter); left: var(--gutter); border-right: none; border-top: none; }
+        .corner-br { bottom: var(--gutter); right: var(--gutter); border-left: none; border-top: none; }
+
+        .sys-badge { position: absolute; top: calc(var(--gutter) + 64px); left: var(--gutter); font-family: var(--font-mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.15em; animation: fadeSlideLeft 1s var(--ease-expo) forwards; opacity: 0; }
+        .sys-badge span { animation: terminalBlink 1.2s infinite; }
+
+        .hero-content { display: grid; grid-template-columns: 1fr; gap: var(--s-24); position: relative; z-index: 1; }
+        .avail-chip { justify-self: start; background: var(--surface-1); border: 1px solid var(--cyan-border); padding: 6px 16px; display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; animation: fadeSlideUp 1s var(--ease-expo) 200ms forwards; opacity: 0; }
+        .avail-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); animation: neonPulseCyan 2s infinite alternate; }
+
+        .hero-h1 { font-size: clamp(44px, 7.5vw, 108px); line-height: 0.86; letter-spacing: -0.02em; color: var(--text-0); margin-bottom: var(--s-16); min-height: 1.5em;}
+        .hero-h1 .dual-grad { background: linear-gradient(135deg, var(--cyan), var(--red)); -webkit-background-clip: text; color: transparent; }
+
+        .hero-sub { font-family: var(--font-mono); font-size: 13px; color: var(--text-1); letter-spacing: 0.22em; animation: fadeSlideUp 1s var(--ease-expo) 400ms forwards; opacity: 0; }
+        .hero-sub span { color: var(--cyan); }
+
+        .cta-row { display: flex; gap: var(--s-16); margin-top: var(--s-40); flex-wrap: wrap; }
+        .cta-row .btn { animation: fadeSlideUp 1s var(--ease-expo) forwards; opacity: 0; }
+        .cta-row .btn:nth-child(1) { animation-delay: 600ms; }
+        .cta-row .btn:nth-child(2) { animation-delay: 700ms; }
+
+        .stats-row { display: flex; gap: var(--s-24); margin-top: var(--s-32); animation: fadeSlideUp 1s var(--ease-expo) 800ms forwards; opacity: 0; }
+        .stat-inline { display: flex; align-items: baseline; gap: 8px; }
+        .stat-inline .label { font-family: var(--font-mono); font-size: 10px; color: var(--text-2); }
+        .stat-inline .val { font-family: var(--font-stat); font-size: 28px; color: var(--cyan); }
+
+        .scroll-ind { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; transition: opacity 500ms; }
+        .scroll-ind span { font-family: var(--font-mono); font-size: 10px; color: var(--text-2); letter-spacing: 0.4em; writing-mode: vertical-rl; }
+        .scroll-ind svg { animation: orbFloat 2s ease-in-out infinite; }
+
+        .edge-label { position: absolute; right: -80px; top: 50%; transform: rotate(90deg) translateY(-50%); font-family: var(--font-mono); font-size: 9px; color: var(--text-2); letter-spacing: 0.2em; transform-origin: left top; pointer-events: none; }
+
+        /* Featured Work */
+        .feat-card-a { grid-column: span 12; height: 400px; }
+        @media (min-width: 1024px) { .feat-card-a { grid-column: span 8; } }
+        .feat-card-a .bg-img { position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; z-index: 0; opacity: 0.4; }
+        .feat-card-a .overlay { position: absolute; inset: 0; background: linear-gradient(to right, var(--surface-0) 30%, transparent); z-index: 1; }
+        .feat-card-a canvas { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; pointer-events: none; }
+        .feat-card-a .content { position: relative; z-index: 3; padding: var(--s-48); display: flex; flex-direction: column; height: 100%; justify-content: flex-end; width: 100%; max-width: 500px;}
+        .feat-card-a .stats { display: flex; gap: var(--s-32); margin: var(--s-24) 0; }
+        .feat-card-a .tags { display: flex; gap: 8px; margin-bottom: var(--s-24); flex-wrap: wrap; }
+
+        .feat-card-b { grid-column: span 12; height: 400px; padding: var(--s-32); display: flex; flex-direction: column; justify-content: flex-end;}
+        @media (min-width: 1024px) { .feat-card-b { grid-column: span 4; } }
+        .feat-card-b .bg-img { position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; z-index: 0; opacity: 0.3; }
+
+        .feat-card-c { grid-column: span 12; height: 280px; padding: var(--s-32); display: flex; flex-direction: column; justify-content: space-between; }
+        @media (min-width: 768px) { .feat-card-c { grid-column: span 6; } }
+
+        .feat-card-d { grid-column: span 12; height: 280px; padding: var(--s-32); display: flex; flex-direction: column; justify-content: space-between; border-left: 2px solid var(--red); }
+        @media (min-width: 768px) { .feat-card-d { grid-column: span 6; } }
+
+        /* Marquee */
+        .marquee-wrapper { overflow: hidden; white-space: nowrap; width: 100%; position: relative; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); padding: var(--s-48) 0;}
+        .marquee-track { display: inline-flex; gap: var(--s-64); animation: marquee-anim linear infinite; }
+        .marquee-track.reverse { animation-direction: reverse; }
+        .tech-item { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--text-1); transition: color var(--dur-fast); }
+        .tech-item svg { width: 20px; height: 20px; fill: currentColor; transition: filter var(--dur-fast); }
+        .tech-item:hover { color: var(--cyan); }
+        .tech-item:hover svg { filter: drop-shadow(0 0 8px var(--cyan)); }
+        .tech-item:nth-child(even):hover { color: var(--red); }
+        .tech-item:nth-child(even):hover svg { filter: drop-shadow(0 0 8px var(--red)); }
+
+        @keyframes marquee-anim { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* GitHub Stats */
+        .gh-section { background: var(--surface-1); border-top: 1px solid var(--cyan-border); border-bottom: 1px solid var(--cyan-border); padding: var(--s-64) 0; }
+        .gh-grid { display: grid; grid-template-columns: 1fr; gap: var(--s-48); text-align: center; }
+        @media (min-width: 768px) { .gh-grid { grid-template-columns: repeat(3, 1fr); } }
+        .gh-stat .val { font-family: var(--font-stat); font-size: clamp(48px, 6vw, 80px); line-height: 1; margin-bottom: 8px; }
+        .gh-stat:nth-child(1) .val { color: var(--cyan); }
+        .gh-stat:nth-child(2) .val { color: var(--red); }
+        .gh-stat:nth-child(3) .val { color: var(--cyan); }
+        .gh-stat .lbl { font-family: var(--font-mono); font-size: 12px; color: var(--text-1); letter-spacing: 0.1em; }
+
+        /* Footer */
+        .footer { position: relative; padding: var(--s-64) 0 var(--s-24); overflow: hidden; }
+        #canvas-circuit-footer { position: absolute; top: 0; left: 0; width: 100%; height: 80px; opacity: 0.2; pointer-events: none; z-index: -1; }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: var(--s-48); margin-bottom: var(--s-64); }
+        @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(3, 1fr); } }
+        .footer-brand .logo-compound { margin-bottom: var(--s-16); }
+        .footer-brand p { color: var(--text-1); font-size: 14px; margin-bottom: 8px; }
+        .footer-nav { display: flex; flex-direction: column; gap: 12px; }
+        .footer-social { display: flex; gap: var(--s-16); }
+        .footer-social a { color: var(--text-1); transition: color 0.2s; }
+        .footer-social a:hover { color: var(--cyan); filter: drop-shadow(0 0 8px var(--cyan)); }
+        .footer-bottom { display: flex; flex-direction: column; gap: 16px; border-top: 1px solid var(--grid-line); padding-top: var(--s-24); font-family: var(--font-mono); font-size: 10px; color: var(--text-2); }
+        @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
+
+        .click-burst { position: fixed; inset: 0; pointer-events: none; z-index: 9999; }
+    </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
+    <div id="loader-overlay" style="position:fixed;inset:0;background:var(--void);z-index:100000;display:flex;align-items:center;justify-content:center;"><canvas id="signature-canvas" width="800" height="400"></canvas></div>
+    <a href="#main" class="skip-link" style="position:absolute; top:-40px; left:0; background:var(--cyan); color:var(--void); padding:8px; z-index:100000; font-family:var(--font-mono);">Skip to content</a>
 
-  <canvas id="canvas-noise" style="position:fixed; inset:0; z-index:-3; opacity:0.4; pointer-events:none; width:100vw; height:100vh;"></canvas>
-  <canvas id="canvas-hex" style="position:fixed; inset:0; z-index:-2; opacity:0.15; pointer-events:auto; width:100vw; height:100vh; mix-blend-mode: screen;"></canvas>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
+    <canvas id="canvas-noise"></canvas>
+    <canvas id="canvas-hex"></canvas>
+    <canvas class="click-burst" id="click-canvas"></canvas>
 
-  <nav id="navbar" class="nav--transparent" role="navigation" aria-label="Main Navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    
-    <div class="nav-center">
-      <a href="index.html" class="nav-link active" aria-current="page">INDEX</a>
-      <a href="projects.html" class="nav-link">PROJECTS</a>
-      <a href="skills.html" class="nav-link">SKILLS</a>
-      <a href="blog.html" class="nav-link">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link">CONTACT</a>
+    <header class="nav-wrapper" role="banner">
+        <div class="nav-inner">
+            <a href="index.html" class="logo-compound interactable" aria-label="Home">
+                <span class="logo-ma">MA*</span>
+                <span class="logo-dev">_DEV</span>
+            </a>
+
+            <nav class="nav-links" role="navigation" aria-label="Main Navigation">
+                <a href="index.html" class="nav-link active" aria-current="page">INDEX</a>
+                <a href="projects.html" class="nav-link">PROJECTS</a>
+                <a href="skills.html" class="nav-link">SKILLS</a>
+                <a href="blog.html" class="nav-link">BLOG</a>
+                <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
+                <a href="contact.html" class="nav-link">CONTACT</a>
+            </nav>
+
+            <div class="nav-right">
+                <a href="contact.html" class="btn btn--red" style="height: 36px; padding: 0 16px;">HIRE ME</a>
+                <div class="live-clock" id="nav-clock" aria-live="polite">00:00:00
+                    <div class="live-clock-date" id="nav-date">YYYY.MM.DD</div>
+                </div>
+                <button class="mobile-toggle interactable" aria-label="Toggle Menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu">
+        <a href="index.html" class="nav-link active">INDEX</a>
+        <a href="projects.html" class="nav-link">PROJECTS</a>
+        <a href="skills.html" class="nav-link">SKILLS</a>
+        <a href="blog.html" class="nav-link">BLOG</a>
+        <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
+        <a href="contact.html" class="nav-link">CONTACT</a>
     </div>
 
-    <div style="display: flex; align-items: center; gap: var(--s-16);">
-      <button class="btn btn--red" style="padding: 8px 16px; height: 36px; border-color: var(--red-border);" onclick="window.location.href='contact.html'">HIRE ME</button>
-      <div id="live-clock" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); width: 80px; text-align: right; display: none;">00:00:00</div>
-      <button class="hamburger" aria-label="Toggle Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      </button>
+    <div class="scroll-container">
+        <main id="main" role="main">
+            <section class="hero container">
+                <div class="corner corner-tl"></div>
+                <div class="corner corner-tr"></div>
+                <div class="corner corner-bl"></div>
+                <div class="corner corner-br"></div>
+
+                <div class="sys-badge">[SYS: ONLINE // LK // MADEV v7.0]<span>▋</span></div>
+
+                <div class="hero-content">
+                    <div class="avail-chip">
+                        <div class="avail-dot"></div>
+                        OPEN TO OPPORTUNITIES
+                    </div>
+                    <h1 class="hero-h1" id="hero-typewriter" aria-live="polite">MATHISHA ANGIRASA</h1>
+                    <div class="hero-sub">
+                        SOFTWARE ENGINEER <span>//</span> SRI LANKA <span>//</span> JIAT HHDPII <span>//</span> MA_DEV SOLUTIONS (PVT) LTD
+                    </div>
+                    <div class="cta-row">
+                        <a href="projects.html" class="btn btn--dual">VIEW WORK →</a>
+                        <a href="contact.html" class="btn btn--ghost btn--red">CONTACT</a>
+                    </div>
+                    <div class="stats-row stagger">
+                        <div class="stat-inline"><span class="label">REPOS:</span><span class="val skeleton" id="hero-repos" style="min-width: 30px; display:inline-block;">&nbsp;</span></div>
+                        <div style="width:1px; background:var(--cyan-border);"></div>
+                        <div class="stat-inline"><span class="label">STARS:</span><span class="val skeleton" id="hero-stars" style="min-width: 30px; display:inline-block;">&nbsp;</span></div>
+                        <div style="width:1px; background:var(--cyan-border);"></div>
+                        <div class="stat-inline"><span class="label">FOLLOWERS:</span><span class="val skeleton" id="hero-followers" style="min-width: 30px; display:inline-block;">&nbsp;</span></div>
+                    </div>
+                </div>
+
+                <div class="scroll-ind" id="scroll-indicator">
+                    <span>SCROLL</span>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg>
+                </div>
+
+                <div class="edge-label">EST. 2023 // MA_DEV SOLUTIONS // SRI LANKA</div>
+            </section>
+
+            <section class="section container bg-grid">
+                <h2 class="section-label" data-reveal>[ 01 ] SELECTED WORK</h2>
+
+                <div class="grid-12 stagger">
+                    <div class="card feat-card-a interactable">
+                        <img src="assets/img/project-marketplace.webp" alt="MA_Dev Marketplace preview" class="bg-img" loading="lazy">
+                        <div class="overlay"></div>
+                        <canvas id="canvas-holo-1"></canvas>
+                        <div class="content">
+                            <h3 style="font-size: 32px; margin-bottom: 8px;">MA_Dev Marketplace</h3>
+                            <p style="color: var(--text-1); margin-bottom: 16px;">The flagship platform for developers to discover and deploy high-performance assets.</p>
+                            <div class="tags">
+                                <span class="tag">KOTLIN</span><span class="tag">SUPABASE</span><span class="tag">FIREBASE</span><span class="tag">ANDROID</span>
+                            </div>
+                            <div class="stats">
+                                <div class="stat-block"><div class="stat-value" id="cu-assets">0</div><div class="stat-label">ASSETS</div></div>
+                                <div class="stat-block"><div class="stat-value" id="cu-devs">0</div><div class="stat-label">DEVELOPERS</div></div>
+                                <div class="stat-block"><div class="stat-value" id="cu-builds">0</div><div class="stat-label">BUILDS</div></div>
+                            </div>
+                            <div>
+                                <a href="marketplace.html" class="btn btn--ghost" style="padding: 10px 24px;">OPEN PROJECT →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card feat-card-b interactable">
+                        <img src="assets/img/project-game.webp" alt="Killer Quebes game scene" class="bg-img" loading="lazy">
+                        <h3 style="font-size: 24px; position:relative; z-index:1;">Killer Quebes</h3>
+                        <p style="color: var(--text-1); font-size: 14px; position:relative; z-index:1; margin: 8px 0;">3D Isometric survival shooter built with custom engine tech.</p>
+                        <div class="tags" style="position:relative; z-index:1; margin-bottom: 16px;">
+                            <span class="tag">C++</span><span class="tag">TL-ENGINE</span>
+                        </div>
+                        <a href="projects.html" class="nav-link" style="align-self: flex-start; z-index:1;">VIEW →</a>
+                    </div>
+
+                    <div class="card feat-card-c interactable">
+                        <div>
+                            <h3 style="font-size: 24px; margin-bottom: 8px;">MAportfolio v7.0</h3>
+                            <p style="color: var(--text-1); font-size: 14px;">This very terminal. Engineered for extreme performance.</p>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">WEBGL2</span><span class="tag">VANILLA JS</span><span class="tag">12 SHADERS</span>
+                        </div>
+                    </div>
+
+                    <div class="card card--red feat-card-d interactable">
+                         <div>
+                            <h3 style="font-size: 24px; margin-bottom: 8px;">JIAT Coursework</h3>
+                            <p style="color: var(--text-1); font-size: 14px;">Academic implementations and algorithms.</p>
+                        </div>
+                        <div class="tags">
+                            <span class="tag tag--red">HHDPII</span><span class="tag tag--red">DATA STRUCTURES</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: var(--s-32);" data-reveal>
+                    <a href="projects.html" class="btn btn--ghost">ALL PROJECTS →</a>
+                </div>
+            </section>
+
+            <section class="section" style="padding: var(--s-64) 0;">
+                <div class="container"><h2 class="section-label" data-reveal>[ 02 ] TECHNOLOGY STACK</h2></div>
+
+                <div class="marquee-wrapper">
+                    <div class="marquee-track" id="marquee-1">
+                        <!-- Populated by JS to ensure infinite scroll duplicate -->
+                    </div>
+                </div>
+                <div class="marquee-wrapper">
+                    <div class="marquee-track reverse" id="marquee-2" style="animation-duration: 50s;">
+                    </div>
+                </div>
+            </section>
+
+            <section class="gh-section">
+                <div class="container">
+                    <div class="gh-grid stagger">
+                        <div class="gh-stat" data-reveal>
+                            <div class="val skeleton" id="big-repos" style="min-width: 60px; display:inline-block; height: 1em;">&nbsp;</div>
+                            <div class="lbl">PUBLIC REPOSITORIES</div>
+                        </div>
+                        <div class="gh-stat" data-reveal>
+                            <div class="val skeleton" id="big-stars" style="min-width: 60px; display:inline-block; height: 1em;">&nbsp;</div>
+                            <div class="lbl">TOTAL STARS EARNED</div>
+                        </div>
+                        <div class="gh-stat" data-reveal>
+                            <div class="val skeleton" id="big-followers" style="min-width: 60px; display:inline-block; height: 1em;">&nbsp;</div>
+                            <div class="lbl">NETWORK FOLLOWERS</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="footer container">
+            <canvas id="canvas-circuit-footer"></canvas>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-compound">
+                        <span class="logo-ma">MA*</span><span class="logo-dev">_DEV</span>
+                    </div>
+                    <p>Building tools for builders.</p>
+                    <p>Sri Lanka // 2024</p>
+                </div>
+                <div class="footer-nav">
+                    <a href="about.html" class="nav-link">ABOUT</a>
+                    <a href="experiments.html" class="nav-link">EXPERIMENTS LAB</a>
+                    <a href="admin.html" class="nav-link">ADMIN TERMINAL</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/Mathiyass" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2024 Mathisha Angirasa — MA_Dev Solutions (Pvt) Ltd</div>
+                <div style="text-align: right;">BUILT WITH RAW WEBGL2 + VANILLA JS // ZERO FRAMEWORKS</div>
+            </div>
+        </footer>
     </div>
-  </nav>
 
-  <div class="mobile-menu" style="display: none; position: fixed; inset: 0; background: var(--void); z-index: 999; flex-direction: column; justify-content: center; align-items: center; gap: 32px;">
-    <!-- Filled via JS if needed, simple implementation below -->
-    <a href="index.html" style="font-family: var(--font-display); font-size: 32px; color: var(--cyan);">INDEX</a>
-    <a href="projects.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">PROJECTS</a>
-    <a href="skills.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">SKILLS</a>
-    <a href="blog.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">BLOG</a>
-    <a href="marketplace.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">MARKETPLACE</a>
-    <a href="contact.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">CONTACT</a>
-  </div>
+    <script type="module">
+        import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+        import { SHADER_01_HEXGRID, SHADER_02_NOISE_FIELD, SHADER_05_HOLOGRAM, SHADER_03_CIRCUIT } from './assets/js/engine/shaders.js';
+        import { CustomCursor } from './assets/js/core/Cursor.js';
+        import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+        import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+        import { TypeWriter } from './assets/js/core/TypeWriter.js';
+        import { CountUp } from './assets/js/core/CountUp.js';
+        import { GitHubStats } from './assets/js/core/GitHubStats.js';
+        import { AudioSystem } from './assets/js/core/Audio.js';
+        import { ProgressBar } from './assets/js/core/ProgressBar.js';
+        import { PageTransitions } from './assets/js/core/PageTransitions.js';
+        import { Konami } from './assets/js/core/Konami.js';
+        import { ToastManager } from './assets/js/core/Toast.js';
+        import { MatrixRain } from './assets/js/core/MatrixRain.js';
+        import { LazyLoad } from './assets/js/core/LazyLoad.js';
 
-  <div class="scroll-container">
-    <main id="main" role="main">
-      <section class="hero container">
-        <div class="corner-dec c-tl"></div>
-        <div class="corner-dec c-tr"></div>
-        <div class="corner-dec c-bl"></div>
-        <div class="corner-dec c-br"></div>
-        
-        <div class="top-badge badge" data-reveal>
-          [SYS: ONLINE // LK // MADEV v7.0]<span class="terminal-blink">▋</span>
-        </div>
+        // Globals
+        window.toast = new ToastManager();
+        const cursor = new CustomCursor();
+        const scroller = new SmoothScroll();
+        new ScrollReveal();
+        new ProgressBar(scroller);
+        new PageTransitions();
+        new Konami();
+        new LazyLoad();
 
-        <div style="position: absolute; right: -80px; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: var(--font-mono); font-size: 9px; color: var(--text-2); letter-spacing: 0.2em;">EST. 2023 // MA_DEV SOLUTIONS // SRI LANKA</div>
+        // Audio
+        let audio;
+        document.addEventListener('click', () => { if(!audio) audio = new AudioSystem(); }, {once:true});
 
-        <div style="width: 100%;">
-          <div class="badge" style="margin-bottom: var(--s-24);" data-reveal data-reveal-dir="left">OPEN TO OPPORTUNITIES</div>
-          
-          <h1 class="hero-h1" id="typewriter-h1" data-reveal data-reveal-clip>MATHISHA ANGIRASA</h1>
-          
-          <div style="font-family: var(--font-mono); font-size: 13px; color: var(--text-1); letter-spacing: 0.22em; margin-bottom: var(--s-48);" data-reveal>
-            <span style="color: var(--white);">SOFTWARE ENGINEER</span> <span style="color: var(--cyan);">//</span> 
-            <span style="color: var(--white);">SRI LANKA</span> <span style="color: var(--cyan);">//</span> 
-            <span style="color: var(--white);">JIAT HHDPII</span> <span style="color: var(--cyan);">//</span> 
-            <span style="color: var(--white);">MA_DEV SOLUTIONS (PVT) LTD</span>
-          </div>
+        // Background Shaders
+        if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const engineHex = new WebGLEngine(document.getElementById('canvas-hex'));
+            engineHex.compileProgram('hex', SHADER_01_HEXGRID.vert, SHADER_01_HEXGRID.frag);
+            engineHex.render('hex');
 
-          <div style="display: flex; gap: var(--s-16); flex-wrap: wrap;" class="stagger" data-reveal>
-            <a href="projects.html" class="btn btn--dual">VIEW WORK →</a>
-            <a href="contact.html" class="btn btn--ghost btn--red">CONTACT</a>
-          </div>
+            const engineNoise = new WebGLEngine(document.getElementById('canvas-noise'));
+            engineNoise.compileProgram('noise', SHADER_02_NOISE_FIELD.vert, SHADER_02_NOISE_FIELD.frag);
+            engineNoise.render('noise');
 
-          <div style="display: flex; gap: var(--s-32); margin-top: var(--s-32);" class="stagger" data-reveal>
-            <div class="stat-block">
-              <span class="value" id="stat-repos">--</span>
-              <span class="label">REPOS</span>
-            </div>
-            <div style="width: 1px; background: var(--cyan-border);"></div>
-            <div class="stat-block">
-              <span class="value" id="stat-stars">--</span>
-              <span class="label">STARS</span>
-            </div>
-            <div style="width: 1px; background: var(--cyan-border);"></div>
-            <div class="stat-block">
-              <span class="value" id="stat-followers">--</span>
-              <span class="label">FOLLOWERS</span>
-            </div>
-          </div>
-        </div>
+            // Hover Hologram
+            const holoCanvas = document.getElementById('canvas-holo-1');
+            const engineHolo = new WebGLEngine(holoCanvas, {alpha: true});
+            engineHolo.compileProgram('holo', SHADER_05_HOLOGRAM.vert, SHADER_05_HOLOGRAM.frag);
+            engineHolo.loadTexture('cardTex', 'assets/img/project-marketplace.webp').then(() => {
+                let trigger = 0;
+                holoCanvas.parentElement.addEventListener('mouseenter', () => trigger = 1.0);
+                holoCanvas.parentElement.addEventListener('mouseleave', () => trigger = 0.0);
 
-        <div id="scroll-ind" style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px;">
-          <span style="font-family: var(--font-mono); font-size: 10px; color: var(--text-2); letter-spacing: 0.4em; writing-mode: vertical-rl;">SCROLL</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" class="float"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
-      </section>
+                engineHolo.render('holo', {}, (gl) => {
+                    const l = engineHolo.getUniform('holo', 'u_trigger');
+                    const curT = engineHolo.gl.getUniform(engineHolo.programs.get('holo'), l);
+                    const newT = curT + (trigger - curT) * 0.1;
+                    engineHolo.gl.uniform1f(l, newT);
 
-      <section class="section container">
-        <div class="section-label" data-reveal>[ 01 ] SELECTED WORK</div>
-        <div class="grid-12 featured-grid stagger">
-          
-          <a href="marketplace.html" class="card card-a" data-reveal data-reveal-dir="left">
-            <div class="bg-img" style="background-image: url('assets/img/project-marketplace.webp');"></div>
-            <div class="card-overlay"></div>
-            <canvas id="holo-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0; pointer-events: none; transition: opacity 0.3s;"></canvas>
-            <div class="card-content" style="width: 60%;">
-              <h2 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 8px;">MA_Dev Marketplace</h2>
-              <p style="color: var(--text-1); margin-bottom: 16px;">Flagship product. Steam for developers.</p>
-              <div style="display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;">
-                <span class="tag">KOTLIN</span><span class="tag">SUPABASE</span><span class="tag">FIREBASE</span><span class="tag">ANDROID</span>
-              </div>
-              <div style="display: flex; gap: 24px; margin-bottom: 24px;">
-                <div class="stat-block"><span class="value" style="font-size: 32px;" id="count-assets">0</span><span class="label">ASSETS</span></div>
-                <div class="stat-block"><span class="value" style="font-size: 32px;" id="count-devs">0</span><span class="label">DEVS</span></div>
-                <div class="stat-block"><span class="value" style="font-size: 32px;" id="count-builds">0</span><span class="label">BUILDS</span></div>
-              </div>
-              <div><span class="btn btn--ghost" style="padding: 8px 16px;">OPEN PROJECT →</span></div>
-            </div>
-          </a>
+                    const texLoc = engineHolo.getUniform('holo', 'u_tex');
+                    engineHolo.gl.activeTexture(engineHolo.gl.TEXTURE0);
+                    engineHolo.gl.bindTexture(engineHolo.gl.TEXTURE_2D, engineHolo.textures.get('cardTex'));
+                    engineHolo.gl.uniform1i(texLoc, 0);
+                });
+            });
 
-          <a href="projects.html" class="card card-b" data-reveal data-reveal-dir="right">
-            <div class="bg-img" style="background-image: url('assets/img/project-game.webp');"></div>
-            <div class="card-overlay" style="background: linear-gradient(180deg, transparent 0%, var(--surface-0) 100%);"></div>
-            <div class="card-content">
-              <h2 style="font-family: var(--font-display); font-size: 24px;">Killer Quebes</h2>
-              <p style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">3D Survival Shooter built with TL-Engine</p>
-              <div style="display: flex; gap: 8px; margin-bottom: 16px;">
-                <span class="tag">C++</span><span class="tag">TL-ENGINE</span>
-              </div>
-              <div><span class="btn btn--ghost" style="padding: 8px 16px;">VIEW →</span></div>
-            </div>
-          </a>
+            // Footer Circuit
+            const engineCircuit = new WebGLEngine(document.getElementById('canvas-circuit-footer'));
+            engineCircuit.compileProgram('circuit', SHADER_03_CIRCUIT.vert, SHADER_03_CIRCUIT.frag);
+            engineCircuit.render('circuit');
+        } else {
+             document.body.style.background = 'radial-gradient(ellipse at 30% 50%, rgba(0,229,255,0.06), transparent 70%), radial-gradient(ellipse at 70% 60%, rgba(255,77,109,0.04), transparent 60%), var(--void)';
+        }
 
-          <a href="about.html" class="card card-c" data-reveal data-reveal-dir="left">
-            <div class="card-content">
-              <h2 style="font-family: var(--font-display); font-size: 24px;">MAportfolio v7.0</h2>
-              <p style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">The terminal you are browsing right now.</p>
-              <div style="display: flex; gap: 8px;">
-                <span class="tag">WEBGL2</span><span class="tag">VANILLA JS</span><span class="tag">12 SHADERS</span>
-              </div>
-            </div>
-          </a>
+        // TypeWriter
+        const twEl = document.getElementById('hero-typewriter');
+        let twInt = 0;
+        const twPhrases = [
+            "MATHISHA <span class='dual-grad'>ANGIRASA</span>",
+            "<span class='dual-grad'>FULL-STACK</span> ENGINEER",
+            "MA_DEV <span class='dual-grad'>SOLUTIONS</span>",
+            "<span class='dual-grad'>SYSTEMS</span> BUILDER"
+        ];
 
-          <a href="resume.html" class="card card-d card--red" data-reveal data-reveal-dir="right">
-            <div class="card-content">
-              <h2 style="font-family: var(--font-display); font-size: 24px;">JIAT / HHDPII</h2>
-              <p style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">Academic Coursework & Assignments</p>
-              <div style="display: flex; gap: 8px;">
-                <span class="tag tag--red">JAVA</span><span class="tag tag--red">SPRING</span><span class="tag tag--red">ALGORITHMS</span>
-              </div>
-            </div>
-          </a>
+        // Custom simplified typewriter for HTML support
+        if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            let pIdx = 0;
+            const cycle = async () => {
+                twEl.innerHTML = twPhrases[pIdx];
+                // Glitch effect on switch
+                document.documentElement.style.setProperty('--cyan', '#FF4D6D');
+                document.documentElement.style.setProperty('--red', '#00E5FF');
+                setTimeout(() => {
+                    document.documentElement.style.setProperty('--cyan', '#00E5FF');
+                    document.documentElement.style.setProperty('--red', '#FF4D6D');
+                }, 100);
 
-        </div>
-        <div style="text-align: center; margin-top: var(--s-48);" data-reveal>
-          <a href="projects.html" class="btn btn--ghost">ALL PROJECTS →</a>
-        </div>
-      </section>
+                pIdx = (pIdx + 1) % twPhrases.length;
+                setTimeout(cycle, 3000);
+            };
+            setTimeout(cycle, 3000);
+            twEl.innerHTML = twPhrases[0];
+        } else {
+            twEl.innerHTML = "MATHISHA <span class='dual-grad'>ANGIRASA</span>";
+        }
 
-      <section class="section" style="overflow: hidden; border-top: 1px solid var(--cyan-border); border-bottom: 1px solid var(--cyan-border); background: var(--surface-1);">
-        <div class="container">
-          <div class="section-label" data-reveal>[ 02 ] TECHNOLOGY STACK</div>
-        </div>
-        <div class="tech-marquee-wrapper" style="margin-bottom: 24px;" data-reveal>
-          <div class="tech-marquee">
-            <div class="tech-marquee">
-              <!-- Replicated twice for seamless loop -->
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Kotlin</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Python</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> C++</span>
-              <span class="tech-item"><svg><path d="M2 12l10-10 10 10-10 10z"/></svg> JavaScript</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Android SDK</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Supabase</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Firebase</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> PostgreSQL</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> WebGL2</span>
-              <!-- Repeat for loop -->
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Kotlin</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Python</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> C++</span>
-              <span class="tech-item"><svg><path d="M2 12l10-10 10 10-10 10z"/></svg> JavaScript</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Android SDK</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Supabase</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Firebase</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> PostgreSQL</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> WebGL2</span>
-            </div>
-          </div>
-        </div>
-        <div class="tech-marquee-wrapper" data-reveal>
-          <div class="tech-marquee reverse">
-            <div class="tech-marquee reverse">
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Docker</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> GitHub Actions</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> TL-Engine</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Figma</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Playwright</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> WebXR</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> REST APIs</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Linux</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Git</span>
-              <!-- Repeat -->
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Docker</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> GitHub Actions</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> TL-Engine</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Figma</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Playwright</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> WebXR</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> REST APIs</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Linux</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Git</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        // Clock
+        const clock = document.getElementById('nav-clock');
+        const dateEl = document.getElementById('nav-date');
+        setInterval(() => {
+            const d = new Date();
+            clock.firstChild.textContent = d.toLocaleTimeString('en-US', {hour12:false}) + ' ';
+            dateEl.textContent = d.toISOString().split('T')[0].replace(/-/g, '.');
+        }, 1000);
 
-      <section class="section container">
-        <div class="card" style="padding: 48px; border-radius: 0;" data-reveal>
-          <div class="grid-12" style="text-align: center;">
-            <div class="stat-block" style="grid-column: span 4;">
-              <span class="value" id="gh-repos">--</span>
-              <span class="label">REPOS</span>
-            </div>
-            <div class="stat-block" style="grid-column: span 4;">
-              <span class="value" id="gh-stars">--</span>
-              <span class="label">STARS</span>
-            </div>
-            <div class="stat-block" style="grid-column: span 4;">
-              <span class="value" id="gh-followers">--</span>
-              <span class="label">FOLLOWERS</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        // Scroll Nav & Indicator
+        const nav = document.querySelector('.nav-wrapper');
+        const ind = document.getElementById('scroll-indicator');
+        let lastSy = 0;
+        window.addEventListener('scroll', () => {
+            const sy = window.scrollY;
+            if(sy > 80) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
 
-      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden;">
-        <canvas id="footer-circuit" style="position: absolute; top: 0; left: 0; width: 100%; height: 80px; opacity: 0.2; pointer-events: none; z-index: 0;"></canvas>
-        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
-          <div class="grid-12">
-            <div style="grid-column: span 4;">
-              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
-              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
-            </div>
-            <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 8px;">
-              <a href="index.html" class="nav-link" style="align-self: flex-start;">INDEX</a>
-              <a href="projects.html" class="nav-link" style="align-self: flex-start;">PROJECTS</a>
-              <a href="about.html" class="nav-link" style="align-self: flex-start;">ABOUT</a>
-              <a href="contact.html" class="nav-link" style="align-self: flex-start;">CONTACT</a>
-            </div>
-            <div style="grid-column: span 4; display: flex; gap: 16px; align-items: flex-start; justify-content: flex-end;">
-              <a href="https://github.com/Mathiyass" target="_blank" aria-label="GitHub" class="glow-cyan" style="color: var(--cyan);">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              </a>
-              <a href="#" aria-label="LinkedIn" class="glow-cyan" style="color: var(--cyan);">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-              </a>
-            </div>
-          </div>
-          <div style="margin-top: 64px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--text-2);">
-            <span>© 2026 Mathisha Angirasa — MA_Dev Solutions (Pvt) Ltd</span>
-            <span>BUILT WITH RAW WEBGL2 + VANILLA JS // ZERO FRAMEWORKS</span>
-          </div>
-        </div>
-      </footer>
-    </main>
-  </div>
+            if(sy > 120 && sy > lastSy) nav.classList.add('hidden');
+            else nav.classList.remove('hidden');
 
-  <script type="module">
-    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
-    import { SHADER_01_HEXGRID, SHADER_02_NOISE_FIELD, SHADER_03_CIRCUIT, SHADER_08_GLITCH } from './assets/js/engine/shaders.js';
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { TypeWriter } from './assets/js/core/TypeWriter.js';
-    import { CountUp } from './assets/js/core/CountUp.js';
-    import { GitHubStats } from './assets/js/core/GitHubStats.js';
-    import { AudioSystem } from './assets/js/core/Audio.js';
-    import { ProgressBar } from './assets/js/core/ProgressBar.js';
-    import { PageTransitions } from './assets/js/core/PageTransitions.js';
-    import { Konami } from './assets/js/core/Konami.js';
-    import { MatrixRain } from './assets/js/core/MatrixRain.js';
-    import { toast } from './assets/js/core/Toast.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
-    import { LazyLoad } from './assets/js/core/LazyLoad.js';
-    import { $ } from './assets/js/utils/dom.js';
+            if(sy > 50) ind.style.opacity = 0;
 
-    // Init Theme
-    new ThemeSystem();
-    
-    // Engine & Shaders
-    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!isReduced) {
-      // Noise bg
-      const cNoise = document.getElementById('canvas-noise');
-      const eNoise = new WebGLEngine(cNoise);
-      eNoise.compileProgram('noise', SHADER_02_NOISE_FIELD.vert, SHADER_02_NOISE_FIELD.frag);
-      eNoise.createFullscreenQuad('fullscreen');
-      eNoise.render('noise');
+            lastSy = sy;
+        });
 
-      // Hex grid
-      const cHex = document.getElementById('canvas-hex');
-      const eHex = new WebGLEngine(cHex);
-      eHex.compileProgram('hex', SHADER_01_HEXGRID.vert, SHADER_01_HEXGRID.frag);
-      eHex.createFullscreenQuad('fullscreen');
-      eHex.render('hex');
+        // Mobile Menu
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        mobileToggle.addEventListener('click', () => {
+            const isOpen = mobileToggle.classList.toggle('open');
+            mobileToggle.setAttribute('aria-expanded', isOpen);
+            mobileMenu.classList.toggle('open');
+        });
 
-      // Footer circuit
-      const cCirc = document.getElementById('footer-circuit');
-      const eCirc = new WebGLEngine(cCirc);
-      eCirc.compileProgram('circ', SHADER_03_CIRCUIT.vert, SHADER_03_CIRCUIT.frag);
-      eCirc.createFullscreenQuad('fullscreen');
-      eCirc.render('circ');
-      
-      // Easter Egg 04: Hero Click Burst
-      cHex.addEventListener('click', (e) => {
-        // Mock burst logic, ideally implemented in webgl or canvas2d overlay
-        toast('BURST DEPLOYED', 'info', 1000);
-      });
-    }
+        // GitHub Stats
+        const gh = new GitHubStats();
+        gh.getStats().then(stats => {
+            const map = {
+                'hero-repos': stats.publicRepos,
+                'hero-stars': stats.totalStars,
+                'hero-followers': stats.followers,
+                'big-repos': stats.publicRepos,
+                'big-stars': stats.totalStars,
+                'big-followers': stats.followers
+            };
 
-    // Core modules
-    const cursor = new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-    new LazyLoad();
-    
-    const h1Phrases = ["MATHISHA ANGIRASA", "FULL-STACK ENGINEER", "MA_DEV SOLUTIONS", "SYSTEMS BUILDER"];
-    const h1El = document.getElementById('typewriter-h1');
-    new TypeWriter(h1El, h1Phrases);
+            for(const [id, val] of Object.entries(map)) {
+                const el = document.getElementById(id);
+                if(el) {
+                    el.classList.remove('skeleton');
+                    if(id.startsWith('big-')) {
+                        new CountUp(el, val);
+                    } else {
+                        el.textContent = val;
+                    }
+                }
+            }
+        });
 
-    h1El.addEventListener('tw:switch', () => {
-      // Highlight dual words
-      const text = h1El.textContent;
-      const words = text.split(' ');
-      if (words.length > 1) {
-        words[0] = `<span class="dual">${words[0]}</span>`;
-        words[words.length - 1] = `<span class="dual">${words[words.length - 1]}</span>`;
-      } else {
-        words[0] = `<span class="dual">${words[0]}</span>`;
-      }
-      h1El.innerHTML = words.join(' ') + '<span class="terminal-blink">█</span>';
-    });
+        // Mock CountUp for Marketplace
+        if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            new CountUp(document.getElementById('cu-assets'), 1250);
+            new CountUp(document.getElementById('cu-devs'), 8400);
+            new CountUp(document.getElementById('cu-builds'), 45000, {suffix:'+'});
+        } else {
+            document.getElementById('cu-assets').textContent = "1,250";
+            document.getElementById('cu-devs').textContent = "8,400";
+            document.getElementById('cu-builds').textContent = "45,000+";
+        }
 
-    const ghStats = new GitHubStats();
-    ghStats.getStats().then(stats => {
-      document.getElementById('stat-repos').textContent = stats.publicRepos;
-      document.getElementById('stat-stars').textContent = stats.totalStars;
-      document.getElementById('stat-followers').textContent = stats.followers;
+        // Marquee Content
+        const tech = [
+            {name: 'Kotlin', icon: '<path d="M24 24H0V0h24L12 12Z"/>'},
+            {name: 'Python', icon: '<path d="M14.25.18c.9.15 2.18.41 3.55 1.11..."/>'}, // Simplified
+            {name: 'WebGL2', icon: '<path d="M12 0L0 24h24Z"/>'},
+            {name: 'Supabase', icon: '<path d="M12 0L24 12 12 24 0 12Z"/>'},
+            {name: 'Firebase', icon: '<path d="M0 24l12-24 12 24Z"/>'},
+            {name: 'C++', icon: '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10..."/>'},
+            {name: 'JavaScript', icon: '<path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2..."/>'}
+        ];
 
-      document.getElementById('gh-repos').textContent = stats.publicRepos;
-      document.getElementById('gh-stars').textContent = stats.totalStars;
-      document.getElementById('gh-followers').textContent = stats.followers;
+        const buildTrack = (arr) => {
+            return arr.map(t => `<div class="tech-item"><svg viewBox="0 0 24 24">${t.icon}</svg><span>${t.name}</span></div>`).join('');
+        };
+        const mContent = buildTrack(tech) + buildTrack(tech) + buildTrack(tech);
+        document.getElementById('marquee-1').innerHTML = mContent;
+        document.getElementById('marquee-2').innerHTML = buildTrack([...tech].reverse()) + buildTrack([...tech].reverse()) + buildTrack([...tech].reverse());
 
-      new CountUp(document.getElementById('gh-repos'), stats.publicRepos);
-      new CountUp(document.getElementById('gh-stars'), stats.totalStars);
-      new CountUp(document.getElementById('gh-followers'), stats.followers);
-    });
+        // Easter Eggs
+        const mrCanvas = document.createElement('canvas');
+        Object.assign(mrCanvas.style, { position:'fixed', inset:0, zIndex:9997, pointerEvents:'none', opacity:0, transition:'opacity 2s' });
+        document.body.appendChild(mrCanvas);
+        const mr = new MatrixRain(mrCanvas, {opacity: 0.04});
+        mr.start();
 
-    // Mock countups for project card
-    new CountUp(document.getElementById('count-assets'), 450);
-    new CountUp(document.getElementById('count-devs'), 1200);
-    new CountUp(document.getElementById('count-builds'), 89);
+        let idleTimer;
+        const resetIdle = () => {
+             clearTimeout(idleTimer);
+             mrCanvas.style.opacity = 0;
+             cursor.ring.style.opacity = 1;
+             document.title = "Mathisha Angirasa // MA_Dev Solutions";
+             idleTimer = setTimeout(() => {
+                 mrCanvas.style.opacity = 1;
+                 mr.setOpacity(0.25);
+                 cursor.ring.style.opacity = 0;
+                 document.title = "[ IDLE // MA_DEV PORTAL ]";
+             }, 60000);
+        };
+        document.addEventListener('mousemove', resetIdle);
+        document.addEventListener('keydown', resetIdle);
+        resetIdle();
 
-    new AudioSystem();
-    new ProgressBar();
-    new PageTransitions();
-    
-    const matrix = new MatrixRain();
-    const konami = new Konami();
+        document.addEventListener('konami', () => {
+            mr.setMode('dual');
+            mr.setOpacity(1.0);
+            mrCanvas.style.opacity = 1;
+            window.toast.show("⚠ DUAL SIGNAL PROTOCOL ACTIVATED", 'error', 4000);
 
-    window.addEventListener('konami', () => {
-      matrix.setMode('dual');
-      matrix.setOpacity(0.8);
-      toast("SIGNAL COMPROMISED — MATRIX MODE ENGAGED", 'error', 3000);
-      document.title = ">>> SIGNAL OVERRIDE <<<";
-      setTimeout(() => {
-        matrix.setOpacity(0.04);
-        document.title = "Mathisha Angirasa // MA_Dev Solutions";
-      }, 3000);
-    });
+            let blinks = 0;
+            let i = setInterval(() => {
+                document.title = blinks % 2 === 0 ? ">>> SIGNAL OVERRIDE <<<" : "Mathisha Angirasa // MA_Dev Solutions";
+                blinks++;
+                if(blinks > 6) clearInterval(i);
+            }, 500);
 
-    window.addEventListener('madev-code', () => {
-      toast("CREDENTIALS VERIFIED", 'success');
-      document.title = ">>> MA_DEV SOLUTIONS <<<";
-      setTimeout(() => document.title = "Mathisha Angirasa // MA_Dev Solutions", 3000);
-    });
+            setTimeout(() => {
+                mr.setMode('cyan');
+                mr.setOpacity(0.04);
+                mrCanvas.style.opacity = 0;
+            }, 4000);
+        });
 
-    window.addEventListener('sudo-code', () => {
-      console.log("%c ███╗   ███╗ █████╗      ██████╗ ███████╗██╗   ██╗\n%c ████╗ ████║██╔══██╗     ██╔══██╗██╔════╝██║   ██║\n%c ██╔████╔██║███████║     ██║  ██║█████╗  ██║   ██║\n%c ██║╚██╔╝██║██╔══██║     ██║  ██║██╔══╝  ╚██╗ ██╔╝\n%c ██║ ╚═╝ ██║██║  ██║     ██████╔╝███████╗ ╚████╔╝\n%c ╚═╝     ╚═╝╚═╝  ╚═╝     ╚═════╝ ╚══════╝  ╚═══╝", "color:#00E5FF", "color:#00E5FF", "color:#00E5FF", "color:#00E5FF", "color:#00E5FF", "color:#00E5FF");
-      console.log("Hey developer 👾 → github.com/Mathiyass");
-      toast("SUDO MODE UNLOCKED", 'success');
-    });
+        document.addEventListener('madev-code', () => {
+             document.title = ">>> MA_DEV SOLUTIONS <<<";
+             window.toast.show("CREDENTIALS VERIFIED", 'success');
+             setTimeout(() => document.title = "Mathisha Angirasa // MA_Dev Solutions", 3000);
+        });
 
-    // Nav logic
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 80) nav.classList.remove('nav--transparent');
-      else nav.classList.add('nav--transparent');
-      
-      if (window.scrollY > 120 && window.__scrollDir === 1) nav.classList.add('nav--hidden');
-      else nav.classList.remove('nav--hidden');
-    });
+        // Click Burst
+        const cCanvas = document.getElementById('click-canvas');
+        const cCtx = cCanvas.getContext('2d');
+        let cParts = [];
+        const resizeC = () => { cCanvas.width = window.innerWidth; cCanvas.height = window.innerHeight; };
+        window.addEventListener('resize', resizeC);
+        resizeC();
 
-    window.addEventListener('scroll:progress', e => window.__scrollDir = e.detail.direction);
+        document.addEventListener('click', (e) => {
+            if(e.target.tagName !== 'CANVAS') return;
+            for(let i=0; i<50; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 5 + 2;
+                cParts.push({
+                    x: e.clientX, y: e.clientY,
+                    vx: Math.cos(angle)*speed, vy: Math.sin(angle)*speed,
+                    life: 1.0, isRed: i >= 25
+                });
+            }
+        });
 
-    // Live clock
-    const clock = document.getElementById('live-clock');
-    clock.style.display = 'block';
-    setInterval(() => {
-      const d = new Date();
-      clock.textContent = d.toLocaleTimeString('en-US', { hour12: false });
-    }, 1000);
+        const cLoop = () => {
+            cCtx.clearRect(0,0,cCanvas.width,cCanvas.height);
+            for(let i=cParts.length-1; i>=0; i--) {
+                let p = cParts[i];
+                p.x += p.vx; p.y += p.vy; p.life -= 0.03;
+                if(p.life <= 0) { cParts.splice(i,1); continue; }
+                cCtx.fillStyle = p.isRed ? `rgba(255,77,109,${p.life})` : `rgba(0,229,255,${p.life})`;
+                cCtx.beginPath(); cCtx.arc(p.x, p.y, p.life*3, 0, Math.PI*2); cCtx.fill();
+            }
+            requestAnimationFrame(cLoop);
+        };
+        cLoop();
 
-    // Easter Egg 05: Cursor color cycle
-    setTimeout(() => { cursor.setMode('red'); toast('SIGNAL WARMING UP', 'info', 2000); }, 45000);
-    setTimeout(() => { cursor.setMode('dual'); }, 90000);
-    setTimeout(() => { cursor.setMode('cyan'); }, 180000);
-    
-    // Idle screensaver
-    let idleTimer;
-    const resetIdle = () => {
-      clearTimeout(idleTimer);
-      if (matrix.active) {
-        matrix.stop();
-        document.title = "Mathisha Angirasa // MA_Dev Solutions";
-      }
-      idleTimer = setTimeout(() => {
-        matrix.start();
-        matrix.setOpacity(0.25);
-        document.title = "[ IDLE // MA_DEV PORTAL ]";
-      }, 60000);
-    };
-    window.addEventListener('mousemove', resetIdle);
-    window.addEventListener('keydown', resetIdle);
-    resetIdle();
+        // Cursor Color Cycle
+        let cycleTime = 0;
+        setInterval(() => {
+            cycleTime++;
+            if(cycleTime === 45) { cursor.setMode('red'); window.toast.show("SIGNAL WARMING UP", 'info'); }
+            else if(cycleTime === 90) cursor.setMode('dual');
+            else if(cycleTime === 180) { cursor.setMode('cyan'); cycleTime = 0; }
+        }, 1000);
 
-    window.sudo = (cmd) => {
-      if (cmd === 'stats') ghStats.getStats().then(console.table);
-      else if (cmd === 'hire') window.location.href = 'contact.html';
-      else if (cmd === 'konami') window.dispatchEvent(new CustomEvent('konami'));
-      else if (cmd === 'matrix') { matrix.start(); matrix.setOpacity(1.0); setTimeout(()=>matrix.stop(), 10000); }
-      else if (cmd === 'help') console.table({ stats: 'Show stats', hire: 'Contact', konami: 'Trigger Konami', matrix: 'Matrix mode', signal: 'Swap colors', whereami: 'Location' });
-      else if (cmd === 'whereami') console.log("MA_Dev Portfolio // mathiyass.github.io // Sri Lanka");
-      else if (cmd === 'signal') { document.documentElement.dataset.theme = 'red'; setTimeout(()=>document.documentElement.dataset.theme = 'dual', 3000); }
-    };
-  </script>
+    </script>
+<script src="register-sw.js"></script>
+<script type="module" src="assets/js/signature-loader.js"></script>
 </body>
 </html>

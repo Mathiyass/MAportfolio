@@ -1,174 +1,159 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dual">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>Resume // Mathisha Angirasa</title>
-  
-  <meta name="description" content="Resume of Mathisha Angirasa - Full-Stack Developer">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-  
-  <style>
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume // Mathisha Angirasa</title>
+    <meta name="theme-color" content="#00E5FF">
     
-    .resume-container { background: var(--surface-0); border: 1px solid var(--cyan-border); padding: 48px; position: relative; }
-    .resume-header { border-bottom: 1px solid var(--cyan-border); padding-bottom: 32px; margin-bottom: 32px; display: flex; justify-content: space-between; align-items: flex-end; }
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
     
-    .timeline-item { margin-bottom: 32px; }
-    .timeline-title { font-family: var(--font-display); font-size: 20px; color: var(--text-0); }
-    .timeline-meta { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); margin-bottom: 8px; }
-    .timeline-desc { color: var(--text-1); font-size: 14px; }
-    
-    .hex-skill { display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 90px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); background: var(--surface-1); color: var(--cyan); font-family: var(--font-mono); font-size: 10px; flex-direction: column; gap: 4px; transition: all var(--dur-fast); position: relative; border: 1px solid transparent; }
-    .hex-skill::before { content: ""; position: absolute; inset: 1px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); background: var(--surface-0); z-index: -1; }
-    .hex-skill.red::before { background: var(--surface-0); }
-    .hex-skill.red { color: var(--red); }
-    .hex-skill:hover { transform: translateY(-4px); background: var(--cyan); color: var(--void); }
-    .hex-skill.red:hover { background: var(--red); color: var(--void); }
-    .hex-skill:hover::before { display: none; }
-    
-    .print-btn { position: fixed; bottom: 24px; right: 24px; z-index: 1000; box-shadow: var(--glow-cyan); }
-    
-    @media print {
-      body { background: white; color: black; }
-      nav, .print-btn, #canvas-crt, .skip-link, footer { display: none !important; }
-      .resume-container { border: none; padding: 0; box-shadow: none; background: white; }
-      * { color: black !important; text-shadow: none !important; }
-      .timeline-meta { color: #555 !important; }
-      .hex-skill { border: 1px solid #333; background: white !important; color: black !important; }
-      .hex-skill::before { display: none; }
-      a { text-decoration: underline; }
-    }
-  </style>
+    <style>
+        body { background: var(--surface-00); padding-top: 64px; }
+        .nav-wrapper { position: fixed; top: 0; width: 100%; padding: 16px var(--gutter); background: var(--surface-0); border-bottom: 1px solid var(--cyan-border); z-index: 100; display: flex; justify-content: space-between; }
+
+        .resume-container { max-width: 900px; margin: 0 auto; padding: var(--s-64) var(--gutter); background: var(--surface-0); border-left: 1px solid var(--cyan-border); border-right: 1px solid var(--cyan-border); min-height: 100vh; position: relative; }
+
+        .header-print { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--cyan); padding-bottom: var(--s-24); margin-bottom: var(--s-48); }
+        .header-print h1 { font-family: var(--font-display); font-size: 48px; line-height: 1; }
+        .header-print h2 { font-family: var(--font-mono); font-size: 16px; color: var(--cyan); margin-top: 8px; }
+        .contact-info { text-align: right; font-family: var(--font-mono); font-size: 12px; color: var(--text-1); line-height: 1.8; }
+
+        .section-title { font-family: var(--font-mono); font-size: 14px; color: var(--text-0); border-bottom: 1px solid var(--grid-line); padding-bottom: 8px; margin: var(--s-48) 0 var(--s-24); text-transform: uppercase; letter-spacing: 0.1em; display: flex; align-items: center; gap: 8px; }
+        .section-title::before { content: '>'; color: var(--cyan); }
+        .section-title.red::before { color: var(--red); }
+
+        .entry { margin-bottom: var(--s-32); }
+        .entry-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .entry-title { font-weight: 700; font-size: 18px; color: var(--cyan); }
+        .entry.red .entry-title { color: var(--red); }
+        .entry-date { font-family: var(--font-mono); font-size: 12px; color: var(--text-1); }
+        .entry-sub { font-family: var(--font-mono); font-size: 13px; color: var(--text-0); margin-bottom: 12px; }
+        .entry ul { list-style: none; padding-left: 0; }
+        .entry li { margin-bottom: 6px; position: relative; padding-left: 16px; font-size: 14px; color: var(--text-1); }
+        .entry li::before { content: '-'; position: absolute; left: 0; color: var(--cyan-dim); font-family: var(--font-mono); }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+        .skill-item { background: var(--surface-1); border: 1px solid var(--cyan-border); padding: 8px 12px; font-family: var(--font-mono); font-size: 12px; text-align: center; }
+
+        .fab-print { position: fixed; bottom: 32px; right: 32px; width: 64px; height: 64px; background: var(--cyan); color: var(--void); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--glow-cyan); z-index: 100; transition: transform 0.2s; }
+        .fab-print:hover { transform: scale(1.1); }
+
+        @media print {
+            body { background: white; color: black; padding: 0; }
+            .nav-wrapper, .fab-print, body::before { display: none !important; }
+            .resume-container { border: none; padding: 0; max-width: 100%; margin: 0; box-shadow: none; }
+            .header-print { border-bottom-color: black; }
+            .header-print h2, .entry-title, .section-title::before, .entry li::before { color: black !important; }
+            .section-title { border-bottom-color: #ccc; color: black; }
+            .text-1, .entry-sub, .entry-date, .entry li { color: #333 !important; }
+            .skill-item { border-color: #ccc; background: transparent; color: black; }
+            * { text-shadow: none !important; box-shadow: none !important; }
+        }
+    </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
+    <header class="nav-wrapper">
+        <a href="index.html" style="font-family:var(--font-mono); font-size:14px; font-weight:bold; color:var(--cyan);">&lt; RETURN</a>
+        <div style="font-family:var(--font-mono); font-size:12px; color:var(--text-1);">DOSSIER v7.0</div>
+    </header>
 
-  <nav id="navbar" role="navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    <div class="nav-center">
-      <a href="index.html" class="nav-link">INDEX</a>
-      <a href="projects.html" class="nav-link">PROJECTS</a>
-      <a href="skills.html" class="nav-link">SKILLS</a>
-      <a href="blog.html" class="nav-link">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link">CONTACT</a>
-    </div>
-  </nav>
-
-  <div class="scroll-container">
-    <main id="main" role="main" style="padding-top: 120px; padding-bottom: 64px;">
-      <section class="container">
-        <div class="resume-container" data-reveal>
-          <div class="resume-header">
+    <div class="resume-container">
+        <header class="header-print">
             <div>
-              <h1 style="font-family: var(--font-display); font-size: 48px; margin-bottom: 8px;">MATHISHA ANGIRASA</h1>
-              <p style="font-family: var(--font-mono); font-size: 14px; color: var(--text-1); letter-spacing: 0.1em;">SOFTWARE ENGINEER // SYSTEMS BUILDER</p>
+                <h1>MATHISHA ANGIRASA</h1>
+                <h2>SOFTWARE ENGINEER & SYSTEMS BUILDER</h2>
             </div>
-            <div style="text-align: right; font-family: var(--font-mono); font-size: 12px; color: var(--text-1); line-height: 1.8;">
-              mathiyass.github.io<br>
-              github.com/Mathiyass<br>
-              Sri Lanka
+            <div class="contact-info">
+                <div>mathiyass.github.io</div>
+                <div>github.com/Mathiyass</div>
+                <div>Colombo, Sri Lanka</div>
             </div>
-          </div>
+        </header>
 
-          <div class="grid-12">
-            <div style="grid-column: span 8;">
-              
-              <div class="section-label">[ 01 ] EXPERIENCE</div>
-              <div class="timeline-item">
-                <div class="timeline-title">Founder & Architect</div>
-                <div class="timeline-meta">MA_Dev Solutions (Pvt) Ltd // 2024 - Present</div>
-                <ul class="timeline-desc" style="list-style: square inside; padding-left: 16px; display: flex; flex-direction: column; gap: 8px;">
-                  <li>Architecting and building MA_Dev Marketplace, a comprehensive platform for developers to distribute software components.</li>
-                  <li>Developing native Android applications using Kotlin, clean architecture (MVVM), and coroutines.</li>
-                  <li>Designing robust backend infrastructures leveraging Supabase, Firebase FCM, and secure payment integrations.</li>
-                </ul>
-              </div>
+        <h3 class="section-title">EXPERIENCE</h3>
 
-              <div class="section-label" style="margin-top: 48px;">[ 02 ] EDUCATION</div>
-              <div class="timeline-item">
-                <div class="timeline-title">Software Engineering Diploma</div>
-                <div class="timeline-meta" style="color: var(--red);">JIAT (HHDPII) // 2023 - Present</div>
-                <p class="timeline-desc">Intensive coursework in Java, advanced OOP, algorithms, and system design.</p>
-              </div>
-
-              <div class="section-label" style="margin-top: 48px;">[ 03 ] KEY PROJECTS</div>
-              <div class="timeline-item">
-                <div class="timeline-title">Killer Quebes</div>
-                <div class="timeline-meta">C++ / TL-Engine</div>
-                <p class="timeline-desc">A highly optimized 3D survival shooter utilizing custom collision detection algorithms and entity management within a proprietary engine.</p>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-title">MAportfolio v7.0</div>
-                <div class="timeline-meta">Vanilla JS / WebGL2 / GLSL</div>
-                <p class="timeline-desc">A custom-built, framework-free portfolio featuring a bespoke WebGL2 engine, 12 original shaders, and zero dependencies.</p>
-              </div>
-
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">Founder & Lead Architect</div>
+                <div class="entry-date">2024 - Present</div>
             </div>
-
-            <div style="grid-column: span 4;">
-              <div class="section-label">[ 04 ] SKILLS</div>
-              
-              <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px;">
-                <div class="hex-skill"><span>100%</span>Kotlin</div>
-                <div class="hex-skill"><span>95%</span>Supabase</div>
-                <div class="hex-skill red"><span>90%</span>C++</div>
-                <div class="hex-skill"><span>95%</span>WebGL2</div>
-                <div class="hex-skill"><span>100%</span>Vanilla JS</div>
-                <div class="hex-skill red"><span>85%</span>Python</div>
-              </div>
-
-              <div class="section-label">[ 05 ] DOMAINS</div>
-              <ul style="font-family: var(--font-mono); font-size: 12px; color: var(--text-1); display: flex; flex-direction: column; gap: 12px;">
-                <li>> Native Android (SDK)</li>
-                <li>> High-Performance WebGL</li>
-                <li>> API Architecture</li>
-                <li>> Real-time Systems (FCM)</li>
-                <li>> Shader Programming</li>
-                <li>> Game Development</li>
-              </ul>
-            </div>
-          </div>
+            <div class="entry-sub">MA_Dev Solutions (Pvt) Ltd</div>
+            <ul>
+                <li>Architecting and developing MA_Dev Marketplace, a high-performance asset distribution platform.</li>
+                <li>Implementing end-to-end Kotlin MVVM architecture for the Android client.</li>
+                <li>Designing relational database schemas and edge functions via Supabase (PostgreSQL).</li>
+                <li>Integrating Firebase FCM for real-time signaling and PayHere for secure payment processing.</li>
+            </ul>
         </div>
-      </section>
-    </main>
-  </div>
 
-  <button class="btn btn--dual print-btn" onclick="window.print()">DOWNLOAD PDF</button>
+        <div class="entry red">
+            <div class="entry-header">
+                <div class="entry-title">Full-Stack Developer</div>
+                <div class="entry-date">2022 - 2024</div>
+            </div>
+            <div class="entry-sub">Independent Projects</div>
+            <ul>
+                <li>Developed complex WebGL2 graphic pipelines and shaders using raw GLSL and Vanilla JavaScript.</li>
+                <li>Engineered custom DOM manipulation frameworks to bypass heavy React/Vue dependencies.</li>
+                <li>Built native Android applications utilizing modern jetpack compose and RESTful API integrations.</li>
+            </ul>
+        </div>
 
-  <script type="module">
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { AudioSystem } from './assets/js/core/Audio.js';
-    import { PageTransitions } from './assets/js/core/PageTransitions.js';
-    import { Konami } from './assets/js/core/Konami.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+        <h3 class="section-title red">EDUCATION</h3>
 
-    new ThemeSystem();
-    new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-    new AudioSystem();
-    new PageTransitions();
-    new Konami();
-  </script>
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title">Higher National Diploma in Software Engineering (HHDPII)</div>
+                <div class="entry-date">Expected 2025</div>
+            </div>
+            <div class="entry-sub">Java Institute for Advanced Technology (JIAT)</div>
+            <ul>
+                <li>Specializing in low-level systems, data structures, and enterprise architecture.</li>
+                <li>Developed a 3D Isometric game engine (Killer Quebes) using C++ and TL-Engine.</li>
+            </ul>
+        </div>
+
+        <h3 class="section-title">TECHNICAL CAPABILITIES</h3>
+
+        <div class="skills-grid">
+            <div class="skill-item">Kotlin / Android</div>
+            <div class="skill-item">Supabase / Postgres</div>
+            <div class="skill-item">Vanilla JavaScript</div>
+            <div class="skill-item">WebGL2 / GLSL</div>
+            <div class="skill-item">C++ / System Dev</div>
+            <div class="skill-item">Firebase</div>
+            <div class="skill-item">HTML5 / CSS3</div>
+            <div class="skill-item">Git / GitHub Actions</div>
+        </div>
+
+        <h3 class="section-title">SELECTED PROJECTS</h3>
+
+        <div class="entry">
+            <div class="entry-title" style="font-size: 16px;">MA_Dev Marketplace</div>
+            <p style="font-size:14px; color:var(--text-1); margin-top:4px;">A full-scale digital storefront for developers. Features real-time sync, encrypted payload delivery, and a dark tactical UI. Stack: Kotlin, Supabase, Firebase.</p>
+        </div>
+
+        <div class="entry">
+            <div class="entry-title" style="font-size: 16px; color: var(--red);">Operation Singularity (MAportfolio v7.0)</div>
+            <p style="font-size:14px; color:var(--text-1); margin-top:4px;">This exact portfolio. Engineered with zero external UI/Animation frameworks. 100% custom WebGL engine, procedural generation, and state management.</p>
+        </div>
+
+    </div>
+
+    <div class="fab-print" onclick="window.print()" title="Print / Save PDF">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+    </div>
+
+    <script type="module">
+        import { CustomCursor } from './assets/js/core/Cursor.js';
+        import { PageTransitions } from './assets/js/core/PageTransitions.js';
+        new CustomCursor();
+        new PageTransitions();
+    </script>
 </body>
 </html>

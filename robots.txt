@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
+Disallow: /verification/
 
 Sitemap: https://mathiyass.github.io/MAportfolio/sitemap.xml

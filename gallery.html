@@ -1,236 +1,221 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dual">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>Gallery // Mathisha Angirasa</title>
-  
-  <meta name="description" content="Visual Gallery and Designs by Mathisha Angirasa">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-  
-  <style>
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery // Mathisha Angirasa</title>
+    <meta name="theme-color" content="#00E5FF">
     
-    .filter-bar { display: flex; gap: 16px; margin-bottom: 48px; flex-wrap: wrap; }
-    .filter-btn { font-family: var(--font-mono); font-size: 12px; color: var(--text-1); border: 1px solid var(--cyan-border); padding: 8px 16px; cursor: pointer; transition: all var(--dur-fast); background: var(--surface-1); }
-    .filter-btn:hover { border-color: var(--cyan); color: var(--cyan); }
-    .filter-btn.active { border-color: var(--cyan); color: var(--cyan); box-shadow: var(--glow-cyan); background: rgba(0,229,255,0.1); }
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
     
-    .masonry-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); grid-auto-rows: 10px; gap: 0 24px; }
-    .g-item { position: relative; margin-bottom: 24px; cursor: pointer; border: 1px solid var(--cyan-border); overflow: hidden; background: var(--surface-1); }
-    .g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease-expo); }
-    .g-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, var(--void) 0%, transparent 50%, rgba(0,229,255,0.1) 100%); opacity: 0; transition: opacity 0.3s; z-index: 1; display: flex; align-items: flex-end; padding: 24px; }
-    .g-caption { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); text-transform: uppercase; transform: translateY(20px); opacity: 0; transition: all 0.3s var(--ease-expo); text-shadow: 0 0 8px rgba(0,229,255,0.5); }
-    
-    .g-item:hover img { transform: scale(1.05); }
-    .g-item:hover .g-overlay { opacity: 1; }
-    .g-item:hover .g-caption { transform: translateY(0); opacity: 1; }
-    
-    .lightbox { position: fixed; inset: 0; background: rgba(3,3,10,0.95); backdrop-filter: blur(8px); z-index: 10000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
-    .lightbox.active { display: flex; opacity: 1; }
-    .lb-img { max-width: 90vw; max-height: 85vh; object-fit: contain; border: 1px solid var(--cyan-border); box-shadow: var(--glow-cyan); }
-    .lb-caption { position: absolute; bottom: 24px; font-family: var(--font-mono); font-size: 14px; color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase; }
-    
-    .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--cyan-border); color: var(--cyan); cursor: pointer; transition: all 0.2s; }
-    .lb-nav:hover { background: var(--cyan); color: var(--void); box-shadow: var(--glow-cyan); }
-    .lb-prev { left: 24px; }
-    .lb-next { right: 24px; }
-    .lb-close { position: absolute; top: 24px; right: 24px; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--red-border); color: var(--red); cursor: pointer; transition: all 0.2s; z-index: 10001; }
-    .lb-close:hover { background: var(--red); color: var(--void); box-shadow: var(--glow-red); }
-  </style>
+    <style>
+        .nav-wrapper { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); padding: 0 var(--gutter); height: 64px; background: var(--surface-glass); backdrop-filter: blur(28px); border-bottom: 1px solid var(--cyan-border); }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 100%; max-width: var(--max-w); margin: 0 auto; }
+        .logo-compound { display: flex; align-items: baseline; font-weight: 700; cursor: pointer; }
+        .logo-ma { font-family: var(--font-display); font-size: 20px; color: var(--cyan); }
+        .logo-dev { font-family: var(--font-mono); font-size: 20px; color: var(--text-1); }
+        .nav-links { display: none; gap: var(--s-24); }
+        @media (min-width: 1024px) { .nav-links { display: flex; } }
+
+        .gallery-grid { display: grid; grid-template-columns: 1fr; gap: var(--gutter); padding-top: 100px; padding-bottom: var(--s-128); }
+        @media (min-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1200px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .gallery-item { position: relative; overflow: hidden; cursor: pointer; border: 1px solid var(--cyan-border); aspect-ratio: 4/3; }
+        .gallery-img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--dur-slow); }
+        .gallery-item:hover .gallery-img { transform: scale(1.05); }
+
+        .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,229,255,0.4), rgba(255,77,109,0.2)); opacity: 0; transition: opacity var(--dur-mid); display: flex; align-items: flex-end; padding: var(--s-24); pointer-events: none; }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-caption { font-family: var(--font-mono); font-size: 14px; color: var(--void); background: var(--cyan); padding: 4px 12px; transform: translateY(20px); transition: transform var(--dur-mid) var(--ease-expo); }
+        .gallery-item:hover .gallery-caption { transform: translateY(0); }
+
+        .filters { display: flex; gap: var(--s-16); overflow-x: auto; padding: 80px var(--gutter) var(--s-16); position: sticky; top: 0; background: var(--void); z-index: var(--z-sticky); border-bottom: 1px solid var(--grid-line); }
+        .filters::-webkit-scrollbar { display: none; }
+
+        /* Lightbox */
+        .lightbox { position: fixed; inset: 0; background: rgba(3,3,10,0.95); z-index: 100000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity var(--dur-mid); }
+        .lightbox.active { opacity: 1; pointer-events: auto; }
+        .lb-img-container { position: relative; max-width: 90vw; max-height: 80vh; }
+        .lb-img { max-width: 100%; max-height: 80vh; object-fit: contain; border: 1px solid var(--cyan); box-shadow: var(--glow-cyan); }
+
+        .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: var(--surface-glass); border: 1px solid var(--cyan); color: var(--cyan); cursor: pointer; transition: all 0.2s; }
+        .lb-nav:hover { background: var(--cyan); color: var(--void); }
+        .lb-prev { left: -64px; }
+        .lb-next { right: -64px; }
+
+        .lb-close { position: absolute; top: 24px; right: 24px; width: 48px; height: 48px; background: var(--surface-glass); border: 1px solid var(--red); color: var(--red); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; font-size: 24px; font-family: var(--font-mono); }
+        .lb-close:hover { background: var(--red); color: var(--void); box-shadow: var(--glow-red); }
+
+        .lb-caption { position: absolute; bottom: -40px; left: 0; font-family: var(--font-mono); color: var(--cyan); font-size: 14px; }
+
+        @media (max-width: 768px) {
+            .lb-nav { display: none; } /* Use swipe on mobile */
+        }
+    </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
-
-  <nav id="navbar" role="navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    
-    <div class="nav-center">
-      <a href="index.html" class="nav-link">INDEX</a>
-      <a href="projects.html" class="nav-link">PROJECTS</a>
-      <a href="skills.html" class="nav-link">SKILLS</a>
-      <a href="blog.html" class="nav-link">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link">CONTACT</a>
-    </div>
-
-    <div style="display: flex; align-items: center; gap: var(--s-16);">
-      <button class="btn btn--red" style="padding: 8px 16px; height: 36px; border-color: var(--red-border);" onclick="window.location.href='contact.html'">HIRE ME</button>
-      <button class="hamburger" aria-label="Toggle Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      </button>
-    </div>
-  </nav>
-
-  <div class="scroll-container">
-    <main id="main" role="main" style="padding-top: 120px;">
-      
-      <section class="container">
-        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); margin-bottom: 48px;" data-reveal data-reveal-clip>VISUAL <span style="color: var(--cyan);">//</span> GALLERY</h1>
+    <div class="scroll-container">
         
-        <div class="filter-bar" data-reveal>
-          <button class="filter-btn active" data-filter="all">ALL</button>
-          <button class="filter-btn" data-filter="screenshots">SCREENSHOTS</button>
-          <button class="filter-btn" data-filter="ui">UI DESIGN</button>
-          <button class="filter-btn" data-filter="3d">3D</button>
-          <button class="filter-btn" data-filter="art">ART</button>
-        </div>
-
-        <div class="masonry-grid" id="gallery-grid">
-          <!-- Populated by JS to calculate row spans -->
-          <div class="g-item filter-item" data-category="screenshots ui" data-caption="MA_Dev Marketplace UI" data-src="assets/img/project-marketplace.webp" style="grid-row-end: span 30;" data-reveal>
-            <img src="assets/img/project-marketplace.webp" alt="Marketplace UI" loading="lazy">
-            <div class="g-overlay"><div class="g-caption">MA_Dev Marketplace UI</div></div>
-          </div>
-          
-          <div class="g-item filter-item" data-category="3d" data-caption="Killer Quebes Engine" data-src="assets/img/project-game.webp" style="grid-row-end: span 25;" data-reveal>
-            <img src="assets/img/project-game.webp" alt="Game Render" loading="lazy">
-            <div class="g-overlay"><div class="g-caption">Killer Quebes Engine</div></div>
-          </div>
-
-          <div class="g-item filter-item" data-category="ui art" data-caption="Terminal Wireframe" data-src="assets/img/avatar-wireframe.webp" style="grid-row-end: span 35;" data-reveal>
-            <img src="assets/img/avatar-wireframe.webp" alt="Avatar Wireframe" loading="lazy">
-            <div class="g-overlay"><div class="g-caption">Terminal Wireframe</div></div>
-          </div>
-
-          <div class="g-item filter-item" data-category="art" data-caption="Void Texture" data-src="assets/img/texture-noise.webp" style="grid-row-end: span 20;" data-reveal>
-            <img src="assets/img/texture-noise.webp" alt="Texture" loading="lazy">
-            <div class="g-overlay"><div class="g-caption">Void Texture</div></div>
-          </div>
-          
-          <div class="g-item filter-item" data-category="screenshots" data-caption="Code Architecture" data-src="assets/img/blog-featured.webp" style="grid-row-end: span 28;" data-reveal>
-            <img src="assets/img/blog-featured.webp" alt="Code" loading="lazy">
-            <div class="g-overlay"><div class="g-caption">Code Architecture</div></div>
-          </div>
-
-          <div class="g-item filter-item" data-category="3d art" data-caption="XR Hologram" data-src="assets/img/ar-hero.webp" style="grid-row-end: span 28;" data-reveal>
-            <img src="assets/img/ar-hero.webp" alt="XR Hologram" loading="lazy">
-            <div class="g-overlay"><div class="g-caption">XR Hologram</div></div>
-          </div>
-        </div>
-
-        <div id="empty-state" style="display: none; text-align: center; padding: 64px; font-family: var(--font-mono); color: var(--text-2); font-size: 14px;">
-          [ NO ASSETS FOUND FOR THIS CATEGORY ]
-        </div>
-
-      </section>
-
-      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden; margin-top: 64px;">
-        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
-          <div class="grid-12">
-            <div style="grid-column: span 4;">
-              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
-              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
+        <header class="nav-wrapper">
+            <div class="nav-inner">
+                <a href="index.html" class="logo-compound interactable">
+                    <span class="logo-ma">MA*</span><span class="logo-dev">_DEV</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">INDEX</a>
+                    <a href="projects.html" class="nav-link">PROJECTS</a>
+                    <a href="skills.html" class="nav-link">SKILLS</a>
+                    <a href="blog.html" class="nav-link">BLOG</a>
+                    <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
+                    <a href="contact.html" class="nav-link">CONTACT</a>
+                </nav>
             </div>
-          </div>
+        </header>
+
+        <div class="filters">
+            <button class="tag active" data-filter="all">ALL</button>
+            <button class="tag" data-filter="ui">UI DESIGN</button>
+            <button class="tag" data-filter="3d">3D RENDER</button>
+            <button class="tag" data-filter="code">CODE ART</button>
         </div>
-      </footer>
-    </main>
-  </div>
 
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
-    <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
-    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">←</button>
-    <img src="" alt="" class="lb-img" id="lb-img">
-    <div class="lb-caption" id="lb-caption"></div>
-    <button class="lb-nav lb-next" id="lb-next" aria-label="Next">→</button>
-  </div>
+        <main class="container gallery-grid stagger" id="gallery-grid">
+            <!-- Populated via JS -->
+        </main>
+    </div>
 
-  <script type="module">
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { AudioSystem } from './assets/js/core/Audio.js';
-    import { PageTransitions } from './assets/js/core/PageTransitions.js';
-    import { Konami } from './assets/js/core/Konami.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+    <div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+        <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
+        <div class="lb-img-container">
+            <img src="" alt="Full resolution" class="lb-img" id="lb-img">
+            <div class="lb-caption" id="lb-caption"></div>
+            <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="lb-nav lb-next" id="lb-next" aria-label="Next">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+        </div>
+    </div>
 
-    new ThemeSystem();
-    new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-    new AudioSystem();
-    new PageTransitions();
-    new Konami();
+    <script type="module">
+        import { CustomCursor } from './assets/js/core/Cursor.js';
+        import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+        import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+        import { PageTransitions } from './assets/js/core/PageTransitions.js';
 
-    // Filtering logic
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const items = document.querySelectorAll('.filter-item');
-    const emptyState = document.getElementById('empty-state');
-    
-    let visibleItems = Array.from(items);
+        new CustomCursor();
+        new SmoothScroll();
+        new PageTransitions();
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+        const images = [
+            { src: 'assets/img/og-card.webp', caption: 'DUAL_SIGNAL_INIT', cat: 'code' },
+            { src: 'assets/img/hero-bg.webp', caption: 'TERMINAL_WORKSPACE', cat: '3d' },
+            { src: 'assets/img/project-marketplace.webp', caption: 'MARKETPLACE_UI_v1', cat: 'ui' },
+            { src: 'assets/img/project-game.webp', caption: 'ISO_RENDER_ENGINE', cat: '3d' },
+            { src: 'assets/img/about-bg.webp', caption: 'NIGHT_OPERATIONS', cat: 'code' },
+            { src: 'assets/img/marketplace-hero.webp', caption: 'VOID_MARKET', cat: 'ui' },
+            { src: 'assets/img/blog-featured.webp', caption: 'SYNTAX_HIGHLIGHT', cat: 'code' },
+            { src: 'assets/img/ar-hero.webp', caption: 'XR_PROJECTION', cat: '3d' },
+            { src: 'assets/img/avatar-wireframe.webp', caption: 'IDENTITY_MESH', cat: '3d' }
+        ];
+
+        const grid = document.getElementById('gallery-grid');
         
-        const filter = btn.dataset.filter;
-        visibleItems = [];
+        images.forEach((img, idx) => {
+            const el = document.createElement('div');
+            el.className = 'gallery-item interactable';
+            el.setAttribute('data-reveal', '');
+            el.setAttribute('data-cat', img.cat);
+            el.setAttribute('data-idx', idx);
 
-        items.forEach(item => {
-          if (filter === 'all' || item.dataset.category.includes(filter)) {
-            item.style.display = '';
-            visibleItems.push(item);
-          } else {
-            item.style.display = 'none';
-          }
+            el.innerHTML = `
+                <img src="${img.src}" alt="${img.caption}" class="gallery-img" loading="lazy">
+                <div class="gallery-overlay">
+                    <div class="gallery-caption">${img.caption}</div>
+                </div>
+            `;
+            grid.appendChild(el);
+
+            el.addEventListener('click', () => openLightbox(idx));
         });
 
-        emptyState.style.display = visibleItems.length === 0 ? 'block' : 'none';
-      });
-    });
+        new ScrollReveal();
 
-    // Lightbox Logic
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lb-img');
-    const lbCaption = document.getElementById('lb-caption');
-    let currentIndex = 0;
+        // Filters
+        const tags = document.querySelectorAll('.filters .tag');
+        const items = document.querySelectorAll('.gallery-item');
 
-    const showLightbox = (index) => {
-      if(visibleItems.length === 0) return;
-      currentIndex = (index + visibleItems.length) % visibleItems.length;
-      const item = visibleItems[currentIndex];
-      lbImg.src = item.dataset.src;
-      lbCaption.textContent = item.dataset.caption;
-      lb.classList.add('active');
-    };
+        tags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                tags.forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
 
-    items.forEach((item) => {
-      item.addEventListener('click', () => {
-        const idx = visibleItems.indexOf(item);
-        if(idx !== -1) showLightbox(idx);
-      });
-    });
+                const filter = tag.getAttribute('data-filter');
+                items.forEach(item => {
+                    if(filter === 'all' || item.getAttribute('data-cat') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
 
-    document.getElementById('lb-close').addEventListener('click', () => lb.classList.remove('active'));
-    document.getElementById('lb-prev').addEventListener('click', () => showLightbox(currentIndex - 1));
-    document.getElementById('lb-next').addEventListener('click', () => showLightbox(currentIndex + 1));
+        // Lightbox Logic
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lb-img');
+        const lbCap = document.getElementById('lb-caption');
+        let currentIdx = 0;
 
-    window.addEventListener('keydown', (e) => {
-      if (!lb.classList.contains('active')) return;
-      if (e.key === 'Escape') lb.classList.remove('active');
-      if (e.key === 'ArrowLeft') showLightbox(currentIndex - 1);
-      if (e.key === 'ArrowRight') showLightbox(currentIndex + 1);
-    });
+        const openLightbox = (idx) => {
+            currentIdx = idx;
+            updateLightbox();
+            lb.classList.add('active');
+        };
 
-  </script>
+        const closeLightbox = () => {
+            lb.classList.remove('active');
+        };
+
+        const updateLightbox = () => {
+            const img = images[currentIdx];
+            lbImg.src = img.src;
+            lbCap.textContent = `[ ${currentIdx + 1} / ${images.length} ] ${img.caption}`;
+        };
+
+        document.getElementById('lb-close').addEventListener('click', closeLightbox);
+        document.getElementById('lb-prev').addEventListener('click', () => {
+            currentIdx = (currentIdx - 1 + images.length) % images.length;
+            updateLightbox();
+        });
+        document.getElementById('lb-next').addEventListener('click', () => {
+            currentIdx = (currentIdx + 1) % images.length;
+            updateLightbox();
+        });
+
+        // Keyboard & Swipe
+        document.addEventListener('keydown', (e) => {
+            if(!lb.classList.contains('active')) return;
+            if(e.key === 'Escape') closeLightbox();
+            if(e.key === 'ArrowLeft') document.getElementById('lb-prev').click();
+            if(e.key === 'ArrowRight') document.getElementById('lb-next').click();
+        });
+
+        let touchstartX = 0;
+        lb.addEventListener('touchstart', e => touchstartX = e.changedTouches[0].screenX, {passive: true});
+        lb.addEventListener('touchend', e => {
+            const touchendX = e.changedTouches[0].screenX;
+            if(touchendX < touchstartX - 50) document.getElementById('lb-next').click();
+            if(touchendX > touchstartX + 50) document.getElementById('lb-prev').click();
+        }, {passive: true});
+
+    </script>
 </body>
 </html>

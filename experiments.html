@@ -1,145 +1,174 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dual">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>Experiments Lab // Mathisha Angirasa</title>
-  
-  <meta name="description" content="Interactive WebGL Experiments Lab">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-  
-  <style>
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiments Lab // Mathisha Angirasa</title>
+    <meta name="theme-color" content="#00E5FF">
     
-    .exp-panel { border: 1px solid var(--cyan-border); background: var(--surface-0); margin-bottom: 64px; overflow: hidden; position: relative; }
-    .exp-canvas-wrap { width: 100%; height: 400px; position: relative; background: var(--void); border-bottom: 1px solid var(--cyan-border); }
-    .exp-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .exp-controls { padding: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
     
-    .exp-slider { display: flex; flex-direction: column; gap: 8px; width: 200px; }
-    .exp-slider label { font-family: var(--font-mono); font-size: 10px; color: var(--text-1); letter-spacing: 0.1em; }
-    input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
-    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 16px; width: 8px; border-radius: 0; background: var(--cyan); cursor: pointer; }
-    input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 2px; cursor: pointer; background: var(--surface-1); }
-    input[type=range]:focus { outline: none; }
-  </style>
+    <style>
+        .nav-wrapper { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); padding: 0 var(--gutter); height: 64px; background: var(--surface-glass); backdrop-filter: blur(28px); border-bottom: 1px solid var(--cyan-border); }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 100%; max-width: var(--max-w); margin: 0 auto; }
+        .logo-compound { display: flex; align-items: baseline; font-weight: 700; cursor: pointer; }
+        .logo-ma { font-family: var(--font-display); font-size: 20px; color: var(--cyan); }
+        .logo-dev { font-family: var(--font-mono); font-size: 20px; color: var(--text-1); }
+
+        .hero-strip { padding: calc(64px + var(--s-64)) 0 var(--s-32); }
+        .hero-strip h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); text-transform: uppercase; margin-bottom: var(--s-16); }
+
+        .lab-grid { display: grid; grid-template-columns: 1fr; gap: var(--s-48); padding-bottom: var(--s-128); }
+        @media (min-width: 1024px) { .lab-grid { grid-template-columns: 1fr 1fr; } }
+        
+        .exp-card { background: var(--surface-1); border: 1px solid var(--cyan-border); display: flex; flex-direction: column; overflow: hidden; }
+        .exp-canvas-wrapper { height: 300px; position: relative; border-bottom: 1px solid var(--cyan-border); background: var(--void); }
+        .exp-canvas { width: 100%; height: 100%; display: block; }
+        .exp-controls { position: absolute; bottom: 0; left: 0; width: 100%; padding: 12px; background: linear-gradient(to top, rgba(9,9,22,0.9), transparent); display: flex; gap: 16px; align-items: center; z-index: 2; }
+
+        .exp-content { padding: var(--s-24); flex: 1; display: flex; flex-direction: column; }
+        .exp-title { font-family: var(--font-mono); font-size: 16px; color: var(--cyan); margin-bottom: 8px; display: flex; justify-content: space-between;}
+        .exp-desc { font-size: 14px; color: var(--text-1); font-family: var(--font-mono); }
+
+        /* Custom Range Slider */
+        input[type=range] { -webkit-appearance: none; width: 100px; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 12px; width: 12px; background: var(--cyan); cursor: pointer; border-radius: 0; margin-top: -5px; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 2px; cursor: pointer; background: var(--text-2); }
+        input[type=range]:focus { outline: none; }
+
+        .ctrl-label { font-family: var(--font-mono); font-size: 10px; color: var(--white); margin-right: 8px; }
+
+        .fullscreen-btn { background: none; border: none; color: var(--text-1); cursor: pointer; transition: color 0.2s; }
+        .fullscreen-btn:hover { color: var(--cyan); }
+    </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
+    <div class="scroll-container">
+        <header class="nav-wrapper">
+            <div class="nav-inner">
+                <a href="index.html" class="logo-compound interactable">
+                    <span class="logo-ma">MA*</span><span class="logo-dev">_DEV</span>
+                </a>
+                <a href="index.html" class="nav-link">&lt; RETURN</a>
+            </div>
+        </header>
 
-  <nav id="navbar" role="navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    <div class="nav-center">
-      <a href="index.html" class="nav-link">INDEX</a>
-      <a href="projects.html" class="nav-link">PROJECTS</a>
-      <a href="skills.html" class="nav-link">SKILLS</a>
-      <a href="blog.html" class="nav-link">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link">CONTACT</a>
+        <main class="container">
+            <div class="hero-strip" data-reveal-clip>
+                <h1>TACTICAL_LABS_v4.02</h1>
+                <p style="font-family: var(--font-mono); color: var(--text-1);">LIVE WEBGL2 FRAGMENT SHADER PROTOTYPES</p>
+            </div>
+
+            <div class="lab-grid stagger">
+
+                <!-- EXP 1: Plasma -->
+                <div class="exp-card interactable" data-reveal>
+                    <div class="exp-canvas-wrapper" id="wrap-plasma">
+                        <canvas class="exp-canvas" id="cvs-plasma"></canvas>
+                        <div class="exp-controls">
+                            <div><span class="ctrl-label">SPEED</span><input type="range" id="sl-plasma" min="0.1" max="3" step="0.1" value="1"></div>
+                            <button class="fullscreen-btn" onclick="document.getElementById('wrap-plasma').requestFullscreen()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
+                        </div>
+                    </div>
+                    <div class="exp-content">
+                        <div class="exp-title"><span>[01] SHADER_PLASMA</span><span class="badge badge--cyan">ACTIVE</span></div>
+                        <div class="exp-desc">Non-repeating interference pattern generated by summed multi-domain sine waves.</div>
+                    </div>
+                </div>
+
+                <!-- EXP 2: Portal -->
+                <div class="exp-card interactable" data-reveal>
+                    <div class="exp-canvas-wrapper" id="wrap-portal">
+                        <canvas class="exp-canvas" id="cvs-portal"></canvas>
+                        <div class="exp-controls">
+                            <span class="ctrl-label">MOUSE_INTERACTIVE</span>
+                            <button class="fullscreen-btn" style="margin-left:auto;" onclick="document.getElementById('wrap-portal').requestFullscreen()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
+                        </div>
+                    </div>
+                    <div class="exp-content">
+                        <div class="exp-title"><span>[02] SHADER_PORTAL</span><span class="badge badge--red">LATENCY: 4MS</span></div>
+                        <div class="exp-desc">Polar coordinate space distortion with mouse tracking displacement.</div>
+                    </div>
+                </div>
+
+                <!-- EXP 3: Hexgrid -->
+                <div class="exp-card interactable" data-reveal>
+                    <div class="exp-canvas-wrapper" id="wrap-hex">
+                        <canvas class="exp-canvas" id="cvs-hex"></canvas>
+                        <div class="exp-controls">
+                            <span class="ctrl-label">TRACKING_ON</span>
+                            <button class="fullscreen-btn" style="margin-left:auto;" onclick="document.getElementById('wrap-hex').requestFullscreen()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
+                        </div>
+                    </div>
+                    <div class="exp-content">
+                        <div class="exp-title"><span>[03] SHADER_HEXGRID</span><span class="badge badge--cyan">ACTIVE</span></div>
+                        <div class="exp-desc">Distance field (SDF) hexagon generation with dual wave propagation simulation.</div>
+                    </div>
+                </div>
+
+                <!-- EXP 4: Black Hole -->
+                <div class="exp-card interactable" data-reveal>
+                    <div class="exp-canvas-wrapper" id="wrap-bh">
+                        <canvas class="exp-canvas" id="cvs-bh"></canvas>
+                        <div class="exp-controls">
+                            <button class="fullscreen-btn" style="margin-left:auto;" onclick="document.getElementById('wrap-bh').requestFullscreen()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
+                        </div>
+                    </div>
+                    <div class="exp-content">
+                        <div class="exp-title"><span>[04] SHADER_GRAVITY</span><span class="badge badge--cyan">ACTIVE</span></div>
+                        <div class="exp-desc">Gravitational lensing simulation approximating Schwarzschild physics.</div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
     </div>
-  </nav>
 
-  <div class="scroll-container">
-    <main id="main" role="main" style="padding-top: 120px;">
-      
-      <section class="container" style="text-align: center; margin-bottom: 48px;">
-        <div class="badge" style="margin-bottom: 16px;">LIVE WEBGL LAB</div>
-        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px);" data-reveal data-reveal-clip>EXPERIMENTS</h1>
-      </section>
+    <script type="module">
+        import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+        import { SHADER_11_PLASMA, SHADER_12_PORTAL, SHADER_01_HEXGRID, SHADER_09_BLACK_HOLE } from './assets/js/engine/shaders.js';
+        import { CustomCursor } from './assets/js/core/Cursor.js';
+        import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+        import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+        import { PageTransitions } from './assets/js/core/PageTransitions.js';
 
-      <section class="container">
-        
-        <!-- EXP 01 -->
-        <div class="exp-panel" data-reveal>
-          <div class="exp-canvas-wrap">
-            <canvas class="exp-canvas" id="exp1"></canvas>
-          </div>
-          <div class="exp-controls">
-            <div>
-              <h3 style="font-family: var(--font-display); font-size: 24px; margin-bottom: 8px;">Plasma Fluid</h3>
-              <p style="font-size: 14px; color: var(--text-1);">SHADER_11_PLASMA. 5-octave sine interference.</p>
-            </div>
-            <div class="exp-slider">
-              <label>SPEED_MULTIPLIER</label>
-              <input type="range" min="0.1" max="3" step="0.1" value="1" id="exp1-speed">
-            </div>
-            <button class="btn btn--ghost" onclick="document.getElementById('exp1').requestFullscreen()">FULLSCREEN</button>
-          </div>
-        </div>
+        new CustomCursor();
+        new SmoothScroll();
+        new ScrollReveal();
+        new PageTransitions();
 
-        <!-- EXP 02 -->
-        <div class="exp-panel" data-reveal>
-          <div class="exp-canvas-wrap">
-            <canvas class="exp-canvas" id="exp2"></canvas>
-          </div>
-          <div class="exp-controls">
-            <div>
-              <h3 style="font-family: var(--font-display); font-size: 24px; margin-bottom: 8px;">Dimensional Portal</h3>
-              <p style="font-size: 14px; color: var(--text-1);">SHADER_12_PORTAL. Mouse interactive.</p>
-            </div>
-            <div class="exp-slider">
-              <label>PULSE_FREQUENCY</label>
-              <input type="range" min="1" max="20" step="1" value="15" id="exp2-freq">
-            </div>
-            <button class="btn btn--ghost" onclick="document.getElementById('exp2').requestFullscreen()">FULLSCREEN</button>
-          </div>
-        </div>
+        if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            // Plasma
+            const eP = new WebGLEngine(document.getElementById('cvs-plasma'));
+            eP.compileProgram('p', SHADER_11_PLASMA.vert, SHADER_11_PLASMA.frag);
+            let pSpeed = 1.0;
+            document.getElementById('sl-plasma').addEventListener('input', (e) => pSpeed = parseFloat(e.target.value));
+            eP.render('p', {}, (gl, ms) => {
+                 // Hack to modify time uniform speed
+                 const l = eP.getUniform('p', 'u_time');
+                 eP.gl.uniform1f(l, (ms/1000) * pSpeed);
+            });
 
-      </section>
-    </main>
-  </div>
+            // Portal
+            const ePo = new WebGLEngine(document.getElementById('cvs-portal'));
+            ePo.compileProgram('po', SHADER_12_PORTAL.vert, SHADER_12_PORTAL.frag);
+            ePo.render('po');
 
-  <script type="module">
-    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
-    import { SHADER_11_PLASMA, SHADER_12_PORTAL } from './assets/js/engine/shaders.js';
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+            // Hexgrid
+            const eH = new WebGLEngine(document.getElementById('cvs-hex'));
+            eH.compileProgram('h', SHADER_01_HEXGRID.vert, SHADER_01_HEXGRID.frag);
+            eH.render('h');
 
-    new ThemeSystem();
-    new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-
-    const e1 = new WebGLEngine(document.getElementById('exp1'));
-    e1.compileProgram('plasma', SHADER_11_PLASMA.vert, SHADER_11_PLASMA.frag);
-    e1.createFullscreenQuad('fs');
-    
-    let speed1 = 1.0;
-    document.getElementById('exp1-speed').addEventListener('input', (e) => speed1 = parseFloat(e.target.value));
-    
-    // We hack the u_time uniform via render callback to scale speed
-    let time1 = 0;
-    e1.render('plasma', {}, (gl, ms) => {
-      // Manual time scale not easily injected without modifying engine, we just use default render and accept standard speed for simplicity in this demo,
-      // but let's override the uniform manually here:
-      const loc = e1.getUniform('plasma', 'u_time');
-      time1 += 0.016 * speed1;
-      gl.uniform1f(loc, time1);
-    });
-
-    const e2 = new WebGLEngine(document.getElementById('exp2'));
-    e2.compileProgram('portal', SHADER_12_PORTAL.vert, SHADER_12_PORTAL.frag);
-    e2.createFullscreenQuad('fs');
-    e2.render('portal');
-
-  </script>
+            // Black Hole
+            const eB = new WebGLEngine(document.getElementById('cvs-bh'));
+            eB.compileProgram('b', SHADER_09_BLACK_HOLE.vert, SHADER_09_BLACK_HOLE.frag);
+            eB.render('b');
+        }
+    </script>
 </body>
 </html>

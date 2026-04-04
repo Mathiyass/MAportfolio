@@ -1,41 +1,39 @@
-import { $$, on } from '../utils/dom.js';
-
 export class LazyLoad {
-  constructor() {
-    this.images = $$('img[data-src]');
-    if (!this.images.length) return;
+    constructor() {
+        this.images = document.querySelectorAll('img[data-src]');
 
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          this.loadImage(img);
-          this.observer.unobserve(img);
-        }
-      });
-    }, { rootMargin: '0px 0px 200px 0px' });
+        this.observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this._loadImage(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            rootMargin: '50px 0px',
+            threshold: 0.01
+        });
 
-    this.images.forEach(img => {
-      if (img.dataset.placeholder) {
-        img.src = img.dataset.placeholder;
-        img.style.filter = 'blur(10px)';
-        img.style.transition = 'filter 0.5s var(--ease-expo), opacity 0.5s';
-      }
-      this.observer.observe(img);
-    });
-  }
+        this.images.forEach(img => {
+            if(img.dataset.placeholder) {
+                img.src = img.dataset.placeholder;
+                img.style.filter = 'blur(10px)';
+            }
+            img.style.transition = 'opacity 300ms ease, filter 300ms ease';
+            img.style.opacity = 0;
+            this.observer.observe(img);
+        });
+    }
 
-  loadImage(img) {
-    const src = img.dataset.src;
-    if (!src) return;
+    _loadImage(img) {
+        const src = img.getAttribute('data-src');
+        if (!src) return;
 
-    const tempImage = new Image();
-    tempImage.onload = () => {
-      img.src = src;
-      img.classList.add('loaded');
-      img.style.filter = 'blur(0)';
-      img.removeAttribute('data-src');
-    };
-    tempImage.src = src;
-  }
+        img.src = src;
+        img.onload = () => {
+            img.style.opacity = 1;
+            img.style.filter = 'none';
+            img.removeAttribute('data-src');
+        };
+    }
 }
