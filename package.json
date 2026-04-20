@@ -38,7 +38,7 @@
   },
   "homepage": "https://mathiyass.github.io",
   "devDependencies": {
-    "@playwright/test": "^1.58.2",
+    "@playwright/test": "^1.59.1",
     "playwright": "^1.41.2",
     "serve": "^14.2.1"
   },
