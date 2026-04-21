@@ -1,48 +1,62 @@
-/**
- * EASTER EGGS — v10.0
- * Konami + Signature codes.
- */
+// Konami.js
 export class Konami {
   constructor() {
-    this.sequences = {
-      konami: ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'],
-      mathiya: ['m', 'a', 't', 'h', 'i', 'y', 'a']
-    };
+    this.sequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    this.mathiya = ['m', 'a', 't', 'h', 'i', 'y', 'a'];
+    this.input = [];
+    this.mInput = [];
     
-    this.indices = {
-      konami: 0,
-      mathiya: 0
-    };
-
-    this.bind();
-  }
-
-  bind() {
     window.addEventListener('keydown', (e) => {
-      const key = e.key.toLowerCase();
+      this.input.push(e.key);
+      this.input.splice(-this.sequence.length - 1, this.input.length - this.sequence.length);
       
-      for (const [name, seq] of Object.entries(this.sequences)) {
-        if (key === seq[this.indices[name]].toLowerCase()) {
-          this.indices[name]++;
-          if (this.indices[name] === seq.length) {
-            this.trigger(name);
-            this.indices[name] = 0;
-          }
-        } else {
-          this.indices[name] = 0;
-        }
+      if (this.input.join(',') === this.sequence.join(',')) {
+        this.triggerKonami();
+        this.input = [];
+      }
+
+      this.mInput.push(e.key.toLowerCase());
+      this.mInput.splice(-this.mathiya.length - 1, this.mInput.length - this.mathiya.length);
+      
+      if (this.mInput.join('') === this.mathiya.join('')) {
+        this.triggerMathiya();
+        this.mInput = [];
       }
     });
+
+    window.mathiya = {
+      sudo: (cmd) => this.sudo(cmd),
+      help: () => this.help()
+    };
   }
 
-  trigger(name) {
-    if (name === 'konami') {
-      document.body.style.filter = 'invert(1) hue-rotate(180deg)';
-      setTimeout(() => document.body.style.filter = '', 5000);
-      window.dispatchEvent(new CustomEvent('toast', { detail: { message: 'CHEAT CODE ACTIVE' } }));
+  triggerKonami() {
+    window.dispatchEvent(new CustomEvent('toast:show', {
+      detail: { type: 'success', message: 'Konami Code Activated! Matrix Mode ON.' }
+    }));
+    document.body.style.filter = 'invert(1)';
+    setTimeout(() => document.body.style.filter = 'none', 4000);
+  }
+
+  triggerMathiya() {
+    window.dispatchEvent(new CustomEvent('toast:show', {
+      detail: { type: 'success', message: 'Hello, Creator.' }
+    }));
+  }
+
+  sudo(cmd) {
+    console.log(\`Running: \${cmd}\`);
+    switch(cmd) {
+      case 'matrix': this.triggerKonami(); break;
+      case 'help': this.help(); break;
+      default: console.warn('Command not found. Try window.mathiya.help()');
     }
-    if (name === 'mathiya') {
-       window.dispatchEvent(new CustomEvent('toast', { detail: { message: 'BUILDER MODE: UNLOCKED' } }));
-    }
+  }
+
+  help() {
+    console.table([
+      { Command: 'matrix', Action: 'Activate matrix mode' },
+      { Command: 'help', Action: 'Show this menu' }
+    ]);
   }
 }

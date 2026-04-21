@@ -1,33 +1,31 @@
-import { $, createElement, on } from '../utils/dom.js';
-
+// ProgressBar.js
 export class ProgressBar {
   constructor() {
-    this.bar = createElement('div', { className: 'progress' });
-    this.fill = createElement('div', { className: 'progress-fill' });
+    this.bar = document.createElement('div');
+    this.bar.className = 'progress-bar';
+    this.bar.style.cssText = \`
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: 4px; background: transparent;
+    \`;
+
+    this.fill = document.createElement('div');
+    this.fill.className = 'fill';
+    this.fill.style.cssText = \`
+      height: 100%; background: var(--dual);
+      transform-origin: left; transform: scaleX(0);
+      transition: transform 0.1s linear;
+    \`;
     this.bar.appendChild(this.fill);
-    
-    // Typically placed at top or bottom of viewport
-    this.bar.style.position = 'fixed';
-    this.bar.style.top = '0';
-    this.bar.style.left = '0';
-    this.bar.style.zIndex = '10001';
-    
     document.body.appendChild(this.bar);
-    
-    this._bindEvents();
+
+    window.addEventListener('scroll', () => this.update());
+    this.update();
   }
 
-  _bindEvents() {
-    on(window, 'scroll:progress', (e) => {
-      const p = e.detail.progress;
-      this.fill.style.width = \`\${p * 100}%\`;
-      
-      if (p > 0.99) {
-        this.bar.style.opacity = '0';
-      } else {
-        this.bar.style.opacity = '1';
-      }
-    });
+  update() {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) || 0;
+    this.fill.style.transform = \`scaleX(\${scrolled})\`;
   }
 }
-

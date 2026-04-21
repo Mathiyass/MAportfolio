@@ -1,49 +1,44 @@
-import { createElement, addStyles } from '../utils/dom.js';
-
-export class ToastSystem {
+// Toast.js
+export class Toast {
   constructor() {
-    this.container = createElement('div', { className: 'toast-container' });
+    this.container = document.createElement('div');
+    this.container.id = 'toast-container';
+    this.container.style.cssText = \`
+      position: fixed; bottom: 24px; left: 24px; z-index: var(--z-toast);
+      display: flex; flex-direction: column; gap: 8px;
+    \`;
     document.body.appendChild(this.container);
-    this.activeToasts = [];
+
+    window.addEventListener('toast:show', (e) => {
+      this.show(e.detail.message, e.detail.type);
+    });
   }
 
-  show(message, type = 'success', duration = 4000) {
-    const toast = createElement('div', { className: \`toast toast--\${type}\` }, [
-      createElement('span', {}, [type === 'error' ? '!' : '✓']),
-      createElement('span', {}, [message])
-    ]);
+  show(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.className = \`toast toast--\${type}\`;
+    toast.style.cssText = \`
+      position: relative; bottom: auto; left: auto; transform: translateX(-100%);
+      transition: all var(--dur-mid) var(--ease-spring);
+    \`;
+    toast.innerHTML = \`
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-family: var(--font-body); font-weight: 500; font-size: 14px;">\${message}</span>
+      </div>
+    \`;
 
     this.container.appendChild(toast);
-    this.activeToasts.push(toast);
 
-    if (this.activeToasts.length > 3) {
-      const oldest = this.activeToasts.shift();
-      this._dismiss(oldest);
-    }
+    // Trigger reflow
+    toast.offsetHeight;
+
+    toast.style.transform = 'translateX(0)';
+    toast.style.opacity = '1';
 
     setTimeout(() => {
-      if (this.activeToasts.includes(toast)) {
-        this._dismiss(toast);
-        this.activeToasts = this.activeToasts.filter(t => t !== toast);
-      }
-    }, duration);
-  }
-
-  _dismiss(toast) {
-    toast.classList.add('hiding');
-    setTimeout(() => {
-      if (toast.parentNode) {
-        toast.parentNode.removeChild(toast);
-      }
-    }, 350);
+      toast.style.transform = 'translateX(-100%)';
+      toast.style.opacity = '0';
+      setTimeout(() => toast.remove(), 400);
+    }, 4000);
   }
 }
-
-// Global instance
-export const toast = (message, type, duration) => {
-  if (!window.__toastSystem) {
-    window.__toastSystem = new ToastSystem();
-  }
-  window.__toastSystem.show(message, type, duration);
-};
-
