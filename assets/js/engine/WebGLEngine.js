@@ -1,108 +1,166 @@
-/**
- * PREMIUM WEBGL ENGINE — v10.0
- * Pure WebGL2 implementation with high-performance hooks.
- */
+// WebGLEngine.js
+import { SHADERS, VERT_SHARED } from './shaders.js';
+
 export class WebGLEngine {
-  constructor(canvas, options = {}) {
+  constructor(canvas, shaderId, options = {}) {
     this.canvas = canvas;
-    this.gl = canvas.getContext('webgl2', {
+    this.shaderId = shaderId;
+    this.options = { opacity: 1.0, pointerTracking: true, ...options };
+    this.gl = this.canvas.getContext('webgl2', {
       alpha: true,
-      antialias: true,
-      powerPreference: 'high-performance',
-      ...options
+      depth: false,
+      antialias: false,
+      powerPreference: 'high-performance'
     });
 
-    if (!this.gl) throw new Error('WebGL2 not supported');
+    if (!this.gl) {
+      console.warn('WebGL2 not supported');
+      return;
+    }
 
-    this.programs = new Map();
-    this.uniforms = new Map();
-    this.startTime = performance.now();
-    this.mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
-    this.dpr = Math.min(window.devicePixelRatio, 2);
+    this.dpr = Math.min(window.devicePixelRatio || 1, 2.0);
+    this.time = 0;
+    this.pointer = { x: 0, y: 0, vx: 0, vy: 0 };
+    this.targetPointer = { x: 0, y: 0 };
+    this.running = true;
 
     this.init();
   }
 
   init() {
-    this.gl.enable(this.gl.BLEND);
-    this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
-    
-    window.addEventListener('resize', () => this.resize());
-    window.addEventListener('mousemove', (e) => this.trackMouse(e));
+    this.canvas.style.opacity = this.options.opacity;
     this.resize();
-  }
+    this.ro = new ResizeObserver(() => this.resize());
+    this.ro.observe(this.canvas.parentElement || document.body);
 
-  resize() {
-    this.canvas.width = this.canvas.clientWidth * this.dpr;
-    this.canvas.height = this.canvas.clientHeight * this.dpr;
-    this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
-  }
+    const source = SHADERS[this.shaderId];
+    if (!source) return;
 
-  trackMouse(e) {
-    this.mouse.tx = e.clientX / window.innerWidth;
-    this.mouse.ty = 1.0 - (e.clientY / window.innerHeight);
-  }
+    this.program = this.createProgram(VERT_SHARED, source);
+    if (!this.program) return;
 
-  compile(name, vert, frag) {
-    const gl = this.gl;
-    const vs = this.shader(gl.VERTEX_SHADER, vert);
-    const fs = this.shader(gl.FRAGMENT_SHADER, frag);
-    const prog = gl.createProgram();
-    
-    gl.attachShader(prog, vs);
-    gl.attachShader(prog, fs);
-    gl.linkProgram(prog);
+    this.setupGeometry();
+    this.setupUniforms();
+    this.bindEvents();
 
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
-      console.error(gl.getProgramInfoLog(prog));
-      return null;
+    if (this.shaderId === 'SHADER_06') {
+      this.setupFBO();
     }
 
-    this.programs.set(name, prog);
-    return prog;
+    this.lastTime = performance.now();
+    this.render();
   }
 
-  shader(type, src) {
-    const gl = this.gl;
-    const s = gl.createShader(type);
-    gl.shaderSource(s, src);
-    gl.compileShader(s);
+  createShader(type, source) {
+    const s = this.gl.createShader(type);
+    this.gl.shaderSource(s, source.trim());
+    this.gl.compileShader(s);
+    if (!this.gl.getShaderParameter(s, this.gl.COMPILE_STATUS)) {
+      console.error(this.gl.getShaderInfoLog(s));
+      this.gl.deleteShader(s);
+      return null;
+    }
     return s;
   }
 
-  render(name, userUniforms = {}) {
-    const gl = this.gl;
-    const prog = this.programs.get(name);
-    if (!prog) return;
+  createProgram(vsSource, fsSource) {
+    const vs = this.createShader(this.gl.VERTEX_SHADER, vsSource);
+    const fs = this.createShader(this.gl.FRAGMENT_SHADER, fsSource);
+    if (!vs || !fs) return null;
 
-    gl.useProgram(prog);
+    const p = this.gl.createProgram();
+    this.gl.attachShader(p, vs);
+    this.gl.attachShader(p, fs);
+    this.gl.linkProgram(p);
 
-    // Standard Uniforms
-    const time = (performance.now() - this.startTime) / 1000;
-    this.mouse.x += (this.mouse.tx - this.mouse.x) * 0.1;
-    this.mouse.y += (this.mouse.ty - this.mouse.y) * 0.1;
+    if (!this.gl.getProgramParameter(p, this.gl.LINK_STATUS)) {
+      console.error(this.gl.getProgramInfoLog(p));
+      return null;
+    }
+    return p;
+  }
 
-    const locTime = gl.getUniformLocation(prog, 'u_time');
-    const locRes = gl.getUniformLocation(prog, 'u_res');
-    const locMouse = gl.getUniformLocation(prog, 'u_mouse');
+  setupGeometry() {
+    this.vao = this.gl.createVertexArray();
+    this.gl.bindVertexArray(this.vao);
 
-    if (locTime) gl.uniform1f(locTime, time);
-    if (locRes) gl.uniform2f(locRes, this.canvas.width, this.canvas.height);
-    if (locMouse) gl.uniform2f(locMouse, this.mouse.x, this.mouse.y);
+    const positionBuffer = this.gl.createBuffer();
+    this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
+    const positions = new Float32Array([
+      -1, -1,  1, -1, -1,  1,
+      -1,  1,  1, -1,  1,  1
+    ]);
+    this.gl.bufferData(this.gl.ARRAY_BUFFER, positions, this.gl.STATIC_DRAW);
 
-    // Apply custom uniforms
-    Object.entries(userUniforms).forEach(([key, val]) => {
-      const loc = gl.getUniformLocation(prog, key);
-      if (loc) {
-        if (typeof val === 'number') gl.uniform1f(loc, val);
-        else if (Array.isArray(val)) {
-          if (val.length === 2) gl.uniform2fv(loc, val);
-          if (val.length === 3) gl.uniform3fv(loc, val);
-        }
+    const posLoc = this.gl.getAttribLocation(this.program, "position");
+    this.gl.enableVertexAttribArray(posLoc);
+    this.gl.vertexAttribPointer(posLoc, 2, this.gl.FLOAT, false, 0, 0);
+  }
+
+  setupUniforms() {
+    this.gl.useProgram(this.program);
+    this.uTime = this.gl.getUniformLocation(this.program, "u_time");
+    this.uResolution = this.gl.getUniformLocation(this.program, "u_resolution");
+    this.uPointer = this.gl.getUniformLocation(this.program, "u_pointer");
+  }
+
+  setupFBO() {
+    // Ping-pong FBO for particle simulation
+    // Minimal implementation for demonstration
+  }
+
+  resize() {
+    const bounds = this.canvas.getBoundingClientRect();
+    this.width = bounds.width;
+    this.height = bounds.height;
+    this.canvas.width = this.width * this.dpr;
+    this.canvas.height = this.height * this.dpr;
+    this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  bindEvents() {
+    if (this.options.pointerTracking) {
+      window.addEventListener('mousemove', (e) => {
+        this.targetPointer.x = e.clientX / window.innerWidth;
+        this.targetPointer.y = 1.0 - (e.clientY / window.innerHeight);
+      });
+    }
+    document.addEventListener('visibilitychange', () => {
+      this.running = document.visibilityState === 'visible';
+      if (this.running) {
+        this.lastTime = performance.now();
+        this.render();
       }
     });
+  }
 
-    // Draw full-screen quad
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  render() {
+    if (!this.running || !this.program) return;
+
+    const now = performance.now();
+    const dt = (now - this.lastTime) * 0.001;
+    this.lastTime = now;
+    this.time += dt;
+
+    // Lerp pointer
+    this.pointer.x += (this.targetPointer.x - this.pointer.x) * 0.1;
+    this.pointer.y += (this.targetPointer.y - this.pointer.y) * 0.1;
+
+    this.gl.useProgram(this.program);
+    this.gl.bindVertexArray(this.vao);
+
+    if (this.uTime) this.gl.uniform1f(this.uTime, this.time);
+    if (this.uResolution) this.gl.uniform2f(this.uResolution, this.canvas.width, this.canvas.height);
+    if (this.uPointer) this.gl.uniform2f(this.uPointer, this.pointer.x, this.pointer.y);
+
+    this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
+
+    requestAnimationFrame(() => this.render());
+  }
+
+  destroy() {
+    this.running = false;
+    this.ro.disconnect();
+    // Delete GL resources...
   }
 }
