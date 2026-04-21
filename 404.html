@@ -1,84 +1,69 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dual">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>404 // Mathisha Angirasa</title>
+  <meta name="theme-color" content="#22D3EE">
+  <title>404 | MATHIYA</title>
   
-  <meta name="description" content="Page not found.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&f[]=syne@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/animations.css">
-  
-  <style>
-    body, html { height: 100%; overflow: hidden; margin: 0; padding: 0; }
-    .content-404 { position: absolute; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; pointer-events: none; }
-    .title-404 { font-family: var(--font-display); font-size: clamp(100px, 15vw, 220px); font-weight: 900; line-height: 1; color: var(--text-0); margin-bottom: 24px; }
-    .title-404.glitching { animation: glitchH 1.5s infinite; color: var(--cyan); }
-    .cd-wrap { font-family: var(--font-stat); font-size: 80px; color: var(--red); margin-bottom: 32px; }
-    .cd-pulse { animation: neonPulseRed 1s infinite; }
-  </style>
 </head>
-<body>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
-  
-  <canvas id="canvas-hole" style="position:fixed; inset:0; z-index:-1; width:100vw; height:100vh;"></canvas>
-
-  <div class="content-404">
-    <div class="badge badge--red" style="margin-bottom: 24px;" data-reveal>CRITICAL ERROR</div>
-    <h1 class="title-404" id="glitch-title">404</h1>
-    <div style="font-family: var(--font-mono); font-size: 14px; color: var(--text-1); letter-spacing: 0.2em; margin-bottom: 48px; max-width: 400px;">
-      THE REQUESTED SECTOR DOES NOT EXIST. <br> EVENT HORIZON IMMINENT.
+<body style="overflow: hidden;">
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">MATHIYA</a>
+    <div class="flex items-center gap-4">
+      <a href="contact.html" class="btn btn--primary nav-cta">Get in touch</a>
     </div>
-    <div class="cd-wrap">T MINUS <span id="countdown" class="cd-pulse">10</span></div>
-    <a href="index.html" class="btn btn--red" style="pointer-events: auto;">ABORT (RETURN TO BASE)</a>
-  </div>
+  </nav>
+
+  <main id="main" class="content-hidden" style="height: 100vh; display: flex; align-items: center; justify-content: center; position: relative;">
+    <canvas id="canvas-bg" style="position:absolute; inset:0; z-index:var(--z-canvas); pointer-events:none;"></canvas>
+
+    <div style="text-align: center; z-index: 10;">
+      <h1 style="font-family: var(--font-display); font-size: clamp(120px, 15vw, 240px); line-height: 1; margin: 0;" class="gradient-text">404</h1>
+      <h2 style="font-family: var(--font-head); font-size: 32px; margin-top: 16px; color: var(--text-0);">Entity not found in current timeline.</h2>
+      <p style="font-family: var(--font-mono); font-size: 14px; color: var(--text-3); margin-top: 16px;">Redirecting to safe zone in <span id="countdown">10</span>s...</p>
+      
+      <div class="flex justify-center gap-4" style="margin-top: 48px;">
+        <a href="index.html" class="btn btn--primary">Return Home</a>
+        <a href="games.html" class="btn btn--secondary">Play a Game</a>
+      </div>
+    </div>
+  </main>
 
   <script type="module">
+    import { Loader } from './assets/js/core/Loader.js';
+    import { Cursor } from './assets/js/core/Cursor.js';
+    import { Byte } from './assets/js/mascot/Byte.js';
     import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
-    import { SHADER_09_BLACK_HOLE } from './assets/js/engine/shaders.js';
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
+    import { PageTransitions } from './assets/js/core/PageTransitions.js';
 
-    new ThemeSystem();
-    new CustomCursor();
+    new Loader();
+    new Cursor();
+    new PageTransitions();
 
-    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!isReduced) {
-      const cHole = document.getElementById('canvas-hole');
-      const eHole = new WebGLEngine(cHole);
-      eHole.compileProgram('hole', SHADER_09_BLACK_HOLE.vert, SHADER_09_BLACK_HOLE.frag);
-      eHole.createFullscreenQuad('fullscreen');
-      eHole.render('hole');
-    }
+    window.addEventListener('loader:complete', () => {
+      new WebGLEngine(document.getElementById('canvas-bg'), 'SHADER_09', { opacity: 0.6, pointerTracking: true });
+      const byte = new Byte();
+      byte.setExpression('SAD');
 
-    // Glitch effect
-    const title = document.getElementById('glitch-title');
-    title.classList.add('glitching');
-    setTimeout(() => { title.classList.remove('glitching'); }, 1500);
-
-    // Countdown
-    let time = 10;
-    const cd = document.getElementById('countdown');
-    const interval = setInterval(() => {
-      time--;
-      cd.textContent = time;
-      if (time <= 0) {
-        clearInterval(interval);
-        window.location.href = 'index.html';
-      }
-    }, 1000);
+      let count = 10;
+      const el = document.getElementById('countdown');
+      setInterval(() => {
+        count--;
+        if (count >= 0) el.textContent = count;
+        if (count === 0) window.location.href = 'index.html';
+      }, 1000);
+    });
   </script>
 </body>
 </html>
-
