@@ -1,33 +1,31 @@
-import { on } from '../utils/dom.js';
-
+/**
+ * EASTER EGGS — v10.0
+ * Konami + Signature codes.
+ */
 export class Konami {
   constructor() {
     this.sequences = {
       konami: ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'],
-      mathiya: ['m', 'a', 't', 'h', 'i', 'y', 'a'],
-      sudo: ['s', 'u', 'd', 'o']
+      mathiya: ['m', 'a', 't', 'h', 'i', 'y', 'a']
     };
     
     this.indices = {
       konami: 0,
-      mathiya: 0,
-      sudo: 0
+      mathiya: 0
     };
 
-    this.bindEvents();
+    this.bind();
   }
 
-  bindEvents() {
-    on(window, 'keydown', (e) => {
+  bind() {
+    window.addEventListener('keydown', (e) => {
       const key = e.key.toLowerCase();
       
       for (const [name, seq] of Object.entries(this.sequences)) {
-        const targetKey = seq[this.indices[name]].toLowerCase();
-        
-        if (key === targetKey || (e.key === seq[this.indices[name]])) {
+        if (key === seq[this.indices[name]].toLowerCase()) {
           this.indices[name]++;
           if (this.indices[name] === seq.length) {
-            window.dispatchEvent(new CustomEvent(`easter-egg:${name}`));
+            this.trigger(name);
             this.indices[name] = 0;
           }
         } else {
@@ -36,5 +34,15 @@ export class Konami {
       }
     });
   }
-}
 
+  trigger(name) {
+    if (name === 'konami') {
+      document.body.style.filter = 'invert(1) hue-rotate(180deg)';
+      setTimeout(() => document.body.style.filter = '', 5000);
+      window.dispatchEvent(new CustomEvent('toast', { detail: { message: 'CHEAT CODE ACTIVE' } }));
+    }
+    if (name === 'mathiya') {
+       window.dispatchEvent(new CustomEvent('toast', { detail: { message: 'BUILDER MODE: UNLOCKED' } }));
+    }
+  }
+}

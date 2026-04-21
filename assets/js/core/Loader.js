@@ -1,110 +1,134 @@
 /**
- * PREMIUM CINEMATIC LOADER
- * 5-Phase Reveal System
+ * EPIC CINEMATIC LOADER — v10.0 PREMIUM
+ * 5-Phase structure with Apple-level motion design.
  */
 export class Loader {
-  constructor() {
+  constructor(options = {}) {
     this.container = document.createElement('div');
-    this.container.id = 'mathiya-loader';
+    this.container.id = 'premium-loader';
     this.setupStyles();
     this.render();
+    this.isReturning = localStorage.getItem('mathiya_visited') === 'true';
     this.start();
   }
 
   setupStyles() {
     const style = document.createElement('style');
     style.textContent = `
-      #mathiya-loader {
+      #premium-loader {
         position: fixed;
         inset: 0;
-        background: #080C14;
+        background: var(--bg-base);
+        z-index: var(--z-loader);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        z-index: 800;
-        transition: opacity 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+        transition: opacity var(--dur-slow) var(--ease-expo);
       }
-      .loader-brand {
-        font-family: 'Clash Display', sans-serif;
-        font-size: 32px;
+      .loader-logo {
+        font-family: var(--font-display);
+        font-size: 72px;
         font-weight: 700;
-        color: #F8FAFC;
-        letter-spacing: 0.2em;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 800ms cubic-bezier(0.34, 1.56, 0.64, 1);
-      }
-      .loader-progress-container {
-        width: 200px;
-        height: 1px;
-        background: rgba(148, 163, 184, 0.1);
-        margin-top: 40px;
+        color: var(--text-primary);
+        letter-spacing: 0.1em;
+        display: flex;
         overflow: hidden;
-        opacity: 0;
-        transition: opacity 600ms ease;
       }
-      .loader-progress-bar {
-        height: 100%;
-        background: linear-gradient(90deg, #22D3EE, #FB7185);
+      .loader-char {
+        display: inline-block;
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      .loader-tagline {
+        font-family: var(--font-body);
+        font-size: 18px;
+        color: var(--text-secondary);
+        margin-top: 24px;
+        opacity: 0;
+      }
+      .loader-progress-line {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 1px;
+        background: var(--dual);
         width: 0%;
-        transition: width 200ms ease;
+        transition: width 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .loader-status {
+        position: fixed;
+        bottom: 24px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--text-tertiary);
+        opacity: 0;
       }
     `;
     document.head.appendChild(style);
   }
 
   render() {
+    const chars = "MATHIYA".split('').map(c => `<span class="loader-char">${c}</span>`).join('');
     this.container.innerHTML = `
-      <div class="loader-brand">MATHIYA</div>
-      <div class="loader-progress-container">
-        <div class="loader-progress-bar"></div>
-      </div>
+      <div class="loader-logo">${chars}</div>
+      <div class="loader-tagline">I build things that matter.</div>
+      <div class="loader-progress-line"></div>
+      <div class="loader-status">Loading</div>
     `;
     document.body.appendChild(this.container);
     document.body.style.overflow = 'hidden';
   }
 
   async start() {
-    const brand = this.container.querySelector('.loader-brand');
-    const progressContainer = this.container.querySelector('.loader-progress-container');
-    const progressBar = this.container.querySelector('.loader-progress-bar');
+    const chars = this.container.querySelectorAll('.loader-char');
+    const tagline = this.container.querySelector('.loader-tagline');
+    const progress = this.container.querySelector('.loader-progress-line');
+    const status = this.container.querySelector('.loader-status');
 
-    // Phase 1: Brand Reveal
-    await this.wait(300);
-    brand.style.opacity = '1';
-    brand.style.transform = 'translateY(0)';
-
-    // Phase 2: Progress Reveal
-    await this.wait(500);
-    progressContainer.style.opacity = '1';
-
-    // Phase 3: Simulated Progress
-    for (let i = 0; i <= 100; i += Math.random() * 15) {
-      const p = Math.min(i, 100);
-      progressBar.style.width = p + '%';
-      await this.wait(100 + Math.random() * 200);
+    if (this.isReturning) {
+      progress.style.transitionDuration = '600ms';
+      progress.style.width = '100%';
+      await this.wait(600);
+      this.exit();
+      return;
     }
-    progressBar.style.width = '100%';
 
-    // Phase 4: Verification
-    brand.textContent = 'IDENTITY VERIFIED';
-    brand.style.color = '#22D3EE';
-    await this.wait(800);
+    // L1: Logo Reveal
+    await this.wait(300);
+    chars.forEach((c, i) => {
+      setTimeout(() => {
+        c.style.transition = 'all 800ms var(--ease-expo)';
+        c.style.transform = 'translateY(0)';
+        c.style.opacity = '1';
+      }, i * 60);
+    });
 
-    // Phase 5: Exit
+    // Tagline
+    setTimeout(() => {
+      tagline.style.transition = 'opacity 800ms ease';
+      tagline.style.opacity = '1';
+    }, chars.length * 60 + 400);
+
+    // L2: Progress
+    await this.wait(500);
+    status.style.opacity = '1';
+    progress.style.width = '100%';
+
+    // L4: Exit
+    await this.wait(2000);
+    this.exit();
+  }
+
+  exit() {
     this.container.style.opacity = '0';
-    this.container.style.pointerEvents = 'none';
     document.body.style.overflow = '';
-    
+    localStorage.setItem('mathiya_visited', 'true');
     setTimeout(() => {
       this.container.remove();
       window.dispatchEvent(new CustomEvent('loader:complete'));
-    }, 1100);
+    }, 600);
   }
 
-  wait(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+  wait(ms) { return new Promise(r => setTimeout(resolve, ms)); }
 }
-

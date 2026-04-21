@@ -6,52 +6,62 @@
   <meta name="theme-color" content="#22D3EE">
   <title>About — MATHIYA</title>
   
-  <meta name="description" content="About Mathisha Angirasa — Systems Builder & Software Engineer.">
-  <meta property="og:title" content="About — MATHIYA">
-  <meta property="og:image" content="https://mathiyass.github.io/MAportfolio/assets/img/og-card.webp">
-  
   <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&f[]=syne@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/global.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/animations.css">
 
   <style>
-    .ascii-art { font-family: var(--font-mono); font-size: 8px; line-height: 1; letter-spacing: 2px; white-space: pre; color: var(--cyan); transition: transform 0.1s ease-out; }
-    .timeline-node { position: relative; padding-left: 48px; margin-bottom: 48px; }
-    .timeline-node::before { content: ""; position: absolute; left: 0; top: 0; bottom: -48px; width: 1px; background: var(--border-0); }
-    .timeline-node:last-child::before { display: none; }
-    .timeline-marker { position: absolute; left: -5px; top: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--bg-base); border: 2px solid var(--cyan); }
-    .value-card { padding: 32px; border: 1px solid var(--border-1); background: var(--bg-subtle); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; border-radius: var(--r-lg); }
+    .about-hero {
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      background: var(--mesh-hero);
+    }
+    .portrait-card {
+      background: var(--mesh-card);
+      border-radius: var(--r-xl);
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 8px;
+      line-height: 1;
+      color: var(--cyan);
+      white-space: pre;
+    }
   </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
-
-  <nav class="nav">
+  <nav class="nav glass">
     <a href="index.html" class="nav-logo">MATHIYA</a>
     <div class="nav-links">
       <a href="index.html" class="nav-link">Home</a>
       <a href="projects.html" class="nav-link">Projects</a>
-      <a href="skills.html" class="nav-link">Skills</a>
+      <a href="about.html" class="nav-link active">About</a>
       <a href="blog.html" class="nav-link">Blog</a>
-      <a href="marketplace.html" class="nav-link">Marketplace</a>
     </div>
-    <a href="contact.html" class="btn btn--primary nav-cta">Get in touch</a>
+    <a href="contact.html" class="btn btn--primary">Get in touch</a>
   </nav>
 
-  <main id="main" class="container" style="padding-top: 160px;">
-    <h1 class="hero-h1">THE <span class="gradient-text">BUILDER</span></h1>
-    
-    <section class="section">
-      <div class="grid-12">
-        <div style="grid-column: span 4;">
-          <pre class="ascii-art" id="ascii-art">
+  <main id="main">
+    <section class="about-hero">
+      <div class="container">
+        <h1 class="hero-h1">About <span class="gradient-text">me.</span></h1>
+        <p style="font-size: 20px; color: var(--text-secondary);">Building software from Sri Lanka.</p>
+      </div>
+    </section>
+
+    <section class="section container grid-12">
+      <div style="grid-column: span 5;">
+        <div class="portrait-card">
 ░▒▓██▓▒░░▒▓██▓▒░░▒▓██▓▒░
 █▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█
 ░▒▓██▓▒░█████▓▒░░▒▓██▓▒░
@@ -63,53 +73,38 @@
 ░▒▓██▓▒░█████▓▒░░▒▓██▓▒░
 █▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█
 ░▒▓██▓▒░░▒▓██▓▒░░▒▓██▓▒░
-          </pre>
         </div>
-        <div style="grid-column: span 8;">
-          <p style="font-size: 20px; color: var(--text-0); margin-bottom: 24px; max-width: 60ch;">
-            Mathisha Angirasa is a Software Engineering Student and founder focused on building industrial-grade systems with editorial-level aesthetics.
-          </p>
-          <p style="color: var(--text-2); margin-bottom: 24px; max-width: 60ch;">
-            Currently based in Colombo, operating globally. Specializing in high-performance cloud architectures, reactive mobile interfaces, and distributed engineering.
-          </p>
-          <div class="flex gap-4">
-            <a href="assets/documents/mathiya-resume.pdf" class="btn btn--secondary">Download Resume</a>
-          </div>
-        </div>
+      </div>
+      <div style="grid-column: span 7;">
+        <p style="font-family: var(--font-head); font-size: 24px; color: var(--text-primary); margin-bottom: 24px;">
+          I am a software engineering student and systems builder focused on the intersection of performance and aesthetics.
+        </p>
+        <p style="margin-bottom: 24px;">
+          Currently pursuing my higher education at <strong>JIAT</strong>, I specialize in <strong>Kotlin Clean Architecture</strong>, <strong>WebGL2</strong>, and <strong>Cloud-native systems</strong>. I believe that software should not only work perfectly but also feel intentional and well-crafted.
+        </p>
+        <p>
+          Beyond code, I am fascinated by digital distribution models and interactive storytelling through technology. This portfolio itself is an experiment in zero-framework engineering.
+        </p>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-label">03 — Core Philosophy</div>
-      <div class="grid-12">
-        <div class="value-card" style="grid-column: span 4;">
-          <h3 style="font-family: var(--font-head);">Precision</h3>
-          <p style="color: var(--text-3); font-size: 14px;">Every pixel, every byte, exactly where it belongs. Zero bloat architecture.</p>
-        </div>
-        <div class="value-card" style="grid-column: span 4;">
-          <h3 style="font-family: var(--font-head);">Velocity</h3>
-          <p style="color: var(--text-3); font-size: 14px;">Ship fast. Iterate faster. Future-proof standards from day one.</p>
-        </div>
-        <div class="value-card" style="grid-column: span 4;">
-          <h3 style="font-family: var(--font-head);">Craft</h3>
-          <p style="color: var(--text-3); font-size: 14px;">Hand-written code. Deep understanding of the full vertical stack.</p>
-        </div>
+    <section class="section container">
+      <div class="card" style="border-left: 3px solid var(--red);">
+        <span class="badge badge--red" style="margin-bottom: 16px;">In Development</span>
+        <h2 style="font-family: var(--font-head); font-size: 32px; margin-bottom: 16px;">MATHIYA Marketplace</h2>
+        <p style="max-width: 800px; color: var(--text-secondary);">
+          Building a native Android ecosystem for developers to distribute high-quality code assets.
+          Focusing on security, speed, and seamless payments.
+        </p>
+        <a href="https://github.com/Mathiyass" class="btn btn--secondary" style="margin-top: 32px;">View on GitHub</a>
       </div>
     </section>
 
   </main>
 
-  <footer class="container" style="padding-block: 64px; border-top: 1px solid var(--border-0);">
-    <div class="flex justify-between items-center">
-      <div>
-        <div class="nav-logo">MATHIYA</div>
-        <p style="font-size: 14px; color: var(--text-3); margin-top: 8px;">© 2025 MATHIYA — Mathisha Angirasa</p>
-      </div>
-      <div class="flex gap-4">
-        <a href="https://github.com/Mathiyass" class="badge">GitHub</a>
-        <a href="#" class="badge">LinkedIn</a>
-      </div>
-    </div>
+  <footer class="container" style="padding-block: 80px; border-top: 1px solid var(--border-subtle);">
+    <div class="nav-logo">MATHIYA</div>
+    <p style="font-size: 14px; color: var(--text-tertiary); margin-top: 12px;">© 2025 MATHIYA — Mathisha Angirasa</p>
   </footer>
 
   <script type="module">
@@ -120,4 +115,3 @@
   </script>
 </body>
 </html>
-

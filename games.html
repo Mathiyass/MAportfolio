@@ -5,129 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#22D3EE">
   <title>Arcade — MATHIYA</title>
-  
   <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&f[]=syne@600,700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/global.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-
   <style>
     .game-viewport {
       width: 100%;
       height: 600px;
       background: var(--bg-muted);
-      border: 1px solid var(--border-1);
-      border-radius: var(--r-xl);
-      position: relative;
+      border-radius: var(--r-lg);
       overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border-subtle);
     }
-    #gameCanvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    .game-list {
+    .game-grid {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 16px;
-      margin-top: 32px;
-    }
-    .game-item {
-      padding: 16px;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-1);
-      border-radius: var(--r-md);
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .game-item.active {
-      border-color: var(--cyan);
-      background: var(--cyan-ghost);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 64px;
     }
   </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
-
-  <nav class="nav">
+  <nav class="nav glass">
     <a href="index.html" class="nav-logo">MATHIYA</a>
     <div class="nav-links">
       <a href="index.html" class="nav-link">Home</a>
       <a href="projects.html" class="nav-link">Projects</a>
-      <a href="skills.html" class="nav-link">Skills</a>
       <a href="games.html" class="nav-link active">Arcade</a>
     </div>
   </nav>
 
   <main id="main" class="container" style="padding-top: 160px; padding-bottom: 120px;">
-    <h1 class="hero-h1">EXPERIMENTAL <span class="gradient-text">ARCADE</span></h1>
-    
+    <h1 class="hero-h1">The <span class="gradient-text">Arcade.</span></h1>
+    <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 48px;">Hand-crafted experimental games built with raw JavaScript.</p>
+
     <div class="game-viewport">
-      <canvas id="gameCanvas" width="800" height="600"></canvas>
-      <div id="game-overlay" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(8,12,20,0.85); flex-direction: column; gap: 24px;">
-        <h2 style="font-family: var(--font-head); font-size: 32px;">Ready to play?</h2>
-        <button id="start-game-btn" class="btn btn--dual">Start Engine</button>
+       <canvas id="gameCanvas" style="width: 100%; height: 100%;"></canvas>
+       <div id="game-overlay" style="position: absolute; inset: 0; background: rgba(8,11,20,0.9); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 24px;">
+         <h2 style="font-family: var(--font-head); font-size: 32px;">Select a system</h2>
+         <p style="color: var(--text-tertiary);">Games are optimized for desktop keyboards.</p>
+       </div>
+    </div>
+
+    <div class="game-grid">
+      <div class="card" data-game="snake" style="border-top: 3px solid var(--cyan);">
+        <h3 style="font-family: var(--font-head);">SNAKE</h3>
+        <p style="font-size: 14px; color: var(--text-tertiary); margin-top: 8px;">The classic reborn with neon signals.</p>
+      </div>
+      <div class="card" data-game="tetris" style="border-top: 3px solid var(--red);">
+        <h3 style="font-family: var(--font-head);">TETRIS</h3>
+        <p style="font-size: 14px; color: var(--text-tertiary); margin-top: 8px;">Order from chaos in high contrast.</p>
+      </div>
+      <div class="card" data-game="invaders" style="border-top: 3px solid var(--dual);">
+        <h3 style="font-family: var(--font-head);">INVADERS</h3>
+        <p style="font-size: 14px; color: var(--text-tertiary); margin-top: 8px;">Protect the system from redundant data.</p>
       </div>
     </div>
-
-    <div class="game-list">
-      <div class="game-item active" data-game="snake">SNAKE</div>
-      <div class="game-item" data-game="tetris">TETRIS</div>
-      <div class="game-item" data-game="2048">2048</div>
-      <div class="game-item" data-game="minesweeper">MINES</div>
-      <div class="game-item" data-game="pong">PONG</div>
-      <div class="game-item" data-game="simon">SIMON</div>
-    </div>
-
   </main>
 
-  <footer class="container" style="padding-block: 64px; border-top: 1px solid var(--border-0);">
-    <div class="flex justify-between items-center">
-      <div>
-        <div class="nav-logo">MATHIYA</div>
-        <p style="font-size: 14px; color: var(--text-3); margin-top: 8px;">© 2025 MATHIYA — Mathisha Angirasa</p>
-      </div>
-    </div>
+  <footer class="container" style="padding-block: 80px; border-top: 1px solid var(--border-subtle);">
+    <div class="nav-logo">MATHIYA</div>
+    <p style="font-size: 14px; color: var(--text-tertiary); margin-top: 12px;">© 2025 MATHIYA — Mathisha Angirasa</p>
   </footer>
 
   <script type="module">
     import { Loader } from './assets/js/core/Loader.js';
     import { Byte } from './assets/js/core/Byte.js';
-    import { SnakeGame } from './assets/js/games/snake.js';
-    
     new Loader();
-    window.addEventListener('loader:complete', () => { 
-      new Byte(); 
-    });
-
-    let currentGame = null;
-    const startBtn = document.getElementById('start-game-btn');
-    const overlay = document.getElementById('game-overlay');
-
-    startBtn.addEventListener('click', () => {
-      overlay.style.display = 'none';
-      if (!currentGame) {
-        currentGame = new SnakeGame('gameCanvas');
-      }
-      currentGame.start();
-    });
-
-    const items = document.querySelectorAll('.game-item');
-    items.forEach(item => {
-      item.addEventListener('click', () => {
-        items.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        // Logic to switch games would go here
-      });
-    });
+    window.addEventListener('loader:complete', () => { new Byte(); });
   </script>
 </body>
 </html>
-
