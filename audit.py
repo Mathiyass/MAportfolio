@@ -11,17 +11,17 @@ def audit_html_file(filepath):
             content = f.read()
             soup = BeautifulSoup(content, 'html.parser')
 
-            # 1. Any page title/nav/heading containing 'MA_Dev Portfolio'
-            if soup.title and 'MA_Dev Portfolio' in soup.title.string:
-                flags.append("Title contains 'MA_Dev Portfolio'")
+            # 1. Any page title/nav/heading containing 'MATHIYA'
+            if soup.title and 'MATHIYA' not in soup.title.string:
+                flags.append("Title missing 'MATHIYA' branding")
 
             for tag in soup.find_all(['nav', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
-                if tag.get_text() and 'MA_Dev Portfolio' in tag.get_text():
-                    flags.append(f"Tag <{tag.name}> contains 'MA_Dev Portfolio'")
+                if 'MA_Dev' in tag.get_text():
+                    flags.append(f"Tag <{tag.name}> contains legacy 'MA_Dev' branding")
 
             # 2. Any instance of 'MA_Dev Solutions (Pvt) Ltd · Sri Lanka'
-            if 'MA_Dev Solutions (Pvt) Ltd · Sri Lanka' in content:
-                flags.append("Contains 'MA_Dev Solutions (Pvt) Ltd · Sri Lanka'")
+            if 'MA_Dev Solutions' in content:
+                flags.append("Contains legacy 'MA_Dev Solutions' string")
 
             # 3. Missing meta og:image, description, canonical
             if not soup.find('meta', property='og:image'):

@@ -22,3 +22,5 @@
 - **Law II:** Standardized copyright.
 - **Law X:** Zero frameworks.
 - **Law XII:** Pure static, zero databases.
+- **Law XIII:** Use all available MCPs for data aggregation and verification.
+- **Law XIV:** Maintain Lighthouse 95+ all metrics.
