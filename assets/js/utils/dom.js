@@ -1,36 +1,20 @@
-export const $ = (selector, context = document) => context.querySelector(selector);
-export const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
-
-export const on = (el, event, handler, options = false) => {
-  el.addEventListener(event, handler, options);
-};
-
-export const once = (el, event, handler) => {
-  el.addEventListener(event, handler, { once: true });
-};
-
-export const createElement = (tag, attrs = {}, children = []) => {
+// dom.js
+export const $ = (selector, parent = document) => parent.querySelector(selector);
+export const $$ = (selector, parent = document) => Array.from(parent.querySelectorAll(selector));
+export const on = (el, event, handler, options) => el?.addEventListener(event, handler, options);
+export const once = (el, event, handler, options) => el?.addEventListener(event, handler, { ...options, once: true });
+export const createElement = (tag, attrs = {}, ...children) => {
   const el = document.createElement(tag);
-  for (const [key, val] of Object.entries(attrs)) {
-    if (key === 'className') el.className = val;
-    else if (key === 'dataset') {
-      for (const [dKey, dVal] of Object.entries(val)) {
-        el.dataset[dKey] = dVal;
-      }
-    } else el.setAttribute(key, val);
-  }
-  for (const child of children) {
-    if (typeof child === 'string') el.appendChild(document.createTextNode(child));
-    else el.appendChild(child);
-  }
+  Object.keys(attrs).forEach(key => {
+    if (key.startsWith('data-')) el.dataset[key.replace('data-', '')] = attrs[key];
+    else if (key === 'className') el.className = attrs[key];
+    else el.setAttribute(key, attrs[key]);
+  });
+  children.forEach(child => el.append(child));
   return el;
 };
-
-export const addStyles = (el, styleObject) => {
-  Object.assign(el.style, styleObject);
-};
-
+export const addStyles = (el, styles) => Object.assign(el.style, styles);
 export const animate = (el, keyframes, options) => {
-  return el.animate(keyframes, options).finished;
+  const animation = el.animate(keyframes, options);
+  return new Promise(resolve => animation.onfinish = resolve);
 };
-
