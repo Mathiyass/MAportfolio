@@ -1,86 +1,110 @@
+/* tokens.css */
 :root {
-  /* BACKGROUNDS — Deep, layered, warm-cool balanced */
-  --bg-base:        #080B14;    /* primary page bg — midnight blue-black */
-  --bg-subtle:      #0C1020;    /* slightly lighter areas */
-  --bg-muted:       #111827;    /* card backgrounds */
-  --bg-elevated:    #1A2236;    /* elevated surfaces, hovered cards */
-  --bg-overlay:     #222D42;    /* modals, tooltips, dropdowns */
-  --bg-glass:       rgba(12,16,32,0.72);  /* glassmorphism surfaces */
-  --bg-glass-light: rgba(26,34,54,0.60);  /* lighter glass */
+  /* COLOUR TOKENS */
+  --bg-base:        #080C14;
+  --bg-subtle:      #0C1120;
+  --bg-muted:       #101827;
+  --bg-elevated:    #192336;
+  --bg-overlay:     #1E2C42;
+  --bg-glass:       rgba(10,14,28,0.75);
+  --bg-glass-hover: rgba(22,32,52,0.65);
 
-  /* CYAN BLUE — PRIMARY ACCENT */
-  --cyan:           #22D3EE;    /* primary accent — sky meets electric */
-  --cyan-light:     #67E8F9;    /* lighter, used for subtle text accents */
-  --cyan-dim:       #0891B2;    /* darker, used for fills */
-  --cyan-ghost:     rgba(34,211,238,0.08);
-  --cyan-subtle:    rgba(34,211,238,0.14);
-  --cyan-border:    rgba(34,211,238,0.22);
-  --cyan-hover:     rgba(34,211,238,0.50);
-  --glow-cyan-s:    0 0 12px rgba(34,211,238,0.35);
-  --glow-cyan-m:    0 0 24px rgba(34,211,238,0.30), 0 0 64px rgba(34,211,238,0.12);
+  /* CYAN BLUE */
+  --cyan:         #22D3EE;
+  --cyan-light:   #67E8F9;
+  --cyan-pale:    #A5F3FC;
+  --cyan-dim:     #0891B2;
+  --cyan-ghost:   rgba(34,211,238,0.07);
+  --cyan-subtle:  rgba(34,211,238,0.12);
+  --cyan-border:  rgba(34,211,238,0.22);
+  --cyan-hover:   rgba(34,211,238,0.45);
+  
+  /* LIGHT RED */
+  --red:          #FB7185;
+  --red-light:    #FDA4AF;
+  --red-pale:     #FECDD3;
+  --red-dim:      #E11D48;
+  --red-ghost:    rgba(251,113,133,0.07);
+  --red-subtle:   rgba(251,113,133,0.12);
+  --red-border:   rgba(251,113,133,0.22);
+  --red-hover:    rgba(251,113,133,0.45);
 
-  /* LIGHT RED — SECONDARY ACCENT */
-  --red:            #FB7185;    /* light red — warm coral, never harsh */
-  --red-light:      #FDA4AF;    /* lighter variant */
-  --red-dim:        #E11D48;    /* darker variant */
-  --red-ghost:      rgba(251,113,133,0.08);
-  --red-subtle:     rgba(251,113,133,0.14);
-  --red-border:     rgba(251,113,133,0.22);
-  --red-hover:      rgba(251,113,133,0.50);
-  --glow-red-s:     0 0 12px rgba(251,113,133,0.35);
-  --glow-red-m:     0 0 24px rgba(251,113,133,0.30), 0 0 64px rgba(251,113,133,0.12);
+  /* GRADIENT MESHES */
+  --mesh-hero: radial-gradient(ellipse 90% 70% at 15% 50%, rgba(34,211,238,0.10) 0%, transparent 65%), radial-gradient(ellipse 60% 80% at 90% 25%, rgba(251,113,133,0.08) 0%, transparent 65%), radial-gradient(ellipse 50% 40% at 55% 100%, rgba(34,211,238,0.05) 0%, transparent 60%), var(--bg-base);
+  --mesh-card: radial-gradient(circle at 0% 0%, rgba(34,211,238,0.07) 0%, transparent 55%), radial-gradient(circle at 100% 100%, rgba(251,113,133,0.06) 0%, transparent 55%), var(--bg-muted);
+  --mesh-section: radial-gradient(ellipse 120% 50% at 50% 0%, rgba(34,211,238,0.05) 0%, transparent 100%), var(--bg-base);
 
-  /* GRADIENT MESH BACKGROUNDS */
-  --mesh-hero: 
-    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(34,211,238,0.10) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 80% at 85% 30%, rgba(251,113,133,0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 50% 90%, rgba(34,211,238,0.05) 0%, transparent 60%),
-    var(--bg-base);
-  --mesh-card: 
-    radial-gradient(circle at 0% 0%, rgba(34,211,238,0.06) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(251,113,133,0.05) 0%, transparent 50%),
-    var(--bg-muted);
-  --mesh-section: 
-    radial-gradient(ellipse 100% 50% at 50% 0%, rgba(34,211,238,0.06) 0%, transparent 100%),
-    var(--bg-base);
+  /* DUAL SIGNATURE */
+  --dual:         linear-gradient(135deg, var(--cyan) 0%, var(--red) 100%);
+  --dual-text:    linear-gradient(135deg, var(--cyan-light), var(--red-light));
+  --dual-soft:    linear-gradient(135deg, var(--cyan-ghost), var(--red-ghost));
 
-  /* DUAL ACCENT GRADIENT */
-  --dual:       linear-gradient(135deg, var(--cyan) 0%, var(--red) 100%);
-  --dual-text:  linear-gradient(135deg, var(--cyan-light), var(--red-light));
+  /* GLOWS */
+  --glow-c-s: 0 0 12px rgba(34,211,238,0.30);
+  --glow-c-m: 0 0 24px rgba(34,211,238,0.28), 0 0 60px rgba(34,211,238,0.10);
+  --glow-c-l: 0 0 48px rgba(34,211,238,0.32), 0 0 120px rgba(34,211,238,0.12), 0 0 240px rgba(34,211,238,0.04);
+  --glow-r-s: 0 0 12px rgba(251,113,133,0.30);
+  --glow-r-m: 0 0 24px rgba(251,113,133,0.28), 0 0 60px rgba(251,113,133,0.10);
+  --glow-dual: 0 0 32px rgba(34,211,238,0.18), 0 0 64px rgba(251,113,133,0.14);
 
-  /* TEXT SCALE */
-  --text-primary:   #F8FAFC;    /* near white */
-  --text-secondary: #94A3B8;    /* slate-400 */
-  --text-tertiary:  #475569;    /* slate-600 */
+  /* TEXT */
+  --text-0: #F8FAFC;
+  --text-1: #CBD5E1;
+  --text-2: #94A3B8;
+  --text-3: #64748B;
+  --text-4: #334155;
 
-  /* TYPOGRAPHY SYSTEM */
+  /* BORDERS */
+  --border-0: rgba(148,163,184,0.06);
+  --border-1: rgba(148,163,184,0.12);
+  --border-2: rgba(148,163,184,0.20);
+  --border-c: rgba(34,211,238,0.22);
+  --border-r: rgba(251,113,133,0.22);
+
+  /* RADIUS */
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-2xl: 32px;
+  --r-full: 9999px;
+
+  /* FONTS */
   --font-display: 'Clash Display', sans-serif;
   --font-head:    'Syne', sans-serif;
   --font-body:    'Satoshi', sans-serif;
   --font-mono:    'Geist Mono', monospace;
   --font-stat:    'Bebas Neue', cursive;
 
-  /* RADIUS SYSTEM */
-  --r-sm:  6px;
-  --r-md:  10px;
-  --r-lg:  16px;
-  --r-xl:  24px;
-  --r-2xl: 32px;
-  --r-full: 9999px;
+  /* SPACING */
+  --s-1: 2px; --s-2: 4px; --s-3: 8px; --s-4: 12px; --s-5: 16px; --s-6: 20px;
+  --s-7: 24px; --s-8: 32px; --s-9: 40px; --s-10: 48px; --s-11: 64px;
+  --s-12: 80px; --s-13: 96px; --s-14: 128px; --s-15: 160px;
+
+  /* LAYOUT */
+  --max-w: 1200px;
+  --gutter: clamp(20px, 3vw, 48px);
+  --section-gap: clamp(96px, 12vw, 160px);
+  --card-gap: 20px;
 
   /* MOTION */
-  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-sharp:  cubic-bezier(0.4, 0, 0.2, 1);
   --dur-fast: 150ms;
-  --dur-mid:  350ms;
+  --dur-mid: 360ms;
   --dur-slow: 600ms;
-  --dur-drama: 1100ms;
+  --dur-epic: 1100ms;
 
   /* Z-INDEX */
+  --z-canvas: -1;
   --z-base: 0;
   --z-card: 10;
+  --z-sticky: 50;
   --z-nav: 100;
   --z-modal: 200;
+  --z-toast: 300;
   --z-loader: 800;
   --z-byte: 950;
   --z-cursor: 9999;
