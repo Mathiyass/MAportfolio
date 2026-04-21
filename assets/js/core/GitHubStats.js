@@ -96,3 +96,4 @@ export class GitHubStats {
     } catch (e) {}
   }
 }
+

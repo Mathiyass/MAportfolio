@@ -193,3 +193,4 @@ class PortfolioData {
 
 // Global instance
 window.portfolioData = new PortfolioData();
+

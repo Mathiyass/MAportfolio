@@ -124,3 +124,4 @@ document.addEventListener('DOMContentLoaded', () => {
     resetBtn.addEventListener('click', resetGame);
     createBoard();
 });
+

@@ -111,3 +111,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (startBtn) startBtn.addEventListener('click', startGame);
 });
+

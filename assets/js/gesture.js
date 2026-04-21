@@ -201,3 +201,4 @@ class MthishaGestureSystem {
 window.addEventListener('load', () => {
     window.AppGestures = new MthishaGestureSystem();
 });
+

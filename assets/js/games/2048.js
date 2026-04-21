@@ -223,3 +223,4 @@ document.addEventListener('DOMContentLoaded', () => {
     createBoard();
     document.addEventListener('keyup', control);
 });
+

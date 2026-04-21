@@ -94,3 +94,4 @@ document.addEventListener('DOMContentLoaded', () => {
     startBtn.addEventListener('click', startGame);
     createGrid();
 });
+

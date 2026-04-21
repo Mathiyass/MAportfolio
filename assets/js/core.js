@@ -233,3 +233,4 @@ class CoreSystem {
 document.addEventListener('DOMContentLoaded', () => {
     window.AppCore = new CoreSystem();
 });
+

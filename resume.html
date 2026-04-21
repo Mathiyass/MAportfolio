@@ -1,174 +1,134 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dual">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>Resume // Mathisha Angirasa</title>
+  <meta name="theme-color" content="#22D3EE">
+  <title>Resume — MATHIYA</title>
   
-  <meta name="description" content="Resume of Mathisha Angirasa - Full-Stack Developer">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&f[]=syne@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/animations.css">
-  
+
   <style>
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
-    
-    .resume-container { background: var(--surface-0); border: 1px solid var(--cyan-border); padding: 48px; position: relative; }
-    .resume-header { border-bottom: 1px solid var(--cyan-border); padding-bottom: 32px; margin-bottom: 32px; display: flex; justify-content: space-between; align-items: flex-end; }
-    
-    .timeline-item { margin-bottom: 32px; }
-    .timeline-title { font-family: var(--font-display); font-size: 20px; color: var(--text-0); }
-    .timeline-meta { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); margin-bottom: 8px; }
-    .timeline-desc { color: var(--text-1); font-size: 14px; }
-    
-    .hex-skill { display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 90px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); background: var(--surface-1); color: var(--cyan); font-family: var(--font-mono); font-size: 10px; flex-direction: column; gap: 4px; transition: all var(--dur-fast); position: relative; border: 1px solid transparent; }
-    .hex-skill::before { content: ""; position: absolute; inset: 1px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); background: var(--surface-0); z-index: -1; }
-    .hex-skill.red::before { background: var(--surface-0); }
-    .hex-skill.red { color: var(--red); }
-    .hex-skill:hover { transform: translateY(-4px); background: var(--cyan); color: var(--void); }
-    .hex-skill.red:hover { background: var(--red); color: var(--void); }
-    .hex-skill:hover::before { display: none; }
-    
-    .print-btn { position: fixed; bottom: 24px; right: 24px; z-index: 1000; box-shadow: var(--glow-cyan); }
-    
-    @media print {
-      body { background: white; color: black; }
-      nav, .print-btn, #canvas-crt, .skip-link, footer { display: none !important; }
-      .resume-container { border: none; padding: 0; box-shadow: none; background: white; }
-      * { color: black !important; text-shadow: none !important; }
-      .timeline-meta { color: #555 !important; }
-      .hex-skill { border: 1px solid #333; background: white !important; color: black !important; }
-      .hex-skill::before { display: none; }
-      a { text-decoration: underline; }
-    }
+    .resume-section { margin-bottom: 64px; }
+    .exp-item { margin-bottom: 40px; }
+    .exp-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--border-0); padding-bottom: 8px; margin-bottom: 16px; }
+    .exp-role { font-family: var(--font-head); font-size: 20px; color: var(--text-0); }
+    .exp-date { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); }
+    .exp-org { color: var(--text-2); font-size: 14px; margin-bottom: 12px; }
+    .exp-desc { color: var(--text-3); font-size: 15px; line-height: 1.6; }
   </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
 
-  <nav id="navbar" role="navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    <div class="nav-center">
-      <a href="index.html" class="nav-link">INDEX</a>
-      <a href="projects.html" class="nav-link">PROJECTS</a>
-      <a href="skills.html" class="nav-link">SKILLS</a>
-      <a href="blog.html" class="nav-link">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link">CONTACT</a>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">MATHIYA</a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="skills.html" class="nav-link">Skills</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="marketplace.html" class="nav-link">Marketplace</a>
     </div>
+    <a href="assets/documents/mathiya-resume.pdf" class="btn btn--secondary nav-cta">Download PDF</a>
   </nav>
 
-  <div class="scroll-container">
-    <main id="main" role="main" style="padding-top: 120px; padding-bottom: 64px;">
-      <section class="container">
-        <div class="resume-container" data-reveal>
-          <div class="resume-header">
-            <div>
-              <h1 style="font-family: var(--font-display); font-size: 48px; margin-bottom: 8px;">MATHISHA ANGIRASA</h1>
-              <p style="font-family: var(--font-mono); font-size: 14px; color: var(--text-1); letter-spacing: 0.1em;">SOFTWARE ENGINEER // SYSTEMS BUILDER</p>
+  <main id="main" class="container" style="padding-top: 160px; padding-bottom: 120px;">
+    <h1 class="hero-h1">PROFESSIONAL <span class="gradient-text">RESUME</span></h1>
+    
+    <div class="grid-12">
+      <div style="grid-column: span 8;">
+        
+        <section class="resume-section">
+          <div class="section-label">01 — Experience</div>
+          <div style="margin-top: 48px;">
+            <div class="exp-item">
+              <div class="exp-header">
+                <h3 class="exp-role">Founder & Lead Engineer</h3>
+                <span class="exp-date">2024 - PRESENT</span>
+              </div>
+              <div class="exp-org">MATHIYA Solutions (Pvt) Ltd</div>
+              <p class="exp-desc">
+                Architecting and building the MATHIYA Marketplace ecosystem. Managing full-stack delivery of native Android clients and serverless backends using Supabase.
+              </p>
             </div>
-            <div style="text-align: right; font-family: var(--font-mono); font-size: 12px; color: var(--text-1); line-height: 1.8;">
-              mathiyass.github.io<br>
-              github.com/Mathiyass<br>
-              Sri Lanka
+            <div class="exp-item">
+              <div class="exp-header">
+                <h3 class="exp-role">Systems Architect</h3>
+                <span class="exp-date">2023 - 2024</span>
+              </div>
+              <div class="exp-org">Freelance / Indie Dev</div>
+              <p class="exp-desc">
+                Designed and deployed custom e-commerce solutions and interactive WebGL experiences for international clients.
+              </p>
             </div>
           </div>
+        </section>
 
-          <div class="grid-12">
-            <div style="grid-column: span 8;">
-              
-              <div class="section-label">[ 01 ] EXPERIENCE</div>
-              <div class="timeline-item">
-                <div class="timeline-title">Founder & Architect</div>
-                <div class="timeline-meta">MA_Dev Solutions (Pvt) Ltd // 2024 - Present</div>
-                <ul class="timeline-desc" style="list-style: square inside; padding-left: 16px; display: flex; flex-direction: column; gap: 8px;">
-                  <li>Architecting and building MA_Dev Marketplace, a comprehensive platform for developers to distribute software components.</li>
-                  <li>Developing native Android applications using Kotlin, clean architecture (MVVM), and coroutines.</li>
-                  <li>Designing robust backend infrastructures leveraging Supabase, Firebase FCM, and secure payment integrations.</li>
-                </ul>
+        <section class="resume-section">
+          <div class="section-label">02 — Education</div>
+          <div style="margin-top: 48px;">
+            <div class="exp-item">
+              <div class="exp-header">
+                <h3 class="exp-role">Software Engineering (HHDPII)</h3>
+                <span class="exp-date">2023 - PRESENT</span>
               </div>
-
-              <div class="section-label" style="margin-top: 48px;">[ 02 ] EDUCATION</div>
-              <div class="timeline-item">
-                <div class="timeline-title">Software Engineering Diploma</div>
-                <div class="timeline-meta" style="color: var(--red);">JIAT (HHDPII) // 2023 - Present</div>
-                <p class="timeline-desc">Intensive coursework in Java, advanced OOP, algorithms, and system design.</p>
-              </div>
-
-              <div class="section-label" style="margin-top: 48px;">[ 03 ] KEY PROJECTS</div>
-              <div class="timeline-item">
-                <div class="timeline-title">Killer Quebes</div>
-                <div class="timeline-meta">C++ / TL-Engine</div>
-                <p class="timeline-desc">A highly optimized 3D survival shooter utilizing custom collision detection algorithms and entity management within a proprietary engine.</p>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-title">MAportfolio v7.0</div>
-                <div class="timeline-meta">Vanilla JS / WebGL2 / GLSL</div>
-                <p class="timeline-desc">A custom-built, framework-free portfolio featuring a bespoke WebGL2 engine, 12 original shaders, and zero dependencies.</p>
-              </div>
-
+              <div class="exp-org">JIAT, Sri Lanka</div>
+              <p class="exp-desc">
+                Intensive study of data structures, algorithms, systems architecture, and professional software development practices.
+              </p>
             </div>
+          </div>
+        </section>
 
-            <div style="grid-column: span 4;">
-              <div class="section-label">[ 04 ] SKILLS</div>
-              
-              <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px;">
-                <div class="hex-skill"><span>100%</span>Kotlin</div>
-                <div class="hex-skill"><span>95%</span>Supabase</div>
-                <div class="hex-skill red"><span>90%</span>C++</div>
-                <div class="hex-skill"><span>95%</span>WebGL2</div>
-                <div class="hex-skill"><span>100%</span>Vanilla JS</div>
-                <div class="hex-skill red"><span>85%</span>Python</div>
-              </div>
+      </div>
 
-              <div class="section-label">[ 05 ] DOMAINS</div>
-              <ul style="font-family: var(--font-mono); font-size: 12px; color: var(--text-1); display: flex; flex-direction: column; gap: 12px;">
-                <li>> Native Android (SDK)</li>
-                <li>> High-Performance WebGL</li>
-                <li>> API Architecture</li>
-                <li>> Real-time Systems (FCM)</li>
-                <li>> Shader Programming</li>
-                <li>> Game Development</li>
-              </ul>
+      <div style="grid-column: span 4;">
+        <div class="card" style="position: sticky; top: 120px;">
+          <h4 class="section-label">Technical Mastery</h4>
+          <div class="flex flex-col gap-6" style="margin-top: 32px;">
+            <div>
+              <p style="font-size: 12px; color: var(--text-3); margin-bottom: 8px;">SYSTEMS</p>
+              <div class="progress-bar"><div class="fill" style="width: 90%;"></div></div>
+            </div>
+            <div>
+              <p style="font-size: 12px; color: var(--text-3); margin-bottom: 8px;">MOBILE</p>
+              <div class="progress-bar"><div class="fill" style="width: 95%;"></div></div>
+            </div>
+            <div>
+              <p style="font-size: 12px; color: var(--text-3); margin-bottom: 8px;">WEBGL</p>
+              <div class="progress-bar"><div class="fill" style="width: 85%;"></div></div>
             </div>
           </div>
         </div>
-      </section>
-    </main>
-  </div>
+      </div>
+    </div>
+  </main>
 
-  <button class="btn btn--dual print-btn" onclick="window.print()">DOWNLOAD PDF</button>
+  <footer class="container" style="padding-block: 64px; border-top: 1px solid var(--border-0);">
+    <div class="flex justify-between items-center">
+      <div>
+        <div class="nav-logo">MATHIYA</div>
+        <p style="font-size: 14px; color: var(--text-3); margin-top: 8px;">© 2025 MATHIYA — Mathisha Angirasa</p>
+      </div>
+    </div>
+  </footer>
 
   <script type="module">
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { AudioSystem } from './assets/js/core/Audio.js';
-    import { PageTransitions } from './assets/js/core/PageTransitions.js';
-    import { Konami } from './assets/js/core/Konami.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
-
-    new ThemeSystem();
-    new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-    new AudioSystem();
-    new PageTransitions();
-    new Konami();
+    import { Loader } from './assets/js/core/Loader.js';
+    import { Byte } from './assets/js/core/Byte.js';
+    new Loader();
+    window.addEventListener('loader:complete', () => { new Byte(); });
   </script>
 </body>
 </html>
+

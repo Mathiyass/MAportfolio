@@ -2,48 +2,47 @@ import { $, on, createElement, addStyles } from '../utils/dom.js';
 
 export class AudioSystem {
   constructor() {
-    this.audioEnabled = localStorage.getItem('madev_audio') === 'true';
+    this.audioEnabled = localStorage.getItem('mathiya_audio') === 'true';
     this.ctx = null;
     this.masterGain = null;
     this.ambientOsc1 = null;
     this.ambientOsc2 = null;
     this.filter = null;
     
-    this._createUI();
-    this._bindEvents();
+    this.createUI();
+    this.bindEvents();
     
     if (this.audioEnabled) {
-      this._initAudio();
+      this.initAudio();
     }
   }
 
-  _createUI() {
+  createUI() {
     this.ui = createElement('button', { className: 'audio-toggle' });
     addStyles(this.ui, {
       position: 'fixed',
-      bottom: '24px',
-      right: '24px',
+      bottom: 'var(--s-8)',
+      left: 'var(--s-8)',
       fontFamily: 'var(--font-mono)',
       fontSize: '10px',
-      color: this.audioEnabled ? 'var(--cyan)' : 'var(--text-2)',
+      color: this.audioEnabled ? 'var(--cyan)' : 'var(--text-3)',
       background: 'transparent',
       border: 'none',
       cursor: 'pointer',
-      zIndex: '100',
+      zIndex: 'var(--z-nav)',
       letterSpacing: '0.2em'
     });
-    this._updateUI();
+    this.updateUI();
     document.body.appendChild(this.ui);
   }
 
-  _updateUI() {
-    this.ui.textContent = this.audioEnabled ? '◉ SIGNAL' : '○ SIGNAL';
-    this.ui.style.color = this.audioEnabled ? 'var(--cyan)' : 'var(--text-2)';
+  updateUI() {
+    this.ui.textContent = this.audioEnabled ? 'AUDIO: ENABLED' : 'AUDIO: MUTED';
+    this.ui.style.color = this.audioEnabled ? 'var(--cyan)' : 'var(--text-3)';
   }
 
-  async _initAudio() {
+  async initAudio() {
     if (this.ctx) return;
-    
     this.ctx = new (window.AudioContext || window.webkitAudioContext)();
     
     this.masterGain = this.ctx.createGain();
@@ -52,53 +51,38 @@ export class AudioSystem {
 
     this.filter = this.ctx.createBiquadFilter();
     this.filter.type = 'lowpass';
-    this.filter.frequency.value = 100;
+    this.filter.frequency.value = 120;
     this.filter.connect(this.masterGain);
 
     this.ambientOsc1 = this.ctx.createOscillator();
     this.ambientOsc1.type = 'sine';
-    this.ambientOsc1.frequency.value = 40;
+    this.ambientOsc1.frequency.value = 42;
     this.ambientOsc1.connect(this.filter);
 
-    this.ambientOsc2 = this.ctx.createOscillator();
-    this.ambientOsc2.type = 'sine';
-    this.ambientOsc2.frequency.value = 80;
-    this.ambientOsc2.connect(this.filter);
-
     this.ambientOsc1.start();
-    this.ambientOsc2.start();
-
-    // Fade in
-    this.masterGain.gain.setTargetAtTime(0.015, this.ctx.currentTime, 0.8);
+    this.masterGain.gain.setTargetAtTime(0.02, this.ctx.currentTime, 1.2);
   }
 
-  _bindEvents() {
+  bindEvents() {
     on(this.ui, 'click', async () => {
       this.audioEnabled = !this.audioEnabled;
-      localStorage.setItem('madev_audio', this.audioEnabled.toString());
-      this._updateUI();
+      localStorage.setItem('mathiya_audio', this.audioEnabled.toString());
+      this.updateUI();
 
       if (this.audioEnabled) {
-        await this._initAudio();
+        await this.initAudio();
         if (this.ctx.state === 'suspended') await this.ctx.resume();
-        this.masterGain.gain.setTargetAtTime(0.015, this.ctx.currentTime, 0.8);
+        this.masterGain.gain.setTargetAtTime(0.02, this.ctx.currentTime, 1.2);
       } else {
         if (this.masterGain) {
-          this.masterGain.gain.setTargetAtTime(0, this.ctx.currentTime, 0.1);
+          this.masterGain.gain.setTargetAtTime(0, this.ctx.currentTime, 0.2);
         }
       }
     });
 
-    // Hover click
     on(document, 'mouseover', (e) => {
-      if (this.audioEnabled && e.target.closest('a, button, [data-interactive]')) {
+      if (this.audioEnabled && e.target.closest('a, button, .card')) {
         this.playHover();
-      }
-    });
-
-    on(document, 'click', (e) => {
-      if (this.audioEnabled && e.target.closest('a, button, [data-interactive]')) {
-        this.playClick();
       }
     });
   }
@@ -108,30 +92,13 @@ export class AudioSystem {
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
     osc.type = 'sine';
-    osc.frequency.value = 800;
-    gain.gain.value = 0.04;
-    
+    osc.frequency.value = 600;
+    gain.gain.value = 0.03;
     osc.connect(gain);
     gain.connect(this.ctx.destination);
-    
     osc.start();
-    gain.gain.exponentialRampToValueAtTime(0.00001, this.ctx.currentTime + 0.006);
-    osc.stop(this.ctx.currentTime + 0.01);
-  }
-
-  playClick() {
-    if (!this.ctx || !this.audioEnabled) return;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-    osc.type = 'sine';
-    osc.frequency.value = 1200;
-    gain.gain.value = 0.06;
-    
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
-    
-    osc.start();
-    gain.gain.exponentialRampToValueAtTime(0.00001, this.ctx.currentTime + 0.01);
-    osc.stop(this.ctx.currentTime + 0.015);
+    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.02);
+    osc.stop(this.ctx.currentTime + 0.03);
   }
 }
+

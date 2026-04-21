@@ -1,530 +1,193 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dual">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>Mathisha Angirasa // MA_Dev Solutions</title>
+  <meta name="theme-color" content="#22D3EE">
+  <title>MATHIYA — Systems Builder & Software Engineer</title>
   
-  <meta name="description" content="Mathisha Angirasa - Software Engineering Student & Full-Stack Developer at MA_Dev Solutions (Pvt) Ltd, Sri Lanka.">
-  <meta property="og:title" content="Mathisha Angirasa // MA_Dev Solutions">
-  <meta property="og:description" content="Portfolio of Mathisha Angirasa - Builder of systems, WebGL experiences, and MA_Dev Marketplace.">
+  <meta name="description" content="Portfolio of Mathisha Angirasa — Systems. Products. Experiences. Built with zero frameworks.">
+  <meta property="og:title" content="MATHIYA — Systems Builder">
+  <meta property="og:description" content="I build things that matter. Systems. Products. Experiences.">
   <meta property="og:image" content="https://mathiyass.github.io/MAportfolio/assets/img/og-card.webp">
   <meta property="og:url" content="https://mathiyass.github.io/MAportfolio/">
   <meta property="og:type" content="website">
-  
   <meta name="twitter:card" content="summary_large_image">
   
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&f[]=syne@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/animations.css">
-  
+
   <style>
-    /* Inline critical styles */
-    .hero { min-height: 100svh; position: relative; overflow: hidden; display: flex; align-items: center; }
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav--transparent { background: transparent; backdrop-filter: none; border-color: transparent; }
-    .nav--hidden { transform: translateY(-100%); }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
-    .hero-h1 { font-family: var(--font-display); font-size: clamp(44px, 7.5vw, 108px); font-weight: 900; line-height: 0.86; letter-spacing: -0.02em; color: var(--text-0); margin-bottom: var(--s-16); }
-    .hero-h1 span.dual { background: linear-gradient(135deg, var(--cyan), var(--red)); -webkit-background-clip: text; color: transparent; display: inline-block; }
-    .top-badge { position: absolute; top: 90px; left: var(--gutter); }
-    .corner-dec { position: absolute; width: 24px; height: 24px; border: 2px solid var(--cyan-border); opacity: 0.5; pointer-events: none; }
-    .c-tl { top: 80px; left: var(--gutter); border-right: none; border-bottom: none; }
-    .c-tr { top: 80px; right: var(--gutter); border-left: none; border-bottom: none; }
-    .c-bl { bottom: 24px; left: var(--gutter); border-right: none; border-top: none; }
-    .c-br { bottom: 24px; right: var(--gutter); border-left: none; border-top: none; }
-    
-    .tech-marquee-wrapper { position: relative; overflow: hidden; white-space: nowrap; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
-    .tech-marquee { display: inline-flex; gap: 32px; animation: scrollLeft 40s linear infinite; }
-    .tech-marquee.reverse { animation: scrollRight 50s linear infinite; }
-    .tech-item { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--text-1); }
-    .tech-item svg { width: 20px; height: 20px; fill: currentColor; }
-    .tech-item:hover { color: var(--cyan); }
-    .tech-item:hover svg { filter: drop-shadow(0 0 8px var(--cyan)); }
-    @keyframes scrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    @keyframes scrollRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-
-    .featured-grid { grid-template-rows: auto auto; }
-    .card-a { grid-column: 1 / 9; height: 400px; }
-    .card-b { grid-column: 9 / 13; height: 400px; }
-    .card-c { grid-column: 1 / 7; height: 280px; }
-    .card-d { grid-column: 7 / 13; height: 280px; }
-    @media (max-width: 1023px) { .card-a, .card-b, .card-c, .card-d { grid-column: 1 / 13; } }
-    
-    .bg-img { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: -1; }
-    .card-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, var(--surface-0) 0%, transparent 100%); z-index: 0; }
-    .card-content { position: relative; z-index: 1; padding: var(--s-32); height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
+    /* Page specific overrides */
+    .hero-h1 { 
+      font-family: var(--font-display); 
+      font-size: clamp(48px, 10vw, 120px); 
+      line-height: 0.9; 
+      letter-spacing: -0.04em; 
+      margin-bottom: var(--s-8);
+      color: var(--text-0);
+    }
+    .hero-h1 span { display: block; }
+    .hero-p { 
+      max-width: 600px; 
+      font-size: 18px; 
+      color: var(--text-2); 
+      margin-bottom: var(--s-10); 
+    }
+    .stats-bar {
+      background: var(--bg-subtle);
+      border-block: 1px solid var(--border-0);
+      padding-block: var(--s-8);
+      overflow: hidden;
+    }
+    .marquee-content {
+      display: flex;
+      gap: 64px;
+      white-space: nowrap;
+      animation: marquee 30s linear infinite;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
   </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Mathisha Angirasa",
-    "jobTitle": "Software Engineering Student",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "MA_Dev Solutions (Pvt) Ltd"
-    },
-    "url": "https://mathiyass.github.io/MAportfolio/"
-  }
-  </script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <canvas id="canvas-noise" style="position:fixed; inset:0; z-index:-3; opacity:0.4; pointer-events:none; width:100vw; height:100vh;"></canvas>
-  <canvas id="canvas-hex" style="position:fixed; inset:0; z-index:-2; opacity:0.15; pointer-events:auto; width:100vw; height:100vh; mix-blend-mode: screen;"></canvas>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
-
-  <nav id="navbar" class="nav--transparent" role="navigation" aria-label="Main Navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    
-    <div class="nav-center">
-      <a href="index.html" class="nav-link active" aria-current="page">INDEX</a>
-      <a href="projects.html" class="nav-link">PROJECTS</a>
-      <a href="skills.html" class="nav-link">SKILLS</a>
-      <a href="blog.html" class="nav-link">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link">CONTACT</a>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">MATHIYA</a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="skills.html" class="nav-link">Skills</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="marketplace.html" class="nav-link">Marketplace</a>
     </div>
-
-    <div style="display: flex; align-items: center; gap: var(--s-16);">
-      <button class="btn btn--red" style="padding: 8px 16px; height: 36px; border-color: var(--red-border);" onclick="window.location.href='contact.html'">HIRE ME</button>
-      <div id="live-clock" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); width: 80px; text-align: right; display: none;">00:00:00</div>
-      <button class="hamburger" aria-label="Toggle Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      </button>
-    </div>
+    <a href="contact.html" class="btn btn--primary nav-cta">Get in touch</a>
   </nav>
 
-  <div class="mobile-menu" style="display: none; position: fixed; inset: 0; background: var(--void); z-index: 999; flex-direction: column; justify-content: center; align-items: center; gap: 32px;">
-    <!-- Filled via JS if needed, simple implementation below -->
-    <a href="index.html" style="font-family: var(--font-display); font-size: 32px; color: var(--cyan);">INDEX</a>
-    <a href="projects.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">PROJECTS</a>
-    <a href="skills.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">SKILLS</a>
-    <a href="blog.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">BLOG</a>
-    <a href="marketplace.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">MARKETPLACE</a>
-    <a href="contact.html" style="font-family: var(--font-display); font-size: 32px; color: var(--text-0);">CONTACT</a>
-  </div>
-
-  <div class="scroll-container">
-    <main id="main" role="main">
-      <section class="hero container">
-        <div class="corner-dec c-tl"></div>
-        <div class="corner-dec c-tr"></div>
-        <div class="corner-dec c-bl"></div>
-        <div class="corner-dec c-br"></div>
-        
-        <div class="top-badge badge" data-reveal>
-          [SYS: ONLINE // LK // MADEV v7.0]<span class="terminal-blink">▋</span>
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <div class="availability-chip">Available for new projects</div>
+        <h1 class="hero-h1">
+          <span>BUILDING</span>
+          <span>DIGITAL <span class="gradient-text">FUTURE</span></span>
+        </h1>
+        <p class="hero-p">
+          Systems Builder specializing in high-performance cloud architectures, reactive interfaces, and distributed engineering. Transforming abstract complexity into luminous digital experiences.
+        </p>
+        <div class="flex gap-4">
+          <a href="projects.html" class="btn btn--dual">View work</a>
+          <a href="contact.html" class="btn btn--secondary">Contact</a>
         </div>
+      </div>
+    </section>
 
-        <div style="position: absolute; right: -80px; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: var(--font-mono); font-size: 9px; color: var(--text-2); letter-spacing: 0.2em;">EST. 2023 // MA_DEV SOLUTIONS // SRI LANKA</div>
+    <div class="stats-bar">
+      <div class="marquee-content">
+        <div class="badge badge--cyan">500+ CONTRIBUTIONS</div>
+        <div class="badge badge--red">20+ OPEN SOURCE</div>
+        <div class="badge badge--cyan">12k LINES WRITTEN</div>
+        <div class="badge badge--red">6 PLAYABLE GAMES</div>
+        <!-- Repeat for marquee -->
+        <div class="badge badge--cyan">500+ CONTRIBUTIONS</div>
+        <div class="badge badge--red">20+ OPEN SOURCE</div>
+        <div class="badge badge--cyan">12k LINES WRITTEN</div>
+        <div class="badge badge--red">6 PLAYABLE GAMES</div>
+      </div>
+    </div>
 
-        <div style="width: 100%;">
-          <div class="badge" style="margin-bottom: var(--s-24);" data-reveal data-reveal-dir="left">OPEN TO OPPORTUNITIES</div>
-          
-          <h1 class="hero-h1" id="typewriter-h1" data-reveal data-reveal-clip>MATHISHA ANGIRASA</h1>
-          
-          <div style="font-family: var(--font-mono); font-size: 13px; color: var(--text-1); letter-spacing: 0.22em; margin-bottom: var(--s-48);" data-reveal>
-            <span style="color: var(--white);">SOFTWARE ENGINEER</span> <span style="color: var(--cyan);">//</span> 
-            <span style="color: var(--white);">SRI LANKA</span> <span style="color: var(--cyan);">//</span> 
-            <span style="color: var(--white);">JIAT HHDPII</span> <span style="color: var(--cyan);">//</span> 
-            <span style="color: var(--white);">MA_DEV SOLUTIONS (PVT) LTD</span>
-          </div>
-
-          <div style="display: flex; gap: var(--s-16); flex-wrap: wrap;" class="stagger" data-reveal>
-            <a href="projects.html" class="btn btn--dual">VIEW WORK →</a>
-            <a href="contact.html" class="btn btn--ghost btn--red">CONTACT</a>
-          </div>
-
-          <div style="display: flex; gap: var(--s-32); margin-top: var(--s-32);" class="stagger" data-reveal>
-            <div class="stat-block">
-              <span class="value" id="stat-repos">--</span>
-              <span class="label">REPOS</span>
-            </div>
-            <div style="width: 1px; background: var(--cyan-border);"></div>
-            <div class="stat-block">
-              <span class="value" id="stat-stars">--</span>
-              <span class="label">STARS</span>
-            </div>
-            <div style="width: 1px; background: var(--cyan-border);"></div>
-            <div class="stat-block">
-              <span class="value" id="stat-followers">--</span>
-              <span class="label">FOLLOWERS</span>
-            </div>
-          </div>
-        </div>
-
-        <div id="scroll-ind" style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px;">
-          <span style="font-family: var(--font-mono); font-size: 10px; color: var(--text-2); letter-spacing: 0.4em; writing-mode: vertical-rl;">SCROLL</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" class="float"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
-      </section>
-
-      <section class="section container">
-        <div class="section-label" data-reveal>[ 01 ] SELECTED WORK</div>
-        <div class="grid-12 featured-grid stagger">
-          
-          <a href="marketplace.html" class="card card-a" data-reveal data-reveal-dir="left">
-            <div class="bg-img" style="background-image: url('assets/img/project-marketplace.webp');"></div>
-            <div class="card-overlay"></div>
-            <canvas id="holo-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0; pointer-events: none; transition: opacity 0.3s;"></canvas>
-            <div class="card-content" style="width: 60%;">
-              <h2 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 8px;">MA_Dev Marketplace</h2>
-              <p style="color: var(--text-1); margin-bottom: 16px;">Flagship product. Steam for developers.</p>
-              <div style="display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;">
-                <span class="tag">KOTLIN</span><span class="tag">SUPABASE</span><span class="tag">FIREBASE</span><span class="tag">ANDROID</span>
-              </div>
-              <div style="display: flex; gap: 24px; margin-bottom: 24px;">
-                <div class="stat-block"><span class="value" style="font-size: 32px;" id="count-assets">0</span><span class="label">ASSETS</span></div>
-                <div class="stat-block"><span class="value" style="font-size: 32px;" id="count-devs">0</span><span class="label">DEVS</span></div>
-                <div class="stat-block"><span class="value" style="font-size: 32px;" id="count-builds">0</span><span class="label">BUILDS</span></div>
-              </div>
-              <div><span class="btn btn--ghost" style="padding: 8px 16px;">OPEN PROJECT →</span></div>
-            </div>
-          </a>
-
-          <a href="projects.html" class="card card-b" data-reveal data-reveal-dir="right">
-            <div class="bg-img" style="background-image: url('assets/img/project-game.webp');"></div>
-            <div class="card-overlay" style="background: linear-gradient(180deg, transparent 0%, var(--surface-0) 100%);"></div>
-            <div class="card-content">
-              <h2 style="font-family: var(--font-display); font-size: 24px;">Killer Quebes</h2>
-              <p style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">3D Survival Shooter built with TL-Engine</p>
-              <div style="display: flex; gap: 8px; margin-bottom: 16px;">
-                <span class="tag">C++</span><span class="tag">TL-ENGINE</span>
-              </div>
-              <div><span class="btn btn--ghost" style="padding: 8px 16px;">VIEW →</span></div>
-            </div>
-          </a>
-
-          <a href="about.html" class="card card-c" data-reveal data-reveal-dir="left">
-            <div class="card-content">
-              <h2 style="font-family: var(--font-display); font-size: 24px;">MAportfolio v7.0</h2>
-              <p style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">The terminal you are browsing right now.</p>
-              <div style="display: flex; gap: 8px;">
-                <span class="tag">WEBGL2</span><span class="tag">VANILLA JS</span><span class="tag">12 SHADERS</span>
+    <section class="section">
+      <div class="container">
+        <div class="section-label">01 — Selected Work</div>
+        <div class="grid-12">
+          <!-- Large Card -->
+          <div class="card card--featured" style="grid-column: span 8;">
+            <div style="height: 400px; background: url('assets/img/marketplace.webp') center/cover;"></div>
+            <div style="padding: 32px;">
+              <div class="badge badge--live">In Development</div>
+              <h3 style="font-family: var(--font-head); font-size: 32px; margin-top: 16px;">MATHIYA Marketplace</h3>
+              <p style="color: var(--text-2); margin-top: 8px;">Native Android M-Commerce platform for developers. Buy and sell AI models, scripts, and CLI tools.</p>
+              <div class="flex gap-2" style="margin-top: 24px;">
+                <span class="badge">Kotlin</span>
+                <span class="badge">Supabase</span>
+                <span class="badge">Android</span>
               </div>
             </div>
-          </a>
-
-          <a href="resume.html" class="card card-d card--red" data-reveal data-reveal-dir="right">
-            <div class="card-content">
-              <h2 style="font-family: var(--font-display); font-size: 24px;">JIAT / HHDPII</h2>
-              <p style="color: var(--text-1); font-size: 14px; margin-bottom: 16px;">Academic Coursework & Assignments</p>
-              <div style="display: flex; gap: 8px;">
-                <span class="tag tag--red">JAVA</span><span class="tag tag--red">SPRING</span><span class="tag tag--red">ALGORITHMS</span>
-              </div>
-            </div>
-          </a>
-
-        </div>
-        <div style="text-align: center; margin-top: var(--s-48);" data-reveal>
-          <a href="projects.html" class="btn btn--ghost">ALL PROJECTS →</a>
-        </div>
-      </section>
-
-      <section class="section" style="overflow: hidden; border-top: 1px solid var(--cyan-border); border-bottom: 1px solid var(--cyan-border); background: var(--surface-1);">
-        <div class="container">
-          <div class="section-label" data-reveal>[ 02 ] TECHNOLOGY STACK</div>
-        </div>
-        <div class="tech-marquee-wrapper" style="margin-bottom: 24px;" data-reveal>
-          <div class="tech-marquee">
-            <div class="tech-marquee">
-              <!-- Replicated twice for seamless loop -->
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Kotlin</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Python</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> C++</span>
-              <span class="tech-item"><svg><path d="M2 12l10-10 10 10-10 10z"/></svg> JavaScript</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Android SDK</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Supabase</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Firebase</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> PostgreSQL</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> WebGL2</span>
-              <!-- Repeat for loop -->
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Kotlin</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Python</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> C++</span>
-              <span class="tech-item"><svg><path d="M2 12l10-10 10 10-10 10z"/></svg> JavaScript</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Android SDK</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Supabase</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Firebase</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> PostgreSQL</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> WebGL2</span>
+          </div>
+          <!-- Small Card -->
+          <div class="card" style="grid-column: span 4;">
+            <h3 style="font-family: var(--font-head); font-size: 24px;">Killer Quebes</h3>
+            <p style="color: var(--text-2); margin-top: 8px; font-size: 15px;">3D arcade shooter using TL-Engine. Hand-coded collision and particle systems.</p>
+            <div class="flex gap-2" style="margin-top: 24px;">
+              <span class="badge">C++</span>
+              <span class="badge">Game Dev</span>
             </div>
           </div>
         </div>
-        <div class="tech-marquee-wrapper" data-reveal>
-          <div class="tech-marquee reverse">
-            <div class="tech-marquee reverse">
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Docker</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> GitHub Actions</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> TL-Engine</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Figma</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Playwright</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> WebXR</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> REST APIs</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Linux</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Git</span>
-              <!-- Repeat -->
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Docker</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> GitHub Actions</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> TL-Engine</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> Figma</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Playwright</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> WebXR</span>
-              <span class="tech-item"><svg><circle cx="12" cy="12" r="10"/></svg> REST APIs</span>
-              <span class="tech-item"><svg><rect x="2" y="2" width="20" height="20"/></svg> Linux</span>
-              <span class="tech-item"><svg><path d="M12 2L2 22h20L12 2z"/></svg> Git</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section container">
-        <div class="card" style="padding: 48px; border-radius: 0;" data-reveal>
-          <div class="grid-12" style="text-align: center;">
-            <div class="stat-block" style="grid-column: span 4;">
-              <span class="value" id="gh-repos">--</span>
-              <span class="label">REPOS</span>
+    <section class="section" style="background: var(--bg-subtle);">
+      <div class="container">
+        <div class="section-label">02 — Engineering Stack</div>
+        <div class="grid-12">
+          <div class="card" style="grid-column: span 4;">
+            <h4 class="section-label">Backend</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="badge">Go</span><span class="badge">Rust</span><span class="badge">Node.js</span><span class="badge">PostgreSQL</span>
             </div>
-            <div class="stat-block" style="grid-column: span 4;">
-              <span class="value" id="gh-stars">--</span>
-              <span class="label">STARS</span>
+          </div>
+          <div class="card" style="grid-column: span 4;">
+            <h4 class="section-label">Frontend</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="badge">Vanilla JS</span><span class="badge">WebGL2</span><span class="badge">GLSL</span><span class="badge">CSS3</span>
             </div>
-            <div class="stat-block" style="grid-column: span 4;">
-              <span class="value" id="gh-followers">--</span>
-              <span class="label">FOLLOWERS</span>
+          </div>
+          <div class="card" style="grid-column: span 4;">
+            <h4 class="section-label">Infra</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="badge">Docker</span><span class="badge">GitHub Actions</span><span class="badge">Linux</span>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden;">
-        <canvas id="footer-circuit" style="position: absolute; top: 0; left: 0; width: 100%; height: 80px; opacity: 0.2; pointer-events: none; z-index: 0;"></canvas>
-        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
-          <div class="grid-12">
-            <div style="grid-column: span 4;">
-              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
-              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
-            </div>
-            <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 8px;">
-              <a href="index.html" class="nav-link" style="align-self: flex-start;">INDEX</a>
-              <a href="projects.html" class="nav-link" style="align-self: flex-start;">PROJECTS</a>
-              <a href="about.html" class="nav-link" style="align-self: flex-start;">ABOUT</a>
-              <a href="contact.html" class="nav-link" style="align-self: flex-start;">CONTACT</a>
-            </div>
-            <div style="grid-column: span 4; display: flex; gap: 16px; align-items: flex-start; justify-content: flex-end;">
-              <a href="https://github.com/Mathiyass" target="_blank" aria-label="GitHub" class="glow-cyan" style="color: var(--cyan);">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              </a>
-              <a href="#" aria-label="LinkedIn" class="glow-cyan" style="color: var(--cyan);">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-              </a>
-            </div>
-          </div>
-          <div style="margin-top: 64px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--text-2);">
-            <span>© 2026 Mathisha Angirasa — MA_Dev Solutions (Pvt) Ltd</span>
-            <span>BUILT WITH RAW WEBGL2 + VANILLA JS // ZERO FRAMEWORKS</span>
-          </div>
+    <footer class="container" style="padding-block: 64px; border-top: 1px solid var(--border-0);">
+      <div class="flex justify-between items-center">
+        <div>
+          <div class="nav-logo">MATHIYA</div>
+          <p style="font-size: 14px; color: var(--text-3); margin-top: 8px;">© 2025 MATHIYA — Mathisha Angirasa</p>
         </div>
-      </footer>
-    </main>
-  </div>
+        <div class="flex gap-4">
+          <a href="https://github.com/Mathiyass" class="badge">GitHub</a>
+          <a href="#" class="badge">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+  </main>
 
   <script type="module">
-    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
-    import { SHADER_01_HEXGRID, SHADER_02_NOISE_FIELD, SHADER_03_CIRCUIT, SHADER_08_GLITCH } from './assets/js/engine/shaders.js';
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { TypeWriter } from './assets/js/core/TypeWriter.js';
-    import { CountUp } from './assets/js/core/CountUp.js';
-    import { GitHubStats } from './assets/js/core/GitHubStats.js';
-    import { AudioSystem } from './assets/js/core/Audio.js';
-    import { ProgressBar } from './assets/js/core/ProgressBar.js';
-    import { PageTransitions } from './assets/js/core/PageTransitions.js';
-    import { Konami } from './assets/js/core/Konami.js';
-    import { MatrixRain } from './assets/js/core/MatrixRain.js';
-    import { toast } from './assets/js/core/Toast.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
-    import { LazyLoad } from './assets/js/core/LazyLoad.js';
-    import { $ } from './assets/js/utils/dom.js';
-
-    // Init Theme
-    new ThemeSystem();
+    import { Loader } from './assets/js/core/Loader.js';
+    import { Byte } from './assets/js/core/Byte.js';
     
-    // Engine & Shaders
-    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!isReduced) {
-      // Noise bg
-      const cNoise = document.getElementById('canvas-noise');
-      const eNoise = new WebGLEngine(cNoise);
-      eNoise.compileProgram('noise', SHADER_02_NOISE_FIELD.vert, SHADER_02_NOISE_FIELD.frag);
-      eNoise.createFullscreenQuad('fullscreen');
-      eNoise.render('noise');
-
-      // Hex grid
-      const cHex = document.getElementById('canvas-hex');
-      const eHex = new WebGLEngine(cHex);
-      eHex.compileProgram('hex', SHADER_01_HEXGRID.vert, SHADER_01_HEXGRID.frag);
-      eHex.createFullscreenQuad('fullscreen');
-      eHex.render('hex');
-
-      // Footer circuit
-      const cCirc = document.getElementById('footer-circuit');
-      const eCirc = new WebGLEngine(cCirc);
-      eCirc.compileProgram('circ', SHADER_03_CIRCUIT.vert, SHADER_03_CIRCUIT.frag);
-      eCirc.createFullscreenQuad('fullscreen');
-      eCirc.render('circ');
-      
-      // Easter Egg 04: Hero Click Burst
-      cHex.addEventListener('click', (e) => {
-        // Mock burst logic, ideally implemented in webgl or canvas2d overlay
-        toast('BURST DEPLOYED', 'info', 1000);
-      });
-    }
-
-    // Core modules
-    const cursor = new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-    new LazyLoad();
-    
-    const h1Phrases = ["MATHISHA ANGIRASA", "FULL-STACK ENGINEER", "MA_DEV SOLUTIONS", "SYSTEMS BUILDER"];
-    const h1El = document.getElementById('typewriter-h1');
-    new TypeWriter(h1El, h1Phrases);
-
-    h1El.addEventListener('tw:switch', () => {
-      // Highlight dual words
-      const text = h1El.textContent;
-      const words = text.split(' ');
-      if (words.length > 1) {
-        words[0] = `<span class="dual">${words[0]}</span>`;
-        words[words.length - 1] = `<span class="dual">${words[words.length - 1]}</span>`;
-      } else {
-        words[0] = `<span class="dual">${words[0]}</span>`;
-      }
-      h1El.innerHTML = words.join(' ') + '<span class="terminal-blink">█</span>';
+    // Init components
+    new Loader();
+    window.addEventListener('loader:complete', () => {
+      new Byte();
     });
-
-    const ghStats = new GitHubStats();
-    ghStats.getStats().then(stats => {
-      document.getElementById('stat-repos').textContent = stats.publicRepos;
-      document.getElementById('stat-stars').textContent = stats.totalStars;
-      document.getElementById('stat-followers').textContent = stats.followers;
-
-      document.getElementById('gh-repos').textContent = stats.publicRepos;
-      document.getElementById('gh-stars').textContent = stats.totalStars;
-      document.getElementById('gh-followers').textContent = stats.followers;
-
-      new CountUp(document.getElementById('gh-repos'), stats.publicRepos);
-      new CountUp(document.getElementById('gh-stars'), stats.totalStars);
-      new CountUp(document.getElementById('gh-followers'), stats.followers);
-    });
-
-    // Mock countups for project card
-    new CountUp(document.getElementById('count-assets'), 450);
-    new CountUp(document.getElementById('count-devs'), 1200);
-    new CountUp(document.getElementById('count-builds'), 89);
-
-    new AudioSystem();
-    new ProgressBar();
-    new PageTransitions();
-    
-    const matrix = new MatrixRain();
-    const konami = new Konami();
-
-    window.addEventListener('konami', () => {
-      matrix.setMode('dual');
-      matrix.setOpacity(0.8);
-      toast("SIGNAL COMPROMISED — MATRIX MODE ENGAGED", 'error', 3000);
-      document.title = ">>> SIGNAL OVERRIDE <<<";
-      setTimeout(() => {
-        matrix.setOpacity(0.04);
-        document.title = "Mathisha Angirasa // MA_Dev Solutions";
-      }, 3000);
-    });
-
-    window.addEventListener('madev-code', () => {
-      toast("CREDENTIALS VERIFIED", 'success');
-      document.title = ">>> MA_DEV SOLUTIONS <<<";
-      setTimeout(() => document.title = "Mathisha Angirasa // MA_Dev Solutions", 3000);
-    });
-
-    window.addEventListener('sudo-code', () => {
-      console.log("%c ███╗   ███╗ █████╗      ██████╗ ███████╗██╗   ██╗\n%c ████╗ ████║██╔══██╗     ██╔══██╗██╔════╝██║   ██║\n%c ██╔████╔██║███████║     ██║  ██║█████╗  ██║   ██║\n%c ██║╚██╔╝██║██╔══██║     ██║  ██║██╔══╝  ╚██╗ ██╔╝\n%c ██║ ╚═╝ ██║██║  ██║     ██████╔╝███████╗ ╚████╔╝\n%c ╚═╝     ╚═╝╚═╝  ╚═╝     ╚═════╝ ╚══════╝  ╚═══╝", "color:#00E5FF", "color:#00E5FF", "color:#00E5FF", "color:#00E5FF", "color:#00E5FF", "color:#00E5FF");
-      console.log("Hey developer 👾 → github.com/Mathiyass");
-      toast("SUDO MODE UNLOCKED", 'success');
-    });
-
-    // Nav logic
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 80) nav.classList.remove('nav--transparent');
-      else nav.classList.add('nav--transparent');
-      
-      if (window.scrollY > 120 && window.__scrollDir === 1) nav.classList.add('nav--hidden');
-      else nav.classList.remove('nav--hidden');
-    });
-
-    window.addEventListener('scroll:progress', e => window.__scrollDir = e.detail.direction);
-
-    // Live clock
-    const clock = document.getElementById('live-clock');
-    clock.style.display = 'block';
-    setInterval(() => {
-      const d = new Date();
-      clock.textContent = d.toLocaleTimeString('en-US', { hour12: false });
-    }, 1000);
-
-    // Easter Egg 05: Cursor color cycle
-    setTimeout(() => { cursor.setMode('red'); toast('SIGNAL WARMING UP', 'info', 2000); }, 45000);
-    setTimeout(() => { cursor.setMode('dual'); }, 90000);
-    setTimeout(() => { cursor.setMode('cyan'); }, 180000);
-    
-    // Idle screensaver
-    let idleTimer;
-    const resetIdle = () => {
-      clearTimeout(idleTimer);
-      if (matrix.active) {
-        matrix.stop();
-        document.title = "Mathisha Angirasa // MA_Dev Solutions";
-      }
-      idleTimer = setTimeout(() => {
-        matrix.start();
-        matrix.setOpacity(0.25);
-        document.title = "[ IDLE // MA_DEV PORTAL ]";
-      }, 60000);
-    };
-    window.addEventListener('mousemove', resetIdle);
-    window.addEventListener('keydown', resetIdle);
-    resetIdle();
-
-    window.sudo = (cmd) => {
-      if (cmd === 'stats') ghStats.getStats().then(console.table);
-      else if (cmd === 'hire') window.location.href = 'contact.html';
-      else if (cmd === 'konami') window.dispatchEvent(new CustomEvent('konami'));
-      else if (cmd === 'matrix') { matrix.start(); matrix.setOpacity(1.0); setTimeout(()=>matrix.stop(), 10000); }
-      else if (cmd === 'help') console.table({ stats: 'Show stats', hire: 'Contact', konami: 'Trigger Konami', matrix: 'Matrix mode', signal: 'Swap colors', whereami: 'Location' });
-      else if (cmd === 'whereami') console.log("MA_Dev Portfolio // mathiyass.github.io // Sri Lanka");
-      else if (cmd === 'signal') { document.documentElement.dataset.theme = 'red'; setTimeout(()=>document.documentElement.dataset.theme = 'dual', 3000); }
-    };
   </script>
 </body>
 </html>
+

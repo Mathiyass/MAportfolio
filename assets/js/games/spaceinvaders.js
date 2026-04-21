@@ -306,3 +306,4 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.font = '20px Orbitron';
     ctx.fillText("Ready Pilot?", canvas.width/2 - 60, canvas.height/2);
 });
+

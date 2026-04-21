@@ -131,3 +131,4 @@ document.addEventListener('DOMContentLoaded', function () {
     // Start particle animation
     createSkillParticles();
 });
+

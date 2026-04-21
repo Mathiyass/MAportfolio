@@ -1,248 +1,105 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dual">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>Blog // Mathisha Angirasa</title>
+  <meta name="theme-color" content="#22D3EE">
+  <title>Blog — MATHIYA</title>
   
-  <meta name="description" content="Technical blog and transmissions by Mathisha Angirasa">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&f[]=syne@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/animations.css">
-  
+
   <style>
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
-    
-    .filter-bar { display: flex; gap: 16px; margin-bottom: 48px; flex-wrap: wrap; }
-    .filter-btn { font-family: var(--font-mono); font-size: 12px; color: var(--text-1); border: 1px solid var(--cyan-border); padding: 8px 16px; cursor: pointer; transition: all var(--dur-fast); background: var(--surface-1); display: flex; align-items: center; gap: 8px; }
-    .filter-btn:hover { border-color: var(--cyan); color: var(--cyan); }
-    .filter-btn.active { border-color: var(--cyan); color: var(--cyan); box-shadow: var(--glow-cyan); background: rgba(0,229,255,0.1); }
-    .filter-btn .close-icon { display: none; width: 12px; height: 12px; stroke: var(--red); }
-    .filter-btn.active .close-icon { display: block; }
-    
-    .masonry { column-count: 2; column-gap: 24px; }
-    @media (max-width: 768px) { .masonry { column-count: 1; } }
-    
-    .blog-card { break-inside: avoid; margin-bottom: 24px; padding: 32px; background: var(--surface-0); border: 1px solid var(--cyan-border); transition: all 0.3s var(--ease-expo); display: block; position: relative; }
-    .blog-card:hover { transform: translateY(-4px); border-color: var(--cyan-hot); box-shadow: var(--glow-cyan); }
-    .blog-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--red)); transform: scaleX(0); transform-origin: left; transition: transform 350ms var(--ease-expo); }
-    .blog-card:hover::before { transform: scaleX(1); }
-    
-    .b-meta { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; margin-bottom: 16px; }
-    .b-date { color: var(--cyan); }
-    .b-cat { color: var(--red); }
-    
-    .b-title { font-family: var(--font-display); font-size: 24px; margin-bottom: 16px; color: var(--text-0); }
-    .b-excerpt { color: var(--text-1); font-size: 15px; margin-bottom: 24px; line-height: 1.6; }
-    .b-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--cyan-border); padding-top: 16px; font-family: var(--font-mono); font-size: 10px; color: var(--text-2); }
-    
-    .featured { column-span: all; display: flex; gap: 48px; align-items: center; }
-    .f-img { width: 50%; height: 320px; background-size: cover; background-position: center; border: 1px solid var(--cyan-border); }
-    .f-content { width: 50%; }
-    @media (max-width: 1024px) { .featured { flex-direction: column; gap: 24px; } .f-img, .f-content { width: 100%; } }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--card-gap);
+    }
+    .post-card {
+      grid-column: span 6;
+      padding: 0;
+    }
+    @media (max-width: 768px) {
+      .post-card { grid-column: span 12; }
+    }
+    .post-img {
+      height: 240px;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border-0);
+    }
+    .post-content { padding: 32px; }
   </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <canvas id="canvas-stream" style="position:fixed; inset:0; z-index:-3; opacity:0.1; pointer-events:none; width:100vw; height:100vh;"></canvas>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
-
-  <nav id="navbar" role="navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    
-    <div class="nav-center">
-      <a href="index.html" class="nav-link">INDEX</a>
-      <a href="projects.html" class="nav-link">PROJECTS</a>
-      <a href="skills.html" class="nav-link">SKILLS</a>
-      <a href="blog.html" class="nav-link active">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link">CONTACT</a>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">MATHIYA</a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="skills.html" class="nav-link">Skills</a>
+      <a href="blog.html" class="nav-link active">Blog</a>
+      <a href="marketplace.html" class="nav-link">Marketplace</a>
     </div>
-
-    <div style="display: flex; align-items: center; gap: var(--s-16);">
-      <button class="btn btn--red" style="padding: 8px 16px; height: 36px; border-color: var(--red-border);" onclick="window.location.href='contact.html'">HIRE ME</button>
-      <button class="hamburger" aria-label="Toggle Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      </button>
-    </div>
+    <a href="contact.html" class="btn btn--primary nav-cta">Get in touch</a>
   </nav>
 
-  <div class="scroll-container">
-    <main id="main" role="main" style="padding-top: 120px;">
+  <main id="main" class="container" style="padding-top: 160px;">
+    <h1 class="hero-h1">INSIGHTS <span class="gradient-text">& LOGS</span></h1>
+    
+    <div class="blog-grid" style="margin-top: 64px;">
       
-      <section class="container">
-        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); margin-bottom: 48px;" data-reveal data-reveal-clip>TRANSMISSIONS <span style="color: var(--cyan);">//</span> LOGS</h1>
-        
-        <div class="filter-bar" data-reveal>
-          <button class="filter-btn active" data-filter="all">
-            ALL
-            <svg class="close-icon" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-          </button>
-          <button class="filter-btn" data-filter="architecture">
-            ARCHITECTURE
-            <svg class="close-icon" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-          </button>
-          <button class="filter-btn" data-filter="webgl">
-            WEBGL
-            <svg class="close-icon" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-          </button>
-          <button class="filter-btn" data-filter="systems">
-            SYSTEMS
-            <svg class="close-icon" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-          </button>
+      <article class="card post-card">
+        <div class="post-img" style="background: url('assets/img/blog-featured.webp') center/cover;"></div>
+        <div class="post-content">
+          <div class="section-label">21 APR 2026</div>
+          <h2 style="font-family: var(--font-head); font-size: 28px; margin-top: 16px;">Building the MATHIYA Marketplace Ecosystem</h2>
+          <p style="color: var(--text-2); margin-top: 12px;">A deep dive into the architecture behind the flagship MATHIYA Marketplace. How Kotlin, Supabase, and Firebase FCM work in tandem.</p>
+          <a href="blog-post.html" class="btn btn--secondary" style="margin-top: 24px;">Read article</a>
         </div>
+      </article>
 
-        <div class="masonry">
-          
-          <!-- Featured -->
-          <a href="#" class="blog-card featured filter-item" data-category="architecture systems" data-reveal>
-            <div class="f-img" style="background-image: url('assets/img/blog-featured.webp');"></div>
-            <div class="f-content">
-              <div class="b-meta">
-                <span class="b-date">APR 03, 2026</span>
-                <span class="b-cat">ARCHITECTURE</span>
-              </div>
-              <h2 class="b-title" style="font-size: 32px;">Building the MA_Dev Marketplace Ecosystem</h2>
-              <p class="b-excerpt">A deep dive into the architecture behind the flagship MA_Dev Marketplace. How Kotlin, Supabase, and Firebase FCM work in tandem to deliver a seamless developer experience with real-time updates and secure transactions.</p>
-              <div class="b-footer">
-                <span>READ TIME: <span data-words="1200">6</span> MIN</span>
-                <span>READ MORE →</span>
-              </div>
-            </div>
-          </a>
-
-          <!-- Standard Cards -->
-          <a href="#" class="blog-card filter-item" data-category="webgl" data-reveal>
-            <div class="b-meta"><span class="b-date">MAR 15, 2026</span><span class="b-cat">WEBGL</span></div>
-            <h2 class="b-title">Raw GLSL: Why I Abandoned Three.js</h2>
-            <p class="b-excerpt">Writing 12 custom shaders from scratch using pure WebGL2 and vanilla JS. An exploration of performance, control, and the beauty of math over abstraction layers.</p>
-            <div class="b-footer">
-              <span>READ TIME: <span data-words="850">4</span> MIN</span>
-              <span>READ MORE →</span>
-            </div>
-          </a>
-
-          <a href="#" class="blog-card filter-item" data-category="systems" data-reveal>
-            <div class="b-meta"><span class="b-date">FEB 28, 2026</span><span class="b-cat">SYSTEMS</span></div>
-            <h2 class="b-title">Collision Detection in C++ / TL-Engine</h2>
-            <p class="b-excerpt">Optimizing AABB and Sphere collision for the Killer Quebes 3D shooter. Strategies for maintaining 60fps while handling hundreds of active entities.</p>
-            <div class="b-footer">
-              <span>READ TIME: <span data-words="1500">7</span> MIN</span>
-              <span>READ MORE →</span>
-            </div>
-          </a>
-
-          <a href="#" class="blog-card filter-item" data-category="architecture" data-reveal>
-            <div class="b-meta"><span class="b-date">JAN 10, 2026</span><span class="b-cat">ARCHITECTURE</span></div>
-            <h2 class="b-title">Clean MVVM in Native Android</h2>
-            <p class="b-excerpt">Structuring large-scale Kotlin codebases for maintainability. My approach to Repository pattern, Flows, and dependency injection without Hilt overhead.</p>
-            <div class="b-footer">
-              <span>READ TIME: <span data-words="950">5</span> MIN</span>
-              <span>READ MORE →</span>
-            </div>
-          </a>
-
-          <a href="#" class="blog-card filter-item" data-category="systems" data-reveal>
-            <div class="b-meta"><span class="b-date">DEC 05, 2025</span><span class="b-cat">SYSTEMS</span></div>
-            <h2 class="b-title">Zero Frameworks: The MAportfolio Manifesto</h2>
-            <p class="b-excerpt">Building a highly interactive, animated, WebGL-powered portfolio with 0 bytes of external CSS or JS libraries. A case study in web fundamentals.</p>
-            <div class="b-footer">
-              <span>READ TIME: <span data-words="600">3</span> MIN</span>
-              <span>READ MORE →</span>
-            </div>
-          </a>
-
+      <article class="card post-card">
+        <div class="post-img"></div>
+        <div class="post-content">
+          <div class="section-label">15 APR 2026</div>
+          <h2 style="font-family: var(--font-head); font-size: 28px; margin-top: 16px;">Zero-Framework WebGL Engine</h2>
+          <p style="color: var(--text-2); margin-top: 12px;">Why I chose raw WebGL2 over Three.js for my latest portfolio version. Optimizing for the 95+ Lighthouse score.</p>
+          <a href="blog-post.html" class="btn btn--secondary" style="margin-top: 24px;">Read article</a>
         </div>
+      </article>
 
-        <div id="empty-state" style="display: none; text-align: center; padding: 64px; font-family: var(--font-mono); color: var(--text-2); font-size: 14px;">
-          [ NO TRANSMISSIONS FOUND FOR THIS FREQUENCY ]
-        </div>
+    </div>
+  </main>
 
-      </section>
-
-      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden; margin-top: 64px;">
-        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
-          <div class="grid-12">
-            <div style="grid-column: span 4;">
-              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
-              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </main>
-  </div>
+  <footer class="container" style="padding-block: 64px; border-top: 1px solid var(--border-0);">
+    <div class="flex justify-between items-center">
+      <div>
+        <div class="nav-logo">MATHIYA</div>
+        <p style="font-size: 14px; color: var(--text-3); margin-top: 8px;">© 2025 MATHIYA — Mathisha Angirasa</p>
+      </div>
+      <div class="flex gap-4">
+        <a href="https://github.com/Mathiyass" class="badge">GitHub</a>
+        <a href="#" class="badge">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
 
   <script type="module">
-    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
-    import { SHADER_04_DATA_STREAM } from './assets/js/engine/shaders.js';
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { AudioSystem } from './assets/js/core/Audio.js';
-    import { PageTransitions } from './assets/js/core/PageTransitions.js';
-    import { Konami } from './assets/js/core/Konami.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
-
-    new ThemeSystem();
-    new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-    new AudioSystem();
-    new PageTransitions();
-    new Konami();
-
-    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!isReduced) {
-      const cStream = document.getElementById('canvas-stream');
-      const eStream = new WebGLEngine(cStream);
-      eStream.compileProgram('stream', SHADER_04_DATA_STREAM.vert, SHADER_04_DATA_STREAM.frag);
-      eStream.createFullscreenQuad('fullscreen');
-      eStream.render('stream');
-    }
-
-    // Filtering logic
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const items = document.querySelectorAll('.filter-item');
-    const emptyState = document.getElementById('empty-state');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        const filter = btn.dataset.filter;
-        let visibleCount = 0;
-
-        items.forEach(item => {
-          if (filter === 'all' || item.dataset.category.includes(filter)) {
-            item.style.display = '';
-            visibleCount++;
-          } else {
-            item.style.display = 'none';
-          }
-        });
-
-        emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
-      });
-    });
-
+    import { Loader } from './assets/js/core/Loader.js';
+    import { Byte } from './assets/js/core/Byte.js';
+    new Loader();
+    window.addEventListener('loader:complete', () => { new Byte(); });
   </script>
 </body>
 </html>
+

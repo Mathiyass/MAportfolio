@@ -56,3 +56,4 @@ window.AppAuth = new AdminAuth();
 
 // Immediately check auth on script load
 window.AppAuth.checkAuth();
+

@@ -1,63 +1,69 @@
+/* MODERN RESET */
 *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    /* Absolute Law VIII: Zero Radius Everywhere */
-    border-radius: var(--radius-none) !important;
-    outline-color: var(--color-primary);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    font-family: var(--font-mono);
-    font-size: var(--font-size-base);
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-primary) var(--color-bg);
+html {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  scroll-behavior: smooth;
+  height: 100%;
 }
 
-::-webkit-scrollbar {
-    width: 6px;
+body {
+  min-height: 100%;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-base);
+  color: var(--text-1);
+  overflow-x: hidden;
 }
 
-::-webkit-scrollbar-track {
-    background: var(--color-bg);
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
 }
 
-::-webkit-scrollbar-thumb {
-    background: var(--color-primary);
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
-    cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
 }
 
 button {
-    background: none;
-    border: none;
-    font-family: inherit;
-    cursor: pointer;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
 }
 
-img, video {
-    max-width: 100%;
-    display: block;
+/* Skip link for A11y */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--cyan);
+  color: var(--bg-base);
+  padding: 10px 20px;
+  z-index: 10000;
+  transition: top var(--dur-fast);
 }
 
-section {
-    position: relative;
-    padding: 2rem;
+.skip-link:focus {
+  top: 0;
 }
 
-/* Custom Selection */
-::selection {
-    background: var(--color-selection);
-    color: var(--color-primary);
-}

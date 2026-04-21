@@ -33,3 +33,4 @@ export const addStyles = (el, styleObject) => {
 export const animate = (el, keyframes, options) => {
   return el.animate(keyframes, options).finished;
 };
+

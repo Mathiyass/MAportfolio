@@ -1,312 +1,123 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dual">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>About // Mathisha Angirasa</title>
+  <meta name="theme-color" content="#22D3EE">
+  <title>About — MATHIYA</title>
   
-  <meta name="description" content="About Mathisha Angirasa - Software Engineering Student & Full-Stack Developer">
-  <meta property="og:title" content="About // Mathisha Angirasa">
-  <meta property="og:image" content="https://mathiyass.github.io/MAportfolio/assets/img/about-bg.webp">
+  <meta name="description" content="About Mathisha Angirasa — Systems Builder & Software Engineer.">
+  <meta property="og:title" content="About — MATHIYA">
+  <meta property="og:image" content="https://mathiyass.github.io/MAportfolio/assets/img/og-card.webp">
   
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&f[]=syne@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/animations.css">
-  
+
   <style>
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
-    
     .ascii-art { font-family: var(--font-mono); font-size: 8px; line-height: 1; letter-spacing: 2px; white-space: pre; color: var(--cyan); transition: transform 0.1s ease-out; }
-    .ascii-art span:nth-child(even) { color: var(--red); }
-    
     .timeline-node { position: relative; padding-left: 48px; margin-bottom: 48px; }
-    .timeline-node::before { content: ""; position: absolute; left: 0; top: 0; bottom: -48px; width: 1px; background: linear-gradient(180deg, var(--cyan), var(--red)); }
+    .timeline-node::before { content: ""; position: absolute; left: 0; top: 0; bottom: -48px; width: 1px; background: var(--border-0); }
     .timeline-node:last-child::before { display: none; }
-    .timeline-marker { position: absolute; left: -5px; top: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--void); border: 2px solid var(--cyan); }
-    .timeline-node.red-node .timeline-marker { border-color: var(--red); }
-    
-    .value-card { padding: 32px; border: 1px solid var(--cyan-border); background: var(--surface-0); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
-    .value-card svg { width: 48px; height: 48px; stroke: var(--cyan); }
-    .value-card.red-val { border-color: var(--red-border); }
-    .value-card.red-val svg { stroke: var(--red); }
-    
-    mark.cyan { background: transparent; color: var(--cyan); font-weight: 700; text-shadow: 0 0 8px rgba(0,229,255,0.3); }
-    mark.red { background: transparent; color: var(--red); font-weight: 700; text-shadow: 0 0 8px rgba(255,77,109,0.3); }
+    .timeline-marker { position: absolute; left: -5px; top: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--bg-base); border: 2px solid var(--cyan); }
+    .value-card { padding: 32px; border: 1px solid var(--border-1); background: var(--bg-subtle); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; border-radius: var(--r-lg); }
   </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <canvas id="canvas-particles" style="position:fixed; inset:0; z-index:-2; width:100vw; height:100vh; mix-blend-mode: screen; pointer-events:auto;"></canvas>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
-
-  <nav id="navbar" role="navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    
-    <div class="nav-center">
-      <a href="index.html" class="nav-link">INDEX</a>
-      <a href="projects.html" class="nav-link">PROJECTS</a>
-      <a href="skills.html" class="nav-link">SKILLS</a>
-      <a href="blog.html" class="nav-link">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link">CONTACT</a>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">MATHIYA</a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="skills.html" class="nav-link">Skills</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="marketplace.html" class="nav-link">Marketplace</a>
     </div>
-
-    <div style="display: flex; align-items: center; gap: var(--s-16);">
-      <button class="btn btn--red" style="padding: 8px 16px; height: 36px; border-color: var(--red-border);" onclick="window.location.href='contact.html'">HIRE ME</button>
-      <button class="hamburger" aria-label="Toggle Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      </button>
-    </div>
+    <a href="contact.html" class="btn btn--primary nav-cta">Get in touch</a>
   </nav>
 
-  <div class="scroll-container">
-    <main id="main" role="main" style="padding-top: 120px;">
-      
-      <section class="container" style="min-height: 50vh; display: flex; flex-direction: column; justify-content: center;">
-        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px);" data-reveal data-reveal-clip>ABOUT <span style="color: var(--cyan);">//</span> MATHISHA ANGIRASA</h1>
-      </section>
-
-      <section class="section container">
-        <div class="grid-12">
-          
-          <!-- ASCII Art Portrait -->
-          <div style="grid-column: span 4;" class="ascii-wrapper" data-reveal data-reveal-dir="left">
-            <pre class="ascii-art" id="ascii-art">
-<span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span>
-<span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span>
-<span>░▒▓█</span><span>█▓▒░</span><span>████</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span>
-<span>█▓▒░</span><span>░███</span><span>████</span><span>███░</span><span>█▓▒░</span><span>░▒▓█</span>
-<span>░▒▓█</span><span>████</span><span>████</span><span>████</span><span>░▒▓█</span><span>█▓▒░</span>
-<span>█▓▒░</span><span>████</span><span>████</span><span>████</span><span>█▓▒░</span><span>░▒▓█</span>
-<span>░▒▓█</span><span>████</span><span>████</span><span>████</span><span>░▒▓█</span><span>█▓▒░</span>
-<span>█▓▒░</span><span>░███</span><span>████</span><span>███░</span><span>█▓▒░</span><span>░▒▓█</span>
-<span>░▒▓█</span><span>█▓▒░</span><span>████</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span>
-<span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span>
-<span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span><span>░▒▓█</span><span>█▓▒░</span>
-            </pre>
-          </div>
-
-          <!-- Bio -->
-          <div style="grid-column: span 8;" data-reveal data-reveal-dir="right">
-            <h2 id="bio-tw" style="font-family: var(--font-mono); font-size: 24px; color: var(--cyan); margin-bottom: 24px; height: 32px;"></h2>
-            <p style="font-size: 18px; margin-bottom: 24px; max-width: 66ch;">
-              I am a Software Engineering Student at JIAT (HHDPII) and the founder of MA_Dev Solutions (Pvt) Ltd in Sri Lanka. I <mark class="red">build</mark> robust applications, high-performance web experiences, and scalable systems.
-            </p>
-            <p style="font-size: 18px; margin-bottom: 24px; max-width: 66ch;">
-              My expertise spans across mobile and web platforms. I specialize in <mark class="cyan">Kotlin</mark> and <mark class="cyan">Android SDK</mark> for native mobile apps, and <mark class="cyan">WebGL2</mark> with <mark class="cyan">Vanilla JS</mark> for immersive web experiences. For backends, I architect solutions using <mark class="cyan">Supabase</mark> and <mark class="cyan">Firebase</mark>.
-            </p>
-            <p style="font-size: 18px; max-width: 66ch;">
-              I recently <mark class="red">launched</mark> the MA_Dev Marketplace, an ecosystem designed to empower developers. I believe in writing code that is as performant as it is beautiful. No compromises.
-            </p>
-          </div>
-
+  <main id="main" class="container" style="padding-top: 160px;">
+    <h1 class="hero-h1">THE <span class="gradient-text">BUILDER</span></h1>
+    
+    <section class="section">
+      <div class="grid-12">
+        <div style="grid-column: span 4;">
+          <pre class="ascii-art" id="ascii-art">
+░▒▓██▓▒░░▒▓██▓▒░░▒▓██▓▒░
+█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█
+░▒▓██▓▒░█████▓▒░░▒▓██▓▒░
+█▓▒░░███████████░█▓▒░░▒▓█
+░▒▓██████████████░▒▓██▓▒░
+█▓▒░███████████████▓▒░░▒▓█
+░▒▓██████████████░▒▓██▓▒░
+█▓▒░░███████████░█▓▒░░▒▓█
+░▒▓██▓▒░█████▓▒░░▒▓██▓▒░
+█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█
+░▒▓██▓▒░░▒▓██▓▒░░▒▓██▓▒░
+          </pre>
         </div>
-      </section>
-
-      <!-- Currently Building -->
-      <section class="section container">
-        <div class="card card--red" style="border-left: 2px solid var(--red); padding: 48px;" data-reveal>
-          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--red); letter-spacing: 0.2em; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
-            <div style="width: 8px; height: 8px; background: var(--red); border-radius: 50%; animation: neonPulseRed 2s infinite;"></div>
-            ▶ CURRENTLY BUILDING
-          </div>
-          <h3 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 16px;">MA_Dev Marketplace</h3>
-          <p style="color: var(--text-1); margin-bottom: 24px;">Kotlin · Clean MVVM · Supabase · Firebase FCM · PayHere · Dark Terminal UI</p>
-          <div style="display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap;">
-            <span class="tag tag--red">IN DEVELOPMENT</span>
-            <span class="tag">ANDROID</span>
-            <span class="tag">SUPABASE BACKEND</span>
-          </div>
-          <a href="marketplace.html" class="btn btn--dual">VIEW FLAGSHIP →</a>
-        </div>
-      </section>
-
-      <!-- Timeline & Values -->
-      <section class="section container">
-        <div class="grid-12">
-          
-          <div style="grid-column: span 6;">
-            <div class="section-label" data-reveal>[ 03 ] TIMELINE</div>
-            <div style="padding-left: 16px;">
-              <div class="timeline-node" data-reveal data-reveal-dir="right">
-                <div class="timeline-marker"></div>
-                <div class="card" style="padding: 24px;">
-                  <div style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); margin-bottom: 8px;">2024 - PRESENT</div>
-                  <h4 style="font-family: var(--font-display); font-size: 20px; margin-bottom: 8px;">Founder & Architect</h4>
-                  <p style="color: var(--text-1); font-size: 14px;">MA_Dev Solutions (Pvt) Ltd. Building the MA_Dev Marketplace ecosystem.</p>
-                </div>
-              </div>
-
-              <div class="timeline-node red-node" data-reveal data-reveal-dir="right">
-                <div class="timeline-marker"></div>
-                <div class="card card--red" style="padding: 24px;">
-                  <div style="font-family: var(--font-mono); font-size: 12px; color: var(--red); margin-bottom: 8px;">2023 - PRESENT</div>
-                  <h4 style="font-family: var(--font-display); font-size: 20px; margin-bottom: 8px;">Software Engineering Student</h4>
-                  <p style="color: var(--text-1); font-size: 14px;">JIAT (HHDPII). Focusing on algorithms, systems design, and advanced OOP.</p>
-                </div>
-              </div>
-
-              <div class="timeline-node" data-reveal data-reveal-dir="right">
-                <div class="timeline-marker"></div>
-                <div class="card" style="padding: 24px;">
-                  <div style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); margin-bottom: 8px;">2023</div>
-                  <h4 style="font-family: var(--font-display); font-size: 20px; margin-bottom: 8px;">First Systems Deployed</h4>
-                  <p style="color: var(--text-1); font-size: 14px;">Started building full-stack web and mobile applications using Kotlin and Vanilla JS.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div style="grid-column: span 6;">
-            <div class="section-label" data-reveal>[ 04 ] CORE VALUES</div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="stagger">
-              
-              <div class="value-card" data-reveal>
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="square"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
-                <h4 style="font-family: var(--font-mono); font-size: 14px;">PRECISION</h4>
-                <p style="font-size: 12px; color: var(--text-1);">Every pixel, every byte, exactly where it belongs.</p>
-              </div>
-
-              <div class="value-card red-val" data-reveal>
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="square"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                <h4 style="font-family: var(--font-mono); font-size: 14px;">VELOCITY</h4>
-                <p style="font-size: 12px; color: var(--text-1);">Ship fast. Iterate faster. No bloat allowed.</p>
-              </div>
-
-              <div class="value-card" data-reveal>
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="square"><path d="M12 2l9 4.5v7L12 22l-9-4.5v-7L12 2z"/></svg>
-                <h4 style="font-family: var(--font-mono); font-size: 14px;">CRAFT</h4>
-                <p style="font-size: 12px; color: var(--text-1);">Hand-written code. Deep understanding of the stack.</p>
-              </div>
-
-              <div class="value-card red-val" data-reveal>
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="square"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-                <h4 style="font-family: var(--font-mono); font-size: 14px;">SYSTEMS THINKING</h4>
-                <p style="font-size: 12px; color: var(--text-1);">Building ecosystems, not just isolated applications.</p>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden; margin-top: 64px;">
-        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
-          <div class="grid-12">
-            <div style="grid-column: span 4;">
-              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
-              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
-            </div>
-            <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 8px;">
-              <a href="index.html" class="nav-link" style="align-self: flex-start;">INDEX</a>
-              <a href="projects.html" class="nav-link" style="align-self: flex-start;">PROJECTS</a>
-              <a href="about.html" class="nav-link active" style="align-self: flex-start;">ABOUT</a>
-              <a href="contact.html" class="nav-link" style="align-self: flex-start;">CONTACT</a>
-            </div>
-            <div style="grid-column: span 4; display: flex; gap: 16px; align-items: flex-start; justify-content: flex-end;">
-              <a href="https://github.com/Mathiyass" target="_blank" aria-label="GitHub" class="glow-cyan" style="color: var(--cyan);">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              </a>
-            </div>
-          </div>
-          <div style="margin-top: 64px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--text-2);">
-            <span>© 2026 Mathisha Angirasa — MA_Dev Solutions (Pvt) Ltd</span>
-            <span>BUILT WITH RAW WEBGL2 + VANILLA JS // ZERO FRAMEWORKS</span>
+        <div style="grid-column: span 8;">
+          <p style="font-size: 20px; color: var(--text-0); margin-bottom: 24px; max-width: 60ch;">
+            Mathisha Angirasa is a Software Engineering Student and founder focused on building industrial-grade systems with editorial-level aesthetics.
+          </p>
+          <p style="color: var(--text-2); margin-bottom: 24px; max-width: 60ch;">
+            Currently based in Colombo, operating globally. Specializing in high-performance cloud architectures, reactive mobile interfaces, and distributed engineering.
+          </p>
+          <div class="flex gap-4">
+            <a href="assets/documents/mathiya-resume.pdf" class="btn btn--secondary">Download Resume</a>
           </div>
         </div>
-      </footer>
-    </main>
-  </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">03 — Core Philosophy</div>
+      <div class="grid-12">
+        <div class="value-card" style="grid-column: span 4;">
+          <h3 style="font-family: var(--font-head);">Precision</h3>
+          <p style="color: var(--text-3); font-size: 14px;">Every pixel, every byte, exactly where it belongs. Zero bloat architecture.</p>
+        </div>
+        <div class="value-card" style="grid-column: span 4;">
+          <h3 style="font-family: var(--font-head);">Velocity</h3>
+          <p style="color: var(--text-3); font-size: 14px;">Ship fast. Iterate faster. Future-proof standards from day one.</p>
+        </div>
+        <div class="value-card" style="grid-column: span 4;">
+          <h3 style="font-family: var(--font-head);">Craft</h3>
+          <p style="color: var(--text-3); font-size: 14px;">Hand-written code. Deep understanding of the full vertical stack.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container" style="padding-block: 64px; border-top: 1px solid var(--border-0);">
+    <div class="flex justify-between items-center">
+      <div>
+        <div class="nav-logo">MATHIYA</div>
+        <p style="font-size: 14px; color: var(--text-3); margin-top: 8px;">© 2025 MATHIYA — Mathisha Angirasa</p>
+      </div>
+      <div class="flex gap-4">
+        <a href="https://github.com/Mathiyass" class="badge">GitHub</a>
+        <a href="#" class="badge">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
 
   <script type="module">
-    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
-    import { SHADER_06_PARTICLE_FIELD } from './assets/js/engine/shaders.js';
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { TypeWriter } from './assets/js/core/TypeWriter.js';
-    import { AudioSystem } from './assets/js/core/Audio.js';
-    import { ProgressBar } from './assets/js/core/ProgressBar.js';
-    import { PageTransitions } from './assets/js/core/PageTransitions.js';
-    import { Konami } from './assets/js/core/Konami.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
-    import { LazyLoad } from './assets/js/core/LazyLoad.js';
-    import { toast } from './assets/js/core/Toast.js';
-
-    new ThemeSystem();
-    
-    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isMobile = window.matchMedia('(pointer: coarse)').matches;
-    
-    if (!isReduced && !isMobile) {
-      const cPart = document.getElementById('canvas-particles');
-      const ePart = new WebGLEngine(cPart);
-      // We implement a simplified particle field in SHADER_06, directly rendering it
-      ePart.compileProgram('part', SHADER_06_PARTICLE_FIELD.vert, SHADER_06_PARTICLE_FIELD.frag);
-      
-      // Mocking the u_particles sampler with a random texture since ping-pong is heavy to fully setup in limited script
-      const gl = ePart.gl;
-      const tex = gl.createTexture();
-      gl.bindTexture(gl.TEXTURE_2D, tex);
-      const data = new Float32Array(64 * 1 * 4);
-      for(let i=0; i<data.length; i+=4) {
-        data[i] = Math.random();
-        data[i+1] = Math.random();
-        data[i+2] = (Math.random()-0.5)*0.01;
-        data[i+3] = (Math.random()-0.5)*0.01;
-      }
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, 64, 1, 0, gl.RGBA, gl.FLOAT, data);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-      
-      ePart.createFullscreenQuad('fullscreen');
-      ePart.render('part', { u_particles: 0 });
-    } else {
-      document.getElementById('canvas-particles').style.display = 'none';
-    }
-
-    new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-    new LazyLoad();
-    new AudioSystem();
-    new ProgressBar();
-    new PageTransitions();
-    new Konami();
-
-    // Bio Typewriter
-    const bioTw = document.getElementById('bio-tw');
-    new TypeWriter(bioTw, ["I build systems that matter."], { pauseDuration: 10000 });
-
-    // ASCII parallax
-    const ascii = document.getElementById('ascii-art');
-    window.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 20;
-      const y = (e.clientY / window.innerHeight - 0.5) * 20;
-      ascii.style.transform = \`translate(\${x}px, \${y}px)\`;
-    });
-
-    window.sudo = (cmd) => {
-      if (cmd === 'hire') window.location.href = 'contact.html';
-      else if (cmd === 'konami') window.dispatchEvent(new CustomEvent('konami'));
-      else if (cmd === 'signal') { document.documentElement.dataset.theme = 'red'; setTimeout(()=>document.documentElement.dataset.theme = 'dual', 3000); }
-    };
+    import { Loader } from './assets/js/core/Loader.js';
+    import { Byte } from './assets/js/core/Byte.js';
+    new Loader();
+    window.addEventListener('loader:complete', () => { new Byte(); });
   </script>
 </body>
 </html>
+

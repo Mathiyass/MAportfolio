@@ -2,53 +2,39 @@ import { on } from '../utils/dom.js';
 
 export class Konami {
   constructor() {
-    this.sequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-    this.madevSeq = ['m', 'a', 'd', 'e', 'v'];
-    this.sudoSeq = ['s', 'u', 'd', 'o'];
+    this.sequences = {
+      konami: ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'],
+      mathiya: ['m', 'a', 't', 'h', 'i', 'y', 'a'],
+      sudo: ['s', 'u', 'd', 'o']
+    };
     
-    this.konamiIndex = 0;
-    this.madevIndex = 0;
-    this.sudoIndex = 0;
+    this.indices = {
+      konami: 0,
+      mathiya: 0,
+      sudo: 0
+    };
 
-    this._bindEvents();
+    this.bindEvents();
   }
 
-  _bindEvents() {
+  bindEvents() {
     on(window, 'keydown', (e) => {
-      const key = e.key;
+      const key = e.key.toLowerCase();
       
-      // Konami
-      if (key === this.sequence[this.konamiIndex] || (this.sequence[this.konamiIndex] && key.toLowerCase() === this.sequence[this.konamiIndex].toLowerCase())) {
-        this.konamiIndex++;
-        if (this.konamiIndex === this.sequence.length) {
-          window.dispatchEvent(new CustomEvent('konami'));
-          this.konamiIndex = 0;
+      for (const [name, seq] of Object.entries(this.sequences)) {
+        const targetKey = seq[this.indices[name]].toLowerCase();
+        
+        if (key === targetKey || (e.key === seq[this.indices[name]])) {
+          this.indices[name]++;
+          if (this.indices[name] === seq.length) {
+            window.dispatchEvent(new CustomEvent(`easter-egg:${name}`));
+            this.indices[name] = 0;
+          }
+        } else {
+          this.indices[name] = 0;
         }
-      } else {
-        this.konamiIndex = 0;
-      }
-
-      // MADEV
-      if (key.toLowerCase() === this.madevSeq[this.madevIndex]) {
-        this.madevIndex++;
-        if (this.madevIndex === this.madevSeq.length) {
-          window.dispatchEvent(new CustomEvent('madev-code'));
-          this.madevIndex = 0;
-        }
-      } else {
-        this.madevIndex = 0;
-      }
-
-      // SUDO
-      if (key.toLowerCase() === this.sudoSeq[this.sudoIndex]) {
-        this.sudoIndex++;
-        if (this.sudoIndex === this.sudoSeq.length) {
-          window.dispatchEvent(new CustomEvent('sudo-code'));
-          this.sudoIndex = 0;
-        }
-      } else {
-        this.sudoIndex = 0;
       }
     });
   }
 }
+

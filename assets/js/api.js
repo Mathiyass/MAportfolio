@@ -48,3 +48,4 @@ class MthishaAPI {
 }
 
 window.AppAPI = new MthishaAPI();
+

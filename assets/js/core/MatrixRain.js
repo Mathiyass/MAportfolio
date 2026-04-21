@@ -119,3 +119,4 @@ export class MatrixRain {
     this.rafId = requestAnimationFrame(() => this._loop());
   }
 }
+

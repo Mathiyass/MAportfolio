@@ -337,3 +337,4 @@ class GestureControl {
 }
 
 window.addEventListener('load', () => new GestureControl());
+

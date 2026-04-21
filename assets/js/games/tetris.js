@@ -317,3 +317,4 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.font = '16px Orbitron';
     ctx.fillText("Press Start", 75, canvas.height / 2);
 });
+

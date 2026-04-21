@@ -70,3 +70,4 @@ export class PageTransitions {
     }, 200);
   }
 }
+

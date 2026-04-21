@@ -437,3 +437,69 @@ void main() {
 }
 `
 };
+
+export const SHADER_13_LIQUID = {
+  vert: VERT_SHARED,
+  frag: `#version 300 es
+${FRAG_HELPERS}
+void main() {
+    vec2 uv = v_uv;
+    for(float i = 1.0; i < 4.0; i++){
+        uv.x += 0.3 / i * sin(i * 3.0 * uv.y + u_time + i);
+        uv.y += 0.3 / i * cos(i * 3.0 * uv.x + u_time + i);
+    }
+    vec3 col = mix(cyan_col, red_col, 0.5 + 0.5 * sin(u_time + uv.x + uv.y));
+    fragColor = vec4(col * 0.5, 0.4);
+}
+`
+};
+
+export const SHADER_14_VAPORWAVE_SUN = {
+  vert: VERT_SHARED,
+  frag: `#version 300 es
+${FRAG_HELPERS}
+void main() {
+    vec2 p = v_uv * 2.0 - 1.0;
+    float r = length(p);
+    float sun = smoothstep(0.5, 0.48, r);
+    float glow = exp(-r * 3.0) * 0.5;
+    
+    float scanlines = step(0.05, fract(p.y * 15.0 + u_time * 0.5));
+    vec3 col = mix(red_col, cyan_col, v_uv.y) * (sun * scanlines + glow);
+    fragColor = vec4(col, sun * scanlines + glow * 0.5);
+}
+`
+};
+
+export const SHADER_15_STARFIELD = {
+  vert: VERT_SHARED,
+  frag: `#version 300 es
+${FRAG_HELPERS}
+void main() {
+    vec3 col = vec3(0.0);
+    vec2 uv = (v_uv - 0.5) * 2.0;
+    for(float i=0.0; i<3.0; i++) {
+        vec2 p = uv * (1.0 + i * 0.5);
+        float star = step(0.995, hash(floor(p * 100.0 + u_time * 0.05)));
+        col += star * mix(cyan_col, red_col, hash(i));
+    }
+    fragColor = vec4(col, length(col));
+}
+`
+};
+
+export const SHADER_16_CHROMATIC = {
+  vert: VERT_SHARED,
+  frag: `#version 300 es
+${FRAG_HELPERS}
+uniform sampler2D u_tex;
+void main() {
+    float amount = 0.005 * sin(u_time);
+    float r = texture(u_tex, v_uv + vec2(amount, 0.0)).r;
+    float g = texture(u_tex, v_uv).g;
+    float b = texture(u_tex, v_uv - vec2(amount, 0.0)).b;
+    fragColor = vec4(r, g, b, 1.0);
+}
+`
+};
+

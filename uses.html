@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#22D3EE">
+  <title>Setup — MATHIYA</title>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&f[]=syne@600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">MATHIYA</a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="setup.html" class="nav-link active">Setup</a>
+    </div>
+  </nav>
+  <main id="main" class="container" style="padding-top: 160px;">
+    <h1 class="hero-h1">STATION <span class="gradient-text">SETUP</span></h1>
+    <div class="grid-12">
+      <div class="card" style="grid-column: span 6;">
+        <div class="section-label">Hardware</div>
+        <ul style="margin-top: 24px; color: var(--text-2); display: flex; flex-direction: column; gap: 12px;">
+          <li>— MacBook Pro M3 Max</li>
+          <li>— LG UltraFine 5K Display</li>
+          <li>— Keychron Q1 Pro (Custom Switches)</li>
+          <li>— Logitech MX Master 3S</li>
+        </ul>
+      </div>
+      <div class="card" style="grid-column: span 6;">
+        <div class="section-label">Software</div>
+        <ul style="margin-top: 24px; color: var(--text-2); display: flex; flex-direction: column; gap: 12px;">
+          <li>— VS Code (Tokyo Night Theme)</li>
+          <li>— Warp Terminal</li>
+          <li>— Arc Browser</li>
+          <li>— Docker Desktop</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <footer class="container" style="padding-block: 64px; border-top: 1px solid var(--border-0);">
+    <p style="font-size: 14px; color: var(--text-3);">© 2025 MATHIYA — Mathisha Angirasa</p>
+  </footer>
+  <script type="module">
+    import { Loader } from './assets/js/core/Loader.js';
+    import { Byte } from './assets/js/core/Byte.js';
+    new Loader();
+    window.addEventListener('loader:complete', () => { new Byte(); });
+  </script>
+</body>
+</html>
+

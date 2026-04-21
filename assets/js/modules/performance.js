@@ -26,3 +26,4 @@ export function initializePerformanceOptimization() {
         perfObserver.observe({ entryTypes: ['navigation'] });
     }
 }
+

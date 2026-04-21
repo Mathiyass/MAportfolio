@@ -124,3 +124,4 @@ class AdminDataManager {
 }
 
 window.AppDB = new AdminDataManager();
+

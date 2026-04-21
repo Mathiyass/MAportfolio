@@ -236,3 +236,4 @@ window.addEventListener('load', () => {
         window.AppMain = new MainApp();
     }, 100);
 });
+

@@ -46,3 +46,4 @@ export const toast = (message, type, duration) => {
   }
   window.__toastSystem.show(message, type, duration);
 };
+

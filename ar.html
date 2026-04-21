@@ -1,154 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dual">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>AR/XR // Mathisha Angirasa</title>
+  <meta name="theme-color" content="#22D3EE">
+  <title>AR Experience — MATHIYA</title>
   
-  <meta name="description" content="Augmented Reality & WebXR by Mathisha Angirasa">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&f[]=syne@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/animations.css">
-  
-  <style>
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
-    
-    .tilt-card { perspective: 1200px; transform-style: preserve-3d; }
-    .tilt-inner { width: 100%; height: 400px; background: var(--surface-0); border: 1px solid var(--cyan-border); padding: 32px; position: relative; transition: transform 0.1s; transform-style: preserve-3d; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-    .tilt-inner::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,229,255,0.1), transparent); z-index: 0; transform: translateZ(-20px); }
-    .tilt-content { transform: translateZ(40px); z-index: 1; }
-    
-    .gyro-layer { position: absolute; inset: -50px; background-size: cover; background-position: center; transition: transform 0.1s ease-out; }
-  </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <canvas id="canvas-wormhole" style="position:fixed; inset:0; z-index:-3; width:100vw; height:100vh;"></canvas>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
-
-  <nav id="navbar" role="navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    <div class="nav-center">
-      <a href="index.html" class="nav-link">INDEX</a>
-      <a href="projects.html" class="nav-link">PROJECTS</a>
-      <a href="skills.html" class="nav-link">SKILLS</a>
-      <a href="blog.html" class="nav-link">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link">CONTACT</a>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">MATHIYA</a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="ar.html" class="nav-link active">AR</a>
     </div>
+    <a href="contact.html" class="btn btn--primary nav-cta">Get in touch</a>
   </nav>
 
-  <div class="scroll-container">
-    <main id="main" role="main" style="padding-top: 120px;">
-      
-      <section class="container" style="text-align: center; margin-bottom: 64px;">
-        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px); margin-bottom: 24px;" data-reveal data-reveal-clip>AR <span style="color: var(--cyan);">//</span> XR</h1>
-        <div id="xr-badge" class="badge badge--red" data-reveal>WEBXR NOT SUPPORTED</div>
-      </section>
+  <main id="main" class="container" style="padding-top: 160px; text-align: center;">
+    <h1 class="hero-h1">AUGMENTED <span class="gradient-text">REALITY</span></h1>
+    <div class="card" style="max-width: 800px; margin: 48px auto; padding: 64px;">
+      <div class="section-label" style="justify-content: center;">EXPERIMENT_09</div>
+      <p style="color: var(--text-2); margin-top: 24px;">Mobile-first AR visualization for systems architecture. View complex datasets in your physical environment.</p>
+      <button class="btn btn--dual" style="margin-top: 32px;">Launch Camera</button>
+    </div>
+  </main>
 
-      <section class="container">
-        <div class="grid-12">
-          
-          <div class="tilt-card" style="grid-column: span 6;" data-reveal>
-            <div class="tilt-inner interactive-tilt">
-              <div class="tilt-content">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" style="margin-bottom: 24px;"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                <h3 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 16px;">Spatial Configurator</h3>
-                <p style="color: var(--text-1); margin-bottom: 24px;">View technical assemblies in 3D space directly through the browser.</p>
-                <button class="btn btn--ghost">LAUNCH AR</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="tilt-card" style="grid-column: span 6;" data-reveal>
-            <div class="tilt-inner interactive-tilt" style="border-color: var(--red-border);">
-              <div class="tilt-content">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" style="margin-bottom: 24px;"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                <h3 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 16px;">Live Diagnostics</h3>
-                <p style="color: var(--text-1); margin-bottom: 24px;">Overlay server health metrics onto physical server racks using markers.</p>
-                <button class="btn btn--red btn--ghost">REQUEST ACCESS</button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-    </main>
-  </div>
+  <footer class="container" style="padding-block: 64px; border-top: 1px solid var(--border-0);">
+    <div class="nav-logo">MATHIYA</div>
+    <p style="font-size: 14px; color: var(--text-3); margin-top: 8px;">© 2025 MATHIYA — Mathisha Angirasa</p>
+  </footer>
 
   <script type="module">
-    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
-    import { SHADER_07_WORMHOLE } from './assets/js/engine/shaders.js';
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { AudioSystem } from './assets/js/core/Audio.js';
-    import { PageTransitions } from './assets/js/core/PageTransitions.js';
-    import { Konami } from './assets/js/core/Konami.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
-
-    new ThemeSystem();
-    new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-    new AudioSystem();
-    new PageTransitions();
-    new Konami();
-
-    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!isReduced) {
-      const cWorm = document.getElementById('canvas-wormhole');
-      const eWorm = new WebGLEngine(cWorm);
-      eWorm.compileProgram('worm', SHADER_07_WORMHOLE.vert, SHADER_07_WORMHOLE.frag);
-      eWorm.createFullscreenQuad('fullscreen');
-      eWorm.render('worm');
-    }
-
-    // 3D Tilt Logic
-    const cards = document.querySelectorAll('.interactive-tilt');
-    cards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -12;
-        const rotateY = ((x - centerX) / centerX) * 12;
-        card.style.transform = \`rotateX(\${rotateX}deg) rotateY(\${rotateY}deg)\`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateX(0deg) rotateY(0deg)';
-      });
-    });
-
-    // WebXR check
-    if (navigator.xr) {
-      navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
-        const badge = document.getElementById('xr-badge');
-        if (supported) {
-          badge.className = 'badge badge--cyan';
-          badge.textContent = 'WEBXR AR SUPPORTED';
-        }
-      });
-    }
-
+    import { Loader } from './assets/js/core/Loader.js';
+    import { Byte } from './assets/js/core/Byte.js';
+    new Loader();
+    window.addEventListener('loader:complete', () => { new Byte(); });
   </script>
 </body>
 </html>
+

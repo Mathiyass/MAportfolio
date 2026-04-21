@@ -211,3 +211,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize if grid is present
     if (grid) createBoard();
 });
+

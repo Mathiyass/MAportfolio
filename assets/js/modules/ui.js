@@ -45,3 +45,4 @@ export function initializeAccessibilityFeatures() {
     });
     document.addEventListener('mousedown', () => document.body.classList.remove('keyboard-navigation'));
 }
+

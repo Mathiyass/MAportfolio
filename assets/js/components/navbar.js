@@ -263,3 +263,4 @@ class AdvancedNavbar {
 document.addEventListener('DOMContentLoaded', () => {
     new AdvancedNavbar();
 });
+

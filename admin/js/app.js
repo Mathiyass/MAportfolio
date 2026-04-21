@@ -328,3 +328,4 @@ function renderMessages(container) {
         </div>
     `;
 }
+

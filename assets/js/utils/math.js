@@ -29,3 +29,4 @@ export const distVec2 = (v1, v2) => {
   const dy = v2.y - v1.y;
   return Math.sqrt(dx * dx + dy * dy);
 };
+

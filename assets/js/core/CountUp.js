@@ -69,3 +69,4 @@ export class CountUp {
     this.el.textContent = \`\${this.prefix}\${formatted}\${this.suffix}\`;
   }
 }
+

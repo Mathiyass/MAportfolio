@@ -37,13 +37,13 @@
 </head>
 <body>
   <div class="gate" id="gate">
-    <h1 style="font-family: var(--font-display); color: var(--cyan); margin-bottom: 32px;">MA_DEV SECURE</h1>
+    <h1 style="font-family: var(--font-display); color: var(--cyan); margin-bottom: 32px;">MATHIYA SECURE</h1>
     <input type="password" id="pwd" class="input" style="max-width: 300px; text-align: center; letter-spacing: 0.5em;" placeholder="ENTER PASSPHRASE">
     <p id="gate-msg" style="color: var(--red); font-family: var(--font-mono); font-size: 12px; margin-top: 16px;"></p>
   </div>
 
   <aside class="sidebar">
-    <div style="padding: 32px 24px; font-family: var(--font-display); color: var(--cyan); border-bottom: 1px solid var(--cyan-border); margin-bottom: 24px;">MA_DEV</div>
+    <div style="padding: 32px 24px; font-family: var(--font-display); color: var(--cyan); border-bottom: 1px solid var(--cyan-border); margin-bottom: 24px;">MATHIYA</div>
     <div class="nav-item active" data-target="dashboard">DASHBOARD</div>
     <div class="nav-item" data-target="editor">BLOG EDITOR</div>
     <div class="nav-item" data-target="settings">SETTINGS</div>
@@ -135,7 +135,7 @@
         const h = await hashString(val);
         if (h === targetHash) {
           document.getElementById('gate').classList.add('hidden');
-          console.log("[ ADMIN TERMINAL UNLOCKED // MA_DEV SOLUTIONS // CLEARANCE LEVEL: MAX ]");
+          console.log("[ ADMIN TERMINAL UNLOCKED // MATHIYA SOLUTIONS // CLEARANCE LEVEL: MAX ]");
         } else {
           attempts++;
           document.getElementById('gate-msg').textContent = \`ACCESS DENIED (\${3 - attempts} ATTEMPTS REMAINING)\`;
@@ -228,3 +228,4 @@
   </script>
 </body>
 </html>
+

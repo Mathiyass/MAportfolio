@@ -1,0 +1,21 @@
+{
+  "resource": {
+    "name": "sessions/827544818934466717",
+    "title": "Initial UI Audit — OPERATION: OMNIPOTENCE",
+    "createTime": "2026-04-21T15:08:53.891957480Z",
+    "updateTime": "2026-04-21T15:21:29.971587Z",
+    "state": "failed",
+    "prompt": "Audit the following files for brand consistency (MATHIYA), design adherence (premium modern dark), and code quality (zero frameworks):\n            - index.html\n            - projects.html\n            - about.html\n            - skills.html\n            - blog.html\n            - assets/css/tokens.css\n            - assets/css/components.css\n            - assets/css/layout.css\n            - assets/js/core/Loader.js\n            - assets/js/core/Byte.js",
+    "url": "https://jules.google.com/session/827544818934466717",
+    "id": "827544818934466717",
+    "archived": false,
+    "outputs": [],
+    "outcome": {
+      "sessionId": "827544818934466717",
+      "title": "Initial UI Audit — OPERATION: OMNIPOTENCE",
+      "state": "failed",
+      "outputs": []
+    }
+  },
+  "_lastSyncedAt": 1776786189033
+}

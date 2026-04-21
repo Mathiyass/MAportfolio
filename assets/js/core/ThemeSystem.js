@@ -41,3 +41,4 @@ export class ThemeSystem {
     this.applyTheme();
   }
 }
+

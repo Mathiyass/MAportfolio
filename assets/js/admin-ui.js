@@ -28,3 +28,4 @@ function bindStat(selector, value) {
     const el = document.querySelector(selector);
     if (el) el.innerText = value;
 }
+

@@ -107,3 +107,4 @@ document.addEventListener('DOMContentLoaded', function () {
         showModal(title, modalContentHtml);
     }
 });
+

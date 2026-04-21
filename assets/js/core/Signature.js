@@ -22,8 +22,8 @@ export default function initSignature() {
     sequence += e.key.toUpperCase();
     sequence = sequence.slice(-5);
     if (sequence === "MADEV") {
-      document.title = ">>> MA_DEV SOLUTIONS <<<";
-      setTimeout(() => document.title = "MA_DEV PORTFOLIO // MATHISHA ANGIRASA", 3000);
+      document.title = ">>> MATHIYA SOLUTIONS <<<";
+      setTimeout(() => document.title = "MATHIYA PORTFOLIO // MATHISHA ANGIRASA", 3000);
       alert("CREDENTIALS VERIFIED");
     }
   });
@@ -33,7 +33,7 @@ export default function initSignature() {
     switch(cmd) {
       case 'help': console.log('COMMANDS: help, stats, whereami'); break;
       case 'stats': console.log('FETCHING_INTELLIGENCE...'); break;
-      case 'whereami': console.log('MA_Dev Portfolio // mathiyass.github.io // Sri Lanka'); break;
+      case 'whereami': console.log('MATHIYA Portfolio // mathiyass.github.io // Sri Lanka'); break;
       default: console.log('UNKNOWN_COMMAND');
     }
   };

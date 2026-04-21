@@ -1,243 +1,122 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dual">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>Contact // Mathisha Angirasa</title>
+  <meta name="theme-color" content="#22D3EE">
+  <title>Contact — MATHIYA</title>
   
-  <meta name="description" content="Contact Mathisha Angirasa - Open to opportunities">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2303030A'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='900' fill='%2300E5FF' text-anchor='middle'>MA</text></svg>">
-  
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&f[]=syne@600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/animations.css">
-  
+
   <style>
-    nav { position: fixed; top: 0; width: 100%; z-index: var(--z-nav); backdrop-filter: blur(28px) saturate(180%); background: var(--surface-glass); border-bottom: 1px solid var(--cyan-border); padding: 0 var(--gutter); height: 64px; display: flex; justify-content: space-between; align-items: center; transition: transform 300ms, background 300ms; }
-    .nav-center { display: none; }
-    @media (min-width: 1024px) { .nav-center { display: flex; gap: var(--s-32); } .hamburger { display: none; } }
-    
-    .contact-split { display: grid; grid-template-columns: 5fr 7fr; gap: 48px; align-items: flex-start; }
-    @media (max-width: 768px) { .contact-split { grid-template-columns: 1fr; } }
-    
-    .term-line { font-family: var(--font-mono); font-size: 13px; color: var(--text-1); margin-bottom: 16px; display: flex; flex-direction: column; gap: 4px; }
-    .term-label { display: flex; align-items: center; gap: 8px; color: var(--text-0); }
-    .term-label svg { stroke: var(--cyan); width: 16px; height: 16px; }
-    .term-status { color: var(--cyan); opacity: 0; transform: translateX(-10px); transition: all 0.3s; }
-    .term-line.active .term-status { opacity: 1; transform: translateX(0); }
-    
-    .form-group { margin-bottom: 24px; position: relative; }
-    .form-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-1); margin-bottom: 8px; display: block; }
-    
-    .success-overlay { position: fixed; inset: 0; z-index: 10000; background: var(--void); display: none; align-items: center; justify-content: center; flex-direction: column; }
-    .success-overlay.active { display: flex; }
-    .success-border { position: absolute; inset: 24px; border: 2px solid transparent; background: linear-gradient(135deg, var(--cyan), var(--red)) border-box; -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: borderPulse 2s infinite; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--s-14);
+      margin-top: var(--s-12);
+    }
+    @media (max-width: 1024px) {
+      .contact-grid { grid-template-columns: 1fr; gap: var(--s-10); }
+    }
+    .contact-form { grid-column: span 7; }
+    .contact-info { grid-column: span 5; }
   </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <canvas id="canvas-circ" style="position:fixed; inset:0; z-index:-3; opacity:0.18; pointer-events:none; width:100vw; height:100vh;"></canvas>
-  <div id="canvas-crt" style="position:fixed; inset:0; z-index:9998; pointer-events:none;"></div>
-
-  <nav id="navbar" role="navigation">
-    <a href="index.html" class="logo">
-      <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-    </a>
-    
-    <div class="nav-center">
-      <a href="index.html" class="nav-link">INDEX</a>
-      <a href="projects.html" class="nav-link">PROJECTS</a>
-      <a href="skills.html" class="nav-link">SKILLS</a>
-      <a href="blog.html" class="nav-link">BLOG</a>
-      <a href="marketplace.html" class="nav-link">MARKETPLACE</a>
-      <a href="contact.html" class="nav-link active">CONTACT</a>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">MATHIYA</a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="skills.html" class="nav-link">Skills</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="marketplace.html" class="nav-link">Marketplace</a>
     </div>
-
-    <div style="display: flex; align-items: center; gap: var(--s-16);">
-      <button class="hamburger" aria-label="Toggle Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      </button>
-    </div>
+    <a href="contact.html" class="btn btn--primary nav-cta">Get in touch</a>
   </nav>
 
-  <div class="scroll-container">
-    <main id="main" role="main" style="padding-top: 120px;">
+  <main id="main" class="container" style="padding-top: 160px; padding-bottom: 120px;">
+    <h1 class="hero-h1">LET'S <span class="gradient-text">BUILD</span></h1>
+    
+    <div class="contact-grid">
       
-      <section class="container" style="margin-bottom: 64px;">
-        <h1 style="font-family: var(--font-display); font-size: clamp(32px, 5vw, 64px);" data-reveal data-reveal-clip>INITIATE <span style="color: var(--cyan);">//</span> HANDSHAKE</h1>
-      </section>
-
-      <section class="container">
-        <div class="contact-split">
-          
-          <div data-reveal data-reveal-dir="left">
-            <div class="section-label" style="margin-bottom: 24px;">[ 01 ] SIGNALS</div>
-            
-            <div class="term-line" id="ping-1">
-              <div class="term-label">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                mathiyass.github.io@gmail.com
-              </div>
-              <div class="term-status">CONNECTED ✓ 0ms</div>
-            </div>
-
-            <div class="term-line" id="ping-2">
-              <div class="term-label">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                github.com/Mathiyass
-              </div>
-              <div class="term-status">CONNECTED ✓ 12ms</div>
-            </div>
-
-            <div class="term-line" id="ping-3">
-              <div class="term-label">
-                <svg viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                linkedin.com/in/mathisha
-              </div>
-              <div class="term-status">CONNECTED ✓ 45ms</div>
-            </div>
-            
-            <p style="color: var(--text-1); font-size: 14px; margin-top: 48px;">
-              Based in Sri Lanka. Open for remote opportunities, full-time roles, or ambitious contract work.
-            </p>
-          </div>
-
-          <div class="card" style="padding: 48px;" data-reveal data-reveal-dir="right">
-            <div class="section-label" style="margin-bottom: 32px;">[ 02 ] TRANSMIT DATA</div>
-            
-            <!-- Using FormSubmit.co -->
-            <form action="https://formsubmit.co/mathiyass.github.io@gmail.com" method="POST" id="contact-form">
-              <input type="hidden" name="_subject" value="New submission from MAportfolio v7!">
-              <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_next" id="next-url" value="">
-              <input type="text" name="_honey" style="display:none">
-
-              <div class="form-group">
-                <label class="form-label" for="name">ID_NAME</label>
-                <input type="text" id="name" name="name" class="input" required placeholder="Enter your designation">
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="email">NET_ADDRESS</label>
-                <input type="email" id="email" name="email" class="input" required placeholder="name@domain.com">
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="message">PAYLOAD</label>
-                <textarea id="message" name="message" class="textarea" required placeholder="Enter transmission body..."></textarea>
-              </div>
-
-              <button type="submit" class="btn btn--dual" style="width: 100%;">SEND TRANSMISSION</button>
-            </form>
-          </div>
-
-        </div>
-      </section>
-
-      <footer style="position: relative; border-top: 1px solid var(--cyan-border); background: var(--surface-0); overflow: hidden; margin-top: 64px;">
-        <div class="container" style="padding: 64px var(--gutter); position: relative; z-index: 1;">
+      <div class="contact-form">
+        <div class="section-label">01 — Inquiry</div>
+        <form class="flex flex-col gap-6" style="margin-top: 48px;">
           <div class="grid-12">
-            <div style="grid-column: span 4;">
-              <span style="font-family: var(--font-display); font-size: 20px; color: var(--cyan);">MA<span class="terminal-blink">_</span></span><span style="font-family: var(--font-mono); font-size: 20px; color: var(--text-1);">DEV</span>
-              <p style="margin-top: 16px; color: var(--text-1); font-size: 14px;">Building tools for builders.</p>
-              <p style="margin-top: 8px; color: var(--text-2); font-size: 12px; font-family: var(--font-mono);">Sri Lanka // 2026</p>
+            <div style="grid-column: span 6;">
+              <label class="section-label" style="font-size: 10px; margin-bottom: 8px;">Full Name</label>
+              <input type="text" class="input" placeholder="Mathisha Angirasa">
+            </div>
+            <div style="grid-column: span 6;">
+              <label class="section-label" style="font-size: 10px; margin-bottom: 8px;">Email Address</label>
+              <input type="email" class="input" placeholder="hello@mathiya.dev">
+            </div>
+          </div>
+          <div>
+            <label class="section-label" style="font-size: 10px; margin-bottom: 8px;">Subject</label>
+            <input type="text" class="input" placeholder="Project Inquiry">
+          </div>
+          <div>
+            <label class="section-label" style="font-size: 10px; margin-bottom: 8px;">Message</label>
+            <textarea class="textarea" rows="6" placeholder="Tell me about your project..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--dual" style="align-self: flex-start;">Send message</button>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <div class="section-label">02 — Information</div>
+        <div class="flex flex-col gap-10" style="margin-top: 48px;">
+          <div>
+            <h4 class="section-label">Location</h4>
+            <p style="color: var(--text-0); font-size: 18px; margin-top: 8px;">Colombo, Sri Lanka</p>
+            <p style="color: var(--text-3); font-size: 14px;">Available for worldwide collaboration.</p>
+          </div>
+          <div>
+            <h4 class="section-label">Email</h4>
+            <a href="mailto:mathishasajithangirasa@gmail.com" style="color: var(--text-0); font-size: 18px; margin-top: 8px; display: block;">mathishasajithangirasa@gmail.com</a>
+          </div>
+          <div>
+            <h4 class="section-label">Socials</h4>
+            <div class="flex gap-4" style="margin-top: 16px;">
+              <a href="https://github.com/Mathiyass" class="badge">GitHub</a>
+              <a href="#" class="badge">LinkedIn</a>
+              <a href="#" class="badge">X (Twitter)</a>
             </div>
           </div>
         </div>
-      </footer>
-    </main>
-  </div>
+      </div>
 
-  <div class="success-overlay" id="success-overlay">
-    <canvas id="canvas-success-hex" style="position: absolute; inset: 0; width: 100%; height: 100%;"></canvas>
-    <div class="success-border"></div>
-    <h2 id="success-tw" style="font-family: var(--font-display); font-size: 48px; color: var(--cyan); z-index: 10; position: relative;"></h2>
-    <a href="index.html" class="btn btn--ghost" style="z-index: 10; margin-top: 32px; pointer-events: auto;">RETURN TO BASE</a>
-  </div>
+    </div>
+  </main>
+
+  <footer class="container" style="padding-block: 64px; border-top: 1px solid var(--border-0);">
+    <div class="flex justify-between items-center">
+      <div>
+        <div class="nav-logo">MATHIYA</div>
+        <p style="font-size: 14px; color: var(--text-3); margin-top: 8px;">© 2025 MATHIYA — Mathisha Angirasa</p>
+      </div>
+    </div>
+  </footer>
 
   <script type="module">
-    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
-    import { SHADER_03_CIRCUIT, SHADER_01_HEXGRID } from './assets/js/engine/shaders.js';
-    import { CustomCursor } from './assets/js/core/Cursor.js';
-    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
-    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
-    import { AudioSystem } from './assets/js/core/Audio.js';
-    import { PageTransitions } from './assets/js/core/PageTransitions.js';
-    import { Konami } from './assets/js/core/Konami.js';
-    import { ThemeSystem } from './assets/js/core/ThemeSystem.js';
-    import { TypeWriter } from './assets/js/core/TypeWriter.js';
-    import { toast } from './assets/js/core/Toast.js';
-
-    new ThemeSystem();
-    new CustomCursor();
-    new SmoothScroll();
-    new ScrollReveal();
-    new AudioSystem();
-    new PageTransitions();
-    new Konami();
-
-    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!isReduced) {
-      const cCirc = document.getElementById('canvas-circ');
-      const eCirc = new WebGLEngine(cCirc);
-      eCirc.compileProgram('circ', SHADER_03_CIRCUIT.vert, SHADER_03_CIRCUIT.frag);
-      eCirc.createFullscreenQuad('fullscreen');
-      eCirc.render('circ');
-    }
-
-    // Ping animations
-    setTimeout(() => document.getElementById('ping-1').classList.add('active'), 500);
-    setTimeout(() => document.getElementById('ping-2').classList.add('active'), 1200);
-    setTimeout(() => document.getElementById('ping-3').classList.add('active'), 1900);
-
-    // Form logic
-    const form = document.getElementById('contact-form');
-    const url = new URL(window.location.href);
-    
-    // Auto-setup next URL
-    document.getElementById('next-url').value = url.origin + url.pathname + '?success=true';
-
-    // Handle success state
-    if (url.searchParams.get('success') === 'true') {
-      const overlay = document.getElementById('success-overlay');
-      overlay.classList.add('active');
-      
-      if (!isReduced) {
-        const cHex = document.getElementById('canvas-success-hex');
-        const eHex = new WebGLEngine(cHex);
-        eHex.compileProgram('hex', SHADER_01_HEXGRID.vert, SHADER_01_HEXGRID.frag);
-        eHex.createFullscreenQuad('fs');
-        eHex.render('hex');
-      }
-
-      new TypeWriter(document.getElementById('success-tw'), ["TRANSMISSION COMPLETE"]);
-      toast("PAYLOAD DELIVERED SUCCESSFULLY", "success", 5000);
-      
-      // Clean URL
-      window.history.replaceState({}, document.title, url.pathname);
-    }
-
-    // Real-time validation
-    const inputs = form.querySelectorAll('input, textarea');
-    inputs.forEach(input => {
-      input.addEventListener('blur', () => {
-        if (!input.checkValidity()) {
-          input.setAttribute('aria-invalid', 'true');
-        } else {
-          input.removeAttribute('aria-invalid');
-        }
-      });
-    });
-
+    import { Loader } from './assets/js/core/Loader.js';
+    import { Byte } from './assets/js/core/Byte.js';
+    new Loader();
+    window.addEventListener('loader:complete', () => { new Byte(); });
   </script>
 </body>
 </html>
+
