@@ -1,58 +1,36 @@
-import { $, on, addStyles } from '../utils/dom.js';
-import { lerp } from '../utils/math.js';
-
+// SmoothScroll.js
 export class SmoothScroll {
   constructor() {
-    this.container = $('#main');
-    if (!this.container) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || 
+        window.matchMedia('(pointer: coarse)').matches) return;
 
-    this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (this.isReducedMotion) return;
-
-    this.currentY = 0;
-    this.targetY = 0;
-    this.ease = 0.1;
+    this.scrollY = window.scrollY;
+    this.targetY = window.scrollY;
     
-    this.setup();
-    this.bindEvents();
-    this.loop();
-  }
+    // Simplistic smooth scroll wrapping main content
+    this.main = document.getElementById('main');
+    if (!this.main) return;
+    
+    document.body.style.height = \`\${this.main.getBoundingClientRect().height}px\`;
+    this.main.style.position = 'fixed';
+    this.main.style.top = '0';
+    this.main.style.left = '0';
+    this.main.style.width = '100%';
 
-  setup() {
-    document.body.style.height = `${this.container.scrollHeight}px`;
-    addStyles(this.container, {
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      width: '100%',
-      willChange: 'transform',
-      overflow: 'hidden'
-    });
-  }
-
-  bindEvents() {
     window.addEventListener('scroll', () => {
       this.targetY = window.scrollY;
-    }, { passive: true });
-
-    on(window, 'resize', () => {
-      document.body.style.height = `${this.container.scrollHeight}px`;
     });
-    
-    new ResizeObserver(() => {
-      document.body.style.height = `${this.container.scrollHeight}px`;
-    }).observe(this.container);
+
+    window.addEventListener('resize', () => {
+      document.body.style.height = \`\${this.main.getBoundingClientRect().height}px\`;
+    });
+
+    this.render();
   }
 
-  loop() {
-    this.currentY = lerp(this.currentY, this.targetY, this.ease);
-    
-    const diff = Math.abs(this.currentY - this.targetY);
-    if (diff > 0.1) {
-      this.container.style.transform = `translate3d(0, ${-this.currentY}px, 0)`;
-    }
-
-    requestAnimationFrame(() => this.loop());
+  render() {
+    this.scrollY += (this.targetY - this.scrollY) * 0.09;
+    this.main.style.transform = \`translateY(-\${this.scrollY}px)\`;
+    requestAnimationFrame(() => this.render());
   }
 }
-

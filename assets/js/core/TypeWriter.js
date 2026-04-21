@@ -1,41 +1,40 @@
+// TypeWriter.js
 export class TypeWriter {
-  constructor(el, phrases, options = {}) {
-    if (!el) return;
+  constructor(el, words, wait = 3000) {
     this.el = el;
-    this.phrases = phrases;
-    this.charDelay = options.charDelay || 40;
-    this.pauseDuration = options.pauseDuration || 2500;
-    
-    this.phraseIndex = 0;
-    this.charIndex = 0;
+    this.words = words;
+    this.txt = '';
+    this.wordIndex = 0;
+    this.wait = parseInt(wait, 10);
+    this.type();
     this.isDeleting = false;
-    
-    this.loop();
   }
 
-  async loop() {
-    const current = this.phrases[this.phraseIndex];
-    
+  type() {
+    const current = this.wordIndex % this.words.length;
+    const fullTxt = this.words[current];
+
     if (this.isDeleting) {
-      this.charIndex--;
+      this.txt = fullTxt.substring(0, this.txt.length - 1);
     } else {
-      this.charIndex++;
+      this.txt = fullTxt.substring(0, this.txt.length + 1);
     }
 
-    this.el.textContent = current.substring(0, this.charIndex);
+    this.el.innerHTML = \`<span class="txt">\${this.txt}</span>\`;
 
-    let delay = this.isDeleting ? this.charDelay / 2 : this.charDelay;
+    let typeSpeed = 100;
+    if (this.isDeleting) typeSpeed /= 2;
 
-    if (!this.isDeleting && this.charIndex === current.length) {
-      delay = this.pauseDuration;
+    if (!this.isDeleting && this.txt === fullTxt) {
+      typeSpeed = this.wait;
       this.isDeleting = true;
-    } else if (this.isDeleting && this.charIndex === 0) {
+    } else if (this.isDeleting && this.txt === '') {
       this.isDeleting = false;
-      this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length;
-      delay = 500;
+      this.wordIndex++;
+      typeSpeed = 500;
+      this.el.dispatchEvent(new Event('tw:switch'));
     }
 
-    setTimeout(() => this.loop(), delay);
+    setTimeout(() => this.type(), typeSpeed);
   }
 }
-

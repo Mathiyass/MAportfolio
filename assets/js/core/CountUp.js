@@ -1,72 +1,38 @@
-import { easeOutExpo } from '../utils/math.js';
-
+// CountUp.js
 export class CountUp {
-  constructor(el, target, options = {}) {
+  constructor(el, endVal, duration = 2000) {
     this.el = el;
-    this.target = target;
-    this.duration = options.duration || 2000;
-    this.prefix = options.prefix || '';
-    this.suffix = options.suffix || '';
-    this.locale = options.locale || 'en-US';
+    this.endVal = parseInt(endVal, 10);
+    this.duration = duration;
+    this.frameVal = 0;
     
-    this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    this.hasRun = false;
-
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.start();
-        } else {
-          // Reset if it scrolls out of view for re-triggering
-          this.hasRun = false;
-        }
-      });
-    }, { threshold: 0.1 });
-
-    this.observer.observe(this.el);
+    this.observer = new IntersectionObserver(entries => {
+      if(entries[0].isIntersecting) {
+        this.start();
+        this.observer.disconnect();
+      }
+    });
+    this.observer.observe(el);
   }
 
   start() {
-    if (this.hasRun) return;
-    this.hasRun = true;
-
-    if (this.isReducedMotion) {
-      this._updateValue(this.target);
-      return;
-    }
-
-    const startVal = 0;
-    const startMs = performance.now();
-    let lastInt = 0;
-
-    const loop = (ms) => {
-      const p = Math.min((ms - startMs) / this.duration, 1);
-      const ease = easeOutExpo(p);
-      const current = startVal + (this.target - startVal) * ease;
-      const currentInt = Math.floor(current);
-
-      if (currentInt > lastInt) {
-        this.el.style.animation = 'none';
-        this.el.offsetHeight; // trigger reflow
-        this.el.style.animation = 'countBeat 0.2s';
-        lastInt = currentInt;
-      }
-
-      this._updateValue(currentInt);
-
-      if (p < 1) {
-        requestAnimationFrame(loop);
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / this.duration, 1);
+      
+      // easeOutExpo
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      this.frameVal = Math.floor(ease * this.endVal);
+      
+      this.el.innerHTML = this.frameVal;
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
       } else {
-        this._updateValue(this.target);
+        this.el.innerHTML = this.endVal;
       }
     };
-
-    requestAnimationFrame(loop);
-  }
-
-  _updateValue(val) {
-    const formatted = new Intl.NumberFormat(this.locale).format(val);
-    this.el.textContent = \`\${this.prefix}\${formatted}\${this.suffix}\`;
+    window.requestAnimationFrame(step);
   }
 }
-
