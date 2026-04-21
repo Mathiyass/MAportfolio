@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#22D3EE">
+  <title>Certifications | MATHIYA</title>
+  
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&f[]=syne@600,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">MATHIYA</a>
+    <div class="nav-links hidden-mobile">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="about.html" class="nav-link">About</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="contact.html" class="btn btn--primary nav-cta">Get in touch</a>
+    </div>
+  </nav>
+
+  <main id="main" class="content-hidden">
+    <section class="section" style="padding-top: 160px; max-width: 800px; margin: 0 auto;">
+      <h1 style="font-family: var(--font-display); font-size: 72px; margin-bottom: 24px; text-align: center;">Accredited <span class="gradient-text">Skills.</span></h1>
+      <p style="text-align: center; color: var(--text-2); font-size: 18px; margin-bottom: 80px;">Professional certifications and coursework.</p>
+
+      <div style="margin-bottom: 64px;">
+        <h2 style="font-family: var(--font-head); font-size: 32px; margin-bottom: 32px; border-bottom: 1px solid var(--border-1); padding-bottom: 16px;">Completed</h2>
+        
+        <div class="card" style="margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;" data-reveal>
+          <div>
+            <h3 style="font-family: var(--font-head); font-size: 24px; color: var(--text-0);">Google Associate Android Developer</h3>
+            <p style="font-size: 16px; color: var(--text-2); margin-top: 8px;">Google Developers Certification</p>
+          </div>
+          <span class="badge badge--cyan">Completed</span>
+        </div>
+        
+        <div class="card" style="margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;" data-reveal style="--i:1">
+          <div>
+            <h3 style="font-family: var(--font-head); font-size: 24px; color: var(--text-0);">Meta Back-End Developer</h3>
+            <p style="font-size: 16px; color: var(--text-2); margin-top: 8px;">Coursera</p>
+          </div>
+          <span class="badge badge--cyan">Completed</span>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 64px;">
+        <h2 style="font-family: var(--font-head); font-size: 32px; margin-bottom: 32px; border-bottom: 1px solid var(--border-1); padding-bottom: 16px;">In Progress</h2>
+        
+        <div class="card" style="margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; border-left: 3px solid var(--red);" data-reveal>
+          <div>
+            <h3 style="font-family: var(--font-head); font-size: 24px; color: var(--text-0);">AWS Certified Solutions Architect</h3>
+            <p style="font-size: 16px; color: var(--text-2); margin-top: 8px;">Amazon Web Services</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <div style="width: 40px; height: 40px; border-radius: 50%; border: 3px solid var(--red); border-right-color: transparent; animation: spin 2s linear infinite;"></div>
+            <span class="badge badge--red badge--live">Studying</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <footer class="container" style="padding-block: 80px; border-top: 1px solid var(--border-0); margin-top: 64px;">
+      <div class="flex justify-between items-center">
+        <div>
+          <div class="nav-logo">MATHIYA</div>
+          <p style="font-family: var(--font-mono); font-size: 12px; color: var(--text-3); margin-top: 12px;">© 2025 MATHIYA — Mathisha Angirasa</p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <style>
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+  </style>
+
+  <script type="module">
+    import { Loader } from './assets/js/core/Loader.js';
+    import { Cursor } from './assets/js/core/Cursor.js';
+    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+    import { Byte } from './assets/js/mascot/Byte.js';
+    import { PageTransitions } from './assets/js/core/PageTransitions.js';
+
+    new Loader();
+    new Cursor();
+    new SmoothScroll();
+    new ScrollReveal();
+    new PageTransitions();
+
+    window.addEventListener('loader:complete', () => {
+      new Byte();
+    });
+  </script>
+</body>
+</html>

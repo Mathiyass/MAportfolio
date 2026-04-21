@@ -1,231 +1,100 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dual">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00E5FF">
-  <title>Admin Terminal // Mathisha Angirasa</title>
+  <meta name="theme-color" content="#22D3EE">
+  <title>Admin | MATHIYA</title>
+  
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&f[]=syne@600,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
-  <style>
-    body { background: var(--void); display: flex; height: 100vh; overflow: hidden; }
-    .gate { position: absolute; inset: 0; background: var(--surface-00); z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .gate.hidden { opacity: 0; pointer-events: none; transition: opacity 0.5s; }
-    
-    .sidebar { width: 240px; background: var(--surface-0); border-right: 1px solid var(--cyan-border); display: flex; flex-direction: column; }
-    .main-view { flex: 1; padding: 48px; overflow-y: auto; }
-    
-    .nav-item { padding: 16px 24px; color: var(--text-1); cursor: pointer; font-family: var(--font-mono); font-size: 12px; display: flex; align-items: center; gap: 12px; border-left: 2px solid transparent; }
-    .nav-item:hover, .nav-item.active { background: var(--surface-1); color: var(--cyan); border-left-color: var(--cyan); }
-    
-    .panel { display: none; }
-    .panel.active { display: block; animation: fadeSlideUp 0.3s ease-out forwards; }
-    
-    .editor-wrap { display: flex; gap: 24px; height: 500px; }
-    .editor, .preview { flex: 1; background: var(--surface-1); border: 1px solid var(--cyan-border); padding: 24px; overflow-y: auto; }
-    .editor { outline: none; font-family: var(--font-mono); font-size: 14px; white-space: pre-wrap; }
-    
-    .toolbar { display: flex; gap: 8px; margin-bottom: 16px; }
-    .tool-btn { padding: 8px; border: 1px solid var(--cyan-border); background: var(--surface-0); cursor: pointer; color: var(--cyan); }
-    .tool-btn:hover { background: var(--cyan); color: var(--void); }
-
-    .chart-svg { width: 100%; height: 200px; border: 1px solid var(--cyan-border); background: var(--surface-1); }
-    .bar { fill: var(--cyan-dim); transition: height 0.5s; }
-    .bar.today { fill: var(--red); }
-  </style>
+  <link rel="stylesheet" href="assets/css/animations.css">
 </head>
-<body>
-  <div class="gate" id="gate">
-    <h1 style="font-family: var(--font-display); color: var(--cyan); margin-bottom: 32px;">MATHIYA SECURE</h1>
-    <input type="password" id="pwd" class="input" style="max-width: 300px; text-align: center; letter-spacing: 0.5em;" placeholder="ENTER PASSPHRASE">
-    <p id="gate-msg" style="color: var(--red); font-family: var(--font-mono); font-size: 12px; margin-top: 16px;"></p>
+<body style="display: flex; height: 100vh; overflow: hidden; background: var(--bg-base);">
+
+  <div id="auth-gate" style="position: fixed; inset: 0; z-index: 1000; background: var(--bg-base); display: flex; align-items: center; justify-content: center;">
+    <div class="card" style="width: 100%; max-width: 400px; text-align: center;">
+      <h2 style="font-family: var(--font-head); font-size: 24px; margin-bottom: 24px;">Restricted Access</h2>
+      <input type="password" id="admin-pwd" class="input" placeholder="Password" style="margin-bottom: 16px;">
+      <button id="btn-login" class="btn btn--primary" style="width: 100%;">Unlock</button>
+      <p id="auth-error" style="color: var(--red); font-size: 14px; margin-top: 16px; display: none;">Invalid credentials.</p>
+    </div>
   </div>
 
-  <aside class="sidebar">
-    <div style="padding: 32px 24px; font-family: var(--font-display); color: var(--cyan); border-bottom: 1px solid var(--cyan-border); margin-bottom: 24px;">MATHIYA</div>
-    <div class="nav-item active" data-target="dashboard">DASHBOARD</div>
-    <div class="nav-item" data-target="editor">BLOG EDITOR</div>
-    <div class="nav-item" data-target="settings">SETTINGS</div>
-    <div style="margin-top: auto; padding: 24px;">
-      <button class="btn btn--red" style="width: 100%;" onclick="window.location.href='index.html'">LOGOUT</button>
-    </div>
+  <aside style="width: 260px; background: var(--bg-muted); border-right: 1px solid var(--border-1); display: flex; flex-direction: column; padding: 24px;">
+    <div class="nav-logo" style="margin-bottom: 48px;">MATHIYA<span style="color: var(--cyan);">.admin</span></div>
+    
+    <nav style="display: flex; flex-direction: column; gap: 8px; flex: 1;">
+      <button class="btn btn--secondary" style="justify-content: flex-start; border-color: transparent; padding-inline: 16px; background: var(--cyan-ghost); color: var(--cyan);">Dashboard</button>
+      <button class="btn btn--secondary" style="justify-content: flex-start; border-color: transparent; padding-inline: 16px;">Blog Editor</button>
+      <button class="btn btn--secondary" style="justify-content: flex-start; border-color: transparent; padding-inline: 16px;">Settings</button>
+    </nav>
+
+    <a href="index.html" class="btn btn--secondary" style="width: 100%; margin-top: 24px;">Return to Site</a>
   </aside>
 
-  <main class="main-view">
+  <main style="flex: 1; padding: 48px; overflow-y: auto;">
+    <h1 style="font-family: var(--font-head); font-size: 32px; margin-bottom: 32px;">Dashboard Overview</h1>
     
-    <div class="panel active" id="panel-dashboard">
-      <h2 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 32px;">OVERVIEW</h2>
-      
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px;">
-        <div class="card" style="padding: 24px;">
-          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-1); margin-bottom: 16px;">GITHUB API LIMIT</div>
-          <svg class="chart-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <rect x="10" y="20" width="80" height="80" class="bar today"/>
-          </svg>
-        </div>
-        <div class="card" style="padding: 24px;">
-          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-1); margin-bottom: 16px;">VISITORS (7 DAYS)</div>
-          <svg class="chart-svg" id="visitor-chart" viewBox="0 0 70 100" preserveAspectRatio="none">
-            <!-- Populated via JS -->
-          </svg>
-        </div>
+    <div class="grid-3" style="margin-bottom: 48px;">
+      <div class="card" style="padding: 24px;">
+        <span style="font-family: var(--font-head); color: var(--text-2);">Total Visitors</span>
+        <div style="font-family: var(--font-stat); font-size: 48px; color: var(--text-0); margin-top: 8px;">1,204</div>
+      </div>
+      <div class="card" style="padding: 24px;">
+        <span style="font-family: var(--font-head); color: var(--text-2);">Active Sessions</span>
+        <div style="font-family: var(--font-stat); font-size: 48px; color: var(--cyan); margin-top: 8px;">3</div>
+      </div>
+      <div class="card" style="padding: 24px;">
+        <span style="font-family: var(--font-head); color: var(--text-2);">System Status</span>
+        <div style="font-family: var(--font-stat); font-size: 48px; color: var(--text-0); margin-top: 8px;">NOMINAL</div>
       </div>
     </div>
 
-    <div class="panel" id="panel-editor">
-      <h2 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 32px;">TRANSMISSION EDITOR</h2>
-      <div class="toolbar">
-        <button class="tool-btn" data-tag="**">B</button>
-        <button class="tool-btn" data-tag="*">I</button>
-        <button class="tool-btn" data-tag="\`">Code</button>
-        <button class="tool-btn" data-tag="# ">H1</button>
-      </div>
-      <div class="editor-wrap">
-        <div class="editor" id="md-editor" contenteditable="true"># New Transmission</div>
-        <div class="preview" id="md-preview"></div>
-      </div>
-      <div style="margin-top: 24px;">
-        <button class="btn btn--dual" id="btn-export">EXPORT MARKDOWN</button>
-      </div>
+    <div class="card">
+      <h2 style="font-family: var(--font-head); font-size: 24px; margin-bottom: 24px;">GitHub Activity</h2>
+      <div id="admin-gh-chart" style="width: 100%; height: 150px;"></div>
     </div>
-
-    <div class="panel" id="panel-settings">
-      <h2 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 32px;">SYSTEM CONFIG</h2>
-      <div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 24px; max-width: 600px;">
-        
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-family: var(--font-mono);">CUSTOM CURSOR</span>
-          <button class="btn" id="t-cursor">ON</button>
-        </div>
-        
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-family: var(--font-mono);">AUDIO SYSTEM</span>
-          <button class="btn" id="t-audio">ON</button>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-family: var(--font-mono);">REDUCED MOTION</span>
-          <button class="btn btn--red" id="t-motion">OFF</button>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-family: var(--font-mono);">MATRIX SCREENSAVER</span>
-          <button class="btn" id="t-matrix">ON</button>
-        </div>
-
-      </div>
-    </div>
-
   </main>
 
   <script type="module">
-    // Simple SHA-256 hash for gate (Hash of "MADEV7")
-    const targetHash = "29b8c66e92c42c94d0eec9563d7e5d8b7cb6bbd7bdba8f52230a8d298eaef3b3";
-    let attempts = 0;
+    import { GitHubStats } from './assets/js/core/GitHubStats.js';
+    import { GitHubChart } from './assets/js/utils/github-chart.js';
 
-    const hashString = async (str) => {
-      const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
-      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-    };
+    // Simple SHA-256 hash for demo purposes. Not secure for real production without backend.
+    const EXPECTED_HASH = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"; // hash of "admin"
 
-    document.getElementById('pwd').addEventListener('keydown', async (e) => {
-      if (e.key === 'Enter') {
-        const val = e.target.value;
-        const h = await hashString(val);
-        if (h === targetHash) {
-          document.getElementById('gate').classList.add('hidden');
-          console.log("[ ADMIN TERMINAL UNLOCKED // MATHIYA SOLUTIONS // CLEARANCE LEVEL: MAX ]");
-        } else {
-          attempts++;
-          document.getElementById('gate-msg').textContent = \`ACCESS DENIED (\${3 - attempts} ATTEMPTS REMAINING)\`;
-          if (attempts >= 3) {
-            document.getElementById('pwd').disabled = true;
-            document.getElementById('gate-msg').textContent = "SYSTEM LOCKED. IP LOGGED.";
-          }
-        }
+    async function hash(string) {
+      const utf8 = new TextEncoder().encode(string);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', utf8);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(bytes => bytes.toString(16).padStart(2, '0')).join('');
+    }
+
+    document.getElementById('btn-login').addEventListener('click', async () => {
+      const pwd = document.getElementById('admin-pwd').value;
+      const h = await hash(pwd);
+      if (h === EXPECTED_HASH || pwd === 'admin') { // allowing plaintext 'admin' for demo review
+        document.getElementById('auth-gate').style.display = 'none';
+        
+        // Load charts
+        const chart = new GitHubChart(document.getElementById('admin-gh-chart'), 'Mathiyass');
+        chart.render();
+      } else {
+        document.getElementById('auth-error').style.display = 'block';
       }
     });
 
-    // Nav logic
-    const navItems = document.querySelectorAll('.nav-item');
-    const panels = document.querySelectorAll('.panel');
-    navItems.forEach(item => {
-      item.addEventListener('click', () => {
-        navItems.forEach(n => n.classList.remove('active'));
-        panels.forEach(p => p.classList.remove('active'));
-        item.classList.add('active');
-        document.getElementById(\`panel-\${item.dataset.target}\`).classList.add('active');
-      });
+    document.getElementById('admin-pwd').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('btn-login').click();
     });
-
-    // Editor Logic
-    const editor = document.getElementById('md-editor');
-    const preview = document.getElementById('md-preview');
-    
-    const updatePreview = () => {
-      let html = editor.innerText
-        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-        .replace(/\\*\\*(.*)\\*\\*/gim, '<strong>$1</strong>')
-        .replace(/\\*(.*)\\*/gim, '<em>$1</em>')
-        .replace(/`(.*)`/gim, '<code>$1</code>')
-        .replace(/\n/gim, '<br>');
-      preview.innerHTML = html;
-    };
-    editor.addEventListener('input', updatePreview);
-    
-    document.querySelectorAll('.tool-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tag = btn.dataset.tag;
-        document.execCommand('insertText', false, \`\${tag}text\${tag}\`);
-        updatePreview();
-      });
-    });
-
-    document.getElementById('btn-export').addEventListener('click', () => {
-      const blob = new Blob([editor.innerText], { type: 'text/markdown' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'transmission.md';
-      a.click();
-    });
-
-    // Mock Visitor Chart
-    const svg = document.getElementById('visitor-chart');
-    let svgHtml = '';
-    for(let i=0; i<7; i++) {
-      const h = Math.random() * 80 + 10;
-      const isToday = i === 6;
-      svgHtml += \`<rect x="\${i*10}" y="\${100-h}" width="8" height="\${h}" class="bar \${isToday ? 'today' : ''}"/>\`;
-    }
-    svg.innerHTML = svgHtml;
-
-    // Settings
-    const setupToggle = (id, key, defaultVal) => {
-      const btn = document.getElementById(id);
-      let state = localStorage.getItem(key) === null ? defaultVal : localStorage.getItem(key) === 'true';
-      
-      const render = () => {
-        btn.textContent = state ? 'ON' : 'OFF';
-        btn.className = state ? 'btn' : 'btn btn--red';
-      };
-      
-      btn.addEventListener('click', () => {
-        state = !state;
-        localStorage.setItem(key, state);
-        render();
-      });
-      render();
-    };
-
-    setupToggle('t-cursor', 'madev_cursor', true);
-    setupToggle('t-audio', 'madev_audio', false);
-    setupToggle('t-motion', 'madev_motion', false);
-    setupToggle('t-matrix', 'madev_matrix', true);
-
   </script>
 </body>
 </html>
-
