@@ -4,11 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#22D3EE">
-  <title>Marketplace — MATHIYA</title>
+  <title>MA_Dev Marketplace | MATHIYA</title>
   
-  <meta name="description" content="MATHIYA Marketplace — The software ecosystem for builders.">
-  <meta property="og:title" content="Marketplace — MATHIYA">
-  <meta property="og:image" content="https://mathiyass.github.io/MAportfolio/assets/img/og-card.webp">
+  <meta name="description" content="A native Android M-Commerce platform for developers to buy and sell digital assets.">
   
   <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&f[]=syne@600,700&display=swap" rel="stylesheet">
@@ -20,122 +18,116 @@
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/animations.css">
-
-  <style>
-    .mp-hero {
-      height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: var(--mesh-hero);
-    }
-    .diag-svg { width: 100%; height: auto; max-width: 800px; margin: 0 auto; display: block; overflow: visible; }
-    .diag-path { stroke-dasharray: 1000; stroke-dashoffset: 1000; transition: stroke-dashoffset 2s var(--ease-expo); }
-    .diag-path.active { stroke-dashoffset: 0; }
-  </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
-
   <nav class="nav">
     <a href="index.html" class="nav-logo">MATHIYA</a>
-    <div class="nav-links">
+    <div class="nav-links hidden-mobile">
       <a href="index.html" class="nav-link">Home</a>
-      <a href="projects.html" class="nav-link">Projects</a>
-      <a href="skills.html" class="nav-link">Skills</a>
-      <a href="blog.html" class="nav-link">Blog</a>
-      <a href="marketplace.html" class="nav-link active">Marketplace</a>
+      <a href="projects.html" class="nav-link active">Projects</a>
+      <a href="about.html" class="nav-link">About</a>
     </div>
-    <a href="contact.html" class="btn btn--primary nav-cta">Get in touch</a>
+    <div class="flex items-center gap-4">
+      <a href="contact.html" class="btn btn--primary nav-cta">Get in touch</a>
+    </div>
   </nav>
 
-  <main id="main">
-    <section class="mp-hero">
+  <main id="main" class="content-hidden">
+    <canvas id="canvas-bg" style="position:fixed; inset:0; z-index:var(--z-canvas); opacity:0.28; pointer-events:none;"></canvas>
+
+    <section class="section" style="padding-top: 120px; padding-bottom: 0;">
+      <div style="height: 600px; width: 100%; position: relative; display: flex; align-items: center; justify-content: center;">
+        <img src="assets/img/marketplace.webp" alt="Marketplace" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; z-index: -1;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-base) 0%, transparent 100%); z-index: -1;"></div>
+        
+        <div class="container" style="position: relative; z-index: 10; text-align: center;">
+          <span class="badge badge--cyan" style="margin-bottom: 24px;" data-reveal>Featured Project</span>
+          <h1 style="font-family: var(--font-display); font-size: clamp(48px, 8vw, 96px); margin-bottom: 24px; text-shadow: 0 4px 32px rgba(0,0,0,0.5);" data-reveal style="--i:1">Steam for <span class="gradient-text">Developers.</span></h1>
+          <p style="font-size: 20px; color: var(--text-0); max-width: 600px; margin: 0 auto 40px; text-shadow: 0 2px 16px rgba(0,0,0,0.8);" data-reveal style="--i:2">
+            A native Android M-Commerce platform. Buy and sell AI models, scripts, CLI tools, and design assets with zero friction.
+          </p>
+          <a href="#" class="btn btn--dual" data-reveal style="--i:3">View Source on GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="container">
-        <div class="badge badge--cyan" style="margin-bottom: 24px;">FLAGSHIP ECOSYSTEM</div>
-        <h1 class="hero-h1">MATHIYA <span class="gradient-text">MARKETPLACE</span></h1>
-        <p class="hero-p" style="margin-inline: auto;">
-          The distribution engine for software components. Native Android experience for buying and selling AI models, scripts, and production tools.
-        </p>
-        <div class="flex gap-4 justify-center">
-          <a href="#" class="btn btn--dual">Join waitlist</a>
-          <a href="#" class="btn btn--secondary">Explore docs</a>
+        <div class="grid-12">
+          <div style="grid-column: span 6;">
+            <div class="section-label">Architecture</div>
+            <h2 style="font-family: var(--font-head); font-size: 40px; margin-bottom: 24px;">Built for <span class="gradient-text">Scale.</span></h2>
+            <p style="font-size: 18px; color: var(--text-2); line-height: 1.7; margin-bottom: 32px;">
+              The platform is built on a robust architecture leveraging Kotlin's modern features. The MVVM pattern ensures separation of concerns, while Coroutines and Flow handle asynchronous operations smoothly.
+            </p>
+            <p style="font-size: 18px; color: var(--text-2); line-height: 1.7;">
+              Backend operations are powered by Supabase, providing real-time PostgreSQL database access, Row Level Security (RLS) for data protection, and Edge Functions for secure payment processing via PayHere webhooks.
+            </p>
+          </div>
+          <div style="grid-column: 8 / span 5;">
+            <!-- Simple SVG diagram representing architecture -->
+            <svg width="100%" height="100%" viewBox="0 0 400 400" style="background: var(--bg-muted); border-radius: var(--r-xl); border: 1px solid var(--border-1);">
+              <rect x="50" y="50" width="100" height="100" rx="16" fill="var(--cyan-ghost)" stroke="var(--cyan)" stroke-width="2"/>
+              <text x="100" y="105" fill="var(--text-0)" font-family="var(--font-head)" font-size="16" text-anchor="middle">Android</text>
+              
+              <rect x="250" y="50" width="100" height="100" rx="16" fill="var(--red-ghost)" stroke="var(--red)" stroke-width="2"/>
+              <text x="300" y="105" fill="var(--text-0)" font-family="var(--font-head)" font-size="16" text-anchor="middle">Supabase</text>
+
+              <rect x="150" y="250" width="100" height="100" rx="16" fill="var(--bg-elevated)" stroke="var(--text-3)" stroke-width="2"/>
+              <text x="200" y="305" fill="var(--text-0)" font-family="var(--font-head)" font-size="16" text-anchor="middle">PayHere</text>
+
+              <!-- Animated connecting lines -->
+              <path d="M 150 100 L 250 100" stroke="var(--cyan)" stroke-width="2" stroke-dasharray="4 4" class="anim-dash"/>
+              <path d="M 100 150 L 150 250" stroke="var(--text-2)" stroke-width="2" stroke-dasharray="4 4" class="anim-dash"/>
+              <path d="M 300 150 L 250 250" stroke="var(--red)" stroke-width="2" stroke-dasharray="4 4" class="anim-dash"/>
+            </svg>
+            <style>
+              @keyframes dashMove { to { stroke-dashoffset: -16; } }
+              .anim-dash { animation: dashMove 1s linear infinite; }
+            </style>
+          </div>
+        </div>
+
+        <div class="grid-3" style="margin-top: 80px;" id="tech-grid">
+          <div class="card" data-reveal><h3 style="font-family:var(--font-head); font-size:20px; color:var(--cyan);">Kotlin MVVM</h3><p style="color:var(--text-2); margin-top:8px;">Clean architecture.</p></div>
+          <div class="card" data-reveal style="--i:1"><h3 style="font-family:var(--font-head); font-size:20px; color:var(--cyan);">Supabase</h3><p style="color:var(--text-2); margin-top:8px;">PostgreSQL + RLS.</p></div>
+          <div class="card" data-reveal style="--i:2"><h3 style="font-family:var(--font-head); font-size:20px; color:var(--red);">PayHere</h3><p style="color:var(--text-2); margin-top:8px;">Secure payments.</p></div>
+          <div class="card" data-reveal style="--i:3"><h3 style="font-family:var(--font-head); font-size:20px; color:var(--red);">Firebase</h3><p style="color:var(--text-2); margin-top:8px;">FCM push notifications.</p></div>
+          <div class="card" data-reveal style="--i:4"><h3 style="font-family:var(--font-head); font-size:20px;">Deno</h3><p style="color:var(--text-2); margin-top:8px;">Edge function webhooks.</p></div>
+          <div class="card" data-reveal style="--i:5"><h3 style="font-family:var(--font-head); font-size:20px;">Stitch UI</h3><p style="color:var(--text-2); margin-top:8px;">18 high-fidelity screens.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="section container">
-      <div class="section-label">01 — Architecture</div>
-      <div class="card" style="padding: 64px;">
-        <svg viewBox="0 0 1000 400" class="diag-svg" id="arch-diagram">
-          <circle cx="200" cy="200" r="50" fill="none" stroke="var(--cyan)" stroke-width="2" />
-          <text x="200" y="205" text-anchor="middle" fill="var(--text-1)" style="font-family: var(--font-mono); font-size: 12px;">CLIENT</text>
-          
-          <circle cx="500" cy="100" r="50" fill="none" stroke="var(--cyan)" stroke-width="2" />
-          <text x="500" y="105" text-anchor="middle" fill="var(--text-1)" style="font-family: var(--font-mono); font-size: 12px;">SUPABASE</text>
-
-          <circle cx="500" cy="300" r="50" fill="none" stroke="var(--red)" stroke-width="2" />
-          <text x="500" y="305" text-anchor="middle" fill="var(--text-1)" style="font-family: var(--font-mono); font-size: 12px;">FIREBASE</text>
-
-          <circle cx="800" cy="200" r="50" fill="none" stroke="var(--red)" stroke-width="2" />
-          <text x="800" y="205" text-anchor="middle" fill="var(--text-1)" style="font-family: var(--font-mono); font-size: 12px;">PAYHERE</text>
-
-          <path d="M 250 180 Q 350 100 450 100" fill="none" stroke="var(--border-c)" stroke-width="1" class="diag-path" />
-          <path d="M 250 220 Q 350 300 450 300" fill="none" stroke="var(--border-r)" stroke-width="1" class="diag-path" />
-        </svg>
-      </div>
-    </section>
-
-    <section class="section container">
-      <div class="section-label">02 — Key Metrics</div>
-      <div class="grid-12">
-        <div class="card" style="grid-column: span 4; text-align: center;">
-          <div class="section-label" style="justify-content: center;">DEVS</div>
-          <span style="font-family: var(--font-stat); font-size: 64px; color: var(--text-0);" id="stat-devs">0</span>
-        </div>
-        <div class="card" style="grid-column: span 4; text-align: center;">
-          <div class="section-label" style="justify-content: center;">ASSETS</div>
-          <span style="font-family: var(--font-stat); font-size: 64px; color: var(--text-0);" id="stat-assets">0</span>
-        </div>
-        <div class="card" style="grid-column: span 4; text-align: center;">
-          <div class="section-label" style="justify-content: center;">UPTIME</div>
-          <span style="font-family: var(--font-stat); font-size: 64px; color: var(--text-0);" id="stat-uptime">0</span>
+    <footer class="container" style="padding-block: 80px; border-top: 1px solid var(--border-0); margin-top: 64px;">
+      <div class="flex justify-between items-center">
+        <div>
+          <div class="nav-logo">MATHIYA</div>
+          <p style="font-family: var(--font-mono); font-size: 12px; color: var(--text-3); margin-top: 12px;">© 2025 MATHIYA — Mathisha Angirasa</p>
         </div>
       </div>
-    </section>
-
+    </footer>
   </main>
-
-  <footer class="container" style="padding-block: 64px; border-top: 1px solid var(--border-0);">
-    <div class="flex justify-between items-center">
-      <div>
-        <div class="nav-logo">MATHIYA</div>
-        <p style="font-size: 14px; color: var(--text-3); margin-top: 8px;">© 2025 MATHIYA — Mathisha Angirasa</p>
-      </div>
-      <div class="flex gap-4">
-        <a href="https://github.com/Mathiyass" class="badge">GitHub</a>
-        <a href="#" class="badge">LinkedIn</a>
-      </div>
-    </div>
-  </footer>
 
   <script type="module">
     import { Loader } from './assets/js/core/Loader.js';
-    import { Byte } from './assets/js/core/Byte.js';
-    import { CountUp } from './assets/js/core/CountUp.js';
-    
+    import { Cursor } from './assets/js/core/Cursor.js';
+    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+    import { Byte } from './assets/js/mascot/Byte.js';
+    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+    import { PageTransitions } from './assets/js/core/PageTransitions.js';
+
     new Loader();
-    window.addEventListener('loader:complete', () => { 
-      new Byte(); 
-      new CountUp(document.getElementById('stat-devs'), 1250);
-      new CountUp(document.getElementById('stat-assets'), 450);
-      new CountUp(document.getElementById('stat-uptime'), 99, { suffix: '%' });
-      
-      document.querySelectorAll('.diag-path').forEach(p => p.classList.add('active'));
+    new Cursor();
+    new SmoothScroll();
+    new ScrollReveal();
+    new PageTransitions();
+
+    window.addEventListener('loader:complete', () => {
+      new WebGLEngine(document.getElementById('canvas-bg'), 'SHADER_10', { pointerTracking: true });
+      new Byte();
     });
   </script>
 </body>
 </html>
-

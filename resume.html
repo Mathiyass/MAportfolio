@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#22D3EE">
-  <title>Resume — MATHIYA</title>
+  <title>Resume | MATHIYA</title>
   
   <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500,700&f[]=syne@600,700&display=swap" rel="stylesheet">
@@ -16,119 +16,87 @@
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/animations.css">
-
-  <style>
-    .resume-section { margin-bottom: 64px; }
-    .exp-item { margin-bottom: 40px; }
-    .exp-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--border-0); padding-bottom: 8px; margin-bottom: 16px; }
-    .exp-role { font-family: var(--font-head); font-size: 20px; color: var(--text-0); }
-    .exp-date { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); }
-    .exp-org { color: var(--text-2); font-size: 14px; margin-bottom: 12px; }
-    .exp-desc { color: var(--text-3); font-size: 15px; line-height: 1.6; }
-  </style>
+  <link rel="stylesheet" href="assets/css/print.css" media="print">
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
-
   <nav class="nav">
     <a href="index.html" class="nav-logo">MATHIYA</a>
-    <div class="nav-links">
+    <div class="nav-links hidden-mobile">
       <a href="index.html" class="nav-link">Home</a>
       <a href="projects.html" class="nav-link">Projects</a>
-      <a href="skills.html" class="nav-link">Skills</a>
-      <a href="blog.html" class="nav-link">Blog</a>
-      <a href="marketplace.html" class="nav-link">Marketplace</a>
+      <a href="resume.html" class="nav-link active">Resume</a>
     </div>
-    <a href="assets/documents/mathiya-resume.pdf" class="btn btn--secondary nav-cta">Download PDF</a>
+    <div class="flex items-center gap-4">
+      <a href="assets/documents/mathiya-resume.pdf" class="btn btn--primary" target="_blank" download>Download PDF</a>
+    </div>
   </nav>
 
-  <main id="main" class="container" style="padding-top: 160px; padding-bottom: 120px;">
-    <h1 class="hero-h1">PROFESSIONAL <span class="gradient-text">RESUME</span></h1>
-    
-    <div class="grid-12">
-      <div style="grid-column: span 8;">
+  <main id="main" class="content-hidden">
+    <section class="section" style="padding-top: 160px; max-width: 800px; margin: 0 auto;">
+      <h1 style="font-family: var(--font-display); font-size: 64px; margin-bottom: 64px; text-align: center;">Curriculum <span class="gradient-text">Vitae.</span></h1>
+      
+      <div style="margin-bottom: 64px;">
+        <h2 style="font-family: var(--font-head); font-size: 32px; margin-bottom: 32px; border-bottom: 1px solid var(--border-1); padding-bottom: 16px;">Experience</h2>
         
-        <section class="resume-section">
-          <div class="section-label">01 — Experience</div>
-          <div style="margin-top: 48px;">
-            <div class="exp-item">
-              <div class="exp-header">
-                <h3 class="exp-role">Founder & Lead Engineer</h3>
-                <span class="exp-date">2024 - PRESENT</span>
-              </div>
-              <div class="exp-org">MATHIYA Solutions (Pvt) Ltd</div>
-              <p class="exp-desc">
-                Architecting and building the MATHIYA Marketplace ecosystem. Managing full-stack delivery of native Android clients and serverless backends using Supabase.
-              </p>
-            </div>
-            <div class="exp-item">
-              <div class="exp-header">
-                <h3 class="exp-role">Systems Architect</h3>
-                <span class="exp-date">2023 - 2024</span>
-              </div>
-              <div class="exp-org">Freelance / Indie Dev</div>
-              <p class="exp-desc">
-                Designed and deployed custom e-commerce solutions and interactive WebGL experiences for international clients.
-              </p>
-            </div>
+        <div style="margin-bottom: 32px;" data-reveal>
+          <div class="flex justify-between items-center mb-2">
+            <h3 style="font-family: var(--font-head); font-size: 24px; color: var(--text-0);">Full-Stack Developer</h3>
+            <span style="font-family: var(--font-mono); font-size: 14px; color: var(--text-3);">2023 — Present</span>
           </div>
-        </section>
-
-        <section class="resume-section">
-          <div class="section-label">02 — Education</div>
-          <div style="margin-top: 48px;">
-            <div class="exp-item">
-              <div class="exp-header">
-                <h3 class="exp-role">Software Engineering (HHDPII)</h3>
-                <span class="exp-date">2023 - PRESENT</span>
-              </div>
-              <div class="exp-org">JIAT, Sri Lanka</div>
-              <p class="exp-desc">
-                Intensive study of data structures, algorithms, systems architecture, and professional software development practices.
-              </p>
-            </div>
-          </div>
-        </section>
-
-      </div>
-
-      <div style="grid-column: span 4;">
-        <div class="card" style="position: sticky; top: 120px;">
-          <h4 class="section-label">Technical Mastery</h4>
-          <div class="flex flex-col gap-6" style="margin-top: 32px;">
-            <div>
-              <p style="font-size: 12px; color: var(--text-3); margin-bottom: 8px;">SYSTEMS</p>
-              <div class="progress-bar"><div class="fill" style="width: 90%;"></div></div>
-            </div>
-            <div>
-              <p style="font-size: 12px; color: var(--text-3); margin-bottom: 8px;">MOBILE</p>
-              <div class="progress-bar"><div class="fill" style="width: 95%;"></div></div>
-            </div>
-            <div>
-              <p style="font-size: 12px; color: var(--text-3); margin-bottom: 8px;">WEBGL</p>
-              <div class="progress-bar"><div class="fill" style="width: 85%;"></div></div>
-            </div>
-          </div>
+          <p style="font-family: var(--font-body); font-size: 16px; color: var(--text-2); margin-bottom: 12px;">Independent / Freelance</p>
+          <ul style="list-style: disc; padding-left: 20px; color: var(--text-2); font-size: 16px; line-height: 1.7;">
+            <li>Architected and deployed highly scalable backend systems using Supabase and PostgreSQL.</li>
+            <li>Developed native Android applications using Kotlin, MVVM, and Room databases.</li>
+            <li>Created 3D WebGL experiences and GLSL shaders for modern web interfaces.</li>
+          </ul>
         </div>
       </div>
-    </div>
-  </main>
 
-  <footer class="container" style="padding-block: 64px; border-top: 1px solid var(--border-0);">
-    <div class="flex justify-between items-center">
-      <div>
-        <div class="nav-logo">MATHIYA</div>
-        <p style="font-size: 14px; color: var(--text-3); margin-top: 8px;">© 2025 MATHIYA — Mathisha Angirasa</p>
+      <div style="margin-bottom: 64px;" data-reveal>
+        <h2 style="font-family: var(--font-head); font-size: 32px; margin-bottom: 32px; border-bottom: 1px solid var(--border-1); padding-bottom: 16px;">Education</h2>
+        
+        <div style="margin-bottom: 32px;">
+          <div class="flex justify-between items-center mb-2">
+            <h3 style="font-family: var(--font-head); font-size: 24px; color: var(--text-0);">BSc (Hons) Software Engineering</h3>
+            <span style="font-family: var(--font-mono); font-size: 14px; color: var(--text-3);">2022 — Present</span>
+          </div>
+          <p style="font-family: var(--font-body); font-size: 16px; color: var(--text-2); margin-bottom: 12px;">Plymouth University / Java Institute for Advanced Technology</p>
+          <ul style="list-style: disc; padding-left: 20px; color: var(--text-2); font-size: 16px; line-height: 1.7;">
+            <li>Core focus on Software Architecture, Advanced Data Structures, and Systems Design.</li>
+            <li>Distinction average across all major technical modules.</li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </footer>
+
+    </section>
+
+    <footer class="container" style="padding-block: 80px; border-top: 1px solid var(--border-0); margin-top: 64px;">
+      <div class="flex justify-between items-center">
+        <div>
+          <div class="nav-logo">MATHIYA</div>
+          <p style="font-family: var(--font-mono); font-size: 12px; color: var(--text-3); margin-top: 12px;">© 2025 MATHIYA — Mathisha Angirasa</p>
+        </div>
+      </div>
+    </footer>
+  </main>
 
   <script type="module">
     import { Loader } from './assets/js/core/Loader.js';
-    import { Byte } from './assets/js/core/Byte.js';
+    import { Cursor } from './assets/js/core/Cursor.js';
+    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+    import { Byte } from './assets/js/mascot/Byte.js';
+    import { PageTransitions } from './assets/js/core/PageTransitions.js';
+
     new Loader();
-    window.addEventListener('loader:complete', () => { new Byte(); });
+    new Cursor();
+    new SmoothScroll();
+    new ScrollReveal();
+    new PageTransitions();
+
+    window.addEventListener('loader:complete', () => {
+      new Byte();
+    });
   </script>
 </body>
 </html>
-
