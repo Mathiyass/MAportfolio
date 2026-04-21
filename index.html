@@ -16,16 +16,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/animations.css">
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2322D3EE%22 font-family=%22sans-serif%22 font-weight=%22bold%22>M</text></svg>">
 
   <style>
     .hero-visual {
       background: var(--dual-soft);
       border-radius: var(--r-2xl);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-1);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -35,54 +38,25 @@
     }
     .hero-h1 {
       font-family: var(--font-display);
-      font-size: clamp(56px, 8vw, 128px);
-      line-height: 0.92;
+      font-size: clamp(52px, 7vw, 108px);
+      line-height: 0.90;
       margin-bottom: 24px;
     }
-    .availability-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 16px;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-cyan);
-      border-radius: 999px;
-      font-size: 14px;
-      font-family: var(--font-body);
-      margin-bottom: 32px;
-    }
-    .availability-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--cyan);
-      border-radius: 50%;
-      animation: neonPulse 2s infinite;
-    }
-    @keyframes neonPulse {
-      0% { box-shadow: 0 0 0 0 rgba(34,211,238,0.4); }
-      70% { box-shadow: 0 0 0 10px rgba(34,211,238,0); }
-      100% { box-shadow: 0 0 0 0 rgba(34,211,238,0); }
-    }
     .stats-bar {
-      border-block: 1px solid var(--border-subtle);
+      border-block: 1px solid var(--border-0);
       background: var(--bg-subtle);
       padding-block: 48px;
-      margin-top: -1px;
-    }
-    .stat-item {
-      text-align: center;
-      flex: 1;
     }
     .stat-number {
       font-family: var(--font-stat);
-      font-size: 64px;
+      font-size: 80px;
       line-height: 1;
       display: block;
     }
     .stat-label {
       font-family: var(--font-body);
       font-size: 14px;
-      color: var(--text-tertiary);
+      color: var(--text-3);
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-top: 8px;
@@ -90,92 +64,152 @@
   </style>
 </head>
 <body>
-  <nav class="nav glass">
+  <nav class="nav">
     <a href="index.html" class="nav-logo">MATHIYA</a>
-    <div class="nav-links">
+    <div class="nav-links hidden-mobile">
       <a href="index.html" class="nav-link active">Home</a>
       <a href="projects.html" class="nav-link">Projects</a>
       <a href="about.html" class="nav-link">About</a>
       <a href="blog.html" class="nav-link">Blog</a>
+      <a href="games.html" class="nav-link">Games</a>
     </div>
-    <a href="contact.html" class="btn btn--primary">Get in touch</a>
+    <div class="flex items-center gap-4">
+      <div id="live-clock" style="font-family: var(--font-mono); font-size: 12px; color: var(--text-2);" class="hidden-mobile"></div>
+      <a href="contact.html" class="btn btn--primary nav-cta">Get in touch</a>
+    </div>
   </nav>
 
-  <main id="main">
-    <section class="hero" style="background: var(--mesh-hero);">
-      <div class="container grid-12" style="align-items: center;">
+  <main id="main" class="content-hidden">
+    <canvas id="canvas-noise" style="position:fixed; inset:0; z-index:var(--z-canvas); opacity:0.18; pointer-events:none;"></canvas>
+    <canvas id="canvas-hex" style="position:fixed; inset:0; z-index:var(--z-canvas); opacity:0.12; mix-blend-mode:screen; pointer-events:none;"></canvas>
+    <canvas id="canvas-stars" style="position:fixed; inset:0; z-index:var(--z-canvas); opacity:0.08; pointer-events:none;"></canvas>
+
+    <section class="section hero" style="background: var(--mesh-hero); min-height: 100vh; display: flex; align-items: center; padding-top: 120px;">
+      <div class="corner-bracket" style="position:absolute; top:24px; left:24px; width:24px; height:24px; border-top:1.5px solid var(--cyan); border-left:1.5px solid var(--cyan);"></div>
+      <div class="corner-bracket" style="position:absolute; top:24px; right:24px; width:24px; height:24px; border-top:1.5px solid var(--cyan); border-right:1.5px solid var(--cyan);"></div>
+      <div class="corner-bracket" style="position:absolute; bottom:24px; left:24px; width:24px; height:24px; border-bottom:1.5px solid var(--cyan); border-left:1.5px solid var(--cyan);"></div>
+      <div class="corner-bracket" style="position:absolute; bottom:24px; right:24px; width:24px; height:24px; border-bottom:1.5px solid var(--cyan); border-right:1.5px solid var(--cyan);"></div>
+
+      <div class="container grid-12 items-center">
         <div style="grid-column: span 7;">
-          <div class="availability-chip">
-            <div class="availability-dot"></div>
-            <span>Available for new projects</span>
+          <div class="availability-chip" data-reveal>
+            Available for opportunities
           </div>
-          <h1 class="hero-h1">Building<br>digital <span class="gradient-text">future.</span></h1>
-          <p style="font-size: 20px; max-width: 520px; color: var(--text-secondary);">
-            Software engineering student based in Sri Lanka. 
-            Building high-performance Android apps, immersive WebGL experiences, and industrial-grade developer tools.
+          <h1 class="hero-h1">Building <span class="gradient-text">things</span><br>that matter.</h1>
+          <p style="font-size: 18px; max-width: 520px; color: var(--text-2); line-height: 1.75; margin-bottom: 48px;" data-reveal style="--i:1">
+            Software engineering student from Sri Lanka. Building Android apps,
+            WebGL experiences, and developer tools.
           </p>
-          <div class="flex gap-4" style="margin-top: 48px;">
-            <a href="projects.html" class="btn btn--dual">View work</a>
-            <a href="assets/documents/mathiya-resume.pdf" class="btn btn--secondary">Download resume</a>
+          <div class="flex gap-4" data-reveal style="--i:2">
+            <a href="projects.html" class="btn btn--primary">View work</a>
+            <a href="contact.html" class="btn btn--secondary">Get in touch</a>
+          </div>
+          <div class="flex gap-2" style="margin-top: 48px;" data-reveal style="--i:3">
+            <span class="badge">Kotlin</span>
+            <span class="badge">Supabase</span>
+            <span class="badge">WebGL2</span>
+            <span class="badge">Android</span>
+            <span class="badge">Python</span>
           </div>
         </div>
         <div style="grid-column: span 5;">
-          <div class="hero-visual" id="byte-hero-container">
-            <!-- BYTE will be mounted here by JS -->
+          <div class="hero-visual" data-reveal style="--i:2; max-width:500px; max-height:500px; margin: 0 auto;" id="byte-hero-container">
+            <!-- BYTE injected here -->
+            <div class="badge badge--cyan" style="position:absolute; top:20%; left:10%; animation: orbFloat 6s ease-in-out infinite;">Systems</div>
+            <div class="badge badge--red" style="position:absolute; bottom:30%; right:15%; animation: orbFloat 7s ease-in-out infinite reverse;">Products</div>
+            <div class="badge" style="position:absolute; top:70%; left:20%; animation: orbFloat 8s ease-in-out infinite;">Experiences</div>
           </div>
         </div>
       </div>
+      <div style="position:absolute; bottom:40px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:12px;">
+        <span style="font-family:var(--font-body); font-size:13px; color:var(--text-3);">Scroll to explore</span>
+        <div style="width:2px; height:40px; background:var(--cyan); animation: clipRevealV 1.5s infinite;"></div>
+      </div>
     </section>
 
-    <div class="stats-bar">
+    <div class="stats-bar" id="stats-section">
       <div class="container flex justify-between">
         <div class="stat-item">
-          <span class="stat-number" style="color: var(--cyan);">24</span>
+          <span class="stat-number" style="color: var(--cyan);" id="stat-repos">24</span>
           <span class="stat-label">Repositories</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number">147</span>
-          <span class="stat-label">Total Stars</span>
+          <span class="stat-number" id="stat-commits">1.2k</span>
+          <span class="stat-label">Commits</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number" style="color: var(--red);">3+</span>
-          <span class="stat-label">Years Building</span>
+          <span class="stat-number" style="color: var(--red);" id="stat-stars">147</span>
+          <span class="stat-label">Stars</span>
         </div>
       </div>
     </div>
 
-    <section class="section">
+    <section class="section" style="background: var(--mesh-section);">
       <div class="container">
-        <div class="section-label">01 — Selected Work</div>
-        <h2 style="font-family: var(--font-head); font-size: 52px; margin-bottom: 64px;">Projects I'm <span class="gradient-text">proud</span> of</h2>
+        <div class="section-label">01 — Selected work</div>
+        <h2 style="font-family: var(--font-head); font-size: 48px; margin-bottom: 64px;">Projects I'm <span class="gradient-text">proud</span> of.</h2>
         
-        <div class="card card--featured" style="padding: 0; display: flex; flex-direction: column;">
-          <div style="height: 460px; background: url('assets/img/marketplace-hero.webp') center/cover;"></div>
-          <div style="padding: 48px;">
-            <span class="badge badge--cyan">Featured Project</span>
-            <h3 style="font-family: var(--font-head); font-size: 32px; margin-top: 16px;">MATHIYA Marketplace</h3>
-            <p style="color: var(--text-secondary); margin-top: 16px; font-size: 18px; max-width: 800px;">
-              Native Android M-Commerce platform for developers. Buy and sell AI models, scripts, and CLI tools with zero friction.
+        <div class="card card--featured" style="padding: 0; display: flex; min-height:480px; margin-bottom: var(--card-gap);" data-reveal>
+          <div style="flex: 1; padding: 64px; display: flex; flex-direction: column; justify-content: center; z-index: 2;">
+            <span class="badge badge--cyan" style="width: fit-content;">Featured project</span>
+            <h3 style="font-family: var(--font-head); font-size: 32px; margin-top: 24px; color: var(--text-0);">MA_Dev Marketplace</h3>
+            <p style="color: var(--text-2); margin-top: 16px; font-size: 18px; max-width: 400px; line-height: 1.6;">
+              Native Android M-Commerce platform for developers. Buy and sell AI models, scripts, and tools.
             </p>
-            <div class="flex gap-2" style="margin-top: 32px;">
+            <div class="flex gap-2" style="margin-top: 24px; margin-bottom: 40px;">
               <span class="badge">Kotlin</span>
               <span class="badge">Supabase</span>
-              <span class="badge">Android</span>
+              <span class="badge">PostgreSQL</span>
             </div>
+            <a href="projects.html" class="btn btn--primary" style="width: fit-content;">View project →</a>
+          </div>
+          <div style="flex: 1; background: url('assets/img/marketplace.webp') center/cover; border-radius: 0 var(--r-xl) var(--r-xl) 0; position: relative;">
+            <div style="position: absolute; inset: 0; background: linear-gradient(to right, var(--bg-muted) 0%, transparent 100%);"></div>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card" data-reveal style="--i:1">
+            <img data-src="assets/img/game-quebes.webp" alt="Killer Quebes" style="border-radius: var(--r-sm); margin-bottom: 24px; aspect-ratio: 16/9; object-fit: cover;">
+            <span class="badge">Game Dev</span>
+            <h3 style="font-family: var(--font-head); font-size: 24px; margin-top: 16px; color: var(--text-0);">Killer Quebes</h3>
+            <p style="color: var(--text-2); margin-top: 12px; font-size: 16px; line-height: 1.6;">C++ 3D arcade shooter using TL-Engine. Geometric enemies and particle explosions.</p>
+          </div>
+          <div class="card" data-reveal style="--i:2">
+            <img data-src="assets/img/project-ar.webp" alt="AR Engine" style="border-radius: var(--r-sm); margin-bottom: 24px; aspect-ratio: 16/9; object-fit: cover;">
+            <span class="badge badge--red">Spatial Computing</span>
+            <h3 style="font-family: var(--font-head); font-size: 24px; margin-top: 16px; color: var(--text-0);">AR Experience Engine</h3>
+            <p style="color: var(--text-2); margin-top: 12px; font-size: 16px; line-height: 1.6;">WebXR + ARCore holographic overlays with plane detection and 3D portal rendering.</p>
+          </div>
+          <div class="card" data-reveal style="--i:3">
+            <img data-src="assets/img/lab-shader.webp" alt="Zero-Framework Portfolio" style="border-radius: var(--r-sm); margin-bottom: 24px; aspect-ratio: 16/9; object-fit: cover;">
+            <span class="badge badge--cyan">Frontend</span>
+            <h3 style="font-family: var(--font-head); font-size: 24px; margin-top: 16px; color: var(--text-0);">MATHIYA Portfolio</h3>
+            <p style="color: var(--text-2); margin-top: 12px; font-size: 16px; line-height: 1.6;">Zero-dependency site: 16 GLSL shaders, 6 browser games, and BYTE robot mascot.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <footer class="container" style="padding-block: 80px; border-top: 1px solid var(--border-subtle);">
-      <div class="flex justify-between items-center">
+    <footer class="container" style="padding-block: 80px; border-top: 1px solid var(--border-0); margin-top: 64px;">
+      <div class="grid-3">
         <div>
           <div class="nav-logo">MATHIYA</div>
-          <p style="font-size: 14px; color: var(--text-tertiary); margin-top: 12px;">© 2025 MATHIYA — Mathisha Angirasa</p>
+          <p style="font-family: var(--font-body); font-size: 15px; color: var(--text-3); margin-top: 16px;">Systems. Products. Experiences.</p>
+          <p style="font-family: var(--font-mono); font-size: 12px; color: var(--text-3); margin-top: 40px;">© 2025 MATHIYA — Mathisha Angirasa</p>
         </div>
-        <div class="flex gap-4">
-          <a href="https://github.com/Mathiyass" class="badge">GitHub</a>
-          <a href="#" class="badge">LinkedIn</a>
+        <div class="flex-col gap-4">
+          <a href="projects.html" style="font-family: var(--font-body); font-size: 15px; color: var(--text-2);">Projects</a>
+          <a href="about.html" style="font-family: var(--font-body); font-size: 15px; color: var(--text-2);">About</a>
+          <a href="games.html" style="font-family: var(--font-body); font-size: 15px; color: var(--text-2);">The Arcade</a>
+          <a href="lab.html" style="font-family: var(--font-body); font-size: 15px; color: var(--text-2);">Shader Lab</a>
+        </div>
+        <div class="flex-col gap-4">
+          <a href="https://github.com/Mathiyass" class="flex items-center gap-2" style="font-family: var(--font-body); font-size: 15px; color: var(--text-2);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="contact.html" class="btn btn--secondary" style="width: fit-content; padding: 8px 16px; font-size: 13px;">Let's Connect</a>
         </div>
       </div>
     </footer>
@@ -183,20 +217,75 @@
 
   <script type="module">
     import { Loader } from './assets/js/core/Loader.js';
-    import { Byte } from './assets/js/core/Byte.js';
-    
-    // Initialize components
+    import { Cursor } from './assets/js/core/Cursor.js';
+    import { SmoothScroll } from './assets/js/core/SmoothScroll.js';
+    import { ScrollReveal } from './assets/js/core/ScrollReveal.js';
+    import { LazyLoad } from './assets/js/core/LazyLoad.js';
+    import { Byte } from './assets/js/mascot/Byte.js';
+    import { WebGLEngine } from './assets/js/engine/WebGLEngine.js';
+    import { GitHubStats } from './assets/js/core/GitHubStats.js';
+    import { CountUp } from './assets/js/core/CountUp.js';
+    import { PageTransitions } from './assets/js/core/PageTransitions.js';
+
     new Loader();
+    new Cursor();
+    new SmoothScroll();
+    new ScrollReveal();
+    new LazyLoad();
+    new PageTransitions();
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(err => console.error('SW registration failed', err));
+    }
+
     window.addEventListener('loader:complete', () => {
+      // Init Shaders
+      new WebGLEngine(document.getElementById('canvas-noise'), 'SHADER_02', { pointerTracking: true });
+      new WebGLEngine(document.getElementById('canvas-hex'), 'SHADER_01', { pointerTracking: true });
+      new WebGLEngine(document.getElementById('canvas-stars'), 'SHADER_16', { pointerTracking: true });
+
+      // Init BYTE in Hero
       const byte = new Byte();
-      // Mount to hero visual
-      const visual = document.getElementById('byte-hero-container');
-      byte.container.style.position = 'relative';
+      const heroContainer = document.getElementById('byte-hero-container');
+      byte.container.style.position = 'absolute';
       byte.container.style.bottom = 'auto';
       byte.container.style.right = 'auto';
       byte.container.style.width = '240px';
       byte.container.style.height = '240px';
-      visual.appendChild(byte.container);
+      heroContainer.appendChild(byte.container);
+
+      // GitHub Stats
+      const gh = new GitHubStats('Mathiyass');
+      gh.getStats().then(stats => {
+        new CountUp(document.getElementById('stat-repos'), stats.repos);
+        new CountUp(document.getElementById('stat-commits'), 1200); // Placeholder commit count
+        new CountUp(document.getElementById('stat-stars'), stats.stars);
+      });
+
+      // Live Clock
+      const clock = document.getElementById('live-clock');
+      setInterval(() => {
+        const d = new Date();
+        clock.textContent = d.toLocaleTimeString('en-US', { hour12: false, timeZone: 'Asia/Colombo' }) + ' CMB';
+      }, 1000);
+    });
+
+    // Nav Scroll
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.nav');
+      if (window.scrollY > 80) {
+        nav.style.background = 'var(--bg-glass)';
+        if (window.scrollY > lastScroll && window.scrollY > 200) {
+          nav.style.transform = 'translateY(-100%)';
+        } else {
+          nav.style.transform = 'translateY(0)';
+        }
+      } else {
+        nav.style.background = 'transparent';
+        nav.style.transform = 'translateY(0)';
+      }
+      lastScroll = window.scrollY;
     });
   </script>
 </body>
