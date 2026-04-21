@@ -1,104 +1,94 @@
-import { $, on, createElement, addStyles } from '../utils/dom.js';
-
+// Audio.js
 export class AudioSystem {
   constructor() {
-    this.audioEnabled = localStorage.getItem('mathiya_audio') === 'true';
     this.ctx = null;
-    this.masterGain = null;
-    this.ambientOsc1 = null;
-    this.ambientOsc2 = null;
-    this.filter = null;
-    
-    this.createUI();
-    this.bindEvents();
-    
-    if (this.audioEnabled) {
-      this.initAudio();
-    }
+    this.drone = null;
+    this.harmonic = null;
+    this.gain = null;
+    this.enabled = localStorage.getItem('audio_enabled') === 'true';
+
+    // Wait for user gesture
+    const initAudio = () => {
+      if (this.enabled) this.init();
+      document.removeEventListener('click', initAudio);
+    };
+    document.addEventListener('click', initAudio);
   }
 
-  createUI() {
-    this.ui = createElement('button', { className: 'audio-toggle' });
-    addStyles(this.ui, {
-      position: 'fixed',
-      bottom: 'var(--s-8)',
-      left: 'var(--s-8)',
-      fontFamily: 'var(--font-mono)',
-      fontSize: '10px',
-      color: this.audioEnabled ? 'var(--cyan)' : 'var(--text-3)',
-      background: 'transparent',
-      border: 'none',
-      cursor: 'pointer',
-      zIndex: 'var(--z-nav)',
-      letterSpacing: '0.2em'
-    });
-    this.updateUI();
-    document.body.appendChild(this.ui);
-  }
-
-  updateUI() {
-    this.ui.textContent = this.audioEnabled ? 'AUDIO: ENABLED' : 'AUDIO: MUTED';
-    this.ui.style.color = this.audioEnabled ? 'var(--cyan)' : 'var(--text-3)';
-  }
-
-  async initAudio() {
+  init() {
     if (this.ctx) return;
     this.ctx = new (window.AudioContext || window.webkitAudioContext)();
     
-    this.masterGain = this.ctx.createGain();
-    this.masterGain.gain.value = 0;
-    this.masterGain.connect(this.ctx.destination);
+    this.gain = this.ctx.createGain();
+    this.gain.gain.value = 0.015;
+    this.gain.connect(this.ctx.destination);
 
-    this.filter = this.ctx.createBiquadFilter();
-    this.filter.type = 'lowpass';
-    this.filter.frequency.value = 120;
-    this.filter.connect(this.masterGain);
+    // 40Hz drone
+    this.drone = this.ctx.createOscillator();
+    this.drone.type = 'sine';
+    this.drone.frequency.value = 40;
+    this.drone.connect(this.gain);
+    this.drone.start();
 
-    this.ambientOsc1 = this.ctx.createOscillator();
-    this.ambientOsc1.type = 'sine';
-    this.ambientOsc1.frequency.value = 42;
-    this.ambientOsc1.connect(this.filter);
+    // 80Hz harmonic
+    this.harmonic = this.ctx.createOscillator();
+    this.harmonic.type = 'triangle';
+    this.harmonic.frequency.value = 80;
+    const hGain = this.ctx.createGain();
+    hGain.gain.value = 0.5;
+    this.harmonic.connect(hGain);
+    hGain.connect(this.gain);
+    this.harmonic.start();
 
-    this.ambientOsc1.start();
-    this.masterGain.gain.setTargetAtTime(0.02, this.ctx.currentTime, 1.2);
+    // Add UI toggle listener
+    this.bindEvents();
   }
 
-  bindEvents() {
-    on(this.ui, 'click', async () => {
-      this.audioEnabled = !this.audioEnabled;
-      localStorage.setItem('mathiya_audio', this.audioEnabled.toString());
-      this.updateUI();
-
-      if (this.audioEnabled) {
-        await this.initAudio();
-        if (this.ctx.state === 'suspended') await this.ctx.resume();
-        this.masterGain.gain.setTargetAtTime(0.02, this.ctx.currentTime, 1.2);
-      } else {
-        if (this.masterGain) {
-          this.masterGain.gain.setTargetAtTime(0, this.ctx.currentTime, 0.2);
-        }
-      }
-    });
-
-    on(document, 'mouseover', (e) => {
-      if (this.audioEnabled && e.target.closest('a, button, .card')) {
-        this.playHover();
-      }
-    });
+  playPing() {
+    if (!this.enabled || !this.ctx) return;
+    const osc = this.ctx.createOscillator();
+    const g = this.ctx.createGain();
+    osc.frequency.value = 1320;
+    osc.type = 'sine';
+    g.gain.setValueAtTime(0, this.ctx.currentTime);
+    g.gain.linearRampToValueAtTime(0.05, this.ctx.currentTime + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.1);
+    osc.connect(g);
+    g.connect(this.ctx.destination);
+    osc.start();
+    osc.stop(this.ctx.currentTime + 0.1);
   }
 
   playHover() {
-    if (!this.ctx || !this.audioEnabled) return;
+    if (!this.enabled || !this.ctx) return;
     const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
+    const g = this.ctx.createGain();
+    osc.frequency.value = 880;
     osc.type = 'sine';
-    osc.frequency.value = 600;
-    gain.gain.value = 0.03;
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
+    g.gain.setValueAtTime(0, this.ctx.currentTime);
+    g.gain.linearRampToValueAtTime(0.03, this.ctx.currentTime + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.05);
+    osc.connect(g);
+    g.connect(this.ctx.destination);
     osc.start();
-    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.02);
-    osc.stop(this.ctx.currentTime + 0.03);
+    osc.stop(this.ctx.currentTime + 0.05);
+  }
+
+  bindEvents() {
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => this.playHover());
+      el.addEventListener('click', () => this.playPing());
+    });
+  }
+
+  toggle() {
+    this.enabled = !this.enabled;
+    localStorage.setItem('audio_enabled', this.enabled);
+    if (this.enabled) {
+      this.init();
+      this.ctx.resume();
+    } else if (this.ctx) {
+      this.ctx.suspend();
+    }
   }
 }
-
