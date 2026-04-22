@@ -1,8 +1,0 @@
-{
-  "timeline": [
-    { "year": "2022", "title": "BSc Software Engineering", "desc": "Started degree at Plymouth University (JIAT)", "type": "edu" },
-    { "year": "2023", "title": "Android Developer", "desc": "Built production M-Commerce apps with Kotlin", "type": "work" },
-    { "year": "2024", "title": "Full-Stack Engineer", "desc": "Supabase + PostgreSQL architecture", "type": "work" },
-    { "year": "2025", "title": "Systems Builder", "desc": "WebGL, Shaders, AI Integrations", "type": "work" }
-  ]
-}

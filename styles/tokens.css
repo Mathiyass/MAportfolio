@@ -1,0 +1,160 @@
+/* MATHIYA Design System — CSS Tokens */
+@theme {
+  --color-bg-base:     #080C14;
+  --color-bg-subtle:   #0C1120;
+  --color-bg-muted:    #101827;
+  --color-bg-elevated: #192336;
+  --color-bg-overlay:  #1E2C42;
+  --color-bg-glass:    rgba(12, 17, 32, 0.72);
+
+  --color-cyan:        #22D3EE;
+  --color-cyan-light:  #67E8F9;
+  --color-cyan-pale:   #A5F3FC;
+  --color-cyan-dim:    #0891B2;
+  --color-cyan-ghost:  rgba(34, 211, 238, 0.08);
+
+  --color-red:         #FB7185;
+  --color-red-light:   #FDA4AF;
+  --color-red-pale:    #FECDD3;
+  --color-red-dim:     #E11D48;
+  --color-red-ghost:   rgba(251, 113, 133, 0.08);
+
+  --color-text-0:      #F8FAFC;
+  --color-text-1:      #CBD5E1;
+  --color-text-2:      #94A3B8;
+  --color-text-3:      #64748B;
+  --color-text-4:      #334155;
+
+  --color-border-1:    rgba(148, 163, 184, 0.12);
+  --color-border-2:    rgba(148, 163, 184, 0.20);
+  --color-border-c:    rgba(34, 211, 238, 0.20);
+  --color-border-r:    rgba(251, 113, 133, 0.20);
+
+  /* Font families */
+  --font-display:  var(--font-clash-display), sans-serif;
+  --font-head:     var(--font-syne), sans-serif;
+  --font-body:     var(--font-satoshi), sans-serif;
+  --font-mono:     var(--font-geist-mono), monospace;
+  --font-stat:     var(--font-bebas-neue), cursive;
+
+  /* Border radius */
+  --radius-xs:  4px;
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+  --radius-2xl: 32px;
+
+  /* Animation easings */
+  --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-sharp:  cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shadows & Glows */
+  --glow-c-s:   0 0 20px rgba(34, 211, 238, 0.25);
+  --glow-c-m:   0 0 40px rgba(34, 211, 238, 0.20);
+  --glow-c-l:   0 0 80px rgba(34, 211, 238, 0.15);
+  --glow-r-s:   0 0 20px rgba(251, 113, 133, 0.25);
+  --glow-dual:  0 0 30px rgba(34, 211, 238, 0.20), 0 0 60px rgba(251, 113, 133, 0.12);
+
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
+  --shadow-elevated: 0 8px 48px rgba(0, 0, 0, 0.5);
+
+  /* Z-index scale */
+  --z-bg:      -10;
+  --z-base:    0;
+  --z-nav:     100;
+  --z-cursor:  500;
+  --z-byte:    600;
+  --z-loader:  800;
+  --z-modal:   900;
+}
+
+/* ── Gradient Mesh Utilities ─────────────────────────── */
+
+.mesh-hero {
+  background:
+    radial-gradient(ellipse 90% 70% at 15% 50%, rgba(34,211,238,0.10) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 80% at 90% 25%, rgba(251,113,133,0.08) 0%, transparent 65%),
+    var(--color-bg-base);
+}
+
+.mesh-card {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(34,211,238,0.07) 0%, transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(251,113,133,0.06) 0%, transparent 55%),
+    var(--color-bg-muted);
+}
+
+.mesh-section {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(34,211,238,0.06) 0%, transparent 60%),
+    var(--color-bg-subtle);
+}
+
+.mesh-footer {
+  background:
+    radial-gradient(ellipse 100% 50% at 50% 100%, rgba(34,211,238,0.05) 0%, transparent 60%),
+    var(--color-bg-base);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #67E8F9, #FDA4AF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-cyan {
+  background: linear-gradient(135deg, #22D3EE, #67E8F9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(34,211,238,0.3), rgba(251,113,133,0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ── Glass Utilities ─────────────────────────────────── */
+
+.glass {
+  background: var(--color-bg-glass);
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  border: 1px solid var(--color-border-1);
+}
+
+.glass-nav {
+  background: rgba(8, 12, 20, 0.85);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-bottom: 1px solid var(--color-border-1);
+}
+
+/* ── Noise Grain Overlay ─────────────────────────────── */
+
+.noise-bg::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}

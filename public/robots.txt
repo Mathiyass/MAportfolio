@@ -1,0 +1,11 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://mathiya.dev/sitemap.xml
+
+# Disallow admin & secret
+Disallow: /admin
+Disallow: /secret
+Disallow: /api/

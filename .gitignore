@@ -1,5 +1,13 @@
 node_modules/
-.env
-package-lock.json
-*.ps1
-project.md
+.next/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Development tools and agents
+.jules/
+conductor/
+scratch/
+prompt.md

@@ -1,7 +1,0 @@
-{
-  "levels": [
-    { "id": 1, "target": 150 },
-    { "id": 2, "target": 300 },
-    { "id": 3, "target": 500 }
-  ]
-}

@@ -1,0 +1,42 @@
+---
+title: 'Building MATHIYA Nexus Prime'
+date: '2026-04-20'
+description: 'A deep dive into the architecture of my V12 portfolio built with Next.js 15, React 19, and WebGL.'
+tags: ['nextjs', 'webgl', 'design']
+---
+
+# Introduction
+
+Welcome to the **MATHIYA Nexus Prime** architecture overview. This portfolio represents a massive leap forward in my frontend capabilities, merging standard web technologies with high-performance 3D graphics.
+
+## The Tech Stack
+
+I chose a stack that emphasizes performance and developer experience:
+
+- **Next.js 15:** For the App Router, Server Components, and optimized image rendering.
+- **React 19:** Utilizing the new concurrent features and cleaner ref handling.
+- **Three.js & R3F:** The backbone of the immersive background systems.
+- **Tailwind CSS v4:** For lightning-fast, utility-first styling with custom design tokens.
+
+### The Shader Architecture
+
+One of the most complex parts of the build was the background shader system. I wanted something that felt alive but didn't tank the framerate.
+
+```glsl
+// A small snippet of the noise function used
+float noise(vec2 p) {
+    return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+}
+```
+
+By keeping the mathematical operations simple and utilizing standard noise functions, we maintain a solid 60fps across most devices.
+
+## What's Next?
+
+This is just the beginning. The plan includes:
+
+1.  Adding more mini-games.
+2.  Expanding the lab section.
+3.  Connecting a real CMS.
+
+Stay tuned for more updates.
