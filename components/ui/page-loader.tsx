@@ -71,8 +71,6 @@ export function PageLoader() {
       ref={containerRef}
       className="fixed inset-0 z-[1000] flex flex-col items-center justify-center bg-bg-base text-cyan-400"
     >
-      <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
-      
       <div className="relative z-10 flex flex-col items-center max-w-md w-full px-6">
         <div ref={textRef} className="opacity-0 mb-8 font-mono text-sm tracking-[0.2em] text-center">
           <p className="mb-2">INITIALIZING NEXUS_PRIME v12.0</p>
