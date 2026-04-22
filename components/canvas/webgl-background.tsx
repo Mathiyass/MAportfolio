@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
-import { Canvas, useFrame, extend } from '@react-three/fiber';
+import { useRef } from 'react';
+import { Canvas, useFrame, extend, type ThreeElement } from '@react-three/fiber';
 import { useMousePosition } from '@/hooks/useMousePosition';
 import * as THREE from 'three';
 import { QuantumCoreMaterial, CyberGridMaterial } from './shaders/materials';
@@ -11,11 +11,9 @@ extend({ QuantumCoreMaterial, CyberGridMaterial });
 
 // Declare types for intrinsic elements
 declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      quantumCoreMaterial: any;
-      cyberGridMaterial: any;
-    }
+  interface IntrinsicElements {
+    quantumCoreMaterial: ThreeElement<typeof QuantumCoreMaterial>;
+    cyberGridMaterial: ThreeElement<typeof CyberGridMaterial>;
   }
 }
 
@@ -23,8 +21,13 @@ interface ShaderPlaneProps {
   type: 'quantum' | 'grid';
 }
 
+interface CustomMaterial extends THREE.ShaderMaterial {
+  uTime: number;
+  uMouse: THREE.Vector2;
+}
+
 function ShaderPlane({ type }: ShaderPlaneProps) {
-  const materialRef = useRef<any>(null);
+  const materialRef = useRef<CustomMaterial>(null);
   const mouse = useMousePosition();
 
   useFrame((state) => {

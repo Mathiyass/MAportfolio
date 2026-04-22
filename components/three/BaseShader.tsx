@@ -19,7 +19,7 @@ const vertSrc = `
   }
 `;
 
-export function BaseShader({ opacity = 1, blendMode, className, fragmentShader }: Props) {
+export function BaseShader({ opacity = 1, blendMode, fragmentShader }: Props) {
   const mesh = useRef<THREE.Mesh>(null)
   const { size } = useThree()
   const mouse = useMouse()

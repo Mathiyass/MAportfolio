@@ -157,7 +157,6 @@ export function ByteAdventure() {
       }
 
       // Camera follows player upward
-      const targetCameraY = Math.min(cameraYRef.current, player.y + cameraYRef.current - CANVAS_H * 0.4);
       if (player.y < CANVAS_H * 0.4 - cameraYRef.current) {
         const diff = CANVAS_H * 0.4 - cameraYRef.current - player.y;
         cameraYRef.current -= diff;

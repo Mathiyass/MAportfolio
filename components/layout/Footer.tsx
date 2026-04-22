@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useCursorStore } from '@/store/cursorStore';
-import { motion } from 'motion/react';
 
 export function Footer() {
   const { actions } = useCursorStore();

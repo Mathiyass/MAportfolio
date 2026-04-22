@@ -1,6 +1,6 @@
 import {
   Brain, Code, Cpu, Database, Globe, Layers, Layout,
-  Smartphone, Terminal, Zap, FileJson, Server, Activity, Shield
+  Terminal, Zap, Server
 } from 'lucide-react';
 
 export const siteConfig = {

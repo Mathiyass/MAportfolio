@@ -59,7 +59,7 @@ export default function SkillsPage() {
               </h2>
               
               <div className="grid grid-cols-1 gap-6">
-                {group.skills.map((skill, si) => (
+                {group.skills.map((skill) => (
                   <div 
                     key={skill}
                     className="group relative flex items-center justify-between p-6 rounded-[var(--radius-lg)] border border-border-1 bg-bg-muted/30 hover:border-red/30 transition-all duration-500"

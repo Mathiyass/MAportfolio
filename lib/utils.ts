@@ -21,7 +21,7 @@ export function lerp(start: number, end: number, amt: number) {
   return (1 - amt) * start + amt * end;
 }
 
-export async function fetcher<JSON = any>(
+export async function fetcher<JSON = unknown>(
   input: RequestInfo,
   init?: RequestInit
 ): Promise<JSON> {

@@ -2,6 +2,14 @@ import { NextResponse } from 'next/server';
 
 export const revalidate = 3600; // Cache for 1 hour
 
+interface GitHubRepo {
+  name: string;
+  description: string;
+  html_url: string;
+  stargazers_count: number;
+  language: string;
+}
+
 export async function GET() {
   try {
     const username = 'Mathiyass';
@@ -15,12 +23,12 @@ export async function GET() {
     
     // Also fetch pinned repos or recent repos if needed
     const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=5`);
-    const repos = reposResponse.ok ? await reposResponse.json() : [];
+    const repos: GitHubRepo[] = reposResponse.ok ? await reposResponse.json() : [];
 
     return NextResponse.json({
       followers: data.followers,
       publicRepos: data.public_repos,
-      latestRepos: repos.map((repo: any) => ({
+      latestRepos: repos.map((repo) => ({
         name: repo.name,
         description: repo.description,
         url: repo.html_url,

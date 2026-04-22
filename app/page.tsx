@@ -18,7 +18,7 @@ async function getGitHubStats() {
   const user = await userRes.json();
   const repos = await reposRes.json();
   
-  const stars = repos.reduce((sum: number, repo: any) => sum + repo.stargazers_count, 0);
+  const stars = repos.reduce((sum: number, repo: { stargazers_count: number }) => sum + repo.stargazers_count, 0);
   
   return {
     repos: user.public_repos,

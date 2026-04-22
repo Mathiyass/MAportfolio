@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next';
 
 const BASE_URL = 'https://mathiya.github.io/MAportfolio';
 
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     '',
