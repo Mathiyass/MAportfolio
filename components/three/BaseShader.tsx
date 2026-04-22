@@ -23,19 +23,18 @@ export function BaseShader({ opacity = 1, blendMode, className, fragmentShader }
   const mesh = useRef<THREE.Mesh>(null)
   const { size } = useThree()
   const mouse = useMouse()
-  const startTime = useRef(Date.now())
 
   const uniforms = useMemo(() => ({
     u_time: { value: 0 },
     u_res: { value: new THREE.Vector2(size.width, size.height) },
     u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
     u_opacity: { value: opacity },
-  }), [])
+  }), [size.width, size.height, opacity])
 
-  useFrame(() => {
+  useFrame((state) => {
     if (!mesh.current) return
     const mat = mesh.current.material as THREE.ShaderMaterial
-    mat.uniforms.u_time.value = (Date.now() - startTime.current) / 1000
+    mat.uniforms.u_time.value = state.clock.elapsedTime
     mat.uniforms.u_mouse.value.lerp(new THREE.Vector2(mouse.nx, mouse.ny), 0.06)
     mat.uniforms.u_res.value.set(size.width, size.height)
   })

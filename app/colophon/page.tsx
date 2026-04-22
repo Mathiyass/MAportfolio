@@ -50,7 +50,7 @@ export default function ColophonPage() {
                     <div className="text-text-1 font-body text-lg leading-relaxed max-w-2xl">
                         <p>
                             BYTE is a custom-engineered mascot with a reactive brain managed by **Zustand**. 
-                            It utilizes Inverse Kinematics (IK) to track the user's cursor in real-time across both 2D SVG and 3D R3F rendering modes. 
+                            It utilizes Inverse Kinematics (IK) to track the user&apos;s cursor in real-time across both 2D SVG and 3D R3F rendering modes. 
                             BYTE reacts to page changes, game events, and user interactions with a dynamic personality engine.
                         </p>
                     </div>
