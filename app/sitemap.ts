@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://mathiya.dev';
+const BASE_URL = 'https://mathiya.github.io/MAportfolio';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [

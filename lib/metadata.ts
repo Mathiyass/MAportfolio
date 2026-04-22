@@ -4,21 +4,23 @@ export function createMetadata({
   title, description, path, image
 }: { title?: string, description?: string, path: string, image?: string }): Metadata {
   const fullTitle = title ? `${title} — MATHIYA` : 'MATHIYA — Mathisha Angirasa';
+  const siteUrl = 'https://mathiya.github.io/MAportfolio';
+  
   return {
-    metadataBase: new URL('https://mathiya.vercel.app'),
+    metadataBase: new URL(siteUrl),
     title: fullTitle,
     description: description ?? 'Software engineering student building Android, WebGL, and developer tools.',
     openGraph: {
       title: fullTitle,
       description,
-      url: `https://mathiya.vercel.app${path}`,
+      url: `${siteUrl}${path}`,
       siteName: 'MATHIYA',
-      images: [{ url: image ?? '/api/og', width: 1200, height: 630 }],
+      images: [{ url: image ?? '/MAportfolio/api/og', width: 1200, height: 630 }],
       type: 'website',
     },
     twitter: { card: 'summary_large_image', title: fullTitle, description },
     robots: { index: true, follow: true },
-    manifest: '/manifest.json',
+    manifest: '/MAportfolio/manifest.json',
   };
 }
 
