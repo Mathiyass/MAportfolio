@@ -17,7 +17,6 @@ const nextConfig: NextConfig = {
   },
   output: 'export',
   transpilePackages: ['motion'],
-  turbopack: {}
 };
 
 export default nextConfig;
