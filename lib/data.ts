@@ -9,9 +9,18 @@ export const siteConfig = {
   url: 'https://mathiya.dev',
   ogImage: 'https://mathiya.dev/og.jpg',
   links: {
-    twitter: 'https://twitter.com/mathiya',
-    github: 'https://github.com/mathiya',
-    linkedin: 'https://linkedin.com/in/mathiya',
+    github: 'https://github.com/Mathiyass',
+    linkedin: 'https://www.linkedin.com/in/mathisha-angirasa-a955941a2/',
+    twitter: 'https://x.com/__Mathiya__',
+    facebook: 'https://www.facebook.com/mathisha.angirasa/',
+    instagram: 'https://www.instagram.com/mathi_ya_/',
+    steam: 'https://steamcommunity.com/profiles/76561199076879396/',
+    epic: 'https://store.epicgames.com/u/4cf7fef90a78425f951ae11dcd24222b',
+    spotify: 'https://open.spotify.com/user/6grrenymxnzrrvbp2dbe4ikxm',
+    discord: 'https://discord.gg/z3k3NVxuqY',
+    whatsapp: 'https://wa.me/94715921984',
+    email: 'mathishaangirasass@gmail.com',
+    eaid: 'M_MATHIYA_M'
   },
   nav: [
     { name: 'Home', href: '/' },

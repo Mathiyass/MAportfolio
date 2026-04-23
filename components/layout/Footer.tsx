@@ -4,8 +4,17 @@ import Link from 'next/link';
 import { useCursorStore } from '@/store/cursorStore';
 import { Zap } from 'lucide-react';
 
+import { siteConfig } from '@/lib/data';
+
 export function Footer() {
   const { actions } = useCursorStore();
+  
+  const socialLinks = [
+    { name: 'GitHub', href: siteConfig.links.github },
+    { name: 'LinkedIn', href: siteConfig.links.linkedin },
+    { name: 'X', href: siteConfig.links.twitter },
+    { name: 'Discord', href: siteConfig.links.discord },
+  ];
 
   const categories = [
     {
@@ -70,15 +79,17 @@ export function Footer() {
               Architecting high-fidelity digital systems where technical precision meets atmospheric depth. v12.0 core stable.
             </p>
             <div className="flex flex-wrap gap-x-8 gap-y-4">
-              {['GitHub', 'LinkedIn', 'X', 'Discord'].map((platform) => (
+              {socialLinks.map((platform) => (
                 <a
-                  key={platform}
-                  href="#"
+                  key={platform.name}
+                  href={platform.href}
+                  target="_blank"
+                  rel="noreferrer"
                   className="font-mono text-[9px] uppercase tracking-[0.4em] text-text-4 hover:text-cyan transition-all"
                   onMouseEnter={() => actions.setHovering(true, 'LINK')}
                   onMouseLeave={() => actions.setHovering(false)}
                 >
-                  {platform}
+                  {platform.name}
                 </a>
               ))}
             </div>

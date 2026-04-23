@@ -3,7 +3,7 @@ import * as React from 'react';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { projects } from '@/lib/projects';
 import { Card } from '@/components/ui/card';
-import { ArrowUpRight, Layers, Tag } from 'lucide-react';
+import { ArrowUpRight, Layers, Tag, Code2 } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
@@ -76,9 +76,15 @@ export default function ProjectsPage() {
                     <div className="relative aspect-[21/9] md:aspect-auto md:flex-1 bg-bg-base overflow-hidden border-b border-white/5">
                         <div className="absolute inset-0 bg-gradient-to-br from-cyan/10 via-transparent to-red/5 opacity-0 group-hover/card-item:opacity-100 transition-opacity duration-700 z-0" />
                         
-                        <div className="absolute inset-0 flex items-center justify-center font-display text-text-4 text-[10vw] font-black opacity-5 group-hover/card-item:scale-110 group-hover/card-item:opacity-10 transition-all duration-1000 select-none uppercase tracking-tighter italic">
+                        <div className="absolute inset-0 flex items-center justify-center font-display text-text-4 text-[10vw] font-black opacity-5 group-hover/card-item:scale-110 group-hover/card-item:opacity-10 transition-all duration-1000 select-none uppercase tracking-tighter italic z-0">
                             {project.category}
                         </div>
+
+                        <img 
+                            src={project.image} 
+                            alt={project.title}
+                            className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover/card-item:opacity-40 group-hover/card-item:scale-110 transition-all duration-1000 z-0"
+                        />
 
                         <div className="absolute top-8 left-8 z-20">
                            <div className="px-3 py-1 rounded bg-bg-muted/80 backdrop-blur-md border border-white/10 font-mono text-[9px] text-cyan tracking-[0.2em] flex items-center gap-2">
@@ -87,7 +93,19 @@ export default function ProjectsPage() {
                            </div>
                         </div>
 
-                        <div className="absolute top-8 right-8 z-20">
+                        <div className="absolute top-8 right-8 z-20 flex gap-2">
+                            {project.github && (
+                                <a 
+                                    href={project.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-text-2 hover:text-cyan hover:border-cyan/30 transition-all duration-300 backdrop-blur-md"
+                                    title="View Source"
+                                >
+                                    <Code2 size={12} />
+                                </a>
+                            )}
                             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan/10 border border-cyan/30 text-cyan opacity-0 group-hover/card-item:opacity-100 translate-x-4 group-hover/card-item:translate-x-0 transition-all duration-500">
                                 <span className="font-mono text-[9px] uppercase tracking-widest font-bold">ACCESS_CORE</span>
                                 <ArrowUpRight size={12} />

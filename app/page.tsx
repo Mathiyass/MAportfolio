@@ -1,7 +1,10 @@
 import { Suspense } from 'react';
 import { HeroSection } from '@/components/sections/home/HeroSection';
 import { StatsBar } from '@/components/sections/home/StatsBar';
+import { SystemTerminal } from '@/components/sections/home/SystemTerminal';
 import { FeaturedWork } from '@/components/sections/home/FeaturedWork';
+import { NetworkHub } from '@/components/sections/home/NetworkHub';
+import { DigitalEcosystem } from '@/components/sections/home/DigitalEcosystem';
 import { Teasers } from '@/components/sections/home/Teasers';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { ThreeScene } from '@/components/three/Scene';
@@ -46,11 +49,15 @@ export default async function HomePage() {
         <Suspense fallback={<div>Loading stats...</div>}>
           <StatsBar stats={stats} />
         </Suspense>
+        <SystemTerminal />
+        <NetworkHub />
         <Suspense fallback={<div>Loading featured work...</div>}>
           <FeaturedWork />
         </Suspense>
+        <DigitalEcosystem />
         <Teasers />
       </div>
     </PageWrapper>
   );
 }
+
