@@ -7,7 +7,7 @@ export const dynamic = 'force-static';
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-    const title = searchParams.get('title') || 'MATHIYA Nexus Prime';
+    const title = searchParams.get('title') || 'SIVION Executive Portfolio';
     const subtitle = searchParams.get('subtitle') || 'Systems. Products. Experiences.';
 
     return new ImageResponse(
@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
           <div style={{ display: 'flex', alignItems: 'center', marginBottom: '40px' }}>
             <div style={{ width: '40px', height: '40px', backgroundColor: '#22D3EE', borderRadius: '8px', marginRight: '20px' }} />
             <span style={{ color: '#fff', fontSize: '32px', fontFamily: 'monospace', fontWeight: 'bold' }}>
-              MATHIYA
+              SIVION
             </span>
           </div>
 
@@ -73,7 +73,7 @@ export async function GET(req: NextRequest) {
               fontFamily: 'monospace',
             }}
           >
-            mathiya.dev
+            sivion.ai
           </div>
         </div>
       ),

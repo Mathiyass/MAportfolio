@@ -19,7 +19,7 @@ export default function ColophonPage() {
             </span>
             <h1 className="text-6xl lg:text-8xl font-display font-bold mb-12 text-text-0">Colophon.</h1>
             <p className="font-body text-xl text-text-2 mb-20 leading-relaxed max-w-2xl">
-                A technical deep dive into the architecture, tools, and philosophy powering the MATHIYA Nexus Prime ecosystem.
+                A technical deep dive into the architecture, tools, and philosophy powering the SIVION Executive ecosystem.
             </p>
 
             <div className="grid gap-24 mb-32">

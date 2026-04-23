@@ -3,21 +3,21 @@ import { Metadata, Viewport } from 'next';
 export function createMetadata({
   title, description, path, image, type = 'website'
 }: { title?: string, description?: string, path: string, image?: string, type?: 'website' | 'article' }): Metadata {
-  const fullTitle = title ? `${title} — MATHIYA` : 'MATHIYA — Mathisha Angirasa';
+  const fullTitle = title ? `${title} — SIVION Executive` : 'MATHIYA — Founder & CEO of SIVION';
   const siteUrl = 'https://mathiya.github.io/MAportfolio';
   
   return {
     metadataBase: new URL(siteUrl),
     title: {
       default: fullTitle,
-      template: `%s — MATHIYA`
+      template: `%s — SIVION`
     },
     description: description ?? 'MATHIYA (Nexus Prime) — Portfolio of Founder & CEO of SIVION. Specialized in AI Engineering, LLM Orchestration, Agentic Systems, and Neural Architectures.',
     openGraph: {
       title: fullTitle,
       description: description ?? 'The digital vanguard of SIVION — AI Systems Engineering Showcase.',
       url: `${siteUrl}${path}`,
-      siteName: 'MATHIYA',
+      siteName: 'SIVION',
       images: [{ url: image ?? '/MAportfolio/api/og', width: 1200, height: 630, alt: 'MATHIYA NEXUS' }],
       type: type,
     },

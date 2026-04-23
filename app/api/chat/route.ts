@@ -1,7 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
 
-export const dynamic = 'force-dynamic';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
@@ -24,7 +23,7 @@ RULES:
 
 CONTEXT:
 User is currently viewing: {{pathname}}
-Portfolio Owner: Mathisha Angirasa (MATHIYA).
+Portfolio Owner: SIVION Founder & CEO (MATHIYA).
 
 Example Output:
 {
