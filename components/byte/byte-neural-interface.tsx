@@ -41,8 +41,8 @@ export function ByteNeuralInterface() {
     actions.setIsGenerating(true);
 
     try {
-      // 2. Call AI Bridge (Base path is /MAportfolio)
-      const response = await fetch('/MAportfolio/api/chat', {
+      // 2. Call AI Bridge
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -6,17 +6,20 @@ import { Button } from '@/components/ui/button';
 import { ThreeScene } from '@/components/three/Scene';
 import { HexGridShader } from '@/components/three/HexGridShader';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ArrowRight, Terminal } from 'lucide-react';
+import { ArrowRight, Terminal, User } from 'lucide-react';
 
 export function HeroSection() {
+  const [isLoaded, setIsLoaded] = React.useState(false);
+
   return (
     <section className="relative flex min-h-[90vh] items-center justify-center px-4 pt-20 overflow-hidden">
       {/* Background Layer */}
       <div className="absolute inset-0 energy-mesh z-0 opacity-40"></div>
-      
+
       <div className="container mx-auto grid lg:grid-cols-12 gap-16 items-center relative z-10">
-        
+
         {/* Content Column */}
         <div className="lg:col-span-7 flex flex-col items-start gap-10">
           <motion.div 
@@ -49,7 +52,7 @@ export function HeroSection() {
               Building high-fidelity digital interfaces and system-driven experiences where technical precision meets atmospheric depth.
             </motion.p>
           </div>
-          
+
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -99,33 +102,62 @@ export function HeroSection() {
              initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
              animate={{ opacity: 1, scale: 1, rotate: 0 }}
              transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-             className="relative w-full aspect-[4/5] max-w-md"
+             className="relative w-full aspect-[4/5] max-w-md group"
            >
              <div className="absolute top-6 right-6 flex flex-col items-end gap-1 text-right z-30 mix-blend-difference">
-               <span className="font-mono text-[10px] tracking-widest text-text-1 uppercase">NODE_01</span>
+               <span className="font-mono text-[10px] tracking-widest text-text-1 uppercase tracking-[0.4em]">SYSTEM_IDENTITY</span>
+               <span className="font-mono text-[8px] text-text-4">UID: 001_ALPHA</span>
              </div>
 
              {/* Glows */}
              <div className="absolute -inset-10 bg-gradient-to-tr from-cyan/20 via-red/10 to-transparent blur-[100px] rounded-full animate-pulse z-0" />
-             
-             <div className="w-full h-full rounded-[var(--radius-2xl)] glass-refraction border-white/5 relative overflow-hidden group z-10">
+
+             <div className="w-full h-full rounded-[var(--radius-2xl)] glass-refraction border-white/5 relative overflow-hidden z-10">
+               {/* Base Shader Layer */}
                <Suspense fallback={<Skeleton className="w-full h-full" variant="shimmer" />}>
-                 <ThreeScene className="w-full h-full">
-                   <HexGridShader opacity={0.6} />
+                 <ThreeScene className="absolute inset-0 z-0">
+                   <HexGridShader opacity={0.3} />
                  </ThreeScene>
                </Suspense>
-               
+
+               {/* Profile Image */}
+               <div className="absolute inset-0 z-10">
+                 <Image 
+                   src="/assets/img/profile_photo/me.png"
+                   alt="Mathisha Angirasa"
+                   fill
+                   className={`object-cover transition-all duration-1000 ${isLoaded ? 'opacity-40 grayscale group-hover:opacity-80 group-hover:grayscale-0 scale-100' : 'opacity-0 scale-110'}`}
+                   onLoad={() => setIsLoaded(true)}
+                 />
+                 {/* Technical Grid Overlay */}
+                 <div className="absolute inset-0 bg-[linear-gradient(rgba(0,240,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.03)_1px,transparent_1px)] bg-[length:20px_20px] opacity-20 pointer-events-none" />
+
+                 {/* Vignette */}
+                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(15,19,28,0.8)_100%)] pointer-events-none" />
+               </div>
+
                <div className="absolute bottom-10 left-10 right-10 z-20 pointer-events-none text-right">
                  <div className="flex items-center justify-end gap-3 mb-3">
-                   <span className="font-mono text-[10px] text-cyan tracking-widest uppercase">CORE_ENGINE // ACTIVE</span>
+                   <span className="font-mono text-[10px] text-cyan tracking-widest uppercase animate-pulse">Neural_Sync // ONLINE</span>
                    <Terminal size={14} className="text-cyan" />
                  </div>
-                 <div className="font-display text-3xl font-black text-text-0 uppercase leading-none tracking-tight text-balance">The Neural Nexus.</div>
+                 <div className="font-display text-3xl font-black text-text-0 uppercase leading-none tracking-tight text-balance">Mathisha Angirasa</div>
                </div>
-               
-               <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
-                 <div className="absolute inset-0 bg-[linear-gradient(rgba(0,240,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.03)_1px,transparent_1px)] bg-[length:40px_40px]"></div>
+
+               {/* Decorative Crosshairs */}
+               <div className="absolute inset-0 z-30 pointer-events-none">
+                 <div className="absolute top-10 left-10 w-4 h-4 border-t border-l border-cyan/30" />
+                 <div className="absolute top-10 right-10 w-4 h-4 border-t border-r border-cyan/30" />
+                 <div className="absolute bottom-10 left-10 w-4 h-4 border-b border-l border-cyan/30" />
+                 <div className="absolute bottom-10 right-10 w-4 h-4 border-b border-r border-cyan/30" />
                </div>
+
+               {/* Animated Scan Line */}
+               <motion.div 
+                 className="absolute left-0 right-0 h-px bg-cyan/30 z-40 shadow-[0_0_15px_rgba(0,240,255,0.3)]"
+                 animate={{ top: ['0%', '100%', '0%'] }}
+                 transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+               />
              </div>
            </motion.div>
         </div>

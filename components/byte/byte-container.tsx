@@ -102,7 +102,7 @@ export function ByteContainer() {
           
           <Canvas
             camera={{ position: [0, 1, 5], fov: 45 }}
-            className="pointer-events-none"
+            className="pointer-events-none relative z-10"
             gl={{ alpha: true, antialias: true }}
             style={{ width: '100%', height: '100%' }}
           >
@@ -110,7 +110,7 @@ export function ByteContainer() {
           </Canvas>
 
           {/* Glow effect */}
-          <div className="absolute inset-0 bg-cyan-500/5 blur-3xl rounded-full group-hover:bg-cyan-500/10 transition-colors" />
+          <div className="absolute inset-0 bg-cyan-500/5 blur-3xl rounded-full group-hover:bg-cyan-500/10 transition-colors z-0" />
         </div>
       </motion.div>
     </div>
