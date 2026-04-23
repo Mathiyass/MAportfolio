@@ -68,11 +68,14 @@ export default function ProjectsPage() {
                 i % 3 === 0 ? "md:col-span-8" : "md:col-span-4"
               )}
             >
-              <Card variant="glass" className="h-full group/card-item cursor-pointer overflow-hidden relative border-white/5 hover:border-cyan/20">
+              <Card variant="glass" className="h-full group/card-item overflow-hidden relative border-white/5 hover:border-cyan/20">
                 {/* Power Rail */}
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-cyan/50 to-transparent opacity-0 group-hover/card-item:opacity-100 transition-opacity duration-700" />
                 
-                <Link href={project.link} className="flex flex-col h-full relative z-10">
+                {/* Main Link Overlay */}
+                <Link href={project.link} className="absolute inset-0 z-10" aria-label={`View details for ${project.title}`} />
+
+                <div className="flex flex-col h-full relative z-0">
                     <div className="relative aspect-[21/9] md:aspect-auto md:flex-1 bg-bg-base overflow-hidden border-b border-white/5">
                         <div className="absolute inset-0 bg-gradient-to-br from-cyan/10 via-transparent to-red/5 opacity-0 group-hover/card-item:opacity-100 transition-opacity duration-700 z-0" />
                         
@@ -93,14 +96,13 @@ export default function ProjectsPage() {
                            </div>
                         </div>
 
-                        <div className="absolute top-8 right-8 z-20 flex gap-2">
+                        <div className="absolute top-8 right-8 z-30 flex gap-2">
                             {project.github && (
                                 <a 
                                     href={project.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    onClick={(e) => e.stopPropagation()}
-                                    className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-text-2 hover:text-cyan hover:border-cyan/30 transition-all duration-300 backdrop-blur-md"
+                                    className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-text-2 hover:text-cyan hover:border-cyan/30 transition-all duration-300 backdrop-blur-md relative pointer-events-auto"
                                     title="View Source"
                                 >
                                     <Code2 size={12} />
@@ -128,7 +130,7 @@ export default function ProjectsPage() {
                             {project.seoDescription || project.description}
                         </p>
                     </div>
-                </Link>
+                </div>
               </Card>
             </motion.div>
           ))}

@@ -1,27 +1,21 @@
 {
   "name": "MATHIYA Nexus Prime",
   "short_name": "MATHIYA",
-  "description": "Portfolio of Mathisha Angirasa — Full-Stack Developer & Systems Architect",
+  "description": "MATHIYA Nexus Prime — Portfolio of Founder & CEO of SIVION, AI Systems Architect.",
   "start_url": "/MAportfolio/",
   "display": "standalone",
   "background_color": "#080C14",
-  "theme_color": "#22D3EE",
+  "theme_color": "#00F0FF",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/MAportfolio/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/MAportfolio/icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "src": "/MAportfolio/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     }
   ],
-  "categories": ["portfolio", "technology", "development"],
+  "categories": ["portfolio", "technology", "development", "AI"],
   "lang": "en",
   "dir": "ltr"
 }

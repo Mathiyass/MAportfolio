@@ -47,7 +47,7 @@ export default function ContactPage() {
       });
 
       const text = await response.text();
-      console.log('Transmission response:', text);
+
       
       let result;
       try {
@@ -219,7 +219,7 @@ export default function ContactPage() {
                             <Button 
                               type="submit"
                               disabled={status === 'transmitting'}
-                              variant="primary" 
+                              variant="technical" 
                               state={status === 'transmitting' ? 'ai-generating' : 'default'}
                               className={cn(
                                 "w-full h-16 text-xs font-black tracking-[0.3em] uppercase transition-all",

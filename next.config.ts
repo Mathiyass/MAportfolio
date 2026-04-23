@@ -27,7 +27,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  output: 'export',
   transpilePackages: ['motion'],
 };
 

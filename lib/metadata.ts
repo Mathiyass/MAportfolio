@@ -12,10 +12,10 @@ export function createMetadata({
       default: fullTitle,
       template: `%s — MATHIYA`
     },
-    description: description ?? 'MATHIYA (Nexus Prime) — Next.js 15 Engineering Showcase building Android, WebGL, and developer tools.',
+    description: description ?? 'MATHIYA (Nexus Prime) — Portfolio of Founder & CEO of SIVION. Specialized in AI Engineering, LLM Orchestration, Agentic Systems, and Neural Architectures.',
     openGraph: {
       title: fullTitle,
-      description: description ?? 'Engineering Showcase by Mathisha Angirasa.',
+      description: description ?? 'The digital vanguard of SIVION — AI Systems Engineering Showcase.',
       url: `${siteUrl}${path}`,
       siteName: 'MATHIYA',
       images: [{ url: image ?? '/MAportfolio/api/og', width: 1200, height: 630, alt: 'MATHIYA NEXUS' }],
@@ -24,8 +24,13 @@ export function createMetadata({
     twitter: { 
       card: 'summary_large_image', 
       title: fullTitle, 
-      description: description ?? 'Engineering Showcase by Mathisha Angirasa.',
+      description: description ?? 'AI Systems Engineering Showcase by Founder & CEO of SIVION.',
       creator: '@Mathiyass' 
+    },
+    icons: {
+      icon: '/MAportfolio/logo.svg',
+      shortcut: '/MAportfolio/logo.svg',
+      apple: '/MAportfolio/logo.svg',
     },
     robots: { 
       index: true, 

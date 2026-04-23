@@ -31,7 +31,7 @@ export default function AboutPage() {
             <div className="flex items-center gap-6 pt-12 border-t border-white/5">
                 <div className="flex flex-col gap-1">
                     <span className="font-mono text-[9px] text-text-4 uppercase tracking-widest">Role</span>
-                    <span className="text-cyan font-head font-bold text-sm tracking-wider uppercase">Systems Architect</span>
+                    <span className="text-cyan font-head font-bold text-sm tracking-wider uppercase">FOUNDER & CEO // SIVION</span>
                 </div>
                 <div className="h-10 w-px bg-white/5" />
                 <div className="flex flex-col gap-1">
@@ -56,10 +56,10 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-8 font-body text-xl lg:text-2xl text-text-2 leading-relaxed max-w-2xl border-l-2 border-cyan/10 pl-10 py-2">
                     <p>
-                        Dedicated <span className="text-text-0 font-semibold">Software Engineering Student</span> driven by the intersection of performance and aesthetics.
+                        <span className="text-text-0 font-semibold uppercase">Founder & CEO</span> of SIVION AI Solutions. Operating as **CEO • CIO • CTO**, I architect the future of business intelligence through high-fidelity digital ecosystems.
                     </p>
                     <p>
-                        My focus lies in building scalable, production-grade applications that don&apos;t just function perfectly, but feel alive. From **Next.js** ecosystems to low-level **GLSL shaders**, I thrive on technical complexity.
+                        Leading the architectural vision at SIVION, I focus on deploying high-velocity AI frameworks and autonomous agent networks. We translate complex enterprise data into decisive competitive advantages through **Multi-Agent Collaboration**, **Bespoke Neural Architectures**, and **Intelligent Automation**.
                     </p>
                 </div>
             </div>

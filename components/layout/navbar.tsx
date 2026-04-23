@@ -6,6 +6,7 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-
 import { useCursorStore } from '@/store/cursorStore';
 import { cn } from '@/lib/utils';
 import { Zap, ChevronDown, Menu, X, Terminal, Cpu, Activity, Globe, Shield, Info, FileText, Clock, Radio, Search, LayoutPanelLeft } from 'lucide-react';
+import { SivionLogo } from '@/components/ui/SivionLogo';
 import { useState, useEffect } from 'react';
 import {
   DropdownMenu,
@@ -137,7 +138,7 @@ export function Navbar() {
                     "relative flex items-center justify-center rounded-full bg-cyan-500/5 border border-white/10 overflow-hidden group-hover:border-cyan-500/50 transition-all duration-[3000ms] ease-[0.22,1,0.36,1]",
                     isScrolled ? "w-9 h-9 shadow-[0_0_20px_rgba(0,240,255,0.2)]" : "w-14 h-14"
                   )}>
-                    <Zap className={cn("text-cyan group-hover:scale-110 transition-transform shadow-[0_0_15px_#00f0ff]", isScrolled ? "w-4.5 h-4.5" : "w-7 h-7")} />
+                    <SivionLogo size={isScrolled ? 24 : 32} />
                     <div className="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                   <div className="flex flex-col gap-0.5">

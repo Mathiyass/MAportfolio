@@ -42,7 +42,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           "@type": "Person",
           "name": "Mathisha Angirasa",
           "url": "https://mathiya.vercel.app",
-          "jobTitle": "Software Engineering Student",
+          "jobTitle": "Founder & CEO at SIVION",
           "sameAs": ["https://github.com/Mathiyass"]
         }) }} />
       </head>

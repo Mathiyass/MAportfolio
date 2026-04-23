@@ -45,18 +45,25 @@ export default function ResumePage() {
                     <div className="space-y-16">
                         {[
                             {
-                                title: "Lead Systems Architect",
-                                company: "NEXUS PRIME",
+                                title: "Founder & CEO",
+                                company: "SIVION",
                                 period: "2024 — Present",
-                                desc: "Orchestrating high-fidelity digital systems using Next.js 15 and React Three Fiber. Developed a modular UI framework with 60+ components.",
+                                desc: "Directing strategic evolution of AI Solutions. Architecting enterprise-grade multi-agent frameworks and high-velocity digital ecosystems.",
                                 id: "EXP_01"
                             },
                             {
-                                title: "Full Stack Engineer",
-                                company: "TECH_LOGIC",
+                                title: "Lead Systems Architect",
+                                company: "NEXUS PRIME",
                                 period: "2023 — 2024",
-                                desc: "Architected distributed Node.js services and optimized GLSL rendering pipelines for immersive web experiences.",
+                                desc: "Spearheaded development of the Nexus protocol, integrating advanced WebGL rendering with distributed LLM orchestration layers.",
                                 id: "EXP_02"
+                            },
+                            {
+                                title: "AI Engineering Lead",
+                                company: "TECHFLOW SYSTEMS",
+                                period: "2022 — 2023",
+                                desc: "Designed distributed neural architectures for real-time processing. Optimized high-dimensional vector search and visualization pipelines.",
+                                id: "EXP_03"
                             }
                         ].map((exp) => (
                             <div key={exp.id} className="relative pl-10 border-l-2 border-white/5 group hover:border-cyan/30 transition-all">
@@ -90,7 +97,7 @@ export default function ResumePage() {
                             </div>
                             <span className="font-mono text-[9px] text-text-4 bg-white/5 px-2 py-1 rounded">2022 — 2026</span>
                         </div>
-                        <p className="text-base text-text-2 font-body leading-relaxed max-w-2xl">Specializing in high-performance web systems and interactive graphics architecture.</p>
+                        <p className="text-base text-text-2 font-body leading-relaxed max-w-2xl">Specializing in high-performance AI systems, distributed architectures, and interactive graphics.</p>
                     </div>
                 </section>
             </div>
@@ -102,10 +109,10 @@ export default function ResumePage() {
                     <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan mb-8">Skill Matrix</h3>
                     <div className="space-y-6">
                         {[
-                            { label: "Architecture", value: "95%" },
-                            { label: "Engineering", value: "98%" },
-                            { label: "Performance", value: "92%" },
-                            { label: "Visuals", value: "90%" }
+                            { label: "AI Orchestration", value: "98%" },
+                            { label: "Systems Design", value: "95%" },
+                            { label: "GPU Optimization", value: "92%" },
+                            { label: "Full-Stack Dev", value: "99%" }
                         ].map((skill) => (
                             <div key={skill.label} className="space-y-2">
                                 <div className="flex justify-between text-[9px] font-mono text-text-3 uppercase tracking-widest">
@@ -126,9 +133,9 @@ export default function ResumePage() {
                         <h4 className="font-display font-bold text-lg text-text-1 uppercase tracking-tight">Achievements</h4>
                     </div>
                     <ul className="space-y-4 font-body text-sm text-text-3">
-                        <li className="flex gap-3"><div className="size-1 rounded-full bg-red shrink-0 mt-2" /> System-wide production deployment.</li>
-                        <li className="flex gap-3"><div className="size-1 rounded-full bg-red shrink-0 mt-2" /> High-performance graphics orchestration.</li>
-                        <li className="flex gap-3"><div className="size-1 rounded-full bg-red shrink-0 mt-2" /> Distributed system architecture.</li>
+                        <li className="flex gap-3"><div className="size-1 rounded-full bg-red shrink-0 mt-2" /> Founded SIVION AI (Enterprise Solutions).</li>
+                        <li className="flex gap-3"><div className="size-1 rounded-full bg-red shrink-0 mt-2" /> Architected Nexus AI Multi-Agent Swarm.</li>
+                        <li className="flex gap-3"><div className="size-1 rounded-full bg-red shrink-0 mt-2" /> Optimized 3D visualization for Neural Nets.</li>
                     </ul>
                 </Card>
             </div>

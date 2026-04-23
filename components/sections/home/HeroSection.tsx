@@ -28,7 +28,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col gap-1"
           >
-            <span className="font-mono text-[10px] tracking-[0.4em] text-cyan uppercase opacity-70">Creative Developer</span>
+            <span className="font-mono text-[10px] tracking-[0.4em] text-cyan uppercase opacity-70">FOUNDER & CEO // SIVION</span>
             <div className="h-px w-12 bg-cyan/30" />
           </motion.div>
 
@@ -49,7 +49,7 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-2xl text-xl text-text-2 font-body leading-relaxed border-l border-white/10 pl-8"
             >
-              Building high-fidelity digital interfaces and system-driven experiences where technical precision meets atmospheric depth.
+              Intelligent Technology. Built for Business. Orchestrating high-velocity AI frameworks and neural systems at SIVION.
             </motion.p>
           </div>
 
@@ -60,12 +60,12 @@ export function HeroSection() {
             className="flex flex-wrap gap-6 mt-4"
           >
             <Link href="/projects" passHref>
-              <Button variant="primary" size="lg" className="h-16 px-10 gap-3 text-xs tracking-[0.2em] shadow-[0_0_40px_-10px_rgba(0,240,255,0.4)] hover:scale-105 transition-all">
+              <Button variant="technical" size="lg" className="h-16 px-10 gap-3 shadow-[0_0_40px_-10px_rgba(0,240,255,0.2)] hover:scale-105 transition-all">
                 VIEW WORK <ArrowRight size={16} />
               </Button>
             </Link>
-            <Link href="/about" passHref>
-              <Button variant="secondary" size="lg" className="h-16 px-10 border-white/5 glass hover:border-cyan/30 hover:bg-cyan/5 transition-all">
+            <Link href="/contact" passHref>
+              <Button variant="technical" size="lg" className="h-16 px-10 border-white/5 glass hover:border-cyan/30 hover:bg-cyan/5 transition-all">
                 GET IN TOUCH
               </Button>
             </Link>
@@ -87,7 +87,7 @@ export function HeroSection() {
             </div>
             <div className="flex flex-col gap-1">
               <span className="font-mono text-[9px] uppercase tracking-widest text-text-4">Focus</span>
-              <div className="text-text-1 font-head font-bold text-sm uppercase">Full-Stack</div>
+              <div className="text-text-1 font-head font-bold text-sm uppercase">FOUNDER & CEO // SIVION</div>
             </div>
             <div className="flex flex-col gap-1">
               <span className="font-mono text-[9px] uppercase tracking-widest text-text-4">Experience</span>

@@ -1,12 +1,18 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+/**
+ * BYTE Contextual AI Hub - Core Container
+ * Version: 1.0.2
+ */
+
+import * as React from 'react';
+import { useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { useByteStore } from '@/store/byteStore';
 import { useByteInteraction } from '@/hooks/useByteInteraction';
 import { ByteModel } from './byte-model';
 import { ByteNeuralInterface } from './byte-neural-interface';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
 const ROUTE_MESSAGES: Record<string, string> = {
@@ -24,25 +30,23 @@ const ROUTE_MESSAGES: Record<string, string> = {
 };
 
 export function ByteContainer() {
-  const { isVisible, isCollapsed, isGenerating, actions } = useByteStore();
+  const [mounted, setMounted] = React.useState(false);
+  const { isVisible, isCollapsed, actions } = useByteStore();
   const { byteRef, updateTracking } = useByteInteraction();
   const pathname = usePathname();
-  const hasMounted = useRef(false);
 
   useEffect(() => {
-    if (!hasMounted.current) {
-      hasMounted.current = true;
-      return;
-    }
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     
-    // Determine context message
     let msg = "Navigating subspace...";
     if (pathname && ROUTE_MESSAGES[pathname]) {
       msg = ROUTE_MESSAGES[pathname];
     } else if (pathname?.startsWith('/projects/')) {
       msg = "Analyzing project schematics.";
-    } else if (pathname?.startsWith('/blog/')) {
-      msg = "Reading engineering log.";
     }
 
     if (!isCollapsed) {
@@ -50,7 +54,7 @@ export function ByteContainer() {
       actions.showSpeech(msg, 4000);
       setTimeout(() => actions.setMood('idle'), 2000);
     }
-  }, [pathname, actions, isCollapsed]);
+  }, [pathname, actions, isCollapsed, mounted]);
 
   useEffect(() => {
     const handleGlobalMouseMove = (e: MouseEvent) => {
@@ -61,44 +65,26 @@ export function ByteContainer() {
     return () => window.removeEventListener('mousemove', handleGlobalMouseMove);
   }, [updateTracking]);
 
-  if (!isVisible) return null;
+  if (!mounted || !isVisible) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-[var(--z-byte)] flex flex-col items-end">
+    <div className="fixed bottom-6 right-6 z-[var(--z-byte)] flex flex-col items-end pointer-events-none">
       <motion.div
         ref={byteRef}
         role="button"
         tabIndex={0}
-        className={`transition-all duration-500 ease-spring ${
+        className={`transition-all duration-500 ease-spring pointer-events-auto ${
           isCollapsed ? 'w-16 h-16 opacity-50' : 'w-48 h-64'
         }`}
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         whileHover={{ scale: 1.05 }}
-        onClick={() => {
-          actions.toggleCollapsed();
-          if (isCollapsed) {
-            actions.wake();
-            actions.showSpeech("I'm back!");
-          } else {
-            actions.sleep();
-          }
-        }}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            actions.toggleCollapsed();
-            if (isCollapsed) {
-              actions.wake();
-              actions.showSpeech("I'm back!");
-            } else {
-              actions.sleep();
-            }
-          }
-        }}
+        onClick={() => actions.toggleCollapsed()}
       >
         <div className="relative w-full h-full cursor-pointer group">
-          <ByteNeuralInterface />
+          <AnimatePresence>
+            {!isCollapsed && <ByteNeuralInterface key="neural-interface" />}
+          </AnimatePresence>
           
           <Canvas
             camera={{ position: [0, 1, 5], fov: 45 }}
@@ -109,7 +95,6 @@ export function ByteContainer() {
             <ByteModel />
           </Canvas>
 
-          {/* Glow effect */}
           <div className="absolute inset-0 bg-cyan-500/5 blur-3xl rounded-full group-hover:bg-cyan-500/10 transition-colors z-0" />
         </div>
       </motion.div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame, extend, type ThreeElement } from '@react-three/fiber';
 import { useMousePosition } from '@/hooks/useMousePosition';
 import * as THREE from 'three';
@@ -66,6 +66,14 @@ function ShaderPlane({ type }: ShaderPlaneProps) {
 }
 
 export function WebGLBackground({ type = 'quantum' }: { type?: 'quantum' | 'grid' }) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
+
   return (
     <div className="fixed inset-0 z-[-10] pointer-events-none w-full h-full">
       <Canvas 

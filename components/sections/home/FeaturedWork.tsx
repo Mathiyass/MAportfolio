@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { Github } from 'lucide-react';
 import { projects } from '@/lib/projects';
 
 export function FeaturedWork() {
@@ -46,8 +47,20 @@ export function FeaturedWork() {
                   <div className={`p-4 rounded-2xl ${colorBg} border border-white/5 group-hover:border-current transition-all ${colorText}`}>
                     <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
                   </div>
-                  <div className="flex flex-col items-end">
-                    <span className="font-mono text-[9px] text-text-4 uppercase tracking-[0.4em] opacity-40 group-hover:opacity-100 transition-opacity">Record_{project.id}</span>
+                  <div className="flex flex-col items-end gap-3">
+                    <div className="flex items-center gap-4">
+                      {project.github && (
+                        <a 
+                          href={project.github} 
+                          target="_blank" 
+                          rel="noreferrer"
+                          className="p-2 rounded-lg bg-white/5 text-text-4 hover:text-cyan hover:bg-cyan/10 border border-white/5 transition-all"
+                        >
+                          <Github size={14} />
+                        </a>
+                      )}
+                      <span className="font-mono text-[9px] text-text-4 uppercase tracking-[0.4em] opacity-40 group-hover:opacity-100 transition-opacity">Record_{project.id}</span>
+                    </div>
                     <span className="font-mono text-[8px] text-text-4 uppercase tracking-widest mt-1">{project.date.split('-')[0]} // STABLE</span>
                   </div>
                 </div>

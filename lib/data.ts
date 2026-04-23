@@ -5,7 +5,7 @@ import {
 
 export const siteConfig = {
   name: 'MATHIYA Nexus Prime',
-  description: 'Creative Developer & AI Engineer Portfolio',
+  description: 'Founder & CEO of SIVION — AI Systems Architect & Creative Engineer',
   url: 'https://mathiya.dev',
   ogImage: 'https://mathiya.dev/og.jpg',
   links: {
@@ -30,109 +30,175 @@ export const siteConfig = {
     { name: 'Blog', href: '/blog' },
     { name: 'Games', href: '/games' },
     { name: 'Contact', href: '/contact' },
-    { name: 'Gallery', href: '/gallery' },
     { name: 'Lab', href: '/lab' },
     { name: 'Marketplace', href: '/marketplace' },
-    { name: 'AR', href: '/ar' },
     { name: 'Resume', href: '/resume' },
     { name: 'Now', href: '/now' },
-    { name: 'Uses', href: '/uses' },
-    { name: 'Certifications', href: '/certifications' },
     { name: 'Timeline', href: '/timeline' },
-    { name: 'Open Source', href: '/open-source' },
-    { name: 'Sri Lanka', href: '/sri-lanka' },
-    { name: 'Colophon', href: '/colophon' },
-    { name: 'Secret', href: '/secret' },
-    { name: 'Admin', href: '/admin' },
   ],
 };
 
 export const skills = [
-  { name: 'React / Next.js', icon: Globe, level: 95, category: 'Frontend' },
-  { name: 'TypeScript', icon: Code, level: 90, category: 'Languages' },
-  { name: 'Tailwind CSS', icon: Layout, level: 98, category: 'Styling' },
-  { name: 'Framer Motion', icon: Layers, level: 85, category: 'Animation' },
-  { name: 'WebGL / Three.js', icon: Cpu, level: 75, category: 'Graphics' },
-  { name: 'Node.js', icon: Server, level: 85, category: 'Backend' },
-  { name: 'PostgreSQL', icon: Database, level: 80, category: 'Database' },
-  { name: 'AI Integration', icon: Brain, level: 90, category: 'AI' },
-  { name: 'System Architecture', icon: Terminal, level: 85, category: 'Architecture' },
-  { name: 'Performance Opt', icon: Zap, level: 80, category: 'Optimization' },
+  { name: 'LLM Orchestration', icon: Brain, level: 96, category: 'AI' },
+  { name: 'Agentic Swarms', icon: Cpu, level: 94, category: 'AI' },
+  { name: 'Neural Architectures', icon: Database, level: 88, category: 'AI' },
+  { name: 'RAG Pipeline Engineering', icon: Layers, level: 95, category: 'AI' },
+  { name: 'Next.js 15 / React 19', icon: Code, level: 98, category: 'Engineering' },
+  { name: 'Python / PyTorch', icon: Server, level: 90, category: 'Engineering' },
+  { name: 'GLSL / WebGL2', icon: Zap, level: 92, category: 'Graphics' },
+  { name: 'Enterprise Architecture', icon: Terminal, level: 93, category: 'Architecture' },
 ];
 
 export const projects = [
   {
-    id: 'nexus',
-    title: 'Project Nexus',
-    description: 'An advanced AI orchestration platform for autonomous agents.',
-    longDescription: 'Nexus is a state-of-the-art AI orchestration platform that allows users to deploy, monitor, and manage swarms of autonomous agents. Built with a high-performance Rust backend and a Next.js front-end.',
-    tech: ['Next.js', 'WebGL', 'Zustand', 'Rust', 'WebSockets'],
+    id: 'sivion-nexus',
+    title: 'SIVION Nexus',
+    description: 'Autonomous AI orchestration swarm for enterprise automation.',
+    longDescription: 'Nexus is the flagship SIVION product—a distributed intelligence layer that orchestrates hundreds of specialized agents to solve complex industrial problems in real-time.',
+    tech: ['Next.js 15', 'TypeScript', 'FastAPI', 'VectorDB', 'GLSL'],
     link: '/projects/nexus',
-    github: 'https://github.com/mathiya/nexus',
+    github: 'https://github.com/SIVION-AI-PVT/nexus',
     image: '/projects/nexus.jpg',
     featured: true,
   },
   {
-    id: 'aether',
-    title: 'Aether Engine',
-    description: 'Real-time volumetric rendering engine for the web.',
-    longDescription: 'A custom WebGL rendering engine focused on volumetric effects, cloud simulation, and real-time path tracing directly in the browser.',
-    tech: ['Three.js', 'GLSL', 'React Three Fiber', 'WebWorker'],
-    link: '/projects/aether',
-    github: 'https://github.com/mathiya/aether',
-    image: '/projects/aether.jpg',
+    id: 'quantum-vanguard',
+    title: 'Quantum Vanguard',
+    description: 'High-performance WebGL2 engine for neural visualizations.',
+    longDescription: 'A custom rendering engine designed for real-time visualization of high-dimensional vector spaces and neural network activations with extreme fidelity.',
+    tech: ['WebGL2', 'GLSL', 'React Three Fiber', 'GPU Computation'],
+    link: '/projects/vanguard',
+    github: 'https://github.com/SIVION-AI-PVT/vanguard',
+    image: '/projects/vanguard.jpg',
     featured: true,
   },
   {
-    id: 'quantum',
-    title: 'Quantum State',
-    description: 'State management library for highly concurrent React applications.',
-    longDescription: 'An experimental state management library that uses atomic principles to ensure zero-conflict concurrent state updates in complex React trees.',
-    tech: ['TypeScript', 'React', 'Jotai concepts'],
-    link: '/projects/quantum',
-    github: 'https://github.com/mathiya/quantum',
-    image: '/projects/quantum.jpg',
-    featured: false,
+    id: 'aether-core',
+    title: 'Aether Core',
+    description: 'Distributed state synchronization for agentic networks.',
+    longDescription: 'A low-latency communication protocol built for high-frequency synchronization between distributed AI agents operating in shared environments.',
+    tech: ['Rust', 'WebRTC', 'Protobuf', 'WASM'],
+    link: '/projects/aether',
+    github: 'https://github.com/SIVION-AI-PVT/aether',
+    image: '/projects/aether.jpg',
+    featured: true,
   }
 ];
 
 export const timeline = [
   {
-    year: '2024',
-    title: 'Senior Creative Developer',
-    company: 'Nexus Innovations',
-    description: 'Leading a team of developers building next-gen web experiences with AI integrations.',
+    year: '2024 - PRESENT',
+    title: 'Founder & CEO',
+    company: 'SIVION',
+    description: 'Directing the strategic evolution of SIVION AI Solutions as CEO. Architecting enterprise-grade multi-agent frameworks and high-velocity digital ecosystems.',
   },
   {
-    year: '2022',
-    title: 'Full Stack Engineer',
-    company: 'TechFlow',
-    description: 'Architected and built scalable enterprise applications using Next.js and Node.',
+    year: '2023 - 2024',
+    title: 'Lead Systems Architect',
+    company: 'NEXUS PRIME (Prototype)',
+    description: 'Spearheaded the development of the initial Nexus protocol, integrating advanced WebGL rendering with early-stage LLM agents.',
   },
   {
-    year: '2020',
-    title: 'Frontend Developer',
+    year: '2022 - 2023',
+    title: 'AI Engineering Lead',
+    company: 'TechFlow Systems',
+    description: 'Designed and deployed distributed neural architectures for real-time data processing and visualization.',
+  },
+  {
+    year: '2020 - 2022',
+    title: 'Full-Stack Developer',
     company: 'Digital Canvas',
-    description: 'Focused on high-performance interactive websites and web applications.',
+    description: 'Focused on high-performance interactive interfaces and cloud-native applications.',
   },
 ];
 
+export const blogPosts = [
+  {
+    id: "multi-agent-orchestration",
+    title: "The SIVION Methodology: Multi-Agent Orchestration at Scale",
+    excerpt: "Architecting autonomous swarms that resolve complex industrial logic in sub-millisecond latencies.",
+    date: "2025-04-12",
+    readTime: "12 min",
+    category: "AI Architecture",
+    featured: true
+  },
+  {
+    id: "webgl2-neural-viz",
+    title: "Visualizing High-Dimensional Latent Spaces with WebGL2",
+    excerpt: "How we render 1024-dimensional vector embeddings in real-time using custom GLSL shaders.",
+    date: "2025-03-28",
+    readTime: "15 min",
+    category: "Graphics",
+    featured: false
+  },
+  {
+    id: "enterprise-rag-pipelines",
+    title: "Hardening RAG Pipelines for Enterprise Compliance",
+    excerpt: "Implementing advanced semantic search strategies with zero-trust AI protocols.",
+    date: "2025-02-15",
+    readTime: "10 min",
+    category: "Data Engineering",
+    featured: false
+  }
+];
+
+export const marketplaceItems = [
+  {
+    id: "nexus-core-ui",
+    title: "SIVION Nexus UI Kit",
+    description: "The complete React/Next.js design system used in SIVION products.",
+    price: "$299",
+    category: "UI/UX",
+    tech: ["React 19", "Tailwind 4", "Framer Motion"]
+  },
+  {
+    id: "agentic-swarm-starter",
+    title: "Agentic Swarm Starter",
+    description: "A production-ready framework for orchestrating multiple LLM agents.",
+    price: "$499",
+    category: "AI",
+    tech: ["Python", "FastAPI", "LangGraph"]
+  },
+  {
+    id: "quantum-shader-pack",
+    title: "Quantum Shader Pack",
+    description: "16 premium GLSL shaders for high-fidelity web backgrounds.",
+    price: "$149",
+    category: "Graphics",
+    tech: ["GLSL", "Three.js"]
+  }
+];
+
+export const nowData = {
+  focusingOn: [
+    "Scaling SIVION Nexus for enterprise-level multi-agent orchestration.",
+    "Refining the 'Aether Core' low-latency communication protocol for AI swarms.",
+    "Designing spatial interfaces for high-fidelity 3D data visualization.",
+    "Establishing strategic partnerships for SIVION's next expansion phase."
+  ],
+  learning: [
+    "Advanced GPU computation for localized LLM inference.",
+    "Rust-based high-performance systems engineering.",
+    "Strategic leadership and enterprise scaling operations."
+  ]
+};
+
 export const bytePhrases = [
-  "Hello! I am BYTE.",
-  "Exploring the digital frontier.",
-  "Processing...",
-  "Let's build something amazing.",
-  "System optimal.",
-  "Ready for input.",
-  "Analyzing user interaction...",
-  "Running diagnostics...",
+  "Hello! I am BYTE, your SIVION interface.",
+  "Neural link established with Nexus Core.",
+  "Agent swarm orchestration active.",
+  "System stability: Nominal.",
+  "SIVION protocols engaged.",
+  "Analyzing vector similarity across SIVION datasets...",
+  "Running diagnostics on Agent Swarm 01...",
   "All systems green.",
-  "Awaiting command.",
+  "Founder identity verified: MATHIYA.",
+  "Awaiting command from Command Center.",
 ];
 
 export const buzzwords = [
-  "Web3", "AI", "Machine Learning", "WebGL", "React", "Next.js", "TypeScript",
-  "GLSL", "Shaders", "Framer Motion", "GSAP", "Microservices", "Serverless"
+  "SIVION", "AI Swarms", "LLM Orchestration", "WebGL2", "React 19", "Next.js 15",
+  "Vector Search", "GLSL", "Neural Nets", "RAG", "Multi-Agent Systems", "GPU Shaders"
 ];
 
 export type SiteConfig = typeof siteConfig;

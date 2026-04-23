@@ -79,7 +79,7 @@ export function MagneticCursor() {
         }}
         animate={{
           scale: isHovering ? 1.5 : isClicking ? 0.8 : 1,
-          backgroundColor: isHovering ? 'rgba(34, 211, 238, 0.1)' : 'transparent',
+          backgroundColor: isHovering ? 'rgba(34, 211, 238, 0.1)' : 'rgba(34, 211, 238, 0)',
           borderColor: isHovering ? 'rgba(34, 211, 238, 0.8)' : 'rgba(34, 211, 238, 0.5)',
           opacity: isVisible ? 1 : 0,
         }}

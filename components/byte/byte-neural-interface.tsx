@@ -42,7 +42,7 @@ export function ByteNeuralInterface() {
 
     try {
       // 2. Call AI Bridge
-      const response = await fetch('/api/chat', {
+      const response = await fetch('/MAportfolio/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

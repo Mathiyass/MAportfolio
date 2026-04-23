@@ -5,6 +5,13 @@ import { Preload } from '@react-three/drei'
 import { cn } from '@/lib/utils'
 
 export function ThreeScene({ children, className }: { children: React.ReactNode, className?: string }) {
+  const [mounted, setMounted] = React.useState(false)
+  React.useEffect(() => setMounted(true), [])
+
+  if (!mounted) return (
+    <div className={cn('pointer-events-none absolute inset-0 -z-10 bg-[#0F131C]', className)} />
+  )
+
   return (
     <div className={cn('pointer-events-none absolute inset-0 -z-10 bg-transparent', className)}>
       <Canvas

@@ -6,33 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-
-const posts = [
-  {
-    title: "Raw WebGL2 vs. Three.js: The Performance Frontier",
-    excerpt: "Exploring the overhead of abstractions in modern browser-based graphics pipelines.",
-    date: "2025-04-12",
-    readTime: "8 min",
-    category: "Graphics",
-    id: "POST_01"
-  },
-  {
-    title: "Architecting the Marketplace: A Multi-Agent Approach",
-    excerpt: "How we built a highly concurrent digital asset store using Next.js 15 and Jules.",
-    date: "2025-03-28",
-    readTime: "12 min",
-    category: "Architecture",
-    id: "POST_02"
-  },
-  {
-    title: "Kotlin Clean MVVM in Production",
-    excerpt: "Lessons learned from deploying large-scale native Android systems in 2024.",
-    date: "2025-02-15",
-    readTime: "10 min",
-    category: "Mobile",
-    id: "POST_03"
-  }
-];
+import { blogPosts } from '@/lib/data';
 
 export default function BlogPage() {
   return (
@@ -45,18 +19,18 @@ export default function BlogPage() {
           className="max-w-4xl mb-24"
         >
             <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-red mb-6 block">
-                Information Feed
+                Information Feed // SIVION_INTEL
             </span>
             <h1 className="text-6xl lg:text-8xl font-display font-bold mb-8 text-text-0">
                 The <span className="gradient-text">Log</span>.
             </h1>
             <p className="text-xl lg:text-2xl text-text-2 font-body max-w-2xl leading-relaxed">
-                Technical write-ups, system retrospectives, and research logs from the frontier of software engineering.
+                Strategic technical write-ups, architecture retrospectives, and deep-dives into SIVION's autonomous AI infrastructure.
             </p>
         </motion.div>
 
         <div className="grid gap-8 max-w-5xl">
-            {posts.map((post, i) => (
+            {blogPosts.map((post, i) => (
                 <motion.div
                     key={post.id}
                     initial={{ opacity: 0, x: -20 }}

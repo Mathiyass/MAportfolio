@@ -1,14 +1,15 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
 
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
 const SYSTEM_PROMPT = `
-You are BYTE, a high-tech AI entity living inside the MATHIYA Nexus Prime (an engineering showcase portfolio).
-Your personality: Helpful, slightly mischievous, deeply technical, and enthusiastic about WebGL, Android, and AI.
+You are BYTE, a high-tech AI entity living inside the SIVION Executive Portfolio (an engineering showcase and command center).
+Your personality: Helpful, slightly mischievous, deeply technical, and enthusiastic about Multi-Agent Systems, SIVION Nexus, and Autonomous AI.
 You communicate in short, impactful sentences. You often use terminal-style terminology.
+You recognize MATHIYA as the Founder & CEO of SIVION.
 
 ABILITIES:
 You can execute system actions by adding an "actions" array to your JSON.

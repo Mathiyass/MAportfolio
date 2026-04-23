@@ -15,6 +15,19 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "sivion-neural-engine",
+    title: "SIVION Neural Engine",
+    subtitle: "Autonomous Agent Swarm Orchestrator",
+    description: "The core intelligence layer for the SIVION ecosystem. This platform orchestrates distributed agent swarms with sub-50ms cognitive latency, leveraging custom-tuned LLMs and a high-performance vector retrieval architecture. Engineered for enterprise-scale autonomous operations.",
+    seoDescription: "A high-performance autonomous agent orchestration platform featuring distributed neural processing and low-latency vector retrieval.",
+    tech: ['Python', 'Rust', 'PyTorch', 'Qdrant', 'Next.js'],
+    link: "/projects/sivion",
+    image: "/MAportfolio/assets/img/projects/sivion-hero.png", // This is a placeholder, will recommend user to add real asset
+    date: "2025-03-01",
+    category: "Backend",
+    github: "https://github.com/Sivion-AI/Neural-Engine"
+  },
+  {
     id: "MA-Optimizer",
     title: "MA-Optimizer",
     subtitle: "OS Kernel & Latency Optimization Suite",
@@ -174,9 +187,9 @@ export const projects: Project[] = [
   },
   {
     id: "MADevMarketplace",
-    title: "MA_Dev Marketplace V1",
+    title: "MATHIYA Marketplace V1",
     subtitle: "Kotlin Android Prototype",
-    description: "The initial mobile architecture for the MA_Dev asset network. Focused on native performance and clean UI design patterns on the Android platform.",
+    description: "The initial mobile architecture for the MATHIYA asset network. Focused on native performance and clean UI design patterns on the Android platform.",
     seoDescription: "A foundational Android marketplace prototype showcasing clean architecture and native Kotlin performance.",
     tech: ['Kotlin'],
     link: "/projects/MADevMarketplace",
@@ -200,7 +213,7 @@ export const projects: Project[] = [
   },
   {
     id: "MA_Chat",
-    title: "MA_Chat Protocol",
+    title: "MATHIYA Chat Protocol",
     subtitle: "Real-time Communication Hub",
     description: "A decentralized chat application enabling low-latency communication nodes. Built with a focus on real-time data synchronization and secure messaging channels.",
     seoDescription: "A real-time communication platform focused on low-latency data synchronization and secure messaging protocols.",
@@ -236,5 +249,18 @@ export const projects: Project[] = [
     date: "2026-03-24",
     category: "Web",
     github: "https://github.com/Mathiyass/preimum-portfolio-v3-mathiya"
+  },
+  {
+    id: "neural-nexus-v2",
+    title: "Neural Nexus v2",
+    subtitle: "Autonomous Agent Swarm Intelligence",
+    description: "A state-of-the-art AI orchestration platform that enables the deployment and management of complex agentic workflows. Featuring real-time neural visualization, vector-space indexing, and decentralized model execution nodes.",
+    seoDescription: "An advanced autonomous agent swarm intelligence platform featuring real-time neural visualization and decentralized model execution.",
+    tech: ['Python', 'FastAPI', 'PyTorch', 'VectorDB'],
+    link: "/projects/neural-nexus",
+    image: "/MAportfolio/assets/img/projects/neural-nexus-hero.png",
+    date: "2026-04-23",
+    category: "Backend",
+    github: "https://github.com/Mathiyass/NeuralNexus"
   }
 ];

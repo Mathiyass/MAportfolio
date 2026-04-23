@@ -76,7 +76,7 @@ export function Footer() {
                 <h2 className="font-display text-4xl font-black text-text-0 uppercase tracking-tighter">MATHIYA.</h2>
             </div>
             <p className="text-text-2 font-body text-lg leading-relaxed max-w-sm">
-              Architecting high-fidelity digital systems where technical precision meets atmospheric depth. v12.0 core stable.
+              Architecting high-fidelity AI systems where technical precision meets atmospheric depth. v12.0 core stable.
             </p>
             <div className="flex flex-wrap gap-x-8 gap-y-4">
               {socialLinks.map((platform) => (
