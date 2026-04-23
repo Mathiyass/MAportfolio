@@ -22,24 +22,30 @@ const buttonVariants = cva(
         icon: "size-10",
         "icon-sm": "size-8",
       },
+      state: {
+        default: "",
+        "ai-generating": "animate-gradient bg-gradient-to-r from-cyan/20 via-red/20 to-cyan/20 bg-[length:200%_auto] pointer-events-none opacity-80",
+      }
     },
     defaultVariants: {
       variant: "secondary",
       size: "md",
+      state: "default",
     },
   }
 )
 
 function Button({
   className,
-  variant = "secondary",
-  size = "md",
+  variant,
+  size,
+  state,
   ...props
 }: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
   return (
     <ButtonPrimitive
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size, state, className }))}
       {...props}
     />
   )

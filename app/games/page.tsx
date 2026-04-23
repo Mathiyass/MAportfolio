@@ -7,7 +7,7 @@ import { TerminalTyper } from '@/components/games/TerminalTyper';
 import { MemoryGame } from '@/components/games/MemoryGame';
 import { ByteAdventure } from '@/components/games/ByteAdventure';
 import { MathiyaRacer } from '@/components/games/MathiyaRacer';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 export default function GamesPage() {
   return (

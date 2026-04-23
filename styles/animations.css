@@ -10,9 +10,24 @@
   50% { opacity: 0.6; transform: scale(0.85); }
 }
 
-@keyframes shimmer {
+@keyframes shimmer-right {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
+}
+
+@keyframes shimmer-left {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes shimmer-down {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes shimmer-up {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(-100%); }
 }
 
 @keyframes float {
@@ -107,7 +122,10 @@
 /* Utility classes */
 .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
 .animate-pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
-.animate-shimmer { animation: shimmer 2s ease-in-out infinite; }
+.animate-shimmer-right { animation: shimmer-right 2s ease-in-out infinite; }
+.animate-shimmer-left { animation: shimmer-left 2s ease-in-out infinite; }
+.animate-shimmer-down { animation: shimmer-down 2s ease-in-out infinite; }
+.animate-shimmer-up { animation: shimmer-up 2s ease-in-out infinite; }
 .animate-float { animation: float 3s ease-in-out infinite; }
 .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
 .animate-spin-slow { animation: spin-slow 12s linear infinite; }

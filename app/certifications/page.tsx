@@ -1,7 +1,33 @@
 "use client"
 import * as React from 'react';
 import { PageWrapper } from '@/components/layout/PageWrapper';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
+import { Card } from '@/components/ui/card';
+import { Award, ExternalLink, Calendar } from 'lucide-react';
+
+const certifications = [
+  {
+    title: "Advanced React & Next.js",
+    issuer: "Meta / Coursera",
+    date: "2025",
+    id: "CERT_01_REACT",
+    description: "Deep dive into React 19 concurrent features and Next.js 15 server components."
+  },
+  {
+    title: "Android App Development",
+    issuer: "Google / Udacity",
+    date: "2024",
+    id: "CERT_02_ANDROID",
+    description: "Native development using Kotlin, Jetpack Compose, and clean architecture."
+  },
+  {
+    title: "WebGL & GLSL Masterclass",
+    issuer: "Three.js Journey",
+    date: "2025",
+    id: "CERT_03_GRAPHICS",
+    description: "Advanced shader programming and 3D optimization techniques."
+  }
+];
 
 export default function CertificationsPage() {
   return (
@@ -11,24 +37,51 @@ export default function CertificationsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-4xl"
+          className="max-w-4xl mb-24"
         >
             <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-cyan mb-6 block">
-                Validation
+                Validation Protocol
             </span>
             <h1 className="text-6xl lg:text-8xl font-display font-bold mb-12 text-text-0">
                 Certifications.
             </h1>
-            <p className="text-xl lg:text-2xl text-text-2 font-body max-w-2xl leading-relaxed mb-20">
-                Formal credentials and verified technical proficiencies.
+            <p className="text-xl lg:text-2xl text-text-2 font-body max-w-2xl leading-relaxed">
+                Formal credentials and verified technical proficiencies across the engineering lifecycle.
             </p>
-
-            <div className="p-12 rounded-[var(--radius-2xl)] border border-dashed border-border-1 text-center bg-bg-muted/20">
-                <p className="font-mono text-xs uppercase tracking-[0.3em] text-text-4">
-                    [MODULE IN ACTIVE DEVELOPMENT — SYNCING DATA]
-                </p>
-            </div>
         </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {certifications.map((cert, i) => (
+                <motion.div
+                    key={cert.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1, duration: 0.8 }}
+                >
+                    <Card variant="glass" className="p-8 h-full flex flex-col group hover:border-cyan/30 transition-all">
+                        <div className="flex justify-between items-start mb-6">
+                            <div className="p-3 rounded-xl bg-cyan/10 text-cyan">
+                                <Award size={24} />
+                            </div>
+                            <span className="font-mono text-[9px] text-text-4 tracking-widest uppercase">{cert.id}</span>
+                        </div>
+                        
+                        <h3 className="text-xl font-display font-bold text-text-0 mb-2 group-hover:text-cyan transition-colors">{cert.title}</h3>
+                        <p className="text-sm text-text-2 font-body mb-6 flex-grow">{cert.description}</p>
+                        
+                        <div className="pt-6 border-t border-border-1 flex items-center justify-between mt-auto">
+                            <div className="flex items-center gap-2 text-text-3 font-mono text-[10px] uppercase">
+                                <Calendar size={12} />
+                                {cert.date}
+                            </div>
+                            <div className="flex items-center gap-1 text-cyan font-mono text-[10px] uppercase tracking-widest cursor-pointer hover:underline">
+                                Verify <ExternalLink size={10} />
+                            </div>
+                        </div>
+                    </Card>
+                </motion.div>
+            ))}
+        </div>
       </section>
     </PageWrapper>
   );

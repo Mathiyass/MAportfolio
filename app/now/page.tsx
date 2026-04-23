@@ -1,15 +1,18 @@
 "use client"
 import * as React from 'react';
 import { PageWrapper } from '@/components/layout/PageWrapper';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
+import { Activity, Brain, Zap } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function NowPage() {
   const current = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 
   return (
     <PageWrapper>
-      <section className="container mx-auto px-8 py-32 lg:py-48">
+      <section className="container mx-auto px-8 py-32 lg:py-48 min-h-screen">
         <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -24,24 +27,58 @@ export default function NowPage() {
                 Last System Sync: {current}
             </p>
 
-            <div className="space-y-20">
-                <div className="space-y-6">
-                    <h2 className="font-display text-2xl font-bold text-text-1">Focusing On</h2>
-                    <ul className="space-y-4 font-body text-lg text-text-2 list-disc list-inside marker:text-cyan">
-                        <li>Completing the Nexus Prime v12.0 core architecture.</li>
-                        <li>Researching advanced AI-driven UI patterns and spatial computing.</li>
-                        <li>Perfecting the BYTE personality engine for better user guidance.</li>
-                        <li>Exploring the limits of raw WebGL2 performance in modern browsers.</li>
+            <div className="space-y-12">
+                <Card variant="glass" className="p-8">
+                    <div className="flex items-center gap-3 mb-6">
+                        <Activity className="text-cyan" size={20} />
+                        <h2 className="font-display text-2xl font-bold text-text-1">Focusing On</h2>
+                    </div>
+                    <ul className="space-y-4 font-body text-lg text-text-2">
+                        {[
+                            "Completing the Nexus Prime v12.0 core architecture.",
+                            "Researching advanced AI-driven UI patterns and spatial computing.",
+                            "Perfecting the BYTE personality engine for better user guidance.",
+                            "Exploring the limits of raw WebGL2 performance in modern browsers."
+                        ].map(item => (
+                            <li key={item} className="flex gap-4">
+                                <Zap className="text-cyan shrink-0 mt-1.5" size={14} />
+                                {item}
+                            </li>
+                        ))}
                     </ul>
-                </div>
+                </Card>
 
-                <div className="space-y-6">
-                    <h2 className="font-display text-2xl font-bold text-text-1">Learning</h2>
-                    <ul className="space-y-4 font-body text-lg text-text-2 list-disc list-inside marker:text-red">
-                        <li>Advanced GLSL techniques for complex noise generators.</li>
-                        <li>Next.js 15 Partial Prerendering (PPR) optimizations.</li>
-                        <li>Kotlin Multiplatform (KMP) for cross-platform system components.</li>
+                <Card variant="glass" className="p-8">
+                    <div className="flex items-center gap-3 mb-6">
+                        <Brain className="text-red" size={20} />
+                        <h2 className="font-display text-2xl font-bold text-text-1">Learning</h2>
+                    </div>
+                    <ul className="space-y-4 font-body text-lg text-text-2">
+                        {[
+                            "Advanced GLSL techniques for complex noise generators.",
+                            "Next.js 15 Partial Prerendering (PPR) optimizations.",
+                            "Kotlin Multiplatform (KMP) for cross-platform systems."
+                        ].map(item => (
+                            <li key={item} className="flex gap-4">
+                                <div className="w-1.5 h-1.5 rounded-full bg-red shrink-0 mt-2.5" />
+                                {item}
+                            </li>
+                        ))}
                     </ul>
+                </Card>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {[
+                        { label: "Coffee", value: "Optimal", color: "text-cyan" },
+                        { label: "Sleep", value: "Nominal", color: "text-text-1" },
+                        { label: "Focus", value: "High", color: "text-red" },
+                        { label: "Vibe", value: "Atmospheric", color: "text-cyan" }
+                    ].map(stat => (
+                        <Card key={stat.label} variant="glass-light" className="p-4 text-center">
+                            <span className="block font-mono text-[8px] uppercase tracking-widest text-text-4 mb-1">{stat.label}</span>
+                            <span className={cn("block font-head text-xs font-bold uppercase", stat.color)}>{stat.value}</span>
+                        </Card>
+                    ))}
                 </div>
 
                 <div className="pt-20 border-t border-border-1">

@@ -15,6 +15,9 @@ import { PageLoader } from '@/components/ui/page-loader';
 import { MagneticCursor } from '@/components/ui/magnetic-cursor';
 import { WebGLBackground } from '@/components/canvas/webgl-background';
 import { ByteContainer } from '@/components/byte/byte-container';
+import { ProgressBar } from '@/components/common/ProgressBar';
+import { AudioToggle } from '@/components/common/AudioToggle';
+import { TechnicalTicker } from '@/components/common/TechnicalTicker';
 
 // Easter eggs
 import { EasterEggProvider } from '@/components/easter-eggs/EasterEggProvider';
@@ -25,13 +28,26 @@ export const metadata: Metadata = createMetadata({
 });
 
 export const viewport = sharedViewport;
-
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" suppressHydrationWarning className={cn("font-sans", fontVars)}>
-      <body className={`bg-bg-base text-text-0 antialiased selection:bg-cyan-500/30 selection:text-white`} suppressHydrationWarning>
+      <head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Mathisha Angirasa",
+          "url": "https://mathiya.vercel.app",
+          "jobTitle": "Software Engineering Student",
+          "sameAs": ["https://github.com/Mathiyass"]
+        }) }} />
+      </head>
+      <body className={`bg-bg-base text-text-0 antialiased selection:bg-cyan-500/30 selection:text-white pb-8 md:pb-0`} suppressHydrationWarning>
+...
         <Providers>
           <SmoothScroll>
+            <ProgressBar />
+            <AudioToggle />
+            <TechnicalTicker />
             <PageLoader />
             <MagneticCursor />
             <WebGLBackground type="quantum" />

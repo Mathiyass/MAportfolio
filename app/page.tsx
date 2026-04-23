@@ -4,6 +4,9 @@ import { StatsBar } from '@/components/sections/home/StatsBar';
 import { FeaturedWork } from '@/components/sections/home/FeaturedWork';
 import { Teasers } from '@/components/sections/home/Teasers';
 import { PageWrapper } from '@/components/layout/PageWrapper';
+import { ThreeScene } from '@/components/three/Scene';
+import { NoiseFieldShader } from '@/components/three/NoiseFieldShader';
+import { HexGridShader } from '@/components/three/HexGridShader';
 
 async function getGitHubStats() {
   const [userRes, reposRes] = await Promise.all([
@@ -32,7 +35,13 @@ export default async function HomePage() {
   
   return (
     <PageWrapper>
-      <div className="flex flex-col gap-12 pb-24">
+      {/* WebGL Background Layer */}
+      <ThreeScene className="fixed inset-0 -z-10">
+        <NoiseFieldShader opacity={0.18} />
+        <HexGridShader opacity={0.12} />
+      </ThreeScene>
+
+      <div className="flex flex-col gap-12 pb-24 relative z-10">
         <HeroSection />
         <Suspense fallback={<div>Loading stats...</div>}>
           <StatsBar stats={stats} />

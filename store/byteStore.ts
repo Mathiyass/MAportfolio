@@ -11,11 +11,15 @@ interface ByteState {
   isVisible: boolean;
   isCollapsed: boolean;
   isSleeping: boolean;
+  isGenerating: boolean;
+  contextualPrompt: string;
   blinkCount: number;
   speechQueue: SpeechItem[];
   currentSpeech: SpeechItem | null;
   actions: {
     setMood: (mood: ByteState['mood']) => void;
+    setIsGenerating: (isGenerating: boolean) => void;
+    setContextualPrompt: (prompt: string) => void;
     showSpeech: (text: string, duration?: number) => void;
     queueSpeech: (text: string, duration?: number) => void;
     dismissSpeech: () => void;
@@ -34,11 +38,15 @@ export const useByteStore = create<ByteState>((set, get) => ({
   isVisible: true,
   isCollapsed: false,
   isSleeping: false,
+  isGenerating: false,
+  contextualPrompt: '',
   blinkCount: 0,
   speechQueue: [],
   currentSpeech: null,
   actions: {
     setMood: (mood) => set({ mood }),
+    setIsGenerating: (isGenerating) => set({ isGenerating }),
+    setContextualPrompt: (contextualPrompt) => set({ contextualPrompt }),
     showSpeech: (text, duration = 4000) => {
       const item = { id: Math.random().toString(36), text };
       set({ currentSpeech: item, mouthState: 'speaking' });

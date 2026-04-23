@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLoaderStore } from '@/store/loaderStore';
 import { letterReveal } from '@/lib/animations';
 

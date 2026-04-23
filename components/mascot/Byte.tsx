@@ -1,6 +1,6 @@
 "use client";
 import * as React from 'react';
-import { motion, AnimatePresence, useSpring } from 'motion/react';
+import { motion, AnimatePresence, useSpring } from 'framer-motion';
 import { useByteStore } from '@/store/byteStore';
 import { usePathname } from 'next/navigation';
 import { useMousePosition } from '@/hooks/useMousePosition';

@@ -1,6 +1,6 @@
 "use client"
 import * as React from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 const events = [
   { date: '2024 - Present', title: 'Software Engineering Student', company: 'JIAT / HHDPII', desc: 'Focusing on advanced full-stack systems and Android development.' },

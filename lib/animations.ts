@@ -1,5 +1,5 @@
 // lib/animations.ts
-import { Variants } from 'motion/react';
+import { Variants } from 'framer-motion';
 
 export const fadeSlideUp: Variants = {
   hidden: { opacity: 0, y: 24, filter: 'blur(4px)' },

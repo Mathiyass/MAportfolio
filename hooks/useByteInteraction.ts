@@ -1,6 +1,6 @@
 'use client';
 import { useRef, useCallback } from 'react';
-import { useSpring } from 'motion/react';
+import { useSpring } from 'framer-motion';
 import { useByteStore } from '@/store/byteStore';
 
 export function useByteInteraction() {
