@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ThreeScene } from '@/components/three/Scene';
-import { ByteR3F } from '@/components/three/ByteR3F';
+import { HexGridShader } from '@/components/three/HexGridShader';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ArrowRight, Terminal } from 'lucide-react';
@@ -93,7 +93,7 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Mascot Column */}
+        {/* Hero Visual Column */}
         <div className="lg:col-span-5 relative flex items-center justify-center">
            <motion.div
              initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
@@ -111,16 +111,16 @@ export function HeroSection() {
              <div className="w-full h-full rounded-[var(--radius-2xl)] glass-refraction border-white/5 relative overflow-hidden group z-10">
                <Suspense fallback={<Skeleton className="w-full h-full" variant="shimmer" />}>
                  <ThreeScene className="w-full h-full">
-                   <ByteR3F />
+                   <HexGridShader opacity={0.6} />
                  </ThreeScene>
                </Suspense>
                
-               <div className="absolute bottom-10 left-10 right-10 z-20 pointer-events-none">
-                 <div className="flex items-center gap-3 mb-3">
+               <div className="absolute bottom-10 left-10 right-10 z-20 pointer-events-none text-right">
+                 <div className="flex items-center justify-end gap-3 mb-3">
+                   <span className="font-mono text-[10px] text-cyan tracking-widest uppercase">CORE_ENGINE // ACTIVE</span>
                    <Terminal size={14} className="text-cyan" />
-                   <span className="font-mono text-[10px] text-cyan tracking-widest uppercase">BYTE // INTERACTIVE</span>
                  </div>
-                 <div className="font-display text-3xl font-black text-text-0 uppercase leading-none tracking-tight text-balance">The Neural Engine.</div>
+                 <div className="font-display text-3xl font-black text-text-0 uppercase leading-none tracking-tight text-balance">The Neural Nexus.</div>
                </div>
                
                <div className="absolute inset-0 pointer-events-none opacity-20 z-0">

@@ -69,13 +69,14 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
               <Footer />
             </div>
             
-            <Suspense fallback={null}>
-              <ByteContainer />
-            </Suspense>
             <EasterEggProvider>
               <EasterEggToast />
             </EasterEggProvider>
           </SmoothScroll>
+
+          <Suspense fallback={null}>
+            <ByteContainer />
+          </Suspense>
         </Providers>
       </RootLayoutClient>
     </html>

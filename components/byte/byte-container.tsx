@@ -5,8 +5,7 @@ import { Canvas } from '@react-three/fiber';
 import { useByteStore } from '@/store/byteStore';
 import { useByteInteraction } from '@/hooks/useByteInteraction';
 import { ByteModel } from './byte-model';
-import { ByteSpeech } from './byte-speech';
-import { BytePanel } from './byte-panel';
+import { ByteNeuralInterface } from './byte-neural-interface';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
@@ -25,7 +24,7 @@ const ROUTE_MESSAGES: Record<string, string> = {
 };
 
 export function ByteContainer() {
-  const { isVisible, isCollapsed, actions } = useByteStore();
+  const { isVisible, isCollapsed, isGenerating, actions } = useByteStore();
   const { byteRef, updateTracking } = useByteInteraction();
   const pathname = usePathname();
   const hasMounted = useRef(false);
@@ -66,8 +65,6 @@ export function ByteContainer() {
 
   return (
     <div className="fixed bottom-6 right-6 z-[var(--z-byte)] flex flex-col items-end">
-      <BytePanel />
-      
       <motion.div
         ref={byteRef}
         role="button"
@@ -101,7 +98,7 @@ export function ByteContainer() {
         }}
       >
         <div className="relative w-full h-full cursor-pointer group">
-          {!isCollapsed && <ByteSpeech />}
+          <ByteNeuralInterface />
           
           <Canvas
             camera={{ position: [0, 1, 5], fov: 45 }}

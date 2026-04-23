@@ -128,8 +128,8 @@ export function ByteModel() {
       
       <ContactShadows position={[0, -0.5, 0]} opacity={0.4} scale={4} blur={2} far={2} />
       <Environment preset="city" />
-      <ambientLight intensity={0.5} />
-      <spotLight position={[5, 10, 5]} intensity={2} penumbra={1} castShadow />
+      <ambientLight intensity={1.5} />
+      <spotLight position={[5, 10, 5]} intensity={3} penumbra={1} castShadow />
     </group>
   );
 }
