@@ -14,7 +14,7 @@ export function AsciiPortrait() {
       {/* Profile Image */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="/assets/img/profile_photo/me.png"
+          src="/MAportfolio/assets/img/profile_photo/me.png"
           alt="Mathisha Angirasa"
           fill
           className={`object-cover transition-all duration-700 ${isLoaded ? 'opacity-70 grayscale-[0.5] group-hover:opacity-100 group-hover:grayscale-0 scale-100' : 'opacity-0 scale-110'}`}
