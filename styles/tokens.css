@@ -1,4 +1,4 @@
-/* MATHIYA Design System — CSS Tokens (Ultra Advanced v12.0) */
+/* MATHIYA Design System — CSS Tokens */
 @theme {
   --color-bg-base:     #0f131c;
   --color-bg-subtle:   #181c24;
@@ -31,9 +31,9 @@
   --color-border-r:    rgba(255, 82, 92, 0.20);
 
   /* Font families */
-  --font-display:  var(--font-clash-display), "Epilogue", sans-serif;
-  --font-head:     var(--font-syne), "Epilogue", sans-serif;
-  --font-body:     var(--font-satoshi), "Space Grotesk", sans-serif;
+  --font-display:  var(--font-epilogue-display), "Epilogue", sans-serif;
+  --font-head:     var(--font-epilogue-head), "Epilogue", sans-serif;
+  --font-body:     var(--font-space-grotesk), "Space Grotesk", sans-serif;
   --font-mono:     var(--font-geist-mono), monospace;
   --font-stat:     var(--font-bebas-neue), cursive;
 
@@ -63,18 +63,18 @@
   /* Z-index scale */
   --z-bg:      -10;
   --z-base:    0;
-  --z-nav:     100;
-  --z-cursor:  500;
-  --z-byte:    600;
-  --z-loader:  800;
-  --z-modal:   900;
+  --z-nav:     2000;
+  --z-cursor:  3000;
+  --z-byte:    2500;
+  --z-loader:  4000;
+  --z-modal:   5000;
 }
 
-/* ── Ultra Advanced Utilities ──────────────────────── */
+/* ── Utilities ──────────────────────── */
 
 .energy-mesh {
-  background: radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.07) 0%, transparent 40%),
-              radial-gradient(circle at 80% 70%, rgba(255, 82, 92, 0.05) 0%, transparent 40%),
+  background: radial-gradient(circle at calc(var(--mouse-x, 20) * 1%) calc(var(--mouse-y, 30) * 1%), rgba(0, 240, 255, 0.07) 0%, transparent 40%),
+              radial-gradient(circle at calc(100% - var(--mouse-x, 20) * 1%) calc(100% - var(--mouse-y, 30) * 1%), rgba(255, 82, 92, 0.05) 0%, transparent 40%),
               radial-gradient(circle at 50% 50%, rgba(0, 219, 233, 0.03) 0%, transparent 60%);
 }
 

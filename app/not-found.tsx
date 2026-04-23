@@ -1,7 +1,7 @@
 "use client"
 import * as React from 'react';
 import { PageWrapper } from '@/components/layout/PageWrapper';
-import { ArrowLeft, ShieldAlert } from 'lucide-react';
+import { ArrowLeft, AlertTriangle } from 'lucide-react';
 import Link from 'next/link';
 import { ThreeScene } from '@/components/three/Scene';
 import { BlackHoleShader } from '@/components/three/BlackHoleShader';
@@ -15,13 +15,13 @@ export default function NotFound() {
 
   React.useEffect(() => {
     actions.setMood('sad');
-    actions.showSpeech("Error 404: Dimensional fracture detected.");
+    actions.showSpeech("Error 404: Page not found.");
   }, [actions]);
 
   return (
     <PageWrapper>
       <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
-        {/* Cinematic Backdrop */}
+        {/* Backdrop */}
         <ThreeScene className="fixed inset-0 z-0">
             <StarfieldShader opacity={0.4} />
             <BlackHoleShader opacity={0.8} />
@@ -35,7 +35,7 @@ export default function NotFound() {
                 className="space-y-8"
             >
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red/30 bg-red/10 text-red font-mono text-[10px] uppercase tracking-[0.3em] mb-8">
-                    <ShieldAlert size={14} className="animate-pulse" /> Critical Dimensional Failure
+                    <AlertTriangle size={14} /> Page Not Found
                 </div>
 
                 <h1 className="text-[clamp(120px,20vw,240px)] font-display font-black text-transparent bg-clip-text bg-gradient-to-b from-white/20 via-white/5 to-transparent leading-none select-none">
@@ -43,23 +43,19 @@ export default function NotFound() {
                 </h1>
 
                 <div className="space-y-4 max-w-md mx-auto">
-                    <h2 className="text-3xl font-display font-bold text-text-0 uppercase tracking-tight">Sector Missing.</h2>
+                    <h2 className="text-3xl font-display font-bold text-text-0 uppercase tracking-tight">Access Error.</h2>
                     <p className="text-lg text-text-2 font-body leading-relaxed">
-                        The requested module has been lost to the void. Dimensional link severed.
+                        The page you are looking for has been moved or does not exist.
                     </p>
                 </div>
 
                 <div className="pt-12">
                     <Link href="/" passHref>
-                        <Button variant="secondary" className="h-14 px-8 gap-3 border-white/10 glass hover:border-cyan/50 hover:text-cyan group transition-all">
+                        <Button variant="secondary" className="h-14 px-8 gap-3 border-white/10 glass hover:border-cyan/50 hover:text-cyan group transition-all rounded-full">
                             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-                            Return to Base
+                            Return Home
                         </Button>
                     </Link>
-                </div>
-
-                <div className="pt-24 font-mono text-[8px] text-text-4 uppercase tracking-[0.5em] opacity-50">
-                    STATUS_CODE: DIMENSIONAL_FRACTURE_V12
                 </div>
             </motion.div>
         </div>

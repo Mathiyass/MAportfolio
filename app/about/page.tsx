@@ -5,27 +5,27 @@ import { AsciiPortrait } from '@/components/sections/about/AsciiPortrait';
 import { Timeline } from '@/components/sections/about/Timeline';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
-import { Target, Eye, Zap, Info } from 'lucide-react';
+import { Target, Eye, Zap, Info, ShieldAlert } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function AboutPage() {
   return (
     <PageWrapper>
       <section className="container mx-auto px-8 py-32 lg:py-48 min-h-screen pb-32">
-        {/* Header Protocol */}
+        {/* Header Protocol restored */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-4xl mb-32"
         >
-            <div className="flex items-center gap-3 text-cyan font-mono text-[10px] uppercase tracking-[0.3em] mb-6">
+            <div className="flex items-center gap-3 text-cyan font-mono text-[10px] uppercase tracking-[0.4em] mb-6">
                 <Info size={14} />
-                SYSTEM {'//'} CATEGORIZATION {'//'} IDENTITY_PROTOCOL
+                SYSTEM // CATEGORIZATION // IDENTITY_PROTOCOL
             </div>
-            <h1 className="text-6xl lg:text-9xl font-display font-bold mb-12 text-text-0 tracking-tighter leading-none uppercase">
+            <h1 className="text-6xl lg:text-9xl font-display font-bold mb-12 text-text-0 tracking-tighter leading-none uppercase text-balance">
                 MATHISHA<br/>
-                <span className="text-text-4 font-black mix-blend-difference">{'//'} ANGIRASA.</span>
+                <span className="text-text-4 font-black mix-blend-difference">// ANGIRASA.</span>
             </h1>
             
             <div className="flex items-center gap-6 pt-12 border-t border-white/5">
@@ -36,7 +36,7 @@ export default function AboutPage() {
                 <div className="h-10 w-px bg-white/5" />
                 <div className="flex flex-col gap-1">
                     <span className="font-mono text-[9px] text-text-4 uppercase tracking-widest">Location</span>
-                    <span className="text-text-1 font-head font-bold text-sm tracking-wider uppercase">Sri Lanka {'//'} Node_01</span>
+                    <span className="text-text-1 font-head font-bold text-sm tracking-wider uppercase">Sri Lanka // Node_01</span>
                 </div>
                 <div className="h-10 w-px bg-white/5" />
                 <div className="flex flex-col gap-1">
@@ -80,7 +80,6 @@ export default function AboutPage() {
             </div>
             
             <Card variant="glass" className="p-10 relative overflow-hidden">
-                {/* Power Rail */}
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-red to-transparent opacity-40" />
                 
                 <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-4 mb-10">System Core Values</h3>

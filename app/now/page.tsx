@@ -1,11 +1,11 @@
 "use client"
 import * as React from 'react';
 import { PageWrapper } from '@/components/layout/PageWrapper';
-import { motion } from 'framer-motion';
-import { Badge } from '@/components/ui/badge';
+import { motion } from 'motion/react';
 import { Card } from '@/components/ui/card';
 import { Activity, Brain, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
 
 export default function NowPage() {
   const current = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
@@ -24,7 +24,7 @@ export default function NowPage() {
             </div>
             
             <p className="font-mono text-xs uppercase tracking-[0.4em] text-text-3 mb-16">
-                Last System Sync: {current}
+                LAST UPDATED: {current}
             </p>
 
             <div className="space-y-12">
@@ -35,10 +35,10 @@ export default function NowPage() {
                     </div>
                     <ul className="space-y-4 font-body text-lg text-text-2">
                         {[
-                            "Completing the Nexus Prime v12.0 core architecture.",
+                            "Building high-performance digital systems and creative interfaces.",
                             "Researching advanced AI-driven UI patterns and spatial computing.",
-                            "Perfecting the BYTE personality engine for better user guidance.",
-                            "Exploring the limits of raw WebGL2 performance in modern browsers."
+                            "Optimizing character IK solvers for web-based 3D simulations.",
+                            "Exploring the boundaries of raw WebGL2 performance."
                         ].map(item => (
                             <li key={item} className="flex gap-4">
                                 <Zap className="text-cyan shrink-0 mt-1.5" size={14} />
@@ -56,8 +56,8 @@ export default function NowPage() {
                     <ul className="space-y-4 font-body text-lg text-text-2">
                         {[
                             "Advanced GLSL techniques for complex noise generators.",
-                            "Next.js 15 Partial Prerendering (PPR) optimizations.",
-                            "Kotlin Multiplatform (KMP) for cross-platform systems."
+                            "Next.js 15 partial prerendering (PPR) optimizations.",
+                            "System architecture for distributed web agents."
                         ].map(item => (
                             <li key={item} className="flex gap-4">
                                 <div className="w-1.5 h-1.5 rounded-full bg-red shrink-0 mt-2.5" />
@@ -69,10 +69,10 @@ export default function NowPage() {
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {[
-                        { label: "Coffee", value: "Optimal", color: "text-cyan" },
-                        { label: "Sleep", value: "Nominal", color: "text-text-1" },
-                        { label: "Focus", value: "High", color: "text-red" },
-                        { label: "Vibe", value: "Atmospheric", color: "text-cyan" }
+                        { label: "Status", value: "Online", color: "text-cyan" },
+                        { label: "Stability", value: "Nominal", color: "text-text-1" },
+                        { label: "Energy", value: "High", color: "text-red" },
+                        { label: "Sync", value: "Verified", color: "text-cyan" }
                     ].map(stat => (
                         <Card key={stat.label} variant="glass-light" className="p-4 text-center">
                             <span className="block font-mono text-[8px] uppercase tracking-widest text-text-4 mb-1">{stat.label}</span>
@@ -81,7 +81,7 @@ export default function NowPage() {
                     ))}
                 </div>
 
-                <div className="pt-20 border-t border-border-1">
+                <div className="pt-20 border-t border-white/5">
                     <p className="font-body text-text-3 italic">
                         Inspired by Derek Sivers and the /now page movement.
                     </p>

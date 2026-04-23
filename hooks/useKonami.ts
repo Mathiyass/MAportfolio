@@ -1,29 +1,40 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
 
-const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+import { useEffect, useState } from 'react';
+import { useThemeStore } from '@/store/themeStore';
+import { useEasterEggStore } from '@/store/easterEggStore';
+import { useByteStore } from '@/store/byteStore';
 
-export function useKonami(callback: () => void) {
-  const [triggered, setTriggered] = useState(false);
-  const index = useRef(0);
+const KONAMI_CODE = [
+  'ArrowUp', 'ArrowUp', 
+  'ArrowDown', 'ArrowDown', 
+  'ArrowLeft', 'ArrowRight', 
+  'ArrowLeft', 'ArrowRight', 
+  'b', 'a'
+];
+
+export function useKonami() {
+  const [input, setInput] = useState<string[]>([]);
+  const { actions: themeActions } = useThemeStore();
+  const { unlock } = useEasterEggStore();
+  const { actions: byteActions } = useByteStore();
 
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === KONAMI[index.current]) {
-        index.current++;
-        if (index.current === KONAMI.length) {
-          setTriggered(true);
-          callback();
-          index.current = 0;
-        }
-      } else {
-        index.current = 0;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const newInput = [...input, e.key].slice(-KONAMI_CODE.length);
+      setInput(newInput);
+
+      if (newInput.join(',') === KONAMI_CODE.join(',')) {
+        themeActions.toggleRetroMode();
+        unlock('konami');
+        byteActions.showSpeech("RETRO_SYSTEM_OVERRIDE: ACTIVE", 5000);
+        setInput([]); // Reset after success
       }
     };
 
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, [callback]);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [input, themeActions, unlock, byteActions]);
 
-  return triggered;
+  return null;
 }

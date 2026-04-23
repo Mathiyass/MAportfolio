@@ -10,6 +10,7 @@ export function PageWrapper({ children }: { children: React.ReactNode }) {
   return (
     <AnimatePresence mode="wait">
       <motion.div
+        id="layout-wrapper"
         key={pathname}
         variants={pageVariants}
         initial="initial"

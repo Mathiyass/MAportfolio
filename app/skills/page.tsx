@@ -48,11 +48,11 @@ export default function SkillsPage() {
           className="max-w-4xl mb-24"
         >
             <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-cyan mb-6 block">
-                Sector 02 {'//'} Capability Matrix
+                SYSTEM // CATEGORIZATION // CAPABILITY_MATRIX
             </span>
-            <h1 className="text-6xl lg:text-8xl font-display font-bold mb-8 text-text-0 uppercase tracking-tight">
-                Skills <br/>
-                <span className="text-text-4 font-black tracking-tighter">{'//'} Arsenal.</span>
+            <h1 className="text-6xl lg:text-8xl font-display font-bold mb-8 text-text-0 uppercase tracking-tight text-balance">
+                Technical <br/>
+                <span className="text-text-4 font-black tracking-tighter">// Arsenal.</span>
             </h1>
             <p className="text-xl lg:text-2xl text-text-2 font-body max-w-2xl leading-relaxed">
                 A granular analysis of technical proficiencies across the engineering lifecycle. v12.0 capability secured.

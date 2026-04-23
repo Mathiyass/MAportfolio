@@ -32,21 +32,23 @@ const technicalHubs = [
 export default function SriLankaPage() {
   return (
     <PageWrapper>
-      <section className="container mx-auto px-8 py-32 lg:py-48 min-h-screen">
+      <section className="container mx-auto px-8 py-32 lg:py-48 min-h-screen pb-32">
+        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-4xl mb-24"
         >
-            <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-cyan mb-6 block">
-                Origin Node Protocol
-            </span>
-            <h1 className="text-6xl lg:text-8xl font-display font-bold mb-12 text-text-0">
+            <div className="flex items-center gap-3 text-cyan font-mono text-[10px] uppercase tracking-[0.4em] mb-6">
+                <MapPin size={14} />
+                SYSTEM // CATEGORIZATION // ORIGIN_NODE
+            </div>
+            <h1 className="text-6xl lg:text-9xl font-display font-bold mb-12 text-text-0 uppercase tracking-tighter leading-none">
                 Sri <span className="gradient-text">Lanka</span>.
             </h1>
             <p className="text-xl lg:text-2xl text-text-2 font-body max-w-2xl leading-relaxed">
-                Analyzing the digital infrastructure and geographical nodes of my primary development environment.
+                Exploring the digital infrastructure and geographical nodes of my primary development environment.
             </p>
         </motion.div>
 
@@ -91,7 +93,7 @@ export default function SriLankaPage() {
             <div className="flex items-center gap-6">
                 <Landmark size={48} className="text-text-4" />
                 <div>
-                    <h4 className="font-display font-bold text-2xl text-text-0 mb-1">Cultural Operating System</h4>
+                    <h4 className="font-display font-bold text-2xl text-text-0 mb-1">Cultural Roots</h4>
                     <p className="text-text-2 font-body">Merging rich heritage with future-ready technical precision.</p>
                 </div>
             </div>

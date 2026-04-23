@@ -10,7 +10,7 @@ export default function ResumePage() {
   return (
     <PageWrapper>
       <section className="container mx-auto px-8 py-32 lg:py-48 min-h-screen pb-32">
-        {/* Header Protocol */}
+        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -19,19 +19,16 @@ export default function ResumePage() {
         >
             <div className="flex items-center gap-3 text-cyan font-mono text-[10px] uppercase tracking-[0.3em] mb-6">
                 <FileText size={14} />
-                SYSTEM {'//'} CATEGORIZATION {'//'} PROFESSIONAL_PROTOCOL
+                PROFESSIONAL BACKGROUND
             </div>
             <h1 className="text-6xl lg:text-9xl font-display font-bold mb-8 text-text-0 uppercase tracking-tighter leading-none">
                 Resume <br/>
-                <span className="text-text-4 font-black tracking-tighter">{'//'} Manifest.</span>
+                <span className="text-text-4 font-black tracking-tighter">// Manifest.</span>
             </h1>
             
             <div className="flex flex-wrap gap-6 mt-12 pt-12 border-t border-white/5">
                 <Button variant="primary" className="h-14 px-8 gap-3 text-[10px] uppercase tracking-widest font-black shadow-[0_0_30px_rgba(0,240,255,0.2)]">
                     <Download size={16} /> Download PDF
-                </Button>
-                <Button variant="secondary" className="h-14 px-8 border-white/10 glass hover:border-cyan/30">
-                    Print Protocol
                 </Button>
             </div>
         </motion.div>
@@ -51,14 +48,14 @@ export default function ResumePage() {
                                 title: "Lead Systems Architect",
                                 company: "NEXUS PRIME",
                                 period: "2024 — Present",
-                                desc: "Orchestrating high-fidelity digital systems using Next.js 15 and React Three Fiber. Developed a modular UI framework with 60+ CVA components.",
+                                desc: "Orchestrating high-fidelity digital systems using Next.js 15 and React Three Fiber. Developed a modular UI framework with 60+ components.",
                                 id: "EXP_01"
                             },
                             {
                                 title: "Full Stack Engineer",
-                                company: "QUANTUM_OS",
+                                company: "TECH_LOGIC",
                                 period: "2023 — 2024",
-                                desc: "Architected distributed Node.js microservices with 99.9% uptime. Optimized GLSL rendering pipelines for browser-based 3D simulations.",
+                                desc: "Architected distributed Node.js services and optimized GLSL rendering pipelines for immersive web experiences.",
                                 id: "EXP_02"
                             }
                         ].map((exp) => (
@@ -89,7 +86,7 @@ export default function ResumePage() {
                         <div className="flex justify-between items-start mb-4">
                             <div>
                                 <h3 className="text-2xl font-display font-bold text-text-0 uppercase tracking-tight">Software Engineering</h3>
-                                <p className="font-mono text-[10px] text-red uppercase tracking-[0.2em] mt-1">JIAT Institute</p>
+                                <p className="font-mono text-[10px] text-red uppercase tracking-[0.2em] mt-1">Professional Institute</p>
                             </div>
                             <span className="font-mono text-[9px] text-text-4 bg-white/5 px-2 py-1 rounded">2022 — 2026</span>
                         </div>
@@ -108,7 +105,7 @@ export default function ResumePage() {
                             { label: "Architecture", value: "95%" },
                             { label: "Engineering", value: "98%" },
                             { label: "Performance", value: "92%" },
-                            { label: "Atmosphere", value: "90%" }
+                            { label: "Visuals", value: "90%" }
                         ].map((skill) => (
                             <div key={skill.label} className="space-y-2">
                                 <div className="flex justify-between text-[9px] font-mono text-text-3 uppercase tracking-widest">
@@ -129,15 +126,11 @@ export default function ResumePage() {
                         <h4 className="font-display font-bold text-lg text-text-1 uppercase tracking-tight">Achievements</h4>
                     </div>
                     <ul className="space-y-4 font-body text-sm text-text-3">
-                        <li className="flex gap-3"><div className="size-1 rounded-full bg-red shrink-0 mt-2" /> System-wide v12.0 core stable deployment.</li>
-                        <li className="flex gap-3"><div className="size-1 rounded-full bg-red shrink-0 mt-2" /> 99+ Lighthouse performance baseline.</li>
-                        <li className="flex gap-3"><div className="size-1 rounded-full bg-red shrink-0 mt-2" /> 16 GLSL shader library orchestrated.</li>
+                        <li className="flex gap-3"><div className="size-1 rounded-full bg-red shrink-0 mt-2" /> System-wide production deployment.</li>
+                        <li className="flex gap-3"><div className="size-1 rounded-full bg-red shrink-0 mt-2" /> High-performance graphics orchestration.</li>
+                        <li className="flex gap-3"><div className="size-1 rounded-full bg-red shrink-0 mt-2" /> Distributed system architecture.</li>
                     </ul>
                 </Card>
-
-                <div className="p-6 rounded-xl bg-cyan/5 border border-cyan/10 text-center opacity-60">
-                    <span className="font-mono text-[8px] text-cyan uppercase tracking-[0.5em]">STATUS: RECRUITMENT_READY</span>
-                </div>
             </div>
         </div>
       </section>

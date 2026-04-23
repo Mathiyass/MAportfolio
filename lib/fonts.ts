@@ -1,9 +1,8 @@
-import { Inter, Geist_Mono, Syne, Outfit, Bebas_Neue } from 'next/font/google';
+import { Space_Grotesk, Geist_Mono, Epilogue, Bebas_Neue } from 'next/font/google';
 
-// Use Inter as a high-quality replacement for Satoshi
-export const satoshi = Inter({
+export const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-satoshi',
+  variable: '--font-space-grotesk',
   display: 'swap',
   weight: ['400', '500', '600', '700'],
 });
@@ -14,19 +13,18 @@ export const geistMono = Geist_Mono({
   display: 'swap',
 });
 
-export const syne = Syne({
+export const epilogueDisplay = Epilogue({
   subsets: ['latin'],
-  variable: '--font-syne',
-  display: 'swap',
-  weight: ['700', '800'],
-});
-
-// Use Outfit as a high-quality replacement for Clash Display
-export const clashDisplay = Outfit({
-  subsets: ['latin'],
-  variable: '--font-clash-display',
+  variable: '--font-epilogue-display',
   display: 'swap',
   weight: ['700', '900'],
+});
+
+export const epilogueHead = Epilogue({
+  subsets: ['latin'],
+  variable: '--font-epilogue-head',
+  display: 'swap',
+  weight: ['700', '800'],
 });
 
 export const bebasNeue = Bebas_Neue({
@@ -36,6 +34,4 @@ export const bebasNeue = Bebas_Neue({
   weight: ['400'],
 });
 
-export const fontVars = `${satoshi.variable} ${geistMono.variable} ${syne.variable} ${clashDisplay.variable} ${bebasNeue.variable}`;
-
-
+export const fontVars = `${spaceGrotesk.variable} ${geistMono.variable} ${epilogueDisplay.variable} ${epilogueHead.variable} ${bebasNeue.variable}`;

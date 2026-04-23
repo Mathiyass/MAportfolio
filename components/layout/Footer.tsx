@@ -2,36 +2,79 @@
 
 import Link from 'next/link';
 import { useCursorStore } from '@/store/cursorStore';
+import { Zap } from 'lucide-react';
 
 export function Footer() {
   const { actions } = useCursorStore();
 
-  const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Arsenal', href: '/skills' },
-    { name: 'Arcade', href: '/games' },
-    { name: 'Lab', href: '/lab' },
+  const categories = [
+    {
+        name: 'Core',
+        links: [
+            { name: 'Home', href: '/' },
+            { name: 'About', href: '/about' },
+            { name: 'Projects', href: '/projects' },
+            { name: 'Skills', href: '/skills' },
+            { name: 'Contact', href: '/contact' },
+        ]
+    },
+    {
+        name: 'Research',
+        links: [
+            { name: 'Gallery', href: '/gallery' },
+            { name: 'Lab', href: '/lab' },
+            { name: 'Marketplace', href: '/marketplace' },
+            { name: 'AR Studio', href: '/ar' },
+            { name: 'Open Source', href: '/open-source' },
+        ]
+    },
+    {
+        name: 'Personal',
+        links: [
+            { name: 'Resume', href: '/resume' },
+            { name: 'Now', href: '/now' },
+            { name: 'Uses', href: '/uses' },
+            { name: 'Timeline', href: '/timeline' },
+            { name: 'Certifications', href: '/certifications' },
+            { name: 'Sri Lanka', href: '/sri-lanka' },
+        ]
+    },
+    {
+        name: 'System',
+        links: [
+            { name: 'Blog', href: '/blog' },
+            { name: 'Arcade', href: '/games' },
+            { name: 'Colophon', href: '/colophon' },
+            { name: 'Secret', href: '/secret' },
+            { name: 'Admin', href: '/admin' },
+        ]
+    }
   ];
 
   return (
-    <footer className="relative z-10 border-t border-border-1 bg-bg-base py-20 lg:py-32 overflow-hidden mesh-footer">
-      <div className="container mx-auto px-8 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 lg:gap-24">
+    <footer className="relative z-10 border-t border-border-1 bg-bg-base py-24 lg:py-48 overflow-hidden mesh-footer">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl aspect-square bg-cyan/5 blur-[120px] rounded-full -translate-y-1/2 pointer-events-none" />
+
+      <div className="container mx-auto px-8 lg:px-16 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-16 lg:gap-8">
           
-          <div className="md:col-span-6">
-            <h2 className="font-display text-4xl lg:text-5xl font-bold mb-8 text-text-0">MATHIYA.</h2>
-            <p className="text-text-2 font-body text-lg max-w-md mb-12 leading-relaxed">
-              Software Engineering Student · Full-Stack Developer · Systems Builder. 
-              Engineering digital products with a focus on precision and performance.
+          <div className="col-span-2 md:col-span-4 flex flex-col gap-10">
+            <div className="flex items-center gap-3 group">
+                <div className="p-2 rounded-lg bg-cyan/5 border border-white/5 group-hover:border-cyan/40 transition-all">
+                    <Zap className="text-cyan" size={24} />
+                </div>
+                <h2 className="font-display text-4xl font-black text-text-0 uppercase tracking-tighter">MATHIYA.</h2>
+            </div>
+            <p className="text-text-2 font-body text-lg leading-relaxed max-w-sm">
+              Architecting high-fidelity digital systems where technical precision meets atmospheric depth. v12.0 core stable.
             </p>
-            <div className="flex flex-wrap gap-6">
+            <div className="flex flex-wrap gap-x-8 gap-y-4">
               {['GitHub', 'LinkedIn', 'X', 'Discord'].map((platform) => (
                 <a
                   key={platform}
                   href="#"
-                  className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-3 hover:text-cyan transition-colors"
+                  className="font-mono text-[9px] uppercase tracking-[0.4em] text-text-4 hover:text-cyan transition-all"
                   onMouseEnter={() => actions.setHovering(true, 'LINK')}
                   onMouseLeave={() => actions.setHovering(false)}
                 >
@@ -41,52 +84,45 @@ export function Footer() {
             </div>
           </div>
           
-          <div className="md:col-span-3">
-            <h3 className="font-mono text-[10px] tracking-[0.4em] text-text-4 mb-10 uppercase">Index</h3>
-            <ul className="space-y-6">
-              {navLinks.map((item) => (
-                <li key={item.href}>
-                  <Link 
-                    href={item.href}
-                    className="text-text-1 hover:text-cyan transition-all duration-300 font-head text-sm uppercase tracking-widest"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          <div className="md:col-span-3">
-            <h3 className="font-mono text-[10px] tracking-[0.4em] text-text-4 mb-10 uppercase">Connectivity</h3>
-            <div className="flex flex-col gap-8">
-                <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-cyan/20 bg-cyan/5 w-fit">
-                    <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan"></span>
-                    </span>
-                    <span className="text-[10px] font-mono tracking-[0.2em] text-cyan uppercase">System Online</span>
+          <div className="col-span-2 md:col-span-8 grid grid-cols-2 lg:grid-cols-4 gap-12">
+            {categories.map((cat) => (
+                <div key={cat.name} className="space-y-10">
+                    <h3 className="font-mono text-[9px] tracking-[0.5em] text-text-4 uppercase border-l border-white/10 pl-4">{cat.name}</h3>
+                    <ul className="space-y-5 pl-4">
+                    {cat.links.map((item) => (
+                        <li key={item.href}>
+                        <Link 
+                            href={item.href}
+                            className="text-text-2 hover:text-cyan transition-all duration-300 font-head font-bold text-xs uppercase tracking-widest block"
+                        >
+                            {item.name}
+                        </Link>
+                        </li>
+                    ))}
+                    </ul>
                 </div>
-                <div className="space-y-2">
-                    <p className="text-xs text-text-3 font-mono tracking-widest uppercase">Location</p>
-                    <p className="text-sm text-text-1 font-body">Sri Lanka, Global</p>
-                </div>
-            </div>
+            ))}
           </div>
           
         </div>
         
-        <div className="mt-32 pt-12 border-t border-border-1 flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-[10px] text-text-3 font-mono tracking-[0.2em] uppercase">
-            © 2025 MATHIYA — Mathisha Angirasa
-          </p>
-          <div className="flex items-center gap-8 text-[10px] text-text-4 font-mono tracking-[0.2em] uppercase">
-            <span>Built with Nexus Prime v12.0</span>
+        <div className="mt-48 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex flex-col gap-2">
+            <p className="text-[9px] text-text-4 font-mono tracking-[0.4em] uppercase">
+                © 2026 MATHIYA // INTEGRATED_SYSTEMS
+            </p>
+            <span className="text-[8px] text-cyan/40 font-mono tracking-[0.2em] uppercase">Built with Nexus Prime Architecture v12.0.4</span>
+          </div>
+          <div className="flex items-center gap-12">
+            <div className="flex flex-col items-end gap-1">
+                <span className="font-mono text-[8px] text-text-4 uppercase tracking-widest">Latency</span>
+                <span className="text-cyan font-mono text-[10px] font-bold tracking-widest">0.002ms</span>
+            </div>
             <button 
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="hover:text-cyan transition-colors"
+                className="size-12 rounded-full border border-white/5 flex items-center justify-center hover:border-cyan/30 hover:bg-cyan/5 text-text-4 hover:text-cyan transition-all group"
             >
-                Back to Surface
+                <Zap size={16} className="group-hover:scale-110 transition-transform" />
             </button>
           </div>
         </div>

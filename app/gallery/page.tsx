@@ -3,7 +3,8 @@ import * as React from 'react';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
-import { Maximize2, Image as ImageIcon, Cpu } from 'lucide-react';
+import { Maximize2, Image as ImageIcon, Terminal, Cpu, Activity, Share2 } from 'lucide-react';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 const images = [
@@ -45,11 +46,11 @@ export default function GalleryPage() {
         >
             <div className="flex items-center gap-3 text-cyan font-mono text-[10px] tracking-[0.3em] uppercase mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse" />
-                SYSTEM {'//'} CATEGORIZATION {'//'} VISUAL_NEXUS
+                SYSTEM // CATEGORIZATION // VISUAL_NEXUS
             </div>
             <h1 className="text-6xl lg:text-8xl font-display font-bold mb-8 text-text-0 uppercase tracking-tighter">
                 Visual <br/>
-                <span className="text-text-4 font-black tracking-tighter">{'//'} Nexus.</span>
+                <span className="text-text-4 font-black tracking-tighter">// Nexus.</span>
             </h1>
             <p className="text-xl lg:text-2xl text-text-2 font-body max-w-2xl leading-relaxed">
                 Creative Singularity framework initialized. Displaying high-fidelity artifacts and sub-pixel renders from the neural archive.
@@ -83,7 +84,7 @@ export default function GalleryPage() {
                     )}
                 >
                     <Card variant="glass" className="h-full group border-white/5 hover:border-cyan/30 transition-all flex flex-col overflow-hidden relative">
-                        {/* Power Rail (Stitch Detail) */}
+                        {/* Power Rail */}
                         <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
                         
                         <div className="relative flex-1 overflow-hidden bg-bg-base">

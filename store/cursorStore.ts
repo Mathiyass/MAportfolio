@@ -8,11 +8,13 @@ interface CursorState {
   isHovering: boolean;
   hoverTarget: string | null;
   isVisible: boolean;
+  cursorType: 'default' | 'pointer' | 'text' | 'locked' | 'scanning' | 'glitch' | 'hidden';
   actions: {
     setPosition: (x: number, y: number) => void;
     setVelocity: (vx: number, vy: number) => void;
     setHovering: (hovering: boolean, target?: string) => void;
     setVisible: (visible: boolean) => void;
+    setCursorType: (type: CursorState['cursorType']) => void;
   };
 }
 
@@ -24,10 +26,12 @@ export const useCursorStore = create<CursorState>((set) => ({
   isHovering: false,
   hoverTarget: null,
   isVisible: true,
+  cursorType: 'default',
   actions: {
     setPosition: (x, y) => set({ x, y }),
     setVelocity: (velocityX, velocityY) => set({ velocityX, velocityY }),
     setHovering: (isHovering, hoverTarget) => set({ isHovering, hoverTarget: hoverTarget ?? null }),
     setVisible: (isVisible) => set({ isVisible }),
+    setCursorType: (cursorType) => set({ cursorType }),
   },
 }));

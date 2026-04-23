@@ -6,13 +6,13 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
-import { Send, Github, Linkedin, Radio } from 'lucide-react';
+import { Send, Github, Linkedin, Radio, Info } from 'lucide-react';
 
 export default function ContactPage() {
   return (
     <PageWrapper>
       <section className="container mx-auto px-8 py-32 lg:py-48 min-h-screen pb-32">
-        {/* Header Protocol */}
+        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -20,15 +20,15 @@ export default function ContactPage() {
           className="max-w-4xl mb-24"
         >
             <div className="flex items-center gap-3 text-cyan font-mono text-[10px] uppercase tracking-[0.3em] mb-6">
-                <Radio size={14} className="animate-pulse" />
-                SYSTEM {'//'} CATEGORIZATION {'//'} SECURE_UPLINK
+                <Info size={14} />
+                GET IN TOUCH
             </div>
             <h1 className="text-6xl lg:text-9xl font-display font-bold mb-12 text-text-0 uppercase tracking-tighter leading-none">
-                Connect <br/>
-                <span className="text-text-4 font-black tracking-tighter">{'//'} Uplink.</span>
+                Direct <br/>
+                <span className="text-text-4 font-black tracking-tighter">// Uplink.</span>
             </h1>
             <p className="text-xl lg:text-2xl text-text-2 font-body max-w-2xl leading-relaxed">
-                Establishing a high-bandwidth connection for strategic partnerships, technical inquiries, or system collaborations.
+                Establishing a high-bandwidth connection for professional inquiries, strategic partnerships, or system collaborations.
             </p>
         </motion.div>
 
@@ -71,10 +71,10 @@ export default function ContactPage() {
                     <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-cyan to-transparent opacity-40" />
                     <div className="flex items-center gap-4 mb-4">
                         <div className="size-2 rounded-full bg-cyan animate-pulse shadow-[0_0_8px_#00f0ff]" />
-                        <span className="font-mono text-[10px] text-cyan uppercase tracking-[0.3em]">Signal Optimized</span>
+                        <span className="font-mono text-[10px] text-cyan uppercase tracking-[0.3em]">Ready for Input</span>
                     </div>
                     <p className="text-sm text-text-3 font-body leading-relaxed">
-                        Currently processing requests at <span className="text-text-1">0.002ms</span> latency. Neural link established.
+                        Establishing a secure communication link. Expected response latency: <span className="text-text-1">Fast</span>.
                     </p>
                 </Card>
             </div>
@@ -86,32 +86,31 @@ export default function ContactPage() {
                     transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
                     <Card variant="glass" className="p-12 relative overflow-hidden">
-                        {/* Power Rail */}
                         <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-red to-transparent opacity-30" />
                         
                         <form className="space-y-10 relative z-10">
                             <div className="grid md:grid-cols-2 gap-10">
                                 <div className="space-y-3">
-                                    <label className="text-[10px] font-mono text-text-4 uppercase tracking-[0.4em] ml-1">Origin_ID</label>
+                                    <label className="text-[10px] font-mono text-text-4 uppercase tracking-[0.4em] ml-1">Name</label>
                                     <Input 
-                                        placeholder="Identification Name" 
+                                        placeholder="Full Name" 
                                         className="h-14 bg-bg-base/40 border-white/5 rounded-xl focus:border-cyan transition-all font-body text-base" 
                                     />
                                 </div>
                                 <div className="space-y-3">
-                                    <label className="text-[10px] font-mono text-text-4 uppercase tracking-[0.4em] ml-1">Comm_Address</label>
+                                    <label className="text-[10px] font-mono text-text-4 uppercase tracking-[0.4em] ml-1">Email</label>
                                     <Input 
                                         type="email" 
-                                        placeholder="email@protocol.net" 
+                                        placeholder="email@address.com" 
                                         className="h-14 bg-bg-base/40 border-white/5 rounded-xl focus:border-cyan transition-all font-body text-base" 
                                     />
                                 </div>
                             </div>
                             
                             <div className="space-y-3">
-                                <label className="text-[10px] font-mono text-text-4 uppercase tracking-[0.4em] ml-1">Data_Payload</label>
+                                <label className="text-[10px] font-mono text-text-4 uppercase tracking-[0.4em] ml-1">Message</label>
                                 <Textarea 
-                                    placeholder="Initialize transmission sequence..." 
+                                    placeholder="Enter your transmission..." 
                                     className="min-h-[200px] bg-bg-base/40 border-white/5 rounded-xl focus:border-cyan transition-all font-body text-base py-6 resize-none" 
                                 />
                             </div>
@@ -119,12 +118,6 @@ export default function ContactPage() {
                             <Button variant="primary" className="w-full h-16 text-xs font-black tracking-[0.3em] uppercase shadow-[0_0_30px_rgba(0,240,255,0.2)] hover:scale-[1.02] active:scale-95 transition-all">
                                 <Radio size={16} className="mr-3" /> Initialize Signal
                             </Button>
-
-                            <div className="flex items-center justify-center gap-4 pt-4">
-                                <div className="h-px flex-1 bg-white/5" />
-                                <span className="font-mono text-[8px] text-text-4 uppercase tracking-[0.5em]">Encryption: AES-256</span>
-                                <div className="h-px flex-1 bg-white/5" />
-                            </div>
                         </form>
                     </Card>
                 </motion.div>

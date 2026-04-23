@@ -3,14 +3,14 @@ import * as React from 'react';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
-import { Star, GitFork, Cpu, Activity, Globe, ArrowRight } from 'lucide-react';
+import { Star, GitFork, Radio, Terminal, Cpu, Activity, Globe, Info, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const ossProjects = [
   {
     title: "Killer Quebes",
-    id: "OSS_NODE_01",
+    id: "NODE_01",
     stars: "12.4k",
     forks: "1.2k",
     lang: "TypeScript",
@@ -18,7 +18,7 @@ const ossProjects = [
   },
   {
     title: "Neural Mesh",
-    id: "OSS_NODE_02",
+    id: "NODE_02",
     stars: "8.9k",
     forks: "842",
     lang: "Rust",
@@ -26,11 +26,11 @@ const ossProjects = [
   },
   {
     title: "Nexus Protocol",
-    id: "OSS_NODE_03",
+    id: "NODE_03",
     stars: "21.1k",
     forks: "3.4k",
     lang: "Solidity",
-    description: "Zero-knowledge proof verification layer for cross-chain communications."
+    description: "Verification layer for decentralized communications."
   }
 ];
 
@@ -47,18 +47,18 @@ export default function OpenSourcePage() {
         >
             <div className="flex items-center gap-3 text-cyan font-mono text-[10px] uppercase tracking-[0.3em] mb-6">
                 <Globe size={14} />
-                SYSTEM {'//'} CATEGORIZATION {'//'} SINGULARITY_OS
+                SYSTEM // CATEGORIZATION // OPEN_SOURCE
             </div>
             <h1 className="text-6xl lg:text-9xl font-display font-bold mb-8 text-text-0 uppercase tracking-tighter leading-none">
                 Open <br/>
-                <span className="text-text-4 font-black tracking-tighter">{'//'} Source.</span>
+                <span className="text-text-4 font-black tracking-tighter">// Modules.</span>
             </h1>
             <p className="text-xl lg:text-2xl text-text-2 font-body max-w-2xl leading-relaxed">
-                Next-generation distributed infrastructure powering the Mathiya ecosystem. High-performance, fault-tolerant, and radically open.
+                Distributed infrastructure and community-driven projects. Building the foundation of the open web.
             </p>
         </motion.div>
 
-        {/* Contribution Matrix (Stitch Pattern) */}
+        {/* Contribution Matrix */}
         <Card variant="glass" className="p-10 mb-12 relative overflow-hidden group min-h-[400px] flex flex-col">
             <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10 transition-opacity">
                 <Activity size={160} className="text-cyan" />
@@ -66,12 +66,8 @@ export default function OpenSourcePage() {
             
             <div className="flex justify-between items-start mb-12 z-10">
                 <div>
-                    <h2 className="font-display text-2xl font-bold text-text-0 uppercase tracking-tight">Global Contribution Matrix</h2>
-                    <p className="font-mono text-[10px] text-text-4 uppercase tracking-[0.2em] mt-1">REAL-TIME ARCHIVAL TELEMETRY</p>
-                </div>
-                <div className="flex gap-4 font-mono text-[10px]">
-                    <span className="px-3 py-1 bg-cyan/10 text-cyan rounded border border-cyan/20 animate-pulse">LIVE</span>
-                    <span className="px-3 py-1 bg-white/5 text-text-3 rounded border border-white/5">72.4k REQ/S</span>
+                    <h2 className="font-display text-2xl font-bold text-text-0 uppercase tracking-tight">Activity Graph</h2>
+                    <p className="font-mono text-[10px] text-text-4 uppercase tracking-[0.2em] mt-1">REAL-TIME TELEMETRY</p>
                 </div>
             </div>
 
@@ -89,19 +85,6 @@ export default function OpenSourcePage() {
                         />
                     </div>
                 ))}
-            </div>
-            <div className="flex justify-between font-mono text-[8px] text-text-4 mt-6 uppercase tracking-[0.2em]">
-                <span>T-12H</span>
-                <span>T-6H</span>
-                <span>NODE_SYNC_READY</span>
-            </div>
-
-            {/* Terminal Overlay */}
-            <div className="absolute bottom-6 left-10 right-10 h-24 bg-bg-base/60 backdrop-blur-xl border border-white/5 rounded-xl p-4 font-mono text-[10px] flex flex-col gap-1 overflow-hidden opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                <div className="text-text-4">&gt; <span className="text-cyan">tail -f /var/log/singularity/nodes.log</span></div>
-                <div className="text-text-3">[14:32:01] Node eu-west-1a synced block #8921044</div>
-                <div className="text-text-3">[14:32:02] <span className="text-red">WARN</span>: Peer connection timeout (id: 0x8f...)</div>
-                <div className="text-text-2">Consensus reached. Validating payload...</div>
             </div>
         </Card>
 

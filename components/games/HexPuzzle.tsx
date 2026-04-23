@@ -1,127 +1,157 @@
-/* eslint-disable */
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const GRID_SIZE = 4;
+// Hexagonal coordinate system (Axial)
+interface Hex {
+  q: number;
+  r: number;
+  on: boolean;
+}
 
-type HexState = boolean;
+const HEX_SIZE = 3; // Radius of the large hexagon
 
 export function HexPuzzle() {
-  const [grid, setGrid] = useState<HexState[][]>([]);
+  const [grid, setGrid] = useState<Hex[]>([]);
   const [moves, setMoves] = useState(0);
   const [isWon, setIsWon] = useState(false);
 
-  // Initialize grid
-  useEffect(() => {
-    resetGame();
+  const generateHexGrid = useCallback(() => {
+    const hexes: Hex[] = [];
+    for (let q = -HEX_SIZE; q <= HEX_SIZE; q++) {
+      const r1 = Math.max(-HEX_SIZE, -q - HEX_SIZE);
+      const r2 = Math.min(HEX_SIZE, -q + HEX_SIZE);
+      for (let r = r1; r <= r2; r++) {
+        hexes.push({ q, r, on: false });
+      }
+    }
+    return hexes;
   }, []);
 
-  const resetGame = () => {
-    const newGrid = Array(GRID_SIZE).fill(null).map(() => 
-      Array(GRID_SIZE).fill(false)
-    );
+  const getNeighbors = (q: number, r: number) => {
+    const dirs = [
+      { q: 1, r: 0 }, { q: 1, r: -1 }, { q: 0, r: -1 },
+      { q: -1, r: 0 }, { q: -1, r: 1 }, { q: 0, r: 1 }
+    ];
+    return dirs.map(d => ({ q: q + d.q, r: r + d.r }));
+  };
+
+  const resetGame = useCallback(() => {
+    let initialGrid = generateHexGrid();
     
-    // Randomize initial state (simulate random clicks to ensure it's solvable)
-    let tempGrid = [...newGrid.map(row => [...row])];
-    for (let i = 0; i < 10; i++) {
-      const r = Math.floor(Math.random() * GRID_SIZE);
-      const c = Math.floor(Math.random() * GRID_SIZE);
-      tempGrid = toggleNeighbors(tempGrid, r, c);
+    // Simulate random clicks to ensure solvability
+    for (let i = 0; i < 15; i++) {
+      const target = initialGrid[Math.floor(Math.random() * initialGrid.length)];
+      const neighbors = getNeighbors(target.q, target.r);
+      
+      initialGrid = initialGrid.map(h => {
+        const isTarget = h.q === target.q && h.r === target.r;
+        const isNeighbor = neighbors.some(n => n.q === h.q && n.r === h.r);
+        if (isTarget || isNeighbor) {
+          return { ...h, on: !h.on };
+        }
+        return h;
+      });
     }
-    
-    setGrid(tempGrid);
+
+    setGrid(initialGrid);
     setMoves(0);
     setIsWon(false);
-  };
+  }, [generateHexGrid]);
 
-  const toggleNeighbors = (currentGrid: HexState[][], row: number, col: number) => {
-    const newGrid = [...currentGrid.map(r => [...r])];
-    
-    // Toggle clicked cell
-    newGrid[row][col] = !newGrid[row][col];
-    
-    // Toggle neighbors
-    const directions = [
-      [-1, 0], [1, 0], [0, -1], [0, 1]
-    ];
-    
-    directions.forEach(([dr, dc]) => {
-      const nr = row + dr;
-      const nc = col + dc;
-      if (nr >= 0 && nr < GRID_SIZE && nc >= 0 && nc < GRID_SIZE) {
-        newGrid[nr][nc] = !newGrid[nr][nc];
-      }
-    });
-    
-    return newGrid;
-  };
+  useEffect(() => {
+    resetGame();
+  }, [resetGame]);
 
-  const handleCellClick = (row: number, col: number) => {
+  const handleHexClick = (q: number, r: number) => {
     if (isWon) return;
-    
-    const newGrid = toggleNeighbors(grid, row, col);
+
+    const neighbors = getNeighbors(q, r);
+    const newGrid = grid.map(h => {
+      const isTarget = h.q === q && h.r === r;
+      const isNeighbor = neighbors.some(n => n.q === h.q && n.r === h.r);
+      if (isTarget || isNeighbor) {
+        return { ...h, on: !h.on };
+      }
+      return h;
+    });
+
     setGrid(newGrid);
     setMoves(m => m + 1);
-    
-    // Check win condition (all lights off)
-    const allOff = newGrid.every(r => r.every(cell => !cell));
-    if (allOff) {
+
+    if (newGrid.every(h => !h.on)) {
       setIsWon(true);
     }
   };
 
-  if (grid.length === 0) return null;
+  // Convert Axial to Pixel coordinates for rendering
+  const getPixelPos = (q: number, r: number) => {
+    const size = 35; // Hex size in px
+    const x = size * (3/2 * q);
+    const y = size * (Math.sqrt(3)/2 * q + Math.sqrt(3) * r);
+    return { x, y };
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-background-2/50 rounded-2xl border border-white/10">
-      <div className="flex justify-between w-full max-w-sm mb-6 items-center">
-        <h3 className="text-xl font-display font-bold text-white">Lights Out</h3>
-        <div className="text-cyan font-mono text-lg">MOVES: {moves}</div>
+    <div className="flex flex-col items-center justify-center p-8 glass-light rounded-2xl border-border-c relative overflow-hidden min-h-[500px]">
+      <div className="flex justify-between w-full max-w-md mb-12 items-center">
+        <h3 className="text-xl font-display font-black text-white uppercase tracking-tighter italic">System // Hex_Core</h3>
+        <div className="text-cyan font-stat text-2xl tracking-wider">ENTROPY: {String(moves).padStart(3, '0')}</div>
       </div>
 
-      <div className="relative p-2 bg-background border border-white/20 rounded-xl shadow-[0_0_30px_rgba(34,211,238,0.05)]">
-        <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${GRID_SIZE}, minmax(0, 1fr))` }}>
-          {grid.map((row, r) => (
-            row.map((isOn, c) => (
-              <motion.button
-                key={`${r}-${c}`}
-                className={`w-16 h-16 rounded-lg border flex items-center justify-center transition-colors ${
-                  isOn 
-                    ? 'bg-cyan border-cyan/50 shadow-[0_0_15px_rgba(34,211,238,0.6)]' 
-                    : 'bg-background-2 border-white/10'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => handleCellClick(r, c)}
-                disabled={isWon}
-              />
-            ))
-          ))}
-        </div>
-
-        {isWon && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center z-20 backdrop-blur-sm rounded-xl"
-          >
-            <h2 className="text-3xl font-display font-bold text-cyan mb-2">PUZZLE SOLVED</h2>
-            <p className="text-text-2 mb-6 font-mono">Moves: {moves}</p>
-            <button
-              onClick={resetGame}
-              className="px-6 py-2 bg-white text-black font-bold rounded-full hover:bg-cyan hover:text-black transition-colors"
+      <div className="relative w-full h-[300px] flex items-center justify-center scale-75 sm:scale-100">
+        {grid.map((hex) => {
+          const { x, y } = getPixelPos(hex.q, hex.r);
+          return (
+            <motion.button
+              key={`${hex.q}-${hex.r}`}
+              className="absolute w-[60px] h-[68px] cursor-pointer group"
+              style={{ 
+                left: `calc(50% + ${x}px)`, 
+                top: `calc(50% + ${y}px)`,
+                transform: 'translate(-50%, -50%)',
+                clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)'
+              }}
+              onClick={() => handleHexClick(hex.q, hex.r)}
+              whileHover={{ scale: 1.1, zIndex: 10 }}
+              whileTap={{ scale: 0.9 }}
             >
-              NEXT LEVEL
-            </button>
-          </motion.div>
-        )}
+              <div className={`w-full h-full transition-all duration-500 flex items-center justify-center ${
+                hex.on 
+                  ? 'bg-cyan/40 border-2 border-cyan shadow-[0_0_20px_rgba(0,240,255,0.4)]' 
+                  : 'bg-bg-muted border border-white/10 hover:border-cyan/30'
+              }`}>
+                {/* Visual pulse for active nodes */}
+                {hex.on && <div className="w-2 h-2 rounded-full bg-white animate-ping opacity-50" />}
+              </div>
+            </motion.button>
+          );
+        })}
+
+        <AnimatePresence>
+          {isWon && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="absolute inset-0 z-20 flex flex-col items-center justify-center backdrop-blur-md bg-bg-base/80 border border-cyan/30 rounded-xl"
+            >
+              <h2 className="text-4xl font-display font-black text-cyan mb-2 italic tracking-tighter">CORE_STABILIZED</h2>
+              <p className="text-text-3 font-mono text-[10px] uppercase tracking-widest mb-8">Containment Field Integrity: 100%</p>
+              <button
+                onClick={resetGame}
+                className="px-10 py-2 bg-cyan text-black font-bold rounded-sm hover:skew-x-[-10deg] transition-transform uppercase tracking-widest text-xs"
+              >
+                NEXT_SEQUENCE
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      <div className="mt-8 text-center max-w-xs">
-        <p className="text-text-2 text-sm font-mono leading-relaxed">
-          Click a cell to toggle its state and the state of its orthogonal neighbors. Turn all lights off to win.
+      <div className="mt-12 text-center max-w-xs">
+        <p className="text-text-4 text-[9px] font-mono leading-relaxed uppercase tracking-widest opacity-60">
+          Reverse global parity by toggling neural nodes. Every interaction propagates to six adjacent vertices.
         </p>
       </div>
     </div>

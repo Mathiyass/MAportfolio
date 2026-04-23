@@ -30,12 +30,12 @@ export function Teasers() {
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="text-right hidden md:block"
             >
-                <p className="text-text-2 font-mono text-sm max-w-[280px]">SYSTEM STATUS: OPERATIONAL. NAVIGATE THROUGH THE NEURAL INTERFACE TO UNLOCK ARCHIVED DATA SEGMENTS.</p>
+                <p className="text-text-2 font-mono text-sm max-w-[280px]">SYSTEM STATUS: OPERATIONAL. NAVIGATE THROUGH THE INTERFACE TO UNLOCK ARCHIVED DATA.</p>
             </motion.div>
         </div>
 
         <div className="grid grid-cols-12 gap-8 items-stretch">
-            {/* 1. Nexus Core (About) - Vertical Long Card */}
+            {/* 1. About - Vertical Long Card */}
             <motion.div 
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -54,11 +54,11 @@ export function Teasers() {
 
                         <div className="relative z-10">
                             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan/10 border border-cyan/20 text-cyan font-mono text-[10px] tracking-widest uppercase mb-8">
-                                <span className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span> Identity Matrix
+                                <span className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span> Profile Matrix
                             </span>
-                            <h3 className="font-display font-bold text-5xl tracking-tight text-text-0 mb-6 group-hover:text-cyan transition-colors uppercase leading-none">Nexus <br/>Core.</h3>
-                            <p className="text-text-2 text-lg leading-relaxed max-w-[80%] font-light">
-                                Architecting digital experiences where human intuition meets algorithmic precision. A journey through the mind of a full-stack visionary.
+                            <h3 className="font-display font-bold text-5xl tracking-tight text-text-0 mb-6 group-hover:text-cyan transition-colors uppercase leading-none text-balance">The Identity Node.</h3>
+                            <p className="text-text-2 text-lg leading-relaxed max-w-[90%] font-light">
+                                Architecting digital experiences where human intuition meets algorithmic precision.
                             </p>
                         </div>
 
@@ -74,7 +74,7 @@ export function Teasers() {
                                 </div>
                             </div>
                             <div className="flex items-center justify-between w-full p-4 rounded-xl bg-white/5 border border-white/10 group-hover:bg-cyan group-hover:text-bg-base transition-all duration-300">
-                                <span className="font-mono font-bold uppercase tracking-widest text-sm">Decode Origins</span>
+                                <span className="font-mono font-bold uppercase tracking-widest text-sm">Decode Background</span>
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </div>
                         </div>
@@ -84,7 +84,7 @@ export function Teasers() {
 
             {/* Column Wrapper for right side */}
             <div className="col-span-12 md:col-span-7 flex flex-col gap-8 h-full">
-                {/* 2. Technological Arsenal (Skills) - Wide Bento */}
+                {/* 2. Skills - Wide Bento */}
                 <motion.div 
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -103,18 +103,18 @@ export function Teasers() {
 
                             <div className="relative z-10 flex justify-between items-start mb-8">
                                 <div>
-                                    <h3 className="font-display font-bold text-4xl tracking-tight text-text-0 mb-2 group-hover:text-red transition-colors uppercase">Technological Arsenal</h3>
-                                    <p className="text-text-2 font-mono text-[10px] uppercase tracking-widest opacity-60">Protocol: High-Performance Engineering</p>
+                                    <h3 className="font-display font-bold text-4xl tracking-tight text-text-0 mb-2 group-hover:text-red transition-colors uppercase">Capability Matrix</h3>
+                                    <p className="text-text-2 font-mono text-[10px] uppercase tracking-widest opacity-60">Status: High-Performance Stack</p>
                                 </div>
                                 <Terminal className="text-red w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity" />
                             </div>
 
                             <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-4 mt-auto">
                                 {[
-                                    { icon: <Terminal size={24} />, label: "REACT_NODE" },
-                                    { icon: <Cpu size={24} />, label: "RUST_CARGO" },
-                                    { icon: <Box size={24} />, label: "WEBGL_3JS" },
-                                    { icon: <Database size={24} />, label: "POSTGRES" }
+                                    { icon: <Terminal size={24} />, label: "REACT_NEXT" },
+                                    { icon: <Cpu size={24} />, label: "NODE_KMP" },
+                                    { icon: <Box size={24} />, label: "WEBGL_GLSL" },
+                                    { icon: <Database size={24} />, label: "SQL_SUPA" }
                                 ].map((tech, i) => (
                                     <div key={i} className="p-4 rounded-xl bg-bg-base/50 border border-border-1 flex flex-col items-center justify-center gap-3 group/icon hover:bg-red/10 transition-colors">
                                         <div className="text-red opacity-50 group-hover/icon:opacity-100 transition-opacity">
@@ -128,7 +128,7 @@ export function Teasers() {
                     </Link>
                 </motion.div>
 
-                {/* 3. The Simulation (Arcade) - Wide Bento */}
+                {/* 3. Arcade - Wide Bento */}
                 <motion.div 
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -138,24 +138,24 @@ export function Teasers() {
                 >
                     <Link href="/games" className="block h-full">
                         <Card variant="glass-light" className="relative min-h-[330px] h-full p-8 transition-all duration-500 hover:scale-[1.01] flex flex-col md:flex-row items-center gap-8 md:gap-12 border-cyan/20 hover:border-cyan/50">
-                            {/* Retro-Futuristic Grid */}
+                            {/* Grid */}
                             <div className="absolute inset-0 z-0 opacity-40 overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-b from-cyan/5 to-transparent"></div>
                                 <div className="w-[200%] h-[200%] absolute -top-1/2 -left-1/2 rotate-12 bg-[length:40px_40px] bg-[linear-gradient(to_right,rgba(34,211,238,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,211,238,0.1)_1px,transparent_1px)]"></div>
                             </div>
 
                             <div className="relative z-10 flex-1">
-                                <span className="font-mono text-cyan text-[10px] tracking-[0.4em] uppercase mb-4 block">Level 99 Unlocked</span>
-                                <h3 className="font-display font-black text-5xl tracking-tight text-text-0 mb-4 uppercase group-hover:text-cyan transition-colors leading-none">The <br/>Simulation.</h3>
-                                <p className="text-text-2 font-body mb-8 max-w-sm">A retro-futuristic playground of micro-games and experimental UI components. Ready Player One?</p>
+                                <span className="font-mono text-cyan text-[10px] tracking-[0.4em] uppercase mb-4 block">Arcade Access</span>
+                                <h3 className="font-display font-black text-5xl tracking-tight text-text-0 mb-4 uppercase group-hover:text-cyan transition-colors leading-none">THE <br/>ARCADE.</h3>
+                                <p className="text-text-2 font-body mb-8 max-w-sm">A retro-futuristic playground of micro-games and experimental modules.</p>
                                 <div className="inline-flex items-center gap-4 px-6 py-3 rounded-full border border-cyan/50 text-cyan font-mono font-bold uppercase tracking-widest group-hover:bg-cyan group-hover:text-bg-base transition-all duration-300 text-xs">
-                                    Enter Arcade
+                                    INITIALIZE
                                     <ArrowRight className="w-4 h-4" />
                                 </div>
                             </div>
 
                             <div className="relative w-48 h-48 shrink-0 hidden sm:block">
-                                <div className="absolute inset-0 bg-cyan/20 rounded-full blur-3xl group-hover:animate-pulse"></div>
+                                <div className="absolute -inset-4 bg-cyan/20 rounded-full blur-3xl group-hover:animate-pulse"></div>
                                 <div className="w-full h-full rounded-2xl border border-white/5 rotate-6 shadow-[var(--glow-c-s)] transition-transform duration-500 group-hover:rotate-0 overflow-hidden relative">
                                   <div className="absolute inset-0 bg-gradient-to-br from-cyan/20 to-red/10" />
                                   <div className="absolute inset-0 flex items-center justify-center">

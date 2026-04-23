@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useAudioStore } from '@/store/audioStore';
 
 const GRID_SIZE = 20;
 const INITIAL_SNAKE = [{ x: 10, y: 10 }];
@@ -17,8 +18,15 @@ export function SnakeGame() {
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isGlitching, setIsGlitching] = useState(false);
+  const { actions: audio } = useAudioStore();
 
   const gameBoardRef = useRef<HTMLDivElement>(null);
+
+  const triggerGlitch = useCallback(() => {
+    setIsGlitching(true);
+    setTimeout(() => setIsGlitching(false), 200);
+  }, []);
 
   const generateFood = useCallback(() => {
     let newFood: Point;
@@ -60,12 +68,14 @@ export function SnakeGame() {
         newHead.y >= GRID_SIZE
       ) {
         setGameOver(true);
+        triggerGlitch();
         return prevSnake;
       }
 
       // Check collision with self
       if (prevSnake.some((segment) => segment.x === newHead.x && segment.y === newHead.y)) {
         setGameOver(true);
+        triggerGlitch();
         return prevSnake;
       }
 
@@ -81,11 +91,10 @@ export function SnakeGame() {
 
       return newSnake;
     });
-  }, [direction, food, gameOver, isPaused, generateFood]);
+  }, [direction, food, gameOver, isPaused, generateFood, triggerGlitch]);
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      // Prevent default scrolling
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
         e.preventDefault();
       }
@@ -128,85 +137,114 @@ export function SnakeGame() {
   }, [moveSnake, score]);
 
   return (
-    <div className="flex flex-col items-center justify-center p-4 bg-background-2/50 rounded-2xl border border-white/10">
+    <div className="flex flex-col items-center justify-center p-4 glass-light rounded-2xl border-border-c relative overflow-hidden">
+      <svg className="hidden">
+        <defs>
+          <filter id="glitch-filter">
+            <feColorMatrix in="SourceGraphic" type="hueRotate" values="90" />
+            <feOffset dx="4" dy="0" />
+          </filter>
+        </defs>
+      </svg>
+
+      <AnimatePresence>
+        {isGlitching && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 z-30 pointer-events-none bg-red/20 backdrop-invert-[0.1]"
+            style={{ filter: 'url(#glitch-filter)' }}
+          />
+        )}
+      </AnimatePresence>
+
       <div className="flex justify-between w-full max-w-md mb-4 items-center">
-        <h3 className="text-xl font-display font-bold text-white">Neon Snake</h3>
-        <div className="text-cyan font-mono text-lg">SCORE: {score}</div>
+        <h3 className="text-xl font-display font-bold text-white uppercase tracking-tighter">System // Snake</h3>
+        <div className="text-cyan font-stat text-2xl tracking-wider">SCORE: {String(score).padStart(3, '0')}</div>
       </div>
 
       <div
         ref={gameBoardRef}
-        className="relative bg-background border border-white/20 rounded-lg overflow-hidden shadow-[0_0_30px_rgba(34,211,238,0.1)]"
+        className="relative bg-bg-base border border-cyan/30 rounded-lg overflow-hidden shadow-glow-c-s"
         style={{
           width: 'min(100vw - 2rem, 400px)',
           height: 'min(100vw - 2rem, 400px)',
         }}
       >
-        {/* Grid Background */}
         <div 
-          className="absolute inset-0 opacity-20 pointer-events-none"
+          className="absolute inset-0 opacity-10 pointer-events-none"
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(to right, rgba(0,240,255,0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,240,255,0.2) 1px, transparent 1px)`,
             backgroundSize: `${100 / GRID_SIZE}% ${100 / GRID_SIZE}%`
           }}
         />
 
-        {/* Snake */}
         {snake.map((segment, index) => (
           <motion.div
-            key={`${segment.x}-${segment.y}`}
+            key={`${index}-${segment.x}-${segment.y}`}
             className="absolute rounded-sm"
             style={{
               width: `${100 / GRID_SIZE}%`,
               height: `${100 / GRID_SIZE}%`,
               left: `${(segment.x / GRID_SIZE) * 100}%`,
               top: `${(segment.y / GRID_SIZE) * 100}%`,
-              backgroundColor: index === 0 ? '#22D3EE' : '#0891B2',
-              boxShadow: index === 0 ? '0 0 10px #22D3EE' : 'none',
+              backgroundColor: index === 0 ? 'var(--color-cyan)' : 'var(--color-cyan-dim)',
+              boxShadow: index === 0 ? 'var(--glow-c-s)' : 'none',
               zIndex: 10
             }}
             initial={false}
-            animate={{ left: `${(segment.x / GRID_SIZE) * 100}%`, top: `${(segment.y / GRID_SIZE) * 100}%` }}
+            animate={{ 
+              left: `${(segment.x / GRID_SIZE) * 100}%`, 
+              top: `${(segment.y / GRID_SIZE) * 100}%`,
+              scale: isGlitching ? 1.2 : 1
+            }}
             transition={{ type: 'tween', duration: 0.1 }}
           />
         ))}
 
-        {/* Food */}
-        <div
-          className="absolute bg-rose-500 rounded-full"
+        <motion.div
+          className="absolute bg-red rounded-full"
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ repeat: Infinity, duration: 0.5 }}
           style={{
             width: `${100 / GRID_SIZE}%`,
             height: `${100 / GRID_SIZE}%`,
             left: `${(food.x / GRID_SIZE) * 100}%`,
             top: `${(food.y / GRID_SIZE) * 100}%`,
-            boxShadow: '0 0 15px #F43F5E',
+            boxShadow: 'var(--glow-r-s)',
           }}
         />
 
-        {/* Overlays */}
         {gameOver && (
-          <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center z-20 backdrop-blur-sm">
-            <h2 className="text-4xl font-display font-bold text-red mb-2">GAME OVER</h2>
-            <p className="text-text-2 mb-6 font-mono">FINAL SCORE: {score}</p>
+          <div className="absolute inset-0 bg-bg-base/90 flex flex-col items-center justify-center z-20 backdrop-blur-md border border-red/50">
+            <h2 className="text-4xl font-display font-black text-red mb-2 italic tracking-tighter">CONNECTION_LOST</h2>
+            <p className="text-text-2 mb-6 font-mono text-xs opacity-60 uppercase">Final Data Payload: {score} Units</p>
             <button
               onClick={resetGame}
-              className="px-6 py-3 bg-cyan text-black font-bold rounded-full hover:bg-cyan/80 transition-colors"
+              className="px-8 py-2 bg-red text-white font-bold rounded-sm hover:skew-x-[-12deg] transition-transform uppercase tracking-widest text-xs border border-red/20"
             >
-              PLAY AGAIN
+              RE-ESTABLISH LINK
             </button>
           </div>
         )}
 
         {isPaused && !gameOver && (
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-20 backdrop-blur-sm">
-            <h2 className="text-3xl font-display font-bold text-white tracking-widest">PAUSED</h2>
+          <div className="absolute inset-0 bg-bg-base/60 flex items-center justify-center z-20 backdrop-blur-sm">
+            <h2 className="text-2xl font-display font-bold text-white tracking-[0.5em] italic animate-pulse">PAUSED</h2>
           </div>
         )}
       </div>
 
-      <div className="mt-6 flex flex-wrap justify-center gap-4 text-text-2 text-sm font-mono text-center">
-        <span><kbd className="px-2 py-1 bg-white/10 rounded mr-1">WASD</kbd> or <kbd className="px-2 py-1 bg-white/10 rounded mr-1">ARROWS</kbd> to move</span>
-        <span><kbd className="px-2 py-1 bg-white/10 rounded mr-1">SPACE</kbd> to pause</span>
+      <div className="mt-6 flex flex-wrap justify-center gap-6 text-text-3 text-[10px] font-mono uppercase tracking-[0.2em]">
+        <div className="flex items-center gap-2">
+          <kbd className="px-2 py-1 bg-white/5 border border-white/10 rounded">WASD</kbd>
+          <span>MANEUVER</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <kbd className="px-2 py-1 bg-white/5 border border-white/10 rounded">SPACE</kbd>
+          <span>SUSPEND</span>
+        </div>
       </div>
     </div>
   );

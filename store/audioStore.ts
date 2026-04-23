@@ -1,5 +1,6 @@
 'use client';
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 interface AudioState {
   isEnabled: boolean;
@@ -13,14 +14,27 @@ interface AudioState {
   };
 }
 
-export const useAudioStore = create<AudioState>((set) => ({
-  isEnabled: false,
-  volume: 0.3,
-  isMuted: false,
-  actions: {
-    toggle: () => set((s) => ({ isEnabled: !s.isEnabled })),
-    setVolume: (volume) => set({ volume }),
-    mute: () => set({ isMuted: true }),
-    unmute: () => set({ isMuted: false }),
-  },
-}));
+export const useAudioStore = create<AudioState>()(
+  persist(
+    (set) => ({
+      isEnabled: false,
+      volume: 0.3,
+      isMuted: false,
+      actions: {
+        toggle: () => set((s) => ({ isEnabled: !s.isEnabled })),
+        setVolume: (volume) => set({ volume }),
+        mute: () => set({ isMuted: true }),
+        unmute: () => set({ isMuted: false }),
+      },
+    }),
+    {
+      name: 'nexus-audio-storage',
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({ 
+        volume: state.volume, 
+        isMuted: state.isMuted,
+        isEnabled: state.isEnabled 
+      }),
+    }
+  )
+);

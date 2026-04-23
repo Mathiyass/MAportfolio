@@ -27,6 +27,11 @@ export function MagneticCursor() {
     const updateMouse = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
+      
+      const nx = (e.clientX / window.innerWidth) * 100;
+      const ny = (e.clientY / window.innerHeight) * 100;
+      document.documentElement.style.setProperty('--mouse-x', `${nx}`);
+      document.documentElement.style.setProperty('--mouse-y', `${ny}`);
     };
 
     const handleMouseDown = () => setIsClicking(true);
