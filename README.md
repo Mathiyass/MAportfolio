@@ -4,15 +4,16 @@
 
 # MATHIYA - Engineering Showcase
 
-Mathisha Angirasa's Next.js 15 Engineering Showcase. This portfolio features advanced web technologies including React Three Fiber (R3F), custom GLSL shaders, 6 interactive games, and Framer Motion animations.
+Mathisha Angirasa's Next.js 15 Engineering Showcase. This portfolio features advanced web technologies including React Three Fiber (R3F), custom GLSL shaders, interactive features, and Framer Motion animations.
 
 ## Features
 
-- **Next.js 15 App Router**: Built with the latest Next.js features.
-- **R3F & GLSL**: Immersive 3D experiences and custom shader backgrounds.
-- **Interactive Games**: 6 built-in games (Snake, Racer, Hex Puzzle, etc.).
-- **Modern UI**: Styled with Tailwind CSS and Radix UI primitives.
+- **Next.js 15 App Router**: Built with the latest Next.js features and server components.
+- **R3F & GLSL**: Immersive 3D experiences, atmospheric hex grids, and custom shader backgrounds.
+- **Dynamic Projects**: Live integration with GitHub Open Graph images to showcase real development work.
+- **Modern UI**: Styled with Tailwind CSS v4 and a highly customized CSS-variable design system.
 - **Animations**: Fluid transitions and magnetic interactions via GSAP and Framer Motion.
+- **BYTE Mascot**: An interactive AI-like assistant providing contextual guidance across the platform.
 
 ## Development
 
@@ -26,23 +27,20 @@ Mathisha Angirasa's Next.js 15 Engineering Showcase. This portfolio features adv
    ```bash
    npm install
    ```
-3. (Optional) Set up environment variables in `.env.local`:
-   ```env
-   GEMINI_API_KEY=your_api_key_here
-   ```
-4. Run the development server:
+3. Run the development server:
    ```bash
    npm run dev
    ```
+4. Open [http://localhost:3000/MAportfolio](http://localhost:3000/MAportfolio) with your browser to see the result.
 
 ## Deployment
 
-This project is configured for **GitHub Pages**.
+This project is optimized as a static export and is configured for deployment to **GitHub Pages**.
 
 ### How to deploy:
 1. Push your changes to the `main` branch.
-2. The GitHub Action in `.github/workflows/deploy.yml` will automatically build and deploy the site.
+2. The GitHub Action in `.github/workflows/deploy.yml` (or similar) will automatically build and deploy the site.
 3. In your GitHub repository settings, go to **Pages** and ensure the source is set to **GitHub Actions**.
 
 ---
-*Built with ❤️ by [MATHIYA](https://github.com/Mathiya)*
+*Built with ❤️ by [MATHIYA](https://github.com/Mathiyass)*
