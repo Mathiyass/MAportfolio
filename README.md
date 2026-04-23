@@ -45,4 +45,4 @@ This project is configured for **GitHub Pages**.
 3. In your GitHub repository settings, go to **Pages** and ensure the source is set to **GitHub Actions**.
 
 ---
-*Built with ❤️ by [Mathiya](https://github.com/Mathiya)*
+*Built with ❤️ by [MATHIYA](https://github.com/Mathiya)*

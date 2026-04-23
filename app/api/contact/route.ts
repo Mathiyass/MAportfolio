@@ -14,9 +14,8 @@ export async function POST(request: Request) {
     }
 
     // In a real application, you would integrate with Resend, Sendgrid, etc.
-    // For now, we'll just log it and return success since we're not hooking up a DB.
-    console.log('Received contact message:', { name, email, message });
-
+    // For now, we'll just return success since we're not hooking up a DB.
+    
     // TODO: Add Resend API integration
     // import { Resend } from 'resend';
     // const resend = new Resend(process.env.RESEND_API_KEY);

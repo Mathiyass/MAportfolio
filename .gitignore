@@ -1,10 +1,14 @@
 node_modules/
 .next/
+out/
+temp_stitch/
 coverage/
 .DS_Store
 *.log
 .env*
 !.env.example
+tsconfig.tsbuildinfo
+bug*.png
 
 # Development tools and agents
 .jules/
